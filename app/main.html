@@ -16,7 +16,7 @@
     <head-top></head-top>
     <section class="cat-container">
       <ul class="category clearfix">
-        <li class="item" v-for="(ranks, index) in list" @click="change(index + 1)">
+        <li class="item" v-for="(ranks, index) in ranks_list" @click="change(index + 1)">
           <img :src= "img_url + '/category1.png'">
           <span>{{ ranks }}</span>
         </li>
@@ -90,8 +90,8 @@
     <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
       <div class="container">
         <ul class="types">
-          <li class="item" v-for="(types, index) in list" @click="change(index)">
-            <span>{{ types}}</span>
+          <li class="item" v-for="(types, index) in typeList" @click="change(index)">
+            <span>{{ types }}</span>
             <i class="fa fa-angle-right"></i>
           </li>
         </ul>

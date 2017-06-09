@@ -19,7 +19,7 @@ Vue.component('head-top',
         open: false,
         docked: false,
         transitionName: 'slide-left',
-        list: [],
+        typeList: [],
         loading: false,
         refreshing: false,
         img_url: 'public/images'
@@ -58,21 +58,26 @@ Vue.component('head-top',
         }
       },
       prevent(event) {
-        event.preventDefault()
+        event.preventDefault();
         event.stopPropagation()
       },
       getTypeList() {
         let vue = this;
         jAjax({
           type:"get",
-          url:apis.slideimgs,
+          url:apis.products_r_type,
           timeOut:5000,
           before:function(){
             console.log("before");
           },
-          success:function(res){
-            console.log(res);
-            vue.list = (res.data);
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              vue.typeList = (data);
+            }else {
+              console.log('no data')
+            }
+
           },
           error:function(){
             console.log("error");
@@ -98,13 +103,11 @@ var app = new Vue(
     deactivated() {
 
     },
-    data() {
-      return {
-        list: [],
+    data: {
+      ranks_list: [],
         loading: false,
         refreshing: false,
         img_url: 'public/images'
-      }
     },
     watch: {
     },
@@ -121,8 +124,14 @@ var app = new Vue(
           before:function(){
             console.log("before");
           },
-          success:function(res){
-            vue.list = (res.data);
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              vue.ranks_list = (data);
+            }else {
+              console.log('no data')
+            }
+
           },
           error:function(){
             console.log("error");

@@ -7,7 +7,7 @@ const wiredep = require('wiredep').stream;
 const runSequence = require('run-sequence');
 
 const $ = gulpLoadPlugins();
-const reload = browserSync.reload;
+// const reload = browserSync.reload;
 
 let dev = true;
 
@@ -23,7 +23,7 @@ gulp.task('styles', () => {
     .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
     .pipe($.if(dev, $.sourcemaps.write()))
     .pipe(gulp.dest('.tmp/public/styles'))
-    .pipe(reload({stream: true}));
+    // .pipe(reload({stream: true}));
 });
 
 gulp.task('scripts', () => {
@@ -33,13 +33,13 @@ gulp.task('scripts', () => {
     .pipe($.babel())
     .pipe($.if(dev, $.sourcemaps.write('.')))
     // .pipe(gulp.dest('.tmp/public/scripts'))
-    .pipe(reload({stream: true}));
+    // .pipe(reload({stream: true}));
 });
 
 function lint(files) {
   return gulp.src(files)
     .pipe($.eslint({ fix: true }))
-    .pipe(reload({stream: true, once: true}))
+    // .pipe(reload({stream: true, once: true}))
     .pipe($.eslint.format())
     .pipe($.if(!browserSync.active, $.eslint.failAfterError()));
 }
@@ -104,11 +104,11 @@ gulp.task('serve', () => {
       }
     });
 
-    gulp.watch([
-      'app/*.html',
-      'app/public/images/**/*',
-      '.tmp/public/fonts/**/*'
-    ]).on('change', reload);
+    // gulp.watch([
+    //   'app/*.html',
+    //   'app/public/images/**/*',
+    //   '.tmp/public/fonts/**/*'
+    // ]).on('change', reload);
 
     gulp.watch('app/public/styles/**/*.scss', ['styles']);
     gulp.watch('app/public/scripts/**/*.js', ['scripts']);
