@@ -26,17 +26,9 @@ Vue.component('head-top',
       }
     },
     methods: {
-      toIndex(num){
-        this.$router.push({
-          path: '/'
-        });
-        this.$store.commit('addType', num);
-        this.$store.commit('addRank', num);
+      toIndex(){
       },
       toLogin(){
-        this.$router.push({
-          path: '/login'
-        });
       },
       change(index) {
         let path = '/main/prolist';
@@ -53,16 +45,7 @@ Vue.component('head-top',
         });
         this.$store.commit('addType', index);
       },
-      back(n) {
-        if (n) {
-          this.$router.push({
-            path: 'home'
-          });
-        } else {
-          window.history.back()
-        }
-      },
-      toggle(flag) {
+      toggle() {
         if (!this.open) {
           this.docked = true;
           this.open = true;
@@ -80,8 +63,20 @@ Vue.component('head-top',
       },
       getTypeList() {
         let vue = this;
-        api.getTypeResource().then(function(response) {
-          vue.list = (response.data.data);
+        jAjax({
+          type:"get",
+          url:apis.slideimgs,
+          timeOut:5000,
+          before:function(){
+            console.log("before");
+          },
+          success:function(res){
+            console.log(res);
+            vue.list = (res.data);
+          },
+          error:function(){
+            console.log("error");
+          }
         });
 
       },
@@ -115,30 +110,28 @@ var app = new Vue(
     },
     methods: {
       change(index) {
-        let path = '/main/prolist';
-        let params = this.$route.query;
-        let queryObj = {
-          rankid: index || 0
-        };
-        if(params.typeid !== undefined){
-          queryObj.typeid = params.typeid;
-        }
-        this.$router.push({
-          path: path,
-          query: queryObj
-        });
-        this.$store.commit('addRank', index);
+
       },
       getRankList() {
         let vue = this;
-        api.getRankResource().then(function(response) {
-          vue.list = (response.data.data);
+        jAjax({
+          type:"get",
+          url:apis.products_r_rank,
+          timeOut:5000,
+          before:function(){
+            console.log("before");
+          },
+          success:function(res){
+            vue.list = (res.data);
+          },
+          error:function(){
+            console.log("error");
+          }
         });
 
       },
     },
     components: {
-      // headTop
     }
   }
 ).$mount('#main');

@@ -73,13 +73,11 @@
   </div>
 </div>
 <script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
 <script type="text/x-template" id="head_top">
   <header class="head-container">
     <ul class="nav">
-      <li v-if="!flag" class="toggle" @click="toggle(true)">
-        <i class="fa fa-bars"></i>
-      </li>
-      <li v-if="flag" class="toggle" @click="back()">
+      <li class="toggle" @click="toggle()">
         <i class="fa fa-bars"></i>
       </li>
       <li class="logo" @click="toIndex(0)">
