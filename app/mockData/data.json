@@ -1,0 +1,390 @@
+{
+  "slides":
+  [
+    {
+      "image": "./static/img/resource/00.png",
+      "r_type": 0,
+      "id": 0,
+      "title": "aaa"
+    },
+    {
+      "image": "./static/img/resource/01.png",
+      "r_type": 0,
+      "id": 1,
+      "title": "bbb"
+    },
+    {
+      "image": "./static/img/resource/02.png",
+      "r_type": 0,
+      "id": 2,
+      "title": "ccc"
+    },
+    {
+      "image": "./static/img/resource/03.png",
+      "r_type": 0,
+      "id": 3,
+      "title": "ddd"
+    },
+    {
+      "image": "./static/img/resource/02.png",
+      "r_type": 0,
+      "id": 4,
+      "title": "eee"
+    }
+  ],
+  "products":
+  [
+    {
+      "id": "001",
+      "r_type": "圆器",
+      "rank": "登堂入室",
+      "name": "束云茶叶罐001",
+      "artist": "李某某001",
+      "title": "【精雕细刻】束云茶叶罐001",
+      "description": "描述文字。。。。。001。",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 99999999,
+      "saleAmount" : 11111111
+    },
+    {
+      "id": "002",
+      "r_type": "圆器",
+      "rank": "略有小成",
+      "name": "束云茶叶罐002",
+      "artist": "李某某002",
+      "title": "【精雕细刻】束云茶叶罐002",
+      "description": "描述文字。。。。。。002",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    },
+    {
+      "id": "003",
+      "r_type": "方器",
+      "rank": "登堂入室",
+      "name": "束云茶叶罐003",
+      "artist": "李某某003",
+      "title": "【精雕细刻】束云茶叶罐003",
+      "description": "描述文字。。。。。。003",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 88888888,
+      "saleAmount" : 22222222
+    },
+    {
+      "id": "004",
+      "r_type": "花器",
+      "rank": "出神入化",
+      "name": "束云茶叶罐004",
+      "artist": "李某某004",
+      "title": "【精雕细刻】束云茶叶罐004",
+      "description": "描述文字。。。。。。004",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 77777777,
+      "saleAmount" : 22222222
+    },
+    {
+      "id": "005",
+      "r_type": "圆器",
+      "rank": "炉火纯青",
+      "name": "束云茶叶罐005",
+      "artist": "李某某005",
+      "title": "【精雕细刻】束云茶叶罐005",
+      "description": "描述文字。。。。。。005",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    },
+    {
+      "id": "006",
+      "r_type": "圆器",
+      "rank": "登堂入室",
+      "name": "束云茶叶罐006",
+      "artist": "李某某006",
+      "title": "【精雕细刻】束云茶叶罐006",
+      "description": "描述文字。。。。。。006",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    },
+    {
+      "id": "007",
+      "r_type": "方器",
+      "rank": "登堂入室",
+      "name": "束云茶叶罐007",
+      "artist": "李某某007",
+      "title": "【精雕细刻】束云茶叶罐007",
+      "description": "描述文字。。。。。。007",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    },
+    {
+      "id": "008",
+      "r_type": "圆器",
+      "rank": "出神入化",
+      "name": "束云茶叶罐008",
+      "artist": "李某某008",
+      "title": "【精雕细刻】束云茶叶罐008",
+      "description": "描述文字。。。。。。008",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    },
+    {
+      "id": "009",
+      "r_type": "花器",
+      "rank": "登堂入室",
+      "name": "束云茶叶罐009",
+      "artist": "李某某009",
+      "title": "【精雕细刻】束云茶叶罐009",
+      "description": "描述文字。。。。。。009",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    },
+    {
+      "id": "010",
+      "r_type": "方器",
+      "rank": "登峰造极",
+      "name": "束云茶叶罐010",
+      "artist": "李某某010",
+      "title": "【精雕细刻】束云茶叶罐010",
+      "description": "描述文字。。。。。。010",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    },
+    {
+      "id": "011",
+      "r_type": "方器",
+      "rank": "登峰造极",
+      "name": "束云茶叶罐011",
+      "artist": "李某某011",
+      "title": "【精雕细刻】束云茶叶罐011",
+      "description": "描述文字。。。。。。011",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    },
+    {
+      "id": "012",
+      "r_type": "方器",
+      "rank": "略有小成",
+      "name": "束云茶叶罐012",
+      "artist": "李某某012",
+      "title": "【精雕细刻】束云茶叶罐012",
+      "description": "描述文字。。。。。。012",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    },
+    {
+      "id": "013",
+      "r_type": "方器",
+      "rank": "登峰造极",
+      "name": "束云茶叶罐013",
+      "artist": "李某某013",
+      "title": "【精雕细刻】束云茶叶罐013",
+      "description": "描述文字。。。。。013。",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    },
+    {
+      "id": "014",
+      "r_type": "方器",
+      "rank": "登峰造极",
+      "name": "束云茶叶罐014",
+      "artist": "李某某014",
+      "title": "【精雕细刻】束云茶叶罐014",
+      "description": "描述文字。。。。。014。",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    },
+    {
+      "id": "015",
+      "r_type": "方器",
+      "rank": "炉火纯青",
+      "name": "束云茶叶罐015",
+      "artist": "李某某015",
+      "title": "【精雕细刻】束云茶叶罐015",
+      "description": "描述文字。。。。。。015",
+      "default_pic": "/static/img/resource/imgs.png",
+      "pics":
+      [
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png",
+        "/static/img/resource/imgs.png"
+      ],
+      "clickAmount" : 234123,
+      "saleAmount" : 1000
+    }
+  ],
+  "productsType": ["全部", "圆器", "方器", "花器"],
+  "productsRank": ["登堂入室", "略有小成", "炉火纯青", "出神入化", "登峰造极"],
+  "userinfo": [
+    {
+      "token": "cd8f6585f98d503935bd175295b37ae621c0bf06949a46c226125f28d8efd0a9",
+      "memberId": "Idxxxxxxx",
+      "userName": "用户名称李某某",
+      "cellPhone": "13888888888",
+      "gradeId": "等级Id",
+      "headPortrait": "用户头像",
+      "shopId": "店铺Id",
+      "authStatus": "实名认证",
+      "inviterId": "邀请者会员Id",
+      "ip": "登陆ip",
+      "loginTime": "登陆时间",
+      "expireTime": "过期时间"
+
+    }
+  ],
+  "allUsers":[
+    {
+      "token": "cd8f6585f98d503935bd175295b37ae621c0bf06949a46c226125f28d8efd0a9",
+      "memberId": "0001",
+      "userName": "用户名1",
+      "cellPhone": "13888888888",
+      "gradeId": "等级Id",
+      "headPortrait": "用户头像",
+      "shopId": "店铺Id",
+      "authStatus": "实名认证",
+      "inviterId": "邀请者会员Id",
+      "ip": "登陆ip",
+      "loginTime": "登陆时间",
+      "expireTime": "过期时间"
+
+    },
+    {
+      "token": "cd8f6585f98d503935bd175295b37ae621c0bf06949a46c226125f28d8efd0a9",
+      "memberId": "0002",
+      "userName": "用户名2",
+      "cellPhone": "15555555555",
+      "gradeId": "等级Id",
+      "headPortrait": "用户头像",
+      "shopId": "店铺Id",
+      "authStatus": "实名认证",
+      "inviterId": "邀请者会员Id",
+      "ip": "登陆ip",
+      "loginTime": "登陆时间",
+      "expireTime": "过期时间"
+
+    },
+    {
+      "token": "cd8f6585f98d503935bd175295b37ae621c0bf06949a46c226125f28d8efd0a9",
+      "memberId": "0003",
+      "userName": "用户名3",
+      "cellPhone": "13999999999",
+      "gradeId": "等级Id",
+      "headPortrait": "用户头像",
+      "shopId": "店铺Id",
+      "authStatus": "实名认证",
+      "inviterId": "邀请者会员Id",
+      "ip": "登陆ip",
+      "loginTime": "登陆时间",
+      "expireTime": "过期时间"
+
+    }
+  ]
+
+}

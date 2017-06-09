@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="public/styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+<div id="main">
+  <div class="main-container">
+    <head-top></head-top>
+    <section class="cat-container">
+      <ul class="category clearfix">
+        <li class="item" v-for="(ranks, index) in list" @click="change(index + 1)">
+          <img :src= "img_url + '/category1.png'">
+          <span>{{ ranks }}</span>
+        </li>
+      </ul>
+    </section>
+    <div class="prolist-container">
+      <ul class="prolist" v-if="list.length">
+        <li class="item" v-for="item in list">
+          <a href="javascript:;">
+					<span class="pro-main">
+						<img :src="item.default_pic">
+					</span>
+            <span class="title">{{ item.title }}</span>
+            <span class="description">{{ item.description }}</span>
+            <span class="pro-lists">
+						<span class="imgs">
+							<img :src="item.pics[0]">
+						</span>
+						<span class="imgs">
+							<img :src="item.pics[1]">
+						</span>
+						<span class="imgs">
+							<img :src="item.pics[2]">
+						</span>
+						<span class="imgs">
+							<img :src="item.pics[3]">
+						</span>
+					</span>
+            <span class="ops">
+						<img :src="img_url + '/clickAmount.png'"><span>{{ item.clickAmount }}</span>
+						<img :src="img_url + '/saleAmount.png'"><span>{{ item.saleAmount }}</span>
+					</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="prolist" v-else>
+        <li class="noData">
+          没有数据......
+        </li>
+      </ul>
+      <div class="loading" v-if="!list.length&&!refreshing">
+        <span class="left"></span>
+        <span class="middle"></span>
+        <span class="right"></span>
+      </div>
+    </div>
+    <div class="copyright-container">
+      <div class="info">
+        Copyright&nbsp;&copy;&nbsp;2017&nbsp;,fangcuntang&nbsp;Co.,Ltd.All&nbsp;Rights&nbsp;Reserved.<br>
+        宜兴方寸堂文化传媒有限公司&ensp;|&ensp;<a href="" class="law">法律声明</a><br>
+        <span class="bottom">沪ICP备12022967号-1&nbsp;沪公网安备11010502025474</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="public/scripts/vue.js"></script>
+<script type="text/x-template" id="head_top">
+  <header class="head-container">
+    <ul class="nav">
+      <li v-if="!flag" class="toggle" @click="toggle(true)">
+        <i class="fa fa-bars"></i>
+      </li>
+      <li v-if="flag" class="toggle" @click="back()">
+        <i class="fa fa-bars"></i>
+      </li>
+      <li class="logo" @click="toIndex(0)">
+        <img :src="img_url + '/logo.png'">
+      </li>
+      <li class="user" @click="toLogin()">
+        <i class="fa fa-user-circle-o"></i>
+      </li>
+    </ul>
+    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
+      <div class="container">
+        <ul class="types">
+          <li class="item" v-for="(types, index) in list" @click="change(index)">
+            <span>{{ types}}</span>
+            <i class="fa fa-angle-right"></i>
+          </li>
+        </ul>
+        <ul class="lines clearfix">
+          <li class="item">
+            <a href="javascript:;">
+              <img :src="img_url + '/menu1.png'">
+              <span>合作艺师</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img :src="img_url + '/menu2.png'">
+              <span>百科</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img :src="img_url + '/menu3.png'">
+              <span>个性定制</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img :src="img_url + '/menu4.png'">
+              <span>APP下载</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img :src="img_url + '/menu5.png'">
+              <span>品牌理念</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</script>
+<script src="public/scripts/main.js"></script>
+</body>
+</html>
