@@ -96,6 +96,7 @@ var app = new Vue(
     },
     mounted: function() {
       this.getRankList();
+      this.getProlist();
     },
     activated() {
 
@@ -105,9 +106,10 @@ var app = new Vue(
     },
     data: {
       ranks_list: [],
-        loading: false,
-        refreshing: false,
-        img_url: 'public/images'
+      pro_list: [],
+      loading: false,
+      refreshing: false,
+      img_url: 'public/images'
     },
     watch: {
     },
@@ -128,6 +130,30 @@ var app = new Vue(
             if(data){
               data = JSON.parse(data);
               vue.ranks_list = (data);
+            }else {
+              console.log('no data')
+            }
+
+          },
+          error:function(){
+            console.log("error");
+          }
+        });
+
+      },
+      getProlist() {
+        let vue = this;
+        jAjax({
+          type:"get",
+          url:apis.allProducts,
+          timeOut:5000,
+          before:function(){
+            console.log("before");
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              vue.pro_list = (data);
             }else {
               console.log('no data')
             }

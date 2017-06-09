@@ -2,31 +2,31 @@
   "slides":
   [
     {
-      "image": "./static/img/resource/00.png",
+      "image": "/public/images/resource/00.png",
       "r_type": 0,
       "id": 0,
       "title": "aaa"
     },
     {
-      "image": "./static/img/resource/01.png",
+      "image": "/public/images/resource/01.png",
       "r_type": 0,
       "id": 1,
       "title": "bbb"
     },
     {
-      "image": "./static/img/resource/02.png",
+      "image": "/public/images/resource/02.png",
       "r_type": 0,
       "id": 2,
       "title": "ccc"
     },
     {
-      "image": "./static/img/resource/03.png",
+      "image": "/public/images/resource/03.png",
       "r_type": 0,
       "id": 3,
       "title": "ddd"
     },
     {
-      "image": "./static/img/resource/02.png",
+      "image": "/public/images/resource/02.png",
       "r_type": 0,
       "id": 4,
       "title": "eee"
@@ -42,13 +42,13 @@
       "artist": "李某某001",
       "title": "【精雕细刻】束云茶叶罐001",
       "description": "描述文字。。。。。001。",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 99999999,
       "saleAmount" : 11111111
@@ -61,13 +61,13 @@
       "artist": "李某某002",
       "title": "【精雕细刻】束云茶叶罐002",
       "description": "描述文字。。。。。。002",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000
@@ -80,13 +80,13 @@
       "artist": "李某某003",
       "title": "【精雕细刻】束云茶叶罐003",
       "description": "描述文字。。。。。。003",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 88888888,
       "saleAmount" : 22222222
@@ -99,13 +99,13 @@
       "artist": "李某某004",
       "title": "【精雕细刻】束云茶叶罐004",
       "description": "描述文字。。。。。。004",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 77777777,
       "saleAmount" : 22222222
@@ -118,13 +118,13 @@
       "artist": "李某某005",
       "title": "【精雕细刻】束云茶叶罐005",
       "description": "描述文字。。。。。。005",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000
@@ -137,13 +137,13 @@
       "artist": "李某某006",
       "title": "【精雕细刻】束云茶叶罐006",
       "description": "描述文字。。。。。。006",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000
@@ -156,13 +156,13 @@
       "artist": "李某某007",
       "title": "【精雕细刻】束云茶叶罐007",
       "description": "描述文字。。。。。。007",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000
@@ -175,13 +175,13 @@
       "artist": "李某某008",
       "title": "【精雕细刻】束云茶叶罐008",
       "description": "描述文字。。。。。。008",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000
@@ -194,13 +194,13 @@
       "artist": "李某某009",
       "title": "【精雕细刻】束云茶叶罐009",
       "description": "描述文字。。。。。。009",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000
@@ -213,13 +213,13 @@
       "artist": "李某某010",
       "title": "【精雕细刻】束云茶叶罐010",
       "description": "描述文字。。。。。。010",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000
@@ -232,13 +232,13 @@
       "artist": "李某某011",
       "title": "【精雕细刻】束云茶叶罐011",
       "description": "描述文字。。。。。。011",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000
@@ -251,13 +251,13 @@
       "artist": "李某某012",
       "title": "【精雕细刻】束云茶叶罐012",
       "description": "描述文字。。。。。。012",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000
@@ -270,13 +270,13 @@
       "artist": "李某某013",
       "title": "【精雕细刻】束云茶叶罐013",
       "description": "描述文字。。。。。013。",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000
@@ -289,13 +289,13 @@
       "artist": "李某某014",
       "title": "【精雕细刻】束云茶叶罐014",
       "description": "描述文字。。。。。014。",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000
@@ -308,13 +308,13 @@
       "artist": "李某某015",
       "title": "【精雕细刻】束云茶叶罐015",
       "description": "描述文字。。。。。。015",
-      "default_pic": "/static/img/resource/imgs.png",
+      "default_pic": "/public/images/resource/imgs.png",
       "pics":
       [
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png",
-        "/static/img/resource/imgs.png"
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
       ],
       "clickAmount" : 234123,
       "saleAmount" : 1000

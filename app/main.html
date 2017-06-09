@@ -23,32 +23,32 @@
       </ul>
     </section>
     <div class="prolist-container">
-      <ul class="prolist" v-if="list.length">
-        <li class="item" v-for="item in list">
+      <ul class="prolist" v-if="pro_list.length">
+        <li class="item" v-for="item in pro_list">
           <a href="javascript:;">
-					<span class="pro-main">
-						<img :src="item.default_pic">
-					</span>
+            <span class="pro-main">
+              <img :src="item.default_pic">
+            </span>
             <span class="title">{{ item.title }}</span>
             <span class="description">{{ item.description }}</span>
             <span class="pro-lists">
-						<span class="imgs">
-							<img :src="item.pics[0]">
-						</span>
-						<span class="imgs">
-							<img :src="item.pics[1]">
-						</span>
-						<span class="imgs">
-							<img :src="item.pics[2]">
-						</span>
-						<span class="imgs">
-							<img :src="item.pics[3]">
-						</span>
-					</span>
-            <span class="ops">
-						<img :src="img_url + '/clickAmount.png'"><span>{{ item.clickAmount }}</span>
-						<img :src="img_url + '/saleAmount.png'"><span>{{ item.saleAmount }}</span>
-					</span>
+            <span class="imgs">
+              <img :src="item.pics[0]">
+            </span>
+            <span class="imgs">
+              <img :src="item.pics[1]">
+            </span>
+            <span class="imgs">
+              <img :src="item.pics[2]">
+            </span>
+            <span class="imgs">
+              <img :src="item.pics[3]">
+            </span>
+            </span>
+              <span class="ops">
+              <img :src="img_url + '/clickAmount.png'"><span>{{ item.clickAmount }}</span>
+              <img :src="img_url + '/saleAmount.png'"><span>{{ item.saleAmount }}</span>
+            </span>
           </a>
         </li>
       </ul>
@@ -57,7 +57,7 @@
           没有数据......
         </li>
       </ul>
-      <div class="loading" v-if="!list.length&&!refreshing">
+      <div class="loading" v-if="!pro_list.length&&!refreshing">
         <span class="left"></span>
         <span class="middle"></span>
         <span class="right"></span>

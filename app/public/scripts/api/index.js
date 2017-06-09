@@ -176,14 +176,6 @@ var api = {
   getSlideResource() {
     return axios.get( apis.slideimgs)
   },
-
-  getTypeResource() {
-    return axios.get( apis.products_r_type)
-  },
-
-  getRankResource() {
-    return axios.get( apis.products_r_rank)
-  },
   getProductsById( typeid, rankid ) {
     return axios.get( apis.allProducts, {
       params: {
