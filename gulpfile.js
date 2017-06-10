@@ -95,6 +95,18 @@ gulp.task('extras', () => {
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 gulp.task('serve', () => {
+  let json_url = 'app/mockData/data.json';
+  /* json-server */
+  const jsonServer = require('json-server');
+  const server = jsonServer.create();
+  const router = jsonServer.router(json_url);
+  const middlewares = jsonServer.defaults();
+  server.use(middlewares);
+  server.use(router);
+  server.listen(3000, () => {
+    console.log('JSON Server is running')
+  });
+  /* json-server end */
   runSequence(['clean'], ['styles', 'scripts', 'fonts'], () => {
     browserSync.init({
       notify: false,
