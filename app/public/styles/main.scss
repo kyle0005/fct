@@ -1,5 +1,6 @@
 @import "variables";
 @import "common";
+@import "video-js.css";
 /* 欢迎页 */
 .index-container{
   @extend %page;
@@ -228,6 +229,60 @@
       }
     }
 
+  }
+}
+/* foot */
+.foot-container{
+  width: 100%;
+  .nav{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    color: $color-666;
+    background-color: $color-white;
+    li{
+      -moz-box-flex: 1.0; /* Firefox */
+      -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+      box-flex: 1.0;
+      height: 100%;
+      text-align: center;
+      line-height: 48px;
+      font-size: $font-size-t20;
+    }
+   .collection{
+    width: 18%;
+   }
+    .message{
+      width: 18%;
+    }
+    .cart{
+      width: 18%;
+    }
+    .buy{
+      width: 46%;
+      background-color: $color-1d1d1d;
+      a{
+        display: block;
+        width: 100%;
+        height: 100%;
+        font-size: $font-size-t12;
+        color: $color-white;
+      }
+    }
+  }
+  &:after {
+    content: '';
+    position: relative;
+    z-index: -1;
+    display: block;
+    padding-bottom: 48px;
+    width: 100%;
   }
 }
 /* 列表 */
@@ -506,4 +561,116 @@
       }
     }
   }
+}
+/* detail */
+.detail-container{
+  @extend %page;
+  .nav-bar{
+    width: 92%;
+    padding: 0 4%;
+    background-color: $color-3e3c3c;
+    ul{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      li.item{
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        a{
+          display: inline-block;
+          padding: 10px 20px 10px 0;
+          color: $color-818181;
+        }
+        a.chosen{
+          color: $color-cbcbcb;
+        }
+      }
+    }
+
+  }
+  .video-container{
+    width: 100%;
+    overflow: hidden;
+  }
+  .product-context{
+    position: relative;
+    padding-top: 20px;
+    text-align: center;
+    .title{
+      font-size: $font-size-t15;
+      padding-bottom: 5px;
+    }
+    .vice-title{
+      padding-bottom: 5px;
+      color: $color-999;
+    }
+    .price{
+      font-size: $font-size-t16;
+      color: $color-c40b1b;
+      padding-bottom: 16px;
+    }
+    &:after{
+      content: '';
+      display: block;
+      width: 100%;
+      height: 10px;
+      background-color: $color-f2f2f2;
+    }
+  }
+  .info{
+    padding: 20px 4%;
+    .item{
+      width: 100%;
+      margin-bottom: 12px;
+      .left{
+        display: inline-block;
+        margin-right: 4%;
+        color: $color-666;
+      }
+      .right{
+        display: inline-block;
+      }
+    }
+    .coupon{
+      position: relative;
+      margin: 28px auto;
+      width: 95%;
+      height: 2px;
+      background-color: $color-f2f2f2;
+      a.get-coupon{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        margin-left: -19.325%;
+        margin-top: -12px;
+        width: 38.65%;
+        height: 24px;
+        text-align: center;
+        background-color: $color-white;
+        color: $color-c40b1b;
+      }
+    }
+  }
+  .edit-context{
+    padding: 4%;
+    background-color: $color-f2f2f2;
+    img, p{
+      padding: 2% 0;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .top{
+    position: fixed;
+    right: 3%;
+    bottom: 150px;
+    width: 10.6%;
+    img {
+      width: 100%;
+    }
+  }
+
 }

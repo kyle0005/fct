@@ -1,8 +1,9 @@
-var app = new Vue(
+let app = new Vue(
   {
     computed: {
     },
     mounted: function() {
+      this.loadVideo();
       this.getRankList();
       this.getProlist();
     },
@@ -22,6 +23,19 @@ var app = new Vue(
     watch: {
     },
     methods: {
+      loadVideo(){
+        var options = {
+          fluid: true,
+          aspectRatio: "2:1"
+        };
+        var player = videojs('my-player', options, function onPlayerReady() {
+          videojs.log('Your player is ready!');
+          this.play();
+          this.on('ended', function() {
+            videojs.log('Awww...over so soon?!');
+          });
+        });
+      },
       change(index) {
 
       },
@@ -77,4 +91,4 @@ var app = new Vue(
     components: {
     }
   }
-).$mount('#main');
+).$mount('#detail');

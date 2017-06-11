@@ -30,9 +30,11 @@ gulp.task('scripts', () => {
   return gulp.src('app/public/scripts/**/*.js')
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
-    .pipe($.babel())
+    .pipe($.babel({
+      ignore: 'vue.js'
+    }))
     .pipe($.if(dev, $.sourcemaps.write('.')))
-    // .pipe(gulp.dest('.tmp/public/scripts'))
+    .pipe(gulp.dest('.tmp/public/scripts'))
     // .pipe(reload({stream: true}));
 });
 
