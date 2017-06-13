@@ -1,6 +1,7 @@
 @import "variables";
 @import "common";
 @import "video-js.css";
+@import "swiper.min.css";
 /* 欢迎页 */
 .index-container{
   @extend %page;
@@ -233,12 +234,13 @@
 }
 /* foot */
 .foot-container{
+
   width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
   .nav{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -276,9 +278,11 @@
       }
     }
   }
-  &:after {
+  &:before {
     content: '';
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
     z-index: -1;
     display: block;
     padding-bottom: 48px;
@@ -565,6 +569,7 @@
 /* detail */
 .detail-container{
   @extend %page;
+  background-color: $color-f2f2f2;
   .nav-bar{
     width: 92%;
     padding: 0 4%;
@@ -588,80 +593,6 @@
         }
       }
     }
-
-  }
-  .video-container{
-    width: 100%;
-    overflow: hidden;
-  }
-  .product-context{
-    position: relative;
-    padding-top: 20px;
-    text-align: center;
-    .title{
-      font-size: $font-size-t15;
-      padding-bottom: 5px;
-    }
-    .vice-title{
-      padding-bottom: 5px;
-      color: $color-999;
-    }
-    .price{
-      font-size: $font-size-t16;
-      color: $color-c40b1b;
-      padding-bottom: 16px;
-    }
-    &:after{
-      content: '';
-      display: block;
-      width: 100%;
-      height: 10px;
-      background-color: $color-f2f2f2;
-    }
-  }
-  .info{
-    padding: 20px 4%;
-    .item{
-      width: 100%;
-      margin-bottom: 12px;
-      .left{
-        display: inline-block;
-        margin-right: 4%;
-        color: $color-666;
-      }
-      .right{
-        display: inline-block;
-      }
-    }
-    .coupon{
-      position: relative;
-      margin: 28px auto;
-      width: 95%;
-      height: 2px;
-      background-color: $color-f2f2f2;
-      a.get-coupon{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        display: block;
-        margin-left: -19.325%;
-        margin-top: -12px;
-        width: 38.65%;
-        height: 24px;
-        text-align: center;
-        background-color: $color-white;
-        color: $color-c40b1b;
-      }
-    }
-  }
-  .edit-context{
-    padding: 4%;
-    background-color: $color-f2f2f2;
-    img, p{
-      padding: 2% 0;
-      width: 100%;
-      text-align: center;
-    }
   }
   .top{
     position: fixed;
@@ -672,5 +603,323 @@
       width: 100%;
     }
   }
+  .tabs{
+    .video-container{
+      width: 100%;
+      overflow: hidden;
+    }
+    .product-context{
+      position: relative;
+      padding-top: 20px;
+      text-align: center;
+      background-color: $color-white;
+      .title{
+        font-size: $font-size-t15;
+        padding-bottom: 5px;
+      }
+      .vice-title{
+        padding-bottom: 5px;
+        color: $color-999;
+      }
+      .price{
+        font-size: $font-size-t16;
+        color: $color-c40b1b;
+        padding-bottom: 16px;
+      }
+      &:after{
+        content: '';
+        display: block;
+        width: 100%;
+        height: 10px;
+        background-color: $color-f2f2f2;
+      }
+    }
+    .info{
+      background-color: $color-white;
+      padding: 20px 4% .1px 4%;
+      .item{
+        width: 100%;
+        margin-bottom: 12px;
+        .left{
+          display: inline-block;
+          margin-right: 4%;
+          color: $color-666;
+        }
+        .right{
+          display: inline-block;
+        }
+      }
+      .coupon{
+        position: relative;
+        margin: 28px auto;
+        width: 95%;
+        height: 2px;
+        background-color: $color-f2f2f2;
+        a.get-coupon{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          display: block;
+          margin-left: -19.325%;
+          margin-top: -12px;
+          width: 38.65%;
+          height: 24px;
+          text-align: center;
+          background-color: $color-white;
+          color: $color-c40b1b;
+        }
+      }
+    }
+    .edit-context{
+      padding: 4%;
+      background-color: $color-f2f2f2;
+      img, p{
+        padding: 2% 0;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+  .tabs{
+    .artist{
+      background-color: $color-f2f2f2;
+      padding: 10px;
+      .intro{
+        margin: 20px 0;
+        .photo{
+          display: inline-block;
+          float: left;
+          width: 35.6%;
+          text-align: center;
+          img{
+            width: 55%;
+            border-radius: 50%;
+          }
+        }
+        .artist-info{
+          display: inline-block;
+          width: 64.4%;
+          span{
+            display: inline-block;
+          }
+          .artist-name{
+            font-size: $font-size-t14;
+            margin-bottom: 3px;
+          }
+        }
+      }
+    }
+    .record{
+      background-color: $color-f2f2f2;
+      .title{
+        padding: 2px 0 2px 10px;
+        font-size: $font-size-t14;
+        line-height: $font-size-t14;
+        border-left: 4px solid $color-333;
+      }
+      .list{
+        padding: 10px 30px;
+        span{
+          display: block;
+        }
+      }
+    }
+    .comment{
+      background-color: $color-f2f2f2;
+      .title{
+        padding: 2px 0 2px 10px;
+        font-size: $font-size-t14;
+        line-height: $font-size-t14;
+        border-left: 4px solid $color-333;
+      }
+      .context{
+        width: calc(100% - 60px);
+        padding: 10px 0;
+        margin: 0 30px;
+        word-wrap:break-word;
+        word-break:normal;
+      }
+      .others{
+        @extend %others;
+      }
+      a.for-more{
+        display: block;
+        width: calc(100% - 60px);
+        padding: 20px 0 20%;
+        margin: 0 30px;
+        text-align: center;
+        color: $color-999;
+      }
+    }
+  }
+  %others{
+    width: calc(100% - 60px);
+    padding: 10px 0;
+    margin: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    li{
+      -moz-box-flex: 1.0; /* Firefox */
+      -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+      box-flex: 1.0;
+      width: 24.5%;
+      a.item{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        img{
+          width: 100%;
+        }
+        .p-title{
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          display: block;
+          width: 100%;
+          color: $color-white;
+          background-color: $color-999;
+          opacity: .7;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .tabs{
+    .pug-container{
+      background-color: $color-f2f2f2;
+      padding: 10px;
+      .intro{
+        margin: 20px 0 0 0;
+        .photo{
+          display: inline-block;
+          float: left;
+          width: 35.6%;
+          text-align: center;
+          img{
+            width: 55%;
+            border-radius: 50%;
+          }
+        }
+        .pug{
+          .pug-name{
+            display: inline-block;
+            font-size: $font-size-t14;
+            margin-bottom: 3px;
+          }
+          .pug-detail{
+            word-wrap:break-word;
+            word-break:normal;
+          }
+        }
+      }
+    }
+    .spec{
+      width: 100%;
+      word-wrap: break-word;
+      word-break: normal;
+    background-color: #f2f2f2;
+    //padding: 10px;
+    .title{
+      padding: 2px 0 2px 10px;
+      font-size: $font-size-t14;
+      line-height: $font-size-t14;
+      border-left: 4px solid $color-333;
+    }
+    .details{
+      padding: 10px;
+    }
+      .others{
+        @extend %others;
+      }
+  }
 
+  }
+  .tabs{
+    .service{
+      width: calc(100% - 20px);
+      word-wrap: break-word;
+      word-break: normal;
+      padding: 10px 10px 58px 10px;
+      background-color: $color-f2f2f2;
+      .title{
+        width: 100%;
+        padding: 24px 0;
+        text-align: center;
+        font-size: $font-size-t14;
+      }
+    }
+  }
+  .tabs{
+    .discuss{
+      width: 100%;
+      word-wrap: break-word;
+      word-break: normal;
+      ul.list{
+        margin-bottom: 48px;
+        li.item{
+          width: 92%;
+          padding: 12px 4%;
+          margin-bottom: 10px;
+          background-color: $color-white;
+          .user-info{
+            .left{
+              width: 50%;
+              float: left;
+              margin-bottom: 5px;
+              .user-photo{
+                position: relative;
+                float: left;
+                width: 22%;
+                margin-right: 10%;
+                padding-bottom: 22%;
+                img{
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+              .user-opt{
+                float: left;
+                .stars{
+                  font-size: $font-size-t12;
+                }
+              }
+            }
+            .right{
+              width: 50%;
+              float: left;
+              text-align: right;
+            }
+          }
+          .comments{
+            .text{
+              display: block;
+              margin-bottom: 5px;
+            }
+            .imgs{
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              img{
+                -moz-box-flex: 1.0; /* Firefox */
+                -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+                box-flex: 1.0;
+                width: 29%;
+                &:last-child{
+                  margin-right: 0;
+                }
+              }
+            }
+          }
+
+        }
+      }
+      .stars{
+
+      }
+    }
+  }
 }
