@@ -109,6 +109,8 @@ gulp.task('serve', () => {
     console.log('JSON Server is running')
   });
   /* json-server end */
+
+
   runSequence(['clean'], ['styles', 'scripts', 'fonts'], () => {
     browserSync.init({
       notify: false,

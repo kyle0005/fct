@@ -14,19 +14,19 @@
     <section class="nav-bar">
       <ul>
         <li class="item">
-          <a href="javascript:;"class="chosen">概览</a>
+          <a href="detail.html&overview" class="chosen">概览</a>
         </li>
         <li class="item">
-          <a href="javascript:;">艺人</a>
+          <a href="detail.html&0">艺人</a>
         </li>
         <li class="item">
-          <a href="javascript:;">泥料</a>
+          <a href="detail.html&0">泥料</a>
         </li>
         <li class="item">
-          <a href="javascript:;">售后保障</a>
+          <a href="detail.html&0">售后保障</a>
         </li>
         <li class="item">
-          <a href="javascript:;">评论(1000+)</a>
+          <a href="detail.html&0">评论(1000+)</a>
         </li>
       </ul>
     </section>
@@ -348,6 +348,43 @@
 </script>
 <script type="text/x-template" id="foot_top">
   <footer class="foot-container">
+    <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
+      <div class="container">
+        <div class="choose" @click.stop="">
+          <div>
+            <div class="pro-img">
+              <img src="public/images/resource/pro01.png">
+            </div>
+            <div>
+              <span>稀有黄金段（石瓢）</span>
+              <span>价格</span>
+              <span>库存:有货</span>
+            </div>
+          </div>
+          <div>
+            <ul>
+              <li>刻龙</li>
+              <li>刻虎</li>
+            </ul>
+          </div>
+          <div>
+            <div>数量</div>
+            <div>
+              <a href="javascript:;">
+                <i class="fa fa-minus"></i>
+              </a>
+              <input type="number">
+              <a href="javascript:;">
+                <i class="fa fa-plus"></i>
+              </a>
+            </div>
+          </div>
+          <a href="javascript:;" class="" @click="choose()">
+            <i class="fa fa-times"></i>
+          </a>
+        </div>
+      </div>
+    </div>
     <ul class="nav">
       <li class="collection" @click="">
         <i class="fa fa-heart"></i>
@@ -359,7 +396,7 @@
         <i class="fa fa-shopping-cart"></i>
       </li>
       <li class="buy">
-        <a href="javascript:;">立即购买</a>
+        <a href="javascript:;" @click="choose()">立即购买</a>
       </li>
     </ul>
   </footer>

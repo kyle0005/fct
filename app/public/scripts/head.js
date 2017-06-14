@@ -32,6 +32,7 @@ Vue.component('head-top',
       toIndex(){
       },
       toLogin(){
+        location.href = 'login.html';
       },
       change(index) {
         let path = '/main/prolist';

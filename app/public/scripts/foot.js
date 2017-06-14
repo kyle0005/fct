@@ -19,13 +19,30 @@ Vue.component('foot-top',
     },
     data() {
       return {
-
+        open: false,
+        docked: false,
       }
     },
     methods: {
       toIndex(){
       },
       toLogin(){
+      },
+      prevent(event) {
+        event.preventDefault();
+        event.stopPropagation()
+      },
+      choose() {
+        if (!this.open) {
+          this.docked = true;
+          this.open = true;
+        } else {
+          this.open = false;
+          let vue = this;
+          setTimeout(function() {
+            vue.docked = false;
+          }, 300);
+        }
       },
 
     },

@@ -31,17 +31,17 @@ var jAjax = function (options) {
     };
     //设置字符串的遍码，字符串的格式为：a=1&b=2;
     function setStrData(data) {
-      var arr = data.split("&");
+      var arr = data.toString().split("&");
       for (var i = 0, len = arr.length; i < len; i++) {
-        name = encodeURIComponent(arr[i].split("=")[0]);
-        value = encodeURIComponent(arr[i].split("=")[1]);
+        var name = encodeURIComponent(arr[i].split("=")[0]);
+        var value = encodeURIComponent(arr[i].split("=")[1]);
         arr[i] = name + "=" + value;
       }
       return arr;
     }
 
     if (data) {
-      if (typeof data === "string") {
+      if (typeof data === "string" || typeof data === "number" ) {
         data = setStrData(data);
       } else if (typeof data === "object") {
         data = setObjData(data);
@@ -159,6 +159,70 @@ var jAjax = function (options) {
     createJsonp();
   } else {
     createXHR();
+  }
+};
+var formData = {
+  //获取指定form中的所有的<input>对象
+   getElements: function(formId) {
+    var form = document.getElementById(formId);
+    var elements = new Array();
+    var tagElements = form.getElementsByTagName('input');
+    for (var j = 0; j < tagElements.length; j++){
+      elements.push(tagElements[j]);
+
+    }
+    return elements;
+  },
+//获取单个input中的【name,value】数组
+  inputSelector: function(element) {
+    if (element.checked)
+      return [element.name, element.value];
+  },
+  input: function(element) {
+    switch (element.type.toLowerCase()) {
+      case 'submit':
+      case 'hidden':
+      case 'password':
+      case 'text':
+        return [element.name, element.value];
+      case 'checkbox':
+      case 'radio':
+        return this.inputSelector(element);
+    }
+    return false;
+  },
+//组合URL
+  serializeElement: function(element) {
+    var method = element.tagName.toLowerCase();
+    var parameter = this.input(element);
+
+    if (parameter) {
+      var key = encodeURIComponent(parameter[0]);
+      if (key.length == 0) return;
+
+      if (parameter[1].constructor != Array)
+        parameter[1] = [parameter[1]];
+
+      var values = parameter[1];
+      var results = [];
+      for (var i=0; i<values.length; i++) {
+        results.push(key + '=' + encodeURIComponent(values[i]));
+      }
+      return results.join('&');
+    }
+  },
+//调用方法
+  serializeForm: function(formId) {
+    var elements = this.getElements(formId);
+    var queryComponents = new Array();
+
+    for (var i = 0; i < elements.length; i++) {
+      var queryComponent = this.serializeElement(elements[i]);
+      if (queryComponent)
+        queryComponents.push(queryComponent);
+    }
+
+    return queryComponents.join('&');
   }
 };
 var config = 'http://localhost:3000';

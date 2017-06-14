@@ -76,9 +76,9 @@ Vue.component('m-swipe',
 var app = new Vue(
   {
     computed: {
-      ...mapState({
-        circle: state => state.circleFlag,
-      })
+      // ...mapState({
+      //   circle: state => state.circleFlag,
+      // })
     },
     mounted: function() {
       this.getList();
@@ -118,10 +118,32 @@ var app = new Vue(
     methods: {
       getList() {
         let vue = this;
-        api.getSlideResource().then(function(response) {
-          vue.tops = response.data.data;
-          vue.list.push(response.data);
-          vue.loading = false;
+        // api.getSlideResource().then(function(response) {
+        //   vue.tops = response.data.data;
+        //   vue.list.push(response.data);
+        //   vue.loading = false;
+        // });
+        jAjax({
+          type:"get",
+          url:apis.slideimgs,
+          timeOut:5000,
+          before:function(){
+            console.log("before");
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              vue.tops = data;
+              vue.list = (data);
+              vue.loading = false;
+            }else {
+              console.log('no data')
+            }
+
+          },
+          error:function(){
+            console.log("error");
+          }
         });
 
       },
