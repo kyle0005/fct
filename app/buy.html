@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="buy-container" id="buy">
+  <section class="address">
+    <a href="javascript:;" class="link">
+      <span class="left item">
+        <span class="overText">用户名用户名用户名用户名用户名用户名用户名</span>
+        <span class="def">默认</span>
+      </span>
+      <span class="right item">
+        <span>13811111111</span>
+        <span class="overText">上海市xxx区xxx号</span>
+      </span>
+      <span class="wei-arrow-right"></span>
+    </a>
+  </section>
+  <section class="product">
+    <a href="javascript:;" class="link">
+      <span class="item intro">
+        <img src="public/images/resource/pro01.png">
+      </span>
+      <span class="item info">
+        <span class="container overText">
+          <span class="name">xxxxx壶</span>
+          <span class="spec">容量xxx</span>
+          <span class="price">￥90000000<del class="gray">￥9000000000</del></span>
+        </span>
+      </span>
+      <span class="item num">
+        <span class="container overText">
+          x1
+        </span>
+      </span>
+    </a>
+  </section>
+  <section class="options">
+
+  </section>
+  <!--<foot-top></foot-top>-->
+</div>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script type="text/x-template" id="foot_top">
+  <footer class="foot-container">
+    <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
+      <div class="container">
+        <div class="choose" @click.stop="">
+          <div class="clearfix">
+            <div class="pro-img">
+              <img src="public/images/resource/pro01.png">
+            </div>
+            <div class="info">
+              <span class="title">稀有黄金段（石瓢）</span>
+              <span class="price">￥33300000</span>
+              <span class="stock">库存:有货</span>
+            </div>
+          </div>
+          <ul class="spec">
+            <li class="item" v-for="(item, index) in specs" :class="{active: index===specs_num}" @click="linkTo(index)">
+                {{ item }}
+            </li>
+          </ul>
+          <div class="num">
+            <div class="item"><span class="name">数量</span></div>
+            <div class="item">
+              <a href="javascript:;" :class="{dis:min}" @click="minus()">
+                <i class="fa fa-minus"></i>
+              </a>
+              <input type="text" class="numbers" v-model="input_val">
+              <a href="javascript:;" @click="add()">
+                <i class="fa fa-plus"></i>
+              </a>
+            </div>
+          </div>
+          <a href="javascript:;" class="fork" @click="choose()">&nbsp;</a>
+        </div>
+      </div>
+    </div>
+    <ul class="nav">
+      <li class="collection" @click="">
+        <i class="fa fa-heart"></i>
+      </li>
+      <li class="message" @click="">
+        <i class="fa fa-commenting"></i>
+      </li>
+      <li class="cart" @click="">
+        <i class="fa fa-shopping-cart"></i>
+      </li>
+      <li class="buy">
+        <a href="javascript:;" @click="choose()">立即购买</a>
+      </li>
+    </ul>
+  </footer>
+</script>
+<script src="public/scripts/foot.js"></script>
+<script src="public/scripts/buy.js"></script>
+</body>
+</html>

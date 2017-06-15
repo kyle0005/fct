@@ -104,6 +104,22 @@ gulp.task('serve', () => {
   const router = jsonServer.router(json_url);
   const middlewares = jsonServer.defaults();
   server.use(middlewares);
+
+  server.get('/detail', (req, res) => {
+    res.json({
+      code: 0 ,
+      msg:"",
+      data: slides
+    });
+  });
+  server.post('/detail/artist', (req, res) => {
+    res.json({
+      code: 0 ,
+      msg:"",
+      data: slides
+    });
+  });
+
   server.use(router);
   server.listen(3000, () => {
     console.log('JSON Server is running')
