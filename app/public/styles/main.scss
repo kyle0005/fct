@@ -236,7 +236,7 @@
   }
 }
 /* foot */
-$foot-height: 240px;
+$foot-height: 250px;
 .foot-container{
   width: 100%;
   position: fixed;
@@ -297,7 +297,7 @@ $foot-height: 240px;
     left: 0;
     right: 0;
     top: 0;
-    bottom: 48px;
+    bottom: 0;
     background: rgba(0, 0, 0, .5);
     visibility: hidden;
     &::-webkit-scrollbar {
@@ -309,14 +309,13 @@ $foot-height: 240px;
     }
     .container {
       position: absolute;
-      bottom: 0;
-      height: 0;
+      bottom: -100%;
+      height: $foot-height;
       margin: 0;
       width: 100%;
       overflow: auto;
       background: $color-white;
-      //transform: translate(0, 1000%);
-      transition: height 0.3s ease;
+      transition: bottom 0.5s ease;
       -webkit-overflow-scrolling: touch;
       &::-webkit-scrollbar {
         display: none!important;
@@ -445,6 +444,17 @@ $foot-height: 240px;
           background: $color-black;
           -webkit-transform: rotate(-90deg);}
       }
+      .sub{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        line-height: 48px;
+        text-align: center;
+        background-color: $color-1d1d1d;
+        color: $color-white;
+      }
     }
     .cover {
       width: 100%;
@@ -456,7 +466,7 @@ $foot-height: 240px;
     }
     &.open {
       .container {
-        height: $foot-height;
+        bottom: 0;
       }
       .cover {
         opacity: 1;
@@ -1362,6 +1372,156 @@ $foot-height: 240px;
     }
   }
   .options{
+    position: relative;
+    padding: 4%;
+    background-color: $color-white;
+    .line{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      div{
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        width: 50%;
+        line-height: 30px;
+      }
+      .left{
+        text-align: left;
+      }
+      .right{
+        .switch-container{
+          float: right;
+          width: 60px;
+          height: 30px;
+          font-size: 0;
+          .switch{
+            @include switchBtn($color-white, $color-white, $color-1d1d1d, 50%, 15px);
+          }
+        }
 
+      }
+      .msg{
+        background-color: $color-f8f8f8;
+        text-indent: 6px;
+        width: 100%;
+        height: 60px;
+        margin-top: 15px;
+        border: 1px solid $color-f2f2f2;
+      }
+    }
+    .buy-ani {
+      height: 0;
+      line-height: 30px;
+      overflow: hidden;
+      visibility: hidden;
+      transition: height 0.5s ease;
+    }
+    .buy-ani.show{
+      visibility: visible;
+      height: 30px;
+      margin-top: 15px;
+      input.coup-code{
+        width: 70%;
+        height: 28px;
+        border: 1px solid $color-f2f2f2;
+        background-color: $color-f8f8f8;
+      }
+      .sub-container{
+        float: right;
+        width: 50%;
+      }
+      a.sub{
+        @include wei-bg-btn($color-white, $color-1d1d1d, $color-white, 28px, 28px, $font-size-t12);
+        @include fillet(false);
+      }
+    }
+
+  }
+  .agreement{
+    padding: 4%;
+    input.ck{
+      position: relative;
+      width: $font-size-t14;
+      height: $font-size-t14;
+      border: 1px solid $color-444;
+      background-color: $color-white;
+      border-radius: 5px;
+      margin-bottom: -.8%;
+      margin-right: 2px;
+      &:checked:after{
+        font-family: "FontAwesome";
+        content:"\f00c";
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: $color-1d1d1d;
+      }
+    }
+    .agree-container{
+      display: inline-block;
+      line-height: $font-size-t12;
+    }
+  }
+  .foot{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div{
+      -moz-box-flex: 1.0; /* Firefox */
+      -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+      box-flex: 1.0;
+    }
+    .pri{
+      width: 54%;
+      height: 100%;
+      text-align: center;
+      color: $color-c40b1b;
+      background-color: $color-white;
+    }
+    .sub{
+      width: 46%;
+      height: 100%;
+      background-color: $color-1d1d1d;
+      a.sub{
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color: $color-white;
+      }
+    }
+  }
+}
+
+/* pay */
+.pay-container{
+  @extend %page;
+  background-color: $color-f2f2f2;
+  .tips{
+    padding: 5.333% 0;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: $color-white;
+    .title{
+      line-height: 30px;
+      font-size: $font-size-t14;
+      i{
+        font-size: $font-size-t20;
+      }
+    }
+    .text{
+      margin-top: 5.333%;
+      .pri{
+        color: $color-c40b1b;
+      }
+    }
   }
 }

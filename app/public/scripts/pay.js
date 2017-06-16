@@ -11,23 +11,24 @@ let app = new Vue(
     deactivated() {
     },
     data: {
-      show_coup: false,
-      coupPri: 0.08
+      pay_list: [
+        {
+          title:'alipay',
+          img:'public'
+        },
+        {
+
+        },
+        {
+
+        }
+        ]
     },
     watch: {
     },
     methods: {
-      showCoup(){
-        let vue = this;
-        if(vue.show_coup){
-          vue.show_coup = false;
-        }else {
-          vue.show_coup = true;
-        }
-
-      }
     },
     components: {
     }
   }
-).$mount('#buy');
+).$mount('#pay');

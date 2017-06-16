@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="pay-container" id="pay">
+  <section class="tips">
+    <div class="title">
+      <i class="fa fa-check"></i><span>订单提交成功，请尽快前往付款。</span>
+    </div>
+    <div class="text">
+      应付金额：<span class="pri">￥999999.00</span>
+    </div>
+  </section>
+  <section>
+    <ul class="">
+      <li>
+        <label for="alipay">
+          <img src="public/images/pay_ali.png">支付宝支付
+        </label>
+        <input type="radio" class="" name="alipay" id="alipay">
+      </li>
+      <li>
+        <label for="weipay">
+          <img src="public/images/pay_weichat.png">微信支付
+        </label>
+        <input type="radio" class="" name="weipay" id="weipay">
+      </li>
+      <li>
+        <label for="unionpay">
+          <img src="public/images/pay_union.png">银联支付
+        </label>
+        <input type="radio" class="" name="unionpay" id="unionpay">
+      </li>
+    </ul>
+  </section>
+</div>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/pay.js"></script>
+</body>
+</html>

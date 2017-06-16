@@ -43,65 +43,45 @@
     </a>
   </section>
   <section class="options">
-
-  </section>
-  <!--<foot-top></foot-top>-->
-</div>
-<script src="public/scripts/vue.js"></script>
-<script src="public/scripts/api/index.js"></script>
-<script type="text/x-template" id="foot_top">
-  <footer class="foot-container">
-    <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
-      <div class="container">
-        <div class="choose" @click.stop="">
-          <div class="clearfix">
-            <div class="pro-img">
-              <img src="public/images/resource/pro01.png">
-            </div>
-            <div class="info">
-              <span class="title">稀有黄金段（石瓢）</span>
-              <span class="price">￥33300000</span>
-              <span class="stock">库存:有货</span>
-            </div>
-          </div>
-          <ul class="spec">
-            <li class="item" v-for="(item, index) in specs" :class="{active: index===specs_num}" @click="linkTo(index)">
-                {{ item }}
-            </li>
-          </ul>
-          <div class="num">
-            <div class="item"><span class="name">数量</span></div>
-            <div class="item">
-              <a href="javascript:;" :class="{dis:min}" @click="minus()">
-                <i class="fa fa-minus"></i>
-              </a>
-              <input type="text" class="numbers" v-model="input_val">
-              <a href="javascript:;" @click="add()">
-                <i class="fa fa-plus"></i>
-              </a>
-            </div>
-          </div>
-          <a href="javascript:;" class="fork" @click="choose()">&nbsp;</a>
+    <div class="line">
+      <div class="left">
+        订单优惠(省20元)
+      </div>
+      <div class="right clearfix">
+        <div class="switch-container">
+          <input class="switch" id="used_merit" name="used_merit" v-model="coupPri" @change="showCoup()" type="checkbox" unchecked>
         </div>
       </div>
     </div>
-    <ul class="nav">
-      <li class="collection" @click="">
-        <i class="fa fa-heart"></i>
-      </li>
-      <li class="message" @click="">
-        <i class="fa fa-commenting"></i>
-      </li>
-      <li class="cart" @click="">
-        <i class="fa fa-shopping-cart"></i>
-      </li>
-      <li class="buy">
-        <a href="javascript:;" @click="choose()">立即购买</a>
-      </li>
-    </ul>
+    <div class="line buy-ani" :class="{show:show_coup}">
+      <div class="left">
+        <input type="text" value="" name="" class="coup-code" placeholder="请输入优惠券码">
+      </div>
+      <div class="right clearfix">
+        <div class="sub-container">
+          <a href="javascript:;" @click="" class="sub">使用</a>
+        </div>
+      </div>
+    </div>
+    <div class="line">
+      <textarea name="remark" maxlength="150" placeholder="告诉卖家您的要求吧...（限150个字）" class="msg"></textarea>
+    </div>
+  </section>
+  <section class="agreement">
+    <input type="checkbox" id="agree" name="agree" class="ck">
+    <label for="agree" class="agree-container">
+      我已同意《方寸堂服务协议》
+    </label>
+  </section>
+  <footer class="foot">
+    <div class="pri">应付:￥23532353.00</div>
+    <div class="sub">
+      <a href="pay.html" class="sub">我要付款</a>
+    </div>
   </footer>
-</script>
-<script src="public/scripts/foot.js"></script>
+</div>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
 <script src="public/scripts/buy.js"></script>
 </body>
 </html>
