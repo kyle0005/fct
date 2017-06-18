@@ -1524,4 +1524,60 @@ $foot-height: 250px;
       }
     }
   }
+  .ways{
+    padding: 1% 4%;
+    background-color: $color-white;
+    ul.way-list{
+      width: 100%;
+      li{
+      width: 100%;
+        margin: 4% 0;
+      label{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        img{
+          width: 8.7%;
+          margin-right: 4%;
+        }
+        input[type=radio]{
+          position: absolute;
+          top: 50%;
+          right: 0;
+          margin-top: -($font-size-t14 / 2);
+          border: 1px solid $color-444;
+          border-radius: 50%;
+          width: $font-size-t14;
+          height: $font-size-t14;
+          &:checked:after{
+            font-family: "FontAwesome";
+            content:"\f00c";
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            color: $color-white;
+            background-color: $color-444;
+            width: 100%;
+            height: 100%;
+            border: 1px solid $color-444;
+            font-size: $font-size-t12;
+            border-radius: 50%;
+            line-height: $font-size-t12;
+            text-align: center;
+          }
+        }
+      }
+    }
+    }
+  }
+  .pay-sub{
+    position: absolute;
+    bottom: 4%;
+    left: 4%;
+    width: 92%;
+    a.sub-link{
+      @include wei-bg-btn($color-white, $color-1d1d1d, $color-white, 48px, 48px, $font-size-t12);
+      @include fillet(false);
+    }
+  }
 }

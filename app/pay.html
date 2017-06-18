@@ -18,27 +18,30 @@
       应付金额：<span class="pri">￥999999.00</span>
     </div>
   </section>
-  <section>
-    <ul class="">
+  <section class="ways">
+    <ul class="way-list">
       <li>
         <label for="alipay">
           <img src="public/images/pay_ali.png">支付宝支付
+          <input type="radio" class="" name="pay" id="alipay">
         </label>
-        <input type="radio" class="" name="alipay" id="alipay">
       </li>
       <li>
         <label for="weipay">
           <img src="public/images/pay_weichat.png">微信支付
+          <input type="radio" class="" name="pay" id="weipay">
         </label>
-        <input type="radio" class="" name="weipay" id="weipay">
       </li>
       <li>
         <label for="unionpay">
           <img src="public/images/pay_union.png">银联支付
+          <input type="radio" class="" name="pay" id="unionpay">
         </label>
-        <input type="radio" class="" name="unionpay" id="unionpay">
       </li>
     </ul>
+  </section>
+  <section class="pay-sub">
+    <a href="javascript:;" class="sub-link">确认支付</a>
   </section>
 </div>
 <script src="public/scripts/vue.js"></script>
