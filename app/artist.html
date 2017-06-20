@@ -9,11 +9,131 @@
   <link rel="stylesheet" href="public/styles/main.css">
 </head>
 <body>
-<div class="artist-container" id="artist">
-
+<div class="art-container" id="artist">
+  <head-top></head-top>
+  <section class="live" id="live_container">
+    <div class="inner" v-if="haslive">
+      <a href="javascript:;" class="play">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle-thin fa-stack-2x"></i>
+          <i class="fa fa-play fa-stack-1x def"></i>
+        </span>
+        <span class="info live-now">正在直播</span>
+      </a>
+      <img src="public/images/resource/imgs.png" >
+      <div class="info join-num">1234214241人关注</div>
+    </div>
+    <div class="inner" v-else>
+      <img src="public/images/resource/imgs.png" >
+      <div class="info join-num">1234214241人关注</div>
+    </div>
+  </section>
+  <section class="nav-bar">
+    <ul class="art-tab">
+      <li class="item" v-for="(item, index) in tabs" :class="{chosen: index===tab_num}" @click="linkTo(index)">
+        <a href="javascript:;">
+          {{ item }}
+        </a>
+      </li>
+    </ul>
+  </section>
+  <keep-alive>
+    <component :is="currentView">
+    </component>
+  </keep-alive>
 </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script type="text/x-template" id="head_top">
+  <header class="head-container">
+    <ul class="nav">
+      <li class="toggle" @click="toggle()">
+        <i class="fa fa-bars"></i>
+      </li>
+      <li class="logo" @click="toIndex(0)">
+        <img :src="img_url + '/logo.png'">
+      </li>
+      <li class="user" @click="toLogin()">
+        <i class="fa fa-user-circle-o"></i>
+      </li>
+    </ul>
+    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
+      <div class="container">
+        <ul class="types">
+          <li class="item" v-for="(types, index) in typeList" @click="change(index)">
+            <span>{{ types }}</span>
+            <i class="fa fa-angle-right"></i>
+          </li>
+        </ul>
+        <ul class="lines clearfix">
+          <li class="item">
+            <a href="javascript:;">
+              <img :src="img_url + '/menu1.png'">
+              <span>合作艺师</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img :src="img_url + '/menu2.png'">
+              <span>百科</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img :src="img_url + '/menu3.png'">
+              <span>个性定制</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img :src="img_url + '/menu4.png'">
+              <span>APP下载</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img :src="img_url + '/menu5.png'">
+              <span>品牌理念</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</script>
+<script type="text/x-template" id="live">
+  <div>
+    <section class="ptop">
+      组件在 vm.currentview 变化时改变组件在 vm.currentview 变化时改变组件在 vm.cu
+      rrentview 变化时改变组件在 vm.currentview 变化时改变组件在 vm
+      .currentview 变化时改变组件在 vm.currentview 变化时改变组件在 vm.currentview 变化时改变
+    </section>
+    <ul class="news">
+      <li class="item">
+
+      </li>
+      <li class="item">
+
+      </li>
+      <li class="item">
+
+      </li>
+    </ul>
+  </div>
+</script>
+<script type="text/x-template" id="works">
+  <div>
+    works
+  </div>
+</script>
+<script type="text/x-template" id="chat">
+  <div>
+    chat
+  </div>
+</script>
+<script src="public/scripts/head.js"></script>
+<script src="public/scripts/video.js"></script>
 <script src="public/scripts/artist.js"></script>
+
 </body>
 </html>

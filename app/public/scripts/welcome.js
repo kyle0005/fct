@@ -56,7 +56,6 @@ Vue.component('m-swipe',
         //分页类型
         paginationType: That.paginationType, //fraction,progress,bullets
         //自动播放
-        // autoplay: That.autoplay,
         autoplay: That.autoplay,
         //方向
         direction: That.direction,
@@ -76,9 +75,6 @@ Vue.component('m-swipe',
 var app = new Vue(
   {
     computed: {
-      // ...mapState({
-      //   circle: state => state.circleFlag,
-      // })
     },
     mounted: function() {
       this.getList();
@@ -118,11 +114,6 @@ var app = new Vue(
     methods: {
       getList() {
         let vue = this;
-        // api.getSlideResource().then(function(response) {
-        //   vue.tops = response.data.data;
-        //   vue.list.push(response.data);
-        //   vue.loading = false;
-        // });
         jAjax({
           type:"get",
           url:apis.slideimgs,

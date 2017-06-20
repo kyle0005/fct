@@ -149,8 +149,6 @@ let app = new Vue(
     },
     mounted: function() {
       this.loadVideo();
-      this.getRankList();
-      this.getProlist();
     },
     activated() {
 
@@ -210,54 +208,6 @@ let app = new Vue(
         });
       },
       change(index) {
-
-      },
-      getRankList() {
-        let vue = this;
-        jAjax({
-          type:"get",
-          url:apis.products_r_rank,
-          timeOut:5000,
-          before:function(){
-            console.log("before");
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              vue.ranks_list = (data);
-            }else {
-              console.log('no data')
-            }
-
-          },
-          error:function(){
-            console.log("error");
-          }
-        });
-
-      },
-      getProlist() {
-        let vue = this;
-        jAjax({
-          type:"get",
-          url:apis.allProducts,
-          timeOut:5000,
-          before:function(){
-            console.log("before");
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              vue.pro_list = (data);
-            }else {
-              console.log('no data')
-            }
-
-          },
-          error:function(){
-            console.log("error");
-          }
-        });
 
       },
     },
