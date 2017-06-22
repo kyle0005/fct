@@ -5,13 +5,13 @@ var jAjax = function (options) {
     function setObjData(data, parentName) {
       function encodeData(name, value, parentName) {
         var items = [];
-        name = parentName === undefined ? name : parentName + "[" + name + "]";
-        if (typeof value === "object" && value !== null) {
+        name = parentName === undefined ? name : parentName + '[' + name + ']';
+        if (typeof value === 'object' && value !== null) {
           items = items.concat(setObjData(value, name));
         } else {
           name = encodeURIComponent(name);
           value = encodeURIComponent(value);
-          items.push(name + "=" + value);
+          items.push(name + '=' + value);
         }
         return items;
       }
@@ -19,7 +19,7 @@ var jAjax = function (options) {
       if (Object.prototype.toString.call(data) == '[object Array]') {
         for (var i = 0, len = data.length; i < len; i++) {
           value = data[i];
-          arr = arr.concat(encodeData( typeof value == "object"?i:"", value, parentName));
+          arr = arr.concat(encodeData( typeof value == 'object'?i:'', value, parentName));
         }
       } else if (Object.prototype.toString.call(data) == '[object Object]') {
         for (var key in data) {
@@ -31,41 +31,41 @@ var jAjax = function (options) {
     };
     //设置字符串的遍码，字符串的格式为：a=1&b=2;
     function setStrData(data) {
-      var arr = data.toString().split("&");
+      var arr = data.toString().split('&');
       for (var i = 0, len = arr.length; i < len; i++) {
-        var name = encodeURIComponent(arr[i].split("=")[0]);
-        var value = encodeURIComponent(arr[i].split("=")[1]);
-        arr[i] = name + "=" + value;
+        var name = encodeURIComponent(arr[i].split('=')[0]);
+        var value = encodeURIComponent(arr[i].split('=')[1]);
+        arr[i] = name + '=' + value;
       }
       return arr;
     }
 
     if (data) {
-      if (typeof data === "string" || typeof data === "number" ) {
+      if (typeof data === 'string' || typeof data === 'number' ) {
         data = setStrData(data);
-      } else if (typeof data === "object") {
+      } else if (typeof data === 'object') {
         data = setObjData(data);
       }
-      data = data.join("&").replace("/%20/g", "+");
+      data = data.join('&').replace('/%20/g', '+');
       //若是使用get方法或JSONP，则手动添加到URL中
-      if (type === "get" || dataType === "jsonp") {
-        url += url.indexOf("?") > -1 ? (url.indexOf("=") > -1 ? "&" + data : data) : "?" + data;
+      if (type === 'get' || dataType === 'jsonp') {
+        url += url.indexOf('?') > -1 ? (url.indexOf('=') > -1 ? '&' + data : data) : '?' + data;
       }
     }
   }
   // JSONP
   function createJsonp() {
-    var script = document.createElement("script"),
+    var script = document.createElement('script'),
       timeName = new Date().getTime() + Math.round(Math.random() * 1000),
-      callback = "JSONP_" + timeName;
+      callback = 'JSONP_' + timeName;
 
     window[callback] = function(data) {
       clearTimeout(timeout_flag);
       document.body.removeChild(script);
       success(data);
     }
-    script.src = url + (url.indexOf("?") > -1 ? "&" : "?") + "callback=" + callback;
-    script.type = "text/javascript";
+    script.src = url + (url.indexOf('?') > -1 ? '&' : '?') + 'callback=' + callback;
+    script.type = 'text/javascript';
     document.body.appendChild(script);
     setTime(callback, script);
   }
@@ -73,7 +73,7 @@ var jAjax = function (options) {
   function setTime(callback, script) {
     if (timeOut !== undefined) {
       timeout_flag = setTimeout(function() {
-        if (dataType === "jsonp") {
+        if (dataType === 'jsonp') {
           delete window[callback];
           document.body.removeChild(script);
 
@@ -81,7 +81,7 @@ var jAjax = function (options) {
           timeout_bool = true;
           xhr && xhr.abort();
         }
-        console.log("timeout");
+        console.log('timeout');
 
       }, timeOut);
     }
@@ -96,10 +96,10 @@ var jAjax = function (options) {
         return new XMLHttpRequest();
       } else {
         //遍历IE中不同版本的ActiveX对象
-        var versions = ["Microsoft", "msxm3", "msxml2", "msxml1"];
+        var versions = ['Microsoft', 'msxm3', 'msxml2', 'msxml1'];
         for (var i = 0; i < versions.length; i++) {
           try {
-            var version = versions[i] + ".XMLHTTP";
+            var version = versions[i] + '.XMLHTTP';
             return new ActiveXObject(version);
           } catch (e) {}
         }
@@ -109,11 +109,11 @@ var jAjax = function (options) {
     xhr = getXHR();
     xhr.open(type, url, async);
     //设置请求头
-    if (type === "post" && !contentType) {
+    if (type === 'post' && !contentType) {
       //若是post提交，则设置content-Type 为application/x-www-four-urlencoded
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
     } else if (contentType) {
-      xhr.setRequestHeader("Content-Type", contentType);
+      xhr.setRequestHeader('Content-Type', contentType);
     }
     //添加监听
     xhr.onreadystatechange = function() {
@@ -135,16 +135,16 @@ var jAjax = function (options) {
       }
     };
     //发送请求
-    xhr.send(type === "get" ? null : data);
+    xhr.send(type === 'get' ? null : data);
     setTime(); //请求超时
   }
 
 
-  var url = options.url || "", //请求的链接
-    type = (options.type || "get").toLowerCase(), //请求的方法,默认为get
+  var url = options.url || '', //请求的链接
+    type = (options.type || 'get').toLowerCase(), //请求的方法,默认为get
     data = options.data || null, //请求的数据
-    contentType = options.contentType || "", //请求头
-    dataType = options.dataType || "", //请求的类型
+    contentType = options.contentType || '', //请求头
+    dataType = options.dataType || '', //请求的类型
     async = options.async === undefined ? true : options.async, //是否异步，默认为true.
     timeOut = options.timeOut, //超时时间。
     before = options.before || function() {}, //发送之前执行的函数
@@ -155,7 +155,7 @@ var jAjax = function (options) {
     xhr = null; //xhr对角
   setData();
   before();
-  if (dataType === "jsonp") {
+  if (dataType === 'jsonp') {
     createJsonp();
   } else {
     createXHR();
@@ -228,12 +228,14 @@ var formData = {
 var config = 'http://localhost:3000';
 var apis = {
   slideimgs: config + '/slides',
-  products_r_type: config + '/productsType',
-  products_r_rank: config + '/productsRank',
-  allProducts: config + '/products',
+  productsType: config + '/productsType',
+  productsRank: config + '/productsRank',
+  products: config + '/products',
   userResource: config + '/allUsers',
   checkUserResource: config + '/checkUserResource',
-  mobileCodeResource: config + '/mobileCodeResource'
+  mobileCodeResource: config + '/mobileCodeResource',
+  encyclopedias_type: config + '/encyclopedias_type',
+  encyclopedias_other: config + '/encyclopedias_other'
 };
 
 var api = {

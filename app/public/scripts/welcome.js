@@ -43,7 +43,7 @@ Vue.component('m-swipe',
     },
     data(){
       return {
-        dom:""
+        dom:''
       }
     },
     mounted() {
@@ -102,7 +102,7 @@ var app = new Vue(
         count: 1,
         scroller: null,
         list: [],
-        swiper: "",
+        swiper: '',
         tops: []
       }
     },
@@ -115,11 +115,11 @@ var app = new Vue(
       getList() {
         let vue = this;
         jAjax({
-          type:"get",
+          type:'get',
           url:apis.slideimgs,
           timeOut:5000,
           before:function(){
-            console.log("before");
+            console.log('before');
           },
           success:function(data){
             if(data){
@@ -133,7 +133,7 @@ var app = new Vue(
 
           },
           error:function(){
-            console.log("error");
+            console.log('error');
           }
         });
 

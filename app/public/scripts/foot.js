@@ -27,7 +27,7 @@ Vue.component('foot-top',
     },
     methods: {
       buy(){
-        location.href = "buy.html";
+        location.href = 'buy.html';
       },
       add(){
         let vue = this,

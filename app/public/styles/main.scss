@@ -96,7 +96,7 @@
   width: 100%;
   .nav{
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -140,7 +140,7 @@
 
   .aside {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     left: 0;
     right: 0;
     top: 48px;
@@ -242,7 +242,7 @@ $foot-height: 250px;
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   .nav{
     display: flex;
     justify-content: space-between;
@@ -293,7 +293,7 @@ $foot-height: 250px;
   }
   .aside {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     left: 0;
     right: 0;
     top: 0;
@@ -327,7 +327,7 @@ $foot-height: 250px;
       .choose{
         position: relative;
         border-top: 1px solid $color-f2f2f2;
-        z-index: 2;
+        z-index: 3;
         padding: 4%;
         .pro-img{
           position: relative;
@@ -902,34 +902,37 @@ $foot-height: 250px;
   }
 }
 /* detail */
+%nav-bar{
+  width: 92%;
+  padding: 0 4%;
+  background-color: $color-3e3c3c;
+  ul{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    li.item{
+      -moz-box-flex: 1.0; /* Firefox */
+      -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+      box-flex: 1.0;
+      a{
+        display: inline-block;
+        padding: 10px 20px 10px 0;
+        color: $color-818181;
+      }
+    }
+    li.chosen{
+      a{
+        color: $color-cbcbcb;
+      }
+    }
+  }
+}
 .detail-container{
   @extend %page;
   background-color: $color-f2f2f2;
   .nav-bar{
-    width: 92%;
-    padding: 0 4%;
-    background-color: $color-3e3c3c;
-    ul{
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      width: 100%;
-      li.item{
-        -moz-box-flex: 1.0; /* Firefox */
-        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
-        box-flex: 1.0;
-        a{
-          display: inline-block;
-          padding: 10px 20px 10px 0;
-          color: $color-818181;
-        }
-      }
-      li.chosen{
-        a{
-          color: $color-cbcbcb;
-        }
-      }
-    }
+    @extend %nav-bar;
   }
   .top{
     position: fixed;
@@ -1729,20 +1732,122 @@ $foot-height: 250px;
       }
     }
   }
-  .ptop{
-    background: $color-white url("#{$img-path}/ptop.png") no-repeat 96% 4%;
-    background-size: auto 40px;
-    font-size: 14px;
-    min-height: 40px;
-    padding: 4%;
-    margin-bottom: 4%;
+  %text{
+    width: 100%;
+    margin-bottom: 10px;
   }
-  ul.news{
-    li.item{
-      width: 92%;
+  %media{
+    width: 100%;
+    ul.img-list{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      li{
+        position: relative;
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        width: calc((100% - (20 / 375 * 100%) * 2) / 3);
+        margin-right: calc(20 / 375 * 100%);
+        padding-bottom: calc((100% - (20 / 375 * 100%) * 2) / 3);
+        &:nth-child(3n){
+          margin-right: 0;
+        }
+        img{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .tabs{
+    background-color: $color-f2f2f2;
+    .ptop{
+      background: $color-white url("#{$img-path}/ptop.png") no-repeat 96% 10px;
+      background-size: auto 40px;
+      font-size: 14px;
+      min-height: 40px;
       padding: 4%;
-      background-color: $color-white;
       margin-bottom: 4%;
+      .text{
+        @extend %text;
+      }
+      .media{
+        @extend %media;
+      }
+    }
+    ul.news{
+      li.item{
+        width: 92%;
+        padding: 4%;
+        background-color: $color-white;
+        margin-bottom: 4%;
+        .text{
+          @extend %text;
+        }
+        .media{
+          @extend %media;
+        }
+      }
+    }
+  }
+
+}
+
+/* encyclopedias */
+.encyclopedias-container{
+  @extend %page;
+  background-color: $color-f2f2f2;
+  .nav-bar{
+    @extend %nav-bar;
+  }
+  .list{
+    padding: 4%;
+    div.tab-list{
+      .tab-container{
+        width: 100%;
+        height: auto;
+        .inner-container{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          .items{
+            position: relative;
+            -moz-box-flex: 1.0; /* Firefox */
+            -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+            box-flex: 1.0;
+            width: calc((100% - (10 / 375 * 100%) * 3) / 4);
+            margin-right: calc(10 / 375 * 100%);
+            margin-bottom: calc(10 / 375 * 100%);
+            padding-bottom: calc((100% - (10 / 375 * 100%) * 3) / 4);
+            &:nth-child(4n){
+              margin-right: 0;
+            }
+            a.link{
+              display: block;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              text-align: center;
+              background-color: $color-white;
+              img{
+                display: block;
+                margin: 0 auto;
+                width: 60%;
+
+              }
+            }
+          }
+        }
+
+      }
     }
   }
 }
+

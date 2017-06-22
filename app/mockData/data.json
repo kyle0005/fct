@@ -2,40 +2,42 @@
   "slides": [
     {
       "image": "/public/images/resource/00.png",
-      "r_type": 0,
+      "type_name": 0,
       "id": 0,
       "title": "aaa"
     },
     {
       "image": "/public/images/resource/01.png",
-      "r_type": 0,
+      "type_name": 0,
       "id": 1,
       "title": "bbb"
     },
     {
       "image": "/public/images/resource/02.png",
-      "r_type": 0,
+      "type_name": 0,
       "id": 2,
       "title": "ccc"
     },
     {
       "image": "/public/images/resource/03.png",
-      "r_type": 0,
+      "type_name": 0,
       "id": 3,
       "title": "ddd"
     },
     {
       "image": "/public/images/resource/02.png",
-      "r_type": 0,
+      "type_name": 0,
       "id": 4,
       "title": "eee"
     }
   ],
   "products": [
     {
-      "id": "001",
-      "r_type": "圆器",
-      "rank": "登堂入室",
+      "id": 0,
+      "type_id": 1,
+      "type_name": "圆器",
+      "rank_id": 0,
+      "rank_name": "登堂入室",
       "name": "束云茶叶罐001",
       "artist": "李某某001",
       "title": "【精雕细刻】束云茶叶罐001",
@@ -51,9 +53,11 @@
       "saleAmount": 11111111
     },
     {
-      "id": "002",
-      "r_type": "圆器",
-      "rank": "略有小成",
+      "id": "1",
+      "type_id": 1,
+      "type_name": "圆器",
+      "rank_id": 1,
+      "rank_name": "略有小成",
       "name": "束云茶叶罐002",
       "artist": "李某某002",
       "title": "【精雕细刻】束云茶叶罐002",
@@ -69,9 +73,11 @@
       "saleAmount": 1000
     },
     {
-      "id": "003",
-      "r_type": "方器",
-      "rank": "登堂入室",
+      "id": "2",
+      "type_id": 2,
+      "type_name": "方器",
+      "rank_id": 0,
+      "rank_name": "登堂入室",
       "name": "束云茶叶罐003",
       "artist": "李某某003",
       "title": "【精雕细刻】束云茶叶罐003",
@@ -87,9 +93,11 @@
       "saleAmount": 22222222
     },
     {
-      "id": "004",
-      "r_type": "花器",
-      "rank": "出神入化",
+      "id": "3",
+      "type_id": 3,
+      "type_name": "花器",
+      "rank_id": 3,
+      "rank_name": "出神入化",
       "name": "束云茶叶罐004",
       "artist": "李某某004",
       "title": "【精雕细刻】束云茶叶罐004",
@@ -105,9 +113,11 @@
       "saleAmount": 22222222
     },
     {
-      "id": "005",
-      "r_type": "圆器",
-      "rank": "炉火纯青",
+      "id": "4",
+      "type_id": 1,
+      "type_name": "圆器",
+      "rank_id": 2,
+      "rank_name": "炉火纯青",
       "name": "束云茶叶罐005",
       "artist": "李某某005",
       "title": "【精雕细刻】束云茶叶罐005",
@@ -123,9 +133,11 @@
       "saleAmount": 1000
     },
     {
-      "id": "006",
-      "r_type": "圆器",
-      "rank": "登堂入室",
+      "id": "5",
+      "type_id": 1,
+      "type_name": "圆器",
+      "rank_id": 0,
+      "rank_name": "登堂入室",
       "name": "束云茶叶罐006",
       "artist": "李某某006",
       "title": "【精雕细刻】束云茶叶罐006",
@@ -141,9 +153,11 @@
       "saleAmount": 1000
     },
     {
-      "id": "007",
-      "r_type": "方器",
-      "rank": "登堂入室",
+      "id": "6",
+      "type_id": 2,
+      "type_name": "方器",
+      "rank_id": 0,
+      "rank_name": "登堂入室",
       "name": "束云茶叶罐007",
       "artist": "李某某007",
       "title": "【精雕细刻】束云茶叶罐007",
@@ -159,9 +173,11 @@
       "saleAmount": 1000
     },
     {
-      "id": "008",
-      "r_type": "圆器",
-      "rank": "出神入化",
+      "id": "7",
+      "type_id": 1,
+      "type_name": "圆器",
+      "rank_id": 3,
+      "rank_name": "出神入化",
       "name": "束云茶叶罐008",
       "artist": "李某某008",
       "title": "【精雕细刻】束云茶叶罐008",
@@ -177,9 +193,11 @@
       "saleAmount": 1000
     },
     {
-      "id": "009",
-      "r_type": "花器",
-      "rank": "登堂入室",
+      "id": "8",
+      "type_id": 3,
+      "type_name": "花器",
+      "rank_id": 0,
+      "rank_name": "登堂入室",
       "name": "束云茶叶罐009",
       "artist": "李某某009",
       "title": "【精雕细刻】束云茶叶罐009",
@@ -195,9 +213,11 @@
       "saleAmount": 1000
     },
     {
-      "id": "010",
-      "r_type": "方器",
-      "rank": "登峰造极",
+      "id": "9",
+      "type_id": 2,
+      "type_name": "方器",
+      "rank_id": 4,
+      "rank_name": "登峰造极",
       "name": "束云茶叶罐010",
       "artist": "李某某010",
       "title": "【精雕细刻】束云茶叶罐010",
@@ -213,9 +233,11 @@
       "saleAmount": 1000
     },
     {
-      "id": "011",
-      "r_type": "方器",
-      "rank": "登峰造极",
+      "id": "10",
+      "type_id": 2,
+      "type_name": "方器",
+      "rank_id": 4,
+      "rank_name": "登峰造极",
       "name": "束云茶叶罐011",
       "artist": "李某某011",
       "title": "【精雕细刻】束云茶叶罐011",
@@ -231,9 +253,11 @@
       "saleAmount": 1000
     },
     {
-      "id": "012",
-      "r_type": "方器",
-      "rank": "略有小成",
+      "id": "11",
+      "type_id": 2,
+      "type_name": "方器",
+      "rank_id": 1,
+      "rank_name": "略有小成",
       "name": "束云茶叶罐012",
       "artist": "李某某012",
       "title": "【精雕细刻】束云茶叶罐012",
@@ -249,9 +273,11 @@
       "saleAmount": 1000
     },
     {
-      "id": "013",
-      "r_type": "方器",
-      "rank": "登峰造极",
+      "id": "12",
+      "type_id": 2,
+      "type_name": "方器",
+      "rank_id": 4,
+      "rank_name": "登峰造极",
       "name": "束云茶叶罐013",
       "artist": "李某某013",
       "title": "【精雕细刻】束云茶叶罐013",
@@ -267,9 +293,11 @@
       "saleAmount": 1000
     },
     {
-      "id": "014",
-      "r_type": "方器",
-      "rank": "登峰造极",
+      "id": "13",
+      "type_id": 2,
+      "type_name": "方器",
+      "rank_id": 4,
+      "rank_name": "登峰造极",
       "name": "束云茶叶罐014",
       "artist": "李某某014",
       "title": "【精雕细刻】束云茶叶罐014",
@@ -285,9 +313,51 @@
       "saleAmount": 1000
     },
     {
-      "id": "015",
-      "r_type": "方器",
-      "rank": "炉火纯青",
+      "id": "14",
+      "type_id": 2,
+      "type_name": "方器",
+      "rank_id": 4,
+      "rank_name": "登峰造极",
+      "name": "束云茶叶罐014",
+      "artist": "李某某014",
+      "title": "【精雕细刻】束云茶叶罐014",
+      "description": "描述文字。。。。。014。",
+      "default_pic": "/public/images/resource/imgs.png",
+      "pics": [
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
+      ],
+      "clickAmount": 234123,
+      "saleAmount": 1000
+    },
+    {
+      "id": "15",
+      "type_id": 4,
+      "type_name": "筋纹器",
+      "rank_id": 4,
+      "rank_name": "登峰造极",
+      "name": "束云茶叶罐014",
+      "artist": "李某某014",
+      "title": "【精雕细刻】束云茶叶罐014",
+      "description": "描述文字。。。。。014。",
+      "default_pic": "/public/images/resource/imgs.png",
+      "pics": [
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png",
+        "/public/images/resource/imgs.png"
+      ],
+      "clickAmount": 234123,
+      "saleAmount": 1000
+    },
+    {
+      "id": "16",
+      "type_id": 2,
+      "type_name": "方器",
+      "rank_id": 2,
+      "rank_name": "炉火纯青",
       "name": "束云茶叶罐015",
       "artist": "李某某015",
       "title": "【精雕细刻】束云茶叶罐015",
@@ -303,12 +373,701 @@
       "saleAmount": 1000
     }
   ],
-  "productsType": [
-    "全部",
-    "圆器",
-    "方器",
-    "花器"
+  "encyclopedias_type": [
+    {
+      "id": 0,
+      "name": "圆器",
+      "data": [
+        {
+          "id": 0,
+          "img": "public/images/category1.png",
+          "name": "西施",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 1,
+          "img": "public/images/category1.png",
+          "name": "半月",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 2,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 3,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 4,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 5,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 6,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 7,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 8,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 9,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 10,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 11,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 12,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 13,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 14,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 15,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 16,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 17,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        }
+
+      ]
+    },
+    {
+      "id": 1,
+      "name": "方器",
+      "data": [
+        {
+          "id": 0,
+          "img": "public/images/category1.png",
+          "name": "西施",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 1,
+          "img": "public/images/category1.png",
+          "name": "半月",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 2,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 3,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 4,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 5,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 6,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 7,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 8,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 9,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 10,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 11,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 12,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 13,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 14,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 15,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 16,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 17,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        }
+
+      ]
+    },
+    {
+      "id": 2,
+      "name": "花器",
+      "data": [
+        {
+          "id": 0,
+          "img": "public/images/category1.png",
+          "name": "西施",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 1,
+          "img": "public/images/category1.png",
+          "name": "半月",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 2,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 3,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 4,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 5,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 6,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 7,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 8,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 9,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 10,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 11,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 12,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 13,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 14,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 15,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 16,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 17,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        }
+
+      ]
+    },
+    {
+      "id": 3,
+      "name": "筋纹器",
+      "data": [
+        {
+          "id": 0,
+          "img": "public/images/category1.png",
+          "name": "西施",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 1,
+          "img": "public/images/category1.png",
+          "name": "半月",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 2,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 3,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 4,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 5,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 6,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 7,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 8,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 9,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 10,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 11,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 12,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 13,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 14,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 15,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 16,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 17,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        }
+
+      ]
+    }
   ],
+  "encyclopedias_other": [
+    {
+      "id": 0,
+      "name": "泥料",
+      "data": [
+        {
+          "id": 0,
+          "img": "public/images/category1.png",
+          "name": "西施",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 1,
+          "img": "public/images/category1.png",
+          "name": "半月",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 2,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 3,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 4,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 5,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 6,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 7,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 8,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 9,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 10,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 11,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 12,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 13,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 14,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 15,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 16,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 17,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        }
+
+      ]
+    },
+    {
+      "id": 1,
+      "name": "术语",
+      "data": [
+        {
+          "id": 0,
+          "img": "public/images/category1.png",
+          "name": "西施",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 1,
+          "img": "public/images/category1.png",
+          "name": "半月",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 2,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 3,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 4,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 5,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 6,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 7,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 8,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 9,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 10,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 11,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 12,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 13,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 14,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 15,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 16,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        },
+        {
+          "id": 17,
+          "img": "public/images/category1.png",
+          "name": "石瓢",
+          "text": "海上生明月，天涯共此时xxxxxxxxxxx"
+        }
+
+      ]
+    }
+  ],
+  "productsType": ["全部","圆器","方器","花器","筋纹器"],
   "productsRank": [
     "登堂入室",
     "略有小成",

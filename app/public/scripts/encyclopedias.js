@@ -1,10 +1,11 @@
-var app = new Vue(
+let app = new Vue(
   {
     computed: {
     },
     mounted: function() {
-      this.getRankList();
-      this.getprolist();
+      let vue = this;
+      vue.getProductsType();
+      vue.load();
     },
     activated() {
 
@@ -18,20 +19,52 @@ var app = new Vue(
       loading: false,
       refreshing: false,
       img_url: 'public/images',
-      msg: 0
+      currentView: 'overview',
+      tabs: [],
+      tab_num: 0,
+      list: []
     },
     watch: {
     },
     methods: {
-      change(index) {
+      getProductsType() {
         let vue = this;
-        let _url = apis.products;
-        if(index >= 0){
-          _url += '?rank_id=' + index;
-        }
         jAjax({
           type:'get',
-          url:_url,
+          url:apis.encyclopedias_type,
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              vue.tabs = (data);
+              vue.linkTo(0);
+            }else {
+              console.log('no data')
+            }
+
+          },
+          error:function(){
+            console.log('error');
+          }
+        });
+
+      },
+      load(){
+        var swiper = new Swiper('.swiper-container.tab-container', {
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          pagination: '.swiper-pagination'
+        });
+      },
+      linkTo(num){
+        let vue = this;
+        this.tab_num = num;
+        jAjax({
+          type:'get',
+          url:apis.encyclopedias_type + '?id=' + num,
           timeOut:5000,
           before:function(){
             console.log('before');
@@ -40,77 +73,26 @@ var app = new Vue(
             if(data){
               data = JSON.parse(data);
               console.log(data);
-              vue.pro_list = (data);
-
-            }else {
-              console.log('no data')
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });
-      },
-      getRankList() {
-        let vue = this;
-        jAjax({
-          type:'get',
-          url:apis.productsRank,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              vue.ranks_list = (data);
-            }else {
-              console.log('no data')
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });
-
-      },
-      getprolist(msg) {
-        let index = msg;
-        let vue = this;
-        let _url = apis.products;
-        if(index > 0){
-          _url += '?type_id=' + index;
-        }
-          jAjax({
-            type:'get',
-            url:_url,
-            timeOut:5000,
-            before:function(){
-              console.log('before');
-            },
-            success:function(data){
-              if(data){
-                data = JSON.parse(data);
-                console.log(data);
-                vue.pro_list = (data);
-
-              }else {
-                console.log('no data')
+              let _data = data[0].data;
+              let resLength = _data.length;
+              let tmp = [];
+              for (let i = 0, j = 0; i < resLength; i += 12, j++) {
+                tmp[j] = _data.splice(0, 12);
               }
-
-            },
-            error:function(){
-              console.log('error');
+              vue.list = tmp;
+            }else {
+              console.log('no data')
             }
-          });
 
-
+          },
+          error:function(){
+            console.log('error');
+          }
+        });
 
       },
     },
     components: {
     }
   }
-).$mount('#main');
+).$mount('#encyclopedias');

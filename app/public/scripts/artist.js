@@ -92,6 +92,8 @@ let app = new Vue(
     },
     mounted: function() {
       let vue = this;
+      vue.loadVideo();
+
     },
     activated() {
     },
@@ -124,6 +126,19 @@ let app = new Vue(
             vue.currentView ='live';
         }
 
+      },
+      loadVideo(){
+        var options = {
+          fluid: true,
+          aspectRatio: '2:1'
+        };
+        var player = videojs('my-player', options, function onPlayerReady() {
+          videojs.log('Your player is ready!');
+          this.play();
+          this.on('ended', function() {
+            videojs.log('Awww...over so soon?!');
+          });
+        });
       },
     },
     components: {

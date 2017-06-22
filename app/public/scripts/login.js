@@ -74,13 +74,13 @@ var app = new Vue(
         console.log(formData.serializeForm('userLogin'))
         //用户名登录
         jAjax({
-          type:"post",
+          type:'post',
           url:apis.userResource,
           // contentType: "application/json",
-          data: formData.serializeForm("userLogin"),
+          data: formData.serializeForm('userLogin'),
           timeOut:5000,
           before:function(){
-            console.log("before");
+            console.log('before');
           },
           success:function(data){
             if(data){

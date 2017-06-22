@@ -5,68 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta charset="utf-8">
   <meta name="description" content="">
-  <title>main</title>
-  <!-- build:css styles/main.css -->
+  <title></title>
   <link rel="stylesheet" href="public/styles/main.css">
-  <!-- endbuild -->
 </head>
 <body>
-<div id="main">
-  <div class="main-container">
-    <head-top @changelist="getprolist" :msg="msg"></head-top>
-    <section class="cat-container">
-      <ul class="category clearfix">
-        <li class="item" v-for="(ranks, index) in ranks_list" @click="change(index)">
-          <img :src= "img_url + '/category1.png'">
-          <span>{{ ranks }}</span>
-        </li>
-      </ul>
-    </section>
-    <div class="prolist-container">
-      <ul class="prolist" v-if="pro_list.length">
-        <li class="item" v-for="item in pro_list">
+<div class="encyclopedias-container" id="encyclopedias">
+    <head-top></head-top>
+    <section class="nav-bar">
+      <ul>
+        <li class="item" v-for="(item, index) in tabs" :class="{chosen: index===tab_num}" @click="linkTo(index)">
           <a href="javascript:;">
-            <span class="pro-main">
-              <img :src="item.default_pic">
-            </span>
-            <span class="title">{{ item.title }}</span>
-            <span class="description">{{ item.description }}</span>
-            <span class="pro-lists">
-            <span class="imgs">
-              <img :src="item.pics[0]">
-            </span>
-            <span class="imgs">
-              <img :src="item.pics[1]">
-            </span>
-            <span class="imgs">
-              <img :src="item.pics[2]">
-            </span>
-            <span class="imgs">
-              <img :src="item.pics[3]">
-            </span>
-            </span>
-              <span class="ops">
-              <img :src="img_url + '/clickAmount.png'"><span>{{ item.clickAmount }}</span>
-              <img :src="img_url + '/saleAmount.png'"><span>{{ item.saleAmount }}</span>
-            </span>
+            {{ item.name }}
           </a>
         </li>
       </ul>
-      <ul class="prolist" v-else>
-        <li class="noData">
-          没有数据......
-        </li>
-      </ul>
-    </div>
-    <div class="copyright-container">
-      <div class="info">
-        Copyright&nbsp;&copy;&nbsp;2017&nbsp;,fangcuntang&nbsp;Co.,Ltd.All&nbsp;Rights&nbsp;Reserved.<br>
-        宜兴方寸堂文化传媒有限公司&ensp;|&ensp;<a href="" class="law">法律声明</a><br>
-        <span class="bottom">沪ICP备12022967号-1&nbsp;沪公网安备11010502025474</span>
+    </section>
+    <section class="list">
+      <div class="tab-list">
+        <div class="swiper-container tab-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(item, index) in list" :key="index">
+              <div class="inner-container">
+                <div class="items" v-for="(i_item, i_index) in item" :key="i_index">
+                  <a href="javascript:;" class="link">
+                    <img :src="i_item.img">
+                    <span>{{ i_item.name }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
       </div>
-    </div>
+    </section>
   </div>
-</div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script type="text/x-template" id="head_top">
@@ -75,7 +49,7 @@
       <li class="toggle" @click="toggle()">
         <i class="fa fa-bars"></i>
       </li>
-      <li class="logo" @click="toIndex()">
+      <li class="logo" @click="toIndex(0)">
         <img :src="img_url + '/logo.png'">
       </li>
       <li class="user" @click="toLogin()">
@@ -127,6 +101,7 @@
   </header>
 </script>
 <script src="public/scripts/head.js"></script>
-<script src="public/scripts/main.js"></script>
+<script src="public/scripts/swiper.js"></script>
+<script src="public/scripts/encyclopedias.js"></script>
 </body>
 </html>

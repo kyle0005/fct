@@ -197,7 +197,7 @@ let app = new Vue(
       loadVideo(){
         var options = {
           fluid: true,
-          aspectRatio: "2:1"
+          aspectRatio: '2:1'
         };
         var player = videojs('my-player', options, function onPlayerReady() {
           videojs.log('Your player is ready!');

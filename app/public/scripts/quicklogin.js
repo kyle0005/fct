@@ -77,12 +77,12 @@ var app = new Vue(
           }, 1000)
           //发送短信验证码
           jAjax({
-            type:"post",
+            type:'post',
             url:apis.mobileCodeResource,
             data: this.phoneNumber,
             timeOut:5000,
             before:function(){
-              console.log("before");
+              console.log('before');
             },
             success:function(data){
               if(data){
@@ -119,13 +119,13 @@ var app = new Vue(
         }
         //手机号登录
         jAjax({
-          type:"post",
+          type:'post',
           url:apis.userResource,
           // contentType: "application/json",
-          data: formData.serializeForm("quick_login"),
+          data: formData.serializeForm('quick_login'),
           timeOut:5000,
           before:function(){
-            console.log("before");
+            console.log('before');
           },
           success:function(data){
             if(data){

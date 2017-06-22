@@ -25,29 +25,20 @@ Vue.component('head-top',
         typeList: [],
         loading: false,
         refreshing: false,
-        img_url: 'public/images'
+        img_url: 'public/images',
+        pro_list_type: []
       }
     },
     methods: {
       toIndex(){
+        location.href = 'main.html';
       },
       toLogin(){
         location.href = 'login.html';
       },
       change(index) {
-        let path = '/main/prolist';
-        let params = this.$route.query;
-        let queryObj = {
-          typeid: index || 0
-        };
-        if(params.rankid !== undefined){
-          queryObj.rankid = params.rankid;
-        }
-        this.$router.push({
-          path: path,
-          query: queryObj
-        });
-        this.$store.commit('addType', index);
+        let vue = this;
+        vue.$emit('changelist',index);
       },
       toggle() {
         if (!this.open) {
@@ -68,11 +59,11 @@ Vue.component('head-top',
       getTypeList() {
         let vue = this;
         jAjax({
-          type:"get",
-          url:apis.products_r_type,
+          type:'get',
+          url:apis.productsType,
           timeOut:5000,
           before:function(){
-            console.log("before");
+            console.log('before');
           },
           success:function(data){
             if(data){
@@ -84,7 +75,7 @@ Vue.component('head-top',
 
           },
           error:function(){
-            console.log("error");
+            console.log('error');
           }
         });
 

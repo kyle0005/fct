@@ -99,7 +99,7 @@ function isPromise (val) {
 }
 
 function assert (condition, msg) {
-  if (!condition) { throw new Error(("[vuex] " + msg)) }
+  if (!condition) { throw new Error(('[vuex] ' + msg)) }
 }
 
 var Module = function Module (rawModule, runtime) {
@@ -230,7 +230,7 @@ function update (targetModule, newModule) {
     for (var key in newModule.modules) {
       if (!targetModule.getChild(key)) {
         console.warn(
-          "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+          '[vuex] trying to add a new module \'' + key + '\' on hot reloading, ' +
           'manual reload is needed'
         );
         return
@@ -246,8 +246,8 @@ var Store = function Store (options) {
   var this$1 = this;
   if ( options === void 0 ) options = {};
 
-  assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
-  assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+  assert(Vue, 'must call Vue.use(Vuex) before creating a store instance.');
+  assert(typeof Promise !== 'undefined', 'vuex requires a Promise polyfill in this browser.');
 
   var state = options.state; if ( state === void 0 ) state = {};
   var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
@@ -298,7 +298,7 @@ prototypeAccessors.state.get = function () {
 };
 
 prototypeAccessors.state.set = function (v) {
-  assert(false, "Use store.replaceState() to explicit replace store state.");
+  assert(false, 'Use store.replaceState() to explicit replace store state.');
 };
 
 Store.prototype.commit = function commit (_type, _payload, _options) {
@@ -313,7 +313,7 @@ Store.prototype.commit = function commit (_type, _payload, _options) {
   var mutation = { type: type, payload: payload };
   var entry = this._mutations[type];
   if (!entry) {
-    console.error(("[vuex] unknown mutation type: " + type));
+    console.error(('[vuex] unknown mutation type: ' + type));
     return
   }
   this._withCommit(function () {
@@ -325,7 +325,7 @@ Store.prototype.commit = function commit (_type, _payload, _options) {
 
   if (options && options.silent) {
     console.warn(
-      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      '[vuex] mutation type: ' + type + '. Silent option has been removed. ' +
       'Use the filter functionality in the vue-devtools'
     );
   }
@@ -339,7 +339,7 @@ Store.prototype.dispatch = function dispatch (_type, _payload) {
 
   var entry = this._actions[type];
   if (!entry) {
-    console.error(("[vuex] unknown action type: " + type));
+    console.error(('[vuex] unknown action type: ' + type));
     return
   }
   return entry.length > 1
@@ -363,7 +363,7 @@ Store.prototype.subscribe = function subscribe (fn) {
 Store.prototype.watch = function watch (getter, cb, options) {
     var this$1 = this;
 
-  assert(typeof getter === 'function', "store.watch only accepts a function.");
+  assert(typeof getter === 'function', 'store.watch only accepts a function.');
   return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
 };
 
@@ -377,7 +377,7 @@ Store.prototype.replaceState = function replaceState (state) {
 
 Store.prototype.registerModule = function registerModule (path, rawModule) {
   if (typeof path === 'string') { path = [path]; }
-  assert(Array.isArray(path), "module path must be a string or an Array.");
+  assert(Array.isArray(path), 'module path must be a string or an Array.');
   this._modules.register(path, rawModule);
   installModule(this, this.state, path, this._modules.get(path));
   // reset store to update getters...
@@ -388,7 +388,7 @@ Store.prototype.unregisterModule = function unregisterModule (path) {
     var this$1 = this;
 
   if (typeof path === 'string') { path = [path]; }
-  assert(Array.isArray(path), "module path must be a string or an Array.");
+  assert(Array.isArray(path), 'module path must be a string or an Array.');
   this._modules.unregister(path);
   this._withCommit(function () {
     var parentState = getNestedState(this$1.state, path.slice(0, -1));
@@ -526,7 +526,7 @@ function makeLocalContext (store, namespace, path) {
       if (!options || !options.root) {
         type = namespace + type;
         if (!store._actions[type]) {
-          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          console.error(('[vuex] unknown local action type: ' + (args.type) + ', global type: ' + type));
           return
         }
       }
@@ -543,7 +543,7 @@ function makeLocalContext (store, namespace, path) {
       if (!options || !options.root) {
         type = namespace + type;
         if (!store._mutations[type]) {
-          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          console.error(('[vuex] unknown local mutation type: ' + (args.type) + ', global type: ' + type));
           return
         }
       }
@@ -625,7 +625,7 @@ function registerAction (store, type, handler, local) {
 
 function registerGetter (store, type, rawGetter, local) {
   if (store._wrappedGetters[type]) {
-    console.error(("[vuex] duplicate getter key: " + type));
+    console.error(('[vuex] duplicate getter key: ' + type));
     return
   }
   store._wrappedGetters[type] = function wrappedGetter (store) {
@@ -640,7 +640,7 @@ function registerGetter (store, type, rawGetter, local) {
 
 function enableStrictMode (store) {
   store._vm.$watch(function () { return this._data.$$state }, function () {
-    assert(store._committing, "Do not mutate vuex store state outside mutation handlers.");
+    assert(store._committing, 'Do not mutate vuex store state outside mutation handlers.');
   }, { deep: true, sync: true });
 }
 
@@ -657,7 +657,7 @@ function unifyObjectStyle (type, payload, options) {
     type = type.type;
   }
 
-  assert(typeof type === 'string', ("Expects string as the type, but found " + (typeof type) + "."));
+  assert(typeof type === 'string', ('Expects string as the type, but found ' + (typeof type) + '.'));
 
   return { type: type, payload: payload, options: options }
 }
@@ -737,7 +737,7 @@ var mapGetters = normalizeNamespace(function (namespace, getters) {
         return
       }
       if (!(val in this.$store.getters)) {
-        console.error(("[vuex] unknown getter: " + val));
+        console.error(('[vuex] unknown getter: ' + val));
         return
       }
       return this.$store.getters[val]
@@ -789,7 +789,7 @@ function normalizeNamespace (fn) {
 function getModuleByNamespace (store, helper, namespace) {
   var module = store._modulesNamespaceMap[namespace];
   if (!module) {
-    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+    console.error(('[vuex] module namespace not found in ' + helper + '(): ' + namespace));
   }
   return module
 }

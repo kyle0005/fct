@@ -310,12 +310,12 @@ var config = ({
   /**
    * Show production mode tip message on boot?
    */
-  productionTip: "development" !== 'production',
+  productionTip: 'development' !== 'production',
 
   /**
    * Whether to enable devtools
    */
-  devtools: "development" !== 'production',
+  devtools: 'development' !== 'production',
 
   /**
    * Whether to record perf
@@ -432,7 +432,7 @@ var formatComponentName;
 
   warn = function (msg, vm) {
     if (hasConsole && (!config.silent)) {
-      console.error("[Vue warn]: " + msg + (
+      console.error('[Vue warn]: ' + msg + (
         vm ? generateComponentTrace(vm) : ''
       ));
     }
@@ -440,7 +440,7 @@ var formatComponentName;
 
   tip = function (msg, vm) {
     if (hasConsole && (!config.silent)) {
-      console.warn("[Vue tip]: " + msg + (
+      console.warn('[Vue tip]: ' + msg + (
         vm ? generateComponentTrace(vm) : ''
       ));
     }
@@ -465,8 +465,8 @@ var formatComponentName;
     }
 
     return (
-      (name ? ("<" + (classify(name)) + ">") : "<Anonymous>") +
-      (file && includeFile !== false ? (" at " + file) : '')
+      (name ? ('<' + (classify(name)) + '>') : '<Anonymous>') +
+      (file && includeFile !== false ? (' at ' + file) : '')
     )
   };
 
@@ -500,12 +500,12 @@ var formatComponentName;
         vm = vm.$parent;
       }
       return '\n\nfound in\n\n' + tree
-        .map(function (vm, i) { return ("" + (i === 0 ? '---> ' : repeat(' ', 5 + i * 2)) + (Array.isArray(vm)
-            ? ((formatComponentName(vm[0])) + "... (" + (vm[1]) + " recursive calls)")
+        .map(function (vm, i) { return ('' + (i === 0 ? '---> ' : repeat(' ', 5 + i * 2)) + (Array.isArray(vm)
+            ? ((formatComponentName(vm[0])) + '... (' + (vm[1]) + ' recursive calls)')
             : formatComponentName(vm))); })
         .join('\n')
     } else {
-      return ("\n\n(found in " + (formatComponentName(vm)) + ")")
+      return ('\n\n(found in ' + (formatComponentName(vm)) + ')')
     }
   };
 }
@@ -515,7 +515,7 @@ function handleError (err, vm, info) {
     config.errorHandler.call(null, err, vm, info);
   } else {
     {
-      warn(("Error in " + info + ": \"" + (err.toString()) + "\""), vm);
+      warn(('Error in ' + info + ': "' + (err.toString()) + '"'), vm);
     }
     /* istanbul ignore else */
     if (inBrowser && typeof console !== 'undefined') {
@@ -949,7 +949,7 @@ function defineReactive$$1 (
         return
       }
       /* eslint-enable no-self-compare */
-      if ("development" !== 'production' && customSetter) {
+      if ('development' !== 'production' && customSetter) {
         customSetter();
       }
       if (setter) {
@@ -980,7 +980,7 @@ function set (target, key, val) {
   }
   var ob = (target ).__ob__;
   if (target._isVue || (ob && ob.vmCount)) {
-    "development" !== 'production' && warn(
+    'development' !== 'production' && warn(
       'Avoid adding reactive properties to a Vue instance or its root $data ' +
       'at runtime - declare it upfront in the data option.'
     );
@@ -1005,7 +1005,7 @@ function del (target, key) {
   }
   var ob = (target ).__ob__;
   if (target._isVue || (ob && ob.vmCount)) {
-    "development" !== 'production' && warn(
+    'development' !== 'production' && warn(
       'Avoid deleting properties on a Vue instance or its root $data ' +
       '- just set it to null.'
     );
@@ -1051,7 +1051,7 @@ var strats = config.optionMergeStrategies;
   strats.el = strats.propsData = function (parent, child, vm, key) {
     if (!vm) {
       warn(
-        "option \"" + key + "\" can only be used during instance " +
+        'option "' + key + '" can only be used during instance ' +
         'creation with the `new` keyword.'
       );
     }
@@ -1093,7 +1093,7 @@ strats.data = function (
       return parentVal
     }
     if (typeof childVal !== 'function') {
-      "development" !== 'production' && warn(
+      'development' !== 'production' && warn(
         'The "data" option should be a function ' +
         'that returns a per-instance value in component ' +
         'definitions.',
@@ -1350,7 +1350,7 @@ function resolveAsset (
   if (hasOwn(assets, PascalCaseId)) { return assets[PascalCaseId] }
   // fallback to prototype chain
   var res = assets[id] || assets[camelizedId] || assets[PascalCaseId];
-  if ("development" !== 'production' && warnMissing && !res) {
+  if ('development' !== 'production' && warnMissing && !res) {
     warn(
       'Failed to resolve ' + type.slice(0, -1) + ': ' + id,
       options
@@ -1404,7 +1404,7 @@ function getPropDefaultValue (vm, prop, key) {
   }
   var def = prop.default;
   // warn against non-factory defaults for Object & Array
-  if ("development" !== 'production' && isObject(def)) {
+  if ('development' !== 'production' && isObject(def)) {
     warn(
       'Invalid default value for prop "' + key + '": ' +
       'Props with type Object/Array must use a factory function ' +
@@ -1559,9 +1559,9 @@ var initProxy;
 
   var warnNonPresent = function (target, key) {
     warn(
-      "Property or method \"" + key + "\" is not defined on the instance but " +
-      "referenced during render. Make sure to declare reactive data " +
-      "properties in the data option.",
+      'Property or method "' + key + '" is not defined on the instance but ' +
+      'referenced during render. Make sure to declare reactive data ' +
+      'properties in the data option.',
       target
     );
   };
@@ -1575,7 +1575,7 @@ var initProxy;
     config.keyCodes = new Proxy(config.keyCodes, {
       set: function set (target, key, value) {
         if (isBuiltInModifier(key)) {
-          warn(("Avoid overwriting built-in modifier in config.keyCodes: ." + key));
+          warn(('Avoid overwriting built-in modifier in config.keyCodes: .' + key));
           return false
         } else {
           target[key] = value;
@@ -1749,8 +1749,8 @@ function updateListeners (
     old = oldOn[name];
     event = normalizeEvent(name);
     if (isUndef(cur)) {
-      "development" !== 'production' && warn(
-        "Invalid handler for event \"" + (event.name) + "\": got " + String(cur),
+      'development' !== 'production' && warn(
+        'Invalid handler for event "' + (event.name) + '": got ' + String(cur),
         vm
       );
     } else if (isUndef(old)) {
@@ -1830,12 +1830,12 @@ function extractPropsFromVNodeData (
           attrs && hasOwn(attrs, keyInLowerCase)
         ) {
           tip(
-            "Prop \"" + keyInLowerCase + "\" is passed to component " +
-            (formatComponentName(tag || Ctor)) + ", but the declared prop name is" +
-            " \"" + key + "\". " +
-            "Note that HTML attributes are case-insensitive and camelCased " +
-            "props need to use their kebab-case equivalents when using in-DOM " +
-            "templates. You should probably use \"" + altKey + "\" instead of \"" + key + "\"."
+            'Prop "' + keyInLowerCase + '" is passed to component ' +
+            (formatComponentName(tag || Ctor)) + ', but the declared prop name is' +
+            ' "' + key + '". ' +
+            'Note that HTML attributes are case-insensitive and camelCased ' +
+            'props need to use their kebab-case equivalents when using in-DOM ' +
+            'templates. You should probably use "' + altKey + '" instead of "' + key + '".'
           );
         }
       }
@@ -1915,7 +1915,7 @@ function normalizeArrayChildren (children, nestedIndex) {
     last = res[res.length - 1];
     //  nested
     if (Array.isArray(c)) {
-      res.push.apply(res, normalizeArrayChildren(c, ((nestedIndex || '') + "_" + i)));
+      res.push.apply(res, normalizeArrayChildren(c, ((nestedIndex || '') + '_' + i)));
     } else if (isPrimitive(c)) {
       if (isDef(last) && isDef(last.text)) {
         (last).text += String(c);
@@ -1929,7 +1929,7 @@ function normalizeArrayChildren (children, nestedIndex) {
       } else {
         // default key for nested array children (likely generated by v-for)
         if (isDef(c.tag) && isUndef(c.key) && isDef(nestedIndex)) {
-          c.key = "__vlist" + ((nestedIndex)) + "_" + i + "__";
+          c.key = '__vlist' + ((nestedIndex)) + '_' + i + '__';
         }
         res.push(c);
       }
@@ -1987,9 +1987,9 @@ function resolveAsyncComponent (
     });
 
     var reject = once(function (reason) {
-      "development" !== 'production' && warn(
-        "Failed to resolve async component: " + (String(factory)) +
-        (reason ? ("\nReason: " + reason) : '')
+      'development' !== 'production' && warn(
+        'Failed to resolve async component: ' + (String(factory)) +
+        (reason ? ('\nReason: ' + reason) : '')
       );
       if (isDef(factory.errorComp)) {
         factory.error = true;
@@ -2029,7 +2029,7 @@ function resolveAsyncComponent (
         if (isDef(res.timeout)) {
           setTimeout(function () {
             reject(
-              "timeout (" + (res.timeout) + "ms)"
+              'timeout (' + (res.timeout) + 'ms)'
             );
           }, res.timeout);
         }
@@ -2170,11 +2170,11 @@ function eventsMixin (Vue) {
       var lowerCaseEvent = event.toLowerCase();
       if (lowerCaseEvent !== event && vm._events[lowerCaseEvent]) {
         tip(
-          "Event \"" + lowerCaseEvent + "\" is emitted in component " +
-          (formatComponentName(vm)) + " but the handler is registered for \"" + event + "\". " +
-          "Note that HTML attributes are case-insensitive and you cannot use " +
-          "v-on to listen to camelCase events when using in-DOM templates. " +
-          "You should probably use \"" + (hyphenate(event)) + "\" instead of \"" + event + "\"."
+          'Event "' + lowerCaseEvent + '" is emitted in component ' +
+          (formatComponentName(vm)) + ' but the handler is registered for "' + event + '". ' +
+          'Note that HTML attributes are case-insensitive and you cannot use ' +
+          'v-on to listen to camelCase events when using in-DOM templates. ' +
+          'You should probably use "' + (hyphenate(event)) + '" instead of "' + event + '".'
         );
       }
     }
@@ -2391,22 +2391,22 @@ function mountComponent (
 
   var updateComponent;
   /* istanbul ignore if */
-  if ("development" !== 'production' && config.performance && mark) {
+  if ('development' !== 'production' && config.performance && mark) {
     updateComponent = function () {
       var name = vm._name;
       var id = vm._uid;
-      var startTag = "vue-perf-start:" + id;
-      var endTag = "vue-perf-end:" + id;
+      var startTag = 'vue-perf-start:' + id;
+      var endTag = 'vue-perf-end:' + id;
 
       mark(startTag);
       var vnode = vm._render();
       mark(endTag);
-      measure((name + " render"), startTag, endTag);
+      measure((name + ' render'), startTag, endTag);
 
       mark(startTag);
       vm._update(vnode, hydrating);
       mark(endTag);
-      measure((name + " patch"), startTag, endTag);
+      measure((name + ' patch'), startTag, endTag);
     };
   } else {
     updateComponent = function () {
@@ -2529,7 +2529,7 @@ function callHook (vm, hook) {
       try {
         handlers[i].call(vm);
       } catch (e) {
-        handleError(e, vm, (hook + " hook"));
+        handleError(e, vm, (hook + ' hook'));
       }
     }
   }
@@ -2588,14 +2588,14 @@ function flushSchedulerQueue () {
     has[id] = null;
     watcher.run();
     // in dev build, check and stop circular updates.
-    if ("development" !== 'production' && has[id] != null) {
+    if ('development' !== 'production' && has[id] != null) {
       circular[id] = (circular[id] || 0) + 1;
       if (circular[id] > MAX_UPDATE_COUNT) {
         warn(
           'You may have an infinite update loop ' + (
             watcher.user
-              ? ("in watcher with expression \"" + (watcher.expression) + "\"")
-              : "in a component render function."
+              ? ('in watcher with expression "' + (watcher.expression) + '"')
+              : 'in a component render function.'
           ),
           watcher.vm
         );
@@ -2720,8 +2720,8 @@ var Watcher = function Watcher (
     this.getter = parsePath(expOrFn);
     if (!this.getter) {
       this.getter = function () {};
-      "development" !== 'production' && warn(
-        "Failed watching path: \"" + expOrFn + "\" " +
+      'development' !== 'production' && warn(
+        'Failed watching path: "' + expOrFn + '" ' +
         'Watcher only accepts simple dot-delimited paths. ' +
         'For full control, use a function instead.',
         vm
@@ -2744,7 +2744,7 @@ Watcher.prototype.get = function get () {
     try {
       value = this.getter.call(vm, vm);
     } catch (e) {
-      handleError(e, vm, ("getter for watcher \"" + (this.expression) + "\""));
+      handleError(e, vm, ('getter for watcher "' + (this.expression) + '"'));
     }
   } else {
     value = this.getter.call(vm, vm);
@@ -2833,7 +2833,7 @@ Watcher.prototype.run = function run () {
         try {
           this.cb.call(this.vm, value, oldValue);
         } catch (e) {
-          handleError(e, this.vm, ("callback for watcher \"" + (this.expression) + "\""));
+          handleError(e, this.vm, ('callback for watcher "' + (this.expression) + '"'));
         }
       } else {
         this.cb.call(this.vm, value, oldValue);
@@ -2973,17 +2973,17 @@ function initProps (vm, propsOptions) {
     {
       if (isReservedProp[key] || config.isReservedAttr(key)) {
         warn(
-          ("\"" + key + "\" is a reserved attribute and cannot be used as component prop."),
+          ('"' + key + '" is a reserved attribute and cannot be used as component prop.'),
           vm
         );
       }
       defineReactive$$1(props, key, value, function () {
         if (vm.$parent && !observerState.isSettingProps) {
           warn(
-            "Avoid mutating a prop directly since the value will be " +
-            "overwritten whenever the parent component re-renders. " +
-            "Instead, use a data or computed property based on the prop's " +
-            "value. Prop being mutated: \"" + key + "\"",
+            'Avoid mutating a prop directly since the value will be ' +
+            'overwritten whenever the parent component re-renders. ' +
+            'Instead, use a data or computed property based on the prop\'s ' +
+            'value. Prop being mutated: "' + key + '"',
             vm
           );
         }
@@ -2993,7 +2993,7 @@ function initProps (vm, propsOptions) {
     // during Vue.extend(). We only need to proxy props defined at
     // instantiation here.
     if (!(key in vm)) {
-      proxy(vm, "_props", key);
+      proxy(vm, '_props', key);
     }
   };
 
@@ -3008,7 +3008,7 @@ function initData (vm) {
     : data || {};
   if (!isPlainObject(data)) {
     data = {};
-    "development" !== 'production' && warn(
+    'development' !== 'production' && warn(
       'data functions should return an object:\n' +
       'https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function',
       vm
@@ -3020,13 +3020,13 @@ function initData (vm) {
   var i = keys.length;
   while (i--) {
     if (props && hasOwn(props, keys[i])) {
-      "development" !== 'production' && warn(
-        "The data property \"" + (keys[i]) + "\" is already declared as a prop. " +
-        "Use prop default value instead.",
+      'development' !== 'production' && warn(
+        'The data property "' + (keys[i]) + '" is already declared as a prop. ' +
+        'Use prop default value instead.',
         vm
       );
     } else if (!isReserved(keys[i])) {
-      proxy(vm, "_data", keys[i]);
+      proxy(vm, '_data', keys[i]);
     }
   }
   // observe data
@@ -3037,7 +3037,7 @@ function getData (data, vm) {
   try {
     return data.call(vm)
   } catch (e) {
-    handleError(e, vm, "data()");
+    handleError(e, vm, 'data()');
     return {}
   }
 }
@@ -3053,7 +3053,7 @@ function initComputed (vm, computed) {
     {
       if (getter === undefined) {
         warn(
-          ("No getter function has been defined for computed property \"" + key + "\"."),
+          ('No getter function has been defined for computed property "' + key + '".'),
           vm
         );
         getter = noop;
@@ -3069,9 +3069,9 @@ function initComputed (vm, computed) {
       defineComputed(vm, key, userDef);
     } else {
       if (key in vm.$data) {
-        warn(("The computed property \"" + key + "\" is already defined in data."), vm);
+        warn(('The computed property "' + key + '" is already defined in data.'), vm);
       } else if (vm.$options.props && key in vm.$options.props) {
-        warn(("The computed property \"" + key + "\" is already defined as a prop."), vm);
+        warn(('The computed property "' + key + '" is already defined as a prop.'), vm);
       }
     }
   }
@@ -3116,14 +3116,14 @@ function initMethods (vm, methods) {
     {
       if (methods[key] == null) {
         warn(
-          "method \"" + key + "\" has an undefined value in the component definition. " +
-          "Did you reference the function correctly?",
+          'method "' + key + '" has an undefined value in the component definition. ' +
+          'Did you reference the function correctly?',
           vm
         );
       }
       if (props && hasOwn(props, key)) {
         warn(
-          ("method \"" + key + "\" has already been defined as a prop."),
+          ('method "' + key + '" has already been defined as a prop.'),
           vm
         );
       }
@@ -3173,7 +3173,7 @@ function stateMixin (Vue) {
       );
     };
     propsDef.set = function () {
-      warn("$props is readonly.", this);
+      warn('$props is readonly.', this);
     };
   }
   Object.defineProperty(Vue.prototype, '$data', dataDef);
@@ -3219,9 +3219,9 @@ function initInjections (vm) {
       {
         defineReactive$$1(vm, key, result[key], function () {
           warn(
-            "Avoid mutating an injected value directly since the changes will be " +
-            "overwritten whenever the provided component re-renders. " +
-            "injection being mutated: \"" + key + "\"",
+            'Avoid mutating an injected value directly since the changes will be ' +
+            'overwritten whenever the provided component re-renders. ' +
+            'injection being mutated: "' + key + '"',
             vm
           );
         });
@@ -3399,7 +3399,7 @@ function createComponent (
   // reject.
   if (typeof Ctor !== 'function') {
     {
-      warn(("Invalid Component definition: " + (String(Ctor))), context);
+      warn(('Invalid Component definition: ' + (String(Ctor))), context);
     }
     return
   }
@@ -3451,7 +3451,7 @@ function createComponent (
   // return a placeholder vnode
   var name = Ctor.options.name || tag;
   var vnode = new VNode(
-    ("vue-component-" + (Ctor.cid) + (name ? ("-" + name) : '')),
+    ('vue-component-' + (Ctor.cid) + (name ? ('-' + name) : '')),
     data, undefined, undefined, undefined, context,
     { Ctor: Ctor, propsData: propsData, listeners: listeners, tag: tag, children: children }
   );
@@ -3551,8 +3551,8 @@ function _createElement (
   normalizationType
 ) {
   if (isDef(data) && isDef((data).__ob__)) {
-    "development" !== 'production' && warn(
-      "Avoid using observed data object as vnode data: " + (JSON.stringify(data)) + "\n" +
+    'development' !== 'production' && warn(
+      'Avoid using observed data object as vnode data: ' + (JSON.stringify(data)) + '\n' +
       'Always create fresh vnode data objects in each render!',
       context
     );
@@ -3676,10 +3676,10 @@ function renderSlot (
   } else {
     var slotNodes = this.$slots[name];
     // warn duplicate slot usage
-    if (slotNodes && "development" !== 'production') {
+    if (slotNodes && 'development' !== 'production') {
       slotNodes._rendered && warn(
-        "Duplicate presence of slot \"" + name + "\" found in the same render tree " +
-        "- this will likely cause render errors.",
+        'Duplicate presence of slot "' + name + '" found in the same render tree ' +
+        '- this will likely cause render errors.',
         this
       );
       slotNodes._rendered = true;
@@ -3728,7 +3728,7 @@ function bindObjectProps (
 ) {
   if (value) {
     if (!isObject(value)) {
-      "development" !== 'production' && warn(
+      'development' !== 'production' && warn(
         'v-bind without argument expects an Object or Array value',
         this
       );
@@ -3775,7 +3775,7 @@ function renderStatic (
   // otherwise, render a fresh tree.
   tree = this._staticTrees[index] =
     this.$options.staticRenderFns[index].call(this._renderProxy);
-  markStatic(tree, ("__static__" + index), false);
+  markStatic(tree, ('__static__' + index), false);
   return tree
 }
 
@@ -3788,7 +3788,7 @@ function markOnce (
   index,
   key
 ) {
-  markStatic(tree, ("__once__" + index + (key ? ("_" + key) : "")), true);
+  markStatic(tree, ('__once__' + index + (key ? ('_' + key) : '')), true);
   return tree
 }
 
@@ -3800,7 +3800,7 @@ function markStatic (
   if (Array.isArray(tree)) {
     for (var i = 0; i < tree.length; i++) {
       if (tree[i] && typeof tree[i] !== 'string') {
-        markStaticNode(tree[i], (key + "_" + i), isOnce);
+        markStaticNode(tree[i], (key + '_' + i), isOnce);
       }
     }
   } else {
@@ -3865,7 +3865,7 @@ function renderMixin (Vue) {
     try {
       vnode = render.call(vm._renderProxy, vm.$createElement);
     } catch (e) {
-      handleError(e, vm, "render function");
+      handleError(e, vm, 'render function');
       // return error render result,
       // or previous vnode to prevent render error causing blank component
       /* istanbul ignore else */
@@ -3877,7 +3877,7 @@ function renderMixin (Vue) {
     }
     // return empty vnode in case the render function errored out
     if (!(vnode instanceof VNode)) {
-      if ("development" !== 'production' && Array.isArray(vnode)) {
+      if ('development' !== 'production' && Array.isArray(vnode)) {
         warn(
           'Multiple root nodes returned from render function. Render function ' +
           'should return a single root node.',
@@ -3922,9 +3922,9 @@ function initMixin (Vue) {
 
     var startTag, endTag;
     /* istanbul ignore if */
-    if ("development" !== 'production' && config.performance && mark) {
-      startTag = "vue-perf-init:" + (vm._uid);
-      endTag = "vue-perf-end:" + (vm._uid);
+    if ('development' !== 'production' && config.performance && mark) {
+      startTag = 'vue-perf-init:' + (vm._uid);
+      endTag = 'vue-perf-end:' + (vm._uid);
       mark(startTag);
     }
 
@@ -3959,10 +3959,10 @@ function initMixin (Vue) {
     callHook(vm, 'created');
 
     /* istanbul ignore if */
-    if ("development" !== 'production' && config.performance && mark) {
+    if ('development' !== 'production' && config.performance && mark) {
       vm._name = formatComponentName(vm, false);
       mark(endTag);
-      measure(((vm._name) + " init"), startTag, endTag);
+      measure(((vm._name) + ' init'), startTag, endTag);
     }
 
     if (vm.$options.el) {
@@ -4046,7 +4046,7 @@ function dedupe (latest, extended, sealed) {
 }
 
 function Vue$3 (options) {
-  if ("development" !== 'production' &&
+  if ('development' !== 'production' &&
     !(this instanceof Vue$3)) {
     warn('Vue is a constructor and should be called with the `new` keyword');
   }
@@ -4175,7 +4175,7 @@ function initExtend (Vue) {
 function initProps$1 (Comp) {
   var props = Comp.options.props;
   for (var key in props) {
-    proxy(Comp.prototype, "_props", key);
+    proxy(Comp.prototype, '_props', key);
   }
 }
 
@@ -4307,7 +4307,7 @@ var KeepAlive = {
       var key = vnode.key == null
         // same constructor may get registered as different local components
         // so cid alone is not enough (#3269)
-        ? componentOptions.Ctor.cid + (componentOptions.tag ? ("::" + (componentOptions.tag)) : '')
+        ? componentOptions.Ctor.cid + (componentOptions.tag ? ('::' + (componentOptions.tag)) : '')
         : vnode.key;
       if (this.cache[key]) {
         vnode.componentInstance = this.cache[key].componentInstance;
@@ -4574,7 +4574,7 @@ function query (el) {
   if (typeof el === 'string') {
     var selected = document.querySelector(el);
     if (!selected) {
-      "development" !== 'production' && warn(
+      'development' !== 'production' && warn(
         'Cannot find element: ' + el
       );
       return document.createElement('div')
@@ -4831,7 +4831,7 @@ function createPatchFunction (backend) {
         insert(parentElm, vnode.elm, refElm);
       }
 
-      if ("development" !== 'production' && data && data.pre) {
+      if ('development' !== 'production' && data && data.pre) {
         inPre--;
       }
     } else if (isTrue(vnode.isComment)) {
@@ -5074,7 +5074,7 @@ function createPatchFunction (backend) {
         } else {
           elmToMove = oldCh[idxInOld];
           /* istanbul ignore if */
-          if ("development" !== 'production' && !elmToMove) {
+          if ('development' !== 'production' && !elmToMove) {
             warn(
               'It seems there are duplicate keys that is causing an update error. ' +
               'Make sure each v-for item has a unique key.'
@@ -5202,7 +5202,7 @@ function createPatchFunction (backend) {
           // if childNode is not null, it means the actual childNodes list is
           // longer than the virtual children list.
           if (!childrenMatch || childNode) {
-            if ("development" !== 'production' &&
+            if ('development' !== 'production' &&
                 typeof console !== 'undefined' &&
                 !bailed) {
               bailed = true;
@@ -5423,7 +5423,7 @@ function normalizeDirectives$1 (
 }
 
 function getRawDirName (dir) {
-  return dir.rawName || ((dir.name) + "." + (Object.keys(dir.modifiers || {}).join('.')))
+  return dir.rawName || ((dir.name) + '.' + (Object.keys(dir.modifiers || {}).join('.')))
 }
 
 function callHook$1 (dir, hook, vnode, oldVnode, isDestroy) {
@@ -5432,7 +5432,7 @@ function callHook$1 (dir, hook, vnode, oldVnode, isDestroy) {
     try {
       fn(vnode.elm, dir, vnode, oldVnode, isDestroy);
     } catch (e) {
-      handleError(e, vnode.context, ("directive " + (dir.name) + " " + hook + " hook"));
+      handleError(e, vnode.context, ('directive ' + (dir.name) + ' ' + hook + ' hook'));
     }
   }
 }
@@ -5639,18 +5639,18 @@ function wrapFilter (exp, filter) {
   var i = filter.indexOf('(');
   if (i < 0) {
     // _f: resolveFilter
-    return ("_f(\"" + filter + "\")(" + exp + ")")
+    return ('_f("' + filter + '")(' + exp + ')')
   } else {
     var name = filter.slice(0, i);
     var args = filter.slice(i + 1);
-    return ("_f(\"" + name + "\")(" + exp + "," + args)
+    return ('_f("' + name + '")(' + exp + ',' + args)
   }
 }
 
 /*  */
 
 function baseWarn (msg) {
-  console.error(("[Vue compiler]: " + msg));
+  console.error(('[Vue compiler]: ' + msg));
 }
 
 function pluckModuleFunction (
@@ -5692,7 +5692,7 @@ function addHandler (
   // warn prevent and passive modifier
   /* istanbul ignore if */
   if (
-    "development" !== 'production' && warn &&
+    'development' !== 'production' && warn &&
     modifiers && modifiers.prevent && modifiers.passive
   ) {
     warn(
@@ -5783,19 +5783,19 @@ function genComponentModel (
   var valueExpression = baseValueExpression;
   if (trim) {
     valueExpression =
-      "(typeof " + baseValueExpression + " === 'string'" +
-        "? " + baseValueExpression + ".trim()" +
-        ": " + baseValueExpression + ")";
+      '(typeof ' + baseValueExpression + ' === \'string\'' +
+        '? ' + baseValueExpression + '.trim()' +
+        ': ' + baseValueExpression + ')';
   }
   if (number) {
-    valueExpression = "_n(" + valueExpression + ")";
+    valueExpression = '_n(' + valueExpression + ')';
   }
   var assignment = genAssignmentCode(value, valueExpression);
 
   el.model = {
-    value: ("(" + value + ")"),
-    expression: ("\"" + value + "\""),
-    callback: ("function (" + baseValueExpression + ") {" + assignment + "}")
+    value: ('(' + value + ')'),
+    expression: ('"' + value + '"'),
+    callback: ('function (' + baseValueExpression + ') {' + assignment + '}')
   };
 }
 
@@ -5808,12 +5808,12 @@ function genAssignmentCode (
 ) {
   var modelRs = parseModel(value);
   if (modelRs.idx === null) {
-    return (value + "=" + assignment)
+    return (value + '=' + assignment)
   } else {
-    return "var $$exp = " + (modelRs.exp) + ", $$idx = " + (modelRs.idx) + ";" +
-      "if (!Array.isArray($$exp)){" +
-        value + "=" + assignment + "}" +
-      "else{$$exp.splice($$idx, 1, " + assignment + ")}"
+    return 'var $$exp = ' + (modelRs.exp) + ', $$idx = ' + (modelRs.idx) + ';' +
+      'if (!Array.isArray($$exp)){' +
+        value + '=' + assignment + '}' +
+      'else{$$exp.splice($$idx, 1, ' + assignment + ')}'
   }
 }
 
@@ -5930,16 +5930,16 @@ function model (
     var dynamicType = el.attrsMap['v-bind:type'] || el.attrsMap[':type'];
     if (tag === 'input' && dynamicType) {
       warn$1(
-        "<input :type=\"" + dynamicType + "\" v-model=\"" + value + "\">:\n" +
-        "v-model does not support dynamic input types. Use v-if branches instead."
+        '<input :type="' + dynamicType + '" v-model="' + value + '">:\n' +
+        'v-model does not support dynamic input types. Use v-if branches instead.'
       );
     }
     // inputs with type="file" are read only and setting the input's
     // value will throw an error.
     if (tag === 'input' && type === 'file') {
       warn$1(
-        "<" + (el.tag) + " v-model=\"" + value + "\" type=\"file\">:\n" +
-        "File inputs are read only. Use a v-on:change listener instead."
+        '<' + (el.tag) + ' v-model="' + value + '" type="file">:\n' +
+        'File inputs are read only. Use a v-on:change listener instead.'
       );
     }
   }
@@ -5958,8 +5958,8 @@ function model (
     return false
   } else {
     warn$1(
-      "<" + (el.tag) + " v-model=\"" + value + "\">: " +
-      "v-model is not supported on this element type. " +
+      '<' + (el.tag) + ' v-model="' + value + '">: ' +
+      'v-model is not supported on this element type. ' +
       'If you are working with contenteditable, it\'s recommended to ' +
       'wrap a library dedicated for that purpose inside a custom component.'
     );
@@ -5979,23 +5979,23 @@ function genCheckboxModel (
   var trueValueBinding = getBindingAttr(el, 'true-value') || 'true';
   var falseValueBinding = getBindingAttr(el, 'false-value') || 'false';
   addProp(el, 'checked',
-    "Array.isArray(" + value + ")" +
-      "?_i(" + value + "," + valueBinding + ")>-1" + (
+    'Array.isArray(' + value + ')' +
+      '?_i(' + value + ',' + valueBinding + ')>-1' + (
         trueValueBinding === 'true'
-          ? (":(" + value + ")")
-          : (":_q(" + value + "," + trueValueBinding + ")")
+          ? (':(' + value + ')')
+          : (':_q(' + value + ',' + trueValueBinding + ')')
       )
   );
   addHandler(el, CHECKBOX_RADIO_TOKEN,
-    "var $$a=" + value + "," +
+    'var $$a=' + value + ',' +
         '$$el=$event.target,' +
-        "$$c=$$el.checked?(" + trueValueBinding + "):(" + falseValueBinding + ");" +
+        '$$c=$$el.checked?(' + trueValueBinding + '):(' + falseValueBinding + ');' +
     'if(Array.isArray($$a)){' +
-      "var $$v=" + (number ? '_n(' + valueBinding + ')' : valueBinding) + "," +
+      'var $$v=' + (number ? '_n(' + valueBinding + ')' : valueBinding) + ',' +
           '$$i=_i($$a,$$v);' +
-      "if($$c){$$i<0&&(" + value + "=$$a.concat($$v))}" +
-      "else{$$i>-1&&(" + value + "=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}" +
-    "}else{" + (genAssignmentCode(value, '$$c')) + "}",
+      'if($$c){$$i<0&&(' + value + '=$$a.concat($$v))}' +
+      'else{$$i>-1&&(' + value + '=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}' +
+    '}else{' + (genAssignmentCode(value, '$$c')) + '}',
     null, true
   );
 }
@@ -6007,8 +6007,8 @@ function genRadioModel (
 ) {
   var number = modifiers && modifiers.number;
   var valueBinding = getBindingAttr(el, 'value') || 'null';
-  valueBinding = number ? ("_n(" + valueBinding + ")") : valueBinding;
-  addProp(el, 'checked', ("_q(" + value + "," + valueBinding + ")"));
+  valueBinding = number ? ('_n(' + valueBinding + ')') : valueBinding;
+  addProp(el, 'checked', ('_q(' + value + ',' + valueBinding + ')'));
   addHandler(el, CHECKBOX_RADIO_TOKEN, genAssignmentCode(value, valueBinding), null, true);
 }
 
@@ -6018,14 +6018,14 @@ function genSelect (
     modifiers
 ) {
   var number = modifiers && modifiers.number;
-  var selectedVal = "Array.prototype.filter" +
-    ".call($event.target.options,function(o){return o.selected})" +
-    ".map(function(o){var val = \"_value\" in o ? o._value : o.value;" +
-    "return " + (number ? '_n(val)' : 'val') + "})";
+  var selectedVal = 'Array.prototype.filter' +
+    '.call($event.target.options,function(o){return o.selected})' +
+    '.map(function(o){var val = "_value" in o ? o._value : o.value;' +
+    'return ' + (number ? '_n(val)' : 'val') + '})';
 
   var assignment = '$event.target.multiple ? $$selectedVal : $$selectedVal[0]';
-  var code = "var $$selectedVal = " + selectedVal + ";";
-  code = code + " " + (genAssignmentCode(value, assignment));
+  var code = 'var $$selectedVal = ' + selectedVal + ';';
+  code = code + ' ' + (genAssignmentCode(value, assignment));
   addHandler(el, 'change', code, null, true);
 }
 
@@ -6048,18 +6048,18 @@ function genDefaultModel (
 
   var valueExpression = '$event.target.value';
   if (trim) {
-    valueExpression = "$event.target.value.trim()";
+    valueExpression = '$event.target.value.trim()';
   }
   if (number) {
-    valueExpression = "_n(" + valueExpression + ")";
+    valueExpression = '_n(' + valueExpression + ')';
   }
 
   var code = genAssignmentCode(value, valueExpression);
   if (needCompositionGuard) {
-    code = "if($event.target.composing)return;" + code;
+    code = 'if($event.target.composing)return;' + code;
   }
 
-  addProp(el, 'value', ("(" + value + ")"));
+  addProp(el, 'value', ('(' + value + ')'));
   addHandler(el, event, code, null, true);
   if (trim || number || type === 'number') {
     addHandler(el, 'blur', '$forceUpdate()');
@@ -6403,7 +6403,7 @@ function addClass (el, cls) {
       el.classList.add(cls);
     }
   } else {
-    var cur = " " + (el.getAttribute('class') || '') + " ";
+    var cur = ' ' + (el.getAttribute('class') || '') + ' ';
     if (cur.indexOf(' ' + cls + ' ') < 0) {
       el.setAttribute('class', (cur + cls).trim());
     }
@@ -6428,7 +6428,7 @@ function removeClass (el, cls) {
       el.classList.remove(cls);
     }
   } else {
-    var cur = " " + (el.getAttribute('class') || '') + " ";
+    var cur = ' ' + (el.getAttribute('class') || '') + ' ';
     var tar = ' ' + cls + ' ';
     while (cur.indexOf(tar) >= 0) {
       cur = cur.replace(tar, ' ');
@@ -6458,12 +6458,12 @@ function resolveTransition (def$$1) {
 
 var autoCssTransition = cached(function (name) {
   return {
-    enterClass: (name + "-enter"),
-    enterToClass: (name + "-enter-to"),
-    enterActiveClass: (name + "-enter-active"),
-    leaveClass: (name + "-leave"),
-    leaveToClass: (name + "-leave-to"),
-    leaveActiveClass: (name + "-leave-active")
+    enterClass: (name + '-enter'),
+    enterToClass: (name + '-enter-to'),
+    enterActiveClass: (name + '-enter-active'),
+    leaveClass: (name + '-leave'),
+    leaveToClass: (name + '-leave-to'),
+    leaveActiveClass: (name + '-leave-active')
   }
 });
 
@@ -6696,7 +6696,7 @@ function enter (vnode, toggleDisplay) {
       : duration
   );
 
-  if ("development" !== 'production' && explicitEnterDuration != null) {
+  if ('development' !== 'production' && explicitEnterDuration != null) {
     checkDuration(explicitEnterDuration, 'enter', vnode);
   }
 
@@ -6802,7 +6802,7 @@ function leave (vnode, rm) {
       : duration
   );
 
-  if ("development" !== 'production' && explicitLeaveDuration != null) {
+  if ('development' !== 'production' && explicitLeaveDuration != null) {
     checkDuration(explicitLeaveDuration, 'leave', vnode);
   }
 
@@ -6868,13 +6868,13 @@ function leave (vnode, rm) {
 function checkDuration (val, name, vnode) {
   if (typeof val !== 'number') {
     warn(
-      "<transition> explicit " + name + " duration is not a valid number - " +
-      "got " + (JSON.stringify(val)) + ".",
+      '<transition> explicit ' + name + ' duration is not a valid number - ' +
+      'got ' + (JSON.stringify(val)) + '.',
       vnode.context
     );
   } else if (isNaN(val)) {
     warn(
-      "<transition> explicit " + name + " duration is NaN - " +
+      '<transition> explicit ' + name + ' duration is NaN - ' +
       'the duration expression might be incorrect.',
       vnode.context
     );
@@ -7011,9 +7011,9 @@ function setSelected (el, binding, vm) {
   var value = binding.value;
   var isMultiple = el.multiple;
   if (isMultiple && !Array.isArray(value)) {
-    "development" !== 'production' && warn(
-      "<select multiple v-model=\"" + (binding.expression) + "\"> " +
-      "expects an Array value for its binding, but got " + (Object.prototype.toString.call(value).slice(8, -1)),
+    'development' !== 'production' && warn(
+      '<select multiple v-model="' + (binding.expression) + '"> ' +
+      'expects an Array value for its binding, but got ' + (Object.prototype.toString.call(value).slice(8, -1)),
       vm
     );
     return
@@ -7230,7 +7230,7 @@ var Transition = {
     }
 
     // warn multiple elements
-    if ("development" !== 'production' && children.length > 1) {
+    if ('development' !== 'production' && children.length > 1) {
       warn(
         '<transition> can only be used on a single element. Use ' +
         '<transition-group> for lists.',
@@ -7241,7 +7241,7 @@ var Transition = {
     var mode = this.mode;
 
     // warn invalid mode
-    if ("development" !== 'production' &&
+    if ('development' !== 'production' &&
         mode && mode !== 'in-out' && mode !== 'out-in') {
       warn(
         'invalid <transition> mode: ' + mode,
@@ -7272,7 +7272,7 @@ var Transition = {
     // ensure a key that is unique to the vnode type and to this transition
     // component instance. This key will be used to remove pending leaving nodes
     // during entering.
-    var id = "__transition-" + (this._uid) + "-";
+    var id = '__transition-' + (this._uid) + '-';
     child.key = child.key == null
       ? id + child.tag
       : isPrimitive(child.key)
@@ -7356,7 +7356,7 @@ var TransitionGroup = {
         } else {
           var opts = c.componentOptions;
           var name = opts ? (opts.Ctor.options.name || opts.tag || '') : c.tag;
-          warn(("<transition-group> children must be keyed: <" + name + ">"));
+          warn(('<transition-group> children must be keyed: <' + name + '>'));
         }
       }
     }
@@ -7477,7 +7477,7 @@ function applyTranslation (c) {
   if (dx || dy) {
     c.data.moved = true;
     var s = c.elm.style;
-    s.transform = s.WebkitTransform = "translate(" + dx + "px," + dy + "px)";
+    s.transform = s.WebkitTransform = 'translate(' + dx + 'px,' + dy + 'px)';
     s.transitionDuration = '0s';
   }
 }
@@ -7518,20 +7518,20 @@ setTimeout(function () {
   if (config.devtools) {
     if (devtools) {
       devtools.emit('init', Vue$3);
-    } else if ("development" !== 'production' && isChrome) {
+    } else if ('development' !== 'production' && isChrome) {
       console[console.info ? 'info' : 'log'](
         'Download the Vue Devtools extension for a better development experience:\n' +
         'https://github.com/vuejs/vue-devtools'
       );
     }
   }
-  if ("development" !== 'production' &&
+  if ('development' !== 'production' &&
       config.productionTip !== false &&
       inBrowser && typeof console !== 'undefined') {
     console[console.info ? 'info' : 'log'](
-      "You are running Vue in development mode.\n" +
-      "Make sure to turn on production mode when deploying for production.\n" +
-      "See more tips at https://vuejs.org/guide/deployment.html"
+      'You are running Vue in development mode.\n' +
+      'Make sure to turn on production mode when deploying for production.\n' +
+      'See more tips at https://vuejs.org/guide/deployment.html'
     );
   }
 }, 0);
@@ -7541,7 +7541,7 @@ setTimeout(function () {
 // check whether current browser encodes a char inside attribute values
 function shouldDecode (content, encoded) {
   var div = document.createElement('div');
-  div.innerHTML = "<div a=\"" + content + "\">";
+  div.innerHTML = '<div a="' + content + '">';
   return div.innerHTML.indexOf(encoded) > 0
 }
 
@@ -7752,8 +7752,8 @@ function parseHTML (html, options) {
 
     if (html === last) {
       options.chars && options.chars(html);
-      if ("development" !== 'production' && !stack.length && options.warn) {
-        options.warn(("Mal-formatted tag at end of template: \"" + html + "\""));
+      if ('development' !== 'production' && !stack.length && options.warn) {
+        options.warn(('Mal-formatted tag at end of template: "' + html + '"'));
       }
       break
     }
@@ -7859,11 +7859,11 @@ function parseHTML (html, options) {
     if (pos >= 0) {
       // Close all the open elements, up the stack
       for (var i = stack.length - 1; i >= pos; i--) {
-        if ("development" !== 'production' &&
+        if ('development' !== 'production' &&
             (i > pos || !tagName) &&
             options.warn) {
           options.warn(
-            ("tag <" + (stack[i].tag) + "> has no matching end tag.")
+            ('tag <' + (stack[i].tag) + '> has no matching end tag.')
           );
         }
         if (options.end) {
@@ -7919,7 +7919,7 @@ function parseText (
     }
     // tag token
     var exp = parseFilters(match[1].trim());
-    tokens.push(("_s(" + exp + ")"));
+    tokens.push(('_s(' + exp + ')'));
     lastIndex = index + match[0].length;
   }
   if (lastIndex < text.length) {
@@ -8023,10 +8023,10 @@ function parse (
 
       if (isForbiddenTag(element) && !isServerRendering()) {
         element.forbidden = true;
-        "development" !== 'production' && warn$2(
+        'development' !== 'production' && warn$2(
           'Templates should only be responsible for mapping the state to the ' +
           'UI. Avoid placing tags with side-effects in your templates, such as ' +
-          "<" + tag + ">" + ', as they will not be parsed.'
+          '<' + tag + '>' + ', as they will not be parsed.'
         );
       }
 
@@ -8069,7 +8069,7 @@ function parse (
         {
           if (el.tag === 'slot' || el.tag === 'template') {
             warnOnce(
-              "Cannot use <" + (el.tag) + "> as component root element because it may " +
+              'Cannot use <' + (el.tag) + '> as component root element because it may ' +
               'contain multiple nodes.'
             );
           }
@@ -8096,9 +8096,9 @@ function parse (
           });
         } else {
           warnOnce(
-            "Component template should contain exactly one root element. " +
-            "If you are using v-if on multiple elements, " +
-            "use v-else-if to chain them instead."
+            'Component template should contain exactly one root element. ' +
+            'If you are using v-if on multiple elements, ' +
+            'use v-else-if to chain them instead.'
           );
         }
       }
@@ -8147,7 +8147,7 @@ function parse (
             );
           } else if ((text = text.trim())) {
             warnOnce(
-              ("text \"" + text + "\" outside root element will be ignored.")
+              ('text "' + text + '" outside root element will be ignored.')
             );
           }
         }
@@ -8210,8 +8210,8 @@ function processRawAttrs (el) {
 function processKey (el) {
   var exp = getBindingAttr(el, 'key');
   if (exp) {
-    if ("development" !== 'production' && el.tag === 'template') {
-      warn$2("<template> cannot be keyed. Place the key on real elements instead.");
+    if ('development' !== 'production' && el.tag === 'template') {
+      warn$2('<template> cannot be keyed. Place the key on real elements instead.');
     }
     el.key = exp;
   }
@@ -8230,8 +8230,8 @@ function processFor (el) {
   if ((exp = getAndRemoveAttr(el, 'v-for'))) {
     var inMatch = exp.match(forAliasRE);
     if (!inMatch) {
-      "development" !== 'production' && warn$2(
-        ("Invalid v-for expression: " + exp)
+      'development' !== 'production' && warn$2(
+        ('Invalid v-for expression: ' + exp)
       );
       return
     }
@@ -8278,8 +8278,8 @@ function processIfConditions (el, parent) {
     });
   } else {
     warn$2(
-      "v-" + (el.elseif ? ('else-if="' + el.elseif + '"') : 'else') + " " +
-      "used on element <" + (el.tag) + "> without corresponding v-if."
+      'v-' + (el.elseif ? ('else-if="' + el.elseif + '"') : 'else') + ' ' +
+      'used on element <' + (el.tag) + '> without corresponding v-if.'
     );
   }
 }
@@ -8290,10 +8290,10 @@ function findPrevElement (children) {
     if (children[i].type === 1) {
       return children[i]
     } else {
-      if ("development" !== 'production' && children[i].text !== ' ') {
+      if ('development' !== 'production' && children[i].text !== ' ') {
         warn$2(
-          "text \"" + (children[i].text.trim()) + "\" between v-if and v-else(-if) " +
-          "will be ignored."
+          'text "' + (children[i].text.trim()) + '" between v-if and v-else(-if) ' +
+          'will be ignored.'
         );
       }
       children.pop();
@@ -8318,11 +8318,11 @@ function processOnce (el) {
 function processSlot (el) {
   if (el.tag === 'slot') {
     el.slotName = getBindingAttr(el, 'name');
-    if ("development" !== 'production' && el.key) {
+    if ('development' !== 'production' && el.key) {
       warn$2(
-        "`key` does not work on <slot> because slots are abstract outlets " +
-        "and can possibly expand into multiple elements. " +
-        "Use the key on a wrapping element instead."
+        '`key` does not work on <slot> because slots are abstract outlets ' +
+        'and can possibly expand into multiple elements. ' +
+        'Use the key on a wrapping element instead.'
       );
     }
   } else {
@@ -8376,8 +8376,8 @@ function processAttrs (el) {
           if (modifiers.sync) {
             addHandler(
               el,
-              ("update:" + (camelize(name))),
-              genAssignmentCode(value, "$event")
+              ('update:' + (camelize(name))),
+              genAssignmentCode(value, '$event')
             );
           }
         }
@@ -8398,7 +8398,7 @@ function processAttrs (el) {
           name = name.slice(0, -(arg.length + 1));
         }
         addDirective(el, name, rawName, value, arg, modifiers);
-        if ("development" !== 'production' && name === 'model') {
+        if ('development' !== 'production' && name === 'model') {
           checkForAliasModel(el, value);
         }
       }
@@ -8408,7 +8408,7 @@ function processAttrs (el) {
         var expression = parseText(value, delimiters);
         if (expression) {
           warn$2(
-            name + "=\"" + value + "\": " +
+            name + '="' + value + '": ' +
             'Interpolation inside attributes has been removed. ' +
             'Use v-bind or the colon shorthand instead. For example, ' +
             'instead of <div id="{{ val }}">, use <div :id="val">.'
@@ -8444,7 +8444,7 @@ function makeAttrsMap (attrs) {
   var map = {};
   for (var i = 0, l = attrs.length; i < l; i++) {
     if (
-      "development" !== 'production' &&
+      'development' !== 'production' &&
       map[attrs[i].name] && !isIE && !isEdge
     ) {
       warn$2('duplicate attribute: ' + attrs[i].name);
@@ -8490,11 +8490,11 @@ function checkForAliasModel (el, value) {
   while (_el) {
     if (_el.for && _el.alias === value) {
       warn$2(
-        "<" + (el.tag) + " v-model=\"" + value + "\">: " +
-        "You are binding v-model directly to a v-for iteration alias. " +
-        "This will not be able to modify the v-for source array because " +
-        "writing to the alias is like modifying a function local variable. " +
-        "Consider using an array of objects and use v-model on an object property instead."
+        '<' + (el.tag) + ' v-model="' + value + '">: ' +
+        'You are binding v-model directly to a v-for iteration alias. ' +
+        'This will not be able to modify the v-for source array because ' +
+        'writing to the alias is like modifying a function local variable. ' +
+        'Consider using an array of objects and use v-model on an object property instead.'
       );
     }
     _el = _el.parent;
@@ -8644,19 +8644,19 @@ var keyCodes = {
 // #4868: modifiers that prevent the execution of the listener
 // need to explicitly return null so that we can determine whether to remove
 // the listener for .once
-var genGuard = function (condition) { return ("if(" + condition + ")return null;"); };
+var genGuard = function (condition) { return ('if(' + condition + ')return null;'); };
 
 var modifierCode = {
   stop: '$event.stopPropagation();',
   prevent: '$event.preventDefault();',
-  self: genGuard("$event.target !== $event.currentTarget"),
-  ctrl: genGuard("!$event.ctrlKey"),
-  shift: genGuard("!$event.shiftKey"),
-  alt: genGuard("!$event.altKey"),
-  meta: genGuard("!$event.metaKey"),
-  left: genGuard("'button' in $event && $event.button !== 0"),
-  middle: genGuard("'button' in $event && $event.button !== 1"),
-  right: genGuard("'button' in $event && $event.button !== 2")
+  self: genGuard('$event.target !== $event.currentTarget'),
+  ctrl: genGuard('!$event.ctrlKey'),
+  shift: genGuard('!$event.shiftKey'),
+  alt: genGuard('!$event.altKey'),
+  meta: genGuard('!$event.metaKey'),
+  left: genGuard('\'button\' in $event && $event.button !== 0'),
+  middle: genGuard('\'button\' in $event && $event.button !== 1'),
+  right: genGuard('\'button\' in $event && $event.button !== 2')
 };
 
 function genHandlers (
@@ -8668,16 +8668,16 @@ function genHandlers (
   for (var name in events) {
     var handler = events[name];
     // #5330: warn click.right, since right clicks do not actually fire click events.
-    if ("development" !== 'production' &&
+    if ('development' !== 'production' &&
         name === 'click' &&
         handler && handler.modifiers && handler.modifiers.right
       ) {
       warn(
-        "Use \"contextmenu\" instead of \"click.right\" since right clicks " +
-        "do not actually fire \"click\" events."
+        'Use "contextmenu" instead of "click.right" since right clicks ' +
+        'do not actually fire "click" events.'
       );
     }
-    res += "\"" + name + "\":" + (genHandler(name, handler)) + ",";
+    res += '"' + name + '":' + (genHandler(name, handler)) + ',';
   }
   return res.slice(0, -1) + '}'
 }
@@ -8691,7 +8691,7 @@ function genHandler (
   }
 
   if (Array.isArray(handler)) {
-    return ("[" + (handler.map(function (handler) { return genHandler(name, handler); }).join(',')) + "]")
+    return ('[' + (handler.map(function (handler) { return genHandler(name, handler); }).join(',')) + ']')
   }
 
   var isMethodPath = simplePathRE.test(handler.value);
@@ -8700,7 +8700,7 @@ function genHandler (
   if (!handler.modifiers) {
     return isMethodPath || isFunctionExpression
       ? handler.value
-      : ("function($event){" + (handler.value) + "}") // inline statement
+      : ('function($event){' + (handler.value) + '}') // inline statement
   } else {
     var code = '';
     var genModifierCode = '';
@@ -8726,30 +8726,30 @@ function genHandler (
     var handlerCode = isMethodPath
       ? handler.value + '($event)'
       : isFunctionExpression
-        ? ("(" + (handler.value) + ")($event)")
+        ? ('(' + (handler.value) + ')($event)')
         : handler.value;
-    return ("function($event){" + code + handlerCode + "}")
+    return ('function($event){' + code + handlerCode + '}')
   }
 }
 
 function genKeyFilter (keys) {
-  return ("if(!('button' in $event)&&" + (keys.map(genFilterCode).join('&&')) + ")return null;")
+  return ('if(!(\'button\' in $event)&&' + (keys.map(genFilterCode).join('&&')) + ')return null;')
 }
 
 function genFilterCode (key) {
   var keyVal = parseInt(key, 10);
   if (keyVal) {
-    return ("$event.keyCode!==" + keyVal)
+    return ('$event.keyCode!==' + keyVal)
   }
   var alias = keyCodes[key];
-  return ("_k($event.keyCode," + (JSON.stringify(key)) + (alias ? ',' + JSON.stringify(alias) : '') + ")")
+  return ('_k($event.keyCode,' + (JSON.stringify(key)) + (alias ? ',' + JSON.stringify(alias) : '') + ')')
 }
 
 /*  */
 
 function bind$1 (el, dir) {
   el.wrapData = function (code) {
-    return ("_b(" + code + ",'" + (el.tag) + "'," + (dir.value) + (dir.modifiers && dir.modifiers.prop ? ',true' : '') + ")")
+    return ('_b(' + code + ',\'' + (el.tag) + '\',' + (dir.value) + (dir.modifiers && dir.modifiers.prop ? ',true' : '') + ')')
   };
 }
 
@@ -8791,7 +8791,7 @@ function generate (
   staticRenderFns = prevStaticRenderFns;
   onceCount = prevOnceCount;
   return {
-    render: ("with(this){return " + code + "}"),
+    render: ('with(this){return ' + code + '}'),
     staticRenderFns: currentStaticRenderFns
   }
 }
@@ -8818,7 +8818,7 @@ function genElement (el) {
       var data = el.plain ? undefined : genData(el);
 
       var children = el.inlineTemplate ? null : genChildren(el, true);
-      code = "_c('" + (el.tag) + "'" + (data ? ("," + data) : '') + (children ? ("," + children) : '') + ")";
+      code = '_c(\'' + (el.tag) + '\'' + (data ? (',' + data) : '') + (children ? (',' + children) : '') + ')';
     }
     // module transforms
     for (var i = 0; i < transforms$1.length; i++) {
@@ -8831,8 +8831,8 @@ function genElement (el) {
 // hoist static sub-trees out
 function genStatic (el) {
   el.staticProcessed = true;
-  staticRenderFns.push(("with(this){return " + (genElement(el)) + "}"));
-  return ("_m(" + (staticRenderFns.length - 1) + (el.staticInFor ? ',true' : '') + ")")
+  staticRenderFns.push(('with(this){return ' + (genElement(el)) + '}'));
+  return ('_m(' + (staticRenderFns.length - 1) + (el.staticInFor ? ',true' : '') + ')')
 }
 
 // v-once
@@ -8851,12 +8851,12 @@ function genOnce (el) {
       parent = parent.parent;
     }
     if (!key) {
-      "development" !== 'production' && warn$3(
-        "v-once can only be used inside v-for that is keyed. "
+      'development' !== 'production' && warn$3(
+        'v-once can only be used inside v-for that is keyed. '
       );
       return genElement(el)
     }
-    return ("_o(" + (genElement(el)) + "," + (onceCount++) + (key ? ("," + key) : "") + ")")
+    return ('_o(' + (genElement(el)) + ',' + (onceCount++) + (key ? (',' + key) : '') + ')')
   } else {
     return genStatic(el)
   }
@@ -8874,9 +8874,9 @@ function genIfConditions (conditions) {
 
   var condition = conditions.shift();
   if (condition.exp) {
-    return ("(" + (condition.exp) + ")?" + (genTernaryExp(condition.block)) + ":" + (genIfConditions(conditions)))
+    return ('(' + (condition.exp) + ')?' + (genTernaryExp(condition.block)) + ':' + (genIfConditions(conditions)))
   } else {
-    return ("" + (genTernaryExp(condition.block)))
+    return ('' + (genTernaryExp(condition.block)))
   }
 
   // v-if with v-once should generate code like (a)?_m(0):_m(1)
@@ -8888,25 +8888,25 @@ function genIfConditions (conditions) {
 function genFor (el) {
   var exp = el.for;
   var alias = el.alias;
-  var iterator1 = el.iterator1 ? ("," + (el.iterator1)) : '';
-  var iterator2 = el.iterator2 ? ("," + (el.iterator2)) : '';
+  var iterator1 = el.iterator1 ? (',' + (el.iterator1)) : '';
+  var iterator2 = el.iterator2 ? (',' + (el.iterator2)) : '';
 
   if (
-    "development" !== 'production' &&
+    'development' !== 'production' &&
     maybeComponent(el) && el.tag !== 'slot' && el.tag !== 'template' && !el.key
   ) {
     warn$3(
-      "<" + (el.tag) + " v-for=\"" + alias + " in " + exp + "\">: component lists rendered with " +
-      "v-for should have explicit keys. " +
-      "See https://vuejs.org/guide/list.html#key for more info.",
+      '<' + (el.tag) + ' v-for="' + alias + ' in ' + exp + '">: component lists rendered with ' +
+      'v-for should have explicit keys. ' +
+      'See https://vuejs.org/guide/list.html#key for more info.',
       true /* tip */
     );
   }
 
   el.forProcessed = true; // avoid recursion
-  return "_l((" + exp + ")," +
-    "function(" + alias + iterator1 + iterator2 + "){" +
-      "return " + (genElement(el)) +
+  return '_l((' + exp + '),' +
+    'function(' + alias + iterator1 + iterator2 + '){' +
+      'return ' + (genElement(el)) +
     '})'
 }
 
@@ -8920,22 +8920,22 @@ function genData (el) {
 
   // key
   if (el.key) {
-    data += "key:" + (el.key) + ",";
+    data += 'key:' + (el.key) + ',';
   }
   // ref
   if (el.ref) {
-    data += "ref:" + (el.ref) + ",";
+    data += 'ref:' + (el.ref) + ',';
   }
   if (el.refInFor) {
-    data += "refInFor:true,";
+    data += 'refInFor:true,';
   }
   // pre
   if (el.pre) {
-    data += "pre:true,";
+    data += 'pre:true,';
   }
   // record original tag name for components using "is" attribute
   if (el.component) {
-    data += "tag:\"" + (el.tag) + "\",";
+    data += 'tag:"' + (el.tag) + '",';
   }
   // module data generation functions
   for (var i = 0; i < dataGenFns.length; i++) {
@@ -8943,36 +8943,36 @@ function genData (el) {
   }
   // attributes
   if (el.attrs) {
-    data += "attrs:{" + (genProps(el.attrs)) + "},";
+    data += 'attrs:{' + (genProps(el.attrs)) + '},';
   }
   // DOM props
   if (el.props) {
-    data += "domProps:{" + (genProps(el.props)) + "},";
+    data += 'domProps:{' + (genProps(el.props)) + '},';
   }
   // event handlers
   if (el.events) {
-    data += (genHandlers(el.events, false, warn$3)) + ",";
+    data += (genHandlers(el.events, false, warn$3)) + ',';
   }
   if (el.nativeEvents) {
-    data += (genHandlers(el.nativeEvents, true, warn$3)) + ",";
+    data += (genHandlers(el.nativeEvents, true, warn$3)) + ',';
   }
   // slot target
   if (el.slotTarget) {
-    data += "slot:" + (el.slotTarget) + ",";
+    data += 'slot:' + (el.slotTarget) + ',';
   }
   // scoped slots
   if (el.scopedSlots) {
-    data += (genScopedSlots(el.scopedSlots)) + ",";
+    data += (genScopedSlots(el.scopedSlots)) + ',';
   }
   // component v-model
   if (el.model) {
-    data += "model:{value:" + (el.model.value) + ",callback:" + (el.model.callback) + ",expression:" + (el.model.expression) + "},";
+    data += 'model:{value:' + (el.model.value) + ',callback:' + (el.model.callback) + ',expression:' + (el.model.expression) + '},';
   }
   // inline-template
   if (el.inlineTemplate) {
     var inlineTemplate = genInlineTemplate(el);
     if (inlineTemplate) {
-      data += inlineTemplate + ",";
+      data += inlineTemplate + ',';
     }
   }
   data = data.replace(/,$/, '') + '}';
@@ -9000,7 +9000,7 @@ function genDirectives (el) {
     }
     if (needRuntime) {
       hasRuntime = true;
-      res += "{name:\"" + (dir.name) + "\",rawName:\"" + (dir.rawName) + "\"" + (dir.value ? (",value:(" + (dir.value) + "),expression:" + (JSON.stringify(dir.value))) : '') + (dir.arg ? (",arg:\"" + (dir.arg) + "\"") : '') + (dir.modifiers ? (",modifiers:" + (JSON.stringify(dir.modifiers))) : '') + "},";
+      res += '{name:"' + (dir.name) + '",rawName:"' + (dir.rawName) + '"' + (dir.value ? (',value:(' + (dir.value) + '),expression:' + (JSON.stringify(dir.value))) : '') + (dir.arg ? (',arg:"' + (dir.arg) + '"') : '') + (dir.modifiers ? (',modifiers:' + (JSON.stringify(dir.modifiers))) : '') + '},';
     }
   }
   if (hasRuntime) {
@@ -9010,26 +9010,26 @@ function genDirectives (el) {
 
 function genInlineTemplate (el) {
   var ast = el.children[0];
-  if ("development" !== 'production' && (
+  if ('development' !== 'production' && (
     el.children.length > 1 || ast.type !== 1
   )) {
     warn$3('Inline-template components must have exactly one child element.');
   }
   if (ast.type === 1) {
     var inlineRenderFns = generate(ast, currentOptions);
-    return ("inlineTemplate:{render:function(){" + (inlineRenderFns.render) + "},staticRenderFns:[" + (inlineRenderFns.staticRenderFns.map(function (code) { return ("function(){" + code + "}"); }).join(',')) + "]}")
+    return ('inlineTemplate:{render:function(){' + (inlineRenderFns.render) + '},staticRenderFns:[' + (inlineRenderFns.staticRenderFns.map(function (code) { return ('function(){' + code + '}'); }).join(',')) + ']}')
   }
 }
 
 function genScopedSlots (slots) {
-  return ("scopedSlots:_u([" + (Object.keys(slots).map(function (key) { return genScopedSlot(key, slots[key]); }).join(',')) + "])")
+  return ('scopedSlots:_u([' + (Object.keys(slots).map(function (key) { return genScopedSlot(key, slots[key]); }).join(',')) + '])')
 }
 
 function genScopedSlot (key, el) {
-  return "[" + key + ",function(" + (String(el.attrsMap.scope)) + "){" +
-    "return " + (el.tag === 'template'
+  return '[' + key + ',function(' + (String(el.attrsMap.scope)) + '){' +
+    'return ' + (el.tag === 'template'
       ? genChildren(el) || 'void 0'
-      : genElement(el)) + "}]"
+      : genElement(el)) + '}]'
 }
 
 function genChildren (el, checkSkip) {
@@ -9044,7 +9044,7 @@ function genChildren (el, checkSkip) {
       return genElement(el$1)
     }
     var normalizationType = checkSkip ? getNormalizationType(children) : 0;
-    return ("[" + (children.map(genNode).join(',')) + "]" + (normalizationType ? ("," + normalizationType) : ''))
+    return ('[' + (children.map(genNode).join(',')) + ']' + (normalizationType ? (',' + normalizationType) : ''))
   }
 }
 
@@ -9089,25 +9089,25 @@ function genNode (node) {
 }
 
 function genText (text) {
-  return ("_v(" + (text.type === 2
+  return ('_v(' + (text.type === 2
     ? text.expression // no need for () because already wrapped in _s()
-    : transformSpecialNewlines(JSON.stringify(text.text))) + ")")
+    : transformSpecialNewlines(JSON.stringify(text.text))) + ')')
 }
 
 function genSlot (el) {
   var slotName = el.slotName || '"default"';
   var children = genChildren(el);
-  var res = "_t(" + slotName + (children ? ("," + children) : '');
-  var attrs = el.attrs && ("{" + (el.attrs.map(function (a) { return ((camelize(a.name)) + ":" + (a.value)); }).join(',')) + "}");
+  var res = '_t(' + slotName + (children ? (',' + children) : '');
+  var attrs = el.attrs && ('{' + (el.attrs.map(function (a) { return ((camelize(a.name)) + ':' + (a.value)); }).join(',')) + '}');
   var bind$$1 = el.attrsMap['v-bind'];
   if ((attrs || bind$$1) && !children) {
-    res += ",null";
+    res += ',null';
   }
   if (attrs) {
-    res += "," + attrs;
+    res += ',' + attrs;
   }
   if (bind$$1) {
-    res += (attrs ? '' : ',null') + "," + bind$$1;
+    res += (attrs ? '' : ',null') + ',' + bind$$1;
   }
   return res + ')'
 }
@@ -9115,14 +9115,14 @@ function genSlot (el) {
 // componentName is el.component, take it as argument to shun flow's pessimistic refinement
 function genComponent (componentName, el) {
   var children = el.inlineTemplate ? null : genChildren(el, true);
-  return ("_c(" + componentName + "," + (genData(el)) + (children ? ("," + children) : '') + ")")
+  return ('_c(' + componentName + ',' + (genData(el)) + (children ? (',' + children) : '') + ')')
 }
 
 function genProps (props) {
   var res = '';
   for (var i = 0; i < props.length; i++) {
     var prop = props[i];
-    res += "\"" + (prop.name) + "\":" + (transformSpecialNewlines(prop.value)) + ",";
+    res += '"' + (prop.name) + '":' + (transformSpecialNewlines(prop.value)) + ',';
   }
   return res.slice(0, -1)
 }
@@ -9171,11 +9171,11 @@ function checkNode (node, errors) {
         var value = node.attrsMap[name];
         if (value) {
           if (name === 'v-for') {
-            checkFor(node, ("v-for=\"" + value + "\""), errors);
+            checkFor(node, ('v-for="' + value + '"'), errors);
           } else if (onRE.test(name)) {
-            checkEvent(value, (name + "=\"" + value + "\""), errors);
+            checkEvent(value, (name + '="' + value + '"'), errors);
           } else {
-            checkExpression(value, (name + "=\"" + value + "\""), errors);
+            checkExpression(value, (name + '="' + value + '"'), errors);
           }
         }
       }
@@ -9195,8 +9195,8 @@ function checkEvent (exp, text, errors) {
   var keywordMatch = stipped.match(unaryOperatorsRE);
   if (keywordMatch && stipped.charAt(keywordMatch.index - 1) !== '$') {
     errors.push(
-      "avoid using JavaScript unary operator as property name: " +
-      "\"" + (keywordMatch[0]) + "\" in expression " + (text.trim())
+      'avoid using JavaScript unary operator as property name: ' +
+      '"' + (keywordMatch[0]) + '" in expression ' + (text.trim())
     );
   }
   checkExpression(exp, text, errors);
@@ -9211,22 +9211,22 @@ function checkFor (node, text, errors) {
 
 function checkIdentifier (ident, type, text, errors) {
   if (typeof ident === 'string' && !identRE.test(ident)) {
-    errors.push(("invalid " + type + " \"" + ident + "\" in expression: " + (text.trim())));
+    errors.push(('invalid ' + type + ' "' + ident + '" in expression: ' + (text.trim())));
   }
 }
 
 function checkExpression (exp, text, errors) {
   try {
-    new Function(("return " + exp));
+    new Function(('return ' + exp));
   } catch (e) {
     var keywordMatch = exp.replace(stripStringRE, '').match(prohibitedKeywordRE);
     if (keywordMatch) {
       errors.push(
-        "avoid using JavaScript keyword as property name: " +
-        "\"" + (keywordMatch[0]) + "\" in expression " + (text.trim())
+        'avoid using JavaScript keyword as property name: ' +
+        '"' + (keywordMatch[0]) + '" in expression ' + (text.trim())
       );
     } else {
-      errors.push(("invalid expression: " + (text.trim())));
+      errors.push(('invalid expression: ' + (text.trim())));
     }
   }
 }
@@ -9339,8 +9339,8 @@ function createCompiler (baseOptions) {
     {
       if (compiled.errors && compiled.errors.length) {
         warn(
-          "Error compiling template:\n\n" + template + "\n\n" +
-          compiled.errors.map(function (e) { return ("- " + e); }).join('\n') + '\n',
+          'Error compiling template:\n\n' + template + '\n\n' +
+          compiled.errors.map(function (e) { return ('- ' + e); }).join('\n') + '\n',
           vm
         );
       }
@@ -9366,12 +9366,12 @@ function createCompiler (baseOptions) {
     {
       if ((!compiled.errors || !compiled.errors.length) && fnGenErrors.length) {
         warn(
-          "Failed to generate render function:\n\n" +
+          'Failed to generate render function:\n\n' +
           fnGenErrors.map(function (ref) {
             var err = ref.err;
             var code = ref.code;
 
-            return ((err.toString()) + " in\n\n" + code + "\n");
+            return ((err.toString()) + ' in\n\n' + code + '\n');
         }).join('\n'),
           vm
         );
@@ -9392,11 +9392,11 @@ function createCompiler (baseOptions) {
 function transformNode (el, options) {
   var warn = options.warn || baseWarn;
   var staticClass = getAndRemoveAttr(el, 'class');
-  if ("development" !== 'production' && staticClass) {
+  if ('development' !== 'production' && staticClass) {
     var expression = parseText(staticClass, options.delimiters);
     if (expression) {
       warn(
-        "class=\"" + staticClass + "\": " +
+        'class="' + staticClass + '": ' +
         'Interpolation inside attributes has been removed. ' +
         'Use v-bind or the colon shorthand instead. For example, ' +
         'instead of <div class="{{ val }}">, use <div :class="val">.'
@@ -9415,10 +9415,10 @@ function transformNode (el, options) {
 function genData$1 (el) {
   var data = '';
   if (el.staticClass) {
-    data += "staticClass:" + (el.staticClass) + ",";
+    data += 'staticClass:' + (el.staticClass) + ',';
   }
   if (el.classBinding) {
-    data += "class:" + (el.classBinding) + ",";
+    data += 'class:' + (el.classBinding) + ',';
   }
   return data
 }
@@ -9440,7 +9440,7 @@ function transformNode$1 (el, options) {
       var expression = parseText(staticStyle, options.delimiters);
       if (expression) {
         warn(
-          "style=\"" + staticStyle + "\": " +
+          'style="' + staticStyle + '": ' +
           'Interpolation inside attributes has been removed. ' +
           'Use v-bind or the colon shorthand instead. For example, ' +
           'instead of <div style="{{ val }}">, use <div :style="val">.'
@@ -9459,10 +9459,10 @@ function transformNode$1 (el, options) {
 function genData$2 (el) {
   var data = '';
   if (el.staticStyle) {
-    data += "staticStyle:" + (el.staticStyle) + ",";
+    data += 'staticStyle:' + (el.staticStyle) + ',';
   }
   if (el.styleBinding) {
-    data += "style:(" + (el.styleBinding) + "),";
+    data += 'style:(' + (el.styleBinding) + '),';
   }
   return data
 }
@@ -9482,7 +9482,7 @@ var modules$1 = [
 
 function text (el, dir) {
   if (dir.value) {
-    addProp(el, 'textContent', ("_s(" + (dir.value) + ")"));
+    addProp(el, 'textContent', ('_s(' + (dir.value) + ')'));
   }
 }
 
@@ -9490,7 +9490,7 @@ function text (el, dir) {
 
 function html (el, dir) {
   if (dir.value) {
-    addProp(el, 'innerHTML', ("_s(" + (dir.value) + ")"));
+    addProp(el, 'innerHTML', ('_s(' + (dir.value) + ')'));
   }
 }
 
@@ -9534,8 +9534,8 @@ Vue$3.prototype.$mount = function (
 
   /* istanbul ignore if */
   if (el === document.body || el === document.documentElement) {
-    "development" !== 'production' && warn(
-      "Do not mount Vue to <html> or <body> - mount to normal elements instead."
+    'development' !== 'production' && warn(
+      'Do not mount Vue to <html> or <body> - mount to normal elements instead.'
     );
     return this
   }
@@ -9549,9 +9549,9 @@ Vue$3.prototype.$mount = function (
         if (template.charAt(0) === '#') {
           template = idToTemplate(template);
           /* istanbul ignore if */
-          if ("development" !== 'production' && !template) {
+          if ('development' !== 'production' && !template) {
             warn(
-              ("Template element not found or is empty: " + (options.template)),
+              ('Template element not found or is empty: ' + (options.template)),
               this
             );
           }
@@ -9569,7 +9569,7 @@ Vue$3.prototype.$mount = function (
     }
     if (template) {
       /* istanbul ignore if */
-      if ("development" !== 'production' && config.performance && mark) {
+      if ('development' !== 'production' && config.performance && mark) {
         mark('compile');
       }
 
@@ -9583,9 +9583,9 @@ Vue$3.prototype.$mount = function (
       options.staticRenderFns = staticRenderFns;
 
       /* istanbul ignore if */
-      if ("development" !== 'production' && config.performance && mark) {
+      if ('development' !== 'production' && config.performance && mark) {
         mark('compile end');
-        measure(((this._name) + " compile"), 'compile', 'compile end');
+        measure(((this._name) + ' compile'), 'compile', 'compile end');
       }
     }
   }
