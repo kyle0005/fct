@@ -30,7 +30,58 @@
     <a href="javascript:;" class="top">
       <img src="public/images/top.png">
     </a>
-    <foot-top></foot-top>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+  <footer class="foot-container">
+    <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
+      <div class="container">
+        <div class="choose" @click.stop="">
+          <div class="clearfix">
+            <div class="pro-img">
+              <img src="public/images/resource/pro01.png">
+            </div>
+            <div class="info">
+              <span class="title">稀有黄金段（石瓢）</span>
+              <span class="price">￥33300000</span>
+              <span class="stock">库存:有货</span>
+            </div>
+          </div>
+          <ul class="spec">
+            <li class="item" v-for="(item, index) in specs" :class="{active: index===specs_num}" @click="footLinkTo(index)">
+              {{ item }}
+            </li>
+          </ul>
+          <div class="num">
+            <div class="item"><span class="name">数量</span></div>
+            <div class="item">
+              <a href="javascript:;" :class="{dis:min}" @click="minus()">
+                <i class="fa fa-minus"></i>
+              </a>
+              <input type="text" class="numbers" v-model="input_val">
+              <a href="javascript:;" @click="add()">
+                <i class="fa fa-plus"></i>
+              </a>
+            </div>
+          </div>
+          <a href="javascript:;" class="fork" @click="choose()">&nbsp;</a>
+        </div>
+        <a href="javascript:;" class="sub" @click="buy()">确定</a>
+      </div>
+    </div>
+    <ul class="nav">
+      <li class="collection" :class="{red:collected}"  @click="collection()">
+        <i class="fa fa-heart"></i>
+      </li>
+      <li class="message" @click="">
+        <i class="fa fa-commenting"></i>
+      </li>
+      <li class="cart" @click="choose()">
+        <i class="fa fa-shopping-cart"></i>
+      </li>
+      <li class="buy">
+        <a href="javascript:;" @click="choose()">立即购买</a>
+      </li>
+    </ul>
+  </footer>
   </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
@@ -40,7 +91,7 @@
       <li class="toggle" @click="toggle()">
         <i class="fa fa-bars"></i>
       </li>
-      <li class="logo" @click="toIndex(0)">
+      <li class="logo" @click="toIndex()">
         <img :src="img_url + '/logo.png'">
       </li>
       <li class="user" @click="toLogin()">
@@ -90,59 +141,6 @@
       </div>
     </div>
   </header>
-</script>
-<script type="text/x-template" id="foot_top">
-  <footer class="foot-container">
-    <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
-      <div class="container">
-        <div class="choose" @click.stop="">
-          <div class="clearfix">
-            <div class="pro-img">
-              <img src="public/images/resource/pro01.png">
-            </div>
-            <div class="info">
-              <span class="title">稀有黄金段（石瓢）</span>
-              <span class="price">￥33300000</span>
-              <span class="stock">库存:有货</span>
-            </div>
-          </div>
-          <ul class="spec">
-            <li class="item" v-for="(item, index) in specs" :class="{active: index===specs_num}" @click="linkTo(index)">
-                {{ item }}
-            </li>
-          </ul>
-          <div class="num">
-            <div class="item"><span class="name">数量</span></div>
-            <div class="item">
-              <a href="javascript:;" :class="{dis:min}" @click="minus()">
-                <i class="fa fa-minus"></i>
-              </a>
-              <input type="text" class="numbers" v-model="input_val">
-              <a href="javascript:;" @click="add()">
-                <i class="fa fa-plus"></i>
-              </a>
-            </div>
-          </div>
-          <a href="javascript:;" class="fork" @click="choose()">&nbsp;</a>
-        </div>
-        <a href="javascript:;" class="sub" @click="buy()">确定</a>
-      </div>
-    </div>
-    <ul class="nav">
-      <li class="collection" @click="">
-        <i class="fa fa-heart"></i>
-      </li>
-      <li class="message" @click="">
-        <i class="fa fa-commenting"></i>
-      </li>
-      <li class="cart" @click="">
-        <i class="fa fa-shopping-cart"></i>
-      </li>
-      <li class="buy">
-        <a href="javascript:;" @click="choose()">立即购买</a>
-      </li>
-    </ul>
-  </footer>
 </script>
 <script type="text/x-template" id="overview">
   <div>
@@ -402,8 +400,15 @@
     </ul>
   </section>
 </script>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <p class="tip_text">{{ msg }}</p>
+      <div class="confrim" @click="close">确认</div>
+    </section>
+  </div>
+</template>
 <script src="public/scripts/head.js"></script>
-<script src="public/scripts/foot.js"></script>
 <script src="public/scripts/video.js"></script>
 <script src="public/scripts/detail.js"></script>
 </body>
