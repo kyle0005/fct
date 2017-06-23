@@ -105,6 +105,7 @@ let app = new Vue(
 
     },
     data: {
+      show_search: false,
       ranks_list: [],
       pro_list: [],
       loading: false,
@@ -125,8 +126,13 @@ let app = new Vue(
     watch: {
     },
     methods: {
-      search(){
-
+      search(num){
+        let vue = this;
+        if(vue.show_search){
+          vue.show_search = false;
+        }else {
+          vue.show_search = true;
+        }
       },
       getProductsType() {
         let vue = this;
