@@ -206,3 +206,22 @@ $check-bg-color: $color-905641, $btn-radius: 4px, $bg-radius: 4px) {
     }
 
 }
+
+@mixin fork($width: 30px, $color: $color-black){
+  display: block;
+  width: $width;
+  height:1px;
+  background: $color;
+  line-height: 0;
+  font-size:0;
+  vertical-align: middle;
+  -webkit-transform: rotate(45deg);
+  &:after{
+    content:'/';
+    display:block;
+    width: $width;
+    height:1px;
+    background: $color;
+    -webkit-transform: rotate(-90deg);
+  }
+}

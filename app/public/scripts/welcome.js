@@ -65,7 +65,10 @@ Vue.component('m-swipe',
         observer: true, //修改swiper自己或子元素时，自动初始化swiper
         observeParents: true, //修改swiper的父元素时，自动初始化swiper
         height : window.innerHeight,
-        lazyLoading: true
+        lazyLoading: true,
+        paginationBulletRender: function (swiper, index, className) {
+          return '<span class="en-pagination ' + className + '"></span>';
+        }
       })
     },
     components: {
@@ -114,28 +117,31 @@ var app = new Vue(
     methods: {
       getList() {
         let vue = this;
-        jAjax({
-          type:'get',
-          url:apis.slideimgs,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              vue.tops = data;
-              vue.list = (data);
-              vue.loading = false;
-            }else {
-              console.log('no data')
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });
+        // jAjax({
+        //   type:'get',
+        //   url:apis.slideimgs,
+        //   timeOut:5000,
+        //   before:function(){
+        //     console.log('before');
+        //   },
+        //   success:function(data){
+        //     if(data){
+        //       data = JSON.parse(data);
+        //       vue.tops = data;
+        //       vue.list = (data);
+        //       vue.loading = false;
+        //     }else {
+        //       console.log('no data')
+        //     }
+        //
+        //   },
+        //   error:function(){
+        //     console.log('error');
+        //   }
+        // });
+        vue.tops = config.slides;
+        vue.list = config.slides;
+        vue.loading = false;
 
       },
     },

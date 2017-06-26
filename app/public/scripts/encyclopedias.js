@@ -80,6 +80,35 @@ Vue.component('m-swipe',
     }
   }
 );
+Vue.component('info',
+  {
+    template: '#info',
+    computed: {
+    },
+    mounted: function() {
+    },
+    watch: {
+    },
+    activated() {
+
+    },
+    deactivated() {
+
+    },
+    data() {
+      return {
+        positionY: 0,
+        timer: null,
+      }
+    },
+    props: ['msg'],
+    methods: {
+      close(){
+        this.$emit('close')
+      }
+    }
+  }
+);
 let app = new Vue(
   {
     computed: {
@@ -106,6 +135,7 @@ let app = new Vue(
     },
     data: {
       show_search: false,
+      show_search_d:false,
       ranks_list: [],
       pro_list: [],
       loading: false,
@@ -120,19 +150,35 @@ let app = new Vue(
       tabs_t: [],
       tab_num_t: 0,
       swipert: '',
-      list_t: []
+      list_t: [],
+
+      showAlert: false,
+      msg: null,
 
     },
     watch: {
     },
     methods: {
+      close(){
+        this.showAlert = false;
+      },
+      showinfo(item){
+        let vue = this;
+        vue.showAlert = true;
+        vue.msg = item;
+      },
       search(num){
         let vue = this;
-        if(vue.show_search){
-          vue.show_search = false;
-        }else {
-          vue.show_search = true;
+        switch(parseInt(num))
+        {
+          case 0:
+            vue.show_search = !vue.show_search;
+            break;
+          case 1:
+            vue.show_search_d = !vue.show_search_d;
+            break;
         }
+
       },
       getProductsType() {
         let vue = this;

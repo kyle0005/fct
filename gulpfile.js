@@ -60,16 +60,16 @@ gulp.task('html', ['styles', 'scripts'], () => {
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
     .pipe($.if(/\.js$/, $.uglify({compress: {drop_console: true}})))
     .pipe($.if(/\.css$/, $.cssnano({safe: true, autoprefixer: false})))
-    .pipe($.if(/\.html$/, $.htmlmin({
-      collapseWhitespace: true,
-      minifyCSS: true,
-      minifyJS: {compress: {drop_console: true}},
-      processConditionalComments: true,
-      removeComments: true,
-      removeEmptyAttributes: true,
-      removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true
-    })))
+    // .pipe($.if(/\.html$/, $.htmlmin({
+    //   collapseWhitespace: true,
+    //   minifyCSS: true,
+    //   minifyJS: {compress: {drop_console: true}},
+    //   processConditionalComments: true,
+    //   removeComments: true,
+    //   removeEmptyAttributes: true,
+    //   removeScriptTypeAttributes: true,
+    //   removeStyleLinkTypeAttributes: true
+    // })))
     .pipe(gulp.dest('dist'));
 });
 
@@ -165,7 +165,7 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
+gulp.task('build', ['lint', 'html'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
@@ -174,4 +174,18 @@ gulp.task('default', () => {
     dev = false;
     runSequence(['clean', 'wiredep'], 'build', resolve);
   });
+});
+
+gulp.task('build_css', ['lint', 'html'], () => {
+  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+});
+gulp.task('uglify_script', function() {
+  // 1\. 找到文件
+  gulp.src('.tmp/public/scripts/**/*.js')
+    // .pipe($.concat('main.js'))
+    // 2\. 压缩文件
+    .pipe($.uglify())
+    // 3\. 另存压缩后的文件
+    .pipe(gulp.dest('dist/js'))
+
 });
