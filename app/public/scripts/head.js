@@ -9,14 +9,6 @@ Vue.component('head-top',
     mounted: function() {
       this.getTypeList();
     },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
-    },
     data() {
       return {
         open: false,
@@ -58,26 +50,7 @@ Vue.component('head-top',
       },
       getTypeList() {
         let vue = this;
-        jAjax({
-          type:'get',
-          url:apis.productsType,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              vue.typeList = (data);
-            }else {
-              console.log('no data')
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });
+        vue.typeList = config.productsType;
 
       },
     },

@@ -1,16 +1,8 @@
 var app = new Vue(
   {
-    computed: {
-    },
     mounted: function() {
       this.getRankList();
-      this.getprolist();
-    },
-    activated() {
-
-    },
-    deactivated() {
-
+      this.getProFirst();
     },
     data: {
       ranks_list: [],
@@ -19,8 +11,6 @@ var app = new Vue(
       refreshing: false,
       img_url: 'public/images',
       msg: 0
-    },
-    watch: {
     },
     methods: {
       change(index) {
@@ -54,35 +44,19 @@ var app = new Vue(
       },
       getRankList() {
         let vue = this;
-        jAjax({
-          type:'get',
-          url:apis.productsRank,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              vue.ranks_list = (data);
-            }else {
-              console.log('no data')
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });
+        vue.ranks_list = config.productsRank;
 
       },
-      getprolist(msg) {
-        let index = msg;
+      getProFirst(){
+        let vue = this;
+        vue.pro_list = config.products;
+      },
+
+      /* 菜单分类加载 */
+      getprolist(code, level_id) {
         let vue = this;
         let _url = apis.products;
-        if(index > 0){
-          _url += '?type_id=' + index;
-        }
+        _url += '?code=' + code + '&level_id=' + level_id;
           jAjax({
             type:'get',
             url:_url,
@@ -107,6 +81,11 @@ var app = new Vue(
           });
 
 
+
+      },
+
+      /* 滚动分页加载 */
+      getprolistbypage(msg) {
 
       },
     },
