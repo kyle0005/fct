@@ -32,11 +32,11 @@
         <div class="sub" @click="mobileLogin">登录</div>
       </div>
       <div class="options">
-        <a href="javascript:;">忘记密码？</a>
+        <a href="findpwd.html">忘记密码？</a>
         <a href="javascript:;" @click="changeway(loginWay)">手机号快捷登录</a>
       </div>
     </form>
-    <form id="quick_login" v-else>
+    <form id="quickLogin" v-else>
       <ul class="form-data">
         <li class="items clearfix">
           <div class="left"><i class="fa fa-mobile"></i></div>
@@ -60,7 +60,7 @@
         <div class="sub" @click="mobileMsgLogin()">登录</div>
       </div>
       <div class="options">
-        <a href="javascript:;">忘记密码？</a>
+        <a href="findpwd.html">忘记密码？</a>
         <a href="javascript:;" @click="changeway(loginWay)">账号登录</a>
       </div>
     </form>
@@ -78,12 +78,13 @@
   <div class="alet_container">
     <section class="tip_text_container">
       <div class="tip_text">{{ msg }}</div>
-      <div class="confrim" @click="close">确认</div>
+      <!--<div class="confrim" @click="close">确认</div>-->
     </section>
   </div>
 </template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/api/apis.js"></script>
 <script src="public/scripts/login.js"></script>
 </body>
 </html>

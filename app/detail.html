@@ -27,7 +27,7 @@
       </component>
     </keep-alive>
   </div>
-    <a href="javascript:;" class="top">
+    <a href="javascript:;" class="top" @click="top()">
       <img src="public/images/top.png">
     </a>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
@@ -77,6 +77,9 @@
       <li class="cart" @click="choose()">
         <i class="fa fa-shopping-cart"></i>
       </li>
+      <li class="add">
+        <a href="javascript:;" @click="choose()">加入购物车</a>
+      </li>
       <li class="buy">
         <a href="javascript:;" @click="choose()">立即购买</a>
       </li>
@@ -85,6 +88,7 @@
   </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/api/apis.js"></script>
 <script type="text/x-template" id="head_top">
   <header class="head-container">
     <ul class="nav">
@@ -403,13 +407,13 @@
 <template id="pop">
   <div class="alet_container">
     <section class="tip_text_container">
-      <p class="tip_text">{{ msg }}</p>
-      <div class="confrim" @click="close">确认</div>
+      <div class="tip_text">{{ msg }}</div>
     </section>
   </div>
 </template>
 <script src="public/scripts/head.js"></script>
 <script src="public/scripts/video.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script src="public/scripts/detail.js"></script>
 </body>
 </html>

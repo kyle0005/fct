@@ -220,17 +220,13 @@ $fc:#fff;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 84.375%;
-  background-color: rgba(255,255,255,1);
-  border: 1px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 7px;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  border-radius: 4px;
   .tip_text{
     text-align: center;
-    padding: 15px;
+    padding: 10px 15px;
+    color: $color-white;
   }
   .confrim{
     position: relative;

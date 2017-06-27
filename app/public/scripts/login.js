@@ -1,18 +1,6 @@
 Vue.component('pop',
   {
     template: '#pop',
-    computed: {
-    },
-    mounted: function() {
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
-    },
     data() {
       return {
         positionY: 0,
@@ -35,17 +23,6 @@ var app = new Vue(
         return /^1\d{10}$/gi.test(this.phoneNumber)
       }
     },
-    mounted: function() {
-
-    },
-    created(){
-    },
-    activated() {
-
-    },
-    deactivated() {
-
-    },
     data() {
       return {
         loginWay: true, //登录方式，默认短信登录
@@ -56,14 +33,13 @@ var app = new Vue(
         showAlert: false, //显示提示组件
         msg: null, //提示的内容
 
-        mobileCode: 123456, //短信验证码
+        mobileCode: null, //短信验证码
         validate_token: null, //获取短信时返回的验证值，登录时需要
         computedTime: 0, //倒数记时
         captchaCodeImg: null, //验证码地址
         codeNumber: null, //验证码
+        action: 'login'
       }
-    },
-    watch: {
     },
     methods: {
       changeway(loginWay){
@@ -85,34 +61,43 @@ var app = new Vue(
           jAjax({
             type:'post',
             url:apis.mobileCodeResource,
-            data: this.phoneNumber,
+            data: {
+              'cellphone': this.phoneNumber,
+              'action': this.action,
+            },
             timeOut:5000,
             before:function(){
               console.log('before');
             },
             success:function(data){
+              //{message:"xxx", url:"", code:200, data:""}
               if(data){
                 data = JSON.parse(data);
-                vue.msg = data.code;
-                vue.showAlert = true;
-              }else {
-                vue.showAlert = true;
-                vue.msg = '';
+                if(parseInt(data.code) == 200){
+                  vue.msg = data.message;
+                  vue.showAlert = true;
+                  vue.close_auto();
+                }else {
+                  vue.msg = data.message;
+                  vue.showAlert = true;
+                  vue.close_auto();
+                }
               }
-
             },
             error:function(status, statusText){
               vue.msg = status;
               vue.showAlert = true;
-              vue.msg = status;
+              vue.msg = '请求失败';
+              vue.close_auto();
             }
           });
 
 
         }
         else {
-          vue.msg = "手机号码格式不正确";
+          vue.msg = '手机号码格式不正确';
           vue.showAlert = true;
+          vue.close_auto();
         }
       },
       //发送登录信息
@@ -121,18 +106,18 @@ var app = new Vue(
         if (!vue.phoneNumber) {
           vue.showAlert = true;
           vue.msg = '请输入手机号';
+          vue.close_auto();
           return
         }else if(!vue.passWord){
           vue.showAlert = true;
           vue.msg = '请输入密码';
+          vue.close_auto();
           return
         }
-        console.log(formData.serializeForm('userLogin'))
         //用户名登录
         jAjax({
           type:'post',
           url:apis.userResource,
-          // contentType: "application/json",
           data: formData.serializeForm('userLogin'),
           timeOut:5000,
           before:function(){
@@ -140,14 +125,17 @@ var app = new Vue(
           },
           success:function(data){
             if(data){
-
               data = JSON.parse(data);
-              vue.msg = data;
-              vue.showAlert = true;
-              // location.href = 'login.html';
-            }else {
-              vue.showAlert = true;
-              vue.msg = data;
+              if(parseInt(data.code) == 200){
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto(vue.linkto, data.url);
+
+              }else {
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+              }
             }
 
           },
@@ -163,10 +151,7 @@ var app = new Vue(
         if (!this.rightPhoneNumber) {
           this.showAlert = true;
           this.msg = '手机号码不正确';
-          return
-        }else if(!(/^\d{6}$/gi.test(this.mobileCode))){
-          this.showAlert = true;
-          this.msg = '短信验证码不正确';
+          vue.close_auto();
           return
         }
         //手机号登录
@@ -174,7 +159,7 @@ var app = new Vue(
           type:'post',
           url:apis.userResource,
           // contentType: "application/json",
-          data: formData.serializeForm('quick_login'),
+          data: formData.serializeForm('quickLogin'),
           timeOut:5000,
           before:function(){
             console.log('before');
@@ -182,12 +167,18 @@ var app = new Vue(
           success:function(data){
             if(data){
               data = JSON.parse(data);
-              vue.msg = data;
-              vue.showAlert = true;
-              location.href = 'main.html';
-            }else {
-              vue.showAlert = true;
-              vue.msg = data;
+              if(parseInt(data.code) == 200){
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+                if(data.url){
+                  location.href = data.url;
+                }
+              }else {
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+              }
             }
 
           },
@@ -200,9 +191,23 @@ var app = new Vue(
       },
       close(){
         this.showAlert = false;
+      },
+      close_auto(callback, obj){
+        let vue = this;
+        setTimeout(function () {
+          vue.showAlert = false;
+          if(callback){
+            callback(obj);
+          }
+
+        }, 1500);
+
+      },
+      linkto(url){
+        if(url){
+          location.href = "http://localhost:9000/login.html";
+        }
       }
-    },
-    components: {
     }
   }
 ).$mount('#login');

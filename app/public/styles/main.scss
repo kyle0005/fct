@@ -260,20 +260,30 @@ $foot-height: 250px;
       line-height: 48px;
       font-size: $font-size-t20;
     }
-   .collection{
-    width: 18%;
-   }
     .red{
       color: $color-c40b1b;
     }
+   .collection{
+     width: calc(100% / 9);
+   }
     .message{
-      width: 18%;
+      width: calc(100% / 9);
     }
     .cart{
-      width: 18%;
+      width: calc(100% / 9);
+    }
+    .add{
+      width: calc(100% / 3);
+      a{
+        display: block;
+        width: calc(100% - 1px);
+        height: 100%;
+        border-left: 1px solid $color-f2f2f2;
+        font-size: $font-size-t12;
+      }
     }
     .buy{
-      width: 46%;
+      width: calc(100% / 3);
       background-color: $color-1d1d1d;
       a{
         display: block;
@@ -318,7 +328,7 @@ $foot-height: 250px;
       width: 100%;
       overflow: auto;
       background: $color-white;
-      transition: bottom 0.5s ease;
+      transition: bottom 0.3s ease;
       -webkit-overflow-scrolling: touch;
       &::-webkit-scrollbar {
         display: none!important;
@@ -1654,7 +1664,7 @@ $foot-height: 250px;
   .nav-bar{
     @extend %nav-bar;
     .search-container.show{
-      width: 100%;
+      width: 92%;
       transition: width 0.5s ease;
       background-color: $color-3e3c3c;
       input.search-input{
@@ -1674,15 +1684,15 @@ $foot-height: 250px;
     .search-container{
       position: absolute;
       width: 10%;
-      right: 0;
+      right: 4%;
       top: 50%;
       height: 66.7%;
       transform: translateY(-50%);
       input.search-input{
         position: absolute;
-        right: 4%;
+        right: 0;
         top: 0;
-        width: 80%;
+        width: 88%;
         height: 100%;
         border-radius: 15px;
         border: none;
@@ -1691,7 +1701,7 @@ $foot-height: 250px;
       }
       a.search-link{
         position: absolute;
-        right: 5%;
+        right: 0;
         top: 0;
         z-index: 1;
         display: block;
@@ -1708,7 +1718,7 @@ $foot-height: 250px;
       }
       .cancel-search{
         position: absolute;
-        left: 4%;
+        left: 0;
         top: 50%;
         transform: translateY(-50%);
         opacity: 0;

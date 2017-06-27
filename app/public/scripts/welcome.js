@@ -77,8 +77,6 @@ Vue.component('m-swipe',
 );
 var app = new Vue(
   {
-    computed: {
-    },
     mounted: function() {
       this.getList();
       let swiper = this.$refs.swiper;
@@ -109,43 +107,14 @@ var app = new Vue(
         tops: []
       }
     },
-    watch: {
-      '$route' (to, from) {
-
-      }
-    },
     methods: {
       getList() {
         let vue = this;
-        // jAjax({
-        //   type:'get',
-        //   url:apis.slideimgs,
-        //   timeOut:5000,
-        //   before:function(){
-        //     console.log('before');
-        //   },
-        //   success:function(data){
-        //     if(data){
-        //       data = JSON.parse(data);
-        //       vue.tops = data;
-        //       vue.list = (data);
-        //       vue.loading = false;
-        //     }else {
-        //       console.log('no data')
-        //     }
-        //
-        //   },
-        //   error:function(){
-        //     console.log('error');
-        //   }
-        // });
         vue.tops = config.slides;
         vue.list = config.slides;
         vue.loading = false;
 
       },
     },
-    components: {
-    }
   }
 ).$mount('#welcome');

@@ -11,9 +11,9 @@
   <!-- endbuild -->
 </head>
 <body>
-<div class="login-container" id="quicklogin">
+<div class="login-container" id="findpwd">
   <div class="logo"></div>
-  <form id="quick_login">
+  <form id="find">
     <ul class="form-data">
       <li class="items clearfix">
         <div class="left"><i class="fa fa-mobile"></i></div>
@@ -32,9 +32,17 @@
                  maxlength="6" v-model="mobileCode">
         </div>
       </li>
+      <li class="items clearfix">
+        <div class="left">
+          <i class="fa fa-lock"></i>
+        </div>
+        <div class="right">
+          <input type="password" name="repassword" class="val-code" placeholder="请输入新密码" v-model="passWord"/>
+        </div>
+      </li>
     </ul>
     <div class="log-btn">
-      <div class="sub" @click="mobileLogin">登录</div>
+      <div class="sub" @click="update()">确认</div>
     </div>
   </form>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
@@ -42,17 +50,13 @@
 <template id="pop">
   <div class="alet_container">
     <section class="tip_text_container">
-      <!--<div class="tip_icon">
-        <span></span>
-        <span></span>
-      </div>-->
-      <p class="tip_text">{{ msg }}</p>
-      <div class="confrim" @click="close">确认</div>
+      <div class="tip_text">{{ msg }}</div>
     </section>
   </div>
 </template>
 <script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/apis.js"></script>
 <script src="public/scripts/api/index.js"></script>
-<script src="public/scripts/quicklogin.js"></script>
+<script src="public/scripts/findpwd.js"></script>
 </body>
 </html>

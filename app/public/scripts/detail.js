@@ -174,16 +174,8 @@ Vue.component('pop',
 );
 let app = new Vue(
   {
-    computed: {
-    },
     mounted: function() {
       this.loadVideo();
-    },
-    activated() {
-
-    },
-    deactivated() {
-
     },
     data: {
       ranks_list: [],
@@ -205,23 +197,33 @@ let app = new Vue(
       min: false,
       collected: false,
     },
-    watch: {
-    },
     methods: {
+      top(){
+        tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+      },
       collection(){
         if(!this.collected){
           this.collected = true;
           this.showAlert = true;
           this.msg = '收藏成功';
+          this.close_auto();
         }else {
           this.collected = false;
           this.showAlert = true;
           this.msg = '取消收藏成功';
+          this.close_auto();
         }
 
       },
       close(){
         this.showAlert = false;
+      },
+      close_auto(){
+        let vue = this;
+        setTimeout(function () {
+          vue.showAlert = false;
+        }, 1500);
+
       },
       linkTo(num){
         let vue = this;

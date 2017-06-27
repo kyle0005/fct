@@ -26,7 +26,9 @@
     </div>
     <m-swipe swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
       <div v-for="top in tops" class="swiper-slide" slot="swiper-con">
-        <img :data-src="top.image" class="swiper-lazy silde-img">
+        <a :href="top.url">
+          <img :data-src="top.image" class="swiper-lazy silde-img">
+        </a>
       </div>
     </m-swipe>
   </div>
@@ -47,31 +49,31 @@
       "slides": [
         {
           "image": "/public/images/resource/00.png",
-          "type_name": 0,
+          "url": "asdadaddsadadasd",
           "id": 0,
           "title": "aaa"
         },
         {
           "image": "/public/images/resource/01.png",
-          "type_name": 0,
+          "url": 0,
           "id": 1,
           "title": "bbb"
         },
         {
           "image": "/public/images/resource/02.png",
-          "type_name": 0,
+          "url": 0,
           "id": 2,
           "title": "ccc"
         },
         {
           "image": "/public/images/resource/03.png",
-          "type_name": 0,
+          "url": 0,
           "id": 3,
           "title": "ddd"
         },
         {
           "image": "/public/images/resource/02.png",
-          "type_name": 0,
+          "url": 0,
           "id": 4,
           "title": "eee"
         }
