@@ -225,3 +225,51 @@ $check-bg-color: $color-905641, $btn-radius: 4px, $bg-radius: 4px) {
     -webkit-transform: rotate(-90deg);
   }
 }
+
+@mixin addminus(){
+  width: 100%;
+  font-size: 0;
+  a{
+    display: inline-block;
+    border-top: 1px solid $color-f2f2f2;
+    border-bottom: 1px solid $color-f2f2f2;
+    border-left: 1px solid $color-f2f2f2;
+    border-right: none;
+    width: calc(25% - 2px);
+    text-align: center;
+    font-size: $font-size-t12;
+    line-height: 30px;
+    &:last-child{
+      border-left: none;
+      border-right: 1px solid $color-f2f2f2;
+    }
+  }
+  a.dis{
+    color: $color-999;
+  }
+  input.numbers{
+    width: calc(50% - 2px);
+    border: 1px solid $color-f2f2f2;
+    text-align: center;
+    font-size: $font-size-t12;
+    line-height: 30px;
+  }
+}
+@mixin checkbox(){
+  position: relative;
+  width: $font-size-t14;
+  height: $font-size-t14;
+  border: 1px solid $color-444;
+  background-color: $color-white;
+  border-radius: 5px;
+  margin-bottom: -.8%;
+  margin-right: 2px;
+  &:checked:after{
+    font-family: "FontAwesome";
+    content:"\f00c";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $color-1d1d1d;
+  }
+}

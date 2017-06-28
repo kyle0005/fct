@@ -17,7 +17,7 @@
     <section class="cat-container">
       <ul class="category clearfix">
         <li class="item" v-for="(ranks, index) in ranks_list" @click="change('', ranks.id)">
-          <img :src= "img_url + '/category1.png'">
+          <img :src= "ranks.img">
           <span>{{ ranks.name }}</span>
         </li>
       </ul>
@@ -32,18 +32,9 @@
             <span class="title">{{ item.title }}</span>
             <span class="description">{{ item.description }}</span>
             <span class="pro-lists">
-            <span class="imgs">
-              <img :src="item.pics[0]">
-            </span>
-            <span class="imgs">
-              <img :src="item.pics[1]">
-            </span>
-            <span class="imgs">
-              <img :src="item.pics[2]">
-            </span>
-            <span class="imgs">
-              <img :src="item.pics[3]">
-            </span>
+              <span class="imgs" v-for="items in item.pics">
+                <img :src="items">
+              </span>
             </span>
               <span class="ops">
               <img :src="img_url + '/clickAmount.png'"><span>{{ item.clickAmount }}</span>
@@ -155,23 +146,28 @@
     "productsRank": [
       {
         "name": "登堂入室",
-        "level_id": "0"
+        "level_id": "0",
+        "img": "xxxx"
       },
       {
         "name": "略有小成",
-        "level_id": "1"
+        "level_id": "1",
+        "img": "xxxx"
       },
       {
         "name": "炉火纯青",
-        "level_id": "2"
+        "level_id": "2",
+        "img": "xxxx"
       },
       {
         "name": "出神入化",
-        "level_id": "3"
+        "level_id": "3",
+        "img": "xxxx"
       },
       {
         "name": "登峰造极",
-        "level_id": "4"
+        "level_id": "4",
+        "img": "xxxx"
       }
 
     ],

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>demo</title>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="public/styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+<div class="cart-container" id="cart">
+  <form id="cart-form">
+    <ul class="cart-list">
+      <li class="cart-item" v-for="(item, index) in pro_list">
+        <label class="chk col">
+          <input type="checkbox" name="items" class="items">
+        </label>
+        <a href="javascript:;" class="product col">
+          <span class="pro-item pro-img">
+            <img :src="item.pro_img">
+          </span>
+          <span class="pro-item pro-t">
+            <span class="t">
+              <span class="title overText">{{ item.title }}</span>
+              <span class="spec">规格: {{ item.spec }}</span>
+              <span class="price">￥{{ item.price }}<del>￥{{ item.del_price }}</del></span>
+            </span>
+          </span>
+        </a>
+        <div class="num-container col">
+          <div class="num">
+            <a href="javascript:;" :class="{dis:min}" @click="minus()">
+              <i class="fa fa-minus"></i>
+            </a>
+            <input type="text" class="numbers" v-model="input_val">
+            <a href="javascript:;" @click="add()">
+              <i class="fa fa-plus"></i>
+            </a>
+          </div>
+
+        </div>
+      </li>
+    </ul>
+  </form>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+  </div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+    </section>
+  </div>
+</template>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/api/apis.js"></script>
+<script>
+  var config = {
+    "product": [
+      {
+        "pro_id": 0,
+        "pro_img": "public/images/resource/pro01.png",
+        "title": "xxx名称",
+        "spec": "刻龙",
+        "price": "1000.00",
+        "del_price": "10000.00",
+        "num": "2"
+      },
+      {
+        "pro_id": 1,
+        "pro_img": "public/images/resource/pro01.png",
+        "title": "xxx名称",
+        "spec": "刻刻虎",
+        "price": "2000.00",
+        "del_price": "10200.00",
+        "num": "1"
+      },
+      {
+        "pro_id": 2,
+        "pro_img": "public/images/resource/pro01.png",
+        "title": "xxx名称",
+        "spec": "刻龙",
+        "price": "300.00",
+        "del_price": "3000.00",
+        "num": "5"
+      },
+    ]
+  };
+</script>
+<script src="public/scripts/cart.js"></script>
+</body>
+</html>

@@ -53,13 +53,16 @@
           <div class="num">
             <div class="item"><span class="name">数量</span></div>
             <div class="item">
-              <a href="javascript:;" :class="{dis:min}" @click="minus()">
-                <i class="fa fa-minus"></i>
-              </a>
-              <input type="text" class="numbers" v-model="input_val">
-              <a href="javascript:;" @click="add()">
-                <i class="fa fa-plus"></i>
-              </a>
+              <div class="num-container">
+                <a href="javascript:;" :class="{dis:min}" @click="minus()">
+                  <i class="fa fa-minus"></i>
+                </a>
+                <input type="text" class="numbers" v-model="input_val">
+                <a href="javascript:;" @click="add()">
+                  <i class="fa fa-plus"></i>
+                </a>
+              </div>
+
             </div>
           </div>
           <a href="javascript:;" class="fork" @click="choose()">&nbsp;</a>

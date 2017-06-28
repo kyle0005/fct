@@ -408,33 +408,16 @@ $foot-height: 250px;
             -webkit-box-flex: 1.0; /* Safari 和 Chrome */
             box-flex: 1.0;
             width: 50%;
-            font-size: 0;
             .name{
               font-size: $font-size-t12;
               line-height: 30px;
             }
-            a{
-              display: inline-block;
-              border-top: 1px solid $color-f2f2f2;
-              border-bottom: 1px solid $color-f2f2f2;
-              border-left: 1px solid $color-f2f2f2;
-              width: calc(25% - 2px);
-              text-align: center;
-              font-size: $font-size-t12;
-              line-height: 30px;
-            }
-            a.dis{
-              color: $color-999;
-            }
-            input.numbers{
-              width: calc(50% - 2px);
-              border: 1px solid $color-f2f2f2;
-              text-align: center;
-              font-size: $font-size-t12;
-              line-height: 30px;
+            .num-container{
+              @include addminus();
             }
 
           }
+
         }
         a.fork{
           position: absolute;
@@ -508,7 +491,12 @@ $foot-height: 250px;
           text-align: center;
         }
         .description{
+          background: url("#{$img-path}/comma.png") no-repeat left top;
+          background-size: auto $font-size-t14;
           text-align: center;
+          margin: 0 10%;
+          padding: 0 10%;
+          width: 60%;
         }
         .pro-lists{
           display: flex;
@@ -535,7 +523,6 @@ $foot-height: 250px;
           img{
             margin-left: 2%;
             width: 5%;
-            vertical-align: text-bottom;
           }
           span{
             display: inline-block;
@@ -1305,22 +1292,7 @@ $foot-height: 250px;
   .agreement{
     padding: 4%;
     input.ck{
-      position: relative;
-      width: $font-size-t14;
-      height: $font-size-t14;
-      border: 1px solid $color-444;
-      background-color: $color-white;
-      border-radius: 5px;
-      margin-bottom: -.8%;
-      margin-right: 2px;
-      &:checked:after{
-        font-family: "FontAwesome";
-        content:"\f00c";
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: $color-1d1d1d;
-      }
+      @include checkbox();
     }
     .agree-container{
       display: inline-block;
@@ -1780,4 +1752,94 @@ $foot-height: 250px;
   height: 2px;
   border-radius: 0;
   background-color: $color-333;
+}
+
+
+/* cart */
+.cart-container{
+  @extend %page;
+  background-color: $color-f2f2f2;
+  .cart-list{
+    li.cart-item{
+      padding: 4%;
+      margin-bottom: 4%;
+      width: 92%;
+      background-color: $color-white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .col{
+        -moz-box-flex: 1.0;
+        -webkit-box-flex: 1.0;
+        box-flex: 1.0;
+      }
+      .chk{
+        width: 10%;
+        input.items{
+          @include checkbox();
+        }
+      }
+      .product{
+        width: 60%;
+        margin-right: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span{
+          display: block;
+        }
+        .pro-item{
+          position: relative;
+          display: block;
+          padding-bottom: 24.3%;
+          -moz-box-flex: 1.0;
+          -webkit-box-flex: 1.0;
+          box-flex: 1.0;
+        }
+        .pro-img{
+          width: 24.3%;
+          margin-right: 5.3%;
+          img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .pro-t{
+          width: 70.4%;
+          .t{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            span{
+              line-height: $font-size-t14;
+            }
+            .spec{
+              color: $color-999;
+            }
+            .price{
+              margin-top: 3%;
+              color: $color-c40b1b;
+              del{
+                margin-left: 5%;
+                color: $color-999;
+              }
+            }
+          }
+        }
+
+
+      }
+      .num-container{
+        width: 25%;
+        .num{
+          @include addminus();
+        }
+      }
+    }
+  }
 }
