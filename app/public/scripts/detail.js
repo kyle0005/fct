@@ -45,7 +45,7 @@ Vue.component('artist',
     },
     data() {
       return {
-        artist: {}
+        artist: []
       }
     },
     methods: {

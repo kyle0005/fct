@@ -1419,23 +1419,68 @@
     "url":"",
     "code":200,
     "data":
-    {
-      "text": "<section class='artist'><div class='intro'><span class='photo'><img src='public/images/resource/artist.png'></span><span class='artist-info'><span class='artist-name'>顾景舟&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br><span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span></span></div><div class=''>顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div></section><section class='record'><div class='title'>成交记录</div><div class='list'><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span></div></section><section class='comment'><div class='title'>社会评价</div><p class='context'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p></section>",
-      "img": [
+      [
         {
-          "url": "public/images/resource/pro01.png",
-          "name": "xx瓢"
+          "artist_name": "顾景舟",
+          "artist_photo": "public/images/resource/artist.png",
+          "text": "<section class='artist'><div class='intro'><span class='photo'><img src='public/images/resource/artist.png'></span><span class='artist-info'><span class='artist-name'>顾景舟&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br><span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span></span></div><div class=''>顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div></section><section class='record'><div class='title'>成交记录</div><div class='list'><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span></div></section><section class='comment'><div class='title'>社会评价</div><p class='context'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p></section>",
+          "img": [
+            {
+              "url": "public/images/resource/pro01.png",
+              "name": "xx瓢"
+            },
+            {
+              "url": "public/images/resource/pro02.png",
+              "name": "xx瓢"
+            },
+            {
+              "url": "public/images/resource/pro03.png",
+              "name": "xx瓢"
+            }
+          ],
+          "link": "aaa"
         },
         {
-          "url": "public/images/resource/pro02.png",
-          "name": "xx瓢"
+          "artist_name": "顾景舟",
+          "artist_photo": "public/images/resource/artist.png",
+          "text": "<section class='artist'><div class='intro'><span class='photo'><img src='public/images/resource/artist.png'></span><span class='artist-info'><span class='artist-name'>顾景舟&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br><span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span></span></div><div class=''>顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div></section><section class='record'><div class='title'>成交记录</div><div class='list'><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span></div></section><section class='comment'><div class='title'>社会评价</div><p class='context'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p></section>",
+          "img": [
+            {
+              "url": "public/images/resource/pro01.png",
+              "name": "xx瓢"
+            },
+            {
+              "url": "public/images/resource/pro02.png",
+              "name": "xx瓢"
+            },
+            {
+              "url": "public/images/resource/pro03.png",
+              "name": "xx瓢"
+            }
+          ],
+          "link": "aaa"
         },
         {
-          "url": "public/images/resource/pro03.png",
-          "name": "xx瓢"
+          "artist_name": "顾景舟",
+          "artist_photo": "public/images/resource/artist.png",
+          "text": "<section class='artist'><div class='intro'><span class='photo'><img src='public/images/resource/artist.png'></span><span class='artist-info'><span class='artist-name'>顾景舟&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br><span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span></span></div><div class=''>顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div></section><section class='record'><div class='title'>成交记录</div><div class='list'><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span></div></section><section class='comment'><div class='title'>社会评价</div><p class='context'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p></section>",
+          "img": [
+            {
+              "url": "public/images/resource/pro01.png",
+              "name": "xx瓢"
+            },
+            {
+              "url": "public/images/resource/pro02.png",
+              "name": "xx瓢"
+            },
+            {
+              "url": "public/images/resource/pro03.png",
+              "name": "xx瓢"
+            }
+          ],
+          "link": "aaa"
         }
-      ],
-      "link": "aaa"
-    }
+      ]
+
   }
 }

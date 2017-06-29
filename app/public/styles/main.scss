@@ -906,23 +906,46 @@ $foot-height: 250px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid $color-dcdcdc;
       li{
         -moz-box-flex: 1.0; /* Firefox */
         -webkit-box-flex: 1.0; /* Safari 和 Chrome */
         box-flex: 1.0;
         width: calc(100% / 3);
         a{
-          position: relative;
           display: block;
-          margin: 10%;
-          width: 80%;
-          img{
-            position: absolute;
-            top:0;
+          margin: 12% 25%;
+          width: 50%;
+          .img-container{
+            position: relative;
+            display: block;
             width: 100%;
+            padding-bottom: 100%;
+            img{
+              position: absolute;
+              top:0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
           }
+          .name-container{
+            display: block;
+            width: 100%;
+            font-size: $font-size-t14;
+            text-align: center;
+          }
+
+        }
+        a.red{
+          color: $color-993333;
         }
       }
+    }
+    .text-container{
+      width: 100%;
+      overflow: hidden;
     }
     .artist{
       background-color: $color-f2f2f2;
