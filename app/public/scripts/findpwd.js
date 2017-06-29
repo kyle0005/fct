@@ -117,9 +117,6 @@ var app = new Vue(
                 vue.msg = data.message;
                 vue.showAlert = true;
                 vue.close_auto(vue.linkto, data.url);
-                if(data.url){
-                  location.href = data.url;
-                }
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;
@@ -151,7 +148,7 @@ var app = new Vue(
       },
       linkto(url){
         if(url){
-          location.href = "http://localhost:9000/login.html";
+          location.href = url;
         }
       }
     }

@@ -170,10 +170,7 @@ var app = new Vue(
               if(parseInt(data.code) == 200){
                 vue.msg = data.message;
                 vue.showAlert = true;
-                vue.close_auto();
-                if(data.url){
-                  location.href = data.url;
-                }
+                vue.close_auto(vue.linkto, data.url);
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;
@@ -205,7 +202,7 @@ var app = new Vue(
       },
       linkto(url){
         if(url){
-          location.href = "http://localhost:9000/login.html";
+          location.href = url;
         }
       }
     }

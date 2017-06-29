@@ -259,13 +259,45 @@ $foot-height: 250px;
       text-align: center;
       line-height: 48px;
       font-size: $font-size-t20;
+      a.foot-link{
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        img{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 65%;
+
+        }
+      }
     }
-    .red{
-      color: $color-c40b1b;
+    li.message{
+      a.foot-link{
+        img{
+          top: 50%;
+          transform: translate(-50%, -45%);
+        }
+      }
     }
    .collection{
+     position: relative;
+     color: $color-a4aab3;
      width: calc(100% / 9);
+     height: 100%;
+     i{
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+     }
    }
+    .collection.red{
+      color: $color-333;
+    }
     .message{
       width: calc(100% / 9);
     }
@@ -770,7 +802,7 @@ $foot-height: 250px;
     }
     li.chosen{
       a{
-        color: $color-cbcbcb;
+        color: $color-white;
       }
     }
   }
@@ -858,7 +890,9 @@ $foot-height: 250px;
       }
     }
     .edit-context{
+      width: 92%;
       padding: 4%;
+      overflow: hidden;
       background-color: $color-f2f2f2;
       img, p{
         padding: 2% 0;
@@ -868,6 +902,28 @@ $foot-height: 250px;
     }
   }
   .tabs{
+    ul.artist-list{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      li{
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        width: calc(100% / 3);
+        a{
+          position: relative;
+          display: block;
+          margin: 10%;
+          width: 80%;
+          img{
+            position: absolute;
+            top:0;
+            width: 100%;
+          }
+        }
+      }
+    }
     .artist{
       background-color: $color-f2f2f2;
       padding: 10px;
@@ -1071,6 +1127,7 @@ $foot-height: 250px;
               .user-opt{
                 float: left;
                 .stars{
+                  //color: $color-993333;
                   font-size: $font-size-t12;
                 }
               }
@@ -1840,6 +1897,21 @@ $foot-height: 250px;
           @include addminus();
         }
       }
+    }
+  }
+  .guess{
+    margin-bottom: 4%;
+    width: 100%;
+    background-color: $color-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    li{
+      -moz-box-flex: 1.0;
+      -webkit-box-flex: 1.0;
+      box-flex: 1.0;
+      width: calc(100% * (160 / 375));
+      margin-left: calc(100% * (55 / 375 / 3));
     }
   }
 }

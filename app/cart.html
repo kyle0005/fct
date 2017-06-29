@@ -31,18 +31,12 @@
           </span>
         </a>
         <div class="num-container col">
-          <div class="num">
-            <a href="javascript:;" :class="{dis:min}" @click="minus()">
-              <i class="fa fa-minus"></i>
-            </a>
-            <input type="text" class="numbers" v-model="input_val">
-            <a href="javascript:;" @click="add()">
-              <i class="fa fa-plus"></i>
-            </a>
-          </div>
-
+          <num :num="item.num"></num>
         </div>
       </li>
+    </ul>
+    <ul class="guess">
+
     </ul>
   </form>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
@@ -59,7 +53,7 @@
 <script src="public/scripts/api/apis.js"></script>
 <script>
   var config = {
-    "product": [
+    "products": [
       {
         "pro_id": 0,
         "pro_img": "public/images/resource/pro01.png",
@@ -67,16 +61,16 @@
         "spec": "刻龙",
         "price": "1000.00",
         "del_price": "10000.00",
-        "num": "2"
+        "num": 2
       },
       {
         "pro_id": 1,
         "pro_img": "public/images/resource/pro01.png",
         "title": "xxx名称",
-        "spec": "刻刻虎",
+        "spec": "刻虎",
         "price": "2000.00",
         "del_price": "10200.00",
-        "num": "1"
+        "num": 1
       },
       {
         "pro_id": 2,
@@ -85,7 +79,7 @@
         "spec": "刻龙",
         "price": "300.00",
         "del_price": "3000.00",
-        "num": "5"
+        "num": 5
       },
     ]
   };

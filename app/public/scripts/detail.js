@@ -1,28 +1,37 @@
 Vue.component('overview',
   {
     template: '#overview',
-    computed: {
-    },
     mounted: function() {
-
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
+      let vue = this;
+      vue.loadoverview();
+      vue.loadVideo();
     },
     data() {
       return {
-
+        tab_overview: {}
       }
     },
     methods: {
-      prevent(event) {
-        event.preventDefault();
-        event.stopPropagation()
+      loadVideo(){
+        let vue = this;
+        var options = {
+          fluid: true,
+          aspectRatio: "2:1",
+          preload: "auto",
+          poster: vue.tab_overview.video.poster
+        };
+        var player = videojs('my-player', options, function onPlayerReady() {
+          this.src(vue.tab_overview.video.url);
+          videojs.log('Your player is ready!');
+          this.play();
+          this.on('ended', function() {
+            videojs.log('Awww...over so soon?!');
+          });
+        });
+      },
+      loadoverview() {
+        let vue = this;
+        vue.tab_overview = config.tab_overview;
       },
     },
   }
@@ -30,28 +39,39 @@ Vue.component('overview',
 Vue.component('artist',
   {
     template: '#artist',
-    computed: {
-    },
     mounted: function() {
-
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
+      let vue = this;
+      vue.loadart();
     },
     data() {
       return {
-
+        artist: {}
       }
     },
     methods: {
-      prevent(event) {
-        event.preventDefault();
-        event.stopPropagation()
+      loadart() {
+        let vue = this;
+        jAjax({
+          type:'get',
+          url:config.artist_url,
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            //{message:"xxx", url:"", code:200, data:""}
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.artist = data.data;
+              }
+            }
+
+          },
+          error:function(){
+            console.log('error');
+          }
+        });
       },
     },
   }
@@ -88,57 +108,56 @@ Vue.component('pug',
 Vue.component('service',
   {
     template: '#service',
-    computed: {
-    },
     mounted: function() {
-
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
 
     },
     data() {
       return {
-
+        tab_service: config.tab_service
       }
-    },
-    methods: {
-      prevent(event) {
-        event.preventDefault();
-        event.stopPropagation()
-      },
     },
   }
 );
 Vue.component('discuss',
   {
     template: '#discuss',
-    computed: {
-    },
     mounted: function() {
-
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
+      let vue = this;
+      vue.loadList();
     },
     data() {
       return {
-
+        commentlist: [],
       }
     },
     methods: {
-      prevent(event) {
-        event.preventDefault();
-        event.stopPropagation()
+      c_star(num){
+        let vue = this;
+        return (5 - num);
+      },
+      loadList() {
+        let vue = this;
+        jAjax({
+          type:'get',
+          url:config.discuss_url,
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            //{message:"xxx", url:"", code:200, data:""}
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.commentlist = data.data;
+              }
+            }
+
+          },
+          error:function(){
+            console.log('error');
+          }
+        });
       },
     },
   }
@@ -174,9 +193,6 @@ Vue.component('pop',
 );
 let app = new Vue(
   {
-    mounted: function() {
-      this.loadVideo();
-    },
     data: {
       ranks_list: [],
       pro_list: [],
@@ -250,24 +266,8 @@ let app = new Vue(
         }
 
       },
-      loadVideo(){
-        var options = {
-          fluid: true,
-          aspectRatio: '2:1'
-        };
-        var player = videojs('my-player', options, function onPlayerReady() {
-          videojs.log('Your player is ready!');
-          this.play();
-          this.on('ended', function() {
-            videojs.log('Awww...over so soon?!');
-          });
-        });
-      },
       change(index) {
 
-      },
-      buy(){
-        location.href = 'buy.html';
       },
       add(){
         let vue = this,
