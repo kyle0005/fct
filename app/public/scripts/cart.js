@@ -21,7 +21,7 @@ var num_template = '<div class="num">' +
   '<i class="fa fa-minus"></i>' +
   '</a>' +
   '<input type="text" class="numbers" v-model="input_num">' +
-  '<a href="javascript:;" @click="add()">' +
+  '<a href="javascript:;" :class="{dis:max}" @click="add()">' +
   '<i class="fa fa-plus"></i>' +
   '</a>' +
   '</div>';
@@ -33,7 +33,6 @@ Vue.component('num',
         input_num: this.num,
         min: false,   /* 产品数量最小值 */
         max: false,   /* 产品数量最大值 */
-        stock_num: config.products.stock_num
       }
     },
     props: {
@@ -41,6 +40,10 @@ Vue.component('num',
         type: Number,
         default: 1
       },
+      stock_num: {
+        type: Number,
+        default: 0
+      }
     },
     methods: {
       add(){

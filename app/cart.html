@@ -31,13 +31,62 @@
           </span>
         </a>
         <div class="num-container col">
-          <num :num="item.num"></num>
+          <num :num="item.num" :stock_num="item.stock_num"></num>
         </div>
       </li>
     </ul>
-    <ul class="guess">
+    <section class="guess-container">
+      <div class="title">猜你喜欢</div>
+      <ul class="guess clearfix">
+        <li>
+          <a href="javascript:;" class="guess-link">
+            <img src="public/images/resource/pro01.png">
+          </a>
+          <div class="v-title">《鹧鸪鹈鹕》</div>
+          <div class="v-price">￥122343</div>
+        </li>
+        <li>
+          <a href="javascript:;" class="guess-link">
+            <img src="public/images/resource/pro01.png">
+          </a>
+          <div class="v-title">《鹧鸪鹈鹕》</div>
+          <div class="v-price">￥122343</div>
+        </li>
+        <li>
+          <a href="javascript:;" class="guess-link">
+            <img src="public/images/resource/pro01.png">
+          </a>
+          <div class="v-title">《鹧鸪鹈鹕》</div>
+          <div class="v-price">￥122343</div>
+        </li>
+        <li>
+          <a href="javascript:;" class="guess-link">
+            <img src="public/images/resource/pro01.png">
+          </a>
+          <div class="v-title">《鹧鸪鹈鹕》</div>
+          <div class="v-price">￥122343</div>
+        </li>
+      </ul>
+    </section>
+    <footer class="foot-container">
+      <ul class="nav">
+        <li class="choose">
+          <div class="chk-container">
+            <input type="checkbox" id="choose" name="choose" class="ck">
+            <label for="choose" class="text-container">
+              已选(1)
+            </label>
+          </div>
 
-    </ul>
+        </li>
+        <li class="price">
+
+        </li>
+        <li class="buy">
+          <a href="javascript:;" @click="choose(1)">立即购买</a>
+        </li>
+      </ul>
+    </footer>
   </form>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
   </div>

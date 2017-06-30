@@ -1989,19 +1989,119 @@ $foot-height: 250px;
       }
     }
   }
-  .guess{
-    margin-bottom: 4%;
+  .guess-container{
+    margin-bottom: 13%;
     width: 100%;
-    background-color: $color-white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    li{
-      -moz-box-flex: 1.0;
-      -webkit-box-flex: 1.0;
-      box-flex: 1.0;
-      width: calc(100% * (160 / 375));
-      margin-left: calc(100% * (55 / 375 / 3));
+    background-color: $color-f2f2f2;
+    .title{
+      width: 100%;
+      text-align: center;
+      padding: 7.73% 0;
+      background-color: $color-white;
     }
+    ul.guess{
+      width: 100%;
+      background-color: $color-white;
+      li{
+        float: left;
+        display: inline-block;
+        width: calc(100% * (160 / 375));
+        margin: 0 calc(100% * (55 / 3 / 375)) 3%;
+        a.guess-link{
+          position: relative;
+          display: block;
+          width: 100%;
+          padding-bottom: 100%;
+          img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .v-title{
+          line-height: $font-size-t12;
+          margin: 3% 0;
+        }
+        .v-price{
+          margin: 3% 0;
+          line-height: $font-size-t12;
+          color: $color-c40b1b;
+        }
+      }
+      li:nth-child(2n){
+        margin-left: 0;
+      }
+    }
+  }
+  .foot-container{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    .nav{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 48px;
+      color: $color-666;
+      background-color: $color-white;
+      li{
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        height: 100%;
+        line-height: 48px;
+        font-size: $font-size-t20;
+
+      }
+      .choose{
+        font-size: $font-size-t14;
+        width: 30%;
+        height: 100%;
+        .chk-container{
+          height: 92%;
+          padding: 4% 0;
+          input.ck{
+            @include checkbox();
+          }
+          .text-container{
+            display: inline-block;
+            line-height: $font-size-t14;
+            vertical-align: text-bottom;
+          }
+        }
+
+      }
+      .price{
+        width: 30%;
+      }
+      .buy{
+        width: 40%;
+        background-color: $color-1d1d1d;
+        text-align: center;
+        a{
+          display: block;
+          width: 100%;
+          height: 100%;
+          font-size: $font-size-t14;
+          color: $color-white;
+        }
+      }
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      display: block;
+      padding-bottom: 48px;
+      width: 100%;
+    }
+
   }
 }
