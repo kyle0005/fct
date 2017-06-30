@@ -1,0 +1,282 @@
+@import "variables";
+@import "normalize";
+@import "fontawesome";
+@import "mixins";
+@font-face {
+  font-family: "PingFang SC";
+  src: url("#{$icon-font-path}/PingFangSC-Regular.woff");
+}
+html, body{
+  font-size: $font-size-base;
+  font-family: PingFang SC,Helvetica Neue,Helvetica,Arial,Hiragino Sans GB,Microsoft Yahei,sans-serif;
+  width: 100%;
+  height: 100%;
+  line-height: $line-height-base;
+  color: $color-333;
+  background-color: $color-white;
+  //包括min-height，不包括max-height值
+  @media screen and (min-width: 320px){
+    font-size: $font-size-base;
+  }
+  @media screen and (min-width: 360px){
+    font-size: 70.3125%;
+  }
+  @media screen and (min-width: 375px) {
+    font-size: 73.2421875%;
+  }
+  @media screen and (min-width: 384px){
+    font-size: 75%;
+  }
+  @media screen and (min-width: 412px){
+    font-size: 80.46875%;
+  }
+  @media screen and (min-width: 414px) {
+    font-size: 80.859375%;
+  }
+  @media screen and (min-width: 480px){
+    font-size: 93.75%;
+  }
+  @media screen and (min-width: 533px){
+    font-size: 104.1015625%;
+  }
+  @media screen and (min-width: 568px) {
+    font-size: 110.9375%;
+  }
+  @media screen and (min-width: 600px) {
+    font-size: 117.1875%;
+  }
+  @media screen and (min-width: 640px){
+    font-size: 125%;
+  }
+  @media screen and (min-width: 667px){
+    font-size: 130.2734375%;
+  }
+  @media screen and (min-width: 732px) {
+    font-size: 142.96875%;
+  }
+  @media screen and (min-width: 736px) {
+    font-size: 143.75%;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 150%;
+  }
+  @media screen and (min-width: 800px) {
+    font-size: 156.25%;
+  }
+
+}
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+input, select, textarea {
+  appearance:none;
+  -webkit-appearance: none;
+  -moz-appearance:none;
+}
+
+a {
+  &,
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: $color-333;
+    text-decoration: none;
+    background-color: initial;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.clearfix {
+  @include clearfix();
+}
+
+/* chrome默认边框去除 */
+input:focus, select:focus, textarea:focus {
+  outline: 0
+}
+
+/* 文本文字超过三行以省略号显示 */
+.overTextH3 {
+  @include overTextH(3);
+}
+
+/* 文本文字超过两行以省略号显示 */
+.overTextH2 {
+  @include overTextH(2);
+}
+
+/* 文本文字一行内超过容器以省略号显示 */
+.overText {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.wei-content{
+  @extend %page;
+}
+
+/* 弹窗 */
+$blue: #3190e8;
+$bc: #e4e4e4;
+$fc:#fff;
+
+// 背景图片地址和大小
+@mixin bis($url) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+@mixin borderRadius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+//定位全屏
+@mixin allcover{
+  position:absolute;
+  top:0;
+  right:0;
+}
+
+//定位上下左右居中
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//定位上下居中
+@mixin ct {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+//定位上下居中
+@mixin cl {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+//宽高
+@mixin wh($width, $height){
+  width: $width;
+  height: $height;
+}
+
+//字体大小、行高、字体
+@mixin font($size, $line-height, $family: 'Microsoft YaHei') {
+  font: #{$size}/#{$line-height} $family;
+}
+
+//字体大小，颜色
+@mixin sc($size, $color){
+  font-size: $size;
+  color: $color;
+}
+
+//flex 布局和 子元素 对其方式
+@mixin fj($type: space-between){
+  display: flex;
+  justify-content: $type;
+
+}
+@keyframes tipMove{
+  0%   { transform: scale(1) }
+  35%  { transform: scale(.8) }
+  70%  { transform: scale(1.1) }
+  100% { transform: scale(1) }
+}
+.alet_container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+}
+.tip_text_container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  border-radius: 4px;
+  .tip_text{
+    text-align: center;
+    padding: 10px 15px;
+    color: $color-white;
+  }
+  .confrim{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    font-size: $font-size-t14;
+    &:after{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: auto;
+      height: 1px;
+      width: 100%;
+      background-color: #b5b5b5;
+      display: block;
+    }
+  }
+}
+.ency-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 76%;
+  background-color: $color-white;
+  padding: 8%;
+  text-align: center;
+  img.photo{
+    width: 37.68%;
+    margin: 0 auto;
+  }
+  .title{
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .text{
+    text-align: left;
+  }
+  .close{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    @include fork();
+  }
+}

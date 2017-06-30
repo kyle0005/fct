@@ -1356,12 +1356,12 @@
     }
   ],
   "discuss": {
-    "message":"xxx",
-    "url":"",
-    "code":200,
-    "data":[
+    "message": "xxx",
+    "url": "",
+    "code": 200,
+    "data": [
       {
-        "id":0,
+        "id": 0,
         "photo": "public/images/resource/artist.png",
         "username": "用户名",
         "date": "1990-02-02",
@@ -1374,7 +1374,7 @@
         ]
       },
       {
-        "id":1,
+        "id": 1,
         "photo": "public/images/resource/artist.png",
         "username": "用户名",
         "date": "1990-02-02",
@@ -1387,7 +1387,7 @@
         ]
       },
       {
-        "id":2,
+        "id": 2,
         "photo": "public/images/resource/artist.png",
         "username": "用户名",
         "date": "1990-02-02",
@@ -1400,7 +1400,7 @@
         ]
       },
       {
-        "id":3,
+        "id": 3,
         "photo": "public/images/resource/artist.png",
         "username": "用户名",
         "date": "1990-02-02",
@@ -1415,72 +1415,197 @@
     ]
   },
   "artist": {
-    "message":"xxx",
-    "url":"",
-    "code":200,
-    "data":
-      [
-        {
-          "artist_name": "顾景舟",
-          "artist_photo": "public/images/resource/artist.png",
-          "text": "<section class='artist'><div class='intro'><span class='photo'><img src='public/images/resource/artist.png'></span><span class='artist-info'><span class='artist-name'>顾景舟&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br><span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span></span></div><div class=''>顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div></section><section class='record'><div class='title'>成交记录</div><div class='list'><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span></div></section><section class='comment'><div class='title'>社会评价</div><p class='context'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p></section>",
-          "img": [
-            {
-              "url": "public/images/resource/pro01.png",
-              "name": "xx瓢"
-            },
-            {
-              "url": "public/images/resource/pro02.png",
-              "name": "xx瓢"
-            },
-            {
-              "url": "public/images/resource/pro03.png",
-              "name": "xx瓢"
-            }
-          ],
-          "link": "aaa"
-        },
-        {
-          "artist_name": "顾景舟",
-          "artist_photo": "public/images/resource/artist.png",
-          "text": "<section class='artist'><div class='intro'><span class='photo'><img src='public/images/resource/artist.png'></span><span class='artist-info'><span class='artist-name'>顾景舟&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br><span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span></span></div><div class=''>顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div></section><section class='record'><div class='title'>成交记录</div><div class='list'><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span></div></section><section class='comment'><div class='title'>社会评价</div><p class='context'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p></section>",
-          "img": [
-            {
-              "url": "public/images/resource/pro01.png",
-              "name": "xx瓢"
-            },
-            {
-              "url": "public/images/resource/pro02.png",
-              "name": "xx瓢"
-            },
-            {
-              "url": "public/images/resource/pro03.png",
-              "name": "xx瓢"
-            }
-          ],
-          "link": "aaa"
-        },
-        {
-          "artist_name": "顾景舟",
-          "artist_photo": "public/images/resource/artist.png",
-          "text": "<section class='artist'><div class='intro'><span class='photo'><img src='public/images/resource/artist.png'></span><span class='artist-info'><span class='artist-name'>顾景舟&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br><span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span></span></div><div class=''>顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div></section><section class='record'><div class='title'>成交记录</div><div class='list'><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span></div></section><section class='comment'><div class='title'>社会评价</div><p class='context'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p></section>",
-          "img": [
-            {
-              "url": "public/images/resource/pro01.png",
-              "name": "xx瓢"
-            },
-            {
-              "url": "public/images/resource/pro02.png",
-              "name": "xx瓢"
-            },
-            {
-              "url": "public/images/resource/pro03.png",
-              "name": "xx瓢"
-            }
-          ],
-          "link": "aaa"
-        }
-      ]
-
+    "message": "xxx",
+    "url": "",
+    "code": 200,
+    "data": [
+      {
+        "artist_name": "顾景舟111",
+        "artist_photo": "public/images/resource/artist.png",
+        "text": "<section class='artist'><div class='intro'><span class='photo'><img src='public/images/resource/artist.png'></span><span class='artist-info'><span class='artist-name'>顾景舟11111&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br><span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span></span></div><div class=''>顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div></section><section class='record'><div class='title'>成交记录</div><div class='list'><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span></div></section><section class='comment'><div class='title'>社会评价</div><p class='context'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p></section>",
+        "img": [
+          {
+            "url": "public/images/resource/pro01.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro02.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro03.png",
+            "name": "xx瓢"
+          }
+        ],
+        "link": "aaa"
+      },
+      {
+        "artist_name": "顾景舟222",
+        "artist_photo": "public/images/resource/artist.png",
+        "text": "<section class='artist'><div class='intro'><span class='photo'><img src='public/images/resource/artist.png'></span><span class='artist-info'><span class='artist-name'>顾景舟22222&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br><span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span></span></div><div class=''>顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div></section><section class='record'><div class='title'>成交记录</div><div class='list'><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span></div></section><section class='comment'><div class='title'>社会评价</div><p class='context'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p></section>",
+        "img": [
+          {
+            "url": "public/images/resource/pro01.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro02.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro03.png",
+            "name": "xx瓢"
+          }
+        ],
+        "link": "aaa"
+      },
+      {
+        "artist_name": "顾景舟333",
+        "artist_photo": "public/images/resource/artist.png",
+        "text": "<section class='artist'><div class='intro'><span class='photo'><img src='public/images/resource/artist.png'></span><span class='artist-info'><span class='artist-name'>顾景舟33333&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br><span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span></span></div><div class=''>顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div></section><section class='record'><div class='title'>成交记录</div><div class='list'><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span></div></section><section class='comment'><div class='title'>社会评价</div><p class='context'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p></section>",
+        "img": [
+          {
+            "url": "public/images/resource/pro01.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro02.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro03.png",
+            "name": "xx瓢"
+          }
+        ],
+        "link": "aaa"
+      },
+      {
+        "artist_name": "顾景舟444",
+        "artist_photo": "public/images/resource/artist.png",
+        "text": "<section class='artist'><div class='intro'><span class='photo'><img src='public/images/resource/artist.png'></span><span class='artist-info'><span class='artist-name'>顾景舟44444&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br><span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span></span></div><div class=''>顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div></section><section class='record'><div class='title'>成交记录</div><div class='list'><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span><span>xxxx壶拍卖 成交价1234万</span></div></section><section class='comment'><div class='title'>社会评价</div><p class='context'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p></section>",
+        "img": [
+          {
+            "url": "public/images/resource/pro01.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro02.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro03.png",
+            "name": "xx瓢"
+          }
+        ],
+        "link": "aaa"
+      }
+    ]
+  },
+  "pug": {
+    "message": "xxx",
+    "url": "",
+    "code": 200,
+    "data": [
+      {
+        "pug_name": "顾景舟111",
+        "pug_photo": "public/images/resource/artist.png",
+        "pug_detail": "1111紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶",
+        "spec": "规格特性",
+        "spec_content": "规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性",
+        "img": [
+          {
+            "url": "public/images/resource/pro01.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro02.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro03.png",
+            "name": "xx瓢"
+          }
+        ]
+      },
+      {
+        "pug_name": "顾景舟111",
+        "pug_photo": "public/images/resource/artist.png",
+        "pug_detail": "2222紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶",
+        "spec": "规格特性",
+        "spec_content": "规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性",
+        "img": [
+          {
+            "url": "public/images/resource/pro01.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro02.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro03.png",
+            "name": "xx瓢"
+          }
+        ]
+      },
+      {
+        "pug_name": "顾景舟111",
+        "pug_photo": "public/images/resource/artist.png",
+        "pug_detail": "3333紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶",
+        "spec": "规格特性",
+        "spec_content": "规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性",
+        "img": [
+          {
+            "url": "public/images/resource/pro01.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro02.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro03.png",
+            "name": "xx瓢"
+          }
+        ]
+      },
+      {
+        "pug_name": "顾景舟111",
+        "pug_photo": "public/images/resource/artist.png",
+        "pug_detail": "4444紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶",
+        "spec": "规格特性",
+        "spec_content": "规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性规格特性",
+        "img": [
+          {
+            "url": "public/images/resource/pro01.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro02.png",
+            "name": "xx瓢"
+          },
+          {
+            "url": "public/images/resource/pro03.png",
+            "name": "xx瓢"
+          }
+        ]
+      }
+    ]
+  },
+  "fav": {
+    "message": "xxx",
+    "url": "",
+    "code": 200,
+    "data": {
+      "fav_state": true
+    }
+  },
+  "addcart": {
+    "message": "xxx",
+    "url": "",
+    "code": 200,
+    "data": {
+      "cart_num": 11
+    }
   }
 }

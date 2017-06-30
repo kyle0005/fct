@@ -6,9 +6,20 @@ Vue.component('overview',
       vue.loadoverview();
       vue.loadVideo();
     },
+    computed: {
+      calstock: function () {
+        let vue = this;
+        let _stock = 0;
+        if(vue.product.stock_num > 0){
+          _stock = '有货';
+        }
+        return _stock;
+
+      }
+    },
     data() {
       return {
-        tab_overview: {}
+        product: {}
       }
     },
     methods: {
@@ -16,12 +27,12 @@ Vue.component('overview',
         let vue = this;
         var options = {
           fluid: true,
-          aspectRatio: "2:1",
-          preload: "auto",
-          poster: vue.tab_overview.video.poster
+          aspectRatio: '2:1',
+          preload: 'auto',
+          poster: vue.product.video.poster
         };
         var player = videojs('my-player', options, function onPlayerReady() {
-          this.src(vue.tab_overview.video.url);
+          this.src(vue.product.video.url);
           videojs.log('Your player is ready!');
           this.play();
           this.on('ended', function() {
@@ -31,7 +42,7 @@ Vue.component('overview',
       },
       loadoverview() {
         let vue = this;
-        vue.tab_overview = config.tab_overview;
+        vue.product = config.product;
       },
     },
   }
@@ -45,10 +56,19 @@ Vue.component('artist',
     },
     data() {
       return {
-        artist: []
+        artist: [],
+        artistsingle: {},
+        titleshow: false,
+        chosen: false,
+        art_num: 0
       }
     },
     methods: {
+      loadsingle(index){
+        let vue = this;
+        vue.art_num = index;
+        vue.artistsingle = vue.artist[index];
+      },
       loadart() {
         let vue = this;
         jAjax({
@@ -64,6 +84,8 @@ Vue.component('artist',
               data = JSON.parse(data);
               if(parseInt(data.code) == 200){
                 vue.artist = data.data;
+                vue.titleshow = vue.artist.length > 1;
+                vue.loadsingle(0);
               }
             }
 
@@ -79,28 +101,50 @@ Vue.component('artist',
 Vue.component('pug',
   {
     template: '#pug',
-    computed: {
-    },
     mounted: function() {
-
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
+      let vue = this;
+      vue.loadpug();
     },
     data() {
       return {
-
+        pugs: [],
+        pugsingle: {},
+        titleshow: false,
+        chosen: false,
+        pug_num: 0
       }
     },
     methods: {
-      prevent(event) {
-        event.preventDefault();
-        event.stopPropagation()
+      loadsingle(index){
+        let vue = this;
+        vue.pug_num = index;
+        vue.pugsingle = vue.pugs[index];
+      },
+      loadpug() {
+        let vue = this;
+        jAjax({
+          type:'get',
+          url:config.pug_url,
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            //{message:"xxx", url:"", code:200, data:""}
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.pugs = data.data;
+                vue.titleshow = vue.pugs.length > 1;
+                vue.loadsingle(0);
+              }
+            }
+
+          },
+          error:function(){
+            console.log('error');
+          }
+        });
       },
     },
   }
@@ -194,6 +238,7 @@ Vue.component('pop',
 let app = new Vue(
   {
     data: {
+      product: config.product,
       ranks_list: [],
       pro_list: [],
       loading: false,
@@ -208,42 +253,93 @@ let app = new Vue(
       docked: false,
       chosen: false,
       input_val: 1,
-      specs: ['刻龙', '刻虎'],
+      specs_single: config.product.spec[0],
       specs_num: 0,
-      min: false,
-      collected: false,
+      min: false,   /* 产品数量最小值 */
+      max: false,   /* 产品数量最大值 */
+      collected: config.product.fav_state,
+      numsshow: false,
+      isbuy:false
+    },
+    mounted: function() {
+      let vue = this;
+      vue.loadcart();
+    },
+    computed: {
+      calstock: function () {
+        let vue = this;
+        let _stock = 0;
+        if(vue.specs_single.stock_num > 0){
+          _stock = '有货';
+        }
+        return _stock;
+      },
     },
     methods: {
+      loadcart(){
+        let vue = this;
+        let _num = vue.product.cart_num;
+        if(_num > 0){
+          vue.numsshow = true;
+        }else {
+          vue.numsshow = false;
+        }
+      },
       top(){
         tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
       },
       collection(){
-        if(!this.collected){
-          this.collected = true;
-          this.showAlert = true;
-          this.msg = '收藏成功';
-          this.close_auto();
-        }else {
-          this.collected = false;
-          this.showAlert = true;
-          this.msg = '取消收藏成功';
-          this.close_auto();
-        }
+        let vue = this;
+        jAjax({
+          type:'get',
+          url:config.fav_url,
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            //{message:"xxx", url:"", code:200, data:""}
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.collected = data.data.fav_state;
+                if(vue.collected){
+                  vue.showAlert = true;
+                  vue.msg = '收藏成功';
+                  vue.close_auto();
+                }else {
+                  vue.showAlert = true;
+                  vue.msg = '取消收藏成功';
+                  vue.close_auto();
+                }
+              }
+            }
+
+          },
+          error:function(){
+            console.log('error');
+          }
+        });
+
 
       },
       close(){
         this.showAlert = false;
       },
-      close_auto(){
+      close_auto(callback, obj){
         let vue = this;
         setTimeout(function () {
           vue.showAlert = false;
+          if(callback){
+            callback(obj);
+          }
+
         }, 1500);
 
       },
       linkTo(num){
         let vue = this;
-        this.tab_num = num;
+        vue.tab_num = num;
         switch(parseInt(num))
         {
           case 0:
@@ -275,12 +371,20 @@ let app = new Vue(
         if(vue.min){
           vue.min = false;
         }
-        num += 1;
+        if(num < vue.specs_single.stock_num){
+          num += 1;
+          if(num === vue.specs_single.stock_num){
+            vue.max = true;
+          }
+        }
         vue.input_val = num;
       },
       minus(){
         let vue = this,
           num = parseInt(vue.input_val.toString().replace(/[^\d]/g,''));
+        if(vue.max){
+          vue.max = false;
+        }
         if(num > 0){
           num -= 1;
           if(num === 0){
@@ -291,23 +395,33 @@ let app = new Vue(
       },
       footLinkTo(index){
         let vue = this;
-        this.specs_num = index;
-
+        vue.specs_num = index;
+        vue.specs_single = vue.product.spec[index];
+        vue.input_val = 1;
+        vue.min = false;
+        vue.max = false;
       },
       prevent(event) {
         event.preventDefault();
         event.stopPropagation()
       },
-      choose() {
-        if (!this.open) {
-          this.docked = true;
-          this.open = true;
+      choose(num) {
+        let vue = this;
+        if (!vue.open) {
+          vue.docked = true;
+          vue.open = true;
         } else {
-          this.open = false;
-          let vue = this;
+          vue.open = false;
           setTimeout(function() {
             vue.docked = false;
           }, 300);
+        }
+
+        if(parseInt(num) == 0){
+          vue.isbuy = false;
+        }
+        if(parseInt(num) == 1){
+          vue.isbuy = true;
         }
       },
       chooseSpec(){
@@ -318,6 +432,47 @@ let app = new Vue(
         else {
           vue.chosen = false;
         }
+      },
+      buy(){
+        let vue = this;
+        if(vue.isbuy){
+        //  立即购买
+          let _url = config.buy_url + '?pro_id=' + vue.product.pro_id + '&spec_id=' + vue.specs_single.spec_id
+            + '&input_val=' + vue.input_val;
+          location.href = _url;
+        }else {
+        //  加入购物车
+          jAjax({
+            type:'post',
+            url:config.addcart_url,
+            data: formData.serializeForm('addcart'),
+            timeOut:5000,
+            before:function(){
+              console.log('before');
+            },
+            success:function(data){
+              if(data){
+                data = JSON.parse(data);
+                if(parseInt(data.code) == 200){
+                  vue.cart_num = data.data.cart_num;
+                  vue.msg = data.message;
+                  vue.showAlert = true;
+                  vue.close_auto(vue.choose);
+
+                }else {
+                  vue.msg = data.message;
+                  vue.showAlert = true;
+                  vue.close_auto();
+                }
+              }
+
+            },
+            error:function(status, statusText){
+              console.log(statusText);
+            }
+          });
+        }
+
       }
 
     },

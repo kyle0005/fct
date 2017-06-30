@@ -31,7 +31,9 @@ Vue.component('num',
     data() {
       return {
         input_num: this.num,
-        min: false,
+        min: false,   /* 产品数量最小值 */
+        max: false,   /* 产品数量最大值 */
+        stock_num: config.products.stock_num
       }
     },
     props: {
@@ -47,12 +49,20 @@ Vue.component('num',
         if(vue.min){
           vue.min = false;
         }
-        num += 1;
+        if(num < vue.stock_num){
+          num += 1;
+          if(num === vue.stock_num){
+            vue.max = true;
+          }
+        }
         vue.input_num = num;
       },
       minus(){
         let vue = this,
           num = parseInt(vue.input_num.toString().replace(/[^\d]/g,''));
+        if(vue.max){
+          vue.max = false;
+        }
         if(num > 0){
           num -= 1;
           if(num === 0){
@@ -64,7 +74,7 @@ Vue.component('num',
     }
   }
 );
-var app = new Vue(
+new Vue(
   {
     data() {
       return {
@@ -93,7 +103,7 @@ var app = new Vue(
       },
       linkto(url){
         if(url){
-          location.href = "http://localhost:9000/login.html";
+          location.href = 'http://localhost:9000/login.html';
         }
       },
       loadPro(){

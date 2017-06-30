@@ -34,46 +34,47 @@
   <footer class="foot-container">
     <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
       <div class="container">
-        <div class="choose" @click.stop="">
-          <div class="clearfix">
-            <div class="pro-img">
-              <img src="public/images/resource/pro01.png">
-            </div>
-            <div class="info">
-              <span class="title">稀有黄金段（石瓢）</span>
-              <span class="price">￥33300000</span>
-              <span class="stock">库存:有货</span>
-            </div>
-          </div>
-          <ul class="spec">
-            <li class="item" v-for="(item, index) in specs" :class="{active: index===specs_num}" @click="footLinkTo(index)">
-              {{ item }}
-            </li>
-          </ul>
-          <div class="num">
-            <div class="item"><span class="name">数量</span></div>
-            <div class="item">
-              <div class="num-container">
-                <a href="javascript:;" :class="{dis:min}" @click="minus()">
-                  <i class="fa fa-minus"></i>
-                </a>
-                <input type="text" class="numbers" v-model="input_val">
-                <a href="javascript:;" @click="add()">
-                  <i class="fa fa-plus"></i>
-                </a>
+        <form id="addcart">
+          <input id="pro_id" name="pro_id" type="hidden" :value="product.pro_id">
+          <input id="spec_id" name="spec_id" type="hidden" :value="specs_single.spec_id">
+          <div class="choose" @click.stop="">
+            <div class="clearfix">
+              <div class="pro-img">
+                <img src="public/images/resource/pro01.png">
               </div>
-
+              <div class="info">
+                <span class="title">{{ product.name }}</span>
+                <span class="price">￥{{ specs_single.sale_price }}</span>
+                <span class="stock">库存:{{ calstock }}</span>
+              </div>
             </div>
+            <ul class="spec">
+              <li class="item" v-for="(item, index) in product.spec" :class="{active: index===specs_num}" @click="footLinkTo(index)">
+                {{ item.spec_name }}
+              </li>
+            </ul>
+            <div class="num">
+              <div class="item"><span class="name">数量</span></div>
+              <div class="item">
+                <div class="num-container">
+                  <a href="javascript:;" :class="{dis:min}" @click="minus()">
+                    <i class="fa fa-minus"></i>
+                  </a>
+                  <input type="text" name="number" class="numbers" v-model="input_val">
+                  <a href="javascript:;" @click="add()" :class="{dis:max}">
+                    <i class="fa fa-plus"></i>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+            <a href="javascript:;" class="fork" @click="choose()">&nbsp;</a>
           </div>
-          <a href="javascript:;" class="fork" @click="choose()">&nbsp;</a>
-        </div>
-        <a href="javascript:;" class="sub" @click="buy()">确定</a>
+          <a href="javascript:;" class="sub" @click="buy()">确定</a>
+        </form>
       </div>
     </div>
     <ul class="nav">
-      <li class="collection" :class="{red:collected}"  @click="collection()">
-        <i class="fa fa-heart"></i>
-      </li>
       <li class="message" @click="">
         <a href="javascript:;" class="foot-link">
           <img src="public/images/msg.png">
@@ -82,13 +83,17 @@
       <li class="cart" @click="choose()">
         <a href="cart.html" class="foot-link">
           <img src="public/images/cart.png">
+          <span class="nums" v-if="numsshow">{{ product.cart_num }}</span>
         </a>
       </li>
+      <li class="collection" :class="{red:collected}"  @click="collection()">
+        <i class="fa fa-heart"></i>
+      </li>
       <li class="add">
-        <a href="javascript:;" @click="choose()">加入购物车</a>
+        <a href="javascript:;" @click="choose(0)">加入购物车</a>
       </li>
       <li class="buy">
-        <a href="javascript:;" @click="choose()">立即购买</a>
+        <a href="javascript:;" @click="choose(1)">立即购买</a>
       </li>
     </ul>
   </footer>
@@ -99,8 +104,42 @@
 <script src="public/scripts/video.js"></script>
 <script>
   var config = {
+    "product": {
+      "pro_id": 0,
+      "name": "稀有xx段【x瓢】",
+      "subTitle": "登堂入室，泰斗顾景舟",
+      "status": 1, /* 1为上架，0为下架,下架按钮为灰色 */
+      "fav_state": false,  /* 是否收藏 */
+      "price": 9900000.00,
+      "cart_num": 10,  /* 现有购物车中 产品种类数量(即图标显示值) */
+      "spec": [
+        {
+          "spec_id": 0,
+          "spec_name": "刻龙",
+          "stock_num": 5,
+          "sale_price": 10000
+        },
+        {
+          "spec_id": 1,
+          "spec_name": "刻虎",
+          "stock_num": 3,
+          "sale_price": 20000
+        }
+      ],
+      "stock_num": 20,
+      "video": {
+        "url": "//vjs.zencdn.net/v/oceans.mp4",
+        "poster": "//vjs.zencdn.net/v/oceans.png"
+      },
+      "coupon_url": "xxxxxxxxxx",
+      "edit_context": '<p>xxxxxxxxxxxxxxxxxxxxxxxxxxx<br>xxxxxxxxxxxxxxxxxxxxxxxxxxx</p><img src="public/images/resource/pro.png"> <p>xxxxxxxxxxxxxxxxxxxxxxxxxxx</p> <img src="public/images/resource/pro.png"> <p>xxxxxxxxxxxxxxxxxxxxxxxxxxx</p> <img src="public/images/resource/pro.png">"'
+    },
+    "fav_url" : "http://localhost:3000/fav",
     "discuss_url" : "http://localhost:3000/discuss",
     "artist_url" : "http://localhost:3000/artist",
+    "pug_url" : "http://localhost:3000/pug",
+    "addcart_url": "http://localhost:3000/addcart",
+    "buy_url": "http://localhost:9000/buy.html",
     "tab_overview": {
         "video": {
           "url": "//vjs.zencdn.net/v/oceans.mp4",
@@ -224,9 +263,9 @@
       <video id="my-player" class="video-js vjs-big-play-centered" controls></video>
     </section>
     <section class="product-context">
-      <div class="title">{{ tab_overview.pro_title }}</div>
-      <div class="vice-title">{{ tab_overview.vice_title }}</div>
-      <div class="price">￥{{ tab_overview.price }}</div>
+      <div class="title">{{ product.name }}</div>
+      <div class="vice-title">{{ product.subTitle }}</div>
+      <div class="price">￥{{ product.price }}</div>
     </section>
     <section class="info">
       <div class="item">
@@ -239,101 +278,78 @@
       </div>
       <div class="item">
         <span class="left">库存</span>
-        <span class="right">{{ tab_overview.stock }}</span>
+        <span class="right">{{ calstock }}</span>
       </div>
       <div class="coupon">
-        <a :href="tab_overview.coupon_url" class="get-coupon">领取优惠券</a>
+        <a :href="product.coupon_url" class="get-coupon">领取优惠券</a>
       </div>
     </section>
     <section class="edit-context">
-      {{ tab_overview.edit_context }}
+      {{ product.edit_context }}
     </section>
   </div>
 </script>
 <script type="text/x-template" id="artist">
-  <div>
-    <ul class="artist-list">
-      <li v-for="">
-        <a href="javascript:;" class="red">
-          <span class="img-container">
-            <img src="public/images/resource/artist.png">
-          </span>
-          <span class="name-container">顾景舟</span>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:;">
-          <span class="img-container">
-            <img src="public/images/resource/artist.png">
-          </span>
-          <span class="name-container">顾景舟</span>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:;">
-          <span class="img-container">
-            <img src="public/images/resource/artist.png">
-          </span>
-          <span class="name-container">顾景舟</span>
+  <div class="artist-contianer">
+    <ul class="artist-list clearfix" v-if="titleshow">
+      <li v-for="(item, index) in artist">
+        <a href="javascript:;" :class="{red:index===art_num}" @click="loadsingle(index)">
+        <span class="img-container">
+          <img :src="item.artist_photo">
+        </span>
+          <span class="name-container">{{ item.artist_name }}</span>
         </a>
       </li>
     </ul>
     <div class='text-container'>
-      {{ artist.text }}
+      {{ artistsingle.text }}
     </div>
     <section class="comment">
       <ul class="others">
-        <li v-for="img_item in artist.img">
+        <li v-for="img_item in artistsingle.img">
           <a href="javascript:;" class="item">
             <img :src="img_item.url">
-            <span class="p-title">{{ img_item.img_item }}</span>
+            <span class="p-title">{{ img_item.name }}</span>
           </a>
         </li>
       </ul>
-      <a :href="artist.link" class="for-more">点击了解更多》</a>
+      <a :href="artistsingle.link" class="for-more">点击了解更多》</a>
     </section>
   </div>
 </script>
 <script type="text/x-template" id="pug">
   <div>
+    <ul class="pugs-list clearfix" v-if="titleshow">
+      <li v-for="(item, index) in pugs">
+        <a href="javascript:;" :class="{red:index===pug_num}" @click="loadsingle(index)">
+        <span class="img-container">
+          <img :src="item.pug_photo">
+        </span>
+          <span class="name-container">{{ item.pug_name }}</span>
+        </a>
+      </li>
+    </ul>
     <section class="pug-container">
       <div class="intro">
           <span class="photo">
-            <img src="public/images/resource/pug.png">
+            <img :src="pugsingle.pug_photo">
           </span>
         <span class="pug">
-            <span class="pug-name">原矿xxx朱泥</span><br>
-            <span class="pug-detail">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+            <span class="pug-name">{{ pugsingle.pug_name }}</span><br>
+            <span class="pug-detail">{{ pugsingle.pug_detail }}</span>
           </span>
       </div>
     </section>
     <section class="spec">
-      <div class="title">规格特性</div>
+      <div class="title">{{ pugsingle.spec }}</div>
       <div class="details">
-        <div>窑温：约1080度</div>
-        <div>收缩：30%左右</div>
-        <div>矿产地：江苏宜兴</div>
-        <div>泥性：</div>
-        <div>难度：</div>
-        <div>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+        {{ pugsingle.spec_content }}
       </div>
       <ul class="others">
-        <li>
+        <li v-for="img_item in pugsingle.img">
           <a href="javascript:;" class="item">
-            <img src="public/images/resource/pro01.png">
-            <span class="p-title">xx瓢</span>
-          </a>
-        </li>
-        <li>
-          <a href="javascript:;" class="item">
-            <img src="public/images/resource/pro02.png">
-            <span class="p-title">xx壶</span>
-          </a>
-        </li>
-        <li>
-          <a href="javascript:;" class="item">
-            <img src="public/images/resource/pro03.png">
-            <span class="p-title">xx壶</span>
+            <img :src="img_item.url">
+            <span class="p-title">{{ img_item.name }}</span>
           </a>
         </li>
       </ul>

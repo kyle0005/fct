@@ -22,7 +22,7 @@ var tools = {
 
     //获取dom样式
     var attrStyle = function(attr){
-      if (attr === "opacity") {
+      if (attr === 'opacity') {
         return Math.round(tools.getStyle(element, attr, 'float') * 100);
       } else {
         return tools.getStyle(element, attr);
@@ -103,8 +103,8 @@ var tools = {
         if (status) {
           flag = false;
           //opacity 和 scrollTop 需要特殊处理
-          if (attr === "opacity") {
-            element.style.filter = "alpha(opacity:" + (iCurrent + iSpeed) + ")";
+          if (attr === 'opacity') {
+            element.style.filter = 'alpha(opacity:' + (iCurrent + iSpeed) + ')';
             element.style.opacity = (iCurrent + iSpeed) / 100;
           } else if (attr === 'scrollTop') {
             element.scrollTop = iCurrent + iSpeed;

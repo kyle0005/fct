@@ -24,8 +24,8 @@
           </span>
           <span class="pro-item pro-t">
             <span class="t">
-              <span class="title overText">{{ item.title }}</span>
-              <span class="spec">规格: {{ item.spec }}</span>
+              <span class="title overText">{{ item.name }}</span>
+              <span class="spec">规格: {{ item.spec.spec_name }}</span>
               <span class="price">￥{{ item.price }}<del>￥{{ item.del_price }}</del></span>
             </span>
           </span>
@@ -57,31 +57,54 @@
       {
         "pro_id": 0,
         "pro_img": "public/images/resource/pro01.png",
-        "title": "xxx名称",
-        "spec": "刻龙",
-        "price": "1000.00",
-        "del_price": "10000.00",
-        "num": 2
+        "name": "稀有xx段【x瓢】",
+        "subTitle": "登堂入室，泰斗顾景舟",
+        "status": 1, /* 1为上架，0为下架,下架按钮为灰色 */
+        "price": 9900000.00,
+        "del_price": "3000.00",
+        "spec":
+          {
+            "spec_id": 0,
+            "spec_name": "刻龙"
+          },
+        "stock_num": 20,
+        "num": 5
       },
       {
         "pro_id": 1,
         "pro_img": "public/images/resource/pro01.png",
-        "title": "xxx名称",
-        "spec": "刻虎",
-        "price": "2000.00",
-        "del_price": "10200.00",
-        "num": 1
+        "name": "稀有xx段【x瓢】",
+        "subTitle": "登堂入室，泰斗顾景舟",
+        "status": 1, /* 1为上架，0为下架,下架按钮为灰色 */
+        "price": 9900000.00,
+        "del_price": "3000.00",
+        "spec":
+          {
+            "spec_id": 0,
+            "spec_name": "刻龙"
+          },
+        "stock_num": 20,
+        "num": 5
       },
       {
         "pro_id": 2,
         "pro_img": "public/images/resource/pro01.png",
-        "title": "xxx名称",
-        "spec": "刻龙",
-        "price": "300.00",
+        "name": "稀有xx段【x瓢】",
+        "subTitle": "登堂入室，泰斗顾景舟",
+        "status": 1, /* 1为上架，0为下架,下架按钮为灰色 */
+        "price": 9900000.00,
         "del_price": "3000.00",
+        "spec":
+          {
+            "spec_id": 0,
+            "spec_name": "刻龙"
+          },
+        "stock_num": 20,
         "num": 5
-      },
-    ]
+      }
+
+    ],
+    "buy_url": "http://localhost:3000/buy.html"
   };
 </script>
 <script src="public/scripts/cart.js"></script>

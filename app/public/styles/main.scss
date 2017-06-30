@@ -303,6 +303,24 @@ $foot-height: 250px;
     }
     .cart{
       width: calc(100% / 9);
+      .foot-link{
+        .nums{
+          position: absolute;
+          top:8px;
+          right: 0;
+          z-index: 1;
+          font-size: $font-size-t12;
+          display: inline-block;
+          width: $font-size-t14;
+          height: $font-size-t14;
+          padding: 1%;
+          text-align: center;
+          line-height: $font-size-t14;
+          color: $color-white;
+          background-color: $color-1d1d1d;
+          border-radius: 50%;
+        }
+      }
     }
     .add{
       width: calc(100% / 3);
@@ -902,47 +920,53 @@ $foot-height: 250px;
     }
   }
   .tabs{
-    ul.artist-list{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid $color-dcdcdc;
-      li{
-        -moz-box-flex: 1.0; /* Firefox */
-        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
-        box-flex: 1.0;
-        width: calc(100% / 3);
-        a{
-          display: block;
-          margin: 12% 25%;
-          width: 50%;
-          .img-container{
-            position: relative;
-            display: block;
-            width: 100%;
-            padding-bottom: 100%;
-            img{
-              position: absolute;
-              top:0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              border-radius: 50%;
-            }
-          }
-          .name-container{
-            display: block;
-            width: 100%;
-            font-size: $font-size-t14;
-            text-align: center;
-          }
-
+    .artist-contianer{
+      width: 100%;
+      ul.artist-list{
+        list-style-type: none;
+        white-space: nowrap;
+        overflow: auto;
+        border-bottom: 1px solid $color-dcdcdc;
+        -webkit-overflow-scrolling: touch;
+        &::-webkit-scrollbar{
+          display: none;
         }
-        a.red{
-          color: $color-993333;
+        li{
+          display: inline-block;
+          width: calc(100% / 3);
+          a{
+            display: block;
+            margin: 12% 25%;
+            width: 50%;
+            .img-container{
+              position: relative;
+              display: block;
+              width: 100%;
+              padding-bottom: 100%;
+              img{
+                position: absolute;
+                top:0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+              }
+            }
+            .name-container{
+              display: block;
+              width: 100%;
+              font-size: $font-size-t14;
+              text-align: center;
+            }
+
+          }
+          a.red{
+            color: $color-993333;
+          }
         }
       }
     }
+
     .text-container{
       width: 100%;
       overflow: hidden;
@@ -1052,6 +1076,49 @@ $foot-height: 250px;
     }
   }
   .tabs{
+    ul.pugs-list{
+      list-style-type: none;
+      white-space: nowrap;
+      overflow: auto;
+      border-bottom: 1px solid $color-dcdcdc;
+      -webkit-overflow-scrolling: touch;
+      &::-webkit-scrollbar{
+        display: none;
+      }
+      li{
+        display: inline-block;
+        width: calc(100% / 3);
+        a{
+          display: block;
+          margin: 12% 25%;
+          width: 50%;
+          .img-container{
+            position: relative;
+            display: block;
+            width: 100%;
+            padding-bottom: 100%;
+            img{
+              position: absolute;
+              top:0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
+          }
+          .name-container{
+            display: block;
+            width: 100%;
+            font-size: $font-size-t14;
+            text-align: center;
+          }
+
+        }
+        a.red{
+          color: $color-993333;
+        }
+      }
+    }
     .pug-container{
       background-color: $color-f2f2f2;
       padding: 10px;
