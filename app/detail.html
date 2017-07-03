@@ -35,8 +35,6 @@
     <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
       <div class="container">
         <form id="addcart">
-          <input id="pro_id" name="pro_id" type="hidden" :value="product.pro_id">
-          <input id="spec_id" name="spec_id" type="hidden" :value="specs_single.spec_id">
           <div class="choose" @click.stop="">
             <div class="clearfix">
               <div class="pro-img">
@@ -44,13 +42,17 @@
               </div>
               <div class="info">
                 <span class="title">{{ product.name }}</span>
-                <span class="price">￥{{ specs_single.sale_price }}</span>
+                <span class="price">￥{{ showprice }}</span>
                 <span class="stock">库存:{{ calstock }}</span>
               </div>
             </div>
-            <ul class="spec">
-              <li class="item" v-for="(item, index) in product.spec" :class="{active: index===specs_num}" @click="footLinkTo(index)">
-                {{ item.spec_name }}
+            <input id="pro_id" name="pro_id" type="hidden" :value="product.id">
+            <div v-if="product.specification.length > 0">
+              <input id="spec_id" name="spec_id" type="hidden" :value="specs_single.id">
+            </div>
+            <ul class="spec" v-if="product.specification.length > 0">
+              <li class="item" v-for="(item, index) in product.specification" :class="{active: index===specs_num}" @click="footLinkTo(index)">
+                {{ item.name }}
               </li>
             </ul>
             <div class="num">
@@ -83,7 +85,7 @@
       <li class="cart" @click="choose()">
         <a href="cart.html" class="foot-link">
           <img src="public/images/cart.png">
-          <span class="nums" v-if="numsshow">{{ product.cart_num }}</span>
+          <span class="nums" v-if="numsshow">{{ product.cartProductCount }}</span>
         </a>
       </li>
       <li class="collection" :class="{red:collected}"  @click="collection()">
@@ -105,34 +107,24 @@
 <script>
   var config = {
     "product": {
-      "pro_id": 0,
-      "name": "稀有xx段【x瓢】",
-      "subTitle": "登堂入室，泰斗顾景舟",
-      "status": 1, /* 1为上架，0为下架,下架按钮为灰色 */
-      "fav_state": false,  /* 是否收藏 */
-      "price": 9900000.00,
-      "cart_num": 10,  /* 现有购物车中 产品种类数量(即图标显示值) */
-      "spec": [
-        {
-          "spec_id": 0,
-          "spec_name": "刻龙",
-          "stock_num": 5,
-          "sale_price": 10000
-        },
-        {
-          "spec_id": 1,
-          "spec_name": "刻虎",
-          "stock_num": 3,
-          "sale_price": 20000
-        }
+      "hasCoupon":true,
+      "subTitle":"登堂入室，泰斗顾景舟",
+      "salePrice":8888,
+      "cartProductCount":10,  /* 现有购物车中 产品种类数量(即图标显示值) */
+      "name":"稀有xx段【x瓢】",
+      "specification":[
+//        {"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
+//        {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}
       ],
-      "stock_num": 20,
-      "video": {
-        "url": "//vjs.zencdn.net/v/oceans.mp4",
-        "poster": "//vjs.zencdn.net/v/oceans.png"
+      "favoriteState":false,  /* 是否收藏 */
+      "id":2,
+      "video":{
+        "poster":"http:\/\/oss-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/7db5dda78b5b4098809d520603cbc637.jpg",
+        "url":"//vjs.zencdn.net/v/oceans.mp4"
       },
-      "coupon_url": "xxxxxxxxxx",
-      "edit_context": '<p>xxxxxxxxxxxxxxxxxxxxxxxxxxx<br>xxxxxxxxxxxxxxxxxxxxxxxxxxx</p><img src="public/images/resource/pro.png"> <p>xxxxxxxxxxxxxxxxxxxxxxxxxxx</p> <img src="public/images/resource/pro.png"> <p>xxxxxxxxxxxxxxxxxxxxxxxxxxx</p> <img src="public/images/resource/pro.png">"'
+      "content":"<div>aaaaa</div>",   /* html内容直接输出 */
+      "status":1,   /* 1为上架，0为下架,下架按钮为灰色 */
+      "stockCount":24   /* 库存 */
     },
     "fav_url" : "http://localhost:3000/fav",
     "discuss_url" : "http://localhost:3000/discuss",
@@ -140,18 +132,6 @@
     "pug_url" : "http://localhost:3000/pug",
     "addcart_url": "http://localhost:3000/addcart",
     "buy_url": "http://localhost:9000/buy.html",
-    "tab_overview": {
-        "video": {
-          "url": "//vjs.zencdn.net/v/oceans.mp4",
-          "poster": "//vjs.zencdn.net/v/oceans.png"
-        },
-        "pro_title": "稀有xx段【x瓢】",
-        "vice_title": "登堂入室，泰斗顾景舟",
-        "price": 9900000.00,
-        "stock": "有货",
-        "coupon_url": "xxxxxxxxxx",
-        "edit_context": '<p>xxxxxxxxxxxxxxxxxxxxxxxxxxx<br>xxxxxxxxxxxxxxxxxxxxxxxxxxx</p><img src="public/images/resource/pro.png"> <p>xxxxxxxxxxxxxxxxxxxxxxxxxxx</p> <img src="public/images/resource/pro.png"> <p>xxxxxxxxxxxxxxxxxxxxxxxxxxx</p> <img src="public/images/resource/pro.png">"'
-      },
     "tab_artist": {
         //请求 文本编辑器html内容 和 底部产品内容
       "text": "<div class='text-container'>" +
@@ -265,7 +245,7 @@
     <section class="product-context">
       <div class="title">{{ product.name }}</div>
       <div class="vice-title">{{ product.subTitle }}</div>
-      <div class="price">￥{{ product.price }}</div>
+      <div class="price">￥{{ product.salePrice }}</div>
     </section>
     <section class="info">
       <div class="item">
@@ -281,11 +261,11 @@
         <span class="right">{{ calstock }}</span>
       </div>
       <div class="coupon">
-        <a :href="product.coupon_url" class="get-coupon">领取优惠券</a>
+        <a v-if="product.hasCoupon" :href="product.coupon_url" class="get-coupon">领取优惠券</a>
       </div>
     </section>
-    <section class="edit-context">
-      {{ product.edit_context }}
+    <section class="edit-context" v-html="product.content">
+      {{ product.content }}
     </section>
   </div>
 </script>

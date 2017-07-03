@@ -1499,12 +1499,38 @@ $foot-height: 250px;
         font-size: $font-size-t20;
       }
     }
+    .info{
+      padding: 4% 4.8% 0;
+      text-align: left;
+    }
     .text{
       margin-top: 5.333%;
       .pri{
         color: $color-c40b1b;
       }
     }
+  }
+  .btn-container{
+    margin: 7.4% 0;
+    padding: 0 4.8%;
+    ul.list{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      li{
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        width: 45.1%;
+        a{
+          @include wei-bg-btn($color-333, initial, $color-333, 38px, 38px, $font-size-t12);
+          @include fillet(false);
+        }
+      }
+    }
+  }
+  .safe{
+    padding: 0 4.8%;
   }
   .ways{
     padding: 1% 4%;
@@ -1922,7 +1948,7 @@ $foot-height: 250px;
       }
       .chk{
         width: 10%;
-        input.items{
+        input.chk-items{
           @include checkbox();
         }
       }
@@ -2022,10 +2048,10 @@ $foot-height: 250px;
         }
         .v-title{
           line-height: $font-size-t12;
-          margin: 3% 0;
+          margin-top: 5%;
         }
         .v-price{
-          margin: 3% 0;
+          margin-top: 4%;
           line-height: $font-size-t12;
           color: $color-c40b1b;
         }
@@ -2063,21 +2089,26 @@ $foot-height: 250px;
         width: 30%;
         height: 100%;
         .chk-container{
-          height: 92%;
-          padding: 4% 0;
-          input.ck{
-            @include checkbox();
-          }
+          height: 100%;
           .text-container{
             display: inline-block;
             line-height: $font-size-t14;
-            vertical-align: text-bottom;
+            input.chooseall{
+              vertical-align: text-bottom;
+              @include checkbox();
+            }
+            .chosen{
+              display: inline-block;
+              margin-left: 6px;
+            }
           }
         }
 
       }
       .price{
         width: 30%;
+        font-size: $font-size-t12;
+        color: $color-c40b1b;
       }
       .buy{
         width: 40%;

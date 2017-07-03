@@ -16,7 +16,7 @@
     <ul class="cart-list">
       <li class="cart-item" v-for="(item, index) in pro_list">
         <label class="chk col">
-          <input type="checkbox" name="items" class="items">
+          <input type="checkbox" name="chk-items" class="chk-items" v-model="ischeck">
         </label>
         <a href="javascript:;" class="product col">
           <span class="pro-item pro-img">
@@ -72,18 +72,14 @@
       <ul class="nav">
         <li class="choose">
           <div class="chk-container">
-            <input type="checkbox" id="choose" name="choose" class="ck">
-            <label for="choose" class="text-container">
-              已选(1)
+            <label for="chooseall" class="text-container">
+              <input type="checkbox" id="chooseall" name="chooseall" class="chooseall" v-model="checkAll" @click="chooseall()"><span class="chosen">已选(1)</span>
             </label>
           </div>
-
         </li>
-        <li class="price">
-
-        </li>
+        <li class="price">￥999999.00</li>
         <li class="buy">
-          <a href="javascript:;" @click="choose(1)">立即购买</a>
+          <a href="javascript:;" @click="buy()">立即购买</a>
         </li>
       </ul>
     </footer>
@@ -132,7 +128,7 @@
             "spec_id": 0,
             "spec_name": "刻龙"
           },
-        "stock_num": 20,
+        "stock_num": 5,
         "num": 5
       },
       {
@@ -148,8 +144,8 @@
             "spec_id": 0,
             "spec_name": "刻龙"
           },
-        "stock_num": 20,
-        "num": 5
+        "stock_num": 2,
+        "num": 1
       }
 
     ],

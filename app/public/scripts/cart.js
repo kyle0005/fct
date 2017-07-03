@@ -79,17 +79,42 @@ Vue.component('num',
 );
 new Vue(
   {
+    watch:{
+      'ischeck':function(){
+        if(this.pro_list.length===this.ischeck.length){
+          this.checkAll=true;
+        }else{
+          this.checkAll=false;
+        }
+      },
+      checkAll(yes) {
+        this.checkAll = yes;
+      }
+    },
     data() {
       return {
         showAlert: false, //显示提示组件
         msg: null, //提示的内容
-        pro_list: []
+        pro_list: [],
+        ischeck:[],//获取选项框数据
+        checkAll: false,//全选
       }
     },
     mounted: function() {
       this.loadPro();
     },
     methods: {
+      chooseall(){
+        let vue = this;
+        let ischeck = [];
+        if (!vue.checkAll) {
+          vue.pro_list.forEach((item) => {
+            ischeck.push(item.pro_id);
+          });
+        }
+        vue.ischeck = ischeck;
+
+      },
       close(){
         this.showAlert = false;
       },

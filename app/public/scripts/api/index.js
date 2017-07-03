@@ -109,6 +109,7 @@ var jAjax = function (options) {
     xhr = getXHR();
     xhr.open(type, url, async);
     //设置请求头
+    xhr.setRequestHeader('x-requested-with', "XMLHttpRequest");
     if (type === 'post' && !contentType) {
       //若是post提交，则设置content-Type 为application/x-www-four-urlencoded
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');

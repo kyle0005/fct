@@ -10,7 +10,7 @@ Vue.component('overview',
       calstock: function () {
         let vue = this;
         let _stock = 0;
-        if(vue.product.stock_num > 0){
+        if(vue.product.stockCount > 0){
           _stock = '有货';
         }
         return _stock;
@@ -253,13 +253,14 @@ let app = new Vue(
       docked: false,
       chosen: false,
       input_val: 1,
-      specs_single: config.product.spec[0],
+      specs_single: config.product.specification[0],
       specs_num: 0,
       min: false,   /* 产品数量最小值 */
       max: false,   /* 产品数量最大值 */
-      collected: config.product.fav_state,
+      collected: config.product.favoriteState,
       numsshow: false,
       isbuy:false
+
     },
     mounted: function() {
       let vue = this;
@@ -269,16 +270,33 @@ let app = new Vue(
       calstock: function () {
         let vue = this;
         let _stock = 0;
-        if(vue.specs_single.stock_num > 0){
-          _stock = '有货';
+        if(vue.product.specification.length <= 0){
+          if(vue.product.stockCount > 0){
+            _stock = '有货';
+          }
+        }else {
+          if(vue.specs_single.stockCount > 0){
+            _stock = '有货';
+          }
         }
+
         return _stock;
       },
+      showprice: function () {
+        let vue = this, _price = 0;
+        if(vue.product.specification.length <= 0){
+          _price = vue.product.salePrice;
+        }else {
+          _price = vue.specs_single.salePrice;
+        }
+        return _price;
+
+      }
     },
     methods: {
       loadcart(){
         let vue = this;
-        let _num = vue.product.cart_num;
+        let _num = vue.product.cartProductCount;
         if(_num > 0){
           vue.numsshow = true;
         }else {
@@ -291,7 +309,7 @@ let app = new Vue(
       collection(){
         let vue = this;
         jAjax({
-          type:'get',
+          type:'post',
           url:config.fav_url,
           timeOut:5000,
           before:function(){
@@ -302,14 +320,14 @@ let app = new Vue(
             if(data){
               data = JSON.parse(data);
               if(parseInt(data.code) == 200){
-                vue.collected = data.data.fav_state;
+                vue.collected = data.data.favoriteState;
                 if(vue.collected){
                   vue.showAlert = true;
-                  vue.msg = '收藏成功';
+                  vue.msg = data.message;
                   vue.close_auto();
                 }else {
                   vue.showAlert = true;
-                  vue.msg = '取消收藏成功';
+                  vue.msg = data.message;
                   vue.close_auto();
                 }
               }
@@ -368,12 +386,14 @@ let app = new Vue(
       add(){
         let vue = this,
           num = parseInt(vue.input_val.toString().replace(/[^\d]/g,''));
+          let _stock = 0;
+          _stock = (vue.product.specification.length <= 0) ? vue.product.stockCount: vue.specs_single.stockCount;
         if(vue.min){
           vue.min = false;
         }
-        if(num < vue.specs_single.stock_num){
+        if(num < _stock){
           num += 1;
-          if(num === vue.specs_single.stock_num){
+          if(num === _stock){
             vue.max = true;
           }
         }
@@ -396,7 +416,7 @@ let app = new Vue(
       footLinkTo(index){
         let vue = this;
         vue.specs_num = index;
-        vue.specs_single = vue.product.spec[index];
+        vue.specs_single = vue.product.specification[index];
         vue.input_val = 1;
         vue.min = false;
         vue.max = false;
@@ -437,8 +457,11 @@ let app = new Vue(
         let vue = this;
         if(vue.isbuy){
         //  立即购买
-          let _url = config.buy_url + '?pro_id=' + vue.product.pro_id + '&spec_id=' + vue.specs_single.spec_id
-            + '&input_val=' + vue.input_val;
+          let _url = config.buy_url + '?product_id=' + vue.product.id;
+              if(vue.specs_single.length > 0){
+                _url += '&spec_id=' + vue.specs_single.id;
+              }
+          _url += '&buy_number=' + vue.input_val;
           location.href = _url;
         }else {
         //  加入购物车
@@ -454,7 +477,7 @@ let app = new Vue(
               if(data){
                 data = JSON.parse(data);
                 if(parseInt(data.code) == 200){
-                  vue.cart_num = data.data.cart_num;
+                  vue.cart_num = data.data.cartProductCount;
                   vue.msg = data.message;
                   vue.showAlert = true;
                   vue.close_auto(vue.choose);

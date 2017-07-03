@@ -23,10 +23,10 @@ Vue.component('head-top',
     },
     methods: {
       toIndex(){
-        location.href = 'main.html';
+        location.href = config.index;
       },
       toLogin(){
-        location.href = 'login.html';
+        location.href = config.login;
       },
       change(index) {
         let vue = this;
