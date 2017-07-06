@@ -1336,8 +1336,11 @@ $foot-height: 250px;
     a.link{
       display: flex;
       align-items: center;
-      padding: 4%;
+      padding: 4% 4% 0 4%;
       background-color: $color-white;
+      &:last-child{
+        padding-bottom: 4%;
+      }
       span.item{
         -moz-box-flex: 1.0; /* Firefox */
         -webkit-box-flex: 1.0; /* Safari 和 Chrome */
@@ -1408,10 +1411,13 @@ $foot-height: 250px;
         -webkit-box-flex: 1.0; /* Safari 和 Chrome */
         box-flex: 1.0;
         width: 50%;
-        line-height: 30px;
+        line-height: 40px;
       }
       .left{
         text-align: left;
+        .coupon{
+          color: $color-c40b1b;
+        }
       }
       .right{
         .switch-container{
@@ -1520,8 +1526,11 @@ $foot-height: 250px;
         left: 0;
         width: 100%;
         height: 100%;
+
+
       }
     }
+
   }
 }
 
