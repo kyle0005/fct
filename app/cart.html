@@ -16,55 +16,42 @@
     <ul class="cart-list">
       <li class="cart-item" v-for="(item, index) in pro_list">
         <label class="chk col">
-          <input type="checkbox" name="chk-items" class="chk-items" v-model="ischeck">
+          <input type="checkbox" name="chk-items" class="chk-items" :value="item" v-model="ischeck" @change="selectedProduct(item)">
         </label>
         <a href="javascript:;" class="product col">
           <span class="pro-item pro-img">
-            <img :src="item.pro_img">
+            <img :src="item.img">
           </span>
           <span class="pro-item pro-t">
             <span class="t">
               <span class="title overText">{{ item.name }}</span>
-              <span class="spec">规格: {{ item.spec.spec_name }}</span>
-              <span class="price">￥{{ item.price }}<del>￥{{ item.del_price }}</del></span>
+              <span class="spec">规格: {{ item.specName }}</span>
+              <span class="price">￥{{ item.promotionPrice }}<del>￥{{ item.price }}</del></span>
             </span>
           </span>
         </a>
         <div class="num-container col">
-          <num :num="item.num" :stock_num="item.stock_num"></num>
+          <div class="num">
+            <a href="javascript:;" :class="{dis:min}" @click="minus(item)">
+              <i class="fa fa-minus"></i>
+              </a>
+            <input type="text" class="numbers" :value="item.buyCount">
+            <a href="javascript:;" :class="{dis:max}" @click="add(item)">
+              <i class="fa fa-plus"></i>
+            </a>
+           </div>
         </div>
       </li>
     </ul>
     <section class="guess-container">
       <div class="title">猜你喜欢</div>
       <ul class="guess clearfix">
-        <li>
+        <li v-for="(item, index) in like_list">
           <a href="javascript:;" class="guess-link">
-            <img src="public/images/resource/pro01.png">
+            <img :src="item.defaultImage">
           </a>
-          <div class="v-title">《鹧鸪鹈鹕》</div>
-          <div class="v-price">￥122343</div>
-        </li>
-        <li>
-          <a href="javascript:;" class="guess-link">
-            <img src="public/images/resource/pro01.png">
-          </a>
-          <div class="v-title">《鹧鸪鹈鹕》</div>
-          <div class="v-price">￥122343</div>
-        </li>
-        <li>
-          <a href="javascript:;" class="guess-link">
-            <img src="public/images/resource/pro01.png">
-          </a>
-          <div class="v-title">《鹧鸪鹈鹕》</div>
-          <div class="v-price">￥122343</div>
-        </li>
-        <li>
-          <a href="javascript:;" class="guess-link">
-            <img src="public/images/resource/pro01.png">
-          </a>
-          <div class="v-title">《鹧鸪鹈鹕》</div>
-          <div class="v-price">￥122343</div>
+          <div class="v-title">{{ item.name }}</div>
+          <div class="v-price">￥{{ item.price }}</div>
         </li>
       </ul>
     </section>
@@ -73,11 +60,12 @@
         <li class="choose">
           <div class="chk-container">
             <label for="chooseall" class="text-container">
-              <input type="checkbox" id="chooseall" name="chooseall" class="chooseall" v-model="checkAll" @click="chooseall()"><span class="chosen">已选(1)</span>
+              <input type="checkbox" id="chooseall" name="chooseall"
+                     class="chooseall" v-model="checkAll" @click="chooseall()"><span class="chosen">已选({{ choose_num }})</span>
             </label>
           </div>
         </li>
-        <li class="price">￥999999.00</li>
+        <li class="price">￥{{ total_pri }}</li>
         <li class="buy">
           <a href="javascript:;" @click="buy()">立即购买</a>
         </li>
@@ -98,56 +86,70 @@
 <script src="public/scripts/api/apis.js"></script>
 <script>
   var config = {
-    "products": [
+    "carts": [
       {
-        "pro_id": 0,
-        "pro_img": "public/images/resource/pro01.png",
+        "id": 0,
+        "goodsId": 0,
+        "img": "public/images/resource/pro01.png",
         "name": "稀有xx段【x瓢】",
-        "subTitle": "登堂入室，泰斗顾景舟",
-        "status": 1, /* 1为上架，0为下架,下架按钮为灰色 */
-        "price": 9900000.00,
-        "del_price": "3000.00",
-        "spec":
-          {
-            "spec_id": 0,
-            "spec_name": "刻龙"
-          },
-        "stock_num": 20,
-        "num": 5
+        "promotionPrice": 300.00,
+        "price": 30000.00,
+        "specId": 0,
+        "specName": "刻龙",
+        "stockCount": 4,   /* 库存 */
+        "buyCount": 1       /* 购买数量 */
       },
       {
-        "pro_id": 1,
-        "pro_img": "public/images/resource/pro01.png",
+        "id": 1,
+        "goodsId": 1,
+        "img": "public/images/resource/pro01.png",
         "name": "稀有xx段【x瓢】",
-        "subTitle": "登堂入室，泰斗顾景舟",
-        "status": 1, /* 1为上架，0为下架,下架按钮为灰色 */
-        "price": 9900000.00,
-        "del_price": "3000.00",
-        "spec":
-          {
-            "spec_id": 0,
-            "spec_name": "刻龙"
-          },
-        "stock_num": 5,
-        "num": 5
+        "promotionPrice": 900.00,
+        "price": 30000,
+        "specId": 0,
+        "specName": "刻龙",
+        "stockCount": 5,   /* 库存 */
+        "buyCount": 5
       },
       {
-        "pro_id": 2,
-        "pro_img": "public/images/resource/pro01.png",
+        "id": 2,
+        "goodsId": 2,
+        "img": "public/images/resource/pro01.png",
         "name": "稀有xx段【x瓢】",
-        "subTitle": "登堂入室，泰斗顾景舟",
-        "status": 1, /* 1为上架，0为下架,下架按钮为灰色 */
-        "price": 9900000.00,
-        "del_price": "3000.00",
-        "spec":
-          {
-            "spec_id": 0,
-            "spec_name": "刻龙"
-          },
-        "stock_num": 2,
-        "num": 1
-      }
+        "promotionPrice": 100.00,
+        "price": 30000,
+        "specId": 0,
+        "specName": "刻龙",
+        "stockCount": 5,   /* 库存 */
+        "buyCount": 2
+      },
 
+    ],
+    "like_list": [
+      {
+        "id": 0,
+        "defaultImage": "public/images/resource/pro01.png",
+        "name": "稀有xx段【x瓢】",
+        "price": 30000.00
+      },
+      {
+        "id": 1,
+        "defaultImage": "public/images/resource/pro01.png",
+        "name": "稀有xx段【x瓢】",
+        "price": 30000.00
+      },
+      {
+        "id": 2,
+        "defaultImage": "public/images/resource/pro01.png",
+        "name": "稀有xx段【x瓢】",
+        "price": 30000.00
+      },
+      {
+        "id": 3,
+        "defaultImage": "public/images/resource/pro01.png",
+        "name": "稀有xx段【x瓢】",
+        "price": 30000.00
+      },
     ],
     "buy_url": "http://localhost:3000/buy.html"
   };

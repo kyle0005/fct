@@ -82,10 +82,10 @@
           <img src="public/images/msg.png">
         </a>
       </li>
-      <li class="cart" @click="choose()">
+      <li class="cart">
         <a href="cart.html" class="foot-link">
           <img src="public/images/cart.png">
-          <span class="nums" v-if="numsshow">{{ product.cartProductCount }}</span>
+          <span class="nums" v-if="numsshow">{{ cart_num }}</span>
         </a>
       </li>
       <li class="collection" :class="{red:collected}"  @click="collection()">
@@ -106,15 +106,16 @@
 <script src="public/scripts/video.js"></script>
 <script>
   var config = {
+
     "product": {
       "hasCoupon":true,
       "subTitle":"登堂入室，泰斗顾景舟",
       "salePrice":8888,
-      "cartProductCount":10,  /* 现有购物车中 产品种类数量(即图标显示值) */
+      "cartProductCount":0,  /* 现有购物车中 产品种类数量(即图标显示值) */
       "name":"稀有xx段【x瓢】",
       "specification":[
-//        {"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
-//        {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}
+        {"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
+        {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}
       ],
       "favoriteState":false,  /* 是否收藏 */
       "id":2,
@@ -309,22 +310,10 @@
         </a>
       </li>
     </ul>
-    <section class="pug-container">
-      <div class="intro">
-          <span class="photo">
-            <img :src="pugsingle.pug_photo">
-          </span>
-        <span class="pug">
-            <span class="pug-name">{{ pugsingle.pug_name }}</span><br>
-            <span class="pug-detail">{{ pugsingle.pug_detail }}</span>
-          </span>
-      </div>
+    <section class="pug-container" v-html="pugsingle.spec_content">
+      {{ pugsingle.spec_content }}
     </section>
     <section class="spec">
-      <div class="title">{{ pugsingle.spec }}</div>
-      <div class="details">
-        {{ pugsingle.spec_content }}
-      </div>
       <ul class="others">
         <li v-for="img_item in pugsingle.img">
           <a href="javascript:;" class="item">

@@ -6,13 +6,13 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <title>main</title>
-  <link rel="stylesheet" href="public/styles/main.css">
+  <link rel="stylesheet" href="public/styles/pay.css">
 </head>
 <body>
 <div class="pay-container" id="pay">
   <section class="tips">
     <div class="title">
-      <i class="fa fa-check"></i><span>订单提交成功，请尽快前往付款。</span>
+      <img src="public/images/check.png" class="check"><span>订单提交成功，请尽快前往付款。</span>
     </div>
     <div class="text">
       应付金额：<span class="pri">￥999999.00</span>
@@ -22,20 +22,27 @@
     <ul class="way-list">
       <li>
         <label for="alipay">
-          <img src="public/images/pay_ali.png">支付宝支付
-          <input type="radio" class="" name="pay" id="alipay">
+          <img src="public/images/pay_ali.png"><span class="line">
+            <span class="txt">支付宝支付</span>
+            <input type="radio" class="" name="pay" id="alipay">
+          </span>
         </label>
       </li>
       <li>
         <label for="weipay">
-          <img src="public/images/pay_weichat.png">微信支付
-          <input type="radio" class="" name="pay" id="weipay">
+          <img src="public/images/pay_weichat.png"><span class="line">
+            <span class="txt">微信支付</span>
+            <input type="radio" class="" name="pay" id="weipay">
+          </span>
         </label>
       </li>
       <li>
         <label for="unionpay">
-          <img src="public/images/pay_union.png">银联支付
-          <input type="radio" class="" name="pay" id="unionpay">
+          <img src="public/images/pay_union.png"><span class="line unline">
+            <span class="txt">银联支付</span>
+            <input type="radio" class="" name="pay" id="unionpay">
+          </span>
+
         </label>
       </li>
     </ul>

@@ -9,35 +9,38 @@
   <link rel="stylesheet" href="public/styles/main.css">
 </head>
 <body>
-<div class="buy-container" id="buy">
-  <section class="address">
-    <a href="javascript:;" class="link">
+<div class="buy-container" id="buy" v-cloak>
+  <section class="address no" v-if="!hasAddress">
+    <a href="buy_address.html" class="link">亲，请新建或选择默认收货地址以确保宝贝顺利到达<span class="wei-arrow-right"></span></a>
+  </section>
+  <section class="address" v-else>
+    <a href="buy_address.html" class="link">
       <span class="left item">
-        <span class="overText">用户名用户名用户名用户名用户名用户名用户名</span>
+        <span class="overText">{{ address.name }}</span>
         <span class="def">默认</span>
       </span>
       <span class="right item">
-        <span>13811111111</span>
-        <span class="overText">上海市xxx区xxx号</span>
+        <span>{{ address.cellPhone }}</span>
+        <span class="overText">{{ addressStr }}</span>
       </span>
       <span class="wei-arrow-right"></span>
     </a>
   </section>
   <section class="product">
-    <a href="javascript:;" class="link">
+    <a href="javascript:;" class="link" v-for="(item, index) in carts">
       <span class="item intro">
-        <img src="public/images/resource/pro01.png">
+        <img :src="item.img">
       </span>
       <span class="item info">
         <span class="container overText">
-          <span class="name">xxxxx壶</span>
-          <span class="spec">容量xxx</span>
-          <span class="price">￥90000000<del class="gray">￥9000000000</del></span>
+          <span class="name">{{ item.name }}</span>
+          <span class="spec">{{ item.specName }}</span>
+          <span class="price">￥{{ item.promotionPrice }}<del class="gray">￥{{ item.price }}</del></span>
         </span>
       </span>
       <span class="item num">
         <span class="container overText">
-          x1
+          x{{ item.buyCount }}
         </span>
       </span>
     </a>
@@ -82,6 +85,59 @@
 </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script>
+  config = {
+    "carts": [
+      {
+        "id": 0,
+        "goodsId": 0,
+        "img": "public/images/resource/pro01.png",
+        "name": "稀有xx段【x瓢】",
+        "promotionPrice": 300.00,
+        "price": 30000.00,
+        "specId": 0,
+        "specName": "刻龙",
+//        "stockCount": 4,   /* 库存 */
+        "buyCount": 1       /* 购买数量 */
+      },
+      {
+        "id": 1,
+        "goodsId": 1,
+        "img": "public/images/resource/pro01.png",
+        "name": "稀有xx段【x瓢】",
+        "promotionPrice": 900.00,
+        "price": 30000,
+        "specId": 0,
+        "specName": "刻龙",
+//        "stockCount": 5,   /* 库存 */
+        "buyCount": 5
+      },
+      {
+        "id": 2,
+        "goodsId": 2,
+        "img": "public/images/resource/pro01.png",
+        "name": "稀有xx段【x瓢】",
+        "promotionPrice": 100.00,
+        "price": 30000,
+        "specId": 0,
+        "specName": "刻龙",
+//        "stockCount": 5,   /* 库存 */
+        "buyCount": 2
+      },
+    ],
+    "address": {
+      "id": 0,    /* user id */
+      "name": "用户名",
+      "cellPhone": 1383838388,
+      "province": "上海市",
+      "cityId": "上海市",
+      "townId": "静安区",
+      "address": "xxx街道xx号",
+      "isDefault": 1    /* 1是默认，0不是默认 */
+    }
+
+  }
+</script>
 <script src="public/scripts/buy.js"></script>
 </body>
 </html>

@@ -189,3 +189,26 @@ gulp.task('uglify_script', function() {
     .pipe(gulp.dest('dist/js'))
 
 });
+
+gulp.task('uglify_single_css', function() {
+  gulp.src('app/public/styles/pay.css')
+    .pipe($.cssnano())
+    .pipe(gulp.dest('dist/styles'));
+
+/*  gulp.src('app/public/styles/!*.scss')
+    .pipe($.plumber())
+    .pipe($.sourcemaps.init())
+    .pipe($.sass.sync({
+      outputStyle: 'expanded',
+      precision: 10,
+      includePaths: ['.']
+    }).on('error', $.sass.logError))
+    .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
+    .pipe($.sourcemaps.write())
+    .pipe(gulp.dest('.tmp/public/styles'))
+    .pipe(reload({stream: true}))
+    .pipe($.cssnano())
+    .pipe(gulp.dest('dist/css'));*/
+
+
+});

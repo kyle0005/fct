@@ -253,18 +253,20 @@ let app = new Vue(
       docked: false,
       chosen: false,
       input_val: 1,
-      specs_single: config.product.specification[0],
+      specs_single: [],
       specs_num: 0,
       min: false,   /* 产品数量最小值 */
       max: false,   /* 产品数量最大值 */
       collected: config.product.favoriteState,
       numsshow: false,
-      isbuy:false
+      isbuy:false,
+      cart_num: config.product.cartProductCount
 
     },
     mounted: function() {
       let vue = this;
       vue.loadcart();
+      vue.specs_single = vue.product.specification[0];
     },
     computed: {
       calstock: function () {
@@ -275,6 +277,7 @@ let app = new Vue(
             _stock = '有货';
           }
         }else {
+          // vue.specs_single = vue.product.specification[0];
           if(vue.specs_single.stockCount > 0){
             _stock = '有货';
           }
@@ -287,6 +290,7 @@ let app = new Vue(
         if(vue.product.specification.length <= 0){
           _price = vue.product.salePrice;
         }else {
+          // vue.specs_single = vue.product.specification[0];
           _price = vue.specs_single.salePrice;
         }
         return _price;
@@ -296,7 +300,7 @@ let app = new Vue(
     methods: {
       loadcart(){
         let vue = this;
-        let _num = vue.product.cartProductCount;
+        let _num = vue.cart_num;
         if(_num > 0){
           vue.numsshow = true;
         }else {
@@ -458,7 +462,7 @@ let app = new Vue(
         if(vue.isbuy){
         //  立即购买
           let _url = config.buy_url + '?product_id=' + vue.product.id;
-              if(vue.specs_single.length > 0){
+              if(vue.specs_single.id){
                 _url += '&spec_id=' + vue.specs_single.id;
               }
           _url += '&buy_number=' + vue.input_val;
@@ -478,9 +482,10 @@ let app = new Vue(
                 data = JSON.parse(data);
                 if(parseInt(data.code) == 200){
                   vue.cart_num = data.data.cartProductCount;
+                  vue.loadcart();
                   vue.msg = data.message;
                   vue.showAlert = true;
-                  vue.close_auto(vue.choose);
+                  vue.close_auto();
 
                 }else {
                   vue.msg = data.message;
