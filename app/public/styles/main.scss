@@ -336,6 +336,9 @@ $foot-height: 250px;
         font-size: $font-size-t12;
       }
     }
+    .disabled{
+      opacity: .3;
+    }
     .buy{
       width: calc(100% / 3);
       background-color: $color-1d1d1d;

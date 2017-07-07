@@ -91,11 +91,13 @@
       <li class="collection" :class="{red:collected}"  @click="collection()">
         <i class="fa fa-heart"></i>
       </li>
-      <li class="add">
-        <a href="javascript:;" @click="choose(0)">加入购物车</a>
+      <li class="add" :class="{ disabled: !product.discount.canBuy }">
+        <a href="javascript:;" @click="choose(0)" v-if="product.discount.canBuy">加入购物车</a>
+        <a href="javascript:;" v-else>加入购物车</a>
       </li>
-      <li class="buy">
-        <a href="javascript:;" @click="choose(1)">立即购买</a>
+      <li class="buy" :class="{ disabled: !product.discount.canBuy }">
+        <a href="javascript:;" @click="choose(1)" v-if="product.discount.canBuy">立即购买</a>
+        <a href="javascript:;" v-else>立即购买</a>
       </li>
     </ul>
   </footer>
@@ -110,11 +112,12 @@
       "hasCoupon":true,   /* 是否有优惠券  */
       "hasDiscount": true,
       "discount": {
-        "name": '秒杀',   /* 秒杀或者促销 */
-        "discountRate": 7.5,
+        "id": 0,
+        "name": '首单优惠活动',
+        "discountRate": 0.75,
         "discountTime": 10,
-        "hasBegin": '',
-        "canBuy": '',
+        "hasBegin": false,
+        "canBuy": true,
       },
       "subTitle":"登堂入室，泰斗顾景舟",
       "salePrice":8888,
@@ -259,7 +262,7 @@
     <section class="product-context dis" v-else>
       <div class="title">
         {{ product.name }}
-        <div class="discount-container">秒杀</div>
+        <div class="discount-container"><span v-if="canBuy">秒杀</span><span v-else>促销</span></div>
       </div>
       <div class="vice-title">{{ product.subTitle }}</div>
       <div class="price">
@@ -270,7 +273,7 @@
     <section class="info">
       <div class="item" v-if="product.hasDiscount">
         <span class="left">优惠</span>
-        <span class="right">首单优惠活动、享受<span class="discount-color">{{ product.discount.discountRate }}折</span>(还剩<span class="discount-color">{{ product.discount.discountTime }}天</span>开始)</span>
+        <span class="right">{{ product.discount.name }}、享受<span class="discount-color">{{ product.discount.discountRate * 10 }}折</span>(还剩<span class="discount-color">{{ product.discount.discountTime }}天</span>开始)</span>
       </div>
       <div class="item">
         <span class="left">服务</span>
