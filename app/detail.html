@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="public/styles/main.css">
 </head>
 <body>
-<div class="detail-container" id="detail">
+<div class="detail-container" id="detail" v-cloak>
     <head-top></head-top>
     <section class="nav-bar">
       <ul>
@@ -106,11 +106,19 @@
 <script src="public/scripts/video.js"></script>
 <script>
   var config = {
-
     "product": {
-      "hasCoupon":true,
+      "hasCoupon":true,   /* 是否有优惠券  */
+      "hasDiscount": true,
+      "discount": {
+        "name": '秒杀',   /* 秒杀或者促销 */
+        "discountRate": 7.5,
+        "discountTime": 10,
+        "hasBegin": '',
+        "canBuy": '',
+      },
       "subTitle":"登堂入室，泰斗顾景舟",
       "salePrice":8888,
+      "price": 10000.00,
       "cartProductCount":0,  /* 现有购物车中 产品种类数量(即图标显示值) */
       "name":"稀有xx段【x瓢】",
       "specification":[
@@ -243,26 +251,37 @@
     <section class="video-container">
       <video id="my-player" class="video-js vjs-big-play-centered" controls></video>
     </section>
-    <section class="product-context">
+    <section class="product-context" v-if="!(product.hasDiscount && (product.discount.hasBegin || !product.discount.canBuy))">
       <div class="title">{{ product.name }}</div>
       <div class="vice-title">{{ product.subTitle }}</div>
       <div class="price">￥{{ product.salePrice }}</div>
     </section>
+    <section class="product-context dis" v-else>
+      <div class="title">
+        {{ product.name }}
+        <div class="discount-container">秒杀</div>
+      </div>
+      <div class="vice-title">{{ product.subTitle }}</div>
+      <div class="price">
+        ￥{{ product.salePrice }}
+        <del class="del-price">{{ product.price }}</del>
+      </div>
+    </section>
     <section class="info">
-      <div class="item">
+      <div class="item" v-if="product.hasDiscount">
         <span class="left">优惠</span>
-        <span class="right">首单优惠活动</span>
+        <span class="right">首单优惠活动、享受<span class="discount-color">{{ product.discount.discountRate }}折</span>(还剩<span class="discount-color">{{ product.discount.discountTime }}天</span>开始)</span>
       </div>
       <div class="item">
         <span class="left">服务</span>
-        <span class="right">&bull;&nbsp;顺丰包邮&nbsp;&bull;&nbsp;30天无忧退货&nbsp;&bull;&nbsp;48小时快速退货</span>
+        <span class="right">&bull;&nbsp;顺丰包邮&emsp;&bull;&nbsp;30天无忧退货&emsp;&bull;&nbsp;48小时快速退货</span>
       </div>
       <div class="item">
         <span class="left">库存</span>
         <span class="right">{{ calstock }}</span>
       </div>
-      <div class="coupon">
-        <a v-if="product.hasCoupon" :href="product.coupon_url" class="get-coupon">领取优惠券</a>
+      <div class="coupon" v-if="product.hasCoupon">
+        <a :href="product.coupon_url" class="get-coupon">领取优惠券</a>
       </div>
     </section>
     <section class="edit-context" v-html="product.content">

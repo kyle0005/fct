@@ -9,7 +9,7 @@ Vue.component('overview',
     computed: {
       calstock: function () {
         let vue = this;
-        let _stock = 0;
+        let _stock = '无货';
         if(vue.product.stockCount > 0){
           _stock = '有货';
         }
