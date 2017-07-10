@@ -63,6 +63,32 @@ new Vue(
             vue.max = true;
           }
         }
+        jAjax({
+          type:'post',
+          url:config.cart_add_url,
+          data: {
+            'num': num - item.buyCount
+          },
+          // data: formData.serializeForm('buyOrder'),
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+              console.log('ok')
+              }else {
+                console.log('false')
+              }
+            }
+
+          },
+          error:function(status, statusText){
+            console.log(statusText);
+          }
+        });
         item.buyCount = num;
         vue.caltotalpri();
       },
@@ -77,6 +103,31 @@ new Vue(
           if(num === 0){
             vue.min = true;
           }
+          jAjax({
+            type:'post',
+            url:config.cart_minus_url,
+            data: {
+              'num': num - item.buyCount
+            },
+            timeOut:5000,
+            before:function(){
+              console.log('before');
+            },
+            success:function(data){
+              if(data){
+                data = JSON.parse(data);
+                if(parseInt(data.code) == 200){
+                  console.log('ok')
+                }else {
+                  console.log('false')
+                }
+              }
+
+            },
+            error:function(status, statusText){
+              console.log(statusText);
+            }
+          });
           item.buyCount = num;
         }
         vue.caltotalpri();
@@ -161,7 +212,7 @@ new Vue(
           cart_list.push(_item);
         });
         if(cart_list.length > 0){
-          location.href = encodeURI(config.buy_url + '?product=' + JSON.stringify(cart_list));
+          location.href = encodeURI(config.buy_url + '?product=' + base64.encode64(JSON.stringify(cart_list)));
         }
       }
     }

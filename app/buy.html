@@ -73,7 +73,7 @@
         </div>
         <div class="right clearfix">
           <div class="switch-container">
-            <input class="switch" id="used_points" name="used_points" @change="showPoint()" type="checkbox" unchecked>
+            <input class="switch" id="used_points" name="used_points" @change="calculateAmount(1)" type="checkbox" unchecked>
           </div>
         </div>
       </div>
@@ -83,14 +83,14 @@
         </div>
         <div class="right clearfix">
           <div class="switch-container">
-            <input class="switch" id="used_accountAmount" name="used_accountAmount" @change="showAccountAmount()" type="checkbox" unchecked>
+            <input class="switch" id="used_accountAmount" name="used_accountAmount" @change="calculateAmount(2)" type="checkbox" unchecked>
           </div>
         </div>
       </div>
       <textarea name="remark" maxlength="150" v-model="remark" placeholder="告诉卖家您的要求吧...（限150个字）" class="msg"></textarea>
     </section>
     <section class="agreement">
-      <input type="checkbox" id="agree" name="agree" class="ck" @change="agree()">
+      <input type="checkbox" id="agree" name="agree" v-model="has_terms" class="ck">
       <label for="agree" class="agree-container">
         我已同意《方寸堂服务协议》
       </label>
@@ -124,7 +124,7 @@
         "name": "稀有xx段【x瓢】",
         "promotionPrice": 300.00,
         "price": 30000.00,
-        "specId": 0,
+        "goodsSpecId": 0,
         "specName": "刻龙",
 //        "stockCount": 4,   /* 库存 */
         "buyCount": 1       /* 购买数量 */
@@ -165,13 +165,13 @@
       "isDefault": 1    /* 1是默认，0不是默认 */
     },
     "coupon": {
-      "couponCode": "", /* 优惠券码 */
-      "couponAmount": 0   /* 优惠券面额 */
+      "couponCode": "rt554", /* 优惠券码 */
+      "couponAmount": 1000   /* 优惠券面额 */
     },
-    "points": 1000,   /* 积分,100积分等于1元 */
-    "accountAmount": 100,    /* 余额,单位元 */
+    "points": 60000,   /* 积分,100积分等于1元 */
+    "accountAmount": 7000,    /* 余额,单位元 */
     "validateCoupon": "",   /* 验证优惠券 */
-    "has_terms": false,
+    "has_terms": true,
     "coupon_url": 'xxxxxxxx',
     "pay_url": "aaaaaaaaaaa"
   }

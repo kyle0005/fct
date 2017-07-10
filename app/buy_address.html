@@ -9,32 +9,80 @@
   <link rel="stylesheet" href="public/styles/main.css">
 </head>
 <body>
-<div class="buy-container" id="buy_address">
+<div class="buy-container" id="buy_address" v-cloak>
 <ul class="address-list">
-  <li>
+  <li v-for="(item, index) in address">
     <div class="item-container">
-      <div>
-        <span>用户名</span>
-        <span>13811111111</span>
+      <div class="info">
+        <span>{{ item.name }}</span>
+        <span class="phone">{{ item.cellPhone }}</span>
       </div>
-      <div>上海市xx区xx街道xx号</div>
-      <div>
-        <label for="address">
-          <input type="radio" class="" name="address" id="address">
+      <div class="addr">{{ addressStr(item) }}</div>
+      <div class="opt">
+        <label :for="'address_' + index" class="radio-container">
+          <input type="radio" name="address" :value="addressStr(item)" v-model="picked" :id="'address_' + index" class="choose-radio">
           <span class="">默认地址</span>
         </label>
-        <a href="javascript:;"><img src="public/images/edit.png">编辑</a>
-        <a href="javascript:;"><img src="public/images/edit.png">删除</a>
+        <div class="options-container">
+          <a href="javascript:;" @click="edit()"><img src="public/images/edit.png">编辑</a>
+          <a href="javascript:;" @click="del()"><img src="public/images/del.png">删除</a>
+        </div>
       </div>
     </div>
   </li>
-  <li>
-
-  </li>
 </ul>
+  <div class="address-btn">
+    <a href="javascript:;">添加新地址</a>
+  </div>
+  <!--radio选中的是:{{ picked }}-->
+<pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+      <!--<div class="confrim" @click="close">确认</div>-->
+    </section>
+  </div>
+</template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script>
+  var config = {
+    "address": [
+      {
+        "id": 0,    /* 地址 id */
+          "name": "用户名",
+          "cellPhone": 1383838388,
+          "province": "上海市",
+          "cityId": "上海市",
+          "townId": "静安区",
+          "address": "xxx街道xx号",
+          "isDefault": 1    /* 1是默认，0不是默认 */
+      },
+      {
+        "id": 1,    /* 地址 id */
+        "name": "用户名",
+        "cellPhone": 1383838388,
+        "province": "北京市",
+        "cityId": "北京市",
+        "townId": "朝阳区",
+        "address": "xxx街道xx号",
+        "isDefault": 0    /* 1是默认，0不是默认 */
+      },
+      {
+        "id": 2,    /* 地址 id */
+        "name": "用户名",
+        "cellPhone": 1383838388,
+        "province": "湖南省",
+        "cityId": "长沙市",
+        "townId": "开福区",
+        "address": "xxx街道xx号",
+        "isDefault": 0    /* 1是默认，0不是默认 */
+      },
+    ]
+  }
+</script>
 <script src="public/scripts/buy_address.js"></script>
 </body>
 </html>

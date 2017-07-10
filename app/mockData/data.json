@@ -1601,11 +1601,8 @@
     }
   },
   "addcart": {
-    "message": "xxx",
-    "url": "",
-    "code": 200,
-    "data": {
-      "cart_num": 11
-    }
+    "pro_id": "2",
+    "spec_id": "1",
+    "number": "1"
   }
 }

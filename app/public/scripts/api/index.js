@@ -230,17 +230,18 @@ var formData = {
 };
 
 var base64 = (function(){
-  var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  //var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+  var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_*';
   return {
-    "encode64":encode64,
-    "decode64":decode64
+    'encode64':encode64,
+    'decode64':decode64
   }
   function encode64(input)
   {
     input = strUnicode2Ansi(input);
-    var output = "";
-    var chr1, chr2, chr3 = "";
-    var enc1, enc2, enc3, enc4 = "";
+    var output = '';
+    var chr1, chr2, chr3 = '';
+    var enc1, enc2, enc3, enc4 = '';
     var i = 0;
     do{
       chr1 = input.charCodeAt(i++);
@@ -263,25 +264,25 @@ var base64 = (function(){
         keyStr.charAt(enc2) +
         keyStr.charAt(enc3) +
         keyStr.charAt(enc4);
-      chr1 = chr2 = chr3 = "";
-      enc1 = enc2 = enc3 = enc4 = "";
+      chr1 = chr2 = chr3 = '';
+      enc1 = enc2 = enc3 = enc4 = '';
     }while(i < input.length);
     return output;
   }
   function decode64(input)
   {
-    var output = "";
-    var chr1, chr2, chr3 = "";
-    var enc1, enc2, enc3, enc4 = "";
+    var output = '';
+    var chr1, chr2, chr3 = '';
+    var enc1, enc2, enc3, enc4 = '';
     var i = 0;
     if(input.length%4!=0)
     {
-      return "";
+      return '';
     }
     var base64test = /[^A-Za-z0-9\+\/\=]/g;
     if (base64test.exec(input))
     {
-      return "";
+      return '';
     }
     do {
       enc1 = keyStr.indexOf(input.charAt(i++));
@@ -298,8 +299,8 @@ var base64 = (function(){
       if (enc4 != 64) {
         output+=String.fromCharCode(chr3);
       }
-      chr1 = chr2 = chr3 = "";
-      enc1 = enc2 = enc3 = enc4 = "";
+      chr1 = chr2 = chr3 = '';
+      enc1 = enc2 = enc3 = enc4 = '';
     } while (i < input.length);
     return strAnsi2Unicode(output);
   }
@@ -314,7 +315,7 @@ var base64 = (function(){
   function UnicodeToAnsi(chrCode)
   {
     var chrHex=chrCode.toString(16);
-    chrHex="000"+chrHex.toUpperCase();
+    chrHex='000'+chrHex.toUpperCase();
     chrHex=chrHex.substr(chrHex.length-4);
     var i=UnicodeChr().indexOf(chrHex);
     if(i!=-1)
@@ -326,7 +327,7 @@ var base64 = (function(){
   function AnsiToUnicode(chrCode)
   {
     var chrHex=chrCode.toString(16);
-    chrHex="000"+chrHex.toUpperCase();
+    chrHex='000'+chrHex.toUpperCase();
     chrHex=chrHex.substr(chrHex.length-4);
     var i=AnsicodeChr().indexOf(chrHex);
     if(i!=-1)
@@ -338,7 +339,7 @@ var base64 = (function(){
   function strUnicode2Ansi(asContents)
   {
     var len1=asContents.length;
-    var temp="";
+    var temp='';
     for(var i=0;i<len1;i++)
     {
       var varasc=asContents.charCodeAt(i);
@@ -363,7 +364,7 @@ var base64 = (function(){
   function strAnsi2Unicode(asContents)
   {
     var len1=asContents.length;
-    var temp="";
+    var temp='';
     var chrcode;
     for(var i=0;i<len1;i++)
     {
