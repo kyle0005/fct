@@ -462,7 +462,7 @@ let app = new Vue(
         if(vue.isbuy){
         //  立即购买
           let _url = config.buy_url + '?product_id=' + vue.product.id;
-              if(vue.specs_single.id){
+              if(vue.specs_single && vue.specs_single.id){
                 _url += '&spec_id=' + vue.specs_single.id;
               }
           _url += '&buy_number=' + vue.input_val;

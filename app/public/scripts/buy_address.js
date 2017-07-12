@@ -17,8 +17,6 @@ Vue.component('pop',
 );
 let app = new Vue(
   {
-    computed: {
-    },
     mounted: function() {
       let vue = this;
       vue.defaultAddr();
@@ -27,7 +25,7 @@ let app = new Vue(
       address: config.address,
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      picked: ''
+      picked: '',
     },
     methods: {
       close(){

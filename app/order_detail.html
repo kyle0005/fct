@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="order-container" id="order" v-cloak>
+  <section class="info">
+    <div class="text">
+      <img src="public/images/check_w.png">交易成功
+    </div>
+  </section>
+  <section class="detail">
+    <div class="express">
+      <a href="javascript:;" class="link">
+        <span class="img-container item">
+            <img src="public/images/order_transport.png">
+          </span>
+        <span class="item t">申通快递(3232323423423)<br><span class="time">2017-03-03&nbsp;01:01:01</span></span>
+        <span class="wei-arrow-right"></span>
+      </a>
+    </div>
+    <div class="addr">
+      <div class="img-container">
+        <img src="public/images/order_addr.png">
+      </div>
+      <div class="addr-info">
+        <div class="item">收货人:用户名</div>
+        <div class="item right">13838383888</div>
+      </div>
+      <div class="address">收货地址:上海市 上海市 静安区 xxxxxxxxx街道 xxxxx号</div>
+    </div>
+    <div class="express invoice">
+      <a href="javascript:;" class="link">
+        <span class="img-container item">
+            <img src="public/images/order_invoice.png">
+          </span>
+        <span class="item t">申请发票</span>
+        <span class="wei-arrow-right"></span>
+      </a>
+    </div>
+  </section>
+  <section class="product">
+    <div class="pro-item img-container">
+      <img src="public/images/resource/pro01.png">
+    </div>
+    <div class="pro-item title-container">
+      <div class="title">xxxxxx壶</div>
+      <div class="spec">规格: &nbsp;333MM</div>
+    </div>
+    <div class="pro-item price-container">
+      <div class="price">￥1231222312.00</div>
+      <div class="num">*2</div>
+      <a href="javascript:;" class="after-sale">申请售后</a>
+    </div>
+  </section>
+  <section class="total">
+    <div class="inner">共<span class="pri-color">2</span>件商品&nbsp;合计：<span class="pri-color">￥1231132131.00</span>（含运费）</div>
+  </section>
+  <section class="order-detail">
+    订单编号：asdad<br>
+    支付单号：asdad<br>
+    支付方式：微信支付<br>
+    创建时间：2017-01-01&nbsp;12:12:12<br>
+    付款时间：2017-01-01&nbsp;12:12:12<br>
+    发货时间：2017-01-01&nbsp;12:12:12<br>
+    完成时间：2017-01-01&nbsp;12:12:12
+  </section>
+  <footer class="footer">
+    <div class="inner">
+      <a href="javascript:;" class="chat"><img src="public/images/order_chat.png"></a>
+      <div class="del">
+        <a href="javascript:;">删除订单</a>
+      </div>
+      <div class="comment">
+        <a href="javascript:;">我要评价</a>
+      </div>
+    </div>
+  </footer>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+</div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+      <!--<div class="confrim" @click="close">确认</div>-->
+    </section>
+  </div>
+</template>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script>
+  var config = {
+
+  }
+</script>
+<script src="public/scripts/order.js"></script>
+</body>
+</html>

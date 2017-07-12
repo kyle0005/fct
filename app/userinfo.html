@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="userinfo-container" id="userinfo" v-cloak>
+  <section class="photo-container">
+    <a href="javascript:;" class="link">
+      <span class="photo">
+        <img src="public/images/resource/artist.png">
+      </span>
+      点击修改头像
+    </a>
+  </section>
+  <section class="list-container">
+    <div class="line">
+      <div class="left">用户ID</div>
+      <div class="right">
+        <input type="text" class="right-inp">
+      </div>
+    </div>
+    <div class="line">
+      <div class="left">手机号码</div>
+      <div class="right">
+        <input type="text" class="right-inp">
+      </div>
+    </div>
+    <div class="line">
+      <div class="left">昵称</div>
+      <div class="right">
+        <input type="text" class="right-inp">
+      </div>
+    </div>
+    <div class="line">
+      <div class="left">性别</div>
+      <div class="right">
+        <label for="male" class="radio-container">
+          <input type="radio" name="address" id="male" class="choose-radio">
+          <span class="">男</span>
+        </label>
+        <label for="female" class="radio-container">
+          <input type="radio" name="address" id="female" class="choose-radio">
+          <span class="">女</span>
+        </label>
+      </div>
+    </div>
+    <div class="line">
+      <div class="left">出生日期</div>
+      <div class="right clearfix">
+        <select>
+          <option>0</option>
+        </select>
+        <span class="wei-arrow-right"></span>
+      </div>
+    </div>
+    <div class="line">
+      <div class="left">微信</div>
+      <div class="right">
+        <input type="text" class="right-inp">
+      </div>
+    </div>
+  </section>
+  <div class="sub-btn">
+    <a href="javascript:;">确认保存</a>
+  </div>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+</div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+      <!--<div class="confrim" @click="close">确认</div>-->
+    </section>
+  </div>
+</template>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script>
+  var config = {
+
+  }
+</script>
+<script src="public/scripts/userinfo.js"></script>
+</body>
+</html>

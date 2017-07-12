@@ -9,13 +9,13 @@
   <link rel="stylesheet" href="public/styles/main.css">
 </head>
 <body>
-<div class="encyclopedias-container" id="encyclopedias">
+<div class="encyclopedias-container" id="encyclopedias" v-cloak>
   <head-top></head-top>
   <section class="nav-bar">
     <ul>
       <li class="item" v-for="(item, index) in tabs" :class="{chosen: index===tab_num}" @click="linkTo(index)">
         <a href="javascript:;">
-          {{ item.name }}
+          {{ item }}
         </a>
       </li>
     </ul>
@@ -34,8 +34,8 @@
       <m-swipe swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
         <div v-for="(item, index) in list" class="swiper-slide inner-container" :key="index" slot="swiper-con">
           <div class="items" v-for="(i_item, i_index) in item" :key="i_index">
-            <a href="javascript:;" class="link" @click="showinfo(i_item)">
-              <img :src="i_item.img">
+            <a href="javascript:;" class="link">
+              <img :src="i_item.image">
               <span>{{ i_item.name }}</span>
             </a>
           </div>
@@ -45,10 +45,8 @@
   </section>
   <section class="nav-bar">
     <ul>
-      <li class="item" v-for="(item, index) in tabs_t" :class="{chosen: index===tab_num_t}" @click="linkToOther(index)">
-        <a href="javascript:;">
-          {{ item.name }}
-        </a>
+      <li class="item chosen">
+        <a href="javascript:;">泥料</a>
       </li>
     </ul>
     <div class="search-container" :class="{show:show_search_d}">
@@ -60,15 +58,13 @@
         <i class="fa fa-search"></i>
       </a>
     </div>
-
   </section>
   <section class="list">
-    <div class="tab-list">
+    <div class="tab-list down">
       <m-swipe swipeid="swipet" ref="swipert" :autoplay="0" effect="slide">
         <div v-for="(item, index) in list_t" class="swiper-slide inner-container" :key="index" slot="swiper-con">
           <div class="items" v-for="(i_item, i_index) in item" :key="i_index">
             <a href="javascript:;" class="link">
-              <img :src="i_item.img">
               <span>{{ i_item.name }}</span>
             </a>
           </div>
@@ -92,6 +88,83 @@
   var config = {
     "index": "index.html",
     "login": "login.html",
+    "wikiCategories":
+      [
+        {
+          "subList":
+            [
+              {
+                "image":"public/images/category1.png",
+                "name":"方器",
+                "id":22
+              },
+              {
+                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
+                "name":"方器",
+                "id":22
+              },
+              {
+                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
+                "name":"方器",
+                "id":22
+              },
+              {
+                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
+                "name":"方器",
+                "id":22
+              },
+              {
+                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
+                "name":"方器",
+                "id":22
+              },
+              {
+                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
+                "name":"方器",
+                "id":22
+              },
+              {
+                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
+                "name":"方器",
+                "id":22
+              },
+              {
+                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
+                "name":"方器",
+                "id":22
+              },
+              {
+                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-12\/88992fa5712e4e219eb1dc39165ea2c8.png",
+                "name":"圆器",
+                "id":23
+              }
+            ],
+          "name":"方器",
+          "id":22
+        },
+        {
+          "subList":
+            [
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
+              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-12\/88992fa5712e4e219eb1dc39165ea2c8.png","name":"圆器","id":23}
+            ],
+          "name":"圆器",
+          "id":23
+        }
+      ],
+    "materials": [{"name":"等各方面介","id":4}],
+
   }
 </script>
 <script type="text/x-template" id="head_top">

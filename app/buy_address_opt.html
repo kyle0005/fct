@@ -25,20 +25,29 @@
     </div>
     <div class="line">
       <div class="left">省份</div>
-      <div class="right">
-        <select></select>
+      <div class="right clearfix">
+        <select v-model="province">
+          <option v-for="(item,key) in provincesName" :value="key">{{item}}</option>
+        </select>
+        <span class="wei-arrow-right"></span>
       </div>
     </div>
     <div class="line">
       <div class="left">城市</div>
-      <div class="right">
-        <select></select>
+      <div class="right clearfix">
+        <select v-model="city">
+          <option v-for="(item,key) in citysName" :value="key">{{item}}</option>
+        </select>
+        <span class="wei-arrow-right"></span>
       </div>
     </div>
     <div class="line">
       <div class="left">区域</div>
-      <div class="right">
-        <select></select>
+      <div class="right clearfix">
+        <select v-model="county">
+          <option v-for="(item,key) in countysName" :value="key">{{item}}</option>
+        </select>
+        <span class="wei-arrow-right"></span>
       </div>
     </div>
     <div class="line">
@@ -50,7 +59,7 @@
       <div class="left">设置默认</div>
       <div class="right clearfix">
         <div class="switch-container">
-          <input class="switch" id="used_points" name="used_points" @change="calculateAmount(1)" type="checkbox" unchecked>
+          <input class="switch" name="" id="" type="checkbox" unchecked>
         </div>
       </div>
 
@@ -71,6 +80,7 @@
 </template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/common/cities.js"></script>
 <script>
   var config = {
     "address":
@@ -86,6 +96,6 @@
       },
   }
 </script>
-<script src="public/scripts/buy_address.js"></script>
+<script src="public/scripts/buy_address_opt.js"></script>
 </body>
 </html>

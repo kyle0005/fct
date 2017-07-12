@@ -127,12 +127,6 @@ let app = new Vue(
         this.swipert = swipert.dom;
       }
     },
-      activated() {
-
-    },
-    deactivated() {
-
-    },
     data: {
       show_search: false,
       show_search_d:false,
@@ -142,7 +136,7 @@ let app = new Vue(
       refreshing: false,
       img_url: 'public/images',
       currentView: 'overview',
-      tabs: [],
+      tabs: [],     /* 顶部分类 */
       tab_num: 0,
       list: [],
       swiper: '',
@@ -155,8 +149,9 @@ let app = new Vue(
       showAlert: false,
       msg: null,
 
-    },
-    watch: {
+      wikiCategories: config.wikiCategories,
+      materials: config.materials
+
     },
     methods: {
       close(){
@@ -182,117 +177,37 @@ let app = new Vue(
       },
       getProductsType() {
         let vue = this;
-        jAjax({
-          type:'get',
-          url:apis.encyclopedias_type,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              vue.tabs = (data);
-              vue.linkTo(0);
-            }else {
-              console.log('no data')
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
+        vue.wikiCategories.forEach((item) => {
+          vue.tabs.push(item.name);
         });
+        vue.linkTo(0);
 
       },
       linkTo(num){
-        let vue = this;
-        this.tab_num = num;
-        jAjax({
-          type:'get',
-          url:apis.encyclopedias_type + '?id=' + num,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              console.log(data);
-              let _data = data[0].data;
-              let resLength = _data.length;
-              let tmp = [];
-              for (let i = 0, j = 0; i < resLength; i += 12, j++) {
-                tmp[j] = _data.splice(0, 12);
-              }
-              vue.list = tmp;
-            }else {
-              console.log('no data')
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });
+        let vue = this, _data = [];
+        vue.tab_num = num;
+        _data = vue.wikiCategories[num].subList;
+        let resLength = _data.length;
+        let _tmp = [];
+        for (let i = 0, j = 0; i < resLength; i += 12, j++) {
+          _tmp[j] = _data.slice(0, 12);
+        }
+        vue.list = _tmp;
 
       },
       getProductsOtherType() {
         let vue = this;
-        jAjax({
-          type:'get',
-          url:apis.encyclopedias_other,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              vue.tabs_t = (data);
-              vue.linkToOther(0);
-            }else {
-              console.log('no data')
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });
-
+        vue.linkToOther(0);
       },
       linkToOther(num){
         let vue = this;
-        this.tab_num_t = num;
-        jAjax({
-          type:'get',
-          url:apis.encyclopedias_other + '?id=' + num,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              console.log(data);
-              let _data = data[0].data;
-              let resLength = _data.length;
-              let tmp = [];
-              for (let i = 0, j = 0; i < resLength; i += 12, j++) {
-                tmp[j] = _data.splice(0, 12);
-              }
-              vue.list_t = tmp;
-            }else {
-              console.log('no data')
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });
-
+        let _data = vue.materials;
+        let resLength = _data.length;
+        let tmp = [];
+        for (let i = 0, j = 0; i < resLength; i += 12, j++) {
+          tmp[j] = _data.slice(0, 12);
+        }
+        vue.list_t = tmp;
       },
     },
     components: {
