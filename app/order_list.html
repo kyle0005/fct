@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+  <link rel="stylesheet" href="public/styles/main.scss">
+</head>
+<body>
+<div class="orderlist-container" id="orderlist" v-cloak>
+  <div class="tabs">
+    <div class="item chosen">
+      <a href="javascript:;" class="link">全部</a>
+    </div>
+    <div class="item ">
+      <a href="javascript:;" class="link">待付款</a>
+    </div>
+    <div class="item">
+      <a href="javascript:;" class="link">待发货</a>
+    </div>
+    <div class="item">
+      <a href="javascript:;" class="link">待收货</a>
+    </div>
+    <div class="item">
+      <a href="javascript:;" class="link">待评价</a>
+    </div>
+    <div class="search-container" :class="{show:show_search}">
+      <div class="cancel-search">
+        <a href="javascript:;" class="fork" @click="search(0)">取消</a>
+      </div>
+      <input type="search" class="search-input">
+      <a href="javascript:;" class="search-link" @click="search(0)">
+        <i class="fa fa-search"></i>
+      </a>
+    </div>
+  </div>
+  <div class="orders-list">
+    <div class="items">
+      <div class="info">
+        <div class="left">订单号：2141241242414</div>
+        <div class="right">待付款</div>
+      </div>
+      <ul class="list">
+        <li class="product">
+          <div class="pro-item img-container">
+            <img src="public/images/resource/pro01.png">
+          </div>
+          <div class="pro-item title-container">
+            <div class="title">xxxxxx壶</div>
+            <div class="spec">规格: &nbsp;333MM</div>
+          </div>
+          <div class="pro-item price-container">
+            <div class="price">￥1231222312.00</div>
+            <div class="num">*2</div>
+          </div>
+        </li>
+        <li class="product">
+          <div class="pro-item img-container">
+            <img src="public/images/resource/pro01.png">
+          </div>
+          <div class="pro-item title-container">
+            <div class="title">xxxxxx壶</div>
+            <div class="spec">规格: &nbsp;333MM</div>
+          </div>
+          <div class="pro-item price-container">
+            <div class="price">￥1231222312.00</div>
+            <div class="num">*2</div>
+          </div>
+        </li>
+        <li class="product">
+          <div class="pro-item img-container">
+            <img src="public/images/resource/pro01.png">
+          </div>
+          <div class="pro-item title-container">
+            <div class="title">xxxxxx壶</div>
+            <div class="spec">规格: &nbsp;333MM</div>
+          </div>
+          <div class="pro-item price-container">
+            <div class="price">￥1231222312.00</div>
+            <div class="num">*2</div>
+          </div>
+        </li>
+      </ul>
+      <div class="total">
+        <div class="inner">共2件商品&nbsp;合计：￥1231132131.00（含运费）</div>
+      </div>
+      <div class="btn clearfix">
+        <div class="btn-container">
+          <a href="javascript:;" class="black">我要付款</a>
+        </div>
+        <div class="btn-container">
+          <a href="javascript:;" class="grey">关闭订单</a>
+        </div>
+      </div>
+    </div>
+    <div class="items">
+      <div class="info">
+        <div class="left">订单号：2141241242414</div>
+        <div class="right">交易成功</div>
+      </div>
+      <ul class="list">
+        <li class="product">
+          <div class="pro-item img-container">
+            <img src="public/images/resource/pro01.png">
+          </div>
+          <div class="pro-item title-container">
+            <div class="title">xxxxxx壶</div>
+            <div class="spec">规格: &nbsp;333MM</div>
+          </div>
+          <div class="pro-item price-container">
+            <div class="price">￥1231222312.00</div>
+            <div class="num">*2</div>
+          </div>
+        </li>
+        <li class="product">
+          <div class="pro-item img-container">
+            <img src="public/images/resource/pro01.png">
+          </div>
+          <div class="pro-item title-container">
+            <div class="title">xxxxxx壶</div>
+            <div class="spec">规格: &nbsp;333MM</div>
+          </div>
+          <div class="pro-item price-container">
+            <div class="price">￥1231222312.00</div>
+            <div class="num">*2</div>
+          </div>
+        </li>
+        <li class="product">
+          <div class="pro-item img-container">
+            <img src="public/images/resource/pro01.png">
+          </div>
+          <div class="pro-item title-container">
+            <div class="title">xxxxxx壶</div>
+            <div class="spec">规格: &nbsp;333MM</div>
+          </div>
+          <div class="pro-item price-container">
+            <div class="price">￥1231222312.00</div>
+            <div class="num">*2</div>
+          </div>
+        </li>
+      </ul>
+      <div class="total">
+        <div class="inner">共2件商品&nbsp;合计：￥1231132131.00（含运费）</div>
+      </div>
+      <div class="btn clearfix">
+        <div class="btn-container">
+          <a href="javascript:;" class="black">我要评价</a>
+        </div>
+        <div class="btn-container">
+          <a href="javascript:;" class="grey">删除订单</a>
+        </div>
+      </div>
+    </div>
+    <div class="items">
+      <div class="info">
+        <div class="left">订单号：2141241242414</div>
+        <div class="right">待收货</div>
+      </div>
+      <ul class="list">
+        <li class="product">
+          <div class="pro-item img-container">
+            <img src="public/images/resource/pro01.png">
+          </div>
+          <div class="pro-item title-container">
+            <div class="title">xxxxxx壶</div>
+            <div class="spec">规格: &nbsp;333MM</div>
+          </div>
+          <div class="pro-item price-container">
+            <div class="price">￥1231222312.00</div>
+            <div class="num">*2</div>
+          </div>
+        </li>
+        <li class="product">
+          <div class="pro-item img-container">
+            <img src="public/images/resource/pro01.png">
+          </div>
+          <div class="pro-item title-container">
+            <div class="title">xxxxxx壶</div>
+            <div class="spec">规格: &nbsp;333MM</div>
+          </div>
+          <div class="pro-item price-container">
+            <div class="price">￥1231222312.00</div>
+            <div class="num">*2</div>
+          </div>
+        </li>
+        <li class="product">
+          <div class="pro-item img-container">
+            <img src="public/images/resource/pro01.png">
+          </div>
+          <div class="pro-item title-container">
+            <div class="title">xxxxxx壶</div>
+            <div class="spec">规格: &nbsp;333MM</div>
+          </div>
+          <div class="pro-item price-container">
+            <div class="price">￥1231222312.00</div>
+            <div class="num">*2</div>
+          </div>
+        </li>
+      </ul>
+      <div class="total">
+        <div class="inner">共2件商品&nbsp;合计：￥1231132131.00（含运费）</div>
+      </div>
+      <div class="btn clearfix">
+        <div class="btn-container">
+          <a href="javascript:;" class="black">查看物流</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+</div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+    </section>
+  </div>
+</template>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script>
+  var config = {
+
+  }
+</script>
+<script src="public/scripts/orderlist.js"></script>
+</body>
+</html>
