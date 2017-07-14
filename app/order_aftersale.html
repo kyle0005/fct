@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+  <link rel="stylesheet" href="public/styles/main.scss">
+</head>
+<body>
+<div class="aftersale-container" id="aftersale" v-cloak>
+  <ul class="after-list">
+    <li class="items">
+        <div class="info">
+          <div class="left">退款单号：2141241242414</div>
+          <div class="right">退款成功</div>
+        </div>
+        <div class="product">
+          <div class="pro-item img-container">
+            <img src="public/images/resource/pro01.png">
+          </div>
+          <div class="pro-item title-container">
+            <div class="title">xxxxxx壶</div>
+            <div class="spec">规格: &nbsp;333MM</div>
+          </div>
+          <div class="pro-item price-container">
+            <div class="price">￥1231222312.00</div>
+            <div class="num">*2</div>
+          </div>
+        </div>
+        <div class="btn clearfix">
+         <div class="txt">退款金额：￥09809809.00</div>
+          <div class="btn-container">
+            <a href="javascript:;" class="black">查看详情</a>
+          </div>
+        </div>
+    </li>
+    <li class="items">
+      <div class="info">
+        <div class="left">退款单号：2141241242414</div>
+        <div class="right">退款成功</div>
+      </div>
+      <div class="product">
+        <div class="pro-item img-container">
+          <img src="public/images/resource/pro01.png">
+        </div>
+        <div class="pro-item title-container">
+          <div class="title">xxxxxx壶</div>
+          <div class="spec">规格: &nbsp;333MM</div>
+        </div>
+        <div class="pro-item price-container">
+          <div class="price">￥1231222312.00</div>
+          <div class="num">*2</div>
+        </div>
+      </div>
+      <div class="btn clearfix">
+        <div class="txt">退款金额：￥09809809.00</div>
+        <div class="btn-container">
+          <a href="javascript:;" class="black">查看详情</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+</div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+    </section>
+  </div>
+</template>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script>
+  var config = {
+
+  }
+</script>
+<script src="public/scripts/aftersale.js"></script>
+</body>
+</html>

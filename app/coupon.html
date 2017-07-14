@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+  <link rel="stylesheet" href="public/styles/main.scss">
+</head>
+<body>
+<div class="coupon-container" id="coupon" v-cloak>
+  <div class="tabs">
+    <div class="item chosen">
+      <a href="javascript:;" class="link">未使用(999)</a>
+    </div>
+    <div class="item ">
+      <a href="javascript:;" class="link">使用记录(999)</a>
+    </div>
+    <div class="item">
+      <a href="javascript:;" class="link">已过期(999)</a>
+    </div>
+  </div>
+  <section class="content">
+    <div class="tips">
+      <a href="javascript:;" class="link">
+          <span class="img-container item">
+            <img src="public/images/coupon.png">
+          </span>
+        <span class="item t">您有<span>2</span>张待领取的优惠券哦</span>
+        <span class="wei-arrow-right"></span>
+      </a>
+    </div>
+    <div class="coupon-item">
+      <div class="inner">
+        <div class="left">
+          <span class="price">￥30</span>
+          <span class="condition">满100元可用</span>
+        </div>
+        <div class="right">
+
+        </div>
+      </div>
+    </div>
+    <div class="coupon-item">
+
+    </div>
+  </section>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+</div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+    </section>
+  </div>
+</template>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script>
+  var config = {
+
+  }
+</script>
+<script src="public/scripts/coupon.js"></script>
+</body>
+</html>
