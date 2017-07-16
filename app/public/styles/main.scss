@@ -3890,6 +3890,7 @@ $foot-height: 250px;
       position: relative;
       width: 100%;
       padding-bottom: calc(90 / 750 * 100%);
+      margin-bottom: calc(30/700*100%);
       a.link{
         position: absolute;
         height: 100%;
@@ -3908,6 +3909,9 @@ $foot-height: 250px;
         }
         .t{
           left: 9%;
+          .num{
+            color: $color-993333;
+          }
         }
         span.item{
           display: inline-block;
@@ -3931,9 +3935,9 @@ $foot-height: 250px;
     .coupon-item{
       position: relative;
       width: 100%;
-      padding-bottom: calc(190/750*100%);
+      padding-bottom: calc(190/700*100%);
       background-color: $color-white;
-      margin-top: calc(30/700*100%);
+
       .inner{
         position: absolute;
         top: 0;
@@ -3953,16 +3957,130 @@ $foot-height: 250px;
           background-color: $color-3e3c3c;
           color: $color-white;
           height: 100%;
+          text-align: center;
           .price{
-
+            display: block;
+            font-size: $font-size-t20;
+            margin-top: 6%;
+            .p{
+              font-size: $font-size-t30;
+            }
           }
-          .condition{
-
-          }
+        }
+        .left.used{
+          background-color:$color-b7b7b7
         }
         .right{
-          width: calc(466/700*100%);
+          width: calc(422/700*100%);
+          padding: 0 calc(16/700*100%) 0 calc(28/700*100%);
+          color: $color-666;
+          .line{
+            position: relative;
+            border-bottom: 1px dashed $color-f2f2f2;
+            color: $color-999;
+            padding: 2% 0;
+            font-size: $font-size-t12;
+            .date{
+              display: block;
+              -webkit-transform: scale(0.88);
+              transform: scale(0.88);
+              -webkit-transform-origin: left center;
+              transform-origin: left center;
+            }
+            .btn{
+              position: absolute;
+              right: 0;
+              bottom: 15%;
+              width: calc(140/422*100%);
+              a.use-btn{
+                $bg-color: initial;
+                @include wei-bg-btn($color-1d1d1d, $bg-color, $color-1d1d1d, 24px, 24px, $font-size-t12);
+              }
+            }
+          }
+          .info{
+            padding-top: 2%;
+            .text{
+              vertical-align: text-bottom;
+            }
+            a.pin{
+              position: relative;
+              float: right;
+              display: block;
+              width: calc(32/422*100%);
+              padding-bottom: calc(32/422*100%);
+              transition: All 0.2s ease-in-out;
+              -webkit-transition: All 0.2s ease-in-out;
+              -moz-transition: All 0.2s ease-in-out;
+              -o-transition: All 0.2s ease-in-out;
+              img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+              }
+            }
+            a.pin.open{
+              transform:rotate(180deg);
+              -ms-transform:rotate(180deg); 	/* IE 9 */
+              -moz-transform:rotate(180deg); 	/* Firefox */
+              -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+              -o-transform:rotate(180deg); 	/* Opera */
+
+            }
+          }
         }
+        .used-bg{
+          position: absolute;
+          right: calc(8/700*100%);;
+          top: calc(10/190*100%);
+          width: calc(120/700*100%);
+          img{
+            width: 100%;
+          }
+        }
+      }
+    }
+    .slide{
+      width: 100%;
+      transition: height .5s;
+      -moz-transition: height .5s;	/* Firefox 4 */
+      -webkit-transition: height .5s;	/* Safari 和 Chrome */
+      -o-transition: height .5s;	/* Opera */
+      height: 0;
+      background-color: $color-white;
+      ul.pros{
+        &::-webkit-scrollbar {display:none} /* 去除滚动条 */
+        height: 100%;
+        list-style-type: none;
+        white-space: nowrap;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        li {
+          display: inline-block;
+          width: 55px;
+          margin-right: 25px;
+          margin-top: 9px;
+          a.link{
+            display: block;
+            position: relative;
+            width: 100%;
+            padding-bottom: 55px;
+            img{
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+    .slide.open{
+      height: 73px;
+      ul.pros{
       }
     }
   }

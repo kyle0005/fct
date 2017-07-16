@@ -28,10 +28,15 @@ let app = new Vue(
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
       show_search: false,
+      show_detail:false
     },
     watch: {
     },
     methods: {
+      showdetail(){
+        let vue = this;
+        vue.show_detail = !vue.show_detail;
+      },
       getCoupon(){
         let vue = this;
         jAjax({
