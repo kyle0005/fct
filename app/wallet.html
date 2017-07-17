@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="wallet-container" id="wallet" v-cloak>
+  <section class="top">
+    <div class="inner">
+      <div>100<br>我的积分</div>
+      <div>￥212312312.00<br>我的余额</div>
+      <div>￥212312312.00<br>可提现额</div>
+    </div>
+  </section>
+  <section class="nav clearfix">
+    <div class="text">实名认证</div>
+    <div class="btn-container">
+      <a href="javascript:;" class="btn">申请认证</a>
+    </div>
+  </section>
+  <section class="items">
+    <ul class="list">
+      <li>
+        <a href="javascript::" class="link">
+          <img src="public/images/wallet_recharge.png"><br>充值
+        </a>
+      </li>
+      <li>
+        <a href="javascript::" class="link">
+          <img src="public/images/wallet_withdrawals.png"><br>申请提现
+        </a>
+      </li>
+      <li>
+        <a href="javascript::" class="link">
+          <img src="public/images/wallet_commission.png"><br>佣金结算
+        </a>
+      </li>
+      <li>
+        <a href="javascript::" class="link">
+          <img src="public/images/wallet_record_c.png"><br>充值记录
+        </a>
+      </li>
+      <li>
+        <a href="javascript::" class="link">
+          <img src="public/images/wallet_record_w.png"><br>提现记录
+        </a>
+      </li>
+      <li>
+        <a href="javascript::" class="link">
+          <img src="public/images/wallet_account.png"><br>账户明细
+        </a>
+      </li>
+    </ul>
+  </section>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+</div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+    </section>
+  </div>
+</template>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script>
+  var config = {
+
+  }
+</script>
+<script src="public/scripts/wallet.js"></script>
+</body>
+</html>

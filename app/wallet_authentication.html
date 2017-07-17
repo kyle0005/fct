@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>申请认证</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="authentication-container" id="authentication" v-cloak>
+  <section class="list">
+    <div class="item">
+      <div class="inner">
+        <span class="left">真实姓名</span>
+        <input type="text" class="inp">
+      </div>
+    </div>
+    <div class="item">
+      <div class="inner">
+        <span class="left">开户行</span>
+        <select class="select">
+          <option>请选择</option>
+        </select>
+      </div>
+    </div>
+    <div class="item">
+      <div class="inner">
+        <span class="left">开户行账号</span>
+        <input type="text" class="inp">
+      </div>
+    </div>
+    <div class="item">
+      <div class="inner">
+        <span class="left">身份张号码</span>
+        <input type="text" class="inp">
+      </div>
+    </div>
+  </section>
+  <div class="sub-btn">
+    <a href="javascript:;">提交申请</a>
+  </div>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+</div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+    </section>
+  </div>
+</template>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script>
+  var config = {
+
+  }
+</script>
+<script src="public/scripts/authentication.js"></script>
+</body>
+</html>
