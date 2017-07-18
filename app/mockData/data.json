@@ -1604,5 +1604,64 @@
     "pro_id": "2",
     "spec_id": "1",
     "number": "1"
+  },
+  "artistPage":
+  {
+    "code":200,
+    "message":"获取动态列表成功",
+    "url":null,
+    "data":
+    {
+      "entries":
+      [
+        {
+          "images":
+          [
+            "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
+          ],
+          "videoImage":"//vjs.zencdn.net/v/oceans.png",
+          "videoId":"",
+          "id":9,
+          "content":"ssss",
+          "isTop": false
+        },
+        {
+          "images":
+          [
+            "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
+          ],
+          "videoImage":"\/images\/default-null.png",
+          "videoId":"",
+          "id":10,
+          "content":"ssss",
+          "isTop": false
+        },
+        {
+          "images": [],
+          "videoImage":"//vjs.zencdn.net/v/oceans.png",
+          "videoId":"//vjs.zencdn.net/v/oceans.mp4",
+          "id":11,
+          "content":"ssss",
+          "isTop": false
+        },
+        {
+          "images": [],
+          "videoImage":"//vjs.zencdn.net/v/oceans.png",
+          "videoId":"//vjs.zencdn.net/v/oceans.mp4",
+          "id":12,
+          "content":"组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件",
+          "isTop": false
+        }
+      ],
+      "pager":
+      {
+        "prev":0,
+        "current":1,
+        "next":0,
+        "page_size":20,
+        "total_page":1,
+        "total":1
+      }
+    }
   }
 }

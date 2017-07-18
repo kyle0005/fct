@@ -1,3 +1,110 @@
+Vue.component('m-swipe',
+  {
+    template: '#m_swipe',
+    computed: {
+    },
+    watch: {
+    },
+    activated() {
+
+    },
+    deactivated() {
+
+    },
+    props: {
+      swipeid: {
+        type: String,
+        default: ''
+      },
+      effect: {
+        type: String,
+        default: 'slide'
+      },
+      loop: {
+        type: Boolean,
+        default: false
+      },
+      direction: {
+        type: String,
+        default: 'horizontal'
+      },
+      pagination: {
+        type: Boolean,
+        default: true
+      },
+      autoplay: {
+        type: Number,
+        default: 5000,
+      },
+      centeredSlides: {
+        type: Boolean,
+        default: true,
+      },
+      slidesPerView:{
+        type: String,
+        default: 'auto'
+      },
+      paginationType: {
+        type: String,
+        default: 'bullets'
+      }
+    },
+    data(){
+      return {
+        dom:''
+      }
+    },
+    mounted() {
+      var That = this;
+      this.dom = new Swiper('.' + That.swipeid, {
+        //循环
+        loop: That.loop,
+        //分页器
+        pagination: '.swiper-pagination',
+        //分页类型
+        paginationType: That.paginationType, //fraction,progress,bullets
+        //自动播放
+        autoplay: That.autoplay,
+        //方向
+        direction: That.direction,
+        //特效
+        effect: That.effect, //slide,fade,coverflow,cube
+        autoplayDisableOnInteraction: false,
+        observer: true, //修改swiper自己或子元素时，自动初始化swiper
+        observeParents: true, //修改swiper的父元素时，自动初始化swiper
+        height : window.innerHeight,
+        lazyLoading: true,
+        centeredSlides: That.centeredSlides,
+        slidesPerView: That.slidesPerView,
+        coverflow: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows : false
+        }
+      });
+
+      // var swiper = new Swiper('.swiper-container', {
+      //   effect: 'coverflow',
+      //   centeredSlides: true,
+      //   slidesPerView: 'auto',
+      //   loop: false,
+      //   coverflow: {
+      //     rotate: 50,
+      //     stretch: 0,
+      //     depth: 100,
+      //     modifier: 1,
+      //     slideShadows : false
+      //   }
+      // });
+
+
+    },
+    components: {
+    }
+  }
+);
 let app = new Vue(
   {
     computed: {
@@ -6,30 +113,31 @@ let app = new Vue(
     mounted: function() {
       let vue = this;
       vue.load();
+      let swiper = this.$refs.swiper;
+      if (swiper.dom) {
+        this.swiper = swiper.dom;
+      }
     },
     activated() {
+      if (this.swiper) {
+        this.swiper.startAutoplay();
+      }
     },
     deactivated() {
+      this.loop = false;
+      if (this.swiper) {
+        this.swiper.stopAutoplay();
+      }
     },
     data: {
+      artist: [],
     },
     watch: {
     },
     methods: {
       load(){
-        var swiper = new Swiper('.swiper-container', {
-          effect: 'coverflow',
-          centeredSlides: true,
-          slidesPerView: 'auto',
-          loop: true,
-          coverflow: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows : false
-          }
-        });
+        let vue = this;
+        vue.artist = config.artist;
       }
     },
     components: {

@@ -7,6 +7,7 @@
   <meta name="description" content="">
   <title>main</title>
   <link rel="stylesheet" href="./../public/styles/main.css">
+  <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/1.9.2/skins/default/index.css" />
 </head>
 <body>
 <div class="art-container" id="artist">
@@ -104,77 +105,24 @@
 <script type="text/x-template" id="live">
   <div class="tabs">
     <section class="ptop">
-      <div class="text">
-        组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件
-        组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件
-        组件组件组件组件组件组件组件组件组件组件组件组件
-      </div>
-      <div class="media">
-        <ul class="img-list">
-          <li>
-            <img src="public/images/resource/pro01.png">
-          </li>
-          <li>
-            <img src="public/images/resource/pro02.png">
-          </li>
-          <li>
-            <img src="public/images/resource/pro03.png">
+      <div class="text">{{ top.content }}</div>
+      <div class="media" >
+        <video id="video_top" class="video-js vjs-big-play-centered" controls v-if="top.videoId !== ''"></video>
+        <ul class="img-list" v-if="topImg">
+          <li v-for="imgs in top.images">
+            <img :src="imgs">
           </li>
         </ul>
       </div>
     </section>
     <ul class="news">
-      <li class="item">
-        <div class="text">
-          组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件
-          组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件
-          组件组件组件组件组件组件组件组件组件组件组件组件
-        </div>
+      <li class="item" v-for="(item, index) in liveList">
+        <div class="text">{{ item.content }}</div>
         <div class="media">
-          <video id="my-player" class="video-js" controls preload="auto"
-                 poster="//vjs.zencdn.net/v/oceans.png">
-            <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
-            <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
-            <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
-          </video>
-        </div>
-      </li>
-      <li class="item">
-        <div class="text">
-          组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件
-          组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件
-          组件组件组件组件组件组件组件组件组件组件组件组件
-        </div>
-        <div class="media">
-          <ul class="img-list">
-            <li>
-              <img src="public/images/resource/pro01.png">
-            </li>
-            <li>
-              <img src="public/images/resource/pro02.png">
-            </li>
-            <li>
-              <img src="public/images/resource/pro03.png">
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="item">
-        <div class="text">
-          组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件
-          组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件
-          组件组件组件组件组件组件组件组件组件组件组件组件
-        </div>
-        <div class="media">
-          <ul class="img-list">
-            <li>
-              <img src="public/images/resource/pro01.png">
-            </li>
-            <li>
-              <img src="public/images/resource/pro02.png">
-            </li>
-            <li>
-              <img src="public/images/resource/pro03.png">
+          <video :id="'video_' + index" class="video-js vjs-big-play-centered" controls v-if="item.videoId !== ''"></video>
+          <ul class="img-list" v-if="item.images.length > 0">
+            <li v-for="(img, i) in item.images">
+              <img :src="img">
             </li>
           </ul>
         </div>
@@ -195,11 +143,88 @@
 <script>
   config = {
     "index": "index.html",
-    "login": "login.html"
+    "login": "login.html",
+    "artist":
+      {
+        "followCount":0,
+        "name":"顾景舟11",
+        "banner":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-22\/682efd0ab90940e0a9f664d029cf7d14.jpeg",
+        "id":1,
+        "dynamicList":
+          {
+            "entries":
+              [
+                {
+                  "images":
+                    [
+                      "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
+                    ],
+                  "videoImage":"//vjs.zencdn.net/v/oceans.png",
+                  "videoId":"",
+                  "id":1,
+                  "content":"ssss",
+                  "isTop": false
+                },
+                {
+                  "images":
+                    [
+                      "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
+                    ],
+                  "videoImage":"\/images\/default-null.png",
+                  "videoId":"",
+                  "id":2,
+                  "content":"ssss",
+                  "isTop": false
+                },
+                {
+                  "images": [],
+                  "videoImage":"//vjs.zencdn.net/v/oceans.png",
+                  "videoId":"//vjs.zencdn.net/v/oceans.mp4",
+                  "id":1,
+                  "content":"ssss",
+                  "isTop": false
+                },
+                {
+                  "images": [],
+                  "videoImage":"//vjs.zencdn.net/v/oceans.png",
+                  "videoId":"//vjs.zencdn.net/v/oceans.mp4",
+                  "id":3,
+                  "content":"组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件",
+                  "isTop": true
+                }
+              ],
+            "pager":
+              {
+                "prev":0,
+                "current":1,
+                "next":1,
+                "page_size":20,
+                "total_page":1,
+                "total":1
+              }
+          }
+      },
+    "artistPage_url": "http://localhost:3000/artistPage"
   }
 </script>
+<script type="text/javascript" src="https://g.alicdn.com/de/prismplayer/1.9.2/prism.js"></script>
 <script src="public/scripts/head.js"></script>
 <script src="public/scripts/video.js"></script>
 <script src="public/scripts/artist.js"></script>
+<script type="text/javascript">
+//  document.write("<div id = 'J_prismPlayer' style='width: 192px;height: 128px;' class='prism-player'></div >");
+//  window.onload = function () {
+//      new window.prismplayer(
+//          {
+//            id: "J_prismPlayer",
+//            autoplay: true,
+//            width: "1920px",
+//            height: "1280px",
+//            vid: "54ec1dee5ef74e85a7fec30e17efaf7a",
+//            playauth: "客户调用接口生成",
+//          }
+//      );
+//  };
+</script>
 </body>
 </html>
