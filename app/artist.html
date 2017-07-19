@@ -7,7 +7,6 @@
   <meta name="description" content="">
   <title>main</title>
   <link rel="stylesheet" href="./../public/styles/main.css">
-  <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/1.9.2/skins/default/index.css" />
 </head>
 <body>
 <div class="art-container" id="artist">
@@ -43,6 +42,14 @@
     </component>
   </keep-alive>
 </div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+      <!--<div class="confrim" @click="close">确认</div>-->
+    </section>
+  </div>
+</template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script type="text/x-template" id="head_top">
@@ -115,7 +122,7 @@
         </ul>
       </div>
     </section>
-    <ul class="news">
+    <ul class="news" v-load-more="nextPage" type="1">
       <li class="item" v-for="(item, index) in liveList">
         <div class="text">{{ item.content }}</div>
         <div class="media">
@@ -128,16 +135,74 @@
         </div>
       </li>
     </ul>
+    <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
   </div>
 </script>
 <script type="text/x-template" id="works">
   <div class="tabs">
-    works
+    <ul class="pro-list">
+      <li v-for="(item, index) in workslist">
+        <div class="inner">
+          <div class="left">
+            <img :src="item.defaultImage">
+          </div>
+          <div class="right">
+            <div class="title overText">{{ item.name }}</div>
+            <div class="text overTextH2">{{ item.intro }}</div>
+            <div class="price overText">￥{{ item.price }}</div>
+            <div class="btn-container">
+              <a href="javascript:;" class="btn">我要购买</a>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </script>
 <script type="text/x-template" id="chat">
   <div class="tabs">
-    chat
+    <ul class="chat-list" v-load-more="nextPage" type="1">
+      <li v-for="(item, index) in chatlist">
+        <div class="inner">
+          <div class="info">
+            <div class="img-container">
+              <img :src="item.headPortrait">
+            </div>
+            <div class="user">{{ item.userName }}</div>
+            <div class="time">{{ item.createTime }}</div>
+          </div>
+          <div class="context">{{ item.content }}</div>
+          <div class="reply-container" v-if="item.replyContent.length > 0">
+            <div class="icon"><img src="public/images/reply.png"></div>
+            <div class="reply" v-for="(reply, index) in item.replyContent">{{ reply }}</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
+    <section class="sub-chat">
+      <a href="javascript:;" class="sub" @click="pop()">
+        <span class="img">
+          <img src="public/images/reply_chat.png">
+        </span>
+        <span class="txt">请输入要表达的信息</span>
+      </a>
+      <div class="aside" :class="{open:open,docked:docked}" @click.prevent="pop()">
+        <div class="container" @click.stop="">
+          <form id="chat_form">
+            <div class="inner">
+              <div class="top">
+                <a href="javascript:;" class="cancel" @click.prevent="pop()">取消</a>
+                <span class="title">我来聊两句</span>
+                <a href="javascript:;" class="send" @click.prevent="send()">发送</a>
+              </div>
+              <textarea class="textarea" v-model="message"></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
   </div>
 </script>
 <script>
@@ -155,12 +220,9 @@
             "entries":
               [
                 {
-                  "images":
-                    [
-                      "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
-                    ],
+                  "images":[],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
-                  "videoId":"",
+                  "videoId":"//vjs.zencdn.net/v/oceans.mp4",
                   "id":1,
                   "content":"ssss",
                   "isTop": false
@@ -177,10 +239,13 @@
                   "isTop": false
                 },
                 {
-                  "images": [],
+                  "images":
+                    [
+                      "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
+                    ],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
-                  "videoId":"//vjs.zencdn.net/v/oceans.mp4",
-                  "id":1,
+                  "videoId":"",
+                  "id":4,
                   "content":"ssss",
                   "isTop": false
                 },
@@ -204,27 +269,15 @@
               }
           }
       },
-    "artistPage_url": "http://localhost:3000/artistPage"
+    "artistPage_url": "http://localhost:3000/artistPage",
+    "artistWorks_url": "http://localhost:3000/artistWorks",
+    "artistChat_url": "http://localhost:3000/artistChat",
+    "chat_url": "aaaaaa"
   }
 </script>
-<script type="text/javascript" src="https://g.alicdn.com/de/prismplayer/1.9.2/prism.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script src="public/scripts/head.js"></script>
 <script src="public/scripts/video.js"></script>
 <script src="public/scripts/artist.js"></script>
-<script type="text/javascript">
-//  document.write("<div id = 'J_prismPlayer' style='width: 192px;height: 128px;' class='prism-player'></div >");
-//  window.onload = function () {
-//      new window.prismplayer(
-//          {
-//            id: "J_prismPlayer",
-//            autoplay: true,
-//            width: "1920px",
-//            height: "1280px",
-//            vid: "54ec1dee5ef74e85a7fec30e17efaf7a",
-//            playauth: "客户调用接口生成",
-//          }
-//      );
-//  };
-</script>
 </body>
 </html>

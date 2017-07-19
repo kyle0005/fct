@@ -13,12 +13,12 @@
   <head-top></head-top>
   <section class="banner">
     <img src="public/images/resource/banner.png" class="banner-img">
-    <a href="javascript:;" class="banner-link">
+    <a href="userinfo.html" class="banner-link">
       <span class="photo-container">
-        <img src="public/images/resource/artist.png">
+        <img :src="user.photo">
       </span>
       <span class="info-container">
-        <span class="name">用户名</span>
+        <span class="name">{{ user.username }}</span>
         <span class="rank">普通用户</span>
       </span>
     </a>
@@ -227,6 +227,10 @@
       }
 
     ],
+    "user":{
+      "photo": "public/images/resource/artist.png",
+      "username": "用户名"
+    }
   }
 </script>
 <script src="public/scripts/usercenter.js"></script>

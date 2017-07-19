@@ -1,3 +1,20 @@
+Vue.component('pop',
+  {
+    template: '#pop',
+    data() {
+      return {
+        positionY: 0,
+        timer: null,
+      }
+    },
+    props: ['msg'],
+    methods: {
+      close(){
+        this.$emit('close')
+      }
+    }
+  }
+);
 Vue.component('live',
   {
     template: '#live',
@@ -16,16 +33,79 @@ Vue.component('live',
         return flag;
       },
     },
+    directives: {
+      'load-more': {
+        bind: (el, binding) => {
+          let windowHeight = window.screen.height;
+          let height;
+          let setTop;
+          let paddingBottom;
+          let marginBottom;
+          let requestFram;
+          let oldScrollTop;
+          let scrollEl;
+          let heightEl;
+          let scrollType = el.attributes.type && el.attributes.type.value;
+          let scrollReduce = 2;
+          if (scrollType == 2) {
+            scrollEl = el;
+            heightEl = el.children[0];
+          } else {
+            scrollEl = document.body;
+            heightEl = el;
+          }
+
+          el.addEventListener('touchstart', () => {
+            height = heightEl.clientHeight;
+            if (scrollType == 2) {
+              height = height
+            }
+            setTop = el.offsetTop;
+            paddingBottom = tools.getStyle(el, 'paddingBottom');
+            marginBottom = tools.getStyle(el, 'marginBottom');
+          }, false)
+
+          el.addEventListener('touchmove', () => {
+            loadMore();
+          }, false)
+
+          el.addEventListener('touchend', () => {
+            oldScrollTop = scrollEl.scrollTop;
+            moveEnd();
+          }, false);
+
+          const moveEnd = () => {
+            requestFram = requestAnimationFrame(() => {
+              if (scrollEl.scrollTop != oldScrollTop) {
+                oldScrollTop = scrollEl.scrollTop;
+                moveEnd()
+              } else {
+                cancelAnimationFrame(requestFram);
+                height = heightEl.clientHeight;
+                loadMore();
+              }
+            })
+          };
+
+          const loadMore = () => {
+            if (scrollEl.scrollTop + windowHeight >= height + setTop + paddingBottom + marginBottom - scrollReduce) {
+              binding.value();
+            }
+          }
+        }
+      }
+    },
     mounted: function() {
       let vue = this;
       vue.loadLive();
-      window.addEventListener('scroll', vue.nextPage)
     },
     data() {
       return {
         dynamicList: config.artist.dynamicList,
         liveList: config.artist.dynamicList.entries,
         top: {},
+        preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
+        last_url: ""
       }
     },
     methods:{
@@ -34,33 +114,40 @@ Vue.component('live',
           scrollTop = document.body.scrollTop,
           clientHeight = document.body.clientHeight,
           scrollHeight = document.body.scrollHeight;
-        if(scrollTop + clientHeight == scrollHeight && vue.dynamicList.pager.next > 0){
+        vue.preventRepeatReuqest = true;
+        /* scrollTop + clientHeight == scrollHeight &&  */
+        if(vue.dynamicList.pager.next > 0){
           var _url = config.artistPage_url + '?page=' + vue.dynamicList.pager.next;
-          jAjax({
-            type:'get',
-            url:_url,
-            timeOut:5000,
-            before:function(){
-              console.log('before');
-            },
-            success:function(data){
-              if(data){
-                data = JSON.parse(data);
-                if(parseInt(data.code) == 200){
-                  vue.dynamicList = data.data;
-                  vue.liveList.concat(vue.dynamicList.entries);
-                  vue.loadLive();
-                  console.log('ok')
-                }else {
-                  console.log('false')
+          if(_url !== vue.last_url){
+            vue.last_url = _url;
+            jAjax({
+              type:'get',
+              url:_url,
+              timeOut:5000,
+              before:function(){
+                console.log('before');
+              },
+              success:function(data){
+                if(data){
+                  data = JSON.parse(data);
+                  if(parseInt(data.code) == 200){
+                    vue.dynamicList = data.data;
+                    vue.liveList = data.data.entries.concat(vue.liveList);
+                    vue.loadLive();
+                    vue.preventRepeatReuqest = false;
+                    console.log('ok')
+                  }else {
+                    console.log('false')
+                  }
                 }
-              }
 
-            },
-            error:function(){
-              console.log('error');
-            }
-          });
+              },
+              error:function(){
+                console.log('error');
+              }
+            });
+          }
+
         }
       },
       loadLive(){
@@ -107,28 +194,47 @@ Vue.component('live',
 Vue.component('works',
   {
     template: '#works',
-    computed: {
-    },
     mounted: function() {
-
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
+      let vue = this;
+      vue.loadWorks();
     },
     data() {
       return {
+        workslist: [],
+        last_url: "",
 
       }
     },
     methods: {
-      prevent(event) {
-        event.preventDefault();
-        event.stopPropagation()
+      loadWorks() {
+        let vue = this;
+        var _url = config.artistWorks_url;
+        if(_url !== vue.last_url){
+          vue.last_url = _url;
+          jAjax({
+            type:'get',
+            url:_url,
+            timeOut:5000,
+            before:function(){
+              console.log('before');
+            },
+            success:function(data){
+              if(data){
+                data = JSON.parse(data);
+                if(parseInt(data.code) == 200){
+                  vue.workslist = data.data;
+
+                }else {
+                  console.log('false')
+                }
+              }
+
+            },
+            error:function(){
+              console.log('error');
+            }
+          });
+        }
       },
     },
   }
@@ -138,26 +244,217 @@ Vue.component('chat',
     template: '#chat',
     computed: {
     },
+    directives: {
+      'load-more': {
+        bind: (el, binding) => {
+          let windowHeight = window.screen.height;
+          let height;
+          let setTop;
+          let paddingBottom;
+          let marginBottom;
+          let requestFram;
+          let oldScrollTop;
+          let scrollEl;
+          let heightEl;
+          let scrollType = el.attributes.type && el.attributes.type.value;
+          let scrollReduce = 2;
+          if (scrollType == 2) {
+            scrollEl = el;
+            heightEl = el.children[0];
+          } else {
+            scrollEl = document.body;
+            heightEl = el;
+          }
+
+          el.addEventListener('touchstart', () => {
+            height = heightEl.clientHeight;
+            if (scrollType == 2) {
+              height = height
+            }
+            setTop = el.offsetTop;
+            paddingBottom = tools.getStyle(el, 'paddingBottom');
+            marginBottom = tools.getStyle(el, 'marginBottom');
+          }, false)
+
+          el.addEventListener('touchmove', () => {
+            loadMore();
+          }, false)
+
+          el.addEventListener('touchend', () => {
+            oldScrollTop = scrollEl.scrollTop;
+            moveEnd();
+          }, false);
+
+          const moveEnd = () => {
+            requestFram = requestAnimationFrame(() => {
+              if (scrollEl.scrollTop != oldScrollTop) {
+                oldScrollTop = scrollEl.scrollTop;
+                moveEnd()
+              } else {
+                cancelAnimationFrame(requestFram);
+                height = heightEl.clientHeight;
+                loadMore();
+              }
+            })
+          };
+
+          const loadMore = () => {
+            if (scrollEl.scrollTop + windowHeight >= height + setTop + paddingBottom + marginBottom - scrollReduce) {
+              binding.value();
+            }
+          }
+        }
+      }
+    },
     mounted: function() {
-
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
+      let vue = this;
+      vue.loadChat();
     },
     data() {
       return {
-
+        chatlist: [],
+        last_url: "",
+        pager: {},
+        open: false,
+        docked: false,
+        preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
+        showAlert: false, //显示提示组件
+        msg: null, //提示的内容
+        message: "" /* 提交聊天内容 */
       }
     },
     methods: {
-      prevent(event) {
-        event.preventDefault();
-        event.stopPropagation()
+      nextPage() {
+        let vue = this;
+        vue.preventRepeatReuqest = true;
+        if(vue.pager.next > 0){
+          var _url = config.artistChat_url + '?page=' + vue.pager.next;
+          if(_url !== vue.last_url){
+            vue.last_url = _url;
+            jAjax({
+              type:'get',
+              url:_url,
+              timeOut:5000,
+              before:function(){
+                console.log('before');
+              },
+              success:function(data){
+                if(data){
+                  data = JSON.parse(data);
+                  if(parseInt(data.code) == 200){
+                    vue.pager = data.data.pager;
+                    vue.chatlist = data.data.entries.concat(vue.chatlist);
+                    vue.preventRepeatReuqest = false;
+                  }else {
+                    console.log('false')
+                  }
+                }
+
+              },
+              error:function(){
+                console.log('error');
+              }
+            });
+          }
+
+        }
+      },
+      pop() {
+        let vue = this;
+        if (!vue.open) {
+          vue.docked = true;
+          vue.open = true;
+        } else {
+          vue.open = false;
+          setTimeout(function() {
+            vue.docked = false;
+          }, 300);
+        }
+      },
+      send(){
+        let vue = this;
+        jAjax({
+          type:'post',
+          url:config.chat_url,
+          data: {
+            'message': vue.message,
+          },
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            //{message:"xxx", url:"", code:200, data:""}
+            if(data){
+              data = JSON.parse(data);
+              vue.showCoup();
+              if(parseInt(data.code) == 200){
+                vue.chatlist = data.data.entries;
+                vue.pager = data.data.pager;
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+              }else {
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+              }
+            }
+
+          },
+          error:function(){
+            console.log('error');
+          }
+        });
+      },
+      loadChat() {
+        let vue = this;
+        var _url = config.artistChat_url;
+        if(_url !== vue.last_url){
+          vue.last_url = _url;
+          jAjax({
+            type:'get',
+            url:_url,
+            timeOut:5000,
+            before:function(){
+              console.log('before');
+            },
+            success:function(data){
+              if(data){
+                data = JSON.parse(data);
+                if(parseInt(data.code) == 200){
+                  vue.chatlist = data.data.entries;
+                  vue.pager = data.data.pager;
+                }else {
+                  console.log('false')
+                }
+              }
+
+            },
+            error:function(){
+              console.log('error');
+            }
+          });
+        }
+      },
+      close(){
+        this.showAlert = false;
+      },
+      close_auto(callback, obj){
+        let vue = this;
+        setTimeout(function () {
+          vue.showAlert = false;
+          if(callback){
+            callback(obj);
+          }
+
+        }, 1500);
+
+      },
+      linkto(url){
+        if(url){
+          location.href = url;
+        }
       },
     },
   }
