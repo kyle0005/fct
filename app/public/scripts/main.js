@@ -1,23 +1,29 @@
 var app = new Vue(
   {
     mounted: function() {
-      this.getRankList();
-      this.getProFirst();
+      var key = tools.getUrlKey();
+      console.log(key)
     },
     data: {
-      ranks_list: [],
-      pro_list: [],
+      ranks_list: config.productsRank,
+      pro_list: config.products,
       loading: false,
       refreshing: false,
-      img_url: 'public/images',
-      msg: 0
+      msg: 0,
+      isindex: config.isindex,
+      code: ""
     },
     methods: {
-      change(index) {
+      /* 菜单分类加载 */
+      getprolist(code, level_id) {
         let vue = this;
-        let _url = apis.products;
-        if(index >= 0){
-          _url += '?rank_id=' + index;
+        let _url = config.product_url;
+        code = code || "";
+        level_id = level_id || "";
+        if(code == "" && vue.code !== ""){
+          _url += '?code=' + vue.code + '&level_id=' + level_id;
+        } else {
+          _url += '?code=' + code + '&level_id=' + level_id;
         }
         jAjax({
           type:'get',
@@ -29,11 +35,13 @@ var app = new Vue(
           success:function(data){
             if(data){
               data = JSON.parse(data);
-              console.log(data);
-              vue.pro_list = (data);
-
-            }else {
-              console.log('no data')
+              if(parseInt(data.code) == 200){
+                vue.pro_list = data.data;
+                vue.code = code;
+                console.log(code + "+" + level_id)
+              }else {
+                console.log('false')
+              }
             }
 
           },
@@ -41,46 +49,6 @@ var app = new Vue(
             console.log('error');
           }
         });
-      },
-      getRankList() {
-        let vue = this;
-        vue.ranks_list = config.productsRank;
-
-      },
-      getProFirst(){
-        let vue = this;
-        vue.pro_list = config.products;
-      },
-
-      /* 菜单分类加载 */
-      getprolist(code, level_id) {
-        let vue = this;
-        let _url = apis.products;
-        _url += '?code=' + code + '&level_id=' + level_id;
-          jAjax({
-            type:'get',
-            url:_url,
-            timeOut:5000,
-            before:function(){
-              console.log('before');
-            },
-            success:function(data){
-              if(data){
-                data = JSON.parse(data);
-                console.log(data);
-                vue.pro_list = (data);
-
-              }else {
-                console.log('no data')
-              }
-
-            },
-            error:function(){
-              console.log('error');
-            }
-          });
-
-
 
       },
 
@@ -89,7 +57,5 @@ var app = new Vue(
 
       },
     },
-    components: {
-    }
   }
 ).$mount('#main');

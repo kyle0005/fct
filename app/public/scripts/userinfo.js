@@ -27,34 +27,64 @@ let app = new Vue(
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-
+      userinfo: config.userinfo,
+      uploadImg: {},
+      file: {},
     },
     watch: {
     },
     methods: {
-      getCoupon(){
+      fileChange(event){
         let vue = this;
+        if (typeof event.target === 'undefined') {
+          vue.file = event[0];
+        }
+        else {
+          vue.file = event.target.files[0];
+        }
+        var formData = new FormData();
+        formData.append("file", vue.file);
         jAjax({
           type:'post',
-          url:config.coupon_url,
-          data: {
-            'validateCoupon': config.validateCoupon,
-            'couponCode': vue.couponcode,
-          },
+          url:config.uploadFileUrl,
+          data: formData,
           timeOut:5000,
           before:function(){
             console.log('before');
           },
           success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
             if(data){
               data = JSON.parse(data);
-              vue.showCoup();
               if(parseInt(data.code) == 200){
-                vue.coupon.couponAmount = data.data;
-                vue.coupon.couponCode = vue.couponcode;
-                vue.loadCoupon();
-                vue.calculateAmount(0);
+               vue.uploadImg = data.data;
+               vue.userinfo.headPortrait = vue.uploadImg.fullUrl;
+               console.log(vue.uploadImg)
+              }
+            }
+
+          },
+          error:function(){
+            console.log('error');
+          }
+        });
+      },
+      sub(){
+        jAjax({
+          type:'post',
+          url:apis.userResource,
+          data: formData.serializeForm('userLogin'),
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto(vue.linkto, data.url);
+
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;
@@ -63,8 +93,8 @@ let app = new Vue(
             }
 
           },
-          error:function(){
-            console.log('error');
+          error:function(status, statusText){
+            console.log(statusText);
           }
         });
       },

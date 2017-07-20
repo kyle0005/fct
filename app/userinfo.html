@@ -11,61 +11,67 @@
 <body>
 <div class="userinfo-container" id="userinfo" v-cloak>
   <section class="photo-container">
-    <a href="javascript:;" class="link">
+    <div class="link">
       <span class="photo">
-        <img src="public/images/resource/artist.png">
+        <img :src="userinfo.emptyPhoto" v-if="userinfo.headPortrait == ''">
+        <img :src="userinfo.headPortrait" v-else>
       </span>
       点击修改头像
-    </a>
+    </div>
+    <input type="file" class="upload" @change="fileChange">
   </section>
-  <section class="list-container">
-    <div class="line">
-      <div class="left">用户ID</div>
-      <div class="right">
-        <input type="text" class="right-inp">
+  <form id="userForm">
+    <input type="hidden" :value="uploadImg.url">
+    <section class="list-container">
+      <div class="line">
+        <div class="left">用户ID</div>
+        <div class="right">
+          <input type="text" class="right-inp">
+        </div>
       </div>
-    </div>
-    <div class="line">
-      <div class="left">手机号码</div>
-      <div class="right">
-        <input type="text" class="right-inp">
+      <div class="line">
+        <div class="left">手机号码</div>
+        <div class="right">
+          <input type="text" class="right-inp">
+        </div>
       </div>
-    </div>
-    <div class="line">
-      <div class="left">昵称</div>
-      <div class="right">
-        <input type="text" class="right-inp">
+      <div class="line">
+        <div class="left">昵称</div>
+        <div class="right">
+          <input type="text" class="right-inp">
+        </div>
       </div>
-    </div>
-    <div class="line">
-      <div class="left">性别</div>
-      <div class="right">
-        <label for="male" class="radio-container">
-          <input type="radio" name="address" id="male" class="choose-radio">
-          <span class="">男</span>
-        </label>
-        <label for="female" class="radio-container">
-          <input type="radio" name="address" id="female" class="choose-radio">
-          <span class="">女</span>
-        </label>
+      <div class="line">
+        <div class="left">性别</div>
+        <div class="right">
+          <label for="male" class="radio-container">
+            <input type="radio" name="address" id="male" class="choose-radio">
+            <span class="">男</span>
+          </label>
+          <label for="female" class="radio-container">
+            <input type="radio" name="address" id="female" class="choose-radio">
+            <span class="">女</span>
+          </label>
+        </div>
       </div>
-    </div>
-    <div class="line">
-      <div class="left">出生日期</div>
-      <div class="right clearfix">
-        <input type="date" name="" id="" class="birth">
-        <span class="wei-arrow-right"></span>
+      <div class="line">
+        <div class="left">出生日期</div>
+        <div class="right clearfix">
+          <input type="date" name="" id="" class="birth">
+          <span class="wei-arrow-right"></span>
+        </div>
       </div>
-    </div>
-    <div class="line">
-      <div class="left">微信</div>
-      <div class="right">
-        <input type="text" class="right-inp">
+      <div class="line">
+        <div class="left">微信</div>
+        <div class="right">
+          <input type="text" class="right-inp">
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </form>
+
   <div class="sub-btn">
-    <a href="javascript:;">提交评价</a>
+    <a href="javascript:;" @click="sub()">确认保存</a>
   </div>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
@@ -81,7 +87,17 @@
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
-
+    "userinfo": {
+      "memberId": 1,
+      "cellPhone": 13838384388,
+      "userName": "昵称",
+      "headPortrait": "",
+      "emptyPhoto": "http://localhost:9000/public/images/resource/emptyPhoto.png",
+      "sex": 0, /* 0: 女, 1: 男 */
+      "birthday": "2017-01-30",
+      "weixin": "2124235"
+    },
+    "uploadFileUrl": "http://localhost:3000/uploadFile"
   }
 </script>
 <script src="public/scripts/userinfo.js"></script>

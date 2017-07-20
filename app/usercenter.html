@@ -158,7 +158,7 @@
     <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
       <div class="container">
         <ul class="types">
-          <li class="item" v-for="(types, index) in typeList" @click="change(types.code, '')">
+          <li class="item" v-for="(types, index) in typeList" @click="change(types.code)">
             <span>{{ types.name }}</span>
             <i class="fa fa-angle-right"></i>
           </li>
@@ -166,31 +166,31 @@
         <ul class="lines clearfix">
           <li class="item">
             <a href="javascript:;">
-              <img :src="img_url + '/menu1.png'">
+              <img src="public/images/menu1.png">
               <span>合作艺师</span>
             </a>
           </li>
           <li class="item">
             <a href="javascript:;">
-              <img :src="img_url + '/menu2.png'">
+              <img src="public/images/menu2.png">
               <span>百科</span>
             </a>
           </li>
           <li class="item">
             <a href="javascript:;">
-              <img :src="img_url + '/menu3.png'">
+              <img src="public/images/menu3.png">
               <span>个性定制</span>
             </a>
           </li>
           <li class="item">
             <a href="javascript:;">
-              <img :src="img_url + '/menu4.png'">
+              <img src="public/images/menu4.png">
               <span>APP下载</span>
             </a>
           </li>
           <li class="item">
             <a href="javascript:;">
-              <img :src="img_url + '/menu5.png'">
+              <img src="public/images/menu5.png">
               <span>品牌理念</span>
             </a>
           </li>
@@ -227,6 +227,7 @@
       }
 
     ],
+    "main_url": "http://localhost:9000/main.html",
     "user":{
       "photo": "public/images/resource/artist.png",
       "username": "用户名"

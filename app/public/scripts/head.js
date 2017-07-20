@@ -7,7 +7,14 @@ Vue.component('head-top',
     computed: {
     },
     mounted: function() {
-      this.getTypeList();
+      let vue = this;
+      vue.getTypeList();
+    },
+    props: {
+      isindex: {
+        type: Boolean,
+        default: false
+      },
     },
     data() {
       return {
@@ -28,9 +35,17 @@ Vue.component('head-top',
       toLogin(){
         location.href = config.login;
       },
-      change(index) {
+      change(code) {
         let vue = this;
-        vue.$emit('changelist',index);
+        if(vue.isindex){
+          /* 判断为首页 */
+          vue.$emit('changelist',code);
+        }
+        else {
+          /* 不为首页 */
+          location.href = config.main_url + '?code=' + code;
+        }
+
       },
       toggle() {
         if (!this.open) {

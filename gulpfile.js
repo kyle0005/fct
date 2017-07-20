@@ -112,11 +112,16 @@ gulp.task('serve', () => {
       data: slides
     });
   });
-  server.post('/detail/artist', (req, res) => {
+  server.post('/uploadFile', (req, res) => {
+
     res.json({
-      code: 0 ,
-      msg:"",
-      data: slides
+      "code": 200,
+      "message": "获取成功",
+      "url": null,
+      "data": {
+        "url": "/public/images/resource/artist.png",
+        "fullUrl": "http://localhost:9000/public/images/resource/artist.png"
+      }
     });
   });
 

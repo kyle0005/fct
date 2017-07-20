@@ -34,10 +34,8 @@
   "products": [
     {
       "id": 0,
-      "type_id": 1,
-      "type_name": "圆器",
-      "rank_id": 0,
-      "rank_name": "登堂入室",
+      "code": 1,
+      "level_id": 0,
       "name": "束云茶叶罐001",
       "artist": "李某某001",
       "title": "【精雕细刻】束云茶叶罐001",
@@ -53,15 +51,13 @@
       "saleAmount": 11111111
     },
     {
-      "id": "1",
-      "type_id": 1,
-      "type_name": "圆器",
-      "rank_id": 1,
-      "rank_name": "略有小成",
-      "name": "束云茶叶罐002",
-      "artist": "李某某002",
-      "title": "【精雕细刻】束云茶叶罐002",
-      "description": "描述文字。。。。。。002",
+      "id": 1,
+      "code": 1,
+      "level_id": 1,
+      "name": "束云茶叶罐001",
+      "artist": "李某某001",
+      "title": "【精雕细刻】束云茶叶罐001",
+      "description": "描述文字。。。。。001。",
       "default_pic": "/public/images/resource/imgs.png",
       "pics": [
         "/public/images/resource/imgs.png",
@@ -69,19 +65,17 @@
         "/public/images/resource/imgs.png",
         "/public/images/resource/imgs.png"
       ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
+      "clickAmount": 99999999,
+      "saleAmount": 11111111
     },
     {
-      "id": "2",
-      "type_id": 2,
-      "type_name": "方器",
-      "rank_id": 0,
-      "rank_name": "登堂入室",
-      "name": "束云茶叶罐003",
-      "artist": "李某某003",
-      "title": "【精雕细刻】束云茶叶罐003",
-      "description": "描述文字。。。。。。003",
+      "id": 2,
+      "code": 2,
+      "level_id": 2,
+      "name": "束云茶叶罐001",
+      "artist": "李某某001",
+      "title": "【精雕细刻】束云茶叶罐001",
+      "description": "描述文字。。。。。001。",
       "default_pic": "/public/images/resource/imgs.png",
       "pics": [
         "/public/images/resource/imgs.png",
@@ -89,19 +83,17 @@
         "/public/images/resource/imgs.png",
         "/public/images/resource/imgs.png"
       ],
-      "clickAmount": 88888888,
-      "saleAmount": 22222222
+      "clickAmount": 99999999,
+      "saleAmount": 11111111
     },
     {
-      "id": "3",
-      "type_id": 3,
-      "type_name": "花器",
-      "rank_id": 3,
-      "rank_name": "出神入化",
-      "name": "束云茶叶罐004",
-      "artist": "李某某004",
-      "title": "【精雕细刻】束云茶叶罐004",
-      "description": "描述文字。。。。。。004",
+      "id": 3,
+      "code": 3,
+      "level_id": 3,
+      "name": "束云茶叶罐001",
+      "artist": "李某某001",
+      "title": "【精雕细刻】束云茶叶罐001",
+      "description": "描述文字。。。。。001。",
       "default_pic": "/public/images/resource/imgs.png",
       "pics": [
         "/public/images/resource/imgs.png",
@@ -109,19 +101,17 @@
         "/public/images/resource/imgs.png",
         "/public/images/resource/imgs.png"
       ],
-      "clickAmount": 77777777,
-      "saleAmount": 22222222
+      "clickAmount": 99999999,
+      "saleAmount": 11111111
     },
     {
-      "id": "4",
-      "type_id": 1,
-      "type_name": "圆器",
-      "rank_id": 2,
-      "rank_name": "炉火纯青",
-      "name": "束云茶叶罐005",
-      "artist": "李某某005",
-      "title": "【精雕细刻】束云茶叶罐005",
-      "description": "描述文字。。。。。。005",
+      "id": 4,
+      "code": 2,
+      "level_id": 4,
+      "name": "束云茶叶罐001",
+      "artist": "李某某001",
+      "title": "【精雕细刻】束云茶叶罐001",
+      "description": "描述文字。。。。。001。",
       "default_pic": "/public/images/resource/imgs.png",
       "pics": [
         "/public/images/resource/imgs.png",
@@ -129,19 +119,17 @@
         "/public/images/resource/imgs.png",
         "/public/images/resource/imgs.png"
       ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
+      "clickAmount": 99999999,
+      "saleAmount": 11111111
     },
     {
-      "id": "5",
-      "type_id": 1,
-      "type_name": "圆器",
-      "rank_id": 0,
-      "rank_name": "登堂入室",
-      "name": "束云茶叶罐006",
-      "artist": "李某某006",
-      "title": "【精雕细刻】束云茶叶罐006",
-      "description": "描述文字。。。。。。006",
+      "id": 5,
+      "code": 1,
+      "level_id": 3,
+      "name": "束云茶叶罐001",
+      "artist": "李某某001",
+      "title": "【精雕细刻】束云茶叶罐001",
+      "description": "描述文字。。。。。001。",
       "default_pic": "/public/images/resource/imgs.png",
       "pics": [
         "/public/images/resource/imgs.png",
@@ -149,19 +137,17 @@
         "/public/images/resource/imgs.png",
         "/public/images/resource/imgs.png"
       ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
+      "clickAmount": 99999999,
+      "saleAmount": 11111111
     },
     {
-      "id": "6",
-      "type_id": 2,
-      "type_name": "方器",
-      "rank_id": 0,
-      "rank_name": "登堂入室",
-      "name": "束云茶叶罐007",
-      "artist": "李某某007",
-      "title": "【精雕细刻】束云茶叶罐007",
-      "description": "描述文字。。。。。。007",
+      "id": 6,
+      "code": 3,
+      "level_id": 1,
+      "name": "束云茶叶罐001",
+      "artist": "李某某001",
+      "title": "【精雕细刻】束云茶叶罐001",
+      "description": "描述文字。。。。。001。",
       "default_pic": "/public/images/resource/imgs.png",
       "pics": [
         "/public/images/resource/imgs.png",
@@ -169,19 +155,17 @@
         "/public/images/resource/imgs.png",
         "/public/images/resource/imgs.png"
       ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
+      "clickAmount": 99999999,
+      "saleAmount": 11111111
     },
     {
-      "id": "7",
-      "type_id": 1,
-      "type_name": "圆器",
-      "rank_id": 3,
-      "rank_name": "出神入化",
-      "name": "束云茶叶罐008",
-      "artist": "李某某008",
-      "title": "【精雕细刻】束云茶叶罐008",
-      "description": "描述文字。。。。。。008",
+      "id": 7,
+      "code": 2,
+      "level_id": 2,
+      "name": "束云茶叶罐001",
+      "artist": "李某某001",
+      "title": "【精雕细刻】束云茶叶罐001",
+      "description": "描述文字。。。。。001。",
       "default_pic": "/public/images/resource/imgs.png",
       "pics": [
         "/public/images/resource/imgs.png",
@@ -189,188 +173,8 @@
         "/public/images/resource/imgs.png",
         "/public/images/resource/imgs.png"
       ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
-    },
-    {
-      "id": "8",
-      "type_id": 3,
-      "type_name": "花器",
-      "rank_id": 0,
-      "rank_name": "登堂入室",
-      "name": "束云茶叶罐009",
-      "artist": "李某某009",
-      "title": "【精雕细刻】束云茶叶罐009",
-      "description": "描述文字。。。。。。009",
-      "default_pic": "/public/images/resource/imgs.png",
-      "pics": [
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png"
-      ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
-    },
-    {
-      "id": "9",
-      "type_id": 2,
-      "type_name": "方器",
-      "rank_id": 4,
-      "rank_name": "登峰造极",
-      "name": "束云茶叶罐010",
-      "artist": "李某某010",
-      "title": "【精雕细刻】束云茶叶罐010",
-      "description": "描述文字。。。。。。010",
-      "default_pic": "/public/images/resource/imgs.png",
-      "pics": [
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png"
-      ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
-    },
-    {
-      "id": "10",
-      "type_id": 2,
-      "type_name": "方器",
-      "rank_id": 4,
-      "rank_name": "登峰造极",
-      "name": "束云茶叶罐011",
-      "artist": "李某某011",
-      "title": "【精雕细刻】束云茶叶罐011",
-      "description": "描述文字。。。。。。011",
-      "default_pic": "/public/images/resource/imgs.png",
-      "pics": [
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png"
-      ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
-    },
-    {
-      "id": "11",
-      "type_id": 2,
-      "type_name": "方器",
-      "rank_id": 1,
-      "rank_name": "略有小成",
-      "name": "束云茶叶罐012",
-      "artist": "李某某012",
-      "title": "【精雕细刻】束云茶叶罐012",
-      "description": "描述文字。。。。。。012",
-      "default_pic": "/public/images/resource/imgs.png",
-      "pics": [
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png"
-      ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
-    },
-    {
-      "id": "12",
-      "type_id": 2,
-      "type_name": "方器",
-      "rank_id": 4,
-      "rank_name": "登峰造极",
-      "name": "束云茶叶罐013",
-      "artist": "李某某013",
-      "title": "【精雕细刻】束云茶叶罐013",
-      "description": "描述文字。。。。。013。",
-      "default_pic": "/public/images/resource/imgs.png",
-      "pics": [
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png"
-      ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
-    },
-    {
-      "id": "13",
-      "type_id": 2,
-      "type_name": "方器",
-      "rank_id": 4,
-      "rank_name": "登峰造极",
-      "name": "束云茶叶罐014",
-      "artist": "李某某014",
-      "title": "【精雕细刻】束云茶叶罐014",
-      "description": "描述文字。。。。。014。",
-      "default_pic": "/public/images/resource/imgs.png",
-      "pics": [
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png"
-      ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
-    },
-    {
-      "id": "14",
-      "type_id": 2,
-      "type_name": "方器",
-      "rank_id": 4,
-      "rank_name": "登峰造极",
-      "name": "束云茶叶罐014",
-      "artist": "李某某014",
-      "title": "【精雕细刻】束云茶叶罐014",
-      "description": "描述文字。。。。。014。",
-      "default_pic": "/public/images/resource/imgs.png",
-      "pics": [
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png"
-      ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
-    },
-    {
-      "id": "15",
-      "type_id": 4,
-      "type_name": "筋纹器",
-      "rank_id": 4,
-      "rank_name": "登峰造极",
-      "name": "束云茶叶罐014",
-      "artist": "李某某014",
-      "title": "【精雕细刻】束云茶叶罐014",
-      "description": "描述文字。。。。。014。",
-      "default_pic": "/public/images/resource/imgs.png",
-      "pics": [
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png"
-      ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
-    },
-    {
-      "id": "16",
-      "type_id": 2,
-      "type_name": "方器",
-      "rank_id": 2,
-      "rank_name": "炉火纯青",
-      "name": "束云茶叶罐015",
-      "artist": "李某某015",
-      "title": "【精雕细刻】束云茶叶罐015",
-      "description": "描述文字。。。。。。015",
-      "default_pic": "/public/images/resource/imgs.png",
-      "pics": [
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png",
-        "/public/images/resource/imgs.png"
-      ],
-      "clickAmount": 234123,
-      "saleAmount": 1000
+      "clickAmount": 99999999,
+      "saleAmount": 11111111
     }
   ],
   "encyclopedias_type": [
@@ -1605,133 +1409,121 @@
     "spec_id": "1",
     "number": "1"
   },
-  "artistPage":
-  {
-    "code":200,
-    "message":"获取动态列表成功",
-    "url":null,
-    "data":
-    {
-      "entries":
-      [
+  "artistPage": {
+    "code": 200,
+    "message": "获取动态列表成功",
+    "url": null,
+    "data": {
+      "entries": [
         {
-          "images":[],
-          "videoImage":"//vjs.zencdn.net/v/oceans.png",
-          "videoId":"//vjs.zencdn.net/v/oceans.mp4",
-          "id":9,
-          "content":"ssss",
+          "images": [],
+          "videoImage": "//vjs.zencdn.net/v/oceans.png",
+          "videoId": "//vjs.zencdn.net/v/oceans.mp4",
+          "id": 9,
+          "content": "ssss",
           "isTop": false
         },
         {
-          "images":
-          [
-            "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
+          "images": [
+            "http://fct-nick.img-cn-shanghai.aliyuncs.com/upload/2017-06-23/8101370a8a1b48669c9a64f0f74264bc.png"
           ],
-          "videoImage":"\/images\/default-null.png",
-          "videoId":"",
-          "id":10,
-          "content":"ssss",
+          "videoImage": "/images/default-null.png",
+          "videoId": "",
+          "id": 10,
+          "content": "ssss",
           "isTop": false
         },
         {
-          "images":
-          [
-            "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
+          "images": [
+            "http://fct-nick.img-cn-shanghai.aliyuncs.com/upload/2017-06-23/8101370a8a1b48669c9a64f0f74264bc.png"
           ],
-          "videoImage":"//vjs.zencdn.net/v/oceans.png",
-          "videoId":"",
-          "id":11,
-          "content":"ssss",
+          "videoImage": "//vjs.zencdn.net/v/oceans.png",
+          "videoId": "",
+          "id": 11,
+          "content": "ssss",
           "isTop": false
         },
         {
-          "images":
-          [
-            "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
+          "images": [
+            "http://fct-nick.img-cn-shanghai.aliyuncs.com/upload/2017-06-23/8101370a8a1b48669c9a64f0f74264bc.png"
           ],
-          "videoImage":"//vjs.zencdn.net/v/oceans.png",
-          "videoId":"",
-          "id":12,
-          "content":"组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件",
+          "videoImage": "//vjs.zencdn.net/v/oceans.png",
+          "videoId": "",
+          "id": 12,
+          "content": "组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件",
           "isTop": false
         }
       ],
-      "pager":
-      {
-        "prev":0,
-        "current":1,
-        "next":1,
-        "page_size":20,
-        "total_page":1,
-        "total":1
+      "pager": {
+        "prev": 0,
+        "current": 1,
+        "next": 1,
+        "page_size": 20,
+        "total_page": 1,
+        "total": 1
       }
     }
   },
-  "artistWorks":
-  {
-    "code":200,
-    "message":"获取作品列表成功",
-    "url":null,
-    "data":
-    [
+  "artistWorks": {
+    "code": 200,
+    "message": "获取作品列表成功",
+    "url": null,
+    "data": [
       {
-        "price":0.01,
-        "intro":
-        "磊《《《《《《",
-        "name":"测试宝贝",
-        "id":7,
-        "defaultImage":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/47325a6330324ebf927d44dae219f8f9.jpg"
+        "price": 0.01,
+        "intro": "磊《《《《《《",
+        "name": "测试宝贝",
+        "id": 7,
+        "defaultImage": "http://fct-nick.img-cn-shanghai.aliyuncs.com/upload/2017-06-13/47325a6330324ebf927d44dae219f8f9.jpg"
       },
       {
-        "price":8888,
-        "intro":"采用了原矿黑泥制作而成，壶容量为400cc，细观此壶，壶身犹若玉璧，精致美观，弯流壶嘴，暗接精湛无痕，出水流利",
-        "name":"goods",
-        "id":2,
-        "defaultImage":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png"
+        "price": 8888,
+        "intro": "采用了原矿黑泥制作而成，壶容量为400cc，细观此壶，壶身犹若玉璧，精致美观，弯流壶嘴，暗接精湛无痕，出水流利",
+        "name": "goods",
+        "id": 2,
+        "defaultImage": "http://fct-nick.img-cn-shanghai.aliyuncs.com/upload/2017-06-08/5f2a876426944448866798b34f08c43f.png"
       },
       {
-        "price":120000,
-        "intro":"此壶采用了原矿紫泥制作而成，壶容量为410cc，壶身饱满有度，略呈半月形，壶盖微鼓，盖上壶钮雕成月圆形状，与壶身底部贴塑的花纹上下相应。",
-        "name":"《天心月圆》",
-        "id":5,
-        "defaultImage":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-12\/ccdabaaeec514f1ba17905d683172d22.jpg"
+        "price": 120000,
+        "intro": "此壶采用了原矿紫泥制作而成，壶容量为410cc，壶身饱满有度，略呈半月形，壶盖微鼓，盖上壶钮雕成月圆形状，与壶身底部贴塑的花纹上下相应。",
+        "name": "《天心月圆》",
+        "id": 5,
+        "defaultImage": "http://fct-nick.img-cn-shanghai.aliyuncs.com/upload/2017-06-12/ccdabaaeec514f1ba17905d683172d22.jpg"
       }
     ]
   },
-  "artistChat":
-  {
-    "code":200,
-    "message":"获取评论列表成功",
-    "url":null,
-    "data":
-    {
-      "entries":
-      [
+  "artistChat": {
+    "code": 200,
+    "message": "获取评论列表成功",
+    "url": null,
+    "data": {
+      "entries": [
         {
-          "createTime":"2017-07-07",
-          "id":2,
-          "replyContent":[],
-          "userName":"jon",
-          "headPortrait":"\/images\/default-null.png",
-          "content":"Virtual machine templates for BSD flavours"
+          "createTime": "2017-07-07",
+          "id": 2,
+          "replyContent": [],
+          "userName": "jon",
+          "headPortrait": "/images/default-null.png",
+          "content": "Virtual machine templates for BSD flavours"
         },
         {
-          "createTime":"2017-07-07",
-          "id":1,
-          "replyContent":["回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复"],
-          "userName":"jon",
-          "headPortrait":"\/images\/default-null.png",
-          "content":"Virtual machine templates for Ubuntu"
+          "createTime": "2017-07-07",
+          "id": 1,
+          "replyContent": [
+            "回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复"
+          ],
+          "userName": "jon",
+          "headPortrait": "/images/default-null.png",
+          "content": "Virtual machine templates for Ubuntu"
         }
       ],
-      "pager":
-      {
-        "prev":0,
-        "current":1,
-        "next":1,
-        "page_size":20,
-        "total_page":1,
-        "total":2
+      "pager": {
+        "prev": 0,
+        "current": 1,
+        "next": 1,
+        "page_size": 20,
+        "total_page": 1,
+        "total": 2
       }
     }
   }

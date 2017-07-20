@@ -105,7 +105,7 @@ Vue.component('live',
         liveList: config.artist.dynamicList.entries,
         top: {},
         preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
-        last_url: ""
+        last_url: ''
       }
     },
     methods:{
@@ -157,12 +157,12 @@ Vue.component('live',
             vue.liveList.splice(index, 1);
             vue.$nextTick(function () {
               // DOM 更新后回调
-              vue.loadVideo("video_top", item.videoId, item.videoImage);
+              vue.loadVideo('video_top', item.videoId, item.videoImage);
             });
           }else {
             vue.$nextTick(function () {
               // DOM 更新后回调
-              vue.loadVideo("video_" + index, item.videoId, item.videoImage);
+              vue.loadVideo('video_' + index, item.videoId, item.videoImage);
             });
           }
 
@@ -201,7 +201,7 @@ Vue.component('works',
     data() {
       return {
         workslist: [],
-        last_url: "",
+        last_url: '',
 
       }
     },
@@ -313,14 +313,14 @@ Vue.component('chat',
     data() {
       return {
         chatlist: [],
-        last_url: "",
+        last_url: '',
         pager: {},
         open: false,
         docked: false,
         preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
         showAlert: false, //显示提示组件
         msg: null, //提示的内容
-        message: "" /* 提交聊天内容 */
+        message: '', /* 提交聊天内容 */
       }
     },
     methods: {
@@ -387,13 +387,11 @@ Vue.component('chat',
             //{message:"xxx", url:"", code:200, data:""}
             if(data){
               data = JSON.parse(data);
-              vue.showCoup();
               if(parseInt(data.code) == 200){
-                vue.chatlist = data.data.entries;
-                vue.pager = data.data.pager;
-                vue.msg = data.message;
+                vue.msg = "留言提交成功，我们将通知“"+ config.artist.name +"”给您回复，请留意！";
                 vue.showAlert = true;
                 vue.close_auto();
+                vue.pop();
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;
@@ -477,6 +475,8 @@ let app = new Vue(
       currentView: 'live',
       tabs: ['实时动态', '相关作品', '对话艺人'],
       tab_num: 0,
+      artist: config.artist
+
     },
     watch: {
     },
