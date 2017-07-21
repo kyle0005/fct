@@ -12,20 +12,8 @@
 <body>
 <div class="orderlist-container" id="orderlist" v-cloak>
   <div class="tabs">
-    <div class="item chosen">
-      <a href="javascript:;" class="link">全部</a>
-    </div>
-    <div class="item ">
-      <a href="javascript:;" class="link">待付款</a>
-    </div>
-    <div class="item">
-      <a href="javascript:;" class="link">待发货</a>
-    </div>
-    <div class="item">
-      <a href="javascript:;" class="link">待收货</a>
-    </div>
-    <div class="item">
-      <a href="javascript:;" class="link">待评价</a>
+    <div class="item" v-for="(item, index) in tabs" :class="{chosen: index===tab_num}" @click="category(index)">
+      <a href="javascript:;" class="link">{{ item }}</a>
     </div>
     <div class="search-container" :class="{show:show_search}">
       <div class="cancel-search">
@@ -37,57 +25,31 @@
       </a>
     </div>
   </div>
-  <div class="orders-list">
-    <div class="items">
+  <div class="orders-list" >
+    <div class="items" v-for="(item, index) in orderlist">
       <div class="info">
-        <div class="left">订单号：2141241242414</div>
-        <div class="right">待付款</div>
+        <div class="left">订单号：{{ item.orderId }}</div>
+        <div class="right">{{ item.statusName }}</div>
       </div>
       <ul class="list">
-        <li class="product">
+        <li class="product" v-for="(good, index) in item.orderGoods">
           <div class="pro-item img-container">
-            <img src="public/images/resource/pro01.png">
+            <img :src="good.img">
           </div>
           <div class="pro-item title-container">
-            <div class="title">xxxxxx壶</div>
-            <div class="spec">规格: &nbsp;333MM</div>
+            <div class="title">{{ good.name }}</div>
+            <div class="spec">规格:{{ good.specName }}</div>
           </div>
           <div class="pro-item price-container">
-            <div class="price">￥1231222312.00</div>
-            <div class="num">*2</div>
-          </div>
-        </li>
-        <li class="product">
-          <div class="pro-item img-container">
-            <img src="public/images/resource/pro01.png">
-          </div>
-          <div class="pro-item title-container">
-            <div class="title">xxxxxx壶</div>
-            <div class="spec">规格: &nbsp;333MM</div>
-          </div>
-          <div class="pro-item price-container">
-            <div class="price">￥1231222312.00</div>
-            <div class="num">*2</div>
-          </div>
-        </li>
-        <li class="product">
-          <div class="pro-item img-container">
-            <img src="public/images/resource/pro01.png">
-          </div>
-          <div class="pro-item title-container">
-            <div class="title">xxxxxx壶</div>
-            <div class="spec">规格: &nbsp;333MM</div>
-          </div>
-          <div class="pro-item price-container">
-            <div class="price">￥1231222312.00</div>
-            <div class="num">*2</div>
+            <div class="price">￥{{ good.price }}</div>
+            <div class="num">*{{ good.buyCount }}</div>
           </div>
         </li>
       </ul>
       <div class="total">
-        <div class="inner">共2件商品&nbsp;合计：￥1231132131.00（含运费）</div>
+        <div class="inner">共{{ item.buyTotalCount }}件商品&nbsp;合计：￥{{ item.payAmount }}（含运费）</div>
       </div>
-      <div class="btn clearfix">
+      <div class="btn clearfix" v-if="item.status == 0">
         <div class="btn-container">
           <a href="javascript:;" class="black">我要付款</a>
         </div>
@@ -95,117 +57,14 @@
           <a href="javascript:;" class="grey">关闭订单</a>
         </div>
       </div>
-    </div>
-    <div class="items">
-      <div class="info">
-        <div class="left">订单号：2141241242414</div>
-        <div class="right">交易成功</div>
-      </div>
-      <ul class="list">
-        <li class="product">
-          <div class="pro-item img-container">
-            <img src="public/images/resource/pro01.png">
-          </div>
-          <div class="pro-item title-container">
-            <div class="title">xxxxxx壶</div>
-            <div class="spec">规格: &nbsp;333MM</div>
-          </div>
-          <div class="pro-item price-container">
-            <div class="price">￥1231222312.00</div>
-            <div class="num">*2</div>
-          </div>
-        </li>
-        <li class="product">
-          <div class="pro-item img-container">
-            <img src="public/images/resource/pro01.png">
-          </div>
-          <div class="pro-item title-container">
-            <div class="title">xxxxxx壶</div>
-            <div class="spec">规格: &nbsp;333MM</div>
-          </div>
-          <div class="pro-item price-container">
-            <div class="price">￥1231222312.00</div>
-            <div class="num">*2</div>
-          </div>
-        </li>
-        <li class="product">
-          <div class="pro-item img-container">
-            <img src="public/images/resource/pro01.png">
-          </div>
-          <div class="pro-item title-container">
-            <div class="title">xxxxxx壶</div>
-            <div class="spec">规格: &nbsp;333MM</div>
-          </div>
-          <div class="pro-item price-container">
-            <div class="price">￥1231222312.00</div>
-            <div class="num">*2</div>
-          </div>
-        </li>
-      </ul>
-      <div class="total">
-        <div class="inner">共2件商品&nbsp;合计：￥1231132131.00（含运费）</div>
-      </div>
-      <div class="btn clearfix">
-        <div class="btn-container">
-          <a href="javascript:;" class="black">我要评价</a>
-        </div>
-        <div class="btn-container">
-          <a href="javascript:;" class="grey">删除订单</a>
-        </div>
-      </div>
-    </div>
-    <div class="items">
-      <div class="info">
-        <div class="left">订单号：2141241242414</div>
-        <div class="right">待收货</div>
-      </div>
-      <ul class="list">
-        <li class="product">
-          <div class="pro-item img-container">
-            <img src="public/images/resource/pro01.png">
-          </div>
-          <div class="pro-item title-container">
-            <div class="title">xxxxxx壶</div>
-            <div class="spec">规格: &nbsp;333MM</div>
-          </div>
-          <div class="pro-item price-container">
-            <div class="price">￥1231222312.00</div>
-            <div class="num">*2</div>
-          </div>
-        </li>
-        <li class="product">
-          <div class="pro-item img-container">
-            <img src="public/images/resource/pro01.png">
-          </div>
-          <div class="pro-item title-container">
-            <div class="title">xxxxxx壶</div>
-            <div class="spec">规格: &nbsp;333MM</div>
-          </div>
-          <div class="pro-item price-container">
-            <div class="price">￥1231222312.00</div>
-            <div class="num">*2</div>
-          </div>
-        </li>
-        <li class="product">
-          <div class="pro-item img-container">
-            <img src="public/images/resource/pro01.png">
-          </div>
-          <div class="pro-item title-container">
-            <div class="title">xxxxxx壶</div>
-            <div class="spec">规格: &nbsp;333MM</div>
-          </div>
-          <div class="pro-item price-container">
-            <div class="price">￥1231222312.00</div>
-            <div class="num">*2</div>
-          </div>
-        </li>
-      </ul>
-      <div class="total">
-        <div class="inner">共2件商品&nbsp;合计：￥1231132131.00（含运费）</div>
-      </div>
-      <div class="btn clearfix">
+      <div class="btn clearfix" v-if="item.status == 2">
         <div class="btn-container">
           <a href="javascript:;" class="black">查看物流</a>
+        </div>
+      </div>
+      <div class="btn clearfix" v-if="item.status == 3">
+        <div class="btn-container">
+          <a href="javascript:;" class="black">评价</a>
         </div>
       </div>
     </div>
@@ -223,7 +82,271 @@
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
+    "orderlist_url": "http://localhost:3000/orderlist",
+    "orderlist":
+      {
+        "entries": [
+          {
+            "orderId": "1707186898922467",      //used
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 0,
+            "accountAmount": 4991.4,
+            "cashAmount": 2563.4,
+            "payAmount": 7554.8,      //used
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 4,                //used
+            "statusName": "待收货",      //used
+            "buyTotalCount": 10,        //used
+            "payOrderId": null,
+            "payPlatform": null,
+            "remark": "",
+            "orderGoods": [             //used
+              {
+                "id": 60,
+                "orderId": "1707186898922467",
+                "goodsId": 2,
+                "goodsSpecId": 1,
+                "name": "goods",
+                "specName": "aaa",
+                "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+                "buyCount": 1,
+                "price": 8888,
+                "commission": 200,
+                "promotionPrice": 7554.8,
+                "couponAmount": 0,
+                "payAmount": 7554.8,
+                "totalAmount": 8888,
+                "content": null
+              }
+            ],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500376189000,
+            "updateTime": 1500462600000,
+            "expiresTime": 1500462589000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707186884123134",
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 0,
+            "accountAmount": 4991.4,
+            "cashAmount": 2563.4,
+            "payAmount": 7554.8,
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 4,
+            "payOrderId": null,
+            "payPlatform": null,
+            "remark": "",
+            "orderGoods": [{
+              "id": 59,
+              "orderId": "1707186884123134",
+              "goodsId": 2,
+              "goodsSpecId": 1,
+              "name": "goods",
+              "specName": "aaa",
+              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+              "buyCount": 1,
+              "price": 8888,
+              "commission": 200,
+              "promotionPrice": 7554.8,
+              "couponAmount": 0,
+              "payAmount": 7554.8,
+              "totalAmount": 8888,
+              "content": null
+            }],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500376041000,
+            "updateTime": 1500462600000,
+            "expiresTime": 1500462441000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707186868491766",
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 0,
+            "accountAmount": 4991.4,
+            "cashAmount": 2563.4,
+            "payAmount": 7554.8,
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 4,
+            "payOrderId": null,
+            "payPlatform": null,
+            "remark": "",
+            "orderGoods": [{
+              "id": 58,
+              "orderId": "1707186868491766",
+              "goodsId": 2,
+              "goodsSpecId": 1,
+              "name": "goods",
+              "specName": "aaa",
+              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+              "buyCount": 1,
+              "price": 8888,
+              "commission": 200,
+              "promotionPrice": 7554.8,
+              "couponAmount": 0,
+              "payAmount": 7554.8,
+              "totalAmount": 8888,
+              "content": null
+            }],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500375885000,
+            "updateTime": 1500462300000,
+            "expiresTime": 1500462285000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707176313104284",
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 0,
+            "accountAmount": 7554.8,
+            "cashAmount": 0,
+            "payAmount": 7554.8,
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 1,
+            "payOrderId": null,
+            "payPlatform": "account",
+            "remark": "第二个。",
+            "orderGoods": [
+              {
+                "id": 57,
+                "orderId": "1707176313104284",
+                "goodsId": 2,
+                "goodsSpecId": 1,
+                "name": "goods",
+                "specName": "aaa",
+                "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+                "buyCount": 1,
+                "price": 8888,
+                "commission": 200,
+                "promotionPrice": 7554.8,
+                "couponAmount": 0,
+                "payAmount": 7554.8,
+                "totalAmount": 8888,
+                "content": null
+              }],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500283931000,
+            "updateTime": 1500283932000,
+            "expiresTime": 1500370331000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707176300449815",
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 10100,
+            "accountAmount": 7453.8,
+            "cashAmount": 0,
+            "payAmount": 7554.8,
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 1,
+            "payOrderId": null,
+            "payPlatform": "account",
+            "remark": "",
+            "orderGoods": [{
+              "id": 56,
+              "orderId": "1707176300449815",
+              "goodsId": 2,
+              "goodsSpecId": 1,
+              "name": "goods",
+              "specName": "aaa",
+              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+              "buyCount": 1,
+              "price": 8888,
+              "commission": 200,
+              "promotionPrice": 7554.8,
+              "couponAmount": 0,
+              "payAmount": 7554.8,
+              "totalAmount": 8888,
+              "content": null
+            }],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500283804000,
+            "updateTime": 1500283806000,
+            "expiresTime": 1500370204000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707176136486431",
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 10100,
+            "accountAmount": 7453.8,
+            "cashAmount": 0,
+            "payAmount": 7554.8,
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 1,
+            "payOrderId": null,
+            "payPlatform": "account",
+            "remark": "",
+            "orderGoods": [{
+              "id": 55,
+              "orderId": "1707176136486431",
+              "goodsId": 2,
+              "goodsSpecId": 1,
+              "name": "goods",
+              "specName": "aaa",
+              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+              "buyCount": 1,
+              "price": 8888,
+              "commission": 200,
+              "promotionPrice": 7554.8,
+              "couponAmount": 0,
+              "payAmount": 7554.8,
+              "totalAmount": 8888,
+              "content": null
+            }],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500282164000,
+            "updateTime": 1500282166000,
+            "expiresTime": 1500368564000,
+            "finishTime": null,
+            "operatorId": null
+          },
 
+        ],
+        "pager": {"prev": 0, "current": 1, "next": 0, "page_size": 20, "total_page": 1, "total": 13}
+      }
   }
 </script>
 <script src="public/scripts/orderlist.js"></script>

@@ -29,29 +29,31 @@ let app = new Vue(
       msg: null, //提示的内容
       userinfo: config.userinfo,
       uploadImg: {},
-      file: {},
+      sex: config.userinfo.sex,
+      date: config.userinfo.birthday
     },
     watch: {
     },
     methods: {
       fileChange(event){
-        let vue = this;
+        let vue = this, file = {};
         if (typeof event.target === 'undefined') {
-          vue.file = event[0];
+          file = event[0];
         }
         else {
-          vue.file = event.target.files[0];
+          file = event.target.files[0];
         }
         var formData = new FormData();
-        formData.append("file", vue.file);
+        formData.append("action", "head");
+        formData.append("file", file);
         jAjax({
           type:'post',
           url:config.uploadFileUrl,
           data: formData,
+          contentType: 'multipart/form-data',
+          // enctype: 'multipart/form-data',
+          // contentType: false,
           timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
           success:function(data){
             if(data){
               data = JSON.parse(data);
@@ -61,18 +63,15 @@ let app = new Vue(
                console.log(vue.uploadImg)
               }
             }
-
-          },
-          error:function(){
-            console.log('error');
           }
         });
       },
       sub(){
+        let vue = this;
         jAjax({
           type:'post',
-          url:apis.userResource,
-          data: formData.serializeForm('userLogin'),
+          url:config.userinfoUrl,
+          data: formData.serializeForm('userForm'),
           timeOut:5000,
           before:function(){
             console.log('before');
@@ -83,8 +82,7 @@ let app = new Vue(
               if(parseInt(data.code) == 200){
                 vue.msg = data.message;
                 vue.showAlert = true;
-                vue.close_auto(vue.linkto, data.url);
-
+                vue.close_auto();
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;

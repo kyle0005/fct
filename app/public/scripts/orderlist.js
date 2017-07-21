@@ -18,7 +18,11 @@ Vue.component('pop',
 let app = new Vue(
   {
     computed: {
+      showStatus(){
+        let vue = this;
+        return '';
 
+      },
     },
     mounted: function() {
       let vue = this;
@@ -28,11 +32,47 @@ let app = new Vue(
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
       show_search: false,
+      orderlist: config.orderlist.entries,
+      tabs: ["全部", "待付款", "待发货", "待收货", "待评价"],
+      tab_num: 0,
     },
     watch: {
     },
     methods: {
-      getCoupon(){
+      category(index){
+        let vue = this, _status = 0;
+        vue.tab_num = index;
+        if(index == 0){
+          _status = "";
+        }else {
+          _status = index - 1;
+        }
+        var _url = config.orderlist_url + '?status=' + _status;
+        jAjax({
+          type:'get',
+          url:_url,
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.orderlist = data.data.entries;
+              }else {
+                console.log('false')
+              }
+            }
+
+          },
+          error:function(){
+            console.log('error');
+          }
+        });
+
+      },
+      subSearch(){
         let vue = this;
         jAjax({
           type:'post',

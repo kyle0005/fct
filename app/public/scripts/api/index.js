@@ -39,19 +39,24 @@ var jAjax = function (options) {
       }
       return arr;
     }
+    if(data instanceof FormData){
 
-    if (data) {
-      if (typeof data === 'string' || typeof data === 'number' ) {
-        data = setStrData(data);
-      } else if (typeof data === 'object') {
-        data = setObjData(data);
-      }
-      data = data.join('&').replace('/%20/g', '+');
-      //若是使用get方法或JSONP，则手动添加到URL中
-      if (type === 'get' || dataType === 'jsonp') {
-        url += url.indexOf('?') > -1 ? (url.indexOf('=') > -1 ? '&' + data : data) : '?' + data;
+    }
+    else {
+      if (data) {
+        if (typeof data === 'string' || typeof data === 'number' ) {
+          data = setStrData(data);
+        } else if (typeof data === 'object') {
+          data = setObjData(data);
+        }
+        data = data.join('&').replace('/%20/g', '+');
+        //若是使用get方法或JSONP，则手动添加到URL中
+        if (type === 'get' || dataType === 'jsonp') {
+          url += url.indexOf('?') > -1 ? (url.indexOf('=') > -1 ? '&' + data : data) : '?' + data;
+        }
       }
     }
+
   }
   // JSONP
   function createJsonp() {
@@ -183,6 +188,7 @@ var formData = {
     switch (element.type.toLowerCase()) {
       case 'submit':
       case 'hidden':
+      case 'date':
       case 'password':
       case 'text':
         return [element.name, element.value];

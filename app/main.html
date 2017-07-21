@@ -71,7 +71,9 @@
         <img :src="img_url + '/logo.png'">
       </li>
       <li class="user" @click="toLogin()">
-        <i class="fa fa-user-circle-o"></i>
+        <span class="img-container">
+          <img src="public/images/resource/emptyPhoto.png">
+        </span>
       </li>
     </ul>
     <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
@@ -122,8 +124,8 @@
   var config = {
     "productsType": [
       {
-        "name": "全部",
-        "code": "a"
+        "name":"全部",
+        "code":""
       },
       {
         "name": "圆器",
@@ -146,27 +148,27 @@
     "productsRank": [
       {
         "name": "登堂入室",
-        "level_id": "0",
-        "img": "xxxx"
-      },
-      {
-        "name": "略有小成",
         "level_id": "1",
         "img": "xxxx"
       },
       {
-        "name": "炉火纯青",
+        "name": "略有小成",
         "level_id": "2",
         "img": "xxxx"
       },
       {
-        "name": "出神入化",
+        "name": "炉火纯青",
         "level_id": "3",
         "img": "xxxx"
       },
       {
-        "name": "登峰造极",
+        "name": "出神入化",
         "level_id": "4",
+        "img": "xxxx"
+      },
+      {
+        "name": "登峰造极",
+        "level_id": "5",
         "img": "xxxx"
       }
 

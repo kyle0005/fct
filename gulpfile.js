@@ -113,7 +113,6 @@ gulp.task('serve', () => {
     });
   });
   server.post('/uploadFile', (req, res) => {
-
     res.json({
       "code": 200,
       "message": "获取成功",
@@ -122,6 +121,305 @@ gulp.task('serve', () => {
         "url": "/public/images/resource/artist.png",
         "fullUrl": "http://localhost:9000/public/images/resource/artist.png"
       }
+    });
+  });
+
+  server.post('/userinfo', (req, res) => {
+    var _data = {};
+    req.on('data',function(data){
+      _data += data;
+      console.log("服务器接收到的数据：　"+decodeURIComponent(data));
+
+    });
+    req.on("end",function(){
+      console.log('客户端请求数据全部接收完毕');
+    });
+    res.json({
+      "code": 200,
+      "message": "修改成功",
+      "url": null,
+      "data": _data
+    });
+  });
+
+  server.post('/orderlist', (req, res) => {
+    var _data = {};
+    req.on('data',function(data){
+      _data += data;
+      console.log("服务器接收到的数据：　"+decodeURIComponent(data));
+
+    });
+    req.on("end",function(){
+      console.log('客户端请求数据全部接收完毕');
+    });
+    res.json({
+      "code": 200,
+      "message": "修改成功",
+      "url": null,
+      "data": {
+        "entries": [
+          {
+            "orderId": "1707186898922467",      //used
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 0,
+            "accountAmount": 4991.4,
+            "cashAmount": 2563.4,
+            "payAmount": 7554.8,      //used
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 4,                //used
+            "statusName": "待收货",      //used
+            "buyTotalCount": 10,        //used
+            "payOrderId": null,
+            "payPlatform": null,
+            "remark": "",
+            "orderGoods": [             //used
+              {
+                "id": 60,
+                "orderId": "1707186898922467",
+                "goodsId": 2,
+                "goodsSpecId": 1,
+                "name": "goods",
+                "specName": "aaa",
+                "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+                "buyCount": 1,
+                "price": 8888,
+                "commission": 200,
+                "promotionPrice": 7554.8,
+                "couponAmount": 0,
+                "payAmount": 7554.8,
+                "totalAmount": 8888,
+                "content": null
+              }
+            ],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500376189000,
+            "updateTime": 1500462600000,
+            "expiresTime": 1500462589000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707186884123134",
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 0,
+            "accountAmount": 4991.4,
+            "cashAmount": 2563.4,
+            "payAmount": 7554.8,
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 4,
+            "payOrderId": null,
+            "payPlatform": null,
+            "remark": "",
+            "orderGoods": [{
+              "id": 59,
+              "orderId": "1707186884123134",
+              "goodsId": 2,
+              "goodsSpecId": 1,
+              "name": "goods",
+              "specName": "aaa",
+              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+              "buyCount": 1,
+              "price": 8888,
+              "commission": 200,
+              "promotionPrice": 7554.8,
+              "couponAmount": 0,
+              "payAmount": 7554.8,
+              "totalAmount": 8888,
+              "content": null
+            }],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500376041000,
+            "updateTime": 1500462600000,
+            "expiresTime": 1500462441000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707186868491766",
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 0,
+            "accountAmount": 4991.4,
+            "cashAmount": 2563.4,
+            "payAmount": 7554.8,
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 4,
+            "payOrderId": null,
+            "payPlatform": null,
+            "remark": "",
+            "orderGoods": [{
+              "id": 58,
+              "orderId": "1707186868491766",
+              "goodsId": 2,
+              "goodsSpecId": 1,
+              "name": "goods",
+              "specName": "aaa",
+              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+              "buyCount": 1,
+              "price": 8888,
+              "commission": 200,
+              "promotionPrice": 7554.8,
+              "couponAmount": 0,
+              "payAmount": 7554.8,
+              "totalAmount": 8888,
+              "content": null
+            }],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500375885000,
+            "updateTime": 1500462300000,
+            "expiresTime": 1500462285000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707176313104284",
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 0,
+            "accountAmount": 7554.8,
+            "cashAmount": 0,
+            "payAmount": 7554.8,
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 1,
+            "payOrderId": null,
+            "payPlatform": "account",
+            "remark": "第二个。",
+            "orderGoods": [
+              {
+                "id": 57,
+                "orderId": "1707176313104284",
+                "goodsId": 2,
+                "goodsSpecId": 1,
+                "name": "goods",
+                "specName": "aaa",
+                "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+                "buyCount": 1,
+                "price": 8888,
+                "commission": 200,
+                "promotionPrice": 7554.8,
+                "couponAmount": 0,
+                "payAmount": 7554.8,
+                "totalAmount": 8888,
+                "content": null
+              }],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500283931000,
+            "updateTime": 1500283932000,
+            "expiresTime": 1500370331000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707176300449815",
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 10100,
+            "accountAmount": 7453.8,
+            "cashAmount": 0,
+            "payAmount": 7554.8,
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 1,
+            "payOrderId": null,
+            "payPlatform": "account",
+            "remark": "",
+            "orderGoods": [{
+              "id": 56,
+              "orderId": "1707176300449815",
+              "goodsId": 2,
+              "goodsSpecId": 1,
+              "name": "goods",
+              "specName": "aaa",
+              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+              "buyCount": 1,
+              "price": 8888,
+              "commission": 200,
+              "promotionPrice": 7554.8,
+              "couponAmount": 0,
+              "payAmount": 7554.8,
+              "totalAmount": 8888,
+              "content": null
+            }],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500283804000,
+            "updateTime": 1500283806000,
+            "expiresTime": 1500370204000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707176136486431",
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 10100,
+            "accountAmount": 7453.8,
+            "cashAmount": 0,
+            "payAmount": 7554.8,
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 1,
+            "payOrderId": null,
+            "payPlatform": "account",
+            "remark": "",
+            "orderGoods": [{
+              "id": 55,
+              "orderId": "1707176136486431",
+              "goodsId": 2,
+              "goodsSpecId": 1,
+              "name": "goods",
+              "specName": "aaa",
+              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+              "buyCount": 1,
+              "price": 8888,
+              "commission": 200,
+              "promotionPrice": 7554.8,
+              "couponAmount": 0,
+              "payAmount": 7554.8,
+              "totalAmount": 8888,
+              "content": null
+            }],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500282164000,
+            "updateTime": 1500282166000,
+            "expiresTime": 1500368564000,
+            "finishTime": null,
+            "operatorId": null
+          },
+
+        ],
+        "pager": {"prev": 0, "current": 1, "next": 1, "page_size": 20, "total_page": 1, "total": 13}
+      }
+
     });
   });
 

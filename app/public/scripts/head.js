@@ -43,7 +43,7 @@ Vue.component('head-top',
         }
         else {
           /* 不为首页 */
-          location.href = config.main_url + '?code=' + code;
+          location.href = config.product_url + '?code=' + code;
         }
 
       },

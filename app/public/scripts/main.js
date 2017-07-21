@@ -17,14 +17,33 @@ var app = new Vue(
       /* 菜单分类加载 */
       getprolist(code, level_id) {
         let vue = this;
-        let _url = config.product_url;
+        let _url = "";
         code = code || "";
+        level_id = level_id || 0;
+        if (code != "") {
+          _url = "?code=" + code;
+          if (level_id > 0) {
+            _url += "&level_id=" + level_id;
+          }
+        } else {
+          if (level_id > 0) {
+            code = vue.code;
+            _url = "?level_id=" + level_id;
+            if (code != "") {
+              _url += "&code=" + code;
+            }
+          }
+        }
+
+        _url = config.product_url + _url;
+
+/*        code = code || vue.code;
         level_id = level_id || "";
         if(code == "" && vue.code !== ""){
           _url += '?code=' + vue.code + '&level_id=' + level_id;
         } else {
           _url += '?code=' + code + '&level_id=' + level_id;
-        }
+        }*/
         jAjax({
           type:'get',
           url:_url,
@@ -38,7 +57,7 @@ var app = new Vue(
               if(parseInt(data.code) == 200){
                 vue.pro_list = data.data;
                 vue.code = code;
-                console.log(code + "+" + level_id)
+
               }else {
                 console.log('false')
               }

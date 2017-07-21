@@ -18,38 +18,38 @@
       </span>
       点击修改头像
     </div>
-    <input type="file" class="upload" @change="fileChange">
+    <input type="file" name="file" class="upload" @change="fileChange">
   </section>
   <form id="userForm">
-    <input type="hidden" :value="uploadImg.url">
+    <input type="hidden" name="avatar" :value="uploadImg.url">
     <section class="list-container">
       <div class="line">
         <div class="left">用户ID</div>
         <div class="right">
-          <input type="text" class="right-inp">
+          {{ userinfo.memberId }}
         </div>
       </div>
       <div class="line">
         <div class="left">手机号码</div>
         <div class="right">
-          <input type="text" class="right-inp">
+          {{ userinfo.cellPhone }}
         </div>
       </div>
       <div class="line">
         <div class="left">昵称</div>
         <div class="right">
-          <input type="text" class="right-inp">
+          <input type="text" class="right-inp" :value="userinfo.userName">
         </div>
       </div>
       <div class="line">
         <div class="left">性别</div>
         <div class="right">
           <label for="male" class="radio-container">
-            <input type="radio" name="address" id="male" class="choose-radio">
+            <input type="radio" name="sex" v-model="sex" value="1" id="male" class="choose-radio">
             <span class="">男</span>
           </label>
           <label for="female" class="radio-container">
-            <input type="radio" name="address" id="female" class="choose-radio">
+            <input type="radio" name="sex" v-model="sex" value="0" id="female" class="choose-radio">
             <span class="">女</span>
           </label>
         </div>
@@ -57,19 +57,18 @@
       <div class="line">
         <div class="left">出生日期</div>
         <div class="right clearfix">
-          <input type="date" name="" id="" class="birth">
+          <input type="date" v-model="date" class="birth">
           <span class="wei-arrow-right"></span>
         </div>
       </div>
       <div class="line">
         <div class="left">微信</div>
         <div class="right">
-          <input type="text" class="right-inp">
+          <input type="text" class="right-inp" :value="userinfo.weixin">
         </div>
       </div>
     </section>
   </form>
-
   <div class="sub-btn">
     <a href="javascript:;" @click="sub()">确认保存</a>
   </div>
@@ -91,13 +90,14 @@
       "memberId": 1,
       "cellPhone": 13838384388,
       "userName": "昵称",
-      "headPortrait": "",
-      "emptyPhoto": "http://localhost:9000/public/images/resource/emptyPhoto.png",
-      "sex": 0, /* 0: 女, 1: 男 */
-      "birthday": "2017-01-30",
+      "headPortrait": "",   /* 头像 */
+      "emptyPhoto": "http://localhost:9000/public/images/resource/emptyPhoto.png",    /* 空白头像 */
+      "sex": 1, /* 0: 女, 1: 男 */
+      "birthday": "2017-01-29",
       "weixin": "2124235"
     },
-    "uploadFileUrl": "http://localhost:3000/uploadFile"
+    "uploadFileUrl": "http://localhost:3000/uploadFile",
+    "userinfoUrl": "http://localhost:3000/userinfo"
   }
 </script>
 <script src="public/scripts/userinfo.js"></script>

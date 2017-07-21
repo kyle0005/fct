@@ -226,7 +226,9 @@
         <img :src="img_url + '/logo.png'">
       </li>
       <li class="user" @click="toLogin()">
-        <i class="fa fa-user-circle-o"></i>
+        <span class="img-container">
+          <img src="public/images/resource/emptyPhoto.png">
+        </span>
       </li>
     </ul>
     <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
