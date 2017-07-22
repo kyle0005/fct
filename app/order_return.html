@@ -13,16 +13,16 @@
 <div class="orderreturn-container" id="orderreturn" v-cloak>
   <section class="product">
     <div class="pro-item img-container">
-      <img src="public/images/resource/pro01.png">
+      <img :src="product.img">
     </div>
     <div class="pro-item title-container">
-      <div class="title">xxxxxx壶</div>
-      <div class="spec">规格: &nbsp;333MM</div>
+      <div class="title">{{ product.name }}</div>
+      <div class="spec">规格: &nbsp;{{ product.specName }}</div>
     </div>
     <div class="pro-item price-container">
-      <div class="price">￥1231222312.00</div>
-      <div class="num">*2</div>
-      <div class="total"><span class="inner">合计:<span class="pri">￥8888.00</span></span></div>
+      <div class="price">￥{{ product.price }}</div>
+      <div class="num">*{{ product.buyCount }}</div>
+      <div class="total"><span class="inner">合计:<span class="pri">￥{{ product.payAmount }}</span></span></div>
     </div>
   </section>
   <section class="options">
@@ -30,31 +30,42 @@
       <li>
         <div class="inner">
           <span class="left">服务类型</span>
-          <select class="select">
-            <option>仅退款</option>
+          <select class="select" v-model="servicetype">
+            <option value="0">仅退款</option>
+            <option value="1">退货退款</option>
           </select>
         </div>
       </li>
       <li>
         <div class="inner">
           <span class="left">退款原因</span>
-          <select class="select">
-            <option>做工问题</option>
+          <select class="select" v-model="reason">
+            <option value="做工问题">做工问题</option>
           </select>
         </div>
       </li>
     </ul>
     <div class="comment">
-      <textarea class="textarea" placeholder="请你在此描述详情问题。"></textarea>
+      <textarea class="textarea" placeholder="请你在此描述详情问题。" v-model="description"></textarea>
       <div class="upload-container">
-        <div class="inner">
-          <img src="public/images/upload.png">
+        <div class="item" v-for="(item, index) in uploadItem">
+          <div class="inner">
+            <img :src="item">
+          </div>
+          <a href="javascript:;" class="fork" @click="delImg(index)"><i class="fa fa-times"></i></a>
         </div>
+        <div class="item" v-if="uploadItem.length < maxNum">
+          <div class="inner">
+            <img src="public/images/upload.png">
+            <input type="file" name="file" class="upload" @change="fileChange">
+          </div>
+        </div>
+        <input type="hidden" name="uploadimg" :value="subUpload">
       </div>
     </div>
   </section>
   <div class="sub-btn">
-    <a href="javascript:;">提交申请</a>
+    <a href="javascript:;" @click="sub()">提交申请</a>
   </div>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
@@ -69,7 +80,25 @@
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
-
+    "uploadFileUrl": "http://localhost:3000/uploadReturnImg",
+    "returnUrl": "http://localhost:3000/orderReturn",
+    "product": {
+      "id": 60,
+      "orderId": "1707186898922467",
+      "goodsId": 2,
+      "goodsSpecId": 1,
+      "name": "goods",
+      "specName": "aaa",
+      "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+      "buyCount": 1,
+      "price": 8888,
+      "commission": 200,
+      "promotionPrice": 7554.8,
+      "couponAmount": 0,
+      "payAmount": 7554.8,
+      "totalAmount": 8888,
+      "content": null
+    }
   }
 </script>
 <script src="public/scripts/orderreturn.js"></script>

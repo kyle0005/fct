@@ -44,14 +44,18 @@ let app = new Vue(
           file = event.target.files[0];
         }
         var formData = new FormData();
-        formData.append("action", "head");
-        formData.append("file", file);
+         formData.append('action', 'head');
+        formData.append('file', file);
+
+      /*  var xhr = new XMLHttpRequest();
+        xhr.open('post',config.uploadFileUrl);
+        xhr.send(formData);*/
         jAjax({
           type:'post',
           url:config.uploadFileUrl,
           data: formData,
-          contentType: 'multipart/form-data',
-          // enctype: 'multipart/form-data',
+          // contentType: 'multipart/form-data',
+          enctype: 'multipart/form-data',
           // contentType: false,
           timeOut:5000,
           success:function(data){

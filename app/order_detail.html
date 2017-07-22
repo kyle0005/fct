@@ -12,7 +12,7 @@
 <div class="order-container" id="order" v-cloak>
   <section class="info">
     <div class="text">
-      <img src="public/images/check_w.png">交易成功
+      <img :src="img_path + statusImg[order_detail.status]">{{ order_detail.statusName }}
     </div>
   </section>
   <section class="detail">
@@ -21,7 +21,7 @@
         <span class="img-container item">
             <img src="public/images/order_transport.png">
           </span>
-        <span class="item t">申通快递(3232323423423)<br><span class="time">2017-03-03&nbsp;01:01:01</span></span>
+        <span class="item t">{{ order_detail.orderReceiver.expressPlatform }}({{ order_detail.orderReceiver.expressNO }})<br><span class="time">{{ order_detail.orderReceiver.deliveryTime }}</span></span>
         <span class="wei-arrow-right"></span>
       </a>
     </div>
@@ -30,10 +30,10 @@
         <img src="public/images/order_addr.png">
       </div>
       <div class="addr-info">
-        <div class="item">收货人:用户名</div>
-        <div class="item right">13838383888</div>
+        <div class="item">收货人：{{ order_detail.orderReceiver.name }}</div>
+        <div class="item right">{{ order_detail.orderReceiver.cellPhone }}</div>
       </div>
-      <div class="address">收货地址:上海市 上海市 静安区 xxxxxxxxx街道 xxxxx号</div>
+      <div class="address">收货地址：{{ order_detail.orderReceiver.province + "&nbsp;" + order_detail.orderReceiver.city + "&nbsp;" +  order_detail.orderReceiver.region + "&nbsp;" + order_detail.orderReceiver.address }}</div>
     </div>
     <div class="express invoice">
       <a href="javascript:;" class="link">
@@ -45,31 +45,34 @@
       </a>
     </div>
   </section>
-  <section class="product">
-    <div class="pro-item img-container">
-      <img src="public/images/resource/pro01.png">
-    </div>
-    <div class="pro-item title-container">
-      <div class="title">xxxxxx壶</div>
-      <div class="spec">规格: &nbsp;333MM</div>
-    </div>
-    <div class="pro-item price-container">
-      <div class="price">￥1231222312.00</div>
-      <div class="num">*2</div>
-      <a href="javascript:;" class="after-sale">申请售后</a>
+  <section class="">
+    <div class="product" v-for="(item, index) in order_detail.orderGoods">
+      <div class="pro-item img-container">
+        <img :src="item.img">
+      </div>
+      <div class="pro-item title-container">
+        <div class="title">{{ item.name }}</div>
+        <div class="spec">规格:{{ item.specName }}</div>
+      </div>
+      <div class="pro-item price-container">
+        <div class="price">￥{{ item.price }}</div>
+        <div class="num">*{{ item.buyCount }}</div>
+        <a href="javascript:;" class="after-sale" v-if="item.status == -1">申请售后</a>
+        <a href="/refud/status" class="after-sale" v-if="item.statusName">{{ item.statusName }}</a>      <!-- href的url带参数status -->
+      </div>
     </div>
   </section>
   <section class="total">
-    <div class="inner">共<span class="pri-color">2</span>件商品&nbsp;合计：<span class="pri-color">￥1231132131.00</span>（含运费）</div>
+    <div class="inner">共<span class="pri-color">{{ order_detail.buyTotalCount }}</span>件商品&nbsp;合计：<span class="pri-color">￥{{ order_detail.payAmount }}</span>（含运费）</div>
   </section>
   <section class="order-detail">
-    订单编号：asdad<br>
-    支付单号：asdad<br>
-    支付方式：微信支付<br>
-    创建时间：2017-01-01&nbsp;12:12:12<br>
-    付款时间：2017-01-01&nbsp;12:12:12<br>
-    发货时间：2017-01-01&nbsp;12:12:12<br>
-    完成时间：2017-01-01&nbsp;12:12:12
+    <span v-if="order_detail.orderId">订单编号：{{ order_detail.orderId }}<br></span>
+    <span v-if="order_detail.payOrderId">支付单号：{{ order_detail.payOrderId }}<br></span>
+    <span v-if="order_detail.payPlatform">支付方式：{{ order_detail.payPlatform }}<br></span>
+    <span v-if="order_detail.createTime">创建时间：{{ order_detail.createTime }}<br></span>
+    <span v-if="order_detail.payTime">付款时间：{{ order_detail.payTime }}<br></span>
+    <span v-if="order_detail.expiresTime">发货时间：{{ order_detail.expiresTime }}<br></span>
+    <span v-if="order_detail.finishTime">完成时间：{{ order_detail.finishTime }}</span>
   </section>
   <footer class="footer">
     <div class="inner">
@@ -96,7 +99,65 @@
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
-
+      "img_path": "public/images",
+      "order_detail": {
+        "orderId": "1707186898922467",
+        "memberId": 5,
+        "cellPhone": "18616311580",
+        "shopId": 0,
+        "points": 0,
+        "accountAmount": 4991.4,
+        "cashAmount": 2563.4,
+        "payAmount": 7554.8,
+        "totalAmount": 8888,
+        "couponCode": "",
+        "status": 0,
+        "statusName": "待收货",      //used
+        "buyTotalCount": 10,        //used
+        "payOrderId": null,
+        "payPlatform": "alipay_fctwap",
+        "remark": "",
+        "orderGoods": [{
+          "id": 60,
+          "orderId": "1707186898922467",
+          "goodsId": 2,
+          "goodsSpecId": 1,
+          "name": "goods",
+          "specName": "aaa",
+          "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+          "buyCount": 1,
+          "status": -1,
+          "statusName": "",
+          "price": 8888,
+          "commission": 200,
+          "promotionPrice": 7554.8,
+          "couponAmount": 0,
+          "payAmount": 7554.8,
+          "totalAmount": 8888,
+          "content": null
+        }],
+        "orderReceiver": {
+          "orderId": "1707186898922467",
+          "name": "小寒",
+          "phone": "18616311580",
+          "province": "上海",
+          "city": "上海",
+          "region": "普陀",
+          "address": "金沙江地铁站",
+          "postCode": null,
+          "expressPlatform": null,
+          "expressNO": null,
+          "deliveryTime": null
+        },
+        "settleId": 0,
+        "commentStatus": 0,
+        "payTime": null,
+        "createTime": 1500376189000,
+        "updateTime": 1500697737000,
+        "expiresTime": 1503140989000,
+        "finishTime": "",
+        "operatorId": null
+      }
   }
 </script>
 <script src="public/scripts/order.js"></script>

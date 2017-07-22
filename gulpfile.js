@@ -6,6 +6,9 @@ const del = require('del');
 const wiredep = require('wiredep').stream;
 const runSequence = require('run-sequence');
 
+const url=require('url');
+const qs=require('querystring');//解析参数的库
+
 const $ = gulpLoadPlugins();
 // const reload = browserSync.reload;
 
@@ -124,6 +127,27 @@ gulp.task('serve', () => {
     });
   });
 
+  server.post('/uploadReturnImg', (req, res) => {
+    res.json({
+      "code": 200,
+      "message": "获取成功",
+      "url": null,
+      "data": {
+        "url": "/public/images/resource/artist.png",
+        "fullUrl": "http://localhost:9000/public/images/resource/artist.png"
+      }
+    });
+  });
+
+  server.post('/orderReturn', (req, res) => {
+    res.json({
+      "code": 200,
+      "message": "提交申请成功",
+      "url": null,
+      "data": ''
+    });
+  });
+
   server.post('/userinfo', (req, res) => {
     var _data = {};
     req.on('data',function(data){
@@ -142,16 +166,11 @@ gulp.task('serve', () => {
     });
   });
 
-  server.post('/orderlist', (req, res) => {
-    var _data = {};
-    req.on('data',function(data){
-      _data += data;
-      console.log("服务器接收到的数据：　"+decodeURIComponent(data));
-
-    });
-    req.on("end",function(){
-      console.log('客户端请求数据全部接收完毕');
-    });
+  server.get('/orderlist', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.name);
     res.json({
       "code": 200,
       "message": "修改成功",
@@ -205,108 +224,26 @@ gulp.task('serve', () => {
             "operatorId": null
           },
           {
-            "orderId": "1707186884123134",
+            "orderId": "1707186898922467",      //used
             "memberId": 5,
             "cellPhone": "18616311580",
             "shopId": 0,
             "points": 0,
             "accountAmount": 4991.4,
             "cashAmount": 2563.4,
-            "payAmount": 7554.8,
+            "payAmount": 7554.8,      //used
             "totalAmount": 8888,
             "couponCode": "",
-            "status": 4,
+            "status": 3,                //used
+            "statusName": "待收货",      //used
+            "buyTotalCount": 10,        //used
             "payOrderId": null,
             "payPlatform": null,
             "remark": "",
-            "orderGoods": [{
-              "id": 59,
-              "orderId": "1707186884123134",
-              "goodsId": 2,
-              "goodsSpecId": 1,
-              "name": "goods",
-              "specName": "aaa",
-              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
-              "buyCount": 1,
-              "price": 8888,
-              "commission": 200,
-              "promotionPrice": 7554.8,
-              "couponAmount": 0,
-              "payAmount": 7554.8,
-              "totalAmount": 8888,
-              "content": null
-            }],
-            "orderReceiver": null,
-            "settleId": 0,
-            "commentStatus": 0,
-            "payTime": null,
-            "createTime": 1500376041000,
-            "updateTime": 1500462600000,
-            "expiresTime": 1500462441000,
-            "finishTime": null,
-            "operatorId": null
-          },
-          {
-            "orderId": "1707186868491766",
-            "memberId": 5,
-            "cellPhone": "18616311580",
-            "shopId": 0,
-            "points": 0,
-            "accountAmount": 4991.4,
-            "cashAmount": 2563.4,
-            "payAmount": 7554.8,
-            "totalAmount": 8888,
-            "couponCode": "",
-            "status": 4,
-            "payOrderId": null,
-            "payPlatform": null,
-            "remark": "",
-            "orderGoods": [{
-              "id": 58,
-              "orderId": "1707186868491766",
-              "goodsId": 2,
-              "goodsSpecId": 1,
-              "name": "goods",
-              "specName": "aaa",
-              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
-              "buyCount": 1,
-              "price": 8888,
-              "commission": 200,
-              "promotionPrice": 7554.8,
-              "couponAmount": 0,
-              "payAmount": 7554.8,
-              "totalAmount": 8888,
-              "content": null
-            }],
-            "orderReceiver": null,
-            "settleId": 0,
-            "commentStatus": 0,
-            "payTime": null,
-            "createTime": 1500375885000,
-            "updateTime": 1500462300000,
-            "expiresTime": 1500462285000,
-            "finishTime": null,
-            "operatorId": null
-          },
-          {
-            "orderId": "1707176313104284",
-            "memberId": 5,
-            "cellPhone": "18616311580",
-            "shopId": 0,
-            "points": 0,
-            "accountAmount": 7554.8,
-            "cashAmount": 0,
-            "payAmount": 7554.8,
-            "totalAmount": 8888,
-            "couponCode": "",
-            "status": 1,
-            "payOrderId": null,
-            "payPlatform": "account",
-            "remark": "第二个。",
-            "orderGoods": [
+            "orderGoods": [             //used
               {
-                "id": 57,
-                "orderId": "1707176313104284",
+                "id": 60,
+                "orderId": "1707186898922467",
                 "goodsId": 2,
                 "goodsSpecId": 1,
                 "name": "goods",
@@ -320,98 +257,199 @@ gulp.task('serve', () => {
                 "payAmount": 7554.8,
                 "totalAmount": 8888,
                 "content": null
-              }],
+              }
+            ],
             "orderReceiver": null,
             "settleId": 0,
             "commentStatus": 0,
             "payTime": null,
-            "createTime": 1500283931000,
-            "updateTime": 1500283932000,
-            "expiresTime": 1500370331000,
+            "createTime": 1500376189000,
+            "updateTime": 1500462600000,
+            "expiresTime": 1500462589000,
             "finishTime": null,
             "operatorId": null
           },
           {
-            "orderId": "1707176300449815",
+            "orderId": "1707186898922467",      //used
             "memberId": 5,
             "cellPhone": "18616311580",
             "shopId": 0,
-            "points": 10100,
-            "accountAmount": 7453.8,
-            "cashAmount": 0,
-            "payAmount": 7554.8,
+            "points": 0,
+            "accountAmount": 4991.4,
+            "cashAmount": 2563.4,
+            "payAmount": 7554.8,      //used
             "totalAmount": 8888,
             "couponCode": "",
-            "status": 1,
+            "status": 2,                //used
+            "statusName": "待收货",      //used
+            "buyTotalCount": 10,        //used
             "payOrderId": null,
-            "payPlatform": "account",
+            "payPlatform": null,
             "remark": "",
-            "orderGoods": [{
-              "id": 56,
-              "orderId": "1707176300449815",
-              "goodsId": 2,
-              "goodsSpecId": 1,
-              "name": "goods",
-              "specName": "aaa",
-              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
-              "buyCount": 1,
-              "price": 8888,
-              "commission": 200,
-              "promotionPrice": 7554.8,
-              "couponAmount": 0,
-              "payAmount": 7554.8,
-              "totalAmount": 8888,
-              "content": null
-            }],
+            "orderGoods": [             //used
+              {
+                "id": 60,
+                "orderId": "1707186898922467",
+                "goodsId": 2,
+                "goodsSpecId": 1,
+                "name": "goods",
+                "specName": "aaa",
+                "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+                "buyCount": 1,
+                "price": 8888,
+                "commission": 200,
+                "promotionPrice": 7554.8,
+                "couponAmount": 0,
+                "payAmount": 7554.8,
+                "totalAmount": 8888,
+                "content": null
+              }
+            ],
             "orderReceiver": null,
             "settleId": 0,
             "commentStatus": 0,
             "payTime": null,
-            "createTime": 1500283804000,
-            "updateTime": 1500283806000,
-            "expiresTime": 1500370204000,
+            "createTime": 1500376189000,
+            "updateTime": 1500462600000,
+            "expiresTime": 1500462589000,
             "finishTime": null,
             "operatorId": null
           },
           {
-            "orderId": "1707176136486431",
+            "orderId": "1707186898922467",      //used
             "memberId": 5,
             "cellPhone": "18616311580",
             "shopId": 0,
-            "points": 10100,
-            "accountAmount": 7453.8,
-            "cashAmount": 0,
-            "payAmount": 7554.8,
+            "points": 0,
+            "accountAmount": 4991.4,
+            "cashAmount": 2563.4,
+            "payAmount": 7554.8,      //used
             "totalAmount": 8888,
             "couponCode": "",
-            "status": 1,
+            "status": 1,                //used
+            "statusName": "待收货",      //used
+            "buyTotalCount": 10,        //used
             "payOrderId": null,
-            "payPlatform": "account",
+            "payPlatform": null,
             "remark": "",
-            "orderGoods": [{
-              "id": 55,
-              "orderId": "1707176136486431",
-              "goodsId": 2,
-              "goodsSpecId": 1,
-              "name": "goods",
-              "specName": "aaa",
-              "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
-              "buyCount": 1,
-              "price": 8888,
-              "commission": 200,
-              "promotionPrice": 7554.8,
-              "couponAmount": 0,
-              "payAmount": 7554.8,
-              "totalAmount": 8888,
-              "content": null
-            }],
+            "orderGoods": [             //used
+              {
+                "id": 60,
+                "orderId": "1707186898922467",
+                "goodsId": 2,
+                "goodsSpecId": 1,
+                "name": "goods",
+                "specName": "aaa",
+                "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+                "buyCount": 1,
+                "price": 8888,
+                "commission": 200,
+                "promotionPrice": 7554.8,
+                "couponAmount": 0,
+                "payAmount": 7554.8,
+                "totalAmount": 8888,
+                "content": null
+              }
+            ],
             "orderReceiver": null,
             "settleId": 0,
             "commentStatus": 0,
             "payTime": null,
-            "createTime": 1500282164000,
-            "updateTime": 1500282166000,
-            "expiresTime": 1500368564000,
+            "createTime": 1500376189000,
+            "updateTime": 1500462600000,
+            "expiresTime": 1500462589000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707186898922467",      //used
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 0,
+            "accountAmount": 4991.4,
+            "cashAmount": 2563.4,
+            "payAmount": 7554.8,      //used
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 0,                //used
+            "statusName": "待收货",      //used
+            "buyTotalCount": 10,        //used
+            "payOrderId": null,
+            "payPlatform": null,
+            "remark": "",
+            "orderGoods": [             //used
+              {
+                "id": 60,
+                "orderId": "1707186898922467",
+                "goodsId": 2,
+                "goodsSpecId": 1,
+                "name": "goods",
+                "specName": "aaa",
+                "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+                "buyCount": 1,
+                "price": 8888,
+                "commission": 200,
+                "promotionPrice": 7554.8,
+                "couponAmount": 0,
+                "payAmount": 7554.8,
+                "totalAmount": 8888,
+                "content": null
+              }
+            ],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500376189000,
+            "updateTime": 1500462600000,
+            "expiresTime": 1500462589000,
+            "finishTime": null,
+            "operatorId": null
+          },
+          {
+            "orderId": "1707186898922467",      //used
+            "memberId": 5,
+            "cellPhone": "18616311580",
+            "shopId": 0,
+            "points": 0,
+            "accountAmount": 4991.4,
+            "cashAmount": 2563.4,
+            "payAmount": 7554.8,      //used
+            "totalAmount": 8888,
+            "couponCode": "",
+            "status": 4,                //used
+            "statusName": "待收货",      //used
+            "buyTotalCount": 10,        //used
+            "payOrderId": null,
+            "payPlatform": null,
+            "remark": "",
+            "orderGoods": [             //used
+              {
+                "id": 60,
+                "orderId": "1707186898922467",
+                "goodsId": 2,
+                "goodsSpecId": 1,
+                "name": "goods",
+                "specName": "aaa",
+                "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+                "buyCount": 1,
+                "price": 8888,
+                "commission": 200,
+                "promotionPrice": 7554.8,
+                "couponAmount": 0,
+                "payAmount": 7554.8,
+                "totalAmount": 8888,
+                "content": null
+              }
+            ],
+            "orderReceiver": null,
+            "settleId": 0,
+            "commentStatus": 0,
+            "payTime": null,
+            "createTime": 1500376189000,
+            "updateTime": 1500462600000,
+            "expiresTime": 1500462589000,
             "finishTime": null,
             "operatorId": null
           },
@@ -420,6 +458,63 @@ gulp.task('serve', () => {
         "pager": {"prev": 0, "current": 1, "next": 1, "page_size": 20, "total_page": 1, "total": 13}
       }
 
+    });
+  });
+
+  server.get('/refundlist', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.name);
+    res.json({
+      "code": 200,
+      "message": "修改成功",
+      "url": null,
+      "data": {
+        "entries": [
+          {
+            "id": "1707186898922467",      //used
+            "memberId": 5,
+            "orderId": "18616311580",
+            "orderGoodsId": 0,
+            "isReceived": 0,
+            "serviceType": 4991.4,
+            "refundReason": 2563.4,
+            "status": 7554.8,      //used
+            "refundMethod": 8888,
+            "createTime": "",
+            "updateTime": 4,                //used
+            "goodsId": 60,
+            "goodsSpecId": "1707186898922467",
+            "name": "goods",
+            "specName": "aaa",
+            "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+            "payAmount": 7554.8,
+          },
+
+
+        ],
+        "pager": {"prev": 0, "current": 1, "next": 1, "page_size": 20, "total_page": 1, "total": 13}
+      }
+
+    });
+  });
+
+  server.post('/search', (req, res) => {
+    var _data = {};
+    req.on('data',function(data){
+      _data += data;
+      console.log("服务器接收到的数据：　"+decodeURIComponent(data));
+
+    });
+    req.on("end",function(){
+      console.log('客户端请求数据全部接收完毕');
+    });
+    res.json({
+      "code": 200,
+      "message": "修改成功",
+      "url": null,
+      "data": _data
     });
   });
 

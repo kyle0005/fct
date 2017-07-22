@@ -11,26 +11,26 @@ var app = new Vue(
       refreshing: false,
       msg: 0,
       isindex: config.isindex,
-      code: ""
+      code: ''
     },
     methods: {
       /* 菜单分类加载 */
       getprolist(code, level_id) {
         let vue = this;
-        let _url = "";
-        code = code || "";
+        let _url = '';
+        code = code || '';
         level_id = level_id || 0;
-        if (code != "") {
-          _url = "?code=" + code;
+        if (code != '') {
+          _url = '?code=' + code;
           if (level_id > 0) {
-            _url += "&level_id=" + level_id;
+            _url += '&level_id=' + level_id;
           }
         } else {
           if (level_id > 0) {
             code = vue.code;
-            _url = "?level_id=" + level_id;
-            if (code != "") {
-              _url += "&code=" + code;
+            _url = '?level_id=' + level_id;
+            if (code != '') {
+              _url += '&code=' + code;
             }
           }
         }

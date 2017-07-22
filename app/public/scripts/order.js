@@ -27,7 +27,9 @@ let app = new Vue(
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-
+      order_detail: config.order_detail,
+      img_path: config.img_path,
+      statusImg:['/user_payment_pending.png', '/user_shipment_pending.png', '/user_shipped.png', '/user_evaluation_pending.png', '/check_w.png']
     },
     watch: {
     },
@@ -67,6 +69,10 @@ let app = new Vue(
             console.log('error');
           }
         });
+      },
+      order_detail(){
+        let vue = this;
+
       },
       close(){
         this.showAlert = false;

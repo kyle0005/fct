@@ -2977,6 +2977,7 @@ $foot-height: 250px;
       img{
         width: calc(25 / 375 * 100%);
         margin-right: 2%;
+        vertical-align: bottom;
       }
     }
   }
@@ -3584,6 +3585,10 @@ $foot-height: 250px;
           border: none;
           color: $color-333;
           background-color: transparent;
+          ::-webkit-input-placeholder{}    /* 使用webkit内核的浏览器 */
+          :-moz-placeholder{}                  /* Firefox版本4-18 */
+          ::-moz-placeholder{}                  /* Firefox版本19+ */
+          :-ms-input-placeholder{}
         }
         a.search-link{
           position: absolute;
@@ -3731,6 +3736,11 @@ $foot-height: 250px;
         }
       }
     }
+  }
+  .loader_more{
+    text-align: center;
+    color: $color-999;
+    padding: 4% 0;
   }
 }
 
@@ -4025,19 +4035,49 @@ $foot-height: 250px;
       }
       .upload-container{
         position: relative;
-        width: calc(200/750*100%);
-        padding-bottom: calc(200/750*100%);
-        .inner{
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          img{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        .item {
+          position: relative;
+          -moz-box-flex: 1.0; /* Firefox */
+          -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+          box-flex: 1.0;
+          width: calc(148 / 690 * 100%);
+          padding-bottom: calc(148 / 690 * 100%);
+          margin: calc(30 / 690 * 100%) calc(30 / 690 * 100%) 0 0;
+          .inner {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+            input[type=file].upload {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              opacity: 0;
+            }
+          }
+          .fork{
+            position: absolute;
+            top: -17px;
+            right: -10px;
+            font-size: $font-size-t20;
           }
         }
+        .item:nth-child(4n){
+          margin-right: 0;
+        }
+
       }
     }
   }

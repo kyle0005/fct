@@ -388,7 +388,7 @@ Vue.component('chat',
             if(data){
               data = JSON.parse(data);
               if(parseInt(data.code) == 200){
-                vue.msg = "留言提交成功，我们将通知“"+ config.artist.name +"”给您回复，请留意！";
+                vue.msg = '留言提交成功，我们将通知“'+ config.artist.name +'”给您回复，请留意！';
                 vue.showAlert = true;
                 vue.close_auto();
                 vue.pop();

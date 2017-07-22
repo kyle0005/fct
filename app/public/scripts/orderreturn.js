@@ -27,34 +27,80 @@ let app = new Vue(
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      show_search: false,
+      product: config.product,
+      description: '',
+      uploadItem: [],
+      subUpload: [],
+      maxNum: 3,
+      servicetype: 0,
+      reason: ''
     },
     watch: {
     },
     methods: {
-      getCoupon(){
+      delImg(index){
+        let vue = this;
+        vue.uploadItem.splice(index, 1);
+        vue.subUpload.splice(index, 1);
+      },
+      fileChange(event){
+        let vue = this, file = {};
+        if (typeof event.target === 'undefined') {
+          file = event[0];
+        }
+        else {
+          file = event.target.files[0];
+        }
+        var formData = new FormData();
+        formData.append('action', 'head');
+        formData.append('file', file);
+
+/*          var xhr = new XMLHttpRequest();
+         xhr.open('post',config.uploadFileUrl);
+         xhr.send(formData);*/
+        jAjax({
+          type:'post',
+          url:config.uploadFileUrl,
+          data: formData,
+          // contentType: 'multipart/form-data',
+          enctype: 'multipart/form-data',
+          contentType: false,
+          timeOut:5000,
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.uploadItem.push(data.data.fullUrl);
+                vue.subUpload.push(data.data.url);
+              }
+            }
+          }
+        });
+      },
+      sub(){
         let vue = this;
         jAjax({
           type:'post',
-          url:config.coupon_url,
+          url:config.returnUrl,
           data: {
-            'validateCoupon': config.validateCoupon,
-            'couponCode': vue.couponcode,
+            'order_id': vue.product.orderId,
+            'order_product_id': vue.product.id,
+            'service_type': vue.servicetype,
+            'reason': vue.reason,
+            'description': vue.description,
+            'images': base64.encode64(JSON.stringify(vue.subUpload)),
           },
           timeOut:5000,
           before:function(){
             console.log('before');
           },
           success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
             if(data){
               data = JSON.parse(data);
-              vue.showCoup();
               if(parseInt(data.code) == 200){
-                vue.coupon.couponAmount = data.data;
-                vue.coupon.couponCode = vue.couponcode;
-                vue.loadCoupon();
-                vue.calculateAmount(0);
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;
@@ -63,8 +109,8 @@ let app = new Vue(
             }
 
           },
-          error:function(){
-            console.log('error');
+          error:function(status, statusText){
+            console.log(statusText);
           }
         });
       },
@@ -86,19 +132,6 @@ let app = new Vue(
         if(url){
           location.href = url;
         }
-      },
-      search(num){
-        let vue = this;
-        switch(parseInt(num))
-        {
-          case 0:
-            vue.show_search = !vue.show_search;
-            break;
-          case 1:
-            vue.show_search_d = !vue.show_search_d;
-            break;
-        }
-
       },
     },
   }
