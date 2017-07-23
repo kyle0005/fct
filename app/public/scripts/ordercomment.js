@@ -15,58 +15,168 @@ Vue.component('pop',
     }
   }
 );
+Vue.component('star',
+  {
+    template: '#m_star',
+    data(){
+      return {
+        stars_num: 5,
+        stars_msg:['非常差','很差','一般','很好','非常好'],
+        stars_chosen_msg: '',
+        stars_chosen: 0,
+      }
+    },
+    mounted() {
+      let vue= this;
+    },
+    methods:{
+      c_star(num){
+        let vue = this;
+        vue.stars_chosen = num + 1;
+        vue.stars_chosen_msg = vue.stars_msg[vue.stars_chosen - 1];
+      },
+    }
+  }
+);
+Vue.component('m-textarea',
+  {
+    template: '#m_textarea',
+    data(){
+      return {
+        content: ''
+      }
+    },
+    mounted() {
+      let vue= this;
+    },
+    methods:{
+    }
+  }
+);
+Vue.component('upload',
+  {
+    template: '#m_upload',
+    data(){
+      return {
+        uploadItem: [],
+        subUpload: [],
+        maxNum: 5,
+      }
+    },
+    mounted() {
+      let vue= this;
+    },
+    methods:{
+      delImg(index){
+        let vue = this;
+        vue.uploadItem.splice(index, 1);
+        vue.subUpload.splice(index, 1);
+      },
+      fileChange(event){
+        let vue = this, file = {};
+        if (typeof event.target === 'undefined') {
+          file = event[0];
+        }
+        else {
+          file = event.target.files[0];
+        }
+        var formData = new FormData();
+        formData.append('action', 'head');
+        formData.append('file', file);
+
+        /*          var xhr = new XMLHttpRequest();
+         xhr.open('post',config.uploadFileUrl);
+         xhr.send(formData);*/
+        jAjax({
+          type:'post',
+          url:config.uploadFileUrl,
+          data: formData,
+          // contentType: 'multipart/form-data',
+          enctype: 'multipart/form-data',
+          contentType: false,
+          timeOut:5000,
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.uploadItem.push(data.data.fullUrl);
+                vue.subUpload.push(data.data.url);
+              }
+            }
+          }
+        });
+      },
+    }
+  }
+);
 let app = new Vue(
   {
-    computed: {
-
-    },
     mounted: function() {
       let vue = this;
-
     },
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      show_search: false,
+      order_detail: config.order_detail,
+      anonymous: false,
+      is_break: false
     },
     watch: {
     },
     methods: {
-      getCoupon(){
-        let vue = this;
-        jAjax({
-          type:'post',
-          url:config.coupon_url,
-          data: {
-            'validateCoupon': config.validateCoupon,
-            'couponCode': vue.couponcode,
-          },
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
-            if(data){
-              data = JSON.parse(data);
-              vue.showCoup();
-              if(parseInt(data.code) == 200){
-                vue.coupon.couponAmount = data.data;
-                vue.coupon.couponCode = vue.couponcode;
-                vue.loadCoupon();
-                vue.calculateAmount(0);
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
+      sub(){
+        let vue = this, orderGoods_list = [], _obj = {};
+        vue.order_detail.orderGoods.forEach((item, index) => {
+          let _star = vue.$refs.star[index];
+          let _text = vue.$refs.text[index];
+          let _imgs = vue.$refs.uploadimg[index];
+          _obj.goodsId = item.goodsId;
+          _obj.content = _text.content;
+          _obj.desc_score = _star.stars_chosen;
+          _obj.picture = _imgs.subUpload;
+          orderGoods_list.push(_obj);
         });
+
+        if(!vue.is_break){
+          jAjax({
+            type:'post',
+            url:config.commentUrl,
+            data: {
+              'order_id': vue.order_detail.orderId,
+              'express_score': vue.$refs.express.stars_chosen,
+              'sale_score': vue.$refs.sale.stars_chosen,
+              'is_anonymous': vue.anonymous,
+              'orderGoods_list': base64.encode64(JSON.stringify(orderGoods_list))
+              // 'goodsId': '',
+              // 'content': vue.product.id,
+              // 'desc_score': vue.description,
+              // 'picture': base64.encode64(JSON.stringify(vue.subUpload)),
+            },
+            timeOut:5000,
+            before:function(){
+              console.log('before');
+            },
+            success:function(data){
+              if(data){
+                data = JSON.parse(data);
+                if(parseInt(data.code) == 200){
+                  vue.msg = data.message;
+                  vue.showAlert = true;
+                  vue.close_auto();
+                }else {
+                  vue.msg = data.message;
+                  vue.showAlert = true;
+                  vue.close_auto();
+                }
+              }
+
+            },
+            error:function(status, statusText){
+              console.log(statusText);
+            }
+          });
+        }
+
       },
       close(){
         this.showAlert = false;
@@ -86,19 +196,6 @@ let app = new Vue(
         if(url){
           location.href = url;
         }
-      },
-      search(num){
-        let vue = this;
-        switch(parseInt(num))
-        {
-          case 0:
-            vue.show_search = !vue.show_search;
-            break;
-          case 1:
-            vue.show_search_d = !vue.show_search_d;
-            break;
-        }
-
       },
     },
   }

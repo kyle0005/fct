@@ -166,6 +166,43 @@ gulp.task('serve', () => {
     });
   });
 
+  server.post('/comment', (req, res) => {
+    var _data = {};
+    req.on('data',function(data){
+      _data += data;
+      console.log("服务器接收到的数据：　"+decodeURIComponent(data));
+
+    });
+    req.on("end",function(){
+      console.log('客户端请求数据全部接收完毕');
+    });
+    res.json({
+      "code": 200,
+      "message": "发表评论成功",
+      "url": null,
+      "data": ""
+    });
+  });
+
+  server.post('/delAddr', (req, res) => {
+    var _data = {};
+    req.on('data',function(data){
+      _data += data;
+      console.log("服务器接收到的数据：　"+decodeURIComponent(data));
+
+    });
+    req.on("end",function(){
+      console.log('客户端请求数据全部接收完毕');
+    });
+    res.json({
+      "code": 200,
+      "message": "删除成功",
+      "url": null,
+      "data": ""
+    });
+  });
+
+
   server.get('/orderlist', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;

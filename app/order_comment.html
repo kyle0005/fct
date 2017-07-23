@@ -7,87 +7,29 @@
   <meta name="description" content="">
   <title>main</title>
   <link rel="stylesheet" href="public/styles/main.css">
-  <link rel="stylesheet" href="public/styles/main.scss">
 </head>
 <body>
 <div class="ordercomment-container" id="ordercomment" v-cloak>
   <section class="list">
-    <div class="item">
+    <div class="item" v-for="(item, index) in order_detail.orderGoods">
       <div class="top">
         <div class="pro-img">
-          <img src="public/images/resource/pro01.png">
+          <img :src="item.img">
         </div>
-        <div class="context">
-          <span>描述相符</span>
-          <span class="stars">
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star-o"></i>
-            </a>
-          </span>
-          <span class="text">非常好</span>
+        <div class="context clearfix">
+          <div class="des">描述相符</div>
+          <star ref="star"></star>
         </div>
       </div>
       <div class="comment">
-        <textarea class="textarea" placeholder="宝贝满足你的期待吗？说说它的优点和美中不足的地方吧"></textarea>
-        <div class="upload-container">
-          <div class="inner">
-            <img src="public/images/upload.png">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="top">
-        <div class="pro-img">
-          <img src="public/images/resource/pro01.png">
-        </div>
-        <div class="context">
-          <span>描述相符</span>
-          <span class="stars">
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star-o"></i>
-            </a>
-          </span>
-          <span class="text">非常好</span>
-        </div>
-      </div>
-      <div class="comment">
-        <textarea class="textarea" placeholder="宝贝满足你的期待吗？说说它的优点和美中不足的地方吧"></textarea>
-        <div class="upload-container">
-          <div class="inner">
-            <img src="public/images/upload.png">
-          </div>
-        </div>
+        <m-textarea  ref="text"></m-textarea>
+        <upload ref="uploadimg"></upload>
       </div>
     </div>
     <div class="bot">
       <div class="inner">
         <label for="anonymous" class="anonymous-container">
-          <input type="checkbox" name="anonymous" id="anonymous" class="anonymous">
+          <input type="checkbox" name="anonymous" id="anonymous" v-model="anonymous" class="anonymous">
           <span class="">匿名</span>
         </label>
         <span class="txt">你的评价能帮助其他小伙伴哟</span>
@@ -98,51 +40,17 @@
     <div class="top">
       <img src="public/images/logo2.png"><span>店铺评分</span>
     </div>
-    <div class="context">
-      <span>描述相符</span>
-      <span class="stars">
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star-o"></i>
-            </a>
-          </span>
-      <span class="text">非常好</span>
+    <div class="context clearfix">
+      <div class="des">物流服务</div>
+      <star ref="express"></star>
     </div>
-    <div class="context">
-      <span>描述相符</span>
-      <span class="stars">
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star"></i>
-            </a>
-            <a href="javascript:;" class="">
-              <i class="fa fa-star-o"></i>
-            </a>
-          </span>
-      <span class="text">非常好</span>
+    <div class="context clearfix">
+      <div class="des">服务态度</div>
+      <star ref="sale"></star>
     </div>
   </section>
   <div class="sub-btn">
-    <a href="javascript:;">确认保存</a>
+    <a href="javascript:;" @click="sub">提交评论</a>
   </div>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
@@ -155,10 +63,45 @@
 </template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script type="text/x-template" id="m_star">
+  <div class="stars clearfix">
+    <div class="inner">
+      <a href="javascript:;" @click="c_star(index)" v-for="(item, index) in stars_chosen">
+        <i class="fa fa-star"></i>
+      </a>
+      <a href="javascript:;" @click="c_star(index + stars_chosen)" v-for="(item, index) in (stars_num - stars_chosen)">
+        <i class="fa fa-star-o"></i>
+      </a>
+      <span class="text">{{ stars_chosen_msg }}</span>
+    </div>
+  </div>
+</script>
+<script type="text/x-template" id="m_textarea">
+  <textarea class="textarea" v-model="content" placeholder="宝贝满足你的期待吗？说说它的优点和美中不足的地方吧"></textarea>
+</script>
+<script type="text/x-template" id="m_upload">
+  <div class="upload-container">
+    <div class="item" v-for="(item, index) in uploadItem">
+      <div class="inner">
+        <img :src="item">
+      </div>
+      <a href="javascript:;" class="fork" @click="delImg(index)"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="item" v-if="uploadItem.length < maxNum">
+      <div class="inner">
+        <img src="public/images/upload.png">
+        <input type="file" name="file" class="upload" @change="fileChange">
+      </div>
+    </div>
+    <input type="hidden" name="uploadimg" :value="subUpload">
+  </div>
+</script>
 <script>
   var config = {
+    "uploadFileUrl": "http://localhost:3000/uploadReturnImg",
+    "commentUrl": "http://localhost:3000/comment",
     "order_detail": {
-      "orderId": "1707186898922467",
+      "orderId": "1707186898922467",        //used
       "memberId": 5,
       "cellPhone": "18616311580",
       "shopId": 0,
@@ -169,12 +112,13 @@
       "totalAmount": 8888,
       "couponCode": "",
       "status": 0,
-      "statusName": "待收货",      //used
-      "buyTotalCount": 10,        //used
+      "statusName": "待收货",
+      "buyTotalCount": 10,
       "payOrderId": null,
       "payPlatform": "alipay_fctwap",
       "remark": "",
-      "orderGoods": [{
+      "orderGoods": [
+          {
         "id": 60,
         "orderId": "1707186898922467",
         "goodsId": 2,
@@ -192,7 +136,27 @@
         "payAmount": 7554.8,
         "totalAmount": 8888,
         "content": null
-      }],
+      },
+          {
+          "id": 61,
+          "orderId": "1707186898922467",
+          "goodsId": 2,
+          "goodsSpecId": 1,
+          "name": "goods",
+          "specName": "aaa",
+          "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+          "buyCount": 1,
+          "status": -1,
+          "statusName": "",
+          "price": 8888,
+          "commission": 200,
+          "promotionPrice": 7554.8,
+          "couponAmount": 0,
+          "payAmount": 7554.8,
+          "totalAmount": 8888,
+          "content": null
+        }
+      ],         //used
       "orderReceiver": {
         "orderId": "1707186898922467",
         "name": "小寒",

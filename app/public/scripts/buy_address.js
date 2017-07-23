@@ -47,17 +47,81 @@ let app = new Vue(
           location.href = url;
         }
       },
-      edit(){
+      setDefault(item){
         let vue = this;
-        vue.showAlert = true;
-        vue.msg = 'edit';
-        vue.close_auto();
+        vue.address.forEach((item, index) => {
+          item.isDefault = 0;
+        });
+        item.isDefault = 1;
       },
-      del(){
+      changeDefault(item){
         let vue = this;
-        vue.showAlert = true;
-        vue.msg = 'del';
-        vue.close_auto();
+        jAjax({
+          type:'post',
+          url:config.defaultAddrUrl + '?id=' + item.id,
+          data: {},
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+                vue.setDefault(item);
+                vue.defaultAddr();
+              }else {
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+              }
+            }
+
+          },
+          error:function(status, statusText){
+            console.log(statusText);
+          }
+        });
+      },
+      edit(item,){
+        let vue = this;
+        location.href = config.editUrl + "?id=" + item.id;
+      },
+      del(item, index){
+        let vue = this;
+        jAjax({
+          type:'post',
+          url:config.delAddrUrl + '?id=' + item.id,
+          data: {},
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+                vue.address.splice(index, 1);
+                vue.setDefault(vue.address[0]);
+                vue.defaultAddr();
+              }else {
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+              }
+            }
+
+          },
+          error:function(status, statusText){
+            console.log(statusText);
+          }
+        });
       },
       addressStr(item){
         let vue = this;
