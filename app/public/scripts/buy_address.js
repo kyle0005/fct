@@ -86,9 +86,9 @@ let app = new Vue(
           }
         });
       },
-      edit(item,){
+      edit(item){
         let vue = this;
-        location.href = config.editUrl + "?id=" + item.id;
+        location.href = config.editUrl + '?id=' + item.id;
       },
       del(item, index){
         let vue = this;

@@ -63,23 +63,53 @@ let app = new Vue(
       let vue = this;
     },
     data: {
-      address: config.address,
+      address_obj: config.address,
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
       citylist: citylist,
       isFir: true,
 
-      province:"辽宁",
-      city:"大连",
-      county:"西岗区",
+      province: config.address.province || '',
+      city: config.address.cityId || '',
+      county: config.address.townId || '',
 
-      isDefault: 1,
-      address: "",
-      cellPhone: "",
-      name: ""
+      isDefault: config.address.isDefault || '',
+      address: config.address.address || '',
+      cellPhone: config.address.cellPhone || '',
+      name: config.address.name || ''
 
     },
     methods: {
+      sub(){
+        let vue = this;
+        jAjax({
+          type:'post',
+          url:config.saveAddressddUrl,
+          data: formData.serializeForm('addr'),
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+              }else {
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+              }
+            }
+
+          },
+          error:function(status, statusText){
+            console.log(statusText);
+          }
+        });
+      },
       toProvince(){
         let vue = this;
         vue.citylist.forEach((item, index) => {

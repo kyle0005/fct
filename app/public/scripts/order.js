@@ -29,47 +29,10 @@ let app = new Vue(
       msg: null, //提示的内容
       order_detail: config.order_detail,
       img_path: config.img_path,
-      statusImg:['/user_payment_pending.png', '/user_shipment_pending.png', '/user_shipped.png', '/user_evaluation_pending.png', '/check_w.png']
     },
     watch: {
     },
     methods: {
-      getCoupon(){
-        let vue = this;
-        jAjax({
-          type:'post',
-          url:config.coupon_url,
-          data: {
-            'validateCoupon': config.validateCoupon,
-            'couponCode': vue.couponcode,
-          },
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
-            if(data){
-              data = JSON.parse(data);
-              vue.showCoup();
-              if(parseInt(data.code) == 200){
-                vue.coupon.couponAmount = data.data;
-                vue.coupon.couponCode = vue.couponcode;
-                vue.loadCoupon();
-                vue.calculateAmount(0);
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });
-      },
       order_detail(){
         let vue = this;
 

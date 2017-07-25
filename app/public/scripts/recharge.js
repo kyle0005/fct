@@ -22,17 +22,50 @@ let app = new Vue(
     },
     mounted: function() {
       let vue = this;
-
+/*      let other = {
+        0: vue.discount
+      };
+      vue.charge_nums.push(other);*/
     },
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      show_search: false,
-      show_detail:false
+      charge: config.charge,
+      charge_nums: config.charge.rules,
+
+      isOther: false,
+      charge_num: 0,
+      gift: 0,
+      balance: 0,
+
+      discount: config.charge.defaultGift,
+      hasNum:false
     },
     watch: {
+      charge_num: function (val, oldVal) {
+        let vue = this;
+        if(vue.charge_num > 0){
+          vue.hasNum = true;
+        }else {
+          vue.hasNum = false;
+        }
+        vue.gift = (parseFloat(vue.charge_num) * parseFloat(vue.discount)).toFixed(0);
+        vue.balance = (parseFloat(vue.charge_num) + parseFloat(vue.gift)).toFixed(0);
+      },
     },
     methods: {
+      choose(discount, value){
+        let vue = this;
+        if(parseFloat(value) == 0){
+          vue.isOther = true;
+          vue.discount = config.charge.defaultGift;
+        }else {
+          vue.isOther = false;
+          vue.discount = discount;
+        }
+        vue.charge_num = value;
+
+      },
       getCoupon(){
         let vue = this;
         jAjax({

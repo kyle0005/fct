@@ -27,35 +27,63 @@ let app = new Vue(
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      show_search: false,
-      show_detail:false
+      bankList: config.bankList,
+      IDcard: '',
+      bankAccount: '',
+      bank: '',
+      name: ''
     },
     watch: {
     },
     methods: {
-      getCoupon(){
+      sub(){
         let vue = this;
+        if(!vue.name){
+          vue.msg = '请输入真实姓名';
+          vue.showAlert = true;
+          vue.close_auto();
+          return false;
+        }
+        if(!vue.bank){
+          vue.msg = '请选择开户行';
+          vue.showAlert = true;
+          vue.close_auto();
+          return false;
+        }
+        if(!vue.bankAccount){
+          vue.msg = '请输入开户行账号';
+          vue.showAlert = true;
+          vue.close_auto();
+          return false;
+        }
+        if(!vue.IDcard){
+          vue.msg = '请输入身份证号码';
+          vue.showAlert = true;
+          vue.close_auto();
+          return false;
+        }
+
         jAjax({
           type:'post',
-          url:config.coupon_url,
+          url:config.authenticationUrl,
           data: {
-            'validateCoupon': config.validateCoupon,
-            'couponCode': vue.couponcode,
+            'IDcard': vue.IDcard,
+            'bankAccount': vue.bankAccount,
+            'bank': vue.bank,
+            'name': vue.name
           },
           timeOut:5000,
           before:function(){
             console.log('before');
           },
           success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
             if(data){
               data = JSON.parse(data);
               vue.showCoup();
               if(parseInt(data.code) == 200){
-                vue.coupon.couponAmount = data.data;
-                vue.coupon.couponCode = vue.couponcode;
-                vue.loadCoupon();
-                vue.calculateAmount(0);
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;

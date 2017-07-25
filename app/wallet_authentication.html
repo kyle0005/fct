@@ -14,32 +14,32 @@
     <div class="item">
       <div class="inner">
         <span class="left">真实姓名</span>
-        <input type="text" class="inp">
+        <input type="text" class="inp" v-model="name">
       </div>
     </div>
     <div class="item">
       <div class="inner">
         <span class="left">开户行</span>
-        <select class="select">
-          <option>请选择</option>
+        <select class="select" v-model="bank">
+          <option v-for="(item, index) in bankList">{{ item }}</option>
         </select>
       </div>
     </div>
     <div class="item">
       <div class="inner">
         <span class="left">开户行账号</span>
-        <input type="text" class="inp">
+        <input type="text" class="inp" v-model="bankAccount">
       </div>
     </div>
     <div class="item">
       <div class="inner">
-        <span class="left">身份张号码</span>
-        <input type="text" class="inp">
+        <span class="left">身份证号码</span>
+        <input type="text" class="inp" v-model="IDcard">
       </div>
     </div>
   </section>
   <div class="sub-btn">
-    <a href="javascript:;">提交申请</a>
+    <a href="javascript:;" @click="sub">提交申请</a>
   </div>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
@@ -54,7 +54,8 @@
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
-
+    "authenticationUrl": "http://localhost:3000/authentication",
+    "bankList": ["招商银行", "工商银行", "建设银行"]
   }
 </script>
 <script src="public/scripts/authentication.js"></script>

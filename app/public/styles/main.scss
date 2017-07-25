@@ -2968,18 +2968,28 @@ $foot-height: 250px;
     .text{
       position: absolute;
       top: 50%;
-      left: 0;
       transform: translateY(-50%);
+      left: 0;
       width: 100%;
       font-size: $font-size-t14;
       color: $color-white;
       text-align: center;
-      img{
-        width: calc(25 / 375 * 100%);
-        margin-right: 2%;
-        vertical-align: bottom;
+        img{
+          width: calc(25 / 375 * 100%);
+          margin-right: 1%;
+          vertical-align: top;
+        }
+      .status{
+        display: block;
+        width: 100%;
+        font-size: $font-size-t12;
+        color: $color-999;
+        text-align: center;
+        padding-top: 1%;
       }
+
     }
+
   }
   .detail{
     width: 100%;
@@ -4727,33 +4737,62 @@ $foot-height: 250px;
   @extend %page;
   background-color: $color-f2f2f2;
   .top{
+    position: relative;
     width: 100%;
+    padding-bottom: calc(418/750*100%);
     text-align: center;
     color: $color-666;
-    .f{
-      padding-top: calc(84/750*100%);
-      .pri{
-        margin: 0 1%;
-        font-size: $font-size-t30;
+    .inner{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      .f{
+        padding-top: calc(84/750*100%);
+        .pri{
+          margin: 0 1%;
+          font-size: $font-size-t30;
+          color: $color-1d1d1d;
+        }
+      }
+      .s{
+        font-size: $font-size-t14;
+      }
+      .t{
+        padding-bottom: calc(40/750*100%);
+        img{
+          width: 20%;
+        }
+      }
+
+      .other{
+        padding-top: calc(90/750*100%);
+        display: block;
+        width: 100%;
+        font-size: $font-size-t15;
+        color: $color-333;
+      }
+      input.inp{
+        width: calc(400/750*100%);
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid $color-dcdcdc;
+        text-align: center;
+        margin: 5% 0;
+        font-size: $font-size-t14;
+      }
+      .txt{
         color: $color-1d1d1d;
       }
+
     }
-    .s{
-      font-size: $font-size-t14;
-    }
-    .t{
-      padding-bottom: calc(40/750*100%);
-      img{
-        width: 20%;
-      }
-    }
+
   }
   .choose{
     background-color: $color-white;
     padding: calc(38/750*100%) 0 0 calc(42/750*100%);
     width: calc(708/750*100%);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
     .item {

@@ -38,7 +38,7 @@
       <div class="line">
         <div class="left">昵称</div>
         <div class="right">
-          <input type="text" class="right-inp" :value="userinfo.userName">
+          <input type="text" class="right-inp" name="username" :value="userinfo.userName">
         </div>
       </div>
       <div class="line">
@@ -57,14 +57,14 @@
       <div class="line">
         <div class="left">出生日期</div>
         <div class="right clearfix">
-          <input type="date" v-model="date" class="birth">
+          <input type="date" v-model="date" name="birthday" class="birth">
           <span class="wei-arrow-right"></span>
         </div>
       </div>
       <div class="line">
         <div class="left">微信</div>
         <div class="right">
-          <input type="text" class="right-inp" :value="userinfo.weixin">
+          <input type="text" class="right-inp" name="weixin" :value="userinfo.weixin">
         </div>
       </div>
     </section>

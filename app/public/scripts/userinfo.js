@@ -55,9 +55,9 @@ let app = new Vue(
           url:config.uploadFileUrl,
           data: formData,
           // contentType: 'multipart/form-data',
-          enctype: 'multipart/form-data',
-          // contentType: false,
-          timeOut:5000,
+          // enctype: 'multipart/form-data',
+          contentType: false,   /* false为上传文件 */
+          timeOut:60000,
           success:function(data){
             if(data){
               data = JSON.parse(data);

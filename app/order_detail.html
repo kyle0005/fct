@@ -12,11 +12,20 @@
 <div class="order-container" id="order" v-cloak>
   <section class="info">
     <div class="text">
-      <img :src="img_path + statusImg[order_detail.status]">{{ order_detail.statusName }}
+      <span v-if="order_detail.status == 0">
+        <img src="public/images/fork_w.png">待付款
+      </span>
+      <span v-if="order_detail.status !== 0 && order_detail.status !== 4">
+        <img src="public/images/check_w.png">付款成功
+        <span class="status">{{ order_detail.statusName }}</span>
+      </span>
+      <span v-if="order_detail.status == 4">
+        <img src="public/images/fork_w.png">订单关闭
+      </span>
     </div>
   </section>
   <section class="detail">
-    <div class="express">
+    <div class="express" v-if="order_detail.orderReceiver.expressNO">
       <a href="javascript:;" class="link">
         <span class="img-container item">
             <img src="public/images/order_transport.png">
@@ -31,7 +40,7 @@
       </div>
       <div class="addr-info">
         <div class="item">收货人：{{ order_detail.orderReceiver.name }}</div>
-        <div class="item right">{{ order_detail.orderReceiver.cellPhone }}</div>
+        <div class="item right">{{ order_detail.orderReceiver.phone }}</div>
       </div>
       <div class="address">收货地址：{{ order_detail.orderReceiver.province + "&nbsp;" + order_detail.orderReceiver.city + "&nbsp;" +  order_detail.orderReceiver.region + "&nbsp;" + order_detail.orderReceiver.address }}</div>
     </div>
@@ -77,9 +86,9 @@
   <footer class="footer">
     <div class="inner">
       <a href="javascript:;" class="chat"><img src="public/images/order_chat.png"></a>
-      <div class="del">
-        <a href="javascript:;">删除订单</a>
-      </div>
+      <!--<div class="del">-->
+        <!--<a href="javascript:;">删除订单</a>-->
+      <!--</div>-->
       <div class="comment">
         <a href="javascript:;">我要评价</a>
       </div>
@@ -99,64 +108,38 @@
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
-      "img_path": "public/images",
       "order_detail": {
-        "orderId": "1707186898922467",
-        "memberId": 5,
-        "cellPhone": "18616311580",
-        "shopId": 0,
-        "points": 0,
-        "accountAmount": 4991.4,
-        "cashAmount": 2563.4,
-        "payAmount": 7554.8,
-        "totalAmount": 8888,
-        "couponCode": "",
-        "status": 0,
+        "orderId": "1707186898922467",      //used
+        "payAmount": 7554.8,          //used
+        "status": 4,
         "statusName": "待收货",      //used
         "buyTotalCount": 10,        //used
-        "payOrderId": null,
-        "payPlatform": "alipay_fctwap",
-        "remark": "",
+        "payOrderId": null,         //used
+        "payPlatform": "alipay_fctwap",     //used
         "orderGoods": [{
-          "id": 60,
-          "orderId": "1707186898922467",
-          "goodsId": 2,
-          "goodsSpecId": 1,
-          "name": "goods",
-          "specName": "aaa",
-          "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
-          "buyCount": 1,
-          "status": -1,
-          "statusName": "",
-          "price": 8888,
-          "commission": 200,
-          "promotionPrice": 7554.8,
-          "couponAmount": 0,
-          "payAmount": 7554.8,
-          "totalAmount": 8888,
-          "content": null
+          "name": "goods",          //used
+          "specName": "aaa",        //used
+          "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",      //used
+          "buyCount": 1,          //used
+          "status": -1,           //used
+          "statusName": "",       //used
+          "price": 8888,          //used
         }],
         "orderReceiver": {
-          "orderId": "1707186898922467",
-          "name": "小寒",
-          "phone": "18616311580",
-          "province": "上海",
-          "city": "上海",
-          "region": "普陀",
-          "address": "金沙江地铁站",
-          "postCode": null,
-          "expressPlatform": null,
-          "expressNO": null,
-          "deliveryTime": null
+          "name": "小寒",             //used
+          "phone": "18616311580",     //used
+          "province": "上海",         //used
+          "city": "上海",             //used
+          "region": "普陀",           //used
+          "address": "金沙江地铁站",    //used
+          "expressPlatform": null,   //used
+          "expressNO": null,        //used
+          "deliveryTime": null        //used
         },
-        "settleId": 0,
-        "commentStatus": 0,
-        "payTime": null,
-        "createTime": 1500376189000,
-        "updateTime": 1500697737000,
-        "expiresTime": 1503140989000,
-        "finishTime": "",
-        "operatorId": null
+        "payTime": null,                  //used
+        "createTime": 1500376189000,      //used
+        "expiresTime": 1503140989000,     //used
+        "finishTime": "",                 //used
       }
   }
 </script>

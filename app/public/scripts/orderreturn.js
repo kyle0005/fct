@@ -51,21 +51,21 @@ let app = new Vue(
         else {
           file = event.target.files[0];
         }
-        var formData = new FormData();
-        formData.append('action', 'head');
-        formData.append('file', file);
+        var form_data = new FormData();
+        form_data.append('action', 'head');
+        form_data.append('file', file);
 
 /*          var xhr = new XMLHttpRequest();
          xhr.open('post',config.uploadFileUrl);
-         xhr.send(formData);*/
+         xhr.send(form_data);*/
         jAjax({
           type:'post',
           url:config.uploadFileUrl,
-          data: formData,
+          data: form_data,
           // contentType: 'multipart/form-data',
-          enctype: 'multipart/form-data',
+          // enctype: 'multipart/form-data',
           contentType: false,
-          timeOut:5000,
+          timeOut:60000,
           success:function(data){
             if(data){
               data = JSON.parse(data);
@@ -79,17 +79,24 @@ let app = new Vue(
       },
       sub(){
         let vue = this;
+        // var form_data = new FormData();
+        // form_data.append('order_id', vue.product.orderId);
+        // form_data.append('order_product_id', vue.product.id);
+        // form_data.append('service_type', vue.servicetype);
+        // form_data.append('reason', vue.reason);
+        // form_data.append('description', vue.description);
+        // form_data.append('images', base64.encode64(JSON.stringify(vue.subUpload)));
         jAjax({
           type:'post',
           url:config.returnUrl,
-          data: {
+          data:
+            {
             'order_id': vue.product.orderId,
             'order_product_id': vue.product.id,
             'service_type': vue.servicetype,
             'reason': vue.reason,
             'description': vue.description,
-            'images': base64.encode64(JSON.stringify(vue.subUpload)),
-          },
+            'images': base64.encode64(JSON.stringify(vue.subUpload)),},
           timeOut:5000,
           before:function(){
             console.log('before');

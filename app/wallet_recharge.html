@@ -11,36 +11,23 @@
 <body>
 <div class="recharge-container" id="recharge" v-cloak>
   <section class="top">
-    <div class="f">充<span class="pri">3000</span>元</div>
-    <div class="s">送1000元，可得4000余额。</div>
-    <div class="t"><img src="public/images/category1.png" alt=""></div>
+    <div class="inner" v-if="isOther">
+      <strong class="other">其他金额</strong>
+      <input type="text" class="inp" v-model="charge_num" placeholder="手动输入充值金额">
+      <div v-if="hasNum">送{{ gift }}元，可得{{ balance }}余额。</div>
+      <div class="txt" v-else>200元起充，500元起返</div>
+    </div>
+    <div class="inner" v-else>
+      <div class="f">充<span class="pri">{{ charge_num }}</span>元</div>
+      <div class="s">送{{ gift }}元，可得{{ balance }}余额。</div>
+      <div class="t"><img src="public/images/category1.png" alt=""></div>
+    </div>
   </section>
   <section class="choose">
-    <div class="item chose">
-      <a href="javascript:;" class="link">￥500</a>
+    <div class="item" :class="{chose: index===tab_num}" v-for="(item, index) in charge_nums" @click="choose(item, index, tab_num)">
+      <a href="javascript:;" class="link" >{{ index }}</a>
     </div>
-    <div class="item">
-      <a href="javascript:;" class="link">￥1000</a>
-    </div>
-    <div class="item">
-      <a href="javascript:;" class="link">￥2000</a>
-    </div>
-    <div class="item">
-      <a href="javascript:;" class="link">￥3000</a>
-    </div>
-    <div class="item">
-      <a href="javascript:;" class="link">￥5000</a>
-    </div>
-    <div class="item">
-      <a href="javascript:;" class="link">￥6000</a>
-    </div>
-    <div class="item">
-      <a href="javascript:;" class="link">￥8000</a>
-    </div>
-    <div class="item">
-      <a href="javascript:;" class="link">￥10000</a>
-    </div>
-    <div class="item">
+    <div class="item" :class="{chose: index===tab_num}" @click="choose(charge.defaultGift, 0, tab_num)">
       <a href="javascript:;" class="link">其他金额</a>
     </div>
   </section>
@@ -64,6 +51,17 @@
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
+    "charge": {
+      min:100,
+      max:3000,
+      defaultGift: 0.2,
+      rules: {
+        500: 0.2,
+        1000: 0.3,
+        2000: 0.4,
+        3000: 0.5,
+      }
+    }
 
   }
 </script>

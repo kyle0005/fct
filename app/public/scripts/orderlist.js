@@ -105,7 +105,7 @@ let app = new Vue(
     methods: {
       todetail(item){
         let vue = this;
-        location.href = config.detail_url + '?order_id=' + item.orderId;
+        location.href = config.detail_url + '/' + item.orderId;
       },
       nextPage() {
         let vue = this;

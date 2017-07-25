@@ -10,64 +10,67 @@
 </head>
 <body>
 <div class="buy-container" id="buy_address" v-cloak>
-  <div class="opt-container">
-    <div class="line">
-      <div class="left">收货人</div>
-      <div class="right">
-        <input type="text" class="right-inp" v-model="name">
-      </div>
-    </div>
-    <div class="line">
-      <div class="left">联系电话</div>
-      <div class="right">
-        <input type="tel" class="right-inp" v-model="cellPhone">
-      </div>
-    </div>
-    <div class="line">
-      <div class="left">省份</div>
-      <div class="right clearfix">
-        <select v-model="province">
-          <option v-for="(item,key) in provincesName" :value="key">{{item}}</option>
-        </select>
-        <span class="wei-arrow-right"></span>
-      </div>
-    </div>
-    <div class="line">
-      <div class="left">城市</div>
-      <div class="right clearfix">
-        <select v-model="city">
-          <option v-for="(item,key) in citysName" :value="key">{{item}}</option>
-        </select>
-        <span class="wei-arrow-right"></span>
-      </div>
-    </div>
-    <div class="line">
-      <div class="left">区域</div>
-      <div class="right clearfix">
-        <select v-model="county">
-          <option v-for="(item,key) in countysName" :value="key">{{item}}</option>
-        </select>
-        <span class="wei-arrow-right"></span>
-      </div>
-    </div>
-    <div class="line">
-      <textarea class="textarea" placeholder="请填写详细地址，不少于5个字" v-model="address"></textarea>
-    </div>
-  </div>
-  <div class="opt-container">
-    <div class="default-line">
-      <div class="left">设置默认</div>
-      <div class="right clearfix">
-        <div class="switch-container">
-          <input class="switch" name="" id="" type="checkbox" unchecked v-model="isDefault">
+  <form id="addr">
+    <input type="hidden" v-model="address_obj.id">
+    <div class="opt-container">
+      <div class="line">
+        <div class="left">收货人</div>
+        <div class="right">
+          <input type="text" class="right-inp" v-model="name">
         </div>
       </div>
-
+      <div class="line">
+        <div class="left">联系电话</div>
+        <div class="right">
+          <input type="tel" class="right-inp" v-model="cellPhone">
+        </div>
+      </div>
+      <div class="line">
+        <div class="left">省份</div>
+        <div class="right clearfix">
+          <select v-model="province">
+            <option v-for="(item,key) in provincesName" :value="key">{{item}}</option>
+          </select>
+          <span class="wei-arrow-right"></span>
+        </div>
+      </div>
+      <div class="line">
+        <div class="left">城市</div>
+        <div class="right clearfix">
+          <select v-model="city">
+            <option v-for="(item,key) in citysName" :value="key">{{item}}</option>
+          </select>
+          <span class="wei-arrow-right"></span>
+        </div>
+      </div>
+      <div class="line">
+        <div class="left">区域</div>
+        <div class="right clearfix">
+          <select v-model="county">
+            <option v-for="(item,key) in countysName" :value="key">{{item}}</option>
+          </select>
+          <span class="wei-arrow-right"></span>
+        </div>
+      </div>
+      <div class="line">
+        <textarea class="textarea" placeholder="请填写详细地址，不少于5个字" v-model="address"></textarea>
+      </div>
     </div>
-  </div>
-  <div class="address-btn">
-    <a href="javascript:;">确认保存</a>
-  </div>
+    <div class="opt-container">
+      <div class="default-line">
+        <div class="left">设置默认</div>
+        <div class="right clearfix">
+          <div class="switch-container">
+            <input class="switch" name="" id="" type="checkbox" unchecked v-model="isDefault">
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="address-btn">
+      <a href="javascript:;" @click="sub">确认保存</a>
+    </div>
+  </form>
 <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <template id="pop">
@@ -83,6 +86,7 @@
 <script src="public/scripts/common/city.min.js"></script>
 <script>
   var config = {
+    "saveAddressddUrl":"http://localhost:3000/saveAddress",
     "address":
       {
         "id": 0,    /* 地址 id */

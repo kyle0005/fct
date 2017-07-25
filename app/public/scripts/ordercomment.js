@@ -92,9 +92,9 @@ Vue.component('upload',
           url:config.uploadFileUrl,
           data: formData,
           // contentType: 'multipart/form-data',
-          enctype: 'multipart/form-data',
+          // enctype: 'multipart/form-data',
           contentType: false,
-          timeOut:5000,
+          timeOut:60000,
           success:function(data){
             if(data){
               data = JSON.parse(data);
