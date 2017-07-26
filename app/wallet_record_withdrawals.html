@@ -10,38 +10,19 @@
 </head>
 <body>
 <div class="walletaccount-container" id="withdrawalsrecord" v-cloak>
-  <ul class="list">
-    <li>
+  <ul class="list" v-load-more="nextPage">
+    <li v-for="(item, index) in withdrawalRecordList">
       <div class="inner">
         <div class="up clearfix">
-          <span>招商银行</span><span class="pri">-1000.00</span>
+          <span>{{ item.bankName }}</span><span class="pri">{{ item.amount }}</span>
         </div>
         <div class="down clearfix">
-          <span>状态：等待财务处理</span><span class="pri">13.00</span>
-        </div>
-      </div>
-    </li>
-    <li>
-      <div class="inner">
-        <div class="up clearfix">
-          <span>支付宝(xxxxx@xx.com)</span><span class="pri">-1.00</span>
-        </div>
-        <div class="down clearfix">
-          <span>状态：提现成功</span><span class="pri">12.00</span>
-        </div>
-      </div>
-    </li>
-    <li>
-      <div class="inner">
-        <div class="up clearfix">
-          <span>支付宝(xxxxx@xx.com)</span><span class="pri">+2000.00</span>
-        </div>
-        <div class="down clearfix">
-          <span>状态：提现成功</span><span class="pri">2012.00</span>
+          <span>状态：{{ item.statusName }}</span><span class="pri">{{ item.createTime }}</span>
         </div>
       </div>
     </li>
   </ul>
+  <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <template id="pop">
@@ -53,9 +34,33 @@
 </template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script>
   var config = {
-
+    "withdrawalRecordUrl": "http://localhost:3000/withdrawalRecord",
+    "withdrawalRecordList": {
+      'entries': [
+        {
+          "createTime": "2017-02-02",
+          "bankName": "建设银行",
+          "amount": 224234,
+          "statusName": '等待财务处理'           /* 提现状态 */
+        },
+        {
+          "createTime": "2017-02-02",
+          "bankName": 324123,
+          "amount": 224234,
+          "statusName": '提现成功'           /* 提现状态 */
+        },
+        {
+          "createTime": "2017-02-02",
+          "bankName": 324123,
+          "amount": 224234,
+          "statusName": '提现成功'               /* 提现状态 */
+        },
+      ],
+      'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
+    },
   }
 </script>
 <script src="public/scripts/withdrawalsrecord.js"></script>

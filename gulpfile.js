@@ -572,6 +572,102 @@ gulp.task('serve', () => {
     });
   });
 
+  server.get('/chargeRecord', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.status);
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data': {
+        'entries': [
+          {
+            'id': 3123,
+            'createTime': '2017-02-02',
+            'payAmount': 234234,   /* 充值金额 */
+            'giftAmount': 324123,    /*  赠送金额 */
+            'amount': 224234,       /* 获得金额 */
+            'status': 0           /* 0为等待付款 */
+          },
+          {
+
+            'id': 234234,
+            'createTime': '2017-02-02',
+            'payAmount': 234234,   /* 充值金额 */
+            'giftAmount': 324123,    /*  赠送金额 */
+            'amount': 224234,       /* 获得金额 */
+            'status': 1
+          },
+        ],
+        'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
+      }
+
+    });
+  });
+
+  server.get('/withdrawalRecord', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.status);
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data': {
+        'entries': [
+          {
+            'createTime': '2017-02-02',
+            'bankName': 324123,
+            'amount': 224234,
+            'statusName': '等待财务处理'
+          },
+          {
+            'createTime': '2017-02-02',
+            'bankName': 324123,
+            'amount': 224234,
+            'statusName': '提现成功'
+          },
+          {
+            'createTime': '2017-02-02',
+            'bankName': 324123,
+            'amount': 224234,
+            'statusName': '提现成功'
+          },
+        ],
+        'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
+      }
+
+    });
+  });
+
+  server.get('/walletaccount', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.status);
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data': {
+        'entries': [
+          {
+            'amount': 7554.8,
+            'createTime': '2017-07-17 17:32',
+            'remark': '购买goods',
+            'balanceAmount': 4991.4
+          },
+          {'amount': 7453.8, 'createTime': '2017-07-17 17:30', 'remark': '购买goods', 'balanceAmount': 12546.2}
+        ],
+        'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
+      }
+
+    });
+  });
+
   server.get('/refundlist', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;

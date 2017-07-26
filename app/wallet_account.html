@@ -10,38 +10,19 @@
 </head>
 <body>
 <div class="walletaccount-container" id="walletaccount" v-cloak>
-  <ul class="list">
-    <li>
+  <ul class="list" v-load-more="nextPage">
+    <li v-for="(item, index) in walletaccountList">
       <div class="inner">
         <div class="up clearfix">
-          <span>购买xxx商品</span><span class="pri">-1000.00</span>
+          <span>{{ item.remark }}</span><span class="pri">{{ item.balanceAmount }}</span>
         </div>
         <div class="down clearfix">
-          <span>2017-01-01 12:00</span><span class="pri">13.00</span>
-        </div>
-      </div>
-    </li>
-    <li>
-      <div class="inner">
-        <div class="up clearfix">
-          <span>提现金额</span><span class="pri">-1.00</span>
-        </div>
-        <div class="down clearfix">
-          <span>2017-01-01 12:00</span><span class="pri">12.00</span>
-        </div>
-      </div>
-    </li>
-    <li>
-      <div class="inner">
-        <div class="up clearfix">
-          <span>充值</span><span class="pri">+2000.00</span>
-        </div>
-        <div class="down clearfix">
-          <span>2017-01-01 12:00</span><span class="pri">2012.00</span>
+          <span>{{ item.createTime }}</span><span class="pri">{{ item.amount }}</span>
         </div>
       </div>
     </li>
   </ul>
+  <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <template id="pop">
@@ -53,9 +34,22 @@
 </template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script>
   var config = {
-
+    "walletaccountUrl": "http://localhost:3000/walletaccount",
+    "walletaccountList": {
+      'entries': [
+        {
+          "amount": 7554.8,
+          "createTime": "2017-07-17 17:32",
+          "remark": "购买goods",
+          "balanceAmount": 4991.4
+        },
+        {"amount": 7453.8, "createTime": "2017-07-17 17:30", "remark": "购买goods", "balanceAmount": 12546.2}
+      ],
+      'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
+    },
   }
 </script>
 <script src="public/scripts/walletaccount.js"></script>

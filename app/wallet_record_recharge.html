@@ -10,46 +10,29 @@
 </head>
 <body>
 <div class="record-recharge-container" id="recordrecharge" v-cloak>
-  <ul class="list">
-    <li class="clearfix">
+  <ul class="list" v-load-more="nextPage">
+    <li class="clearfix" v-for="(item, index) in chargeRecordList">
       <div class="info">
         <div class="up">
-          <span class="long">订单号：1231312</span>
-          <span>￥100:00</span>
-          <span>￥100:00</span>
-          <span class="pri">￥100:00</span>
+          <span class="long">订单号：{{ item.id }}</span>
+          <span>￥{{ item.payAmount }}</span>
+          <span>￥{{ item.giftAmount }}</span>
+          <span class="pri">￥{{ item.amount }}</span>
         </div>
         <div class="down">
-          <span class="long">2017-01-01 11:11</span>
+          <span class="long">{{ item.createTime }}</span>
           <span>充值金额</span>
           <span>赠送金额</span>
           <span class="pri">获得金额</span>
         </div>
       </div>
       <div class="btn-container">
-        <a href="javascript:;" class="btn">我要付款</a>
-      </div>
-    </li>
-    <li class="clearfix">
-      <div class="info">
-        <div class="up">
-          <span class="long">订单号：1231312</span>
-          <span>￥100:00</span>
-          <span>￥100:00</span>
-          <span class="pri">￥100:00</span>
-        </div>
-        <div class="down">
-          <span class="long">2017-01-01 11:11</span>
-          <span>充值金额</span>
-          <span>赠送金额</span>
-          <span class="pri">获得金额</span>
-        </div>
-      </div>
-      <div class="btn-container">
-        <a href="javascript:;" class="btn">我要付款</a>
+        <a href="javascript:;" class="btn" v-if="item.status == 0">我要付款</a>
+        <a href="javascript:;" class="btn" v-else="">查看详情</a>
       </div>
     </li>
   </ul>
+  <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <template id="pop">
@@ -61,8 +44,32 @@
 </template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script>
   var config = {
+    "chargeRecordUrl": "http://localhost:3000/chargeRecord",
+    "chargeRecordList": {
+      'entries': [
+        {
+          "id": 3123,
+          "createTime": "2017-02-02",
+          "payAmount": 234234,   /* 充值金额 */
+          "giftAmount": 324123,    /*  赠送金额 */
+          "amount": 224234,       /* 获得金额 */
+          "status": 0           /* 0为等待付款 */
+        },
+        {
+
+          "id": 234234,
+          "createTime": "2017-02-02",
+          "payAmount": 234234,   /* 充值金额 */
+          "giftAmount": 324123,    /*  赠送金额 */
+          "amount": 224234,       /* 获得金额 */
+          "status": 1
+        },
+      ],
+      'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
+    },
 
   }
 </script>

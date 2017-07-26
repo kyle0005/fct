@@ -40,10 +40,17 @@ let app = new Vue(
       discount: config.charge.defaultGift,
       hasNum:false
     },
+    directives: {
+      focus: {
+        inserted: function (el) {
+          el.focus();
+        }
+      }
+    },
     watch: {
       charge_num: function (val, oldVal) {
         let vue = this;
-        if(vue.charge_num > vue.charge.max || vue.charge_num < vue.charge.min){
+        if(!(vue.tab_num == vue.charge_nums.length - 1) && (vue.charge_num > vue.charge.max || vue.charge_num < vue.charge.min)){
           vue.charge_num = oldVal;
         }
         if(vue.charge_num > 0){
@@ -81,6 +88,7 @@ let app = new Vue(
         let vue = this;
         vue.tab_num = num;
         if(parseFloat(value) == 0){
+          value = '';
           vue.isOther = true;
           vue.discount = config.charge.defaultGift;
         }else {
@@ -105,7 +113,6 @@ let app = new Vue(
           success:function(data){
             if(data){
               data = JSON.parse(data);
-              vue.showCoup();
               if(parseInt(data.code) == 200){
                 vue.msg = data.message;
                 vue.showAlert = true;

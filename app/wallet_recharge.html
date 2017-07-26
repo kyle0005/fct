@@ -13,7 +13,7 @@
   <section class="top">
     <div class="inner" v-if="isOther">
       <strong class="other">其他金额</strong>
-      <input type="tel" class="inp" v-model.lazy="charge_num" placeholder="手动输入充值金额">
+      <input type="tel" class="inp" v-focus="" v-model.lazy="charge_num" placeholder="手动输入充值金额">
       <div v-if="hasNum">送{{ gift }}元，可得{{ balance }}余额。</div>
       <div class="txt" v-else>200元起充，500元起返</div>
     </div>

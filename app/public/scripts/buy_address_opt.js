@@ -21,10 +21,12 @@ let app = new Vue(
       provincesName:function(){
         let vue = this;
         var provinceName={};
+
         vue.toProvince();
         vue.citylist.forEach((item, index) => {
           provinceName[index] = item.p;
         });
+        vue.provinceName = provinceName[vue.province];
         return provinceName
       },
       citysName:function(){
@@ -36,6 +38,7 @@ let app = new Vue(
             cityName[index]=item.n
           });
         }
+        vue.cityName = cityName[vue.city];
         return cityName
       },
       countysName:function(){
@@ -47,6 +50,7 @@ let app = new Vue(
             countyName[index] = item.s;
           });
         }
+        vue.countyName = countyName[vue.county];
         return countyName
       },
     },
@@ -69,9 +73,14 @@ let app = new Vue(
       citylist: citylist,
       isFir: true,
 
-      province: config.address.province || '',
-      city: config.address.cityId || '',
-      county: config.address.townId || '',
+      id: config.address.id || '',
+      province: config.address.province || '北京',
+      city: config.address.cityId || '北京',
+      county: config.address.townId || '东城区',
+
+      provinceName: '',
+      cityName: '',
+      countyName: '',
 
       isDefault: config.address.isDefault || '',
       address: config.address.address || '',
@@ -85,7 +94,16 @@ let app = new Vue(
         jAjax({
           type:'post',
           url:config.saveAddressddUrl,
-          data: formData.serializeForm('addr'),
+          data: {
+            'id': vue.id,
+            'province': vue.provinceName,
+            'city': vue.cityName,
+            'county': vue.countyName,
+            'isDefault': vue.isDefault,
+            'address': vue.address,
+            'cellPhone': vue.cellPhone,
+            'name': vue.name
+          },
           timeOut:5000,
           before:function(){
             console.log('before');
@@ -96,7 +114,11 @@ let app = new Vue(
               if(parseInt(data.code) == 200){
                 vue.msg = data.message;
                 vue.showAlert = true;
-                vue.close_auto();
+                if(data.url){
+                  vue.close_auto(vue.linkto, data.url);
+                }else {
+                  vue.close_auto();
+                }
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;

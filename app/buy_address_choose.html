@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="buy-container" id="buy_address" v-cloak>
+<ul class="address-list">
+  <li v-for="(item, index) in address">
+    <div class="item-container">
+      <div class="info">
+        <span>{{ item.name }}</span>
+        <span class="phone">{{ item.cellPhone }}</span>
+      </div>
+      <div class="addr">{{ addressStr(item) }}</div>
+      <div class="opt">
+        <label :for="'address_' + index" class="radio-container">
+          <input type="radio" name="address" :value="addressStr(item)" @change="changeDefault(item.id)" v-model="picked" :id="'address_' + index" class="choose-radio">
+          <span class="">默认地址</span>
+        </label>
+        <div class="options-container">
+          <a href="javascript:;" @click="edit(item)"><img src="public/images/edit.png">编辑</a>
+          <a href="javascript:;" @click="del(item, index)"><img src="public/images/del.png">删除</a>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+  <div class="address-btn">
+    <a href="buy_address_opt.html">管理</a>
+  </div>
+  <!--radio选中的是:{{ picked }}-->
+<pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+</div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+      <!--<div class="confrim" @click="close">确认</div>-->
+    </section>
+  </div>
+</template>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script>
+  var config = {
+    "defaultAddrUrl": "http://localhost:3000/defaultAddr",
+    "delAddrUrl": "http://localhost:3000/delAddr",
+    "editUrl": "http://localhost:9000/buy_address_opt.html",
+    "address": [
+      {
+          "id": 0,    /* 地址 id */
+          "name": "用户名",
+          "cellPhone": 1383838388,
+          "province": "上海市",
+          "cityId": "上海市",
+          "townId": "静安区",
+          "address": "xxx街道xx号",
+          "isDefault": 1    /* 1是默认，0不是默认 */
+      },
+      {
+        "id": 1,    /* 地址 id */
+        "name": "用户名",
+        "cellPhone": 1383838388,
+        "province": "北京市",
+        "cityId": "北京市",
+        "townId": "朝阳区",
+        "address": "xxx街道xx号",
+        "isDefault": 0    /* 1是默认，0不是默认 */
+      },
+      {
+        "id": 2,    /* 地址 id */
+        "name": "用户名",
+        "cellPhone": 1383838388,
+        "province": "湖南省",
+        "cityId": "长沙市",
+        "townId": "开福区",
+        "address": "xxx街道xx号",
+        "isDefault": 0    /* 1是默认，0不是默认 */
+      },
+    ]
+  }
+</script>
+<script src="public/scripts/buy_address_choose.js"></script>
+</body>
+</html>
