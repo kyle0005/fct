@@ -9,8 +9,8 @@ var jAjax = function (options) {
         if (typeof value === 'object' && value !== null) {
           items = items.concat(setObjData(value, name));
         } else {
-          name = encodeURIComponent(name);
-          value = encodeURIComponent(value);
+          // name = encodeURIComponent(name);
+          // value = encodeURIComponent(value);
           items.push(name + '=' + value);
         }
         return items;
@@ -33,8 +33,10 @@ var jAjax = function (options) {
     function setStrData(data) {
       var arr = data.toString().split('&');
       for (var i = 0, len = arr.length; i < len; i++) {
-        var name = encodeURIComponent(arr[i].split('=')[0]);
-        var value = encodeURIComponent(arr[i].split('=')[1]);
+        /*var name = encodeURIComponent(arr[i].split('=')[0]);
+        var value = encodeURIComponent(arr[i].split('=')[1]);*/
+        var name = arr[i].split('=')[0];
+        var value = arr[i].split('=')[1];
         arr[i] = name + '=' + value;
       }
       return arr;
@@ -121,7 +123,7 @@ var jAjax = function (options) {
         // xhr.setRequestHeader('Content-Type', '');
       }
       else if(contentType == undefined){
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
       }else {
         xhr.setRequestHeader('Content-Type', contentType);
       }
@@ -229,7 +231,8 @@ var formData = {
       var values = parameter[1];
       var results = [];
       for (var i=0; i<values.length; i++) {
-        results.push(key + '=' + encodeURIComponent(values[i]));
+        // results.push(key + '=' + encodeURIComponent(values[i]));
+        results.push(key + '=' + values[i]);
       }
       return results.join('&');
     }

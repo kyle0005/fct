@@ -125,14 +125,15 @@ let app = new Vue(
     },
     methods: {
       sub(){
-        let vue = this, orderGoods_list = [], _obj = {};
+        let vue = this, orderGoods_list = [];
         vue.order_detail.orderGoods.forEach((item, index) => {
           let _star = vue.$refs.star[index];
           let _text = vue.$refs.text[index];
           let _imgs = vue.$refs.uploadimg[index];
+          let _obj = {};
           _obj.goodsId = item.goodsId;
           _obj.content = _text.content;
-          _obj.desc_score = _star.stars_chosen;
+          _obj.descScore = _star.stars_chosen;
           _obj.picture = _imgs.subUpload;
           orderGoods_list.push(_obj);
         });
@@ -145,12 +146,8 @@ let app = new Vue(
               'order_id': vue.order_detail.orderId,
               'express_score': vue.$refs.express.stars_chosen,
               'sale_score': vue.$refs.sale.stars_chosen,
-              'is_anonymous': vue.anonymous,
-              'orderGoods_list': base64.encode64(JSON.stringify(orderGoods_list))
-              // 'goodsId': '',
-              // 'content': vue.product.id,
-              // 'desc_score': vue.description,
-              // 'picture': base64.encode64(JSON.stringify(vue.subUpload)),
+              'has_anonymous': vue.anonymous,
+              'products': JSON.stringify(orderGoods_list)
             },
             timeOut:5000,
             before:function(){

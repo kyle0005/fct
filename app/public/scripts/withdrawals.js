@@ -27,20 +27,27 @@ let app = new Vue(
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      show_search: false,
-      show_detail:false
+      amount: null,
+      withdrawals: config.withdrawals,
+      max: config.withdrawals.withdrawAmount,
+      min: 100
     },
     watch: {
+      amount: function (val, oldVal) {
+        let vue = this;
+        if(vue.amount > vue.max || vue.amount < vue.min){
+          vue.amount = oldVal;
+        }
+      },
     },
     methods: {
-      getCoupon(){
+      sub(){
         let vue = this;
         jAjax({
           type:'post',
           url:config.coupon_url,
           data: {
-            'validateCoupon': config.validateCoupon,
-            'couponCode': vue.couponcode,
+            'amount': vue.amount
           },
           timeOut:5000,
           before:function(){
@@ -52,10 +59,14 @@ let app = new Vue(
               data = JSON.parse(data);
               vue.showCoup();
               if(parseInt(data.code) == 200){
-                vue.coupon.couponAmount = data.data;
-                vue.coupon.couponCode = vue.couponcode;
-                vue.loadCoupon();
-                vue.calculateAmount(0);
+                vue.msg = data.message;
+                vue.showAlert = true;
+                if(data.url){
+                  vue.close_auto(vue.linkto, data.url);
+                }else {
+                  vue.close_auto();
+                }
+
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;

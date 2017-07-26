@@ -280,3 +280,8 @@ $fc:#fff;
     @include fork();
   }
 }
+.loader_more{
+  text-align: center;
+  color: $color-999;
+  padding: 4% 0;
+}

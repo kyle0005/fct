@@ -38,7 +38,7 @@
       <div class="line">
         <div class="left">昵称</div>
         <div class="right">
-          <input type="text" class="right-inp" name="username" :value="userinfo.userName">
+          <input type="text" class="right-inp" name="username" v-model="userinfo.userName">
         </div>
       </div>
       <div class="line">
@@ -64,7 +64,7 @@
       <div class="line">
         <div class="left">微信</div>
         <div class="right">
-          <input type="text" class="right-inp" name="weixin" :value="userinfo.weixin">
+          <input type="text" class="right-inp" name="weixin" v-model="userinfo.weixin">
         </div>
       </div>
     </section>

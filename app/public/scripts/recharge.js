@@ -22,16 +22,15 @@ let app = new Vue(
     },
     mounted: function() {
       let vue = this;
-/*      let other = {
-        0: vue.discount
-      };
-      vue.charge_nums.push(other);*/
+      vue.loadChargeNum();
+      vue.choose(vue.charge_nums[0][Object.keys(vue.charge_nums[0])[0]], Object.keys(vue.charge_nums[0])[0], 0);
     },
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
       charge: config.charge,
-      charge_nums: config.charge.rules,
+      charge_nums: [],
+      tab_num: 0,
 
       isOther: false,
       charge_num: 0,
@@ -44,6 +43,9 @@ let app = new Vue(
     watch: {
       charge_num: function (val, oldVal) {
         let vue = this;
+        if(vue.charge_num > vue.charge.max || vue.charge_num < vue.charge.min){
+          vue.charge_num = oldVal;
+        }
         if(vue.charge_num > 0){
           vue.hasNum = true;
         }else {
@@ -54,8 +56,30 @@ let app = new Vue(
       },
     },
     methods: {
-      choose(discount, value){
+      showText(item){
+        let vue = this, flag = false;
+        if(Object.keys(item)[0] == 0){
+          flag = true;
+        }
+        return flag;
+      },
+      loadChargeNum(){
         let vue = this;
+        let other = {
+          0: vue.discount
+        };
+        for (let i in config.charge.rules){
+          let item = {};
+          if (config.charge.rules.hasOwnProperty(i)) {
+            item[i] = config.charge.rules[i];
+            vue.charge_nums.push(item);
+          }
+         }
+        vue.charge_nums.push(other);
+      },
+      choose(discount, value, num){
+        let vue = this;
+        vue.tab_num = num;
         if(parseFloat(value) == 0){
           vue.isOther = true;
           vue.discount = config.charge.defaultGift;
@@ -66,29 +90,26 @@ let app = new Vue(
         vue.charge_num = value;
 
       },
-      getCoupon(){
+      sub(){
         let vue = this;
         jAjax({
           type:'post',
-          url:config.coupon_url,
+          url:config.rechargeUrl,
           data: {
-            'validateCoupon': config.validateCoupon,
-            'couponCode': vue.couponcode,
+            'charge_num': vue.charge_num
           },
           timeOut:5000,
           before:function(){
             console.log('before');
           },
           success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
             if(data){
               data = JSON.parse(data);
               vue.showCoup();
               if(parseInt(data.code) == 200){
-                vue.coupon.couponAmount = data.data;
-                vue.coupon.couponCode = vue.couponcode;
-                vue.loadCoupon();
-                vue.calculateAmount(0);
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto(vue.linkto, data.url);
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;

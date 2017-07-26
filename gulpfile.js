@@ -111,7 +111,7 @@ gulp.task('serve', () => {
   server.get('/detail', (req, res) => {
     res.json({
       code: 0 ,
-      msg:"",
+      msg:'',
       data: slides
     });
   });
@@ -492,6 +492,80 @@ gulp.task('serve', () => {
           },
 
         ],
+        'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
+      }
+
+    });
+  });
+
+  server.get('/commission', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.status);
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data': {
+        'entries': [
+          {
+            'tradeId': '订单id',
+            'createTime': '2017-02-02',
+            'orderGoods': [
+              {
+                'name': 'goods',
+                'specName': 'aaa',
+                'img': '\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png',
+                'buyCount': 1,
+                'commission': 8888,
+              },
+              {
+                'name': 'goods',
+                'specName': 'aaa',
+                'img': '\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png',
+                'buyCount': 1,
+                'commission': 8888,
+              },
+              {
+                'name': 'goods',
+                'specName': 'aaa',
+                'img': '\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png',
+                'buyCount': 1,
+                'commission': 8888,
+              }
+            ],
+            'commission': 12321.00,
+            'totalCount': 4
+          },
+          {
+            'tradeId': '订单id',
+            'createTime': '2017-02-02',
+            'orderGoods': [{
+              'name': 'goods',
+              'specName': 'aaa',
+              'img': '\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png',
+              'buyCount': 1,
+              'commission': 8888,
+            }],
+            'commission': 12321.00,
+            'totalCount': 4
+          },
+          {
+            'tradeId': '订单id',
+            'createTime': '2017-02-02',
+            'orderGoods': [{
+              'name': 'goods',
+              'specName': 'aaa',
+              'img': '\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png',
+              'buyCount': 1,
+              'commission': 8888,
+            }],
+            'commission': 12321.00,
+            'totalCount': 4
+          },
+        ],
+        'status': arg1.status,
         'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
       }
 
