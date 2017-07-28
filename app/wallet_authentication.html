@@ -37,6 +37,31 @@
         <input type="text" class="inp" v-model="IDcard">
       </div>
     </div>
+    <div class="photo-container">
+      <div class="line">
+        <span class="left">身份证照片</span>
+        <span class="right">手持身份证正面照</span>
+      </div>
+      <div class="upload-line clearfix">
+        <div class="upload-container">
+          <img :src="uploadImg.fullUrl">
+          <input type="file" name="file" class="upload" @change="fileChange">
+        </div>
+        <div class="info">
+          <div class="inner">
+            <img src="public/images/upload_demo.png">
+            <div class="title">照片中的以下信息必须真实可信</div>
+            <div class="context">
+              1、手持证件人的五官<br>2、身份证上的所有信息
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="text">
+    <strong>保密声明</strong>
+    <p>是粉色方法是否发放的方式 </p>
   </section>
   <div class="sub-btn">
     <a href="javascript:;" @click="sub">提交申请</a>
@@ -54,6 +79,7 @@
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
+    "uploadFileUrl": "http://localhost:3000/uploadFile",
     "authenticationUrl": "http://localhost:3000/authentication",
     "bankList": ["招商银行", "工商银行", "建设银行"]
   }

@@ -34,16 +34,7 @@ var app = new Vue(
             }
           }
         }
-
         _url = config.product_url + _url;
-
-/*        code = code || vue.code;
-        level_id = level_id || "";
-        if(code == "" && vue.code !== ""){
-          _url += '?code=' + vue.code + '&level_id=' + level_id;
-        } else {
-          _url += '?code=' + code + '&level_id=' + level_id;
-        }*/
         jAjax({
           type:'get',
           url:_url,
@@ -57,7 +48,6 @@ var app = new Vue(
               if(parseInt(data.code) == 200){
                 vue.pro_list = data.data;
                 vue.code = code;
-
               }else {
                 console.log('false')
               }

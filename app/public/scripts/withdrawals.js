@@ -45,7 +45,7 @@ let app = new Vue(
         let vue = this;
         jAjax({
           type:'post',
-          url:config.coupon_url,
+          url:config.withdrawalsUrl,
           data: {
             'amount': vue.amount
           },
@@ -57,7 +57,6 @@ let app = new Vue(
             //{message:"xxx", url:"", code:200, data:""}
             if(data){
               data = JSON.parse(data);
-              vue.showCoup();
               if(parseInt(data.code) == 200){
                 vue.msg = data.message;
                 vue.showAlert = true;

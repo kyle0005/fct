@@ -11,60 +11,8 @@
 <body>
 <div class="coupon-container" id="coupon" v-cloak>
   <section class="content">
-    <div class="list-item">
-      <div class="coupon-item">
-        <div class="inner">
-          <div class="left">
-            <span class="price">￥<span class="p">30</span></span>
-            <span class="condition">满100元可用</span>
-          </div>
-          <div class="right">
-            <div class="item">限购登堂入室级别紫砂壶</div>
-            <div class="item">全场通用</div>
-            <div class="line">
-              <span class="date">2017.03.03-2022.01.01</span>
-              <span class="btn">
-              <a href="javascript:;" class="use-btn">点击领取</a>
-            </span>
-            </div>
-            <div class="info clearfix">
-              <span class="text">详细信息</span>
-              <a href="javascript:;" class="pin" :class="{open:show_detail}" @click="showdetail()">
-                <img src="public/images/pin.png">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="slide" :class="{open:show_detail}">
-        <ul class="pros clearfix">
-          <li>
-            <a href="javascript:" class="link">
-              <img src="public/images/resource/pro01.png">
-            </a>
-          </li>
-          <li>
-            <a href="javascript:" class="link">
-              <img src="public/images/resource/pro01.png">
-            </a>
-          </li>
-          <li>
-            <a href="javascript:" class="link">
-              <img src="public/images/resource/pro01.png">
-            </a>
-          </li>
-          <li>
-            <a href="javascript:" class="link">
-              <img src="public/images/resource/pro01.png">
-            </a>
-          </li>
-          <li>
-            <a href="javascript:" class="link">
-              <img src="public/images/resource/pro01.png">
-            </a>
-          </li>
-        </ul>
-      </div>
+    <div class="list-item" v-for="(item, index) in couponlist">
+      <coupons :couponitem="item" @pop="pop"></coupons>
     </div>
   </section>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
@@ -76,11 +24,140 @@
     </section>
   </div>
 </template>
+<script type="text/x-template" id="coupon_item">
+  <div>
+    <div class="coupon-item">
+      <div class="inner">
+        <div class="left">
+          <span class="price">￥<span class="p">{{ couponitem.amount }}</span></span>
+          <span class="condition">满{{ couponitem.usingType }}元可用</span>
+        </div>
+        <div class="right">
+          <div class="item">{{ couponitem.name }}</div>
+          <div class="item">{{ couponitem.typeId == 0 ? "全场通用" : "部分商品" }}</div>
+          <div class="line">
+            <span class="date">{{ couponitem.startTime }}-{{ couponitem.endTime }}</span>
+            <span class="btn">
+              <a href="javascript:;" class="use-btn" @click="receive(couponitem.id)">点击领取</a>
+            </span>
+          </div>
+          <div class="info clearfix">
+            <span class="text">详细信息</span>
+            <a href="javascript:;" class="pin" :class="{open:show_detail}" @click="showdetail()">
+              <img src="public/images/pin.png">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide" :class="{open:show_detail}">
+      <ul class="pros clearfix">
+        <li v-for="(o, i) in couponitem.goods">
+          <a href="javascript:" class="link">
+            <img :src="o.defaultImage">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</script>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
+    "getCouponUrl": "http://localhost:3000/getCoupon",
+    "couponlist": [
+      {
+        "id": 0,
+        "name": "限购登堂入室级别紫砂壶",
+        "amount": 30,
+        "usingType": 100,
+        "typeId": 1,     /* >0:部分商品，=0: 全场通用 */
+        "startTime": "2017.03.03",
+        "endTime": "2017.03.03",
+        "auditStatus": 0,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
+        "goods": [
+          {
+            "defaultImage": "public/images/resource/pro01.png"
+          },
+          {
+            "defaultImage": "public/images/resource/pro01.png"
+          },
+          {
+            "defaultImage": "public/images/resource/pro01.png"
+          },
+        ],
 
+      },
+      {
+        "id": 0,
+        'name': '限购登堂入室级别紫砂壶',
+        'amount': 30,
+        'usingType': 100,
+        'typeId': 0,     /* >0:部分商品，=0: 全场通用 */
+        'startTime': '2017.03.03',
+        'endTime': '2017.03.03',
+        'auditStatus': 0,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
+        'goods': [
+          {
+            'defaultImage': 'public/images/resource/pro01.png'
+          },
+          {
+            'defaultImage': 'public/images/resource/pro01.png'
+          },
+          {
+            'defaultImage': 'public/images/resource/pro01.png'
+          },
+        ],
+
+      },
+      {
+        "id": 0,
+        'name': '限购登堂入室级别紫砂壶',
+        'amount': 30,
+        'usingType': 100,
+        'typeId': 1,     /* >0:部分商品，=0: 全场通用 */
+        'startTime': '2017.03.03',
+        'endTime': '2017.03.03',
+        'auditStatus': 2,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
+        'goods': [
+          {
+            'defaultImage': 'public/images/resource/pro01.png'
+          },
+          {
+            'defaultImage': 'public/images/resource/pro01.png'
+          },
+          {
+            'defaultImage': 'public/images/resource/pro01.png'
+          },
+        ],
+
+      },
+      {
+        "id": 0,
+        'name': '限购登堂入室级别紫砂壶',
+        'amount': 30,
+        'usingType': 100,
+        'typeId': 1,     /* >0:部分商品，=0: 全场通用 */
+        'startTime': '2017.03.03',
+        'endTime': '2017.03.03',
+        'auditStatus': 3,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
+        'goods': [],
+
+      },
+      {
+        "id": 0,
+        'name': '限购登堂入室级别紫砂壶',
+        'amount': 30,
+        'usingType': 100,
+        'typeId': 1,     /* >0:部分商品，=0: 全场通用 */
+        'startTime': '2017.03.03',
+        'endTime': '2017.03.03',
+        'auditStatus': 0,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
+        'goods': null,
+
+      }
+    ],
   }
 </script>
 <script src="public/scripts/coupon.js"></script>

@@ -27,34 +27,31 @@ let app = new Vue(
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      show_search: false,
-      show_detail:false
+      status: 0,
+      tabs: ['宝贝', '合作艺人'],
+      tab_num: 0,
+      collection: config.collection
     },
     watch: {
     },
     methods: {
-      getCoupon(){
+      del(item, index){
         let vue = this;
         jAjax({
           type:'post',
-          url:config.coupon_url,
+          url:config.collectionDel + '?from_type=' + item.favType + '&from_id=' + item.favoriteId,
           data: {
-            'validateCoupon': config.validateCoupon,
-            'couponCode': vue.couponcode,
+            'keyword': vue.keywords
           },
           timeOut:5000,
           before:function(){
             console.log('before');
           },
           success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
             if(data){
               data = JSON.parse(data);
               if(parseInt(data.code) == 200){
-                vue.coupon.couponAmount = data.data;
-                vue.coupon.couponCode = vue.couponcode;
-                vue.loadCoupon();
-                vue.calculateAmount(0);
+                vue.collection.splice(index, 1);
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;
@@ -67,6 +64,35 @@ let app = new Vue(
             console.log('error');
           }
         });
+      },
+      category(index){
+        let vue = this;
+        vue.preventRepeatReuqest = false;
+        vue.tab_num = index;
+        var _url = config.collectionUrl + '?from_type=' + index;
+        jAjax({
+          type:'get',
+          url:_url,
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.collection = data.data;
+              }else {
+                console.log('false')
+              }
+            }
+
+          },
+          error:function(){
+            console.log('error');
+          }
+        });
+
       },
       close(){
         this.showAlert = false;
@@ -90,4 +116,4 @@ let app = new Vue(
 
     },
   }
-).$mount('#wallet');
+).$mount('#collection');

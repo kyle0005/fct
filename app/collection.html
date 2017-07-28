@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>收藏</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="collection-container" id="collection" v-cloak>
+  <div class="tabs">
+    <div class="item" v-for="(item, index) in tabs" :class="{chosen: index===tab_num}" @click="category(index)">
+      <a href="javascript:;" class="link">{{ item }}</a>
+    </div>
+  </div>
+  <div class="collection-list">
+    <div class="item" v-for="(item, index) in collection">
+      <div class="img-container">
+        <img :src="item.image">
+      </div>
+      <div class="content">
+        <span class="title">{{ item.title }}</span>
+        <a href="javascript:;" class="close" @click="del(item, index)">
+          <img src="public/images/close.png">
+        </a>
+      </div>
+    </div>
+  </div>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+</div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+    </section>
+  </div>
+</template>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script>
+  var config = {
+    "collectionUrl": "http://localhost:3000/collection",
+    "collectionDel": "http://localhost:3000/del",
+    "collection": [
+      {
+      "id":0,
+      "title":"eeee",
+      "image":"/public/images/resource/imgs.png",
+      "favoriteId": 0,
+        "favType": 0
+      },
+      {
+        "id":1,
+        "title":"llllll",
+        "image":"/public/images/resource/imgs.png",
+        "favoriteId": 2,
+        "favType": 1
+      }
+    ]
+
+
+  }
+</script>
+<script src="public/scripts/collection.js"></script>
+</body>
+</html>

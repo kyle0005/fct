@@ -31,11 +31,40 @@ let app = new Vue(
       IDcard: '',
       bankAccount: '',
       bank: '',
-      name: ''
+      name: '',
+      uploadImg: {},
     },
     watch: {
     },
     methods: {
+      fileChange(event){
+        let vue = this, file = {};
+        if (typeof event.target === 'undefined') {
+          file = event[0];
+        }
+        else {
+          file = event.target.files[0];
+        }
+        var formData = new FormData();
+        formData.append('action', 'head');
+        formData.append('file', file);
+
+        jAjax({
+          type:'post',
+          url:config.uploadFileUrl,
+          data: formData,
+          contentType: false,   /* false为上传文件 */
+          timeOut:60000,
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.uploadImg = data.data;
+              }
+            }
+          }
+        });
+      },
       sub(){
         let vue = this;
         if(!vue.name){
@@ -70,7 +99,8 @@ let app = new Vue(
             'IDcard': vue.IDcard,
             'bankAccount': vue.bankAccount,
             'bank': vue.bank,
-            'name': vue.name
+            'name': vue.name,
+            'avatar': vue.uploadImg.url
           },
           timeOut:5000,
           before:function(){
@@ -79,11 +109,14 @@ let app = new Vue(
           success:function(data){
             if(data){
               data = JSON.parse(data);
-              vue.showCoup();
               if(parseInt(data.code) == 200){
                 vue.msg = data.message;
                 vue.showAlert = true;
-                vue.close_auto();
+                if(data.url){
+                  vue.close_auto(vue.linkto, data.url);
+                }else {
+                  vue.close_auto();
+                }
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;

@@ -20,7 +20,7 @@
       <div class="addr">{{ addressStr(item) }}</div>
       <div class="opt">
         <label :for="'address_' + index" class="radio-container">
-          <input type="radio" name="address" :value="addressStr(item)" @change="changeDefault(item.id)" v-model="picked" :id="'address_' + index" class="choose-radio">
+          <input type="radio" name="address" :value="addressStr(item)" @change="changeDefault(item)" v-model="picked" :id="'address_' + index" class="choose-radio">
           <span class="">默认地址</span>
         </label>
         <div class="options-container">

@@ -157,12 +157,12 @@ Vue.component('live',
             vue.liveList.splice(index, 1);
             vue.$nextTick(function () {
               // DOM 更新后回调
-              vue.loadVideo('video_top', item.videoId, item.videoImage);
+              vue.loadVideo('video_top', item.url, item.videoImage);
             });
           }else {
             vue.$nextTick(function () {
               // DOM 更新后回调
-              vue.loadVideo('video_' + index, item.videoId, item.videoImage);
+              vue.loadVideo('video_' + index, item.url, item.videoImage);
             });
           }
 

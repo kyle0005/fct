@@ -198,7 +198,7 @@ gulp.task('serve', () => {
       'code': 200,
       'message': '删除成功',
       'url': null,
-      'data': ""
+      'data': ''
     });
   });
 
@@ -689,7 +689,7 @@ gulp.task('serve', () => {
             'refundReason': 2563.4,
             'status': 7554.8,      //used
             'refundMethod': 8888,
-            'createTime': "",
+            'createTime': '',
             'updateTime': 4,                //used
             'goodsId': 60,
             'goodsSpecId': '1707186898922467',
@@ -698,11 +698,189 @@ gulp.task('serve', () => {
             'img': '\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png',
             'payAmount': 7554.8,
           },
-
-
         ],
         'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
       }
+
+    });
+  });
+
+  server.get('/couponlist', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.name);
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data': [
+        {
+          'name': '限购登堂入室级别紫砂壶',
+          'amount': 30,
+          'usingType': 100,
+          'typeId': 1,     /* >0:部分商品，=0: 全场通用 */
+          'startTime': '2017.03.03',
+          'endTime': '2017.03.03',
+          'auditStatus': 0,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
+          'goods': [
+            {
+              'defaultImage': 'public/images/resource/pro01.png'
+            },
+            {
+              'defaultImage': 'public/images/resource/pro01.png'
+            },
+            {
+              'defaultImage': 'public/images/resource/pro01.png'
+            },
+          ],
+
+        },
+        {
+          'name': '限购登堂入室级别紫砂壶',
+          'amount': 30,
+          'usingType': 100,
+          'typeId': 1,     /* >0:部分商品，=0: 全场通用 */
+          'startTime': '2017.03.03',
+          'endTime': '2017.03.03',
+          'auditStatus': 2,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
+          'goods': [
+            {
+              'defaultImage': 'public/images/resource/pro01.png'
+            },
+            {
+              'defaultImage': 'public/images/resource/pro01.png'
+            },
+            {
+              'defaultImage': 'public/images/resource/pro01.png'
+            },
+          ],
+
+        },
+        {
+          'name': '限购登堂入室级别紫砂壶',
+          'amount': 30,
+          'usingType': 100,
+          'typeId': 1,     /* >0:部分商品，=0: 全场通用 */
+          'startTime': '2017.03.03',
+          'endTime': '2017.03.03',
+          'auditStatus': 3,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
+          'goods': [
+            {
+              'defaultImage': ''
+            },
+            {
+              'defaultImage': ''
+            },
+            {
+              'defaultImage': ''
+            },
+          ],
+
+        },
+        {
+          'name': '限购登堂入室级别紫砂壶',
+          'amount': 30,
+          'usingType': 100,
+          'typeId': 1,     /* >0:部分商品，=0: 全场通用 */
+          'startTime': '2017.03.03',
+          'endTime': '2017.03.03',
+          'auditStatus': 0,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
+          'goods': [
+            {
+              'defaultImage': ''
+            },
+            {
+              'defaultImage': ''
+            },
+            {
+              'defaultImage': ''
+            },
+          ],
+
+        }
+      ],
+
+    });
+  });
+
+  server.get('/collection', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.name);
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data': [
+        {
+          'id':8,
+          'title':'xxxxx',
+          'image':'/public/images/resource/imgs.png',
+          'favoriteId': 5
+        },
+        {
+          'id':9,
+          'title':'dddd',
+          'image':'/public/images/resource/imgs.png',
+          'favoriteId': 7
+        },
+        {
+          'id':11,
+          'title':'dddd',
+          'image':'/public/images/resource/imgs.png',
+          'favoriteId': 9
+        }
+      ]
+
+    });
+  });
+
+  server.get('/share', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.name);
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data':
+        {
+          'entries':
+            [
+              {
+                'price': 0.01,
+                'name': '测试宝贝',
+                'commission': 0,
+                'id': 7,
+                'defaultImage': 'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg'
+              },
+              {
+                'price': 99999,
+                'name': '《寿桃》',
+                'commission': 1000,
+                'id': 6,
+                'defaultImage': 'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg'
+              },
+              {
+              'price': [8888, 9999],
+              'name': 'goods',
+              'commission': [200, 200],
+              'id': 2,
+              'defaultImage': 'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png'
+              },
+              {
+              'price': 120000,
+              'name': '《天心月圆》',
+              'commission': 1000,
+              'id': 5,
+              'defaultImage': 'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-12\/ccdabaaeec514f1ba17905d683172d22.jpg'
+              }
+            ],
+          'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 4}
+        },
 
     });
   });
@@ -742,6 +920,43 @@ gulp.task('serve', () => {
       'data': _data
     });
   });
+
+  server.post('/authentication', (req, res) => {
+    var _data = {};
+    req.on('data',function(data){
+      _data += data;
+      console.log('服务器接收到的数据：　'+decodeURIComponent(data));
+
+    });
+    req.on('end',function(){
+      console.log('客户端请求数据全部接收完毕');
+    });
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data': _data
+    });
+  });
+
+  server.post('/getCoupon', (req, res) => {
+    var _data = {};
+    req.on('data',function(data){
+      _data += data;
+      console.log('服务器接收到的数据：　'+decodeURIComponent(data));
+
+    });
+    req.on('end',function(){
+      console.log('客户端请求数据全部接收完毕');
+    });
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data': _data
+    });
+  });
+
 
   server.use(router);
   server.listen(3000, () => {

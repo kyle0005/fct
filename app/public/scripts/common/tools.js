@@ -1111,7 +1111,7 @@ if (!Object.keys) {
       return result;
     }
   })()
-};
+}
 
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {

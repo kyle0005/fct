@@ -66,7 +66,7 @@
       <div class="pro-item price-container">
         <div class="price">￥{{ item.price }}</div>
         <div class="num">*{{ item.buyCount }}</div>
-        <a href="javascript:;" class="after-sale" v-if="item.status == -1">申请售后</a>
+        <a href="order_return.html" class="after-sale" v-if="item.status == -1">申请售后</a>
         <a href="/refud/status" class="after-sale" v-if="item.statusName">{{ item.statusName }}</a>      <!-- href的url带参数status -->
       </div>
     </div>

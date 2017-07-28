@@ -10,38 +10,26 @@
 </head>
 <body>
 <div class="buy-container" id="buy_address" v-cloak>
-<ul class="address-list">
-  <li v-for="(item, index) in address">
+<ul class="address-choose-list">
+  <li v-for="(item, index) in address" @click="choose(item)">
     <div class="item-container">
       <div class="info">
         <span>{{ item.name }}</span>
         <span class="phone">{{ item.cellPhone }}</span>
       </div>
-      <div class="addr">{{ addressStr(item) }}</div>
-      <div class="opt">
-        <label :for="'address_' + index" class="radio-container">
-          <input type="radio" name="address" :value="addressStr(item)" @change="changeDefault(item.id)" v-model="picked" :id="'address_' + index" class="choose-radio">
-          <span class="">默认地址</span>
-        </label>
-        <div class="options-container">
-          <a href="javascript:;" @click="edit(item)"><img src="public/images/edit.png">编辑</a>
-          <a href="javascript:;" @click="del(item, index)"><img src="public/images/del.png">删除</a>
-        </div>
-      </div>
+      <div class="addr"><span class="default-addr" v-if="item.isDefault == 1">[默认地址]</span>{{ addressStr(item) }}</div>
     </div>
   </li>
 </ul>
   <div class="address-btn">
     <a href="buy_address_opt.html">管理</a>
   </div>
-  <!--radio选中的是:{{ picked }}-->
 <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <template id="pop">
   <div class="alet_container">
     <section class="tip_text_container">
       <div class="tip_text">{{ msg }}</div>
-      <!--<div class="confrim" @click="close">确认</div>-->
     </section>
   </div>
 </template>
@@ -49,9 +37,7 @@
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
-    "defaultAddrUrl": "http://localhost:3000/defaultAddr",
-    "delAddrUrl": "http://localhost:3000/delAddr",
-    "editUrl": "http://localhost:9000/buy_address_opt.html",
+    "chooseAddrUrl": "http://localhost:3000/chooseAddr",
     "address": [
       {
           "id": 0,    /* 地址 id */

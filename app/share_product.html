@@ -13,23 +13,21 @@
   <section class="top">
     <div class="inner">
       <div class="item sort">
-        <select class="sel">
-          <option selected value="综合排序">综合排序</option>
-          <option value="1">1</option>
+        <select class="sel" v-model="sortsel" @change="sel">
+          <option v-for="(item, index) in sort" :value="index">{{ item }}</option>
         </select>
       </div>
       <div class="item category">
-        <select class="sel">
-          <option selected value="选择分类">选择分类</option>
-          <option value="2">2</option>
+        <select class="sel" v-model="categary" @change="cate">
+          <option v-for="(item, index) in productsType" :value="item.code">{{ item.name }}</option>
         </select>
       </div>
       <div class="item search">
-        <a href="javascript:;" class="search-link">
+        <a href="javascript:;" class="search-link" @click="subSearch">
           <i class="fa fa-search"></i>
         </a>
-        <input type="search" class="search-input" placeholder="宝贝名称 ">
-        <a href="javascript:;" class="fork-link">
+        <input type="search" class="search-input" placeholder="宝贝名称" v-model="search">
+        <a href="javascript:;" class="fork-link" @click="clear">
           <i class="fa fa-times-circle"></i>
         </a>
       </div>
@@ -48,34 +46,114 @@
         <span class="right"><img src="public/images/share.png"></span>
       </a>
     </li>
-    <li>
+  </ul>
+  <ul class="list" v-load-more="nextPage" type="1">
+    <li v-for="(item, index) in shareList">
       <a href="javascript:;" class="link">
         <span class="left">
-          <img src="public/images/resource/pro01.png">
+          <img :src="item.defaultImage">
         </span>
         <span class="center">
-          <span class="title">表标题壶</span>
-          <span class="t1">成本：￥232334344</span>
-          <span class="t2">利润：<strong class="pri">￥2342&sim;￥434343</strong></span>
+          <span class="title">{{ item.name }}</span>
+          <span class="t1" v-if="item.price instanceof Array">价格：￥{{ item.price[0] }}&sim;￥{{ item.price[1] }}</span>
+          <span class="t1" v-else>价格：￥{{ item.price }}</span>
+          <span class="t2" v-if="item.commission instanceof Array">利润：<strong class="pri">￥{{ item.commission[0] }}&sim;￥{{ item.commission[1] }}</strong></span>
+          <span class="t2" v-else>利润：<strong class="pri">￥{{ item.commission }}</strong></span>
         </span>
         <span class="right"><img src="public/images/share.png"></span>
       </a>
     </li>
   </ul>
+  <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <template id="pop">
   <div class="alet_container">
     <section class="tip_text_container">
       <div class="tip_text">{{ msg }}</div>
-      <!--<div class="confrim" @click="close">确认</div>-->
     </section>
   </div>
 </template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script>
   var config = {
+    "shareUrl": "http://localhost:3000/share",
+    "share": {
+      "entries":
+        [
+          {
+            "price": 0.01,
+            "name": "测试宝贝",
+            "commission": 0,
+            "id": 7,
+            "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg"
+          },
+          {
+            "price": 99999,
+            "name": "《寿桃》",
+            "commission": 1000,
+            "id": 6,
+            "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg"
+          },
+          {
+          "price": [8888, 9999],
+          "name": "goods",
+          "commission": [200, 200],
+          "id": 2,
+          "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png"
+        },
+          {
+          "price": 120000,
+          "name": "《天心月圆》",
+          "commission": 1000,
+          "id": 5,
+          "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-12\/ccdabaaeec514f1ba17905d683172d22.jpg"
+        },
+          {
+            "price": 120000,
+            "name": "《天心月圆》",
+            "commission": 1000,
+            "id": 5,
+            "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-12\/ccdabaaeec514f1ba17905d683172d22.jpg"
+          },
+          {
+            "price": 120000,
+            "name": "《天心月圆》",
+            "commission": 1000,
+            "id": 5,
+            "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-12\/ccdabaaeec514f1ba17905d683172d22.jpg"
+          }
+
+        ],
+
+      "pager": {"prev": 0, "current": 1, "next": 1, "page_size": 20, "total_page": 1, "total": 4}
+    },
+    "productsType": [
+      {
+        "name": "全部",
+        "code": "a"
+      },
+      {
+        "name": "圆器",
+        "code": "b"
+      },
+      {
+        "name": "方器",
+        "code": "c"
+      },
+      {
+        "name": "花器",
+        "code": "d"
+      },
+      {
+        "name": "筋纹器",
+        "code": "e"
+      }
+
+    ],
+    "sort": ['综合排序', '人气最高', '利润最高'],
 
   }
 </script>
