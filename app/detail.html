@@ -72,7 +72,29 @@
             </div>
             <a href="javascript:;" class="fork" @click="choose()">&nbsp;</a>
           </div>
-          <a href="javascript:;" class="sub" @click="buy()">确定</a>
+          <!--<a href="javascript:;" class="sub" @click="buy()">确定</a>-->
+          <ul class="nav">
+            <li class="message" @click="">
+              <a href="javascript:;" class="foot-link">
+                <img src="public/images/msg.png">
+              </a>
+            </li>
+            <li class="cart">
+              <a href="cart.html" class="foot-link">
+                <img src="public/images/cart.png">
+                <span class="nums" v-if="numsshow">{{ cart_num }}</span>
+              </a>
+            </li>
+            <li class="collection" :class="{red:collected}"  @click="collection()">
+              <i class="fa fa-heart"></i>
+            </li>
+            <li class="add">
+              <a href="javascript:;" @click="buy()">加入购物车</a>
+            </li>
+            <li class="buy">
+              <a href="javascript:;" @click="buy()">立即购买</a>
+            </li>
+          </ul>
         </form>
       </div>
     </div>
@@ -91,12 +113,12 @@
       <li class="collection" :class="{red:collected}"  @click="collection()">
         <i class="fa fa-heart"></i>
       </li>
-      <li class="add" :class="{ disabled: !product.discount.canBuy }">
-        <a href="javascript:;" @click="choose(0)" v-if="product.discount.canBuy">加入购物车</a>
+      <li class="add" :class="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">
+        <a href="javascript:;" @click="choose(0)" v-if="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">加入购物车</a>
         <a href="javascript:;" v-else>加入购物车</a>
       </li>
-      <li class="buy" :class="{ disabled: !product.discount.canBuy }">
-        <a href="javascript:;" @click="choose(1)" v-if="product.discount.canBuy">立即购买</a>
+      <li class="buy" :class="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">
+        <a href="javascript:;" @click="choose(1)" v-if="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">立即购买</a>
         <a href="javascript:;" v-else>立即购买</a>
       </li>
     </ul>
@@ -134,14 +156,14 @@
     "main_url": "http://localhost:9000/main.html",
     "product": {
       "hasCoupon":true,   /* 是否有优惠券  */
-      "hasDiscount": true,
+      "hasDiscount": false,
       "discount": {
-        "id": 0,
-        "name": '首单优惠活动',
-        "discountRate": 0.75,
-        "discountTime": 10,
-        "hasBegin": false,
-        "canBuy": true,
+//        "id": 0,
+//        "name": '首单优惠活动',
+//        "discountRate": 0.75,
+//        "discountTime": 10,
+//        "hasBegin": false,
+//        "canBuy": true,
       },
       "subTitle":"登堂入室，泰斗顾景舟",
       "salePrice":8888,
@@ -149,8 +171,8 @@
       "cartProductCount":0,  /* 现有购物车中 产品种类数量(即图标显示值) */
       "name":"稀有xx段【x瓢】",
       "specification":[
-        {"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
-        {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}
+        /*{"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
+        {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}*/
       ],
       "favoriteState":false,  /* 是否收藏 */
       "id":2,
@@ -299,7 +321,7 @@
     <section class="info">
       <div class="item" v-if="product.hasDiscount">
         <span class="left">优惠</span>
-        <span class="right">{{ product.discount.name }}、享受<span class="discount-color">{{ product.discount.discountRate * 10 }}折</span>(还剩<span class="discount-color">{{ product.discount.discountTime }}天</span v-if="product.discount.hasBegin">开始<span></span><span v-else>结束</span>)</span>
+        <span class="right">{{ product.discount.name }}、享受<span class="discount-color">{{ product.discount.discountRate * 10 }}折</span>(还剩<span class="discount-color">{{ product.discount.discountTime }}天</span><span v-if="product.discount.hasBegin">开始</span><span v-else>结束</span>)</span>
       </div>
       <div class="item">
         <span class="left">服务</span>

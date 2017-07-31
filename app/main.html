@@ -16,7 +16,7 @@
     <head-top @changelist="getprolist" :isindex="isindex"></head-top>
     <section class="cat-container">
       <ul class="category clearfix">
-        <li class="item" v-for="(ranks, index) in ranks_list" @click="getprolist('', ranks.level_id)">
+        <li class="item" v-for="(ranks, index) in ranks_list" :class="{chosen: index===tab_num}" @click="getprolist('', ranks.level_id, index)">
           <img :src= "ranks.img">
           <span>{{ ranks.name }}</span>
         </li>
@@ -45,7 +45,8 @@
       </ul>
       <ul class="prolist" v-else>
         <li class="noData">
-          没有数据......
+          <img src="public/images/no_data.png">
+          <span class="no">当前没有相关数据哟~</span>
         </li>
       </ul>
     </div>
@@ -149,27 +150,27 @@
       {
         "name": "登堂入室",
         "level_id": "1",
-        "img": "xxxx"
+        "img": "public/images/rank_01.png"
       },
       {
         "name": "略有小成",
         "level_id": "2",
-        "img": "xxxx"
+        "img": "public/images/rank_02.png"
       },
       {
         "name": "炉火纯青",
         "level_id": "3",
-        "img": "xxxx"
+        "img": "public/images/rank_03.png"
       },
       {
         "name": "出神入化",
         "level_id": "4",
-        "img": "xxxx"
+        "img": "public/images/rank_04.png"
       },
       {
         "name": "登峰造极",
         "level_id": "5",
-        "img": "xxxx"
+        "img": "public/images/rank_05.png"
       }
 
     ],

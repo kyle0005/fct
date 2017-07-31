@@ -76,6 +76,9 @@
           width: 35%
         }
       }
+      li.item.chosen{
+        color: $color-993333;
+      }
     }
   }
   .fade-enter-active, .fade-leave-active {
@@ -211,7 +214,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0 4%;
+        //margin: 0 4%;
         padding: 6% 0;
         li.item{
           -moz-box-flex: 1.0; /* Firefox */
@@ -274,6 +277,7 @@ $foot-height: 250px;
     height: 48px;
     color: $color-666;
     background-color: $color-white;
+    border-top: 1px solid $color-f2f2f2;
     li{
       -moz-box-flex: 1.0; /* Firefox */
       -webkit-box-flex: 1.0; /* Safari 和 Chrome */
@@ -399,7 +403,7 @@ $foot-height: 250px;
     .container {
       position: absolute;
       bottom: -100%;
-      height: $foot-height;
+      min-height: 190px;
       margin: 0;
       width: 100%;
       overflow: auto;
@@ -503,9 +507,9 @@ $foot-height: 250px;
         }
       }
       .sub{
-        position: absolute;
+       /* position: absolute;
         bottom: 0;
-        left: 0;
+        left: 0;*/
         display: block;
         width: 100%;
         line-height: 48px;
@@ -544,7 +548,9 @@ $foot-height: 250px;
 .prolist-container{
   width: 100%;
   ul.prolist{
+    padding-top: calc(20/750*100%);
     width: 100%;
+    background-color: $color-white;
     li.item{
       width: 100%;
       padding-bottom: 20px;
@@ -596,6 +602,7 @@ $foot-height: 250px;
           display: inline-block;
           padding: 1px 2%;
           width: 96%;
+          color: $color-999;
           img{
             margin-left: 2%;
             width: 5%;
@@ -608,12 +615,6 @@ $foot-height: 250px;
           }
         }
       }
-    }
-    li.noData{
-      padding: 20px 0;
-      width: 100%;
-      text-align: center;
-      background-color: $color-white;
     }
   }
   .loading {

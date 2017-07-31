@@ -11,12 +11,15 @@ var app = new Vue(
       refreshing: false,
       msg: 0,
       isindex: config.isindex,
-      code: ''
+      code: '',
+      tab_num: 0
     },
     methods: {
       /* 菜单分类加载 */
-      getprolist(code, level_id) {
+      getprolist(code, level_id, index) {
         let vue = this;
+        vue.tab_num = index;
+
         let _url = '';
         code = code || '';
         level_id = level_id || 0;

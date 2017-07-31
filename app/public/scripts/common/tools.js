@@ -1113,8 +1113,8 @@ if (!Object.keys) {
   })()
 }
 
-if ('addEventListener' in document) {
+/*if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
   }, false);
-}
+}*/
