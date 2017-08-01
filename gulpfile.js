@@ -180,7 +180,7 @@ gulp.task('serve', () => {
       'code': 200,
       'message': '发表评论成功',
       'url': null,
-      'data': ""
+      'data': ''
     });
   });
 

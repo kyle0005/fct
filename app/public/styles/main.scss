@@ -77,7 +77,9 @@
         }
       }
       li.item.chosen{
-        color: $color-993333;
+        //background-color: $color-dcdcdc;
+        //opacity: .35;
+        background: rgba(220, 220, 220, 0.35);
       }
     }
   }
@@ -197,14 +199,15 @@
       ul.types{
         li.item{
           position: relative;
-          margin: 0 4%;
+          margin: 0 0 0 4%;
           height: 44px;
           line-height: 44px;
           font-size: $font-size-t14;
           color: $color-dddddd;
+          border-bottom: 1px solid $color-333;
           i{
             position: absolute;
-            right: 0;
+            right: 4%;
             top: 15px;
             color: $color-white;
           }
@@ -277,7 +280,6 @@ $foot-height: 250px;
     height: 48px;
     color: $color-666;
     background-color: $color-white;
-    border-top: 1px solid $color-f2f2f2;
     li{
       -moz-box-flex: 1.0; /* Firefox */
       -webkit-box-flex: 1.0; /* Safari 和 Chrome */
@@ -286,6 +288,7 @@ $foot-height: 250px;
       text-align: center;
       line-height: 48px;
       font-size: $font-size-t20;
+      //border-top: 1px solid $color-f2f2f2;
       a.foot-link{
         position: relative;
         display: block;
@@ -297,7 +300,7 @@ $foot-height: 250px;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 65%;
+          width: 57%;
 
         }
       }
@@ -313,7 +316,7 @@ $foot-height: 250px;
    .collection{
      position: relative;
      color: $color-a4aab3;
-     width: calc(100% / 9);
+     width: calc(90/750*100%);
      height: 100%;
      i{
        position: absolute;
@@ -326,10 +329,10 @@ $foot-height: 250px;
       color: $color-333;
     }
     .message{
-      width: calc(100% / 9);
+      width: calc(90/750*100%);
     }
     .cart{
-      width: calc(100% / 9);
+      width: calc(90/750*100%);
       .foot-link{
         .nums{
           position: absolute;
@@ -350,7 +353,7 @@ $foot-height: 250px;
       }
     }
     .add{
-      width: calc(100% / 3);
+      width: calc(230/750*100%);
       a{
         display: block;
         width: calc(100% - 1px);
@@ -363,8 +366,9 @@ $foot-height: 250px;
       opacity: .3;
     }
     .buy{
-      width: calc(100% / 3);
+      width: calc(250/750*100%);
       background-color: $color-1d1d1d;
+      //border-top: 1px solid $color-1d1d1d;
       a{
         display: block;
         width: 100%;
@@ -571,6 +575,7 @@ $foot-height: 250px;
         .title{
           margin: 16px 0 24px;
           text-align: center;
+          font-size: $font-size-t14;
         }
         .description{
           background: url("#{$img-path}/comma.png") no-repeat left top;
@@ -827,27 +832,35 @@ $foot-height: 250px;
 /* detail */
 %nav-bar{
   position: relative;
-  width: 92%;
-  padding: 0 4%;
-  background-color: $color-3e3c3c;
+  width: 100%;
+  height: 40px;
   ul{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 100%;
+    position: fixed;
+    z-index: 3;
+    background-color: $color-3e3c3c;
+    width: 92%;
+    padding: 0 4%;
+    height: 40px;
+    line-height: 40px;
     li.item{
+      position: relative;
       -moz-box-flex: 1.0; /* Firefox */
       -webkit-box-flex: 1.0; /* Safari 和 Chrome */
       box-flex: 1.0;
       a{
+        padding-right: 20px;
         display: inline-block;
-        padding: 10px 20px 10px 0;
         color: $color-818181;
+        word-break: keep-all;
       }
     }
     li.chosen{
       a{
         color: $color-white;
+        font-size: $font-size-t14;
       }
     }
   }
@@ -2850,6 +2863,7 @@ $foot-height: 250px;
 .user-container{
   @extend %page;
   background-color: $color-f2f2f2;
+  padding-bottom: calc(50/750*100%);
   .banner{
     position: relative;
     width: 100%;

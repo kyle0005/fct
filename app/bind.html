@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>绑定</title>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="public/styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+<div class="login-container" id="login" v-cloak>
+    <div class="logo"></div>
+    <form id="quickLogin">
+      <input type="hidden" name="open" :value="openid">
+      <ul class="form-data">
+        <li class="items clearfix">
+          <div class="left"><i class="fa fa-mobile"></i></div>
+          <div class="right">
+            <input type="text" class="q" placeholder="请输入手机号码" v-model.number="phoneNumber"/>
+            <div class="code-container">
+              <a name="" @click.prevent="getVerifyCode" class="get-code" :class="{right_phone_number:rightPhoneNumber}" v-show="!computedTime">获取验证码</a>
+              <a class="get-code" @click.prevent v-show="computedTime">已发送({{computedTime}}s)</a>
+            </div>
+          </div>
+        </li>
+        <li class="items clearfix">
+          <div class="left"><img src="public/images/valicode.png"></div>
+          <div class="right">
+            <input type="text" class="val-code" placeholder="请输入验证码" name="mobileCode"
+                   maxlength="6" v-model="mobileCode">
+          </div>
+        </li>
+      </ul>
+      <div class="log-btn">
+        <div class="sub" @click="mobileMsgLogin()">绑定</div>
+      </div>
+    </form>
+    <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+  </div>
+<template id="pop">
+  <div class="alet_container">
+    <section class="tip_text_container">
+      <div class="tip_text">{{ msg }}</div>
+      <!--<div class="confrim" @click="close">确认</div>-->
+    </section>
+  </div>
+</template>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/api/apis.js"></script>
+<script>
+  var config = {
+    "openid": "2132",
+    "bindUrl": "dasdasd",
+    "smsUrl": ""
+  }
+</script>
+<script src="public/scripts/bind.js"></script>
+</body>
+</html>

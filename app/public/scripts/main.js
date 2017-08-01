@@ -4,6 +4,13 @@ var app = new Vue(
       var key = tools.getUrlKey();
       console.log(key)
     },
+    directives: {
+      'lazy-load': {
+        bind: (el, binding, vnode) => {
+
+        }
+      }
+    },
     data: {
       ranks_list: config.productsRank,
       pro_list: config.products,
@@ -15,6 +22,10 @@ var app = new Vue(
       tab_num: 0
     },
     methods: {
+      showImg(){
+        return 'public/images/img_loader.gif';
+      },
+
       /* 菜单分类加载 */
       getprolist(code, level_id, index) {
         let vue = this;
@@ -71,3 +82,5 @@ var app = new Vue(
     },
   }
 ).$mount('#main');
+// app.use(LazyImg);
+LazyImg.install(app);
