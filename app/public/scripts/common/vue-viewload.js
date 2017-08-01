@@ -196,33 +196,33 @@ class VueViewload {
     }
 }
 
-  let LazyImg = {
-    install(Vue, options = {}) {
-      let resourceEles = {},
-        initRender
-      Vue.directive('view', {
-        bind(el, binding) {
-          let containerName = binding.arg == undefined ? 'window' : binding.arg
-          if (resourceEles[containerName] == undefined) {
-            resourceEles[containerName] = []
-          }
-          resourceEles[containerName].push({
-            ele: el,
-            src: binding.value
-          })
-          Vue.nextTick(() => {
-            if (typeof initRender == 'undefined') {
-              initRender = _util.debounce(function () {
-                for (let key in resourceEles) {
-                  options.container = key == 'window' ? window : document.getElementById(key)
-                  options.selector = resourceEles[key]
-                  new VueViewload(options).render()
-                }
-              }, 200)
-            }
-            initRender()
-          })
+let LazyImg = {
+  install(Vue, options = {}) {
+    let resourceEles = {},
+      initRender
+    Vue.directive('view', {
+      bind(el, binding) {
+        let containerName = binding.arg == undefined ? 'window' : binding.arg
+        if (resourceEles[containerName] == undefined) {
+          resourceEles[containerName] = []
         }
-      })
-    }
-  };
+        resourceEles[containerName].push({
+          ele: el,
+          src: binding.value
+        })
+        Vue.nextTick(() => {
+          if (typeof initRender == 'undefined') {
+            initRender = _util.debounce(function () {
+              for (let key in resourceEles) {
+                options.container = key == 'window' ? window : document.getElementById(key)
+                options.selector = resourceEles[key]
+                new VueViewload(options).render()
+              }
+            }, 200)
+          }
+          initRender()
+        })
+      }
+    })
+  }
+};
