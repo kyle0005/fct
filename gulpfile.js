@@ -224,13 +224,13 @@ gulp.task('serve', () => {
             'cashAmount': 2563.4,
             'payAmount': 7554.8,      //used
             'totalAmount': 8888,
-            'couponCode': "",
+            'couponCode': '',
             'status': 4,                //used
             'statusName': '待收货',      //used
             'buyTotalCount': 10,        //used
             'payOrderId': null,
             'payPlatform': null,
-            'remark': "",
+            'remark': '',
             'orderGoods': [             //used
               {
                 'id': 60,

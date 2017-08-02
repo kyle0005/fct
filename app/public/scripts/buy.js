@@ -35,7 +35,7 @@ let app = new Vue(
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
       show_coup: false,
-      coupPri: 0.08,
+      coupPri: null,
       carts: [],
       address: {},
       hasAddress: false,

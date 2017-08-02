@@ -36,7 +36,7 @@
         <span class="container overText">
           <span class="name">{{ item.name }}</span>
           <span class="spec">{{ item.specName }}</span>
-          <span class="price">￥{{ item.promotionPrice }}<del class="gray">￥{{ item.price }}</del></span>
+          <span class="price"><small class="pri-mark">￥</small>{{ item.promotionPrice }}<del class="gray"><small class="pri-mark">￥</small>{{ item.price }}</del></span>
         </span>
       </span>
         <span class="num">
@@ -53,7 +53,7 @@
         </div>
         <div class="right clearfix">
           <div class="switch-container" v-if="!hasCoupon">
-            <input class="switch" id="used_merit" name="used_merit" v-model="coupPri" @change="showCoup()" type="checkbox" unchecked>
+            <input class="switch" id="used_merit" name="used_merit" v-model="coupPri" @change="showCoup()" type="checkbox" >
           </div>
         </div>
       </div>
@@ -69,34 +69,32 @@
       </div>
       <div class="line">
         <div class="left">
-          订单积分<span class="coupon" v-if="!usePoint">(可用{{ points }}积分)</span><span class="coupon" v-else>(已用{{ usedPoint }}积分)</span>
+          <span v-if="!usePoint">可用<span class="coupon">{{ points }}</span>积分</span><span v-else>已用<span class="coupon">{{ usedPoint }}</span>积分</span>
         </div>
         <div class="right clearfix">
           <div class="switch-container">
-            <input class="switch" id="used_points" name="used_points" @change="calculateAmount(1)" type="checkbox" unchecked>
+            <input class="switch" id="used_points" name="used_points" @change="calculateAmount(1)" type="checkbox" >
           </div>
         </div>
       </div>
       <div class="line">
         <div class="left">
-          订单余额<span class="coupon" v-if="!useAccountAmount">(可用{{ accountAmount }}余额)</span><span class="coupon" v-else>(已用{{ usedAccountAmount }}余额)</span>
+          <span v-if="!useAccountAmount">可用<span class="coupon">{{ accountAmount }}</span>余额</span><span v-else>已用<span class="coupon">{{ usedAccountAmount }}</span>余额</span>
         </div>
         <div class="right clearfix">
           <div class="switch-container">
-            <input class="switch" id="used_accountAmount" name="used_accountAmount" @change="calculateAmount(2)" type="checkbox" unchecked>
+            <input class="switch" id="used_accountAmount" name="used_accountAmount" @change="calculateAmount(2)" type="checkbox" >
           </div>
         </div>
       </div>
-      <textarea name="remark" maxlength="150" v-model="remark" placeholder="告诉卖家您的要求吧...（限150个字）" class="msg"></textarea>
+      <textarea name="remark" maxlength="150" v-model="remark" placeholder="可以写上您的要求...(限150字以内)" class="msg"></textarea>
     </section>
     <section class="agreement">
       <input type="checkbox" id="agree" name="agree" v-model="has_terms" class="ck">
-      <label for="agree" class="agree-container">
-        我已同意《方寸堂服务协议》
-      </label>
+      <label for="agree" class="agree-container">我已认真阅读并同意方寸堂《服务协议》</label>
     </section>
     <footer class="foot">
-      <div class="pri">应付:￥{{ totalPrice }}</div>
+      <div class="pri">应付：<small class="pri-mark">￥</small><span class="pri">{{ totalPrice }}</span></div>
       <div class="sub">
         <a href="javascript:;" class="sub" @click="pay()">我要付款</a>
       </div>
@@ -165,11 +163,11 @@
       "isDefault": 1    /* 1是默认，0不是默认 */
     },
     "coupon": {
-      "couponCode": "rt554", /* 优惠券码 */
-      "couponAmount": 1000   /* 优惠券面额 */
+      "couponCode": "", /* 优惠券码 */
+      "couponAmount": 0   /* 优惠券面额 */
     },
-    "points": 60000,   /* 积分,100积分等于1元 */
-    "accountAmount": 7000,    /* 余额,单位元 */
+    "points": 0,   /* 积分,100积分等于1元 */
+    "accountAmount": 0,    /* 余额,单位元 */
     "validateCoupon": "",   /* 验证优惠券 */
     "has_terms": true,
     "coupon_url": 'xxxxxxxx',

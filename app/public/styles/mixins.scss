@@ -208,6 +208,7 @@ $check-bg-color: $color-905641, $btn-radius: 4px, $bg-radius: 4px) {
 }
 
 @mixin fork($width: 30px, $color: $color-black){
+  position: relative;
   display: block;
   width: $width;
   height:1px;
@@ -216,13 +217,18 @@ $check-bg-color: $color-905641, $btn-radius: 4px, $bg-radius: 4px) {
   font-size:0;
   vertical-align: middle;
   -webkit-transform: rotate(45deg);
+  transform-origin:0 0;
   &:after{
     content:'/';
+    position: absolute;
+    top: $width / 2 - 0.5px;
+    left: calc(50% - 0.5px);
     display:block;
     width: $width;
     height:1px;
     background: $color;
     -webkit-transform: rotate(-90deg);
+    transform-origin:0 0;
   }
 }
 
@@ -257,8 +263,8 @@ $check-bg-color: $color-905641, $btn-radius: 4px, $bg-radius: 4px) {
 }
 @mixin checkbox(){
   position: relative;
-  width: $font-size-t14;
-  height: $font-size-t14;
+  width: $font-size-t16;
+  height: $font-size-t16;
   border: 1px solid $color-444;
   background-color: $color-white;
   border-radius: 5px;
@@ -268,8 +274,9 @@ $check-bg-color: $color-905641, $btn-radius: 4px, $bg-radius: 4px) {
     font-family: "FontAwesome";
     content:"\f00c";
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: $color-1d1d1d;
   }
 }

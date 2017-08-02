@@ -72,8 +72,8 @@
         text-align: center;
         img {
           display: block;
-          margin: 0 auto;
-          width: 35%
+          margin: 0 auto 5%;
+          width: 35%;
         }
       }
       li.item.chosen{
@@ -277,7 +277,7 @@ $foot-height: 250px;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 48px;
+    height: 49px;
     color: $color-666;
     background-color: $color-white;
     li{
@@ -288,7 +288,7 @@ $foot-height: 250px;
       text-align: center;
       line-height: 48px;
       font-size: $font-size-t20;
-      //border-top: 1px solid $color-f2f2f2;
+      border-top: 1px solid $color-eee;
       a.foot-link{
         position: relative;
         display: block;
@@ -368,7 +368,7 @@ $foot-height: 250px;
     .buy{
       width: calc(250/750*100%);
       background-color: $color-1d1d1d;
-      //border-top: 1px solid $color-1d1d1d;
+      border-top: 1px solid $color-1d1d1d;
       a{
         display: block;
         width: 100%;
@@ -503,10 +503,14 @@ $foot-height: 250px;
           }
 
         }
-        a.fork{
+        .fork-container{
           position: absolute;
           right: 10px;
-          top: 25px;
+          top: 15px;
+          width: 30px;
+          height: 30px;
+        }
+        a.fork{
           @include fork();
         }
       }
@@ -753,6 +757,7 @@ $foot-height: 250px;
       .right{
         position: relative;
         margin-left: 16%;
+        border-bottom: 1px solid $color-dcdcdc;
         input{
           width: 90%;
           border: none;
@@ -786,6 +791,11 @@ $foot-height: 250px;
           }
         }
 
+      }
+    }
+    .items:last-child{
+      .right{
+        border-bottom: none;
       }
     }
   }
@@ -839,7 +849,7 @@ $foot-height: 250px;
     justify-content: flex-start;
     align-items: center;
     position: fixed;
-    z-index: 3;
+    z-index: 1;
     background-color: $color-3e3c3c;
     width: 92%;
     padding: 0 4%;
@@ -1361,6 +1371,7 @@ $foot-height: 250px;
       .left{
         width: 18%;
         margin-right: 5%;
+        font-size: $font-size-t14;
         span{
           width: 100%;
           display: inline-block;
@@ -1369,6 +1380,7 @@ $foot-height: 250px;
           width: initial;
           padding: 0 12%;
           border: 1px solid $color-333;
+          font-size: $font-size-t12;
         }
       }
       .right{
@@ -1494,6 +1506,7 @@ $foot-height: 250px;
       justify-content: center;
       align-items: center;
       border-bottom: 1px solid $color-dcdcdc;
+      font-size: $font-size-t14;
       &:first-child{
         padding-top: calc(10 / 375 * 100%);
       }
@@ -1504,13 +1517,13 @@ $foot-height: 250px;
         -moz-box-flex: 1.0; /* Firefox */
         -webkit-box-flex: 1.0; /* Safari 和 Chrome */
         box-flex: 1.0;
-        line-height: 40px;
+        line-height: 44px;
       }
       .left{
         width: 70%;
         text-align: left;
         .coupon{
-          color: $color-c40b1b;
+          color: $color-993333;
         }
       }
       .right{
@@ -1532,7 +1545,8 @@ $foot-height: 250px;
       background-color: $color-f8f8f8;
       text-indent: 6px;
       width: 100%;
-      height: 60px;
+      padding: 5px 0 0 0;
+      min-height: 60px;
       border: 1px solid $color-f2f2f2;
       margin: 10px 0;
     }
@@ -1545,6 +1559,7 @@ $foot-height: 250px;
       input.coup-code{
         width: 70%;
         height: 28px;
+        line-height: 28px;
         border: 1px solid $color-f2f2f2;
         background-color: $color-f8f8f8;
         text-indent: 6px;
@@ -1574,7 +1589,9 @@ $foot-height: 250px;
     }
     .agree-container{
       display: inline-block;
-      line-height: $font-size-t12;
+      line-height: $font-size-t14;
+      font-size: $font-size-t14;
+      color: $color-666;
     }
   }
   .foot{
@@ -1593,11 +1610,15 @@ $foot-height: 250px;
       box-flex: 1.0;
     }
     .pri{
-      width: 54%;
+      width: 50%;
+      padding-left: 4%;
       height: 100%;
-      text-indent: 4%;
       color: $color-c40b1b;
       background-color: $color-white;
+      .pri{
+        font-size: $font-size-t16;
+        padding-left: 0;
+      }
     }
     .sub{
       width: 46%;
@@ -1609,6 +1630,7 @@ $foot-height: 250px;
         height: 100%;
         text-align: center;
         color: $color-white;
+        font-size: $font-size-t14;
       }
     }
   }
@@ -2744,6 +2766,7 @@ $foot-height: 250px;
       text-align: center;
       padding: 7.73% 0;
       background-color: $color-white;
+      font-size: $font-size-t14;
     }
     ul.guess{
       width: 100%;
@@ -2827,7 +2850,7 @@ $foot-height: 250px;
       }
       .price{
         width: 30%;
-        font-size: $font-size-t12;
+        font-size: $font-size-t16;
         color: $color-c40b1b;
       }
       .buy{
@@ -3052,14 +3075,15 @@ $foot-height: 250px;
     background-color: $color-white;
     .express{
       position: relative;
-      width: 100%;
+      width: 96%;
+      margin-left: 4%;
       padding-bottom: calc(50 / 375 * 100%);
+      border-top: 1px solid $color-dcdcdc;
       a.link{
         position: absolute;
         height: 100%;
         display: block;
-        margin: 0 0 0 4%;
-        width: 96%;
+        width: 100%;
         border-bottom: 1px solid $color-dcdcdc;
         .img-container{
           display: inline-block;
@@ -3093,7 +3117,7 @@ $foot-height: 250px;
       margin: 0 0 0 4%;
       width: 96%;
       position: relative;
-      border-bottom: 1px solid $color-dcdcdc;
+
       .img-container{
         position: absolute;
         left: 0;
@@ -3153,10 +3177,16 @@ $foot-height: 250px;
       line-height: $font-size-t20;
     }
     .img-container{
-      width: calc(140 /750 * 100%);
-      padding: calc(30 / 750 *100%) 0 0 calc(30 / 750 *100%);
+      position: relative;
+      width: calc(120 /750 * 100%);
+      padding-bottom: calc(120 /750 * 100%);
+      margin: calc(30 / 750 *100%) calc(20 / 750 *100%) calc(30 / 750 *100%) calc(30 / 750 *100%);
       img{
-        width: calc(120 /140 * 100%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
     }
     .title-container{
@@ -3177,7 +3207,7 @@ $foot-height: 250px;
       }
      .after-sale{
        $bg-color: initial;
-       @include wei-bg-btn($color-999, $bg-color, $color-999, 24px, 24px, $font-size-t12);
+       @include wei-bg-btn($color-333, $bg-color, $color-333, 24px, 24px, $font-size-t12);
      }
     }
 
@@ -3698,18 +3728,20 @@ $foot-height: 250px;
           -moz-box-flex: 1.0; /* Firefox */
           -webkit-box-flex: 1.0; /* Safari 和 Chrome */
           box-flex: 1.0;
-          width: 46%;
+          //width: 46%;
         }
         .left{
           padding-left: 4%;
           line-height: $font-size-t30;
           color: $color-333;
+          width: 70%;
         }
         .right{
           padding-right: 4%;
           line-height: $font-size-t30;
           text-align: right;
-          color: $color-black;
+          color: $color-993333;
+          width: 22%;
         }
 
       }
@@ -3778,9 +3810,13 @@ $foot-height: 250px;
           top: 50%;
           transform: translateY(-50%);
           left: 0;
-          width: 100%;
+          width: 92%;
+          padding: 0 4%;
           text-align: right;
           color: $color-999;
+          .payAmount{
+            font-size: $font-size-t14;
+          }
         }
       }
       .btn{
@@ -4797,7 +4833,7 @@ $foot-height: 250px;
   .nav{
     width: 100%;
     background-color: $color-white;
-    padding: calc(16/750*100%) 0;
+    padding: calc(20/750*100%) 0;
     margin-bottom: calc(60/750*100%);
     .text{
       margin-left: 4%;
@@ -5582,6 +5618,8 @@ $foot-height: 250px;
       a.link{
         display: inline-block;
         color: $color-993333;
+        font-size: $font-size-t14;
+        margin: 0 1%;
       }
     }
   }

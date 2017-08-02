@@ -324,3 +324,12 @@ $fc:#fff;
   filter: blur(3px) sepia(1);
   outline: 4px solid red;
 }
+
+small.pri-mark{
+  display: inline-block;
+  font-size: $font-size-t12;
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  -webkit-transform-origin: left center;
+  transform-origin: left center;
+}

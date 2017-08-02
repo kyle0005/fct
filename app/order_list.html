@@ -46,7 +46,7 @@
         </li>
       </ul>
       <div class="total">
-        <div class="inner">共{{ item.buyTotalCount }}件商品&nbsp;合计：￥{{ item.payAmount }}（含运费）</div>
+        <div class="inner">共{{ item.buyTotalCount }}件商品&nbsp;合计：<span class="payAmount">￥{{ item.payAmount }}</span>（含运费）</div>
       </div>
       <div class="btn clearfix" v-if="item.status == 0">
         <div class="btn-container">
@@ -68,7 +68,8 @@
       </div>
     </div>
   </div>
-  <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
+  <p v-if="pager.next == 0" class="empty_data">没有更多了</p>
+  <footer class="loader_more" v-else v-show="preventRepeatReuqest">正在加载更多...</footer>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <template id="pop">
