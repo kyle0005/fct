@@ -288,10 +288,14 @@ let app = new Vue(
       showprice: function () {
         let vue = this, _price = 0;
         if(vue.product.specification.length <= 0){
-          _price = vue.product.salePrice;
+          // _price = vue.product.salePrice;
+          _price = (vue.product.hasDiscount && (vue.product.discount.hasBegin || vue.product.discount.canBuy))
+          ? vue.product.promotionPrice : vue.product.salePrice;
         }else {
           // vue.specs_single = vue.product.specification[0];
-          _price = vue.specs_single.salePrice;
+          _price = (vue.product.hasDiscount && (vue.product.discount.hasBegin || vue.product.discount.canBuy))
+            ? vue.specs_single.promotionPrice : vue.specs_single.salePrice;
+          // _price = vue.specs_single.salePrice;
         }
         return _price;
 
@@ -429,7 +433,7 @@ let app = new Vue(
         event.preventDefault();
         event.stopPropagation()
       },
-      choose(num) {
+      choose() {
         let vue = this;
         if (!vue.open) {
           vue.docked = true;
@@ -441,12 +445,6 @@ let app = new Vue(
           }, 300);
         }
 
-        if(parseInt(num) == 0){
-          vue.isbuy = false;
-        }
-        if(parseInt(num) == 1){
-          vue.isbuy = true;
-        }
       },
       chooseSpec(){
         let vue = this;
@@ -457,9 +455,9 @@ let app = new Vue(
           vue.chosen = false;
         }
       },
-      buy(){
+      buy(num){
         let vue = this;
-        if(vue.isbuy){
+        if(parseInt(num) == 1){
         //  立即购买
           let _url = config.buy_url + '?product_id=' + vue.product.id;
               if(vue.specs_single && vue.specs_single.id){

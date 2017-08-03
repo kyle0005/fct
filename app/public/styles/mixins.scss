@@ -232,9 +232,10 @@ $check-bg-color: $color-905641, $btn-radius: 4px, $bg-radius: 4px) {
   }
 }
 
-@mixin addminus(){
+@mixin addminus($width: calc(50% - 2px)){
   width: 100%;
   font-size: 0;
+  text-align: right;
   a{
     display: inline-block;
     border-top: 1px solid $color-f2f2f2;
@@ -254,7 +255,7 @@ $check-bg-color: $color-905641, $btn-radius: 4px, $bg-radius: 4px) {
     color: $color-999;
   }
   input.numbers{
-    width: calc(50% - 2px);
+    width: $width;
     border: 1px solid $color-f2f2f2;
     text-align: center;
     font-size: $font-size-t12;

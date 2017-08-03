@@ -97,6 +97,8 @@ Vue.component('coupons',
                 // }else {
                 //   vue.close_auto();
                 // }
+              }else {
+                vue.$emit('pop',data.message, data.url);
               }
             }
 

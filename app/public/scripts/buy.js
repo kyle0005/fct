@@ -137,8 +137,8 @@ let app = new Vue(
             //{message:"xxx", url:"", code:200, data:""}
             if(data){
               data = JSON.parse(data);
-              vue.showCoup();
               if(parseInt(data.code) == 200){
+                vue.showCoup();
                 vue.coupon.couponAmount = data.data;
                 vue.coupon.couponCode = vue.couponcode;
                 vue.loadCoupon();

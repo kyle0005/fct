@@ -31,7 +31,7 @@
           </span>
         </a>
         <div class="num-container col">
-          <div class="num">
+          <div class="num clearfix">
             <a href="javascript:;" :class="{dis:min}" @click="minus(item)">
               <i class="fa fa-minus"></i>
               </a>
@@ -61,7 +61,7 @@
           <div class="chk-container">
             <label for="chooseall" class="text-container">
               <input type="checkbox" id="chooseall" name="chooseall"
-                     class="chooseall" v-model="checkAll" @click="chooseall()"><span class="chosen">已选({{ choose_num }})</span>
+                     class="chooseall" v-model="checkAll" @click="chooseall()"><span class="chosen">已选(&nbsp;{{ choose_num }}&nbsp;)</span>
             </label>
           </div>
         </li>

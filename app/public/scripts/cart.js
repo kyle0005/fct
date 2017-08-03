@@ -67,7 +67,9 @@ new Vue(
           type:'post',
           url:config.cart_add_url,
           data: {
-            'num': num - item.buyCount
+            'buy_number': num - item.buyCount,
+            'product_id ': item.goodsId,
+            'spec_id': item.specId
           },
           // data: formData.serializeForm('buyOrder'),
           timeOut:5000,
@@ -107,7 +109,9 @@ new Vue(
             type:'post',
             url:config.cart_minus_url,
             data: {
-              'num': num - item.buyCount
+              'buy_number': num - item.buyCount,
+              'product_id ': item.goodsId,
+              'spec_id': item.specId
             },
             timeOut:5000,
             before:function(){

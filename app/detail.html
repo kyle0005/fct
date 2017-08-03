@@ -43,7 +43,7 @@
               <div class="info">
                 <span class="title">{{ product.name }}</span>
                 <span class="price">￥{{ showprice }}</span>
-                <span class="stock">库存:{{ calstock }}</span>
+                <span class="stock">库存：{{ calstock }}</span>
               </div>
             </div>
             <input id="pro_id" name="pro_id" type="hidden" :value="product.id">
@@ -92,10 +92,10 @@
               <i class="fa fa-heart"></i>
             </li>
             <li class="add">
-              <a href="javascript:;" @click="buy()">加入购物车</a>
+              <a href="javascript:;" @click="buy(0)">加入购物车</a>
             </li>
             <li class="buy">
-              <a href="javascript:;" @click="buy()">立即购买</a>
+              <a href="javascript:;" @click="buy(1)">立即购买</a>
             </li>
           </ul>
         </form>
@@ -159,14 +159,14 @@
     "main_url": "http://localhost:9000/main.html",
     "product": {
       "hasCoupon":true,   /* 是否有优惠券  */
-      "hasDiscount": false,
+      "hasDiscount": true,
       "discount": {
-//        "id": 0,
-//        "name": '首单优惠活动',
-//        "discountRate": 0.75,
-//        "discountTime": 10,
-//        "hasBegin": false,
-//        "canBuy": true,
+        "id": 0,
+        "name": '首单优惠活动',
+        "discountRate": 0.75,
+        "discountTime": 10,
+        "hasBegin": true,
+        "canBuy": false,
       },
       "subTitle":"登堂入室，泰斗顾景舟",
       "salePrice":8888,
@@ -313,7 +313,7 @@
     <section class="product-context dis" v-else>
       <div class="title">
         {{ product.name }}
-        <div class="discount-container"><span v-if="canBuy">秒杀</span><span v-else>促销</span></div>
+        <div class="discount-container"><span v-if="product.discount.canBuy">秒杀</span><span v-else>促销</span></div>
       </div>
       <div class="vice-title">{{ product.subTitle }}</div>
       <div class="price">
@@ -328,7 +328,7 @@
       </div>
       <div class="item">
         <span class="left">服务</span>
-        <span class="right">&bull;&nbsp;顺丰包邮&emsp;&bull;&nbsp;30天无忧退货&emsp;&bull;&nbsp;48小时快速退货</span>
+        <span class="right">&bull;&nbsp;顺丰包邮&emsp;&bull;&nbsp;30天无忧退货</span>
       </div>
       <div class="item">
         <span class="left">库存</span>

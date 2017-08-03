@@ -148,9 +148,10 @@
           position: absolute;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
+          width: calc(100% - 1px);
+          height: calc(100% - 1px);
           border-radius: 50%;
+          border: 1px solid $color-white;
         }
       }
 
@@ -215,7 +216,7 @@
       }
       ul.lines{
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         //margin: 0 4%;
         padding: 6% 0;
@@ -280,6 +281,7 @@ $foot-height: 250px;
     height: 49px;
     color: $color-666;
     background-color: $color-white;
+    border-top: 1px solid $color-eee;
     li{
       -moz-box-flex: 1.0; /* Firefox */
       -webkit-box-flex: 1.0; /* Safari 和 Chrome */
@@ -288,7 +290,6 @@ $foot-height: 250px;
       text-align: center;
       line-height: 48px;
       font-size: $font-size-t20;
-      border-top: 1px solid $color-eee;
       a.foot-link{
         position: relative;
         display: block;
@@ -353,13 +354,13 @@ $foot-height: 250px;
       }
     }
     .add{
-      width: calc(230/750*100%);
+      width: calc(210/750*100%);
       a{
         display: block;
         width: calc(100% - 1px);
         height: 100%;
         border-left: 1px solid $color-f2f2f2;
-        font-size: $font-size-t12;
+        font-size: $font-size-t14;
       }
     }
     .disabled{
@@ -373,7 +374,7 @@ $foot-height: 250px;
         display: block;
         width: 100%;
         height: 100%;
-        font-size: $font-size-t12;
+        font-size: $font-size-t14;
         color: $color-white;
       }
     }
@@ -493,7 +494,7 @@ $foot-height: 250px;
             box-flex: 1.0;
             width: 50%;
             .name{
-              font-size: $font-size-t12;
+              font-size: $font-size-t14;
               line-height: 30px;
             }
             .num-container{
@@ -588,6 +589,7 @@ $foot-height: 250px;
           margin: 0 10%;
           padding: 0 10%;
           width: 60%;
+          color: $color-666;
         }
         .pro-lists{
           display: flex;
@@ -951,16 +953,18 @@ $foot-height: 250px;
     .info{
       background-color: $color-white;
       padding: 20px 4% .1px 4%;
+      font-size: $font-size-t14;
       .item{
         width: 100%;
         margin-bottom: 12px;
         .left{
           display: inline-block;
           margin-right: 4%;
-          color: $color-666;
+
         }
         .right{
           display: inline-block;
+          color: $color-666;
           .discount-color{
             color: $color-993333;
           }
@@ -1615,8 +1619,9 @@ $foot-height: 250px;
       height: 100%;
       color: $color-c40b1b;
       background-color: $color-white;
+      font-size: $font-size-t14;
       .pri{
-        font-size: $font-size-t16;
+        font-size: $font-size-t15;
         padding-left: 0;
       }
     }
@@ -2675,9 +2680,10 @@ $foot-height: 250px;
   @extend %page;
   background-color: $color-f2f2f2;
   .cart-list{
+    margin-bottom: 4%;
     li.cart-item{
       padding: 4%;
-      margin-bottom: 4%;
+      margin-bottom: 1px;
       width: 92%;
       background-color: $color-white;
       display: flex;
@@ -2706,13 +2712,13 @@ $foot-height: 250px;
         .pro-item{
           position: relative;
           display: block;
-          padding-bottom: 24.3%;
+          padding-bottom: 26%;
           -moz-box-flex: 1.0;
           -webkit-box-flex: 1.0;
           box-flex: 1.0;
         }
         .pro-img{
-          width: 24.3%;
+          width: 26%;
           margin-right: 5.3%;
           img{
             position: absolute;
@@ -2752,7 +2758,7 @@ $foot-height: 250px;
       .num-container{
         width: 32%;
         .num{
-          @include addminus();
+          @include addminus(25%);
         }
       }
     }
@@ -2837,7 +2843,7 @@ $foot-height: 250px;
             display: inline-block;
             line-height: $font-size-t14;
             input.chooseall{
-              vertical-align: text-bottom;
+              vertical-align: sub;
               @include checkbox();
             }
             .chosen{
@@ -2850,7 +2856,7 @@ $foot-height: 250px;
       }
       .price{
         width: 30%;
-        font-size: $font-size-t16;
+        font-size: $font-size-t15;
         color: $color-c40b1b;
       }
       .buy{

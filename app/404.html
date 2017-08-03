@@ -9,12 +9,108 @@
   <link rel="stylesheet" href="public/styles/main.css">
 </head>
 <body>
-<div class="no-container">
+<div class="no-container" id="notfound">
+  <head-top></head-top>
   <img src="public/images/404.png" class="icon">
   <section class="info">
     <div class="title">404&nbsp;error</div>
     <div class="txt">别着急，点击<a href="javascript:;" class="link">这里</a>可以继续访问</div>
   </section>
 </div>
+<script type="text/x-template" id="head_top">
+  <header class="head-container">
+    <ul class="nav">
+      <li class="toggle" @click="toggle()">
+        <i class="fa fa-bars"></i>
+      </li>
+      <li class="logo" @click="toIndex()">
+        <img :src="img_url + '/logo.png'">
+      </li>
+      <li class="user" @click="toLogin()">
+        <span class="img-container">
+          <img src="public/images/resource/emptyPhoto.png">
+        </span>
+      </li>
+    </ul>
+    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
+      <div class="container">
+        <ul class="types">
+          <li class="item" v-for="(types, index) in typeList" @click="change(types.code)">
+            <span>{{ types.name }}</span>
+            <i class="fa fa-angle-right"></i>
+          </li>
+        </ul>
+        <ul class="lines clearfix">
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/images/menu1.png">
+              <span>守艺师</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/images/menu2.png">
+              <span>百科</span>
+            </a>
+          </li>
+          <!--<li class="item">-->
+          <!--<a href="javascript:;">-->
+          <!--<img src="public/images/menu3.png">-->
+          <!--<span>个性定制</span>-->
+          <!--</a>-->
+          <!--</li>-->
+          <!--<li class="item">-->
+          <!--<a href="javascript:;">-->
+          <!--<img src="public/images/menu4.png">-->
+          <!--<span>APP下载</span>-->
+          <!--</a>-->
+          <!--</li>-->
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/images/menu5.png">
+              <span>品牌理念</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</script>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script>
+  var config = {
+    "productsType": [
+      {
+        "name": "全部",
+        "code": "a"
+      },
+      {
+        "name": "圆器",
+        "code": "b"
+      },
+      {
+        "name": "方器",
+        "code": "c"
+      },
+      {
+        "name": "花器",
+        "code": "d"
+      },
+      {
+        "name": "筋纹器",
+        "code": "e"
+      }
+
+    ],
+    "main_url": "http://localhost:9000/main.html",
+    "user":{
+      "photo": "public/images/resource/artist.png",
+      "username": "用户名"
+    }
+  }
+</script>
+<script src="public/scripts/head.js"></script>
+<script src="public/scripts/notfound.js"></script>
 </body>
 </html>
