@@ -19,6 +19,7 @@ new Vue(
   {
     watch:{
       'ischeck':function(){
+        alert('2222:'+(this.ischeck.length));
         if(this.pro_list.length===this.ischeck.length){
           this.checkAll=true;
         }else{
@@ -30,6 +31,7 @@ new Vue(
       },
       checkAll(yes) {
         this.checkAll = yes;
+        alert('3333:'+(this.checkAll));
       }
     },
     data() {
@@ -160,14 +162,16 @@ new Vue(
       chooseall(){
         let vue = this;
         let ischeck = [];
+        alert('1111:'+(vue.checkAll));
         if (!vue.checkAll) {
           vue.pro_list.forEach((item) => {
             ischeck.push(item);
           });
+          // alert('ischeck:'+ischeck)
         }
         vue.choose_num = ischeck.length;
         vue.ischeck = ischeck;
-
+        // alert('choose_num:'+vue.choose_num)
         vue.pro_list.forEach((item) => {
           if (typeof item.checked == 'undefined') {
             this.$set(item, 'checked', !vue.checkAll);
