@@ -30,6 +30,7 @@ new Vue(
 
       },
       checkAll(yes) {
+        alert('3333:'+(this.checkAll));
         this.checkAll = yes;
         alert('3333:'+(this.checkAll));
       }
@@ -51,6 +52,8 @@ new Vue(
     mounted: function() {
       this.loadPro();
       this.show_like();
+      alert('mounted:'+(this.checkAll));
+
     },
     methods: {
       add(item){
