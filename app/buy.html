@@ -94,9 +94,11 @@
       <label for="agree" class="agree-container">我已认真阅读并同意方寸堂《服务协议》</label>
     </section>
     <footer class="foot">
-      <div class="pri">应付：<small class="pri-mark">￥</small><span class="pri">{{ totalPrice }}</span></div>
-      <div class="sub">
-        <a href="javascript:;" class="sub" @click="pay()">我要付款</a>
+      <div class="inner">
+        <div class="pri">应付：<small class="pri-mark">￥</small><span class="pri">{{ totalPrice }}</span></div>
+        <div class="sub">
+          <a href="javascript:;" class="sub" @click="pay()">我要付款</a>
+        </div>
       </div>
     </footer>
   </form>

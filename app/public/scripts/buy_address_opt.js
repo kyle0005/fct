@@ -82,7 +82,7 @@ let app = new Vue(
       cityName: '',
       countyName: '',
 
-      isDefault: config.address.isDefault || '',
+      isDefault: config.address.isDefault || 1,
       address: config.address.address || '',
       cellPhone: config.address.cellPhone || '',
       name: config.address.name || ''

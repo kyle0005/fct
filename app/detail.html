@@ -32,99 +32,102 @@
     </a>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
   <footer class="foot-container">
-    <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
-      <div class="container">
-        <form id="addcart">
-          <div class="choose" @click.stop="">
-            <div class="clearfix">
-              <div class="pro-img">
-                <img src="public/images/resource/pro01.png">
+    <div class="inner">
+      <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
+        <div class="container">
+          <form id="addcart">
+            <div class="choose" @click.stop="">
+              <div class="clearfix">
+                <div class="pro-img">
+                  <img src="public/images/resource/pro01.png">
+                </div>
+                <div class="info">
+                  <span class="title">{{ product.name }}</span>
+                  <span class="price">￥{{ showprice }}</span>
+                  <span class="stock">库存：{{ calstock }}</span>
+                </div>
               </div>
-              <div class="info">
-                <span class="title">{{ product.name }}</span>
-                <span class="price">￥{{ showprice }}</span>
-                <span class="stock">库存：{{ calstock }}</span>
+              <input id="pro_id" name="pro_id" type="hidden" :value="product.id">
+              <div v-if="product.specification.length > 0">
+                <input id="spec_id" name="spec_id" type="hidden" :value="specs_single.id">
               </div>
+              <ul class="spec" v-if="product.specification.length > 0">
+                <li class="item" v-for="(item, index) in product.specification" :class="{active: index===specs_num}" @click="footLinkTo(index)">
+                  {{ item.name }}
+                </li>
+              </ul>
+              <div class="num">
+                <div class="item"><span class="name">数量</span></div>
+                <div class="item">
+                  <div class="num-container">
+                    <a href="javascript:;" :class="{dis:min}" @click="minus()">
+                      <i class="fa fa-minus"></i>
+                    </a>
+                    <input type="text" name="number" class="numbers" v-model="input_val">
+                    <a href="javascript:;" @click="add()" :class="{dis:max}">
+                      <i class="fa fa-plus"></i>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+              <div class="fork-container" @click="choose()">
+                <a href="javascript:;" class="fork" >&nbsp;</a>
+              </div>
+
             </div>
-            <input id="pro_id" name="pro_id" type="hidden" :value="product.id">
-            <div v-if="product.specification.length > 0">
-              <input id="spec_id" name="spec_id" type="hidden" :value="specs_single.id">
-            </div>
-            <ul class="spec" v-if="product.specification.length > 0">
-              <li class="item" v-for="(item, index) in product.specification" :class="{active: index===specs_num}" @click="footLinkTo(index)">
-                {{ item.name }}
+            <!--<a href="javascript:;" class="sub" @click="buy()">确定</a>-->
+            <ul class="nav">
+              <li class="message" @click="">
+                <a href="javascript:;" class="foot-link">
+                  <img src="public/images/msg.png">
+                </a>
+              </li>
+              <li class="cart">
+                <a href="cart.html" class="foot-link">
+                  <img src="public/images/cart.png">
+                  <span class="nums" v-if="numsshow">{{ cart_num }}</span>
+                </a>
+              </li>
+              <li class="collection" :class="{red:collected}"  @click="collection()">
+                <i class="fa fa-heart"></i>
+              </li>
+              <li class="add">
+                <a href="javascript:;" @click="buy(0)">加入购物车</a>
+              </li>
+              <li class="buy">
+                <a href="javascript:;" @click="buy(1)">立即购买</a>
               </li>
             </ul>
-            <div class="num">
-              <div class="item"><span class="name">数量</span></div>
-              <div class="item">
-                <div class="num-container">
-                  <a href="javascript:;" :class="{dis:min}" @click="minus()">
-                    <i class="fa fa-minus"></i>
-                  </a>
-                  <input type="text" name="number" class="numbers" v-model="input_val">
-                  <a href="javascript:;" @click="add()" :class="{dis:max}">
-                    <i class="fa fa-plus"></i>
-                  </a>
-                </div>
-
-              </div>
-            </div>
-            <div class="fork-container" @click="choose()">
-              <a href="javascript:;" class="fork" >&nbsp;</a>
-            </div>
-
-          </div>
-          <!--<a href="javascript:;" class="sub" @click="buy()">确定</a>-->
-          <ul class="nav">
-            <li class="message" @click="">
-              <a href="javascript:;" class="foot-link">
-                <img src="public/images/msg.png">
-              </a>
-            </li>
-            <li class="cart">
-              <a href="cart.html" class="foot-link">
-                <img src="public/images/cart.png">
-                <span class="nums" v-if="numsshow">{{ cart_num }}</span>
-              </a>
-            </li>
-            <li class="collection" :class="{red:collected}"  @click="collection()">
-              <i class="fa fa-heart"></i>
-            </li>
-            <li class="add">
-              <a href="javascript:;" @click="buy(0)">加入购物车</a>
-            </li>
-            <li class="buy">
-              <a href="javascript:;" @click="buy(1)">立即购买</a>
-            </li>
-          </ul>
-        </form>
+          </form>
+        </div>
       </div>
+      <ul class="nav">
+        <li class="message" @click="">
+          <a href="javascript:;" class="foot-link">
+            <img src="public/images/msg.png">
+          </a>
+        </li>
+        <li class="cart">
+          <a href="cart.html" class="foot-link">
+            <img src="public/images/cart.png">
+            <span class="nums" v-if="numsshow">{{ cart_num }}</span>
+          </a>
+        </li>
+        <li class="collection" :class="{red:collected}"  @click="collection()">
+          <i class="fa fa-heart"></i>
+        </li>
+        <li class="add" :class="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">
+          <a href="javascript:;" @click="choose(0)" v-if="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">加入购物车</a>
+          <a href="javascript:;" v-else>加入购物车</a>
+        </li>
+        <li class="buy" :class="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">
+          <a href="javascript:;" @click="choose(1)" v-if="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">立即购买</a>
+          <a href="javascript:;" v-else>立即购买</a>
+        </li>
+      </ul>
     </div>
-    <ul class="nav">
-      <li class="message" @click="">
-        <a href="javascript:;" class="foot-link">
-          <img src="public/images/msg.png">
-        </a>
-      </li>
-      <li class="cart">
-        <a href="cart.html" class="foot-link">
-          <img src="public/images/cart.png">
-          <span class="nums" v-if="numsshow">{{ cart_num }}</span>
-        </a>
-      </li>
-      <li class="collection" :class="{red:collected}"  @click="collection()">
-        <i class="fa fa-heart"></i>
-      </li>
-      <li class="add" :class="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">
-        <a href="javascript:;" @click="choose(0)" v-if="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">加入购物车</a>
-        <a href="javascript:;" v-else>加入购物车</a>
-      </li>
-      <li class="buy" :class="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">
-        <a href="javascript:;" @click="choose(1)" v-if="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">立即购买</a>
-        <a href="javascript:;" v-else>立即购买</a>
-      </li>
-    </ul>
+
   </footer>
   </div>
 <script src="public/scripts/vue.js"></script>
@@ -158,7 +161,7 @@
     ],
     "main_url": "http://localhost:9000/main.html",
     "product": {
-      "hasCoupon":true,   /* 是否有优惠券  */
+      "hasCoupon":false,   /* 是否有优惠券  */
       "hasDiscount": true,
       "discount": {
         "id": 0,
@@ -185,7 +188,7 @@
       },
       "content":"<div>aaaaa</div>",   /* html内容直接输出 */
       "status":1,   /* 1为上架，0为下架,下架按钮为灰色 */
-      "stockCount":24   /* 库存 */
+      "stockCount":0   /* 库存 */
     },
     "fav_url" : "http://localhost:3000/fav",
     "discuss_url" : "http://localhost:3000/discuss",
@@ -377,20 +380,20 @@
       <li v-for="(item, index) in pugs">
         <a href="javascript:;" :class="{red:index===pug_num}" @click="loadsingle(index)">
         <span class="img-container">
-          <img :src="item.pug_photo">
+          <img :src="item.image">
         </span>
-          <span class="name-container">{{ item.pug_name }}</span>
+          <span class="name-container">{{ item.name }}</span>
         </a>
       </li>
     </ul>
-    <section class="pug-container" v-html="pugsingle.spec_content">
-      {{ pugsingle.spec_content }}
+    <section class="pug-container" v-html="pugsingle.description">
+      {{ pugsingle.description }}
     </section>
     <section class="spec">
       <ul class="others">
-        <li v-for="img_item in pugsingle.img">
+        <li v-for="img_item in pugsingle.products">
           <a href="javascript:;" class="item">
-            <img :src="img_item.url">
+            <img :src="img_item.defaultImage">
             <span class="p-title">{{ img_item.name }}</span>
           </a>
         </li>

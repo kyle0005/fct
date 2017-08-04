@@ -1,16 +1,16 @@
-var app = new Vue(
+let app = new Vue(
   {
     mounted: function() {
       var key = tools.getUrlKey();
       console.log(key)
     },
-    directives: {
+/*    directives: {
       'lazy-load': {
         bind: (el, binding, vnode) => {
 
         }
       }
-    },
+    },*/
     data: {
       ranks_list: config.productsRank,
       pro_list: config.products,
@@ -19,7 +19,7 @@ var app = new Vue(
       msg: 0,
       isindex: config.isindex,
       code: '',
-      tab_num: 0
+      tab_num: null
     },
     methods: {
       showImg(){
@@ -82,5 +82,5 @@ var app = new Vue(
     },
   }
 ).$mount('#main');
-// app.use(LazyImg);
-LazyImg.install(app);
+/*// app.use(LazyImg);
+LazyImg.install(app, {});*/
