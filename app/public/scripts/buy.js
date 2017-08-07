@@ -1,20 +1,3 @@
-Vue.component('pop',
-  {
-    template: '#pop',
-    data() {
-      return {
-        positionY: 0,
-        timer: null,
-      }
-    },
-    props: ['msg'],
-    methods: {
-      close(){
-        this.$emit('close')
-      }
-    }
-  }
-);
 let app = new Vue(
   {
     computed: {
@@ -61,41 +44,6 @@ let app = new Vue(
         let vue = this;
         vue.show_coup = !vue.show_coup
       },
-      // showPoint(){
-      //   /* 计算积分 */
-      //   let vue = this, _rate = 0.01;
-      //   vue.usePoint = !vue.usePoint;
-      //   /* 计算使用过的积分值 */
-      //   if(vue.totalPrice > parseFloat(vue.points * _rate)){
-      //     vue.usedPoint = vue.points;
-      //   }else{
-      //     vue.usedPoint = vue.totalPrice / _rate;
-      //   }
-      //
-      //   if(vue.usePoint){
-      //     vue.calBuyPrice(0, parseFloat(vue.points * _rate), 0);
-      //   }else {
-      //     vue.calBuyPrice(0, -parseFloat(vue.points * _rate), 0);
-      //   }
-      //
-      // },
-      // showAccountAmount (){
-      //   /* 计算余额 */
-      //   let vue = this;
-      //   vue.useAccountAmount = !vue.useAccountAmount;
-      //   /* 计算使用过的余额值 */
-      //   if(vue.totalPrice > parseFloat(vue.accountAmount)){
-      //     vue.usedAccountAmount = vue.accountAmount;
-      //   }else{
-      //     vue.usedAccountAmount = vue.totalPrice;
-      //   }
-      //
-      //   if(vue.useAccountAmount){
-      //     vue.calBuyPrice(0, 0, parseFloat(vue.accountAmount));
-      //   }else {
-      //     vue.calBuyPrice(0, 0, -parseFloat(vue.accountAmount));
-      //   }
-      // },
       loadAddress(){
         let vue = this;
         vue.address = config.address;
@@ -163,12 +111,6 @@ let app = new Vue(
         });
         vue.totalPrice = price.toFixed(2);
       },
-      // calBuyPrice(coupon){
-      //   let vue = this;
-      //   coupon = coupon || 0;
-      //   vue.totalPrice -= (coupon);
-      //   vue.totalPrice = vue.totalPrice.toFixed(2);
-      // },
       close(){
         this.showAlert = false;
       },
@@ -286,6 +228,9 @@ let app = new Vue(
           }
 
 
+      },
+      toFloat(num) {
+        return num.toFixed(2);
       }
     },
   }

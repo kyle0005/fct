@@ -1,25 +1,5 @@
-Vue.component('pop',
-  {
-    template: '#pop',
-    data() {
-      return {
-        positionY: 0,
-        timer: null,
-      }
-    },
-    props: ['msg'],
-    methods: {
-      close(){
-        this.$emit('close')
-      }
-    }
-  }
-);
 let app = new Vue(
   {
-    computed: {
-
-    },
     mounted: function() {
       let vue = this;
 
@@ -89,6 +69,7 @@ let app = new Vue(
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
+      showConfirm: false, /* 显示confirm组件 */
       show_search: false,
       placeholder: '',
       keywords: '',
@@ -98,11 +79,47 @@ let app = new Vue(
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
       pager: config.orderlist.pager,
-      status: ''
+      status: '',
+      orderId: null,
+      callback: null
     },
     watch: {
     },
     methods: {
+      cancel(orderId){
+        let vue = this;
+        jAjax({
+          type:'post',
+          url:config.cancel_url + '/' + orderId + '/cancel',
+          data: {},
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.msg = data.message;
+                vue.showAlert = true;
+                if(data.url){
+                  vue.close_auto(vue.linkto, data.url);
+                }else {
+                  vue.close_auto();
+                }
+              }else {
+                vue.msg = data.message;
+                vue.showAlert = true;
+                vue.close_auto();
+              }
+            }
+
+          },
+          error:function(){
+            console.log('error');
+          }
+        });
+      },
       todetail(item){
         let vue = this;
         location.href = config.detail_url + '/' + item.orderId;
@@ -180,11 +197,9 @@ let app = new Vue(
       subSearch(){
         let vue = this;
         jAjax({
-          type:'post',
-          url:config.search_url,
-          data: {
-            'keyword': vue.keywords
-          },
+          type:'get',
+          url:config.search_url + '?keyword=' + vue.keywords,
+          data: {},
           timeOut:5000,
           before:function(){
             console.log('before');
@@ -242,6 +257,24 @@ let app = new Vue(
 
 
       },
+      confirm(orderId, callback){
+        let vue = this;
+        vue.msg = '您确认要执行此操作？';
+        vue.orderId = orderId;
+        vue.callback = callback;
+        vue.showConfirm = true;
+      },
+      no(){
+        let vue = this;
+        vue.showConfirm = false;
+      },
+      ok(callback, obj){
+        let vue = this;
+        vue.showConfirm = false;
+        if(callback){
+          callback(obj);
+        }
+      }
     },
   }
 ).$mount('#orderlist');

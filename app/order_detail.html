@@ -86,28 +86,23 @@
   <footer class="footer">
     <div class="inner">
       <a href="javascript:;" class="chat"><img src="public/images/order_chat.png"></a>
-      <!--<div class="del">-->
-        <!--<a href="javascript:;">删除订单</a>-->
-      <!--</div>-->
+      <div class="del">
+        <a href="javascript:;" @click="confirm(order_detail.orderId, finish)">删除订单</a>
+      </div>
       <div class="comment">
-        <a href="javascript:;">我要评价</a>
+        <a href="javascript:;" @click="confirm(order_detail.orderId, cancel)">我要评价</a>
       </div>
     </div>
   </footer>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+  <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :obj="orderId" :msg="msg"></confirm>
 </div>
-<template id="pop">
-  <div class="alet_container">
-    <section class="tip_text_container">
-      <div class="tip_text">{{ msg }}</div>
-      <!--<div class="confrim" @click="close">确认</div>-->
-    </section>
-  </div>
-</template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script>
   var config = {
+      "finish_url": "asdfasd",
       "order_detail": {
         "orderId": "1707186898922467",      //used
         "payAmount": 7554.8,          //used

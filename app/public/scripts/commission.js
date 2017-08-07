@@ -1,20 +1,3 @@
-Vue.component('pop',
-  {
-    template: '#pop',
-    data() {
-      return {
-        positionY: 0,
-        timer: null,
-      }
-    },
-    props: ['msg'],
-    methods: {
-      close(){
-        this.$emit('close')
-      }
-    }
-  }
-);
 let app = new Vue(
   {
     computed: {

@@ -1,20 +1,3 @@
-Vue.component('pop',
-  {
-    template: '#pop',
-    data() {
-      return {
-        positionY: 0,
-        timer: null,
-      }
-    },
-    props: ['msg'],
-    methods: {
-      close(){
-        this.$emit('close')
-      }
-    }
-  }
-);
 var app = new Vue(
   {
     computed: {
@@ -38,7 +21,9 @@ var app = new Vue(
         computedTime: 0, //倒数记时
         captchaCodeImg: null, //验证码地址
         codeNumber: null, //验证码
-        action: 'login'
+        action: 'login',
+
+        postTxt: '登录'
       }
     },
     methods: {
@@ -122,7 +107,7 @@ var app = new Vue(
           timeOut:5000,
 
           before:function(){
-            console.log('before');
+            vue.postTxt = '登录...';
           },
           success:function(data){
             if(data){
@@ -131,6 +116,7 @@ var app = new Vue(
                 vue.msg = data.message;
                 vue.showAlert = true;
                 vue.close_auto(vue.linkto, data.url);
+                vue.loginTxt = '登录';
 
               }else {
                 vue.msg = data.message;

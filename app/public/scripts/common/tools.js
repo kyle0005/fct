@@ -1364,3 +1364,55 @@ Vue.directive('view', {
     })
   }
 });
+
+/* pop */
+let pop_html = '<div class="alet_container">' +
+  '<section class="tip_text_container">' +
+  '<div class="tip_text">{{ msg }}</div>' +
+  '</section>' +
+  '</div>';
+Vue.component('pop',
+  {
+    template: pop_html,
+    data() {
+      return {
+        positionY: 0,
+        timer: null,
+      }
+    },
+    props: ['msg'],
+    methods: {
+      close(){
+        this.$emit('close')
+      }
+    }
+  }
+);
+
+let confirm_html = '<div class="confirm-container">' +
+  '<section class="inner">' +
+  '<div class="confirm-text">{{ msg }}</div>' +
+  '<div class="confirm-btn">' +
+  '<a href="javascript:;" class="cancel" @click="no()">取消</a>' +
+  '<a href="javascript:;" class="ok" @click="ok()">确定</a>' +
+  '</div></section></div>';
+Vue.component('confirm',
+  {
+    template: confirm_html,
+    data() {
+      return {
+        positionY: 0,
+        timer: null,
+      }
+    },
+    props: ['msg', 'callback', 'obj'],
+    methods: {
+      no(){
+        this.$emit('no');
+      },
+      ok(){
+        this.$emit('ok', this.callback, this.obj);
+      }
+    }
+  }
+);

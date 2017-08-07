@@ -1,39 +1,23 @@
-Vue.component('pop',
-  {
-    template: '#pop',
-    data() {
-      return {
-        positionY: 0,
-        timer: null,
-      }
-    },
-    props: ['msg'],
-    methods: {
-      close(){
-        this.$emit('close')
-      }
-    }
-  }
-);
 new Vue(
   {
     watch:{
       'ischeck':function(){
-        alert('2222:'+(this.ischeck.length));
-        if(this.pro_list.length===this.ischeck.length){
-          this.checkAll=true;
+        let vue = this;
+          alert('222:'+(vue.checkall));
+        if(vue.pro_list.length===vue.ischeck.length){
+          vue.checkall=true;
         }else{
-          this.checkAll=false;
+          vue.checkall=false;
         }
-        this.choose_num = this.ischeck.length;
-        this.caltotalpri();
+        vue.choose_num = vue.ischeck.length;
+        vue.caltotalpri();
 
       },
-      checkAll(yes) {
-        alert('3333:'+(this.checkAll));
-        this.checkAll = yes;
-        alert('3333:'+(this.checkAll));
-      }
+      // checkall(yes) {
+      //   alert('222:'+(yes));
+      //   this.checkall = yes;
+      //
+      // }
     },
     data() {
       return {
@@ -43,17 +27,18 @@ new Vue(
         msg: null, //提示的内容
         pro_list: [],
         ischeck:[],//获取选项框数据
-        checkAll: false,//全选
+        checkall: false,//全选
         choose_num: 0,
-        total_pri: 0,
-        like_list: []
+        total_pri: 0.00,
+        like_list: [],
+        callback: null,
       }
     },
     mounted: function() {
-      this.loadPro();
-      this.show_like();
-      alert('mounted:'+(this.checkAll));
-
+      let vue = this;
+      vue.loadPro();
+      vue.show_like();
+      // vue.checkall = false;
     },
     methods: {
       add(item){
@@ -152,12 +137,12 @@ new Vue(
       },
       caltotalpri(){
         let vue = this;
-        vue.total_pri = 0;
+        vue.total_pri = 0.00;
         /* 计算价格 */
         vue.ischeck.forEach((item) => {
-          if (item.checked) {
+          // if (item.checked) {
             vue.total_pri += (parseFloat(item.promotionPrice) * parseFloat(item.buyCount));
-          }
+          // }
         });
         vue.total_pri = vue.total_pri.toFixed(2);
 
@@ -165,25 +150,24 @@ new Vue(
       chooseall(){
         let vue = this;
         let ischeck = [];
-        alert('1111:'+(vue.checkAll));
-        if (!vue.checkAll) {
+         // alert('1111:'+(vue.checkall));
+        if (!vue.checkall) {
           vue.pro_list.forEach((item) => {
             ischeck.push(item);
           });
-          // alert('ischeck:'+ischeck)
+
         }
-        vue.choose_num = ischeck.length;
+        // vue.choose_num = ischeck.length;
         vue.ischeck = ischeck;
-        // alert('choose_num:'+vue.choose_num)
-        vue.pro_list.forEach((item) => {
-          if (typeof item.checked == 'undefined') {
-            this.$set(item, 'checked', !vue.checkAll);
-          }
-          else {
-            item.checked = !vue.checkAll;
-          }
-        });
-        vue.caltotalpri();
+        // vue.pro_list.forEach((item) => {
+        //   if (typeof item.checked == 'undefined') {
+        //     this.$set(item, 'checked', !vue.checkall);
+        //   }
+        //   else {
+        //     item.checked = !vue.checkall;
+        //   }
+        // });
+        // vue.caltotalpri();
 
       },
       close(){
@@ -224,6 +208,27 @@ new Vue(
         });
         if(cart_list.length > 0){
           location.href = encodeURI(config.buy_url + '?product=' + base64.encode64(JSON.stringify(cart_list)));
+        }
+      },
+      toFloat(num) {
+        return parseFloat(num).toFixed(2);
+      },
+      confirm(orderId, callback){
+        let vue = this;
+        vue.msg = '是否要移除该宝贝？';
+        vue.orderId = orderId;
+        vue.callback = callback;
+        vue.showConfirm = true;
+      },
+      no(){
+        let vue = this;
+        vue.showConfirm = false;
+      },
+      ok(callback, obj){
+        let vue = this;
+        vue.showConfirm = false;
+        if(callback){
+          callback(obj);
         }
       }
     }

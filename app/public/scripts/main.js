@@ -4,13 +4,6 @@ let app = new Vue(
       var key = tools.getUrlKey();
       console.log(key)
     },
-/*    directives: {
-      'lazy-load': {
-        bind: (el, binding, vnode) => {
-
-        }
-      }
-    },*/
     data: {
       ranks_list: config.productsRank,
       pro_list: config.products,
@@ -82,5 +75,3 @@ let app = new Vue(
     },
   }
 ).$mount('#main');
-/*// app.use(LazyImg);
-LazyImg.install(app, {});*/

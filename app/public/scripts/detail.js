@@ -206,35 +206,6 @@ Vue.component('discuss',
     },
   }
 );
-Vue.component('pop',
-  {
-    template: '#pop',
-    computed: {
-    },
-    mounted: function() {
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
-    },
-    data() {
-      return {
-        positionY: 0,
-        timer: null,
-      }
-    },
-    props: ['msg'],
-    methods: {
-      close(){
-        this.$emit('close')
-      }
-    }
-  }
-);
 let app = new Vue(
   {
     data: {

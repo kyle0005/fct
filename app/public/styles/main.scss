@@ -54,7 +54,7 @@
 /* 首页 */
 .main-container{
   @extend %page;
-  height: auto;
+  //height: auto;
   background-color: $color-f2f2f2;
   .cat-container{
     overflow-x: auto;
@@ -69,11 +69,11 @@
       li.item{
         display: inline-block;
         width: 113px;
-        padding: 20px 0;
+        height: 105px;
         text-align: center;
         img {
           display: block;
-          margin: 0 auto 5%;
+          margin: 20% auto 5%;
           width: 35%;
         }
       }
@@ -565,10 +565,11 @@ $foot-height: 250px;
 /* 列表 */
 .prolist-container{
   width: 100%;
+  min-height: calc(100% - 267px);
+  background-color: $color-white;
   ul.prolist{
     padding-top: calc(20/750*100%);
     width: 100%;
-    background-color: $color-white;
     li.item{
       width: 100%;
       padding-bottom: 20px;
@@ -721,10 +722,14 @@ $foot-height: 250px;
 }
 /* 底部版权 */
 .copyright-container{
+  position: relative;
   width: 100%;
+  height: 114px;
   background-color: $color-f2f2f2;
   .info{
-    padding: 4% 0 4% 4%;
+    position: absolute;
+    top: 15%;
+    left: 4%;
     line-height: $font-size-t24;
     -webkit-transform: scale(.84);
     transform: scale(.84);

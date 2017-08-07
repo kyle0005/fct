@@ -62,11 +62,11 @@
             <div class="chk-container">
               <label for="chooseall" class="text-container">
                 <input type="checkbox" id="chooseall" name="chooseall" class="chooseall"
-                       v-model="checkAll" @click="chooseall()"><span class="chosen">已选(&nbsp;{{ choose_num }}&nbsp;)</span>
+                       v-model="checkall" @click="chooseall()"><span class="chosen">已选(&nbsp;{{ choose_num }}&nbsp;)</span>
               </label>
             </div>
           </li>
-          <li class="price"><small class="pri-mark">￥</small>{{ total_pri }}</li>
+          <li class="price"><small class="pri-mark">￥</small>{{ toFloat(total_pri) }}</li>
           <li class="buy" :class="{disabled: ischeck.length <= 0}">
             <a href="javascript:;" @click="buy()" v-if="ischeck.length > 0">立即购买</a>
             <a href="javascript:;" v-else>立即购买</a>
@@ -76,17 +76,11 @@
     </footer>
   </form>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+  <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :obj="orderId" :msg="msg"></confirm>
   </div>
-<template id="pop">
-  <div class="alet_container">
-    <section class="tip_text_container">
-      <div class="tip_text">{{ msg }}</div>
-    </section>
-  </div>
-</template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
-<script src="public/scripts/api/apis.js"></script>
+<script src="public/scripts/common/tools.js.js"></script>
 <script>
   var config = {
     "carts": [
