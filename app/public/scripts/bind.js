@@ -23,7 +23,8 @@ var app = new Vue(
         codeNumber: null, //验证码
 
         openid: config.openid,
-        action: 'bind'
+        action: 'bind',
+        postProcess: false
       }
     },
     methods: {
@@ -107,7 +108,7 @@ var app = new Vue(
           timeOut:5000,
 
           before:function(){
-            console.log('before');
+            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -123,10 +124,11 @@ var app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false
 
           },
           error:function(status, statusText){
-            console.log(statusText);
+            vue.postProcess = false
           }
         });
 

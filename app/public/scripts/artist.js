@@ -304,6 +304,7 @@ Vue.component('chat',
         showAlert: false, //显示提示组件
         msg: null, //提示的内容
         message: '', /* 提交聊天内容 */
+        postProcess: false
       }
     },
     methods: {
@@ -364,7 +365,7 @@ Vue.component('chat',
           },
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true
           },
           success:function(data){
             //{message:"xxx", url:"", code:200, data:""}
@@ -381,10 +382,11 @@ Vue.component('chat',
                 vue.close_auto();
               }
             }
+            vue.postProcess = false
 
           },
           error:function(){
-            console.log('error');
+            vue.postProcess = false
           }
         });
       },
@@ -458,7 +460,7 @@ let app = new Vue(
       currentView: 'live',
       tabs: ['实时动态', '相关作品', '对话艺人'],
       tab_num: 0,
-      artist: config.artist
+      artist: config.artist,
 
     },
     watch: {

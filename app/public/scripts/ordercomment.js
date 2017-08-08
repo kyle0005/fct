@@ -44,6 +44,7 @@ Vue.component('upload',
         uploadItem: [],
         subUpload: [],
         maxNum: 5,
+        postProcess: false
       }
     },
     mounted() {
@@ -78,6 +79,9 @@ Vue.component('upload',
           // enctype: 'multipart/form-data',
           contentType: false,
           timeOut:60000,
+          before:function(){
+            vue.postProcess = true;
+          },
           success:function(data){
             if(data){
               data = JSON.parse(data);
@@ -86,6 +90,10 @@ Vue.component('upload',
                 vue.subUpload.push(data.data.url);
               }
             }
+            vue.postProcess = false;
+          },
+          error:function(){
+            vue.postProcess = false;
           }
         });
       },
@@ -102,7 +110,8 @@ let app = new Vue(
       msg: null, //提示的内容
       order_detail: config.order_detail,
       anonymous: false,
-      is_break: false
+      is_break: false,
+      postProcess: false
     },
     watch: {
     },
@@ -134,7 +143,7 @@ let app = new Vue(
             },
             timeOut:5000,
             before:function(){
-              console.log('before');
+              vue.postProcess = true;
             },
             success:function(data){
               if(data){
@@ -149,10 +158,11 @@ let app = new Vue(
                   vue.close_auto();
                 }
               }
+              vue.postProcess = false;
 
             },
             error:function(status, statusText){
-              console.log(statusText);
+              vue.postProcess = false;
             }
           });
         }

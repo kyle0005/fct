@@ -81,7 +81,8 @@ let app = new Vue(
       pager: config.orderlist.pager,
       status: '',
       orderId: null,
-      callback: null
+      callback: null,
+      postProcess: false
     },
     watch: {
     },
@@ -94,7 +95,7 @@ let app = new Vue(
           data: {},
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -113,10 +114,11 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false
 
           },
           error:function(){
-            console.log('error');
+            vue.postProcess = false
           }
         });
       },

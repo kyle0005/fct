@@ -16,7 +16,8 @@ let app = new Vue(
       subUpload: [],
       maxNum: 3,
       servicetype: 0,
-      reason: ''
+      reason: '',
+      postProcess: false
     },
     watch: {
     },
@@ -49,6 +50,9 @@ let app = new Vue(
           // enctype: 'multipart/form-data',
           contentType: false,
           timeOut:60000,
+          before:function(){
+            vue.postProcess = true;
+          },
           success:function(data){
             if(data){
               data = JSON.parse(data);
@@ -57,6 +61,10 @@ let app = new Vue(
                 vue.subUpload.push(data.data.url);
               }
             }
+            vue.postProcess = false;
+          },
+          error:function(){
+            vue.postProcess = false;
           }
         });
       },
@@ -79,10 +87,11 @@ let app = new Vue(
             'service_type': vue.servicetype,
             'reason': vue.reason,
             'description': vue.description,
-            'images': base64.encode64(JSON.stringify(vue.subUpload)),},
+            'images': JSON.stringify(vue.subUpload)
+            },
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -97,10 +106,11 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false;
 
           },
           error:function(status, statusText){
-            console.log(statusText);
+            vue.postProcess = false;
           }
         });
       },

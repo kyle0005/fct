@@ -13,7 +13,8 @@ let app = new Vue(
       status: 0,
       tabs: ['宝贝', '合作艺人'],
       tab_num: 0,
-      collection: config.collection
+      collection: config.collection,
+      postProcess: false
     },
     watch: {
     },
@@ -28,7 +29,7 @@ let app = new Vue(
           },
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -41,10 +42,11 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false
 
           },
           error:function(){
-            console.log('error');
+            vue.postProcess = false
           }
         });
       },

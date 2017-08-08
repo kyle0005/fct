@@ -11,12 +11,12 @@
   <!-- endbuild -->
 </head>
 <body>
-<div class="cart-container" id="cart">
+<div class="cart-container" id="cart" v-cloak>
   <form id="cart-form">
     <ul class="cart-list">
       <li class="cart-item" v-for="(item, index) in pro_list">
         <label class="chk col">
-          <input type="checkbox" name="chk-items" class="chk-items" :value="item" v-model="ischeck" @change="selectedProduct(item)">
+          <input type="checkbox" name="chk-items" class="chk-items" :value="item" v-model="ischeck" @change="caltotalpri()">
         </label>
         <a href="javascript:;" class="product col">
           <span class="pro-item pro-img">
@@ -32,7 +32,7 @@
         </a>
         <div class="num-container col">
           <div class="num clearfix">
-            <a href="javascript:;" :class="{dis:min}" @click="minus(item)">
+            <a href="javascript:;" :class="{dis:min}" @click="minus(item, index)">
               <i class="fa fa-minus"></i>
               </a>
             <input type="text" class="numbers" :value="item.buyCount">
@@ -62,7 +62,7 @@
             <div class="chk-container">
               <label for="chooseall" class="text-container">
                 <input type="checkbox" id="chooseall" name="chooseall" class="chooseall"
-                       v-model="checkall" @click="chooseall()"><span class="chosen">已选(&nbsp;{{ choose_num }}&nbsp;)</span>
+                       v-model="all"><span class="chosen">已选(&nbsp;{{ choose_num }}&nbsp;)</span>
               </label>
             </div>
           </li>
@@ -76,11 +76,11 @@
     </footer>
   </form>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
-  <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :obj="orderId" :msg="msg"></confirm>
+  <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :obj="cartItem" :msg="msg"></confirm>
   </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
-<script src="public/scripts/common/tools.js.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script>
   var config = {
     "carts": [
@@ -150,7 +150,8 @@
     ],
     "buy_url": "http://localhost:3000/buy.html",
     "cart_add_url": "http://localhost:3000/xxxxxxxxx",
-    "cart_minus_url": "http://localhost:3000/xxxxxxxxx"
+    "cart_minus_url": "http://localhost:3000/xxxxxxxxx",
+    "delete_url": "adadad"
   };
 </script>
 <script src="public/scripts/cart.js"></script>

@@ -35,7 +35,9 @@ let app = new Vue(
 
       accountAmount: config.accountAmount,     /* 余额 */
       usedAccountAmount: 0,   /* 已使用余额 */
-      useAccountAmount: false
+      useAccountAmount: false,
+
+      postProcess: false
     },
     watch: {
     },
@@ -153,13 +155,13 @@ let app = new Vue(
               'couponCode': _temp,
               'remark': vue.remark,
               'addressId': vue.address.id,
-              'orderGoodsInfo': base64.encode64(JSON.stringify(cart_list)),
+              'orderGoodsInfo': JSON.stringify(cart_list),
               'has_terms': vue.has_terms
             },
             // data: formData.serializeForm('buyOrder'),
             timeOut:5000,
             before:function(){
-              console.log('before');
+              vue.postProcess = true
             },
             success:function(data){
               if(data){
@@ -174,10 +176,11 @@ let app = new Vue(
                   vue.close_auto();
                 }
               }
+              vue.postProcess = false
 
             },
             error:function(status, statusText){
-              console.log(statusText);
+              vue.postProcess = false
             }
           });
         }else {

@@ -23,7 +23,7 @@ var app = new Vue(
         codeNumber: null, //验证码
         action: 'login',
 
-        postTxt: '登录'
+        postProcess: false
       }
     },
     methods: {
@@ -107,7 +107,7 @@ var app = new Vue(
           timeOut:5000,
 
           before:function(){
-            vue.postTxt = '登录...';
+            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -116,7 +116,6 @@ var app = new Vue(
                 vue.msg = data.message;
                 vue.showAlert = true;
                 vue.close_auto(vue.linkto, data.url);
-                vue.loginTxt = '登录';
 
               }else {
                 vue.msg = data.message;
@@ -124,10 +123,11 @@ var app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false;
 
           },
           error:function(status, statusText){
-            console.log(statusText);
+            vue.postProcess = false;
           }
         });
 
@@ -149,7 +149,7 @@ var app = new Vue(
           data: formData.serializeForm('quickLogin'),
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -164,10 +164,10 @@ var app = new Vue(
                 vue.close_auto();
               }
             }
-
+            vue.postProcess = false;
           },
           error:function(status, statusText){
-            console.log(statusText);
+            vue.postProcess = false;
           }
         });
 

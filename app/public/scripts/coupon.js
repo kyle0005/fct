@@ -5,6 +5,7 @@ Vue.component('coupons',
       return {
         show_search: false,
         show_detail: false,
+        postProcess: false
       }
     },
     props: ['couponitem'],
@@ -29,7 +30,7 @@ Vue.component('coupons',
           },
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -48,10 +49,11 @@ Vue.component('coupons',
                 vue.close_auto();
               }
             }
+            vue.postProcess = false;
 
           },
           error:function(){
-            console.log('error');
+            vue.postProcess = false;
           }
         });
       },
@@ -66,7 +68,7 @@ Vue.component('coupons',
           },
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -84,10 +86,10 @@ Vue.component('coupons',
                 vue.$emit('pop',data.message, data.url);
               }
             }
-
+            vue.postProcess = false;
           },
           error:function(){
-            console.log('error');
+            vue.postProcess = false;
           }
         });
       },

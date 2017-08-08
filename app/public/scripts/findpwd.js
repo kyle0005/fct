@@ -17,7 +17,8 @@ var app = new Vue(
         validate_token: null, //获取短信时返回的验证值，登录时需要
         computedTime: 0, //倒数记时
         codeNumber: null, //验证码
-        action: 'forget'
+        action: 'forget',
+        postProcess: false
       }
     },
     methods: {
@@ -42,7 +43,7 @@ var app = new Vue(
             },
             timeOut:5000,
             before:function(){
-              console.log('before');
+              vue.postTxt = '确认中...';
             },
             success:function(data){
               //{message:"xxx", url:"", code:200, data:""}
@@ -52,6 +53,7 @@ var app = new Vue(
                   vue.msg = data.message;
                   vue.showAlert = true;
                   vue.close_auto();
+                  vue.postTxt = '确认';
                 }else {
                   vue.msg = data.message;
                   vue.showAlert = true;
@@ -91,7 +93,7 @@ var app = new Vue(
           data: formData.serializeForm('find'),
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -106,10 +108,11 @@ var app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false;
 
           },
           error:function(status, statusText){
-            console.log(statusText);
+            vue.postProcess = false;
           }
         });
 

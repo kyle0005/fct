@@ -16,6 +16,7 @@ let app = new Vue(
       bank: '',
       name: '',
       uploadImg: {},
+      postProcess: false
     },
     watch: {
     },
@@ -87,7 +88,7 @@ let app = new Vue(
           },
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -106,10 +107,11 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false
 
           },
           error:function(){
-            console.log('error');
+            vue.postProcess = false
           }
         });
       },

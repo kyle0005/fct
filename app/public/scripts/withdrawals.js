@@ -13,7 +13,8 @@ let app = new Vue(
       amount: null,
       withdrawals: config.withdrawals,
       max: config.withdrawals.withdrawAmount,
-      min: 100
+      min: 100,
+      postProcess: false
     },
     watch: {
       amount: function (val, oldVal) {
@@ -34,7 +35,7 @@ let app = new Vue(
           },
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true
           },
           success:function(data){
             //{message:"xxx", url:"", code:200, data:""}
@@ -55,10 +56,11 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false
 
           },
           error:function(){
-            console.log('error');
+            vue.postProcess = false
           }
         });
       },

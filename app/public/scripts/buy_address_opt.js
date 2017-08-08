@@ -68,8 +68,8 @@ let app = new Vue(
       isDefault: config.address.isDefault || 1,
       address: config.address.address || '',
       cellPhone: config.address.cellPhone || '',
-      name: config.address.name || ''
-
+      name: config.address.name || '',
+      postProcess: false
     },
     methods: {
       sub(){
@@ -89,7 +89,7 @@ let app = new Vue(
           },
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -108,10 +108,11 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false
 
           },
           error:function(status, statusText){
-            console.log(statusText);
+            vue.postProcess = false
           }
         });
       },

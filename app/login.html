@@ -29,7 +29,8 @@
         </li>
       </ul>
       <div class="log-btn">
-        <div class="sub" @click="mobileLogin">{{ postTxt }}</div>
+        <div class="sub" v-if="postProcess">登录中...</div>
+        <div class="sub" @click="mobileLogin" v-else>登录</div>
       </div>
       <div class="options">
         <a href="findpwd.html">忘记密码？</a>
@@ -57,7 +58,8 @@
         </li>
       </ul>
       <div class="log-btn">
-        <div class="sub" @click="mobileMsgLogin()">{{ postTxt }}</div>
+        <div class="sub" v-if="postProcess">登录中...</div>
+        <div class="sub" @click="mobileMsgLogin" v-else>登录</div>
       </div>
       <div class="options">
         <a href="findpwd.html">忘记密码？</a>

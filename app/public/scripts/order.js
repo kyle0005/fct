@@ -15,6 +15,7 @@ let app = new Vue(
       showConfirm: false, /* 显示confirm组件 */
       orderId: null,
       callback: null,
+      postProcess: false
     },
     watch: {
     },
@@ -27,7 +28,7 @@ let app = new Vue(
           data: {},
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -46,10 +47,11 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false
 
           },
           error:function(){
-            console.log('error');
+            vue.postProcess= false
           }
         });
       },
@@ -61,7 +63,7 @@ let app = new Vue(
           data: {},
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -80,10 +82,11 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false
 
           },
           error:function(){
-            console.log('error');
+            vue.postProcess = false
           }
         });
       },

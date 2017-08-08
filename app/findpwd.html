@@ -42,20 +42,14 @@
       </li>
     </ul>
     <div class="log-btn">
-      <div class="sub" @click="update()">确认</div>
+      <div class="sub" v-if="postProcess">登录中...</div>
+      <div class="sub" @click="update" v-else>登录</div>
     </div>
   </form>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
-<template id="pop">
-  <div class="alet_container">
-    <section class="tip_text_container">
-      <div class="tip_text">{{ msg }}</div>
-    </section>
-  </div>
-</template>
 <script src="public/scripts/vue.js"></script>
-<script src="public/scripts/api/apis.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script src="public/scripts/findpwd.js"></script>
 </body>

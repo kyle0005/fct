@@ -1341,7 +1341,9 @@ class VueViewload {
  };*/
 Vue.directive('view', {
   bind(el, binding) {
-    let resourceEles = {},options = {},initRender;
+    let resourceEles = {},options = {
+      threshold: -50
+    },initRender;
     let containerName = binding.arg == undefined ? 'window' : binding.arg
     if (resourceEles[containerName] == undefined) {
       resourceEles[containerName] = []

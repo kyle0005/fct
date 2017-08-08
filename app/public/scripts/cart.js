@@ -3,21 +3,28 @@ new Vue(
     watch:{
       'ischeck':function(){
         let vue = this;
-          alert('222:'+(vue.checkall));
-        if(vue.pro_list.length===vue.ischeck.length){
-          vue.checkall=true;
-        }else{
-          vue.checkall=false;
-        }
         vue.choose_num = vue.ischeck.length;
         vue.caltotalpri();
 
       },
-      // checkall(yes) {
-      //   alert('222:'+(yes));
-      //   this.checkall = yes;
-      //
-      // }
+    },
+    computed: {
+      all: {
+        get: function () {
+          return this.pro_list ? this.ischeck.length == this.pro_list.length : false;
+        },
+        set: function (value) {
+          var selected = [];
+
+          if (value) {
+            this.pro_list.forEach(function (item) {
+              selected.push(item);
+            });
+          }
+
+          this.ischeck = selected;
+        }
+      }
     },
     data() {
       return {
@@ -27,18 +34,18 @@ new Vue(
         msg: null, //提示的内容
         pro_list: [],
         ischeck:[],//获取选项框数据
-        checkall: false,//全选
         choose_num: 0,
         total_pri: 0.00,
         like_list: [],
         callback: null,
+        showConfirm: false, /* 显示confirm组件 */
+        cartItem: null
       }
     },
     mounted: function() {
       let vue = this;
       vue.loadPro();
       vue.show_like();
-      // vue.checkall = false;
     },
     methods: {
       add(item){
@@ -84,13 +91,13 @@ new Vue(
         item.buyCount = num;
         vue.caltotalpri();
       },
-      minus(item){
+      minus(item, index){
         let vue = this,
           num = parseInt(item.buyCount.toString().replace(/[^\d]/g,''));
         if(vue.max){
           vue.max = false;
         }
-        if(num > 0){
+        if(num > 1){
           num -= 1;
           if(num === 0){
             vue.min = true;
@@ -124,50 +131,55 @@ new Vue(
           });
           item.buyCount = num;
         }
+        else if(num === 1){
+          item.index = index;
+          vue.confirm(item, vue.delCart);
+        }
         vue.caltotalpri();
       },
-      selectedProduct: function(item) {
-        if (typeof item.checked == 'undefined') {
-          this.$set(item, 'checked', true);
-        }
-        else {
-          item.checked = !item.checked;
-        }
-        this.caltotalpri();
+      delCart(item){
+        let vue = this,
+          num = parseInt(item.buyCount.toString().replace(/[^\d]/g,''));
+        jAjax({
+          type:'post',
+          url:config.delete_url + '/' + item.id + '/delete',
+          data: {},
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.pro_list.splice(item.index, 1);
+                vue.msg = data.message;
+                vue.showAlert = true;
+                if(data.url){
+                  vue.close_auto(vue.linkto, data.url);
+                }else {
+                  vue.close_auto();
+                }
+
+              }else {
+                console.log('false')
+              }
+            }
+
+          },
+          error:function(status, statusText){
+            console.log(statusText);
+          }
+        });
       },
       caltotalpri(){
         let vue = this;
         vue.total_pri = 0.00;
         /* 计算价格 */
         vue.ischeck.forEach((item) => {
-          // if (item.checked) {
             vue.total_pri += (parseFloat(item.promotionPrice) * parseFloat(item.buyCount));
-          // }
         });
         vue.total_pri = vue.total_pri.toFixed(2);
-
-      },
-      chooseall(){
-        let vue = this;
-        let ischeck = [];
-         // alert('1111:'+(vue.checkall));
-        if (!vue.checkall) {
-          vue.pro_list.forEach((item) => {
-            ischeck.push(item);
-          });
-
-        }
-        // vue.choose_num = ischeck.length;
-        vue.ischeck = ischeck;
-        // vue.pro_list.forEach((item) => {
-        //   if (typeof item.checked == 'undefined') {
-        //     this.$set(item, 'checked', !vue.checkall);
-        //   }
-        //   else {
-        //     item.checked = !vue.checkall;
-        //   }
-        // });
-        // vue.caltotalpri();
 
       },
       close(){
@@ -207,16 +219,16 @@ new Vue(
           cart_list.push(_item);
         });
         if(cart_list.length > 0){
-          location.href = encodeURI(config.buy_url + '?product=' + base64.encode64(JSON.stringify(cart_list)));
+          location.href = encodeURI(config.buy_url + '?product=' + JSON.stringify(cart_list));
         }
       },
       toFloat(num) {
         return parseFloat(num).toFixed(2);
       },
-      confirm(orderId, callback){
+      confirm(cartItem, callback){
         let vue = this;
         vue.msg = '是否要移除该宝贝？';
-        vue.orderId = orderId;
+        vue.cartItem = cartItem;
         vue.callback = callback;
         vue.showConfirm = true;
       },

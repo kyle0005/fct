@@ -3,8 +3,8 @@
 @import "fontawesome";
 @import "mixins";
 @font-face {
-  font-family: "PingFang SC";
-  src: url("#{$icon-font-path}/PingFangSC-Regular.woff");
+  //font-family: "PingFang SC";
+  //src: url("#{$icon-font-path}/PingFangSC-Regular.woff");
 }
 html, body{
   font-size: $font-size-base;
@@ -378,7 +378,7 @@ $fc:#fff;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  background-color: $color-white;
+  //background-color: $color-white;
   .inner{
     width: 100%;
     text-align: center;

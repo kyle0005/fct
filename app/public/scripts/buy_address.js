@@ -9,6 +9,7 @@ let app = new Vue(
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
       picked: '',
+      postProcess: false
     },
     methods: {
       close(){
@@ -45,7 +46,7 @@ let app = new Vue(
           data: {},
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -62,10 +63,10 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
-
+            vue.postProcess = false;
           },
           error:function(status, statusText){
-            console.log(statusText);
+            vue.postProcess = false;
           }
         });
       },
@@ -81,7 +82,7 @@ let app = new Vue(
           data: {},
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -99,10 +100,11 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false;
 
           },
           error:function(status, statusText){
-            console.log(statusText);
+            vue.postProcess = false;
           }
         });
       },

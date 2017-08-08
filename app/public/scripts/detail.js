@@ -231,7 +231,8 @@ let app = new Vue(
       collected: config.product.favoriteState,
       numsshow: false,
       isbuy:false,
-      cart_num: config.product.cartProductCount
+      cart_num: config.product.cartProductCount,
+      postProcess: false
 
     },
     mounted: function() {
@@ -292,7 +293,7 @@ let app = new Vue(
           url:config.fav_url,
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true
           },
           success:function(data){
             //{message:"xxx", url:"", code:200, data:""}
@@ -311,10 +312,11 @@ let app = new Vue(
                 }
               }
             }
+            vue.postProcess = false
 
           },
           error:function(){
-            console.log('error');
+            vue.postProcess = false
           }
         });
 
@@ -444,7 +446,7 @@ let app = new Vue(
             data: formData.serializeForm('addcart'),
             timeOut:5000,
             before:function(){
-              console.log('before');
+              vue.postProcess = true
             },
             success:function(data){
               if(data){
@@ -462,10 +464,11 @@ let app = new Vue(
                   vue.close_auto();
                 }
               }
+              vue.postProcess = false
 
             },
             error:function(status, statusText){
-              console.log(statusText);
+              vue.postProcess = false
             }
           });
         }

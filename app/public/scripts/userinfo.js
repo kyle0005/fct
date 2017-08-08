@@ -13,7 +13,8 @@ let app = new Vue(
       userinfo: config.userinfo,
       uploadImg: {},
       sex: config.userinfo.sex,
-      date: config.userinfo.birthday
+      date: config.userinfo.birthday,
+      postProcess: false
     },
     watch: {
     },
@@ -61,7 +62,7 @@ let app = new Vue(
           data: formData.serializeForm('userForm'),
           timeOut:5000,
           before:function(){
-            console.log('before');
+            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -76,10 +77,11 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
+            vue.postProcess = false
 
           },
           error:function(status, statusText){
-            console.log(statusText);
+            vue.postProcess = false
           }
         });
       },
