@@ -93,7 +93,9 @@
                 <i class="fa fa-heart"></i>
               </li>
               <li class="add">
-                <a href="javascript:;" @click="buy(0)">加入购物车</a>
+                <a href="javascript:;">
+                  <subpost :txt="subText" ref="subpost" @callback="buy(0)" @succhandle="succhandle"></subpost>
+                </a>
               </li>
               <li class="buy">
                 <a href="javascript:;" @click="buy(1)">立即购买</a>
@@ -169,7 +171,7 @@
         "discountRate": 0.75,
         "discountTime": 10,
         "hasBegin": true,
-        "canBuy": false,
+        "canBuy": true,
       },
       "subTitle":"登堂入室，泰斗顾景舟",
       "salePrice":8888,
@@ -188,7 +190,7 @@
       },
       "content":"<div>aaaaa</div>",   /* html内容直接输出 */
       "status":1,   /* 1为上架，0为下架,下架按钮为灰色 */
-      "stockCount":0   /* 库存 */
+      "stockCount":10   /* 库存 */
     },
     "fav_url" : "http://localhost:3000/fav",
     "discuss_url" : "http://localhost:3000/discuss",

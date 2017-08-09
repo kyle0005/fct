@@ -1705,21 +1705,23 @@ $foot-height: 250px;
           padding: 0 4% 3% 4%;
         }
         .opt{
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding-top: 3%;
+          position: relative;
           margin: 0 4%;
+          padding-bottom: calc(82/750*100%);
           line-height: 20px;
           border-top: 1px solid $color-dcdcdc;
           .radio-container{
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
             display: inline-block;
             width: 70%;
-            -moz-box-flex: 1.0; /* Firefox */
-            -webkit-box-flex: 1.0; /* Safari 和 Chrome */
-            box-flex: 1.0;
             input[type=radio].choose-radio{
-              position: relative;
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translateY(-50%);
               width: 6.38%;
               margin-right: 5px;
               padding-bottom: 6.38%;
@@ -1736,24 +1738,43 @@ $foot-height: 250px;
                 background-size: 100% auto;
               }
             }
+            span{
+              position: absolute;
+              left: 10%;
+              top: 50%;
+              transform: translateY(-50%);
+              display: inline-block;
+            }
           }
           .options-container{
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
             width: 30%;
-            -moz-box-flex: 1.0; /* Firefox */
-            -webkit-box-flex: 1.0; /* Safari 和 Chrome */
-            box-flex: 1.0;
             display: flex;
             justify-content: space-between;
             align-items: center;
             a{
+              position: relative;
               display: inline-block;
               width: 50%;
+              height: 100%;
               -moz-box-flex: 1.0; /* Firefox */
               -webkit-box-flex: 1.0; /* Safari 和 Chrome */
               box-flex: 1.0;
               img{
+                position: absolute;
+                left: 10%;
+                top: 50%;
+                transform: translateY(-50%);
                 width: 16px;
-                margin-right: 5px;
+              }
+              span.items{
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
               }
             }
           }

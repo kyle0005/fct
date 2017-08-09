@@ -29,8 +29,9 @@
         </li>
       </ul>
       <div class="log-btn">
-        <div class="sub" v-if="postProcess">登录中...</div>
-        <div class="sub" @click="mobileLogin" v-else>登录</div>
+        <div class="sub">
+          <subpost :txt="subText" ref="subpost" @callback="mobileLogin" @succhandle="succhandle"></subpost>
+        </div>
       </div>
       <div class="options">
         <a href="findpwd.html">忘记密码？</a>
@@ -57,9 +58,10 @@
           </div>
         </li>
       </ul>
-      <div class="log-btn">
-        <div class="sub" v-if="postProcess">登录中...</div>
-        <div class="sub" @click="mobileMsgLogin" v-else>登录</div>
+      <div class="log-btn" >
+        <div class="sub" >
+          <subpost :txt="subText" ref="subpost" @callback="mobileMsgLogin" @succhandle="succhandle"></subpost>
+        </div>
       </div>
       <div class="options">
         <a href="findpwd.html">忘记密码？</a>
@@ -80,6 +82,12 @@
 <script src="public/scripts/api/apis.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script src="public/scripts/common/tools.js"></script>
+<!--<template id="sub">-->
+  <!--<span class="post-container">-->
+    <!--<span class="inner" v-if="postProcess">{{ txt }}中...</span>-->
+    <!--<span class="inner" @click="sub()" v-else>{{ txt }}</span>-->
+  <!--</span>-->
+<!--</template>-->
 <script src="public/scripts/login.js"></script>
 </body>
 </html>

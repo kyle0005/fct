@@ -232,7 +232,8 @@ let app = new Vue(
       numsshow: false,
       isbuy:false,
       cart_num: config.product.cartProductCount,
-      postProcess: false
+
+      subText: '加入购物车'
 
     },
     mounted: function() {
@@ -293,7 +294,6 @@ let app = new Vue(
           url:config.fav_url,
           timeOut:5000,
           before:function(){
-            vue.postProcess = true
           },
           success:function(data){
             //{message:"xxx", url:"", code:200, data:""}
@@ -312,53 +312,12 @@ let app = new Vue(
                 }
               }
             }
-            vue.postProcess = false
 
           },
           error:function(){
-            vue.postProcess = false
           }
         });
 
-
-      },
-      close(){
-        this.showAlert = false;
-      },
-      close_auto(callback, obj){
-        let vue = this;
-        setTimeout(function () {
-          vue.showAlert = false;
-          if(callback){
-            callback(obj);
-          }
-
-        }, 1500);
-
-      },
-      linkTo(num){
-        let vue = this;
-        vue.tab_num = num;
-        switch(parseInt(num))
-        {
-          case 0:
-            vue.currentView ='overview';
-            break;
-          case 1:
-            vue.currentView ='artist';
-            break;
-          case 2:
-            vue.currentView ='pug';
-            break;
-          case 3:
-            vue.currentView ='service';
-            break;
-          case 4:
-            vue.currentView ='discuss';
-            break;
-          default:
-            vue.currentView ='overview';
-        }
 
       },
       change(index) {
@@ -440,13 +399,15 @@ let app = new Vue(
           location.href = _url;
         }else {
         //  加入购物车
-          jAjax({
+          let post_url = config.addcart_url,
+            post_data = formData.serializeForm('addcart');
+          vue.$refs.subpost.post(post_url, post_data);
+         /* jAjax({
             type:'post',
             url:config.addcart_url,
             data: formData.serializeForm('addcart'),
             timeOut:5000,
             before:function(){
-              vue.postProcess = true
             },
             success:function(data){
               if(data){
@@ -464,15 +425,45 @@ let app = new Vue(
                   vue.close_auto();
                 }
               }
-              vue.postProcess = false
 
             },
             error:function(status, statusText){
-              vue.postProcess = false
             }
-          });
+          });*/
         }
 
+      },
+
+      succhandle(data){
+        let vue = this;
+        vue.cart_num = data.data.cartProductCount;
+        vue.loadcart();
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
+      },
+      close(){
+        this.showAlert = false;
+      },
+      close_auto(callback, obj){
+        let vue = this;
+        setTimeout(function () {
+          vue.showAlert = false;
+          if(callback){
+            callback(obj);
+          }
+
+        }, 1500);
+
+      },
+      linkto(url){
+        if(url){
+          location.href = url;
+        }
       }
 
     },

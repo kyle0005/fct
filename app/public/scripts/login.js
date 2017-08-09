@@ -22,8 +22,8 @@ var app = new Vue(
         captchaCodeImg: null, //验证码地址
         codeNumber: null, //验证码
         action: 'login',
+        subText: '登录'
 
-        postProcess: false
       }
     },
     methods: {
@@ -100,14 +100,15 @@ var app = new Vue(
           return
         }
         //用户名登录
-        jAjax({
+        vue.$refs.subpost.post(apis.userResource, formData.serializeForm('userLogin'));
+        /*jAjax({
           type:'post',
           url:apis.userResource,
           data: formData.serializeForm('userLogin'),
           timeOut:5000,
 
           before:function(){
-            vue.postProcess = true;
+            // vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -123,18 +124,18 @@ var app = new Vue(
                 vue.close_auto();
               }
             }
-            vue.postProcess = false;
+            // vue.postProcess = false;
 
           },
           error:function(status, statusText){
-            vue.postProcess = false;
+            // vue.postProcess = false;
           }
-        });
+        });*/
 
 
       },
       mobileMsgLogin(){
-        let vue = this;
+        let vue = this, post_url = apis.userResource, post_data = formData.serializeForm('quickLogin');
         if (!this.rightPhoneNumber) {
           this.showAlert = true;
           this.msg = '手机号码不正确';
@@ -142,36 +143,20 @@ var app = new Vue(
           return
         }
         //手机号登录
-        jAjax({
-          type:'post',
-          url:apis.userResource,
-          // contentType: "application/json",
-          data: formData.serializeForm('quickLogin'),
-          timeOut:5000,
-          before:function(){
-            vue.postProcess = true;
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto(vue.linkto, data.url);
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-            vue.postProcess = false;
-          },
-          error:function(status, statusText){
-            vue.postProcess = false;
-          }
-        });
+        vue.$refs.subpost.post(post_url, post_data);
 
 
+      },
+
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
       },
       close(){
         this.showAlert = false;

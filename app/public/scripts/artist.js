@@ -304,7 +304,7 @@ Vue.component('chat',
         showAlert: false, //显示提示组件
         msg: null, //提示的内容
         message: '', /* 提交聊天内容 */
-        postProcess: false
+        subText: '发送'
       }
     },
     methods: {
@@ -343,7 +343,7 @@ Vue.component('chat',
 
         }
       },
-      pop() {
+      popchat() {
         let vue = this;
         if (!vue.open) {
           vue.docked = true;
@@ -356,8 +356,13 @@ Vue.component('chat',
         }
       },
       send(){
-        let vue = this;
-        jAjax({
+        let vue = this,
+          data = {
+            'message': vue.message
+          };
+        vue.$refs.subpost.post(config.chat_url, data);
+
+        /*jAjax({
           type:'post',
           url:config.chat_url,
           data: {
@@ -365,7 +370,6 @@ Vue.component('chat',
           },
           timeOut:5000,
           before:function(){
-            vue.postProcess = true
           },
           success:function(data){
             //{message:"xxx", url:"", code:200, data:""}
@@ -375,20 +379,19 @@ Vue.component('chat',
                 vue.msg = '留言提交成功，我们将通知“'+ config.artist.name +'”给您回复，请留意！';
                 vue.showAlert = true;
                 vue.close_auto();
-                vue.pop();
+
+                vue.popchat();
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;
                 vue.close_auto();
               }
             }
-            vue.postProcess = false
 
           },
           error:function(){
-            vue.postProcess = false
           }
-        });
+        });*/
       },
       loadChat() {
         let vue = this;
@@ -420,6 +423,18 @@ Vue.component('chat',
           });
         }
       },
+
+      succhandle(data){
+        let vue = this;
+        vue.msg = '留言提交成功，我们将通知“'+ config.artist.name +'”给您回复，请留意！';
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
+        vue.popchat();
+      },
       close(){
         this.showAlert = false;
       },
@@ -438,7 +453,7 @@ Vue.component('chat',
         if(url){
           location.href = url;
         }
-      },
+      }
     },
   }
 );

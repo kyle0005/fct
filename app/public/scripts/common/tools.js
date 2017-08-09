@@ -1418,3 +1418,60 @@ Vue.component('confirm',
     }
   }
 );
+
+let post_html = '<span class="post-container">' +
+  '<span class="post-inner" v-if="postProcess">{{ txt }}中...</span>' +
+'<span class="post-inner" @click="sub()" v-else>{{ txt }}</span>' +
+'</span>';
+Vue.component('subpost',
+  {
+    template: post_html,
+    props: {
+      txt: {
+        type: String,
+        default: ''
+      },
+    },
+    data(){
+      return {
+        postProcess: false,
+      }
+    },
+    mounted() {
+      let vue = this;
+    },
+    methods: {
+      sub(){
+        let vue = this;
+        vue.$emit('callback');
+      },
+      post(url, data){
+        let vue = this;
+        jAjax({
+          type:'post',
+          url:url,
+          data: data,
+          timeOut:5000,
+          before:function(){
+            vue.postProcess = true;
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.$emit('succhandle',data);
+              }else {
+                vue.$emit('succhandle',data);
+              }
+            }
+            vue.postProcess = false;
+          },
+          error:function(status, statusText){
+            vue.postProcess = false;
+          }
+        });
+
+      }
+    }
+  }
+);

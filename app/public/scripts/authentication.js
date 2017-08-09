@@ -16,7 +16,7 @@ let app = new Vue(
       bank: '',
       name: '',
       uploadImg: {},
-      postProcess: false
+      subText: '提交申请'
     },
     watch: {
     },
@@ -50,7 +50,7 @@ let app = new Vue(
         });
       },
       sub(){
-        let vue = this;
+        let vue = this, data = {};
         if(!vue.name){
           vue.msg = '请输入真实姓名';
           vue.showAlert = true;
@@ -75,8 +75,15 @@ let app = new Vue(
           vue.close_auto();
           return false;
         }
-
-        jAjax({
+        data = {
+          'IDcard': vue.IDcard,
+          'bankAccount': vue.bankAccount,
+          'bank': vue.bank,
+          'name': vue.name,
+          'avatar': vue.uploadImg.url
+        };
+        vue.$refs.subpost.post(config.authenticationUrl, data);
+        /*jAjax({
           type:'post',
           url:config.authenticationUrl,
           data: {
@@ -88,7 +95,6 @@ let app = new Vue(
           },
           timeOut:5000,
           before:function(){
-            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -107,13 +113,22 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
-            vue.postProcess = false
 
           },
           error:function(){
-            vue.postProcess = false
           }
-        });
+        });*/
+      },
+
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
       },
       close(){
         this.showAlert = false;
@@ -133,7 +148,7 @@ let app = new Vue(
         if(url){
           location.href = url;
         }
-      },
+      }
 
     },
   }

@@ -84,16 +84,19 @@
       <span v-if="order_detail.expiresTime">发货时间：{{ order_detail.expiresTime }}<br></span>
       <span v-if="order_detail.finishTime">完成时间：{{ order_detail.finishTime }}</span>
     </div>
-
   </section>
   <footer class="footer">
     <div class="inner">
       <a href="javascript:;" class="chat"><img src="public/images/order_chat.png"></a>
       <div class="del">
-        <a href="javascript:;" @click="confirm(order_detail.orderId, finish)">删除订单</a>
+        <a href="javascript:;">
+          <subpost :txt="delText" ref="subpost" @callback="confirm(order_detail.orderId, finish)" @succhandle="succhandle"></subpost>
+        </a>
       </div>
       <div class="comment">
-        <a href="javascript:;" @click="confirm(order_detail.orderId, cancel)">我要评价</a>
+        <a href="javascript:;">
+          <subpost :txt="cancelText" ref="cancelpost" @callback="confirm(order_detail.orderId, cancel)" @succhandle="succhandle"></subpost>
+        </a>
       </div>
     </div>
   </footer>

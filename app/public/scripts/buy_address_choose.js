@@ -7,7 +7,6 @@ let app = new Vue(
       address: config.address,
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      postProcess: false
     },
     methods: {
       choose(item){
@@ -18,7 +17,6 @@ let app = new Vue(
           data: {},
           timeOut:5000,
           before:function(){
-            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -31,11 +29,9 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
-            vue.postProcess = false
 
           },
           error:function(status, statusText){
-            vue.postProcess = false
           }
         });
       },

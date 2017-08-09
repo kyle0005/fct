@@ -44,7 +44,6 @@ Vue.component('upload',
         uploadItem: [],
         subUpload: [],
         maxNum: 5,
-        postProcess: false
       }
     },
     mounted() {
@@ -68,9 +67,6 @@ Vue.component('upload',
         formData.append('action', 'head');
         formData.append('file', file);
 
-        /*          var xhr = new XMLHttpRequest();
-         xhr.open('post',config.uploadFileUrl);
-         xhr.send(formData);*/
         jAjax({
           type:'post',
           url:config.uploadFileUrl,
@@ -80,7 +76,6 @@ Vue.component('upload',
           contentType: false,
           timeOut:60000,
           before:function(){
-            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -90,10 +85,8 @@ Vue.component('upload',
                 vue.subUpload.push(data.data.url);
               }
             }
-            vue.postProcess = false;
           },
           error:function(){
-            vue.postProcess = false;
           }
         });
       },
@@ -111,7 +104,8 @@ let app = new Vue(
       order_detail: config.order_detail,
       anonymous: false,
       is_break: false,
-      postProcess: false
+
+      subText: '提交评论'
     },
     watch: {
     },
@@ -131,42 +125,27 @@ let app = new Vue(
         });
 
         if(!vue.is_break){
-          jAjax({
-            type:'post',
-            url:config.commentUrl,
-            data: {
+          let post_url = config.commentUrl,
+            post_data = {
               'order_id': vue.order_detail.orderId,
               'express_score': vue.$refs.express.stars_chosen,
               'sale_score': vue.$refs.sale.stars_chosen,
               'has_anonymous': vue.anonymous,
               'products': JSON.stringify(orderGoods_list)
-            },
-            timeOut:5000,
-            before:function(){
-              vue.postProcess = true;
-            },
-            success:function(data){
-              if(data){
-                data = JSON.parse(data);
-                if(parseInt(data.code) == 200){
-                  vue.msg = data.message;
-                  vue.showAlert = true;
-                  vue.close_auto();
-                }else {
-                  vue.msg = data.message;
-                  vue.showAlert = true;
-                  vue.close_auto();
-                }
-              }
-              vue.postProcess = false;
-
-            },
-            error:function(status, statusText){
-              vue.postProcess = false;
-            }
-          });
+            };
+          vue.$refs.subpost.post(post_url, post_data);
         }
 
+      },
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
       },
       close(){
         this.showAlert = false;
@@ -186,7 +165,7 @@ let app = new Vue(
         if(url){
           location.href = url;
         }
-      },
+      }
     },
   }
 ).$mount('#ordercomment');

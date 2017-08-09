@@ -37,7 +37,8 @@ let app = new Vue(
       usedAccountAmount: 0,   /* 已使用余额 */
       useAccountAmount: false,
 
-      postProcess: false
+      coupText: '使用',
+      payText: '我要付款'
     },
     watch: {
     },
@@ -71,8 +72,15 @@ let app = new Vue(
         }
       },
       getCoupon(){
-        let vue = this;
-        jAjax({
+        let vue = this,
+          post_url = config.coupon_url,
+          post_data = {
+          'validateCoupon': config.validateCoupon,
+          'couponCode': vue.couponcode,
+        };
+        vue.$refs.usecoup.post(post_url, post_data);
+
+        /*jAjax({
           type:'post',
           url:config.coupon_url,
           data: {
@@ -104,7 +112,7 @@ let app = new Vue(
           error:function(){
             console.log('error');
           }
-        });
+        });*/
       },
       calTotal(){
         let vue = this, price = 0;
@@ -113,27 +121,10 @@ let app = new Vue(
         });
         vue.totalPrice = price.toFixed(2);
       },
-      close(){
-        this.showAlert = false;
-      },
-      close_auto(callback, obj){
-        let vue = this;
-        setTimeout(function () {
-          vue.showAlert = false;
-          if(callback){
-            callback(obj);
-          }
-
-        }, 1500);
-
-      },
-      linkto(url){
-        if(url){
-          location.href = url;
-        }
-      },
       pay(){
-        let vue = this, cart_list = [], _temp = '';
+        let vue = this, cart_list = [], _temp = '',
+          post_url = config.pay_url,
+          post_data = {};
         vue.carts.forEach((item) => {
           let _item = {};
           _item.goodsId = item.goodsId;
@@ -146,7 +137,18 @@ let app = new Vue(
           _temp = vue.coupon.couponCode;
         }
         if(vue.has_terms){
-          jAjax({
+          post_data = {
+            'points': vue.usedPoint,
+            'accountAmount': vue.usedAccountAmount,
+            'couponCode': _temp,
+            'remark': vue.remark,
+            'addressId': vue.address.id,
+            'orderGoodsInfo': JSON.stringify(cart_list),
+            'has_terms': vue.has_terms
+          };
+          vue.$refs.paypost.post(post_url, post_data);
+
+          /*jAjax({
             type:'post',
             url:config.pay_url,
             data: {
@@ -161,7 +163,6 @@ let app = new Vue(
             // data: formData.serializeForm('buyOrder'),
             timeOut:5000,
             before:function(){
-              vue.postProcess = true
             },
             success:function(data){
               if(data){
@@ -176,13 +177,11 @@ let app = new Vue(
                   vue.close_auto();
                 }
               }
-              vue.postProcess = false
 
             },
             error:function(status, statusText){
-              vue.postProcess = false
             }
-          });
+          });*/
         }else {
           vue.msg = '请同意并钩选《方寸堂服务协议》';
           vue.showAlert = true;
@@ -234,6 +233,49 @@ let app = new Vue(
       },
       toFloat(num) {
         return num.toFixed(2);
+      },
+
+      payhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
+      },
+      succhandle(data){
+        let vue = this;
+        vue.showCoup();
+        vue.coupon.couponAmount = data.data;
+        vue.coupon.couponCode = vue.couponcode;
+        vue.loadCoupon();
+        vue.calculateAmount(0);
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
+      },
+      close(){
+        this.showAlert = false;
+      },
+      close_auto(callback, obj){
+        let vue = this;
+        setTimeout(function () {
+          vue.showAlert = false;
+          if(callback){
+            callback(obj);
+          }
+
+        }, 1500);
+
+      },
+      linkto(url){
+        if(url){
+          location.href = url;
+        }
       }
     },
   }

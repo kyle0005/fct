@@ -17,7 +17,6 @@ let app = new Vue(
       maxNum: 3,
       servicetype: 0,
       reason: '',
-      postProcess: false
     },
     watch: {
     },
@@ -51,7 +50,6 @@ let app = new Vue(
           contentType: false,
           timeOut:60000,
           before:function(){
-            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -61,10 +59,8 @@ let app = new Vue(
                 vue.subUpload.push(data.data.url);
               }
             }
-            vue.postProcess = false;
           },
           error:function(){
-            vue.postProcess = false;
           }
         });
       },
@@ -91,7 +87,6 @@ let app = new Vue(
             },
           timeOut:5000,
           before:function(){
-            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -106,11 +101,9 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
-            vue.postProcess = false;
 
           },
           error:function(status, statusText){
-            vue.postProcess = false;
           }
         });
       },

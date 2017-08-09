@@ -82,7 +82,6 @@ let app = new Vue(
       status: '',
       orderId: null,
       callback: null,
-      postProcess: false
     },
     watch: {
     },
@@ -95,7 +94,6 @@ let app = new Vue(
           data: {},
           timeOut:5000,
           before:function(){
-            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -114,11 +112,9 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
-            vue.postProcess = false
 
           },
           error:function(){
-            vue.postProcess = false
           }
         });
       },

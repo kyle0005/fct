@@ -69,15 +69,14 @@ let app = new Vue(
       address: config.address.address || '',
       cellPhone: config.address.cellPhone || '',
       name: config.address.name || '',
-      postProcess: false
+
+      subText: '确认保存'
     },
     methods: {
       sub(){
-        let vue = this;
-        jAjax({
-          type:'post',
-          url:config.saveAddressddUrl,
-          data: {
+        let vue = this,
+          post_url = config.saveAddressddUrl,
+          post_data = {
             'id': vue.id,
             'province': vue.provinceName,
             'city': vue.cityName,
@@ -86,35 +85,8 @@ let app = new Vue(
             'address': vue.address,
             'cellPhone': vue.cellPhone,
             'name': vue.name
-          },
-          timeOut:5000,
-          before:function(){
-            vue.postProcess = true
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                if(data.url){
-                  vue.close_auto(vue.linkto, data.url);
-                }else {
-                  vue.close_auto();
-                }
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-            vue.postProcess = false
-
-          },
-          error:function(status, statusText){
-            vue.postProcess = false
-          }
-        });
+          };
+        vue.$refs.subpost.post(post_url, post_data);
       },
       toProvince(){
         let vue = this;
@@ -140,6 +112,17 @@ let app = new Vue(
           }
         });
       },
+
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
+      },
       close(){
         this.showAlert = false;
       },
@@ -158,7 +141,7 @@ let app = new Vue(
         if(url){
           location.href = url;
         }
-      },
+      }
     },
   }
 ).$mount('#buy_address');

@@ -18,7 +18,8 @@ var app = new Vue(
         computedTime: 0, //倒数记时
         codeNumber: null, //验证码
         action: 'forget',
-        postProcess: false
+
+        subText: '登录'
       }
     },
     methods: {
@@ -87,36 +88,20 @@ var app = new Vue(
           return
         }
         //手机号登录
-        jAjax({
-          type:'post',
-          url:apis.userResource,
-          data: formData.serializeForm('find'),
-          timeOut:5000,
-          before:function(){
-            vue.postProcess = true;
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto(vue.linkto, data.url);
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-            vue.postProcess = false;
+        let post_url = apis.userResource,
+          post_data = formData.serializeForm('find');
+        vue.$refs.subpost.post(post_url, post_data);
 
-          },
-          error:function(status, statusText){
-            vue.postProcess = false;
-          }
-        });
-
-
+      },
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
       },
       close(){
         this.showAlert = false;

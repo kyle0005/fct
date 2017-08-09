@@ -5,7 +5,8 @@ Vue.component('coupons',
       return {
         show_search: false,
         show_detail: false,
-        postProcess: false
+        useText: '立即使用',
+        getText: '点击领取'
       }
     },
     props: ['couponitem'],
@@ -21,77 +22,27 @@ Vue.component('coupons',
       },
       sub(id){
         /* 使用优惠券 */
-        let vue = this;
-        jAjax({
-          type:'post',
-          url:config.useUrl,
-          data: {
+        let vue = this,
+          post_url = config.useUrl,
+          post_data = {
             'id': id,
-          },
-          timeOut:5000,
-          before:function(){
-            vue.postProcess = true;
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                if(data.url){
-                  vue.close_auto(vue.linkto, data.url);
-                }else {
-                  vue.close_auto();
-                }
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-            vue.postProcess = false;
-
-          },
-          error:function(){
-            vue.postProcess = false;
-          }
-        });
+          };
+        let _ref = 'subpost' + id;
+        vue.$refs[_ref].post(post_url, post_data);
       },
       receive(id){
         /* 领取优惠券 */
-        let vue = this;
-        jAjax({
-          type:'post',
-          url:config.getCouponUrl,
-          data: {
+        let vue = this,
+        post_url = config.getCouponUrl,
+          post_data = {
             'id': id,
-          },
-          timeOut:5000,
-          before:function(){
-            vue.postProcess = true;
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                // vue.msg = data.message;
-                // vue.showAlert = true;
-                vue.$emit('pop',data.message, data.url);
-                // if(data.url){
-                //   vue.close_auto(vue.linkto, data.url);
-                // }else {
-                //   vue.close_auto();
-                // }
-              }else {
-                vue.$emit('pop',data.message, data.url);
-              }
-            }
-            vue.postProcess = false;
-          },
-          error:function(){
-            vue.postProcess = false;
-          }
-        });
+          };
+        let _ref = 'subpost' + id;
+        vue.$refs[_ref].post(post_url, post_data);
+      },
+      succhandle(data){
+        let vue = this;
+        vue.$emit('succhandle',data);
       },
     }
   }
@@ -105,12 +56,6 @@ let app = new Vue(
       let vue = this;
 
     },
-    // created: function () {
-    //   let vue = this;
-    //   vue.$on('pop', function (msg, url) {
-    //     vue.pop(msg, url);
-    //   })
-    // },
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
@@ -169,6 +114,17 @@ let app = new Vue(
         });
 
       },
+
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
+      },
       close(){
         this.showAlert = false;
       },
@@ -187,7 +143,7 @@ let app = new Vue(
         if(url){
           location.href = url;
         }
-      },
+      }
 
     },
   }

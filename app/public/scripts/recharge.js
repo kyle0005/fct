@@ -23,7 +23,6 @@ let app = new Vue(
       discount: config.charge.defaultGift,
       hasNum:false,
 
-      postProcess: false
     },
     directives: {
       focus: {
@@ -93,7 +92,6 @@ let app = new Vue(
           },
           timeOut:5000,
           before:function(){
-            vue.postProcess = true;
           },
           success:function(data){
             if(data){
@@ -108,11 +106,9 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
-            vue.postProcess = false;
 
           },
           error:function(){
-            vue.postProcess = false;
           }
         });
       },

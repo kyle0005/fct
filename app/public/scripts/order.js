@@ -15,20 +15,24 @@ let app = new Vue(
       showConfirm: false, /* 显示confirm组件 */
       orderId: null,
       callback: null,
-      postProcess: false
+
+      delText: '删除订单',
+      cancelText: '取消订单'
     },
     watch: {
     },
     methods: {
       finish(orderId){
-        let vue = this;
-        jAjax({
+        let vue = this,
+          post_url = config.finish_url + '/' + orderId + '/finish',
+          post_data = {};
+        vue.$refs.subpost.post(post_url, post_data);
+        /*jAjax({
           type:'post',
           url:config.finish_url + '/' + orderId + '/finish',
           data: {},
           timeOut:5000,
           before:function(){
-            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -47,23 +51,23 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
-            vue.postProcess = false
 
           },
           error:function(){
-            vue.postProcess= false
           }
-        });
+        });*/
       },
       cancel(orderId){
-        let vue = this;
-        jAjax({
+        let vue = this,
+          post_url = config.cancel_url + '/' + orderId + '/cancel',
+          post_data = {};
+        vue.$refs.cancelpost.post(post_url, post_data);;
+        /*jAjax({
           type:'post',
           url:config.cancel_url + '/' + orderId + '/cancel',
           data: {},
           timeOut:5000,
           before:function(){
-            vue.postProcess = true
           },
           success:function(data){
             if(data){
@@ -82,17 +86,25 @@ let app = new Vue(
                 vue.close_auto();
               }
             }
-            vue.postProcess = false
 
           },
           error:function(){
-            vue.postProcess = false
           }
-        });
+        });*/
       },
       order_detail(){
         let vue = this;
 
+      },
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
       },
       close(){
         this.showAlert = false;

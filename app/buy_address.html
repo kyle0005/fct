@@ -24,8 +24,12 @@
           <span class="">默认地址</span>
         </label>
         <div class="options-container">
-          <a href="javascript:;" @click="edit(item)"><img src="public/images/edit.png">编辑</a>
-          <a href="javascript:;" @click="del(item, index)"><img src="public/images/del.png">删除</a>
+          <a href="javascript:;" @click="edit(item)"><img src="public/images/edit.png"><span class="items">编辑</span></a>
+          <a href="javascript:;"><img src="public/images/del.png">
+            <span class="items">
+              <subpost :txt="subText" :ref="'subpost' + index" @callback="del({item,index})" @succhandle="succhandle"></subpost>
+            </span>
+          </a>
         </div>
       </div>
     </div>
@@ -37,16 +41,9 @@
   <!--radio选中的是:{{ picked }}-->
 <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
-<template id="pop">
-  <div class="alet_container">
-    <section class="tip_text_container">
-      <div class="tip_text">{{ msg }}</div>
-      <!--<div class="confrim" @click="close">确认</div>-->
-    </section>
-  </div>
-</template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script>
   var config = {
     "defaultAddrUrl": "http://localhost:3000/defaultAddr",

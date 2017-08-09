@@ -42,8 +42,9 @@
       </li>
     </ul>
     <div class="log-btn">
-      <div class="sub" v-if="postProcess">登录中...</div>
-      <div class="sub" @click="update" v-else>登录</div>
+      <div class="sub">
+        <subpost :txt="subText" ref="subpost" @callback="update" @succhandle="succhandle"></subpost>
+      </div>
     </div>
   </form>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
@@ -51,6 +52,7 @@
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/common/tools.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/api/apis.js"></script>
 <script src="public/scripts/findpwd.js"></script>
 </body>
 </html>

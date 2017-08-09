@@ -24,14 +24,10 @@ var app = new Vue(
 
         openid: config.openid,
         action: 'bind',
-        postProcess: false
+        subText: '绑定'
       }
     },
     methods: {
-      changeway(loginWay){
-        this.loginWay = loginWay;
-        this.loginWay = !this.loginWay;
-      },
       //获取短信验证码
       getVerifyCode(){
         let vue = this;
@@ -87,53 +83,6 @@ var app = new Vue(
         }
       },
       //发送登录信息
-      mobileLogin(){
-        let vue = this;
-        if (!vue.phoneNumber) {
-          vue.showAlert = true;
-          vue.msg = '请输入手机号';
-          vue.close_auto();
-          return
-        }else if(!vue.passWord){
-          vue.showAlert = true;
-          vue.msg = '请输入密码';
-          vue.close_auto();
-          return
-        }
-        //用户名登录
-        jAjax({
-          type:'post',
-          url:apis.userResource,
-          data: formData.serializeForm('userLogin'),
-          timeOut:5000,
-
-          before:function(){
-            vue.postProcess = true
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto(vue.linkto, data.url);
-
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-            vue.postProcess = false
-
-          },
-          error:function(status, statusText){
-            vue.postProcess = false
-          }
-        });
-
-
-      },
       mobileMsgLogin(){
         let vue = this;
         if (!this.rightPhoneNumber) {
@@ -142,8 +91,11 @@ var app = new Vue(
           vue.close_auto();
           return
         }
+
+        vue.$refs.subpost.post(apis.userResource, formData.serializeForm('quickLogin'));
+
         //手机号登录
-        jAjax({
+        /*jAjax({
           type:'post',
           url:apis.userResource,
           // contentType: "application/json",
@@ -170,9 +122,20 @@ var app = new Vue(
           error:function(status, statusText){
             console.log(statusText);
           }
-        });
+        });*/
 
 
+      },
+
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
       },
       close(){
         this.showAlert = false;
