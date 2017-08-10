@@ -69,6 +69,7 @@ let app = new Vue(
           }
          }
         vue.charge_nums.push(other);
+
       },
       choose(discount, value, num){
         let vue = this;

@@ -437,3 +437,37 @@ small.pri-mark{
     height: 100%;
   }
 }
+
+.m-video-container{
+  position: relative;
+  width: 100%;
+  padding-bottom: 50%;
+  .video-inner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    .play-container{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      img.poster-img{
+        width: 100%;
+        height: 100%;
+      }
+      img.poster-play{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20%;
+      }
+    }
+
+    video.m-video{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

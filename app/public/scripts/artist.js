@@ -1,3 +1,44 @@
+Vue.component('mVideo',
+  {
+    template: '#m_video',
+    data() {
+      return {
+        isVideoLoad: false
+      }
+    },
+    mounted: function() {
+      let vue = this;
+/*      vue.$on('play', function (id) {
+        let _ref = 'video' + id;
+        _ref.play();
+      });*/
+    },
+    props: ['item'],
+    methods: {
+      loadVideo(id){
+        let vue = this;
+        vue.isVideoLoad = true;
+        vue.$nextTick(function () {
+         // DOM 更新后回调
+          let _ref = document.getElementById('video' + id.toString());
+          _ref.play();
+         });
+
+      },
+      /*play(event){
+        let vue = this, video = null;
+        if (typeof event.target === 'undefined') {
+          video = event[0];
+        }
+        else {
+          video = event.target.files[0];
+        }
+
+
+      }*/
+    }
+  }
+);
 Vue.component('live',
   {
     template: '#live',
@@ -88,7 +129,8 @@ Vue.component('live',
         liveList: config.artist.dynamicList.entries,
         top: {},
         preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
-        last_url: ''
+        last_url: '',
+        isVideoLoad: false
       }
     },
     methods:{
@@ -138,20 +180,21 @@ Vue.component('live',
         vue.liveList.forEach((item, index) => {
           if(item.isTop){
             vue.liveList.splice(index, 1);
-            vue.$nextTick(function () {
+/*            vue.$nextTick(function () {
               // DOM 更新后回调
               vue.loadVideo('video_top', item.url, item.videoImage);
-            });
-          }else {
+            });*/
+          }
+/*          else {
             vue.$nextTick(function () {
               // DOM 更新后回调
               vue.loadVideo('video_' + index, item.url, item.videoImage);
             });
-          }
+          }*/
 
         });
       },
-      loadVideo(id ,url, poster){
+      /*loadVideo(id ,url, poster){
         let vue = this;
         if(id && url && poster){
           var options = {
@@ -170,7 +213,7 @@ Vue.component('live',
           });
         }
 
-      },
+      },*/
     },
   }
 );
