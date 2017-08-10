@@ -14,6 +14,7 @@ let app = new Vue(
       withdrawals: config.withdrawals,
       max: config.withdrawals.withdrawAmount,
       min: 100,
+      subText: '提交申请'
     },
     watch: {
       amount: function (val, oldVal) {
@@ -25,40 +26,22 @@ let app = new Vue(
     },
     methods: {
       sub(){
-        let vue = this;
-        jAjax({
-          type:'post',
-          url:config.withdrawalsUrl,
-          data: {
+        let vue = this,
+          post_url = config.withdrawalsUrl,
+          post_data = {
             'amount': vue.amount
-          },
-          timeOut:5000,
-          before:function(){
-          },
-          success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                if(data.url){
-                  vue.close_auto(vue.linkto, data.url);
-                }else {
-                  vue.close_auto();
-                }
-
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-
-          },
-          error:function(){
-          }
-        });
+          };
+        vue.$refs.subpost.post(post_url, post_data);
+      },
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
       },
       close(){
         this.showAlert = false;
@@ -78,7 +61,7 @@ let app = new Vue(
         if(url){
           location.href = url;
         }
-      },
+      }
 
     },
   }

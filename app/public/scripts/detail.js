@@ -433,6 +433,31 @@ let app = new Vue(
         }
 
       },
+      linkTo(num){
+        let vue = this;
+        vue.tab_num = num;
+        switch(parseInt(num))
+        {
+          case 0:
+            vue.currentView ='overview';
+            break;
+          case 1:
+            vue.currentView ='artist';
+            break;
+          case 2:
+            vue.currentView ='pug';
+            break;
+          case 3:
+            vue.currentView ='service';
+            break;
+          case 4:
+            vue.currentView ='discuss';
+            break;
+          default:
+            vue.currentView ='overview';
+        }
+
+      },
 
       succhandle(data){
         let vue = this;

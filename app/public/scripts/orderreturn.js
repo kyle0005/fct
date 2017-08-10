@@ -17,6 +17,7 @@ let app = new Vue(
       maxNum: 3,
       servicetype: 0,
       reason: '',
+      subText: '提交申请'
     },
     watch: {
     },
@@ -38,9 +39,6 @@ let app = new Vue(
         form_data.append('action', 'head');
         form_data.append('file', file);
 
-/*          var xhr = new XMLHttpRequest();
-         xhr.open('post',config.uploadFileUrl);
-         xhr.send(form_data);*/
         jAjax({
           type:'post',
           url:config.uploadFileUrl,
@@ -65,47 +63,28 @@ let app = new Vue(
         });
       },
       sub(){
-        let vue = this;
-        // var form_data = new FormData();
-        // form_data.append('order_id', vue.product.orderId);
-        // form_data.append('order_product_id', vue.product.id);
-        // form_data.append('service_type', vue.servicetype);
-        // form_data.append('reason', vue.reason);
-        // form_data.append('description', vue.description);
-        // form_data.append('images', base64.encode64(JSON.stringify(vue.subUpload)));
-        jAjax({
-          type:'post',
-          url:config.returnUrl,
-          data:
-            {
+        let vue = this,
+          post_url = config.returnUrl,
+          post_data = {
             'order_id': vue.product.orderId,
             'order_product_id': vue.product.id,
             'service_type': vue.servicetype,
             'reason': vue.reason,
             'description': vue.description,
             'images': JSON.stringify(vue.subUpload)
-            },
-          timeOut:5000,
-          before:function(){
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
+          };
+        vue.$refs.subpost.post(post_url, post_data);
 
-          },
-          error:function(status, statusText){
-          }
-        });
+      },
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
       },
       close(){
         this.showAlert = false;
@@ -125,7 +104,7 @@ let app = new Vue(
         if(url){
           location.href = url;
         }
-      },
+      }
     },
   }
 ).$mount('#orderreturn');

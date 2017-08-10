@@ -23,6 +23,8 @@ let app = new Vue(
       discount: config.charge.defaultGift,
       hasNum:false,
 
+      subText: '我要充值'
+
     },
     directives: {
       focus: {
@@ -83,34 +85,23 @@ let app = new Vue(
 
       },
       sub(){
-        let vue = this;
-        jAjax({
-          type:'post',
-          url:config.rechargeUrl,
-          data: {
+        let vue = this,
+          post_url = config.rechargeUrl,
+          post_data = {
             'charge_num': vue.charge_num
-          },
-          timeOut:5000,
-          before:function(){
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto(vue.linkto, data.url);
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
+          };
+        vue.$refs.subpost.post(post_url, post_data);
 
-          },
-          error:function(){
-          }
-        });
+      },
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
       },
       close(){
         this.showAlert = false;
@@ -130,7 +121,7 @@ let app = new Vue(
         if(url){
           location.href = url;
         }
-      },
+      }
 
     },
   }

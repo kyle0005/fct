@@ -70,19 +70,14 @@
     </section>
   </form>
   <div class="sub-btn">
-    <a href="javascript:;" @click="sub()">确认保存</a>
+    <a href="javascript:;">
+      <subpost :txt="subText" ref="subpost" @callback="sub" @succhandle="succhandle"></subpost>
+    </a>
   </div>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
-<template id="pop">
-  <div class="alet_container">
-    <section class="tip_text_container">
-      <div class="tip_text">{{ msg }}</div>
-      <!--<div class="confrim" @click="close">确认</div>-->
-    </section>
-  </div>
-</template>
 <script src="public/scripts/vue.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {

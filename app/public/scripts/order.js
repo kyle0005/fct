@@ -26,11 +26,11 @@ let app = new Vue(
         let vue = this,
           post_url = config.finish_url + '/' + orderId + '/finish',
           post_data = {};
-        vue.$refs.subpost.post(post_url, post_data);
-        /*jAjax({
+        // vue.$refs.subpost.post(post_url, post_data);
+        jAjax({
           type:'post',
-          url:config.finish_url + '/' + orderId + '/finish',
-          data: {},
+          url:post_url,
+          data: post_data,
           timeOut:5000,
           before:function(){
           },
@@ -55,17 +55,17 @@ let app = new Vue(
           },
           error:function(){
           }
-        });*/
+        });
       },
       cancel(orderId){
         let vue = this,
           post_url = config.cancel_url + '/' + orderId + '/cancel',
           post_data = {};
-        vue.$refs.cancelpost.post(post_url, post_data);;
-        /*jAjax({
+        // vue.$refs.cancelpost.post(post_url, post_data);;
+        jAjax({
           type:'post',
-          url:config.cancel_url + '/' + orderId + '/cancel',
-          data: {},
+          url:post_url,
+          data: post_data,
           timeOut:5000,
           before:function(){
           },
@@ -90,7 +90,7 @@ let app = new Vue(
           },
           error:function(){
           }
-        });*/
+        });
       },
       order_detail(){
         let vue = this;

@@ -16,8 +16,8 @@
     </div>
     <div class="search-container" :class="{show:show_search}">
       <div class="cancel-search">
-        <a href="javascript:;" class="fork" @click="search(0)">
-          取消
+        <a href="javascript:;" class="fork">
+          <subpost :txt="subText" ref="subpost" @callback="search(0)" @succhandle="succhandle"></subpost>
         </a>
       </div>
       <input type="search" class="search-input" :placeholder="placeholder" v-model="keywords">

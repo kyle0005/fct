@@ -1420,7 +1420,7 @@ Vue.component('confirm',
 );
 
 let post_html = '<span class="post-container">' +
-  '<span class="post-inner" v-if="postProcess">{{ txt }}中...</span>' +
+  '<span class="post-inner" v-if="postProcess">{{ txt }}...</span>' +
 '<span class="post-inner" @click="sub()" v-else>{{ txt }}</span>' +
 '</span>';
 Vue.component('subpost',

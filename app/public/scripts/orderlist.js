@@ -82,16 +82,20 @@ let app = new Vue(
       status: '',
       orderId: null,
       callback: null,
+      subText: '取消'
     },
     watch: {
     },
     methods: {
       cancel(orderId){
-        let vue = this;
+        let vue = this,
+          post_url = config.cancel_url + '/' + orderId + '/cancel',
+          post_data = {};
+        // vue.$refs.subpost.post(post_url, post_data);
         jAjax({
           type:'post',
-          url:config.cancel_url + '/' + orderId + '/cancel',
-          data: {},
+          url:post_url,
+          data: post_data,
           timeOut:5000,
           before:function(){
           },
@@ -99,13 +103,7 @@ let app = new Vue(
             if(data){
               data = JSON.parse(data);
               if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                if(data.url){
-                  vue.close_auto(vue.linkto, data.url);
-                }else {
-                  vue.close_auto();
-                }
+               vue.succhandle(data);
               }else {
                 vue.msg = data.message;
                 vue.showAlert = true;
@@ -221,25 +219,6 @@ let app = new Vue(
           }
         });
       },
-      close(){
-        this.showAlert = false;
-      },
-      close_auto(callback, obj){
-        let vue = this;
-        setTimeout(function () {
-          vue.showAlert = false;
-          if(callback){
-            callback(obj);
-          }
-
-        }, 1500);
-
-      },
-      linkto(url){
-        if(url){
-          location.href = url;
-        }
-      },
       search(num){
         let vue = this;
         if(vue.show_search){
@@ -271,6 +250,36 @@ let app = new Vue(
         vue.showConfirm = false;
         if(callback){
           callback(obj);
+        }
+      },
+
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
+      },
+      close(){
+        this.showAlert = false;
+      },
+      close_auto(callback, obj){
+        let vue = this;
+        setTimeout(function () {
+          vue.showAlert = false;
+          if(callback){
+            callback(obj);
+          }
+
+        }, 1500);
+
+      },
+      linkto(url){
+        if(url){
+          location.href = url;
         }
       }
     },

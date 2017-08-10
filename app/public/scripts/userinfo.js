@@ -14,6 +14,7 @@ let app = new Vue(
       uploadImg: {},
       sex: config.userinfo.sex,
       date: config.userinfo.birthday,
+      subText: '确认保存'
     },
     watch: {
     },
@@ -30,9 +31,6 @@ let app = new Vue(
          formData.append('action', 'head');
         formData.append('file', file);
 
-      /*  var xhr = new XMLHttpRequest();
-        xhr.open('post',config.uploadFileUrl);
-        xhr.send(formData);*/
         jAjax({
           type:'post',
           url:config.uploadFileUrl,
@@ -54,32 +52,20 @@ let app = new Vue(
         });
       },
       sub(){
+        let vue = this,
+          post_url = config.userinfoUrl,
+          post_data = formData.serializeForm('userForm');
+        vue.$refs.subpost.post(post_url, post_data);
+      },
+      succhandle(data){
         let vue = this;
-        jAjax({
-          type:'post',
-          url:config.userinfoUrl,
-          data: formData.serializeForm('userForm'),
-          timeOut:5000,
-          before:function(){
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-
-          },
-          error:function(status, statusText){
-          }
-        });
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
       },
       close(){
         this.showAlert = false;
@@ -99,7 +85,7 @@ let app = new Vue(
         if(url){
           location.href = url;
         }
-      },
+      }
     },
   }
 ).$mount('#userinfo');

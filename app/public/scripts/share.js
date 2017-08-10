@@ -100,7 +100,7 @@ let app = new Vue(
         }
         if(vue.search){
           jAjax({
-            type:'post',
+            type:'get',
             url: _url,
             data: {
               'keyword': vue.search

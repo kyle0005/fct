@@ -145,7 +145,6 @@ var app = new Vue(
         //手机号登录
         vue.$refs.subpost.post(post_url, post_data);
 
-
       },
 
       succhandle(data){

@@ -60,21 +60,17 @@
     </div>
   </section>
   <div class="sub-btn">
-    <a href="javascript:;" @click="closeApp">关闭申请</a>
+    <a href="javascript:;" @click="confirm(closeApp)">关闭申请</a>
   </div>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+  <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :msg="msg"></confirm>
 </div>
-<template id="pop">
-  <div class="alet_container">
-    <section class="tip_text_container">
-      <div class="tip_text">{{ msg }}</div>
-    </section>
-  </div>
-</template>
 <script src="public/scripts/vue.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
+    "cancel_url": "asdasdad",
     "product": {
       "serviceType": "做工问题",
       "refundReason": "仅退款",
