@@ -64,9 +64,7 @@
       <m-swipe swipeid="swipet" ref="swipert" :autoplay="0" effect="slide">
         <div v-for="(item, index) in list_t" class="swiper-slide inner-container" :key="index" slot="swiper-con">
           <div class="items" v-for="(i_item, i_index) in item" :key="i_index">
-            <a href="javascript:;" class="link">
-              <span>{{ i_item.name }}</span>
-            </a>
+            <a href="javascript:;" class="link overText">{{ i_item.name }}</a>
           </div>
         </div>
       </m-swipe>
@@ -187,7 +185,7 @@
           "id":23
         }
       ],
-    "materials": [{"name":"等各方面介","id":4}],
+    "materials": [{"name":"等各方面大法官告诉对方介","id":4}],
 
   }
 </script>

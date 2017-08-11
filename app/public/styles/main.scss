@@ -6,6 +6,39 @@
 [v-cloak] {
   display: none;
 }
+%others{
+  width: calc(100% - 60px);
+  padding: 10px 0;
+  margin: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  li{
+    -moz-box-flex: 1.0; /* Firefox */
+    -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+    box-flex: 1.0;
+    width: 24.5%;
+    a.item{
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      img{
+        width: 100%;
+      }
+      .p-title{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        color: $color-white;
+        background-color: $color-999;
+        opacity: .7;
+        text-align: center;
+      }
+    }
+  }
+}
 /* 欢迎页 */
 .index-container{
   @extend %page;
@@ -235,7 +268,7 @@
             img{
               display: block;
               margin: 0 auto 5px;
-              width: 45%;
+              width: 35%;
             }
           }
         }
@@ -1072,7 +1105,8 @@ $foot-height: 250px;
             }
             .name-container{
               display: block;
-              width: 100%;
+              width: 75%;
+              margin: 0 auto;
               font-size: $font-size-t13;
               text-align: center;
             }
@@ -1086,34 +1120,39 @@ $foot-height: 250px;
     }
 
     .text-container{
-      width: 100%;
-      padding: 4%;
+      width: 92%;
+      padding: 2% 4% 4% 4%;
       overflow: hidden;
     }
     .artist{
       background-color: $color-f2f2f2;
-      padding: 10px;
+      padding: 4%;
       .intro{
-        margin: 20px 0;
         .photo{
+          position: relative;
           display: inline-block;
           float: left;
-          width: 35.6%;
+          width: 25%;
+          padding-bottom: 25%;
+          margin-right: 5.4%;
           text-align: center;
           img{
-            width: 55%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
           }
         }
         .artist-info{
-          display: inline-block;
-          width: 64.4%;
-          span{
-            display: inline-block;
-          }
           .artist-name{
-            font-size: $font-size-t13;
+            font-size: $font-size-t14;
+            font-weight: bold;
             margin-bottom: 3px;
+            .v-title{
+              font-size: $font-size-t12;
+            }
           }
         }
       }
@@ -1161,39 +1200,7 @@ $foot-height: 250px;
       }
     }
   }
-  %others{
-    width: calc(100% - 60px);
-    padding: 10px 0;
-    margin: 0 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    li{
-      -moz-box-flex: 1.0; /* Firefox */
-      -webkit-box-flex: 1.0; /* Safari 和 Chrome */
-      box-flex: 1.0;
-      width: 24.5%;
-      a.item{
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        img{
-          width: 100%;
-        }
-        .p-title{
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          display: block;
-          width: 100%;
-          color: $color-white;
-          background-color: $color-999;
-          opacity: .7;
-          text-align: center;
-        }
-      }
-    }
-  }
+
   .tabs{
     ul.pugs-list{
       list-style-type: none;
@@ -1229,7 +1236,8 @@ $foot-height: 250px;
           }
           .name-container{
             display: block;
-            width: 100%;
+            width: 75%;
+            margin: 0 auto;
             font-size: $font-size-t13;
             text-align: center;
           }
@@ -1242,24 +1250,34 @@ $foot-height: 250px;
     }
     .pug-container{
       background-color: $color-f2f2f2;
-      padding: 10px;
+      width: 92%;
+      padding: 0 4%;
+      overflow: hidden;
       .intro{
-        margin: 20px 0 0 0;
+        padding: 4% 0;
         .photo{
+          position: relative;
           display: inline-block;
           float: left;
-          width: 35.6%;
+          width: 25%;
+          padding-bottom: 25%;
+          margin-right: 5.4%;
           text-align: center;
           img{
-            width: 55%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
           }
         }
         .pug{
           .pug-name{
             display: inline-block;
-            font-size: $font-size-t13;
+            font-size: $font-size-t14;
             margin-bottom: 3px;
+            font-weight: bold;
           }
           .pug-detail{
             word-wrap:break-word;
@@ -2738,6 +2756,69 @@ $foot-height: 250px;
             }
       }
         }
+      }
+    }
+  }
+
+  /* encyclopedias_detail */
+  .artist{
+    background-color: $color-f2f2f2;
+    width: 92%;
+    overflow: hidden;
+    padding: 4%;
+    .intro{
+      .photo{
+        position: relative;
+        display: inline-block;
+        float: left;
+        width: 25%;
+        padding-bottom: 25%;
+        margin-right: 5.4%;
+        text-align: center;
+        img{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+      .artist-info{
+        .artist-name{
+          font-size: $font-size-t13;
+          margin-bottom: 3px;
+          .v-title{
+            font-size: $font-size-t12;
+          }
+        }
+      }
+    }
+    .comment{
+      background-color: $color-f2f2f2;
+      .title{
+        padding: 2px 0 2px 10px;
+        font-size: $font-size-t13;
+        line-height: $font-size-t13;
+        border-left: 4px solid $color-333;
+      }
+      .context{
+        width: calc(100% - 60px);
+        padding: 10px 0;
+        margin: 0 30px;
+        word-wrap:break-word;
+        word-break:normal;
+      }
+      .others{
+        @extend %others;
+      }
+      a.for-more{
+        display: block;
+        width: calc(100% - 60px);
+        padding: 20px 0 20%;
+        margin: 0 30px;
+        text-align: center;
+        color: $color-999;
       }
     }
   }
@@ -4524,14 +4605,14 @@ $foot-height: 250px;
       }
     }
     .title-container{
-      width: calc(340 /750 * 100%);
+      width: calc(330 /750 * 100%);
       padding: calc(30 / 750 *100%) 0 0 0;
       .spec{
         color: $color-999;
       }
     }
     .price-container{
-      width: calc(210 /750 * 100%);
+      width: calc(220 /750 * 100%);
       padding: calc(30 / 750 *100%) 0 10px 0;
       margin-right: calc(30 / 750 *100%);
       text-align: right;
@@ -4829,7 +4910,7 @@ $foot-height: 250px;
               }
             }
             .info{
-              padding-top: 2%;
+              padding-top: 1%;
               .text{
                 vertical-align: baseline;
               }
@@ -5178,10 +5259,10 @@ $foot-height: 250px;
         position: absolute;
         top: 0;
         left: 0;
-        display: block;
         width: calc(100% - 2px);
         height: calc(100% - 2px);
         border: 1px solid $color-dcdcdc;
+        font-size: $font-size-t13;
         text-align: center;
         display: flex;
         justify-content: center;
@@ -5216,6 +5297,7 @@ $foot-height: 250px;
       width: 54%;
       height: 100%;
       text-indent: 4%;
+      font-size: $font-size-t13;
       color: $color-c40b1b;
       background-color: $color-white;
     }
@@ -5740,3 +5822,4 @@ $foot-height: 250px;
     }
   }
 }
+

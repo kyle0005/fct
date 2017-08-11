@@ -1,10 +1,47 @@
+Vue.component('mVideo',
+  {
+    template: '#m_video',
+    data() {
+      return {
+        isVideoLoad: false,
+      }
+    },
+    mounted: function() {
+      let vue = this;
+    },
+    props: {
+      poster: {
+        type: String,
+        default: ''
+      },
+      url: {
+        type: String,
+        default: ''
+      },
+      id: {
+        type: String,
+        default: ''
+      }
+    },
+    methods: {
+      loadVideo(){
+        let vue = this;
+        vue.isVideoLoad = true;
+        vue.$nextTick(function () {
+          // DOM 更新后回调
+          let _ref = document.getElementById(vue.id);
+          _ref.play();
+        });
+
+      },
+    }
+  }
+);
 Vue.component('overview',
   {
     template: '#overview',
     mounted: function() {
       let vue = this;
-      vue.loadoverview();
-      vue.loadVideo();
     },
     computed: {
       calstock: function () {
@@ -19,31 +56,11 @@ Vue.component('overview',
     },
     data() {
       return {
-        product: {}
+        product: config.product
       }
     },
     methods: {
-      loadVideo(){
-        let vue = this;
-        var options = {
-          fluid: true,
-          aspectRatio: '2:1',
-          preload: 'auto',
-          poster: vue.product.video.poster
-        };
-        var player = videojs('my-player', options, function onPlayerReady() {
-          this.src(vue.product.video.url);
-          videojs.log('Your player is ready!');
-          this.play();
-          this.on('ended', function() {
-            videojs.log('Awww...over so soon?!');
-          });
-        });
-      },
-      loadoverview() {
-        let vue = this;
-        vue.product = config.product;
-      },
+
     },
   }
 );

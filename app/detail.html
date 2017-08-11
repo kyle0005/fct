@@ -43,7 +43,7 @@
                 </div>
                 <div class="info">
                   <span class="title">{{ product.name }}</span>
-                  <span class="price">￥{{ showprice }}</span>
+                  <span class="price"><small class="pri-mark">￥</small>{{ showprice }}</span>
                   <span class="stock">库存：{{ calstock }}</span>
                 </div>
               </div>
@@ -135,7 +135,6 @@
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script src="public/scripts/api/apis.js"></script>
-<script src="public/scripts/video.js"></script>
 <script>
   var config = {
     "productsType": [
@@ -246,6 +245,17 @@
     "3、对产品（或部分）不满意<br>若您对某件或某几件商品的质量不满意，您在拒收这些商品的同时，可正常接收其它商品，对于其它不满意的商品可根据您的意愿联系“淘壶人”的客服为您换货或退款。<br></p>"
   }
 </script>
+<template id="m_video">
+  <div class="m-video-container">
+    <div class="video-inner">
+      <div v-if="!isVideoLoad" class="play-container" @click="loadVideo()">
+        <img :src="poster" class="poster-img" />
+        <img src="public/images/video_play.png" class="poster-play" />
+      </div>
+      <video class="m-video" :src="url" :id="id" preload="metadata" controls v-else></video>
+    </div>
+  </div>
+</template>
 <script type="text/x-template" id="head_top">
   <header class="head-container">
     <ul class="nav">
@@ -308,12 +318,12 @@
 <script type="text/x-template" id="overview">
   <div>
     <section class="video-container">
-      <video id="my-player" class="video-js vjs-big-play-centered" controls></video>
+      <mVideo :poster="product.video.poster" :url="product.video.url" id="videotop"></mVideo>
     </section>
     <section class="product-context" v-if="!(product.hasDiscount && (product.discount.hasBegin || !product.discount.canBuy))">
       <div class="title">{{ product.name }}</div>
       <div class="vice-title">{{ product.subTitle }}</div>
-      <div class="price">￥{{ product.salePrice }}</div>
+      <div class="price"><small class="pri-mark">￥</small>{{ product.salePrice }}</div>
     </section>
     <section class="product-context dis" v-else>
       <div class="title">
@@ -322,7 +332,7 @@
       </div>
       <div class="vice-title">{{ product.subTitle }}</div>
       <div class="price">
-        ￥{{ product.salePrice }}
+        <small class="pri-mark">￥</small>{{ product.salePrice }}
         <del class="del-price">{{ product.price }}</del>
       </div>
     </section>
@@ -356,18 +366,29 @@
         <span class="img-container">
           <img :src="item.artist_photo">
         </span>
-          <span class="name-container">{{ item.name }}</span>
+          <span class="name-container overText">{{ item.name }}</span>
         </a>
       </li>
     </ul>
-    <div class='text-container'>
-      {{ artistsingle.text }}
+    <section class="artist">
+      <div class="intro">
+          <span class="photo">
+            <img src="public/images/resource/artist.png">
+          </span>
+        <span class="artist-info">
+          <span class="artist-name">{{ artistsingle.name }}</span>&nbsp;-&nbsp;<span class="v-title">{{ artistsingle.title }}</span><br>
+          <span>{{ artistsingle.intro }}</span>
+        </span>
+      </div>
+    </section>
+    <div class="text-container" v-html="artistsingle.description">
+      {{ artistsingle.description }}
     </div>
     <section class="comment">
       <ul class="others">
         <li v-for="img_item in artistsingle.img">
           <a href="javascript:;" class="item">
-            <img :src="img_item.url">
+            <img :src="img_item.defaultImage">
             <span class="p-title">{{ img_item.name }}</span>
           </a>
         </li>
@@ -384,10 +405,21 @@
         <span class="img-container">
           <img :src="item.image">
         </span>
-          <span class="name-container">{{ item.name }}</span>
+          <span class="name-container overText">{{ item.name }}</span>
         </a>
       </li>
     </ul>
+    <section class="pug-container">
+      <div class="intro clearfix">
+        <span class="photo">
+          <img :src="pugsingle.image">
+        </span>
+        <span class="pug">
+            <span class="pug-name">{{ pugsingle.name }}</span><br>
+            <span class="pug-detail">{{ pugsingle.intro }}</span>
+          </span>
+      </div>
+    </section>
     <section class="pug-container" v-html="pugsingle.description">
       {{ pugsingle.description }}
     </section>
@@ -436,13 +468,6 @@
     </ul>
   </section>
 </script>
-<template id="pop">
-  <div class="alet_container">
-    <section class="tip_text_container">
-      <div class="tip_text">{{ msg }}</div>
-    </section>
-  </div>
-</template>
 <script src="public/scripts/head.js"></script>
 <script src="public/scripts/common/tools.js"></script>
 <script src="public/scripts/detail.js"></script>

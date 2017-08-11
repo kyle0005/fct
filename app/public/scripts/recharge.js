@@ -1,18 +1,15 @@
 let app = new Vue(
   {
-    computed: {
-
-    },
     mounted: function() {
       let vue = this;
       vue.loadChargeNum();
-      vue.choose(vue.charge_nums[0][Object.keys(vue.charge_nums[0])[0]], Object.keys(vue.charge_nums[0])[0], 0);
+      vue.choose(vue.charge_nums[0].giftPercent, vue.charge_nums[0].price, 0);
     },
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
       charge: config.charge,
-      charge_nums: [],
+      charge_nums: config.charge.rules,
       tab_num: 0,
 
       isOther: false,
@@ -20,6 +17,7 @@ let app = new Vue(
       gift: 0,
       balance: 0,
 
+      data_charge_num: 0,
       discount: config.charge.defaultGift,
       hasNum:false,
 
@@ -35,7 +33,13 @@ let app = new Vue(
     },
     watch: {
       charge_num: function (val, oldVal) {
-        let vue = this;
+        let vue = this, _num = 0;
+        _num = parseFloat(val.toString().replace(/[^\d]/g,''));
+        if(_num){
+          vue.charge_num = _num;
+        }else {
+          vue.charge_num = '';
+        }
         if(!(vue.tab_num == vue.charge_nums.length - 1) && (vue.charge_num > vue.charge.max || vue.charge_num < vue.charge.min)){
           vue.charge_num = oldVal;
         }
@@ -48,10 +52,23 @@ let app = new Vue(
         vue.balance = (parseFloat(vue.charge_num) + parseFloat(vue.gift)).toFixed(0);
       },
     },
+    computed:{
+    },
     methods: {
+      toFloat(num) {
+        let vue = this;
+        if(num > 0){
+          vue.data_charge_num = num.toFixed(2);
+          return num.toFixed(2);
+        }
+        else {
+          return '0.00';
+        }
+
+      },
       showText(item){
         let vue = this, flag = false;
-        if(Object.keys(item)[0] == 0){
+        if(item.price == 0){
           flag = true;
         }
         return flag;
@@ -59,20 +76,25 @@ let app = new Vue(
       loadChargeNum(){
         let vue = this;
         let other = {
-          0: vue.discount
+          'giftPercent': vue.discount,
+          'price': 0,
         };
-        for (let i in config.charge.rules){
+/*        for (let i in config.charge.rules){
           let item = {};
           if (config.charge.rules.hasOwnProperty(i)) {
             item[i] = config.charge.rules[i];
             vue.charge_nums.push(item);
           }
-         }
+         }*/
         vue.charge_nums.push(other);
+
 
       },
       choose(discount, value, num){
         let vue = this;
+/*        if(num == vue.tab_num){
+          return;
+        }*/
         vue.tab_num = num;
         if(parseFloat(value) == 0){
           value = '';
@@ -89,7 +111,7 @@ let app = new Vue(
         let vue = this,
           post_url = config.rechargeUrl,
           post_data = {
-            'charge_num': vue.charge_num
+            'charge_num': vue.data_charge_num
           };
         vue.$refs.subpost.post(post_url, post_data);
 

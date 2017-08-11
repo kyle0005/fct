@@ -15,9 +15,9 @@
       <div class="info">
         <div class="up">
           <span class="long">订单号：{{ item.id }}</span>
-          <span>￥{{ item.payAmount }}</span>
-          <span>￥{{ item.giftAmount }}</span>
-          <span class="pri">￥{{ item.amount }}</span>
+          <span><small class="pri-mark">￥</small>{{ item.payAmount }}</span>
+          <span><small class="pri-mark">￥</small>{{ item.giftAmount }}</span>
+          <span class="pri"><small class="pri-mark">￥</small>{{ item.amount }}</span>
         </div>
         <div class="down">
           <span class="long">{{ item.createTime }}</span>

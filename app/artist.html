@@ -110,8 +110,8 @@
     <section class="ptop">
       <div class="text">{{ top.content }}</div>
       <div class="media" >
-        <mVideo v-if="top.videoUrl !== ''" :item="top"></mVideo>
-        <!--<video id="video_top" class="video-js vjs-big-play-centered" controls v-if="top.videoUrl !== ''"></video>-->
+        <!--<mVideo v-if="top.videoUrl !== ''" :item="top"></mVideo>-->
+        <mVideo v-if="top.videoUrl !== ''" :poster="top.videoImage" :url="top.videoUrl" id="'video' + top.id"></mVideo>
         <ul class="img-list" v-if="topImg">
           <li v-for="imgs in top.images">
             <img :src="imgs">
@@ -123,7 +123,8 @@
       <li class="item" v-for="(item, index) in liveList">
         <div class="text">{{ item.content }}</div>
         <div class="media">
-          <mVideo v-if="item.videoUrl !== ''" :item="item"></mVideo>
+          <!--<mVideo v-if="item.videoUrl !== ''" :item="item"></mVideo>-->
+          <mVideo v-if="item.videoUrl !== ''" :poster="item.videoImage" :url="item.videoUrl" id="'video' + item.id"></mVideo>
           <ul class="img-list" v-if="item.images.length > 0">
             <li v-for="(img, i) in item.images">
               <img :src="img">
@@ -146,7 +147,7 @@
           <div class="right">
             <div class="title overText">{{ item.name }}</div>
             <div class="text overTextH2">{{ item.intro }}</div>
-            <div class="price overText">￥{{ item.price }}</div>
+            <div class="price overText"><small class="pri-mark">￥</small>{{ item.price }}</div>
             <div class="btn-container">
               <a href="javascript:;" class="btn">我要购买</a>
             </div>
@@ -207,7 +208,7 @@
     <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
   </div>
 </script>
-<template id="m_video">
+<!--<template id="m_video">
   <div class="m-video-container">
     <div class="video-inner">
       <div v-if="!isVideoLoad" class="play-container" @click="loadVideo(item.id)">
@@ -215,6 +216,17 @@
         <img src="public/images/video_play.png" class="poster-play">
       </div>
       <video class="m-video" :src="item.videoUrl" :id="'video' + item.id" :poster="item.videoImage" preload="metadata" controls v-else></video>
+    </div>
+  </div>
+</template>-->
+<template id="m_video">
+  <div class="m-video-container">
+    <div class="video-inner">
+      <div v-if="!isVideoLoad" class="play-container" @click="loadVideo()">
+        <img :src="poster" class="poster-img" />
+        <img src="public/images/video_play.png" class="poster-play" />
+      </div>
+      <video class="m-video" :src="url" :id="id" preload="metadata" controls v-else></video>
     </div>
   </div>
 </template>
@@ -314,7 +326,6 @@
 </script>
 <script src="public/scripts/common/tools.js"></script>
 <script src="public/scripts/head.js"></script>
-<!--<script src="public/scripts/video.js"></script>-->
 <script src="public/scripts/artist.js"></script>
 </body>
 </html>

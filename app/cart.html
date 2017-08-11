@@ -26,7 +26,7 @@
             <span class="t">
               <span class="title overText">{{ item.name }}</span>
               <span class="spec">规格: {{ item.specName }}</span>
-              <span class="price">￥{{ item.promotionPrice }}<del>￥{{ item.price }}</del></span>
+              <span class="price"><small class="pri-mark">￥</small>{{ item.promotionPrice }}<del><small class="pri-mark">￥</small>{{ item.price }}</del></span>
             </span>
           </span>
         </a>
@@ -51,7 +51,7 @@
             <img :src="item.defaultImage">
           </a>
           <div class="v-title">{{ item.name }}</div>
-          <div class="v-price">￥{{ item.price }}</div>
+          <div class="v-price"><small class="pri-mark">￥</small>{{ item.price }}</div>
         </li>
       </ul>
     </section>

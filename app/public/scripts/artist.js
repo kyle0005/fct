@@ -1,4 +1,4 @@
-Vue.component('mVideo',
+/*Vue.component('mVideo',
   {
     template: '#m_video',
     data() {
@@ -8,10 +8,6 @@ Vue.component('mVideo',
     },
     mounted: function() {
       let vue = this;
-/*      vue.$on('play', function (id) {
-        let _ref = 'video' + id;
-        _ref.play();
-      });*/
     },
     props: ['item'],
     methods: {
@@ -25,17 +21,45 @@ Vue.component('mVideo',
          });
 
       },
-      /*play(event){
-        let vue = this, video = null;
-        if (typeof event.target === 'undefined') {
-          video = event[0];
-        }
-        else {
-          video = event.target.files[0];
-        }
+    }
+  }
+);*/
+Vue.component('mVideo',
+  {
+    template: '#m_video',
+    data() {
+      return {
+        isVideoLoad: false,
+      }
+    },
+    mounted: function() {
+      let vue = this;
+    },
+    props: {
+      poster: {
+        type: String,
+        default: ''
+      },
+      url: {
+        type: String,
+        default: ''
+      },
+      id: {
+        type: String,
+        default: ''
+      }
+    },
+    methods: {
+      loadVideo(){
+        let vue = this;
+        vue.isVideoLoad = true;
+        vue.$nextTick(function () {
+          // DOM 更新后回调
+          let _ref = document.getElementById(vue.id);
+          _ref.play();
+        });
 
-
-      }*/
+      },
     }
   }
 );

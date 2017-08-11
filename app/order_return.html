@@ -20,9 +20,9 @@
         <div class="spec">规格: &nbsp;{{ product.specName }}</div>
       </div>
       <div class="pro-item price-container">
-        <div class="price">￥{{ product.price }}</div>
+        <div class="price"><small class="pri-mark">￥</small>{{ product.price }}</div>
         <div class="num">*{{ product.buyCount }}</div>
-        <div class="total"><span class="inner">合计:<span class="pri">￥{{ product.payAmount }}</span></span></div>
+        <div class="total"><span class="inner">合计:<span class="pri"><small class="pri-mark">￥</small>{{ product.payAmount }}</span></span></div>
       </div>
     </section>
     <section class="options">
@@ -40,6 +40,11 @@
           <div class="inner">
             <span class="left">退款原因</span>
             <select class="select" v-model="reason">
+              <option value="做工问题">做工问题</option>
+              <option value="做工问题">做工问题</option>
+              <option value="做工问题">做工问题</option>
+              <option value="做工问题">做工问题</option>
+              <option value="做工问题">做工问题</option>
               <option value="做工问题">做工问题</option>
             </select>
           </div>

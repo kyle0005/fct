@@ -1078,6 +1078,43 @@ var tools = {
   },
 };
 
+function base64_encode(str) {
+  var c = 0;
+  var buf = [];
+  var bits = 0;
+  var n = 0;
+  if (str.length > 0) {
+    while (n < str.length) {
+      var code = str.charCodeAt(n++);
+      switch (++c) {
+        case 1: {
+          buf.push(tab[code >> 2]);
+          bits = code & 0x3;
+          if (n >= str.length) {
+            buf.push(tab[bits << 4]);
+            buf.push('==');
+          }
+        } break;
+        case 2: {
+          buf.push(tab[(code >> 4) | (bits << 4)]);
+          bits = code & 0xf;
+          if (n >= str.length) {
+            buf.push(tab[bits << 2]);
+            buf.push('=');
+          }
+        } break;
+        case 3: {
+          buf.push(tab[(code >> 6) | (bits << 2)]);
+          buf.push(tab[code & 0x3f]);
+          bits = 0;
+          c = 0;
+        } break;
+      }
+    }
+  }
+  return buf.join('');
+}
+
 /* object.keys兼容微信浏览器 */
 if (!Object.keys) {
   Object.keys = (function () {

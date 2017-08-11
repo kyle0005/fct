@@ -31,13 +31,13 @@
             <div class="spec">规格:{{ i.specName }}</div>
           </div>
           <div class="pro-item price-container">
-            <div class="price">￥{{ i.commission }}</div>
+            <div class="price"><small class="pri-mark">￥</small>{{ i.commission }}</div>
             <div class="num">*{{ i.buyCount }}</div>
           </div>
         </li>
       </ul>
       <div class="total">
-        <div class="inner">共<span class="pri">{{ item.totalCount }}</span>件商品&nbsp;合计佣金：<span class="pri">￥{{ item.commission }}</span></div>
+        <div class="inner">共<span class="pri">{{ item.totalCount }}</span>件商品&nbsp;合计佣金：<span class="pri"><small class="pri-mark">￥</small>{{ item.commission }}</span></div>
       </div>
     </div>
   </div>
