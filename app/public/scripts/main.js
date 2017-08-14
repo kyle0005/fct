@@ -1,8 +1,6 @@
 let app = new Vue(
   {
-    mounted: function() {
-      var key = tools.getUrlKey();
-      console.log(key)
+    mounted: function () {
     },
     data: {
       ranks_list: config.productsRank,
@@ -24,6 +22,8 @@ let app = new Vue(
         let vue = this;
         vue.tab_num = index;
 
+        vue.pro_list = {};
+
         let _url = '';
         code = code || '';
         level_id = level_id || 0;
@@ -43,25 +43,25 @@ let app = new Vue(
         }
         _url = config.product_url + _url;
         jAjax({
-          type:'get',
-          url:_url,
-          timeOut:5000,
-          before:function(){
+          type: 'get',
+          url: _url,
+          timeOut: 5000,
+          before: function () {
             console.log('before');
           },
-          success:function(data){
-            if(data){
+          success: function (data) {
+            if (data) {
               data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
+              if (parseInt(data.code) == 200) {
                 vue.pro_list = data.data;
                 vue.code = code;
-              }else {
+              } else {
                 console.log('false')
               }
             }
 
           },
-          error:function(){
+          error: function () {
             console.log('error');
           }
         });

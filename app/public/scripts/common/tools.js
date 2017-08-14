@@ -1404,6 +1404,149 @@ Vue.directive('view', {
   }
 });
 
+/* photo gallery */
+let photo_html = '<div class="photogallery-container">' +
+  '<transition appear name="v-img-fade">' +
+  '<div v-if="!closed" class="fullscreen-v-img" @click.self="close()">' +
+  '<div class="header-v-img">' +
+  '<span v-if="images.length > 1" class="count-v-img">{{ currentImageIndex + 1 }}/{{ images.length }}</span>' +
+'<span class="close-v-img" @click="close">&times;</span>' +
+'</div>' +
+'<transition appear name="v-img-fade">' +
+  '<span v-if="visibleUI && images.length !== 1" class="prev-v-img" @click="prev">' +
+  '<svg width="25" height="25" viewBox="0 0 1792 1915" xmlns="http://www.w3.org/2000/svg"><path d="M1664 896v128q0 53-32.5 90.5t-84.5 37.5h-704l293 294q38 36 38 90t-38 90l-75 76q-37 37-90 37-52 0-91-37l-651-652q-37-37-37-90 0-52 37-91l651-650q38-38 91-38 52 0 90 38l75 74q38 38 38 91t-38 91l-293 293h704q52 0 84.5 37.5t32.5 90.5z" fill="#fff"/></svg>' +
+  '</span>' +
+  '</transition>' +
+  '<transition appear name="v-img-fade">' +
+  '<span v-if="visibleUI && images.length !== 1" class="next-v-img" @click="next">' +
+  '<svg width="25" height="25" viewBox="0 0 1792 1915" xmlns="http://www.w3.org/2000/svg"><path d="M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293h-704q-52 0-84.5-37.5t-32.5-90.5v-128q0-53 32.5-90.5t84.5-37.5h704l-293-294q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z" fill="#fff"/></svg>' +
+  '</span>' +
+  '</transition>' +
+  '<div class="content-v-img">' +
+  '<img :src="images[currentImageIndex]" @click="next">' +
+  '</div>' +
+  '</div>' +
+  '</transition>' +
+  '</div>';
+let screen = Vue.extend({
+    template: photo_html,
+    data() {
+      return {
+        images: [],
+        visibleUI: true,
+        currentImageIndex: 0,
+        closed: true,
+        uiTimeout: null,
+      }
+    },
+    methods: {
+      close() {
+        document.querySelector('body').classList.remove('body-fs-v-img');
+        this.images = [];
+        this.currentImageIndex = 0;
+        this.closed = true;
+      },
+      next() {
+        // if next index not exists in array of images, set index to first element
+        if (this.currentImageIndex + 1 < this.images.length) {
+          this.currentImageIndex++;
+        } else {
+          this.currentImageIndex = 0;
+        }
+        ;
+      },
+      prev() {
+        // if prev index not exists in array of images, set index to last element
+        if (this.currentImageIndex > 0) {
+          this.currentImageIndex--;
+        } else {
+          this.currentImageIndex = this.images.length - 1;
+        }
+        ;
+      },
+      showUI(){
+        // UI's hidden, we reveal it for some time only on mouse move and
+        // ImageScreen appear
+        clearTimeout(this.uiTimeout);
+        this.visibleUI = true;
+        this.uiTimeout = setTimeout(() => {
+          this.visibleUI = false
+        }, 3500)
+      }
+    },
+    created() {
+      window.addEventListener('keyup', (e) => {
+        // esc key and 'q' for quit
+        if (e.keyCode === 27 || e.keyCode === 81) this.close();
+        // arrow right and 'l' key (vim-like binding)
+        if (e.keyCode === 39 || e.keyCode === 76) this.next();
+        // arrow left and 'h' key (vim-like binding)
+        if (e.keyCode === 37 || e.keyCode === 72) this.prev();
+      });
+      window.addEventListener('scroll', () => {
+        this.close();
+      });
+      window.addEventListener('mousemove', () => {
+        this.showUI();
+      });
+    },
+  }
+);
+Vue.directive('img', {
+  bind(el, binding) {
+    // Defaults
+    let cursor = 'pointer';
+    let src = el.src;
+    let group = binding.arg || null;
+
+    // Overriding options if they're provided in binding.value
+    if (typeof binding.value !== 'undefined') {
+      cursor = binding.value.cursor || cursor;
+      src = binding.value.src || src;
+      group = binding.value.group || group;
+    }
+
+    // Setting up data attributes for groups of images
+    el.setAttribute('data-vue-img-group', group || null);
+    if (binding.value && binding.value.src) {
+      el.setAttribute('data-vue-img-src', binding.value.src);
+    }
+
+    if (!src) console.error('v-img element missing src parameter.');
+
+    // Applying options
+    el.style.cursor = cursor;
+
+    // Finding existing vm, or creating new one
+    let vm = window.vueImg;
+    if (!vm) {
+      const element = document.createElement('div');
+      element.setAttribute('id', 'imageScreen');
+      document.querySelector('body').appendChild(element);
+      vm = window.vueImg = new screen().$mount('#imageScreen');
+    }
+
+    // Updating vm's data, changin body overflow and position,
+    // which will be turn back on close
+    el.addEventListener('click', () => {
+      document.querySelector('body').classList.add('body-fs-v-img');
+
+      const images = [
+        ...document.querySelectorAll(
+          `img[data-vue-img-group="${group}"]`
+        ),
+      ];
+      if (images.length == 0) {
+        Vue.set(vm, 'images', [src]);
+      } else {
+        Vue.set(vm, 'images', images.map(e => e.dataset.vueImgSrc || e.src));
+        Vue.set(vm, 'currentImageIndex', images.indexOf(el));
+      }
+      Vue.set(vm, 'closed', false);
+    });
+  },
+});
+
 /* pop */
 let pop_html = '<div class="alet_container">' +
   '<section class="tip_text_container">' +

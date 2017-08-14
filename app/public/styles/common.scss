@@ -471,3 +471,120 @@ small.pri-mark{
     }
   }
 }
+
+
+.photogallery-container{
+  * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .fullscreen-v-img {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, .7);
+    -ms-touch-action: none;
+    touch-action: none;
+  }
+
+  .content-v-img img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .header-v-img {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    height: 50px;
+    z-index: 9999;
+  }
+
+  .count-v-img {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: white;
+    margin-left: 10px;
+    line-height: 50px;
+  }
+
+  .close-v-img {
+    float: right;
+    margin-right: 10px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    color: #E5E6EB;
+    font-size: 30px;
+    line-height: 50px;
+    cursor: pointer;
+    -webkit-transition: color .4s ease-in-out;
+    transition: color .4s ease-in-out;
+  }
+
+  .close-v-img:hover {
+    color: white;
+  }
+
+  .prev-v-img svg,
+  .next-v-img svg {
+    margin: 5px auto;
+  }
+
+  .prev-v-img,
+  .next-v-img {
+    color: white;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 50%;
+    margin-top: -12.5px;
+    font-size: 15px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 1000;
+    opacity: .3;
+    -webkit-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .prev-v-img:hover,
+  .next-v-img:hover {
+    opacity: 1;
+  }
+
+  .prev-v-img {
+    left: 10px;
+  }
+
+  .next-v-img {
+    right: 10px;
+  }
+
+  .v-img-fade-enter,
+  .v-img-fade-leave-to {
+    opacity: 0;
+  }
+
+  .v-img-fade-enter-active,
+  .v-img-fade-leave-active {
+    -webkit-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
+  }
+}

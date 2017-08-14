@@ -1127,6 +1127,7 @@ $foot-height: 250px;
     .artist{
       background-color: $color-f2f2f2;
       padding: 4%;
+      color: $color-666;
       .intro{
         .photo{
           position: relative;
@@ -1253,6 +1254,7 @@ $foot-height: 250px;
       width: 92%;
       padding: 0 4%;
       overflow: hidden;
+      color: $color-666;
       .intro{
         padding: 4% 0;
         .photo{
@@ -3377,14 +3379,14 @@ $foot-height: 250px;
       }
     }
     .title-container{
-      width: calc(410 /750 * 100%);
+      width: calc(375 /750 * 100%);
       padding: calc(30 / 750 *100%) 0 0 0;
       .spec{
         color: $color-999;
       }
     }
     .price-container{
-      width: calc(140 /750 * 100%);
+      width: calc(175 /750 * 100%);
       padding: calc(30 / 750 *100%) 0 10px 0;
       margin-right: calc(30 / 750 *100%);
       text-align: right;
@@ -3964,14 +3966,14 @@ $foot-height: 250px;
             }
           }
           .title-container{
-            width: calc(410 /750 * 100%);
+            width: calc(375 /750 * 100%);
             padding: calc(15 / 750 *100%) 0 0 0;
             .spec{
               color: $color-999;
             }
           }
           .price-container{
-            width: calc(140 /750 * 100%);
+            width: calc(175 /750 * 100%);
             padding: calc(15 / 750 *100%) 0 10px 0;
             margin-right: calc(30 / 750 *100%);
             text-align: right;
@@ -4322,14 +4324,14 @@ $foot-height: 250px;
       }
     }
     .title-container{
-      width: calc(340 /750 * 100%);
+      width: calc(300 /750 * 100%);
       padding: calc(30 / 750 *100%) 0 0 0;
       .spec{
         color: $color-999;
       }
     }
     .price-container{
-      width: calc(210 /750 * 100%);
+      width: calc(250 /750 * 100%);
       padding: calc(30 / 750 *100%) 0 10px 0;
       margin-right: calc(30 / 750 *100%);
       text-align: right;

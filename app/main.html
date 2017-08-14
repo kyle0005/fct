@@ -31,8 +31,8 @@
             <span class="title">{{ item.title }}</span>
             <span class="description">{{ item.description }}</span>
             <span class="pro-lists">
-              <span class="imgs" v-for="items in item.pics">
-                <img v-view="items" src="public/images/img_loader.gif">
+              <span class="imgs" v-for="(items, index) in item.pics">
+                <img v-img="{ group: item.id }" v-view="items" src="public/images/img_loader.gif">
               </span>
             </span>
               <span class="ops">
@@ -119,6 +119,31 @@
     </div>
   </header>
 </script>
+<!--<template id="photo">
+  <div class="photogallery-container">
+    <transition appear name="v-img-fade">
+      <div v-if="!closed" class='fullscreen-v-img' @click.self="close()">
+        <div class="header-v-img">
+          <span v-if="images.length > 1" class="count-v-img">{{ currentImageIndex + 1 }}/{{ images.length }}</span>
+          <span class="close-v-img" @click="close">&times;</span>
+        </div>
+        <transition appear name="v-img-fade">
+        <span v-if="visibleUI && images.length !== 1" class="prev-v-img" @click="prev">
+          <svg width="25" height="25" viewBox="0 0 1792 1915" xmlns="http://www.w3.org/2000/svg"><path d="M1664 896v128q0 53-32.5 90.5t-84.5 37.5h-704l293 294q38 36 38 90t-38 90l-75 76q-37 37-90 37-52 0-91-37l-651-652q-37-37-37-90 0-52 37-91l651-650q38-38 91-38 52 0 90 38l75 74q38 38 38 91t-38 91l-293 293h704q52 0 84.5 37.5t32.5 90.5z" fill="#fff"/></svg>
+        </span>
+        </transition>
+        <transition appear name="v-img-fade">
+        <span v-if="visibleUI && images.length !== 1" class="next-v-img" @click="next">
+          <svg width="25" height="25" viewBox="0 0 1792 1915" xmlns="http://www.w3.org/2000/svg"><path d="M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293h-704q-52 0-84.5-37.5t-32.5-90.5v-128q0-53 32.5-90.5t84.5-37.5h704l-293-294q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z" fill="#fff"/></svg>
+        </span>
+        </transition>
+        <div class="content-v-img">
+          <img :src="images[currentImageIndex]" @click="next">
+        </div>
+      </div>
+    </transition>
+  </div>
+</template>-->
 <script>
   var config = {
     "productsType": [
@@ -184,9 +209,9 @@
         "default_pic": "/public/images/resource/imgs.png",
         "pics": [
           "/public/images/resource/pro01.png",
-          "/public/images/resource/pro01.png",
-          "/public/images/resource/pro01.png",
-          "/public/images/resource/pro01.png"
+          "/public/images/resource/pro.png",
+          "/public/images/resource/pug.png",
+          "/public/images/resource/pro02.png"
         ],
         "clickAmount": 99999999,
         "saleAmount": 11111111
@@ -201,10 +226,10 @@
         "description": "描述文字。。。。。001。",
         "default_pic": "/public/images/resource/pro.png",
         "pics": [
+          "/public/images/resource/pro01.png",
           "/public/images/resource/pro.png",
-          "/public/images/resource/pro.png",
-          "/public/images/resource/pro.png",
-          "/public/images/resource/pro.png"
+          "/public/images/resource/pug.png",
+          "/public/images/resource/pro02.png"
         ],
         "clickAmount": 99999999,
         "saleAmount": 11111111
@@ -219,10 +244,10 @@
         "description": "描述文字。。。。。001。",
         "default_pic": "/public/images/resource/pug.png",
         "pics": [
+          "/public/images/resource/pro01.png",
+          "/public/images/resource/pro.png",
           "/public/images/resource/pug.png",
-          "/public/images/resource/pug.png",
-          "/public/images/resource/pug.png",
-          "/public/images/resource/pug.png"
+          "/public/images/resource/pro02.png"
         ],
         "clickAmount": 99999999,
         "saleAmount": 11111111
@@ -237,9 +262,9 @@
         "description": "描述文字。。。。。001。",
         "default_pic": "/public/images/resource/pro02.png",
         "pics": [
-          "/public/images/resource/pro02.png",
-          "/public/images/resource/pro02.png",
-          "/public/images/resource/pro02.png",
+          "/public/images/resource/pro01.png",
+          "/public/images/resource/pro.png",
+          "/public/images/resource/pug.png",
           "/public/images/resource/pro02.png"
         ],
         "clickAmount": 99999999,
@@ -256,9 +281,9 @@
         "default_pic": "/public/images/resource/pro01.png",
         "pics": [
           "/public/images/resource/pro01.png",
-          "/public/images/resource/pro01.png",
-          "/public/images/resource/pro01.png",
-          "/public/images/resource/pro01.png"
+          "/public/images/resource/pro.png",
+          "/public/images/resource/pug.png",
+          "/public/images/resource/pro02.png"
         ],
         "clickAmount": 99999999,
         "saleAmount": 11111111
@@ -291,10 +316,10 @@
         "description": "描述文字。。。。。001。",
         "default_pic": "/public/images/resource/imgs.png",
         "pics": [
-          "/public/images/resource/imgs.png",
-          "/public/images/resource/imgs.png",
-          "/public/images/resource/imgs.png",
-          "/public/images/resource/imgs.png"
+          "/public/images/resource/pro01.png",
+          "/public/images/resource/pro.png",
+          "/public/images/resource/pug.png",
+          "/public/images/resource/pro02.png"
         ],
         "clickAmount": 99999999,
         "saleAmount": 11111111
@@ -320,7 +345,7 @@
     ],
     "index": "index.html",
     "login": "login.html",
-    "product_url": "http://localhost:3000/products",
+    "product_url": "http://test.fangcuntang.com",
     "isindex": true
   }
 </script>

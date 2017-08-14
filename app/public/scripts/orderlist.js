@@ -2,7 +2,7 @@ let app = new Vue(
   {
     mounted: function() {
       let vue = this;
-
+      vue.category(config.status || -1);
     },
     directives: {
       'load-more': {
@@ -79,7 +79,7 @@ let app = new Vue(
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
       pager: config.orderlist.pager,
-      status: '',
+      status: config.status || -1,
       orderId: null,
       callback: null,
       subText: '取消'
@@ -155,15 +155,18 @@ let app = new Vue(
 
         }
       },
-      category(index){
+      category(i){
         let vue = this;
         vue.preventRepeatReuqest = false;
-        vue.tab_num = index;
-        if(index == 0){
-          vue.status = '';
-        }else {
-          vue.status = index - 1;
-        }
+        vue.tab_num = i;
+        vue.orderlist = {};
+        vue.pager = {};
+        // if(index == 0){
+        //   vue.status = '';
+        // }else {
+        //   vue.status = index - 1;
+        // }
+        vue.status = i;
         var _url = config.orderlist_url + '?status=' + vue.status;
         jAjax({
           type:'get',
