@@ -1,29 +1,3 @@
-/*Vue.component('mVideo',
-  {
-    template: '#m_video',
-    data() {
-      return {
-        isVideoLoad: false
-      }
-    },
-    mounted: function() {
-      let vue = this;
-    },
-    props: ['item'],
-    methods: {
-      loadVideo(id){
-        let vue = this;
-        vue.isVideoLoad = true;
-        vue.$nextTick(function () {
-         // DOM 更新后回调
-          let _ref = document.getElementById('video' + id.toString());
-          _ref.play();
-         });
-
-      },
-    }
-  }
-);*/
 Vue.component('mVideo',
   {
     template: '#m_video',
@@ -68,13 +42,16 @@ Vue.component('live',
     template: '#live',
     computed: {
       topImg: function () {
-        let vue = this, flag = false;
-        config.artist.dynamicList.entries.forEach((item) => {
+        let vue = this, flag = false, _tmp = [];
+        config.artist.dynamicList.entries.forEach((item, index) => {
           if(item.isTop){
             vue.top = item;
-
+          }else {
+            _tmp.push(item);
           }
         });
+        vue.liveList = _tmp;
+
         if(vue.top.images.length > 0){
           flag = true;
         }
@@ -145,12 +122,11 @@ Vue.component('live',
     },
     mounted: function() {
       let vue = this;
-      vue.loadLive();
     },
     data() {
       return {
         dynamicList: config.artist.dynamicList,
-        liveList: config.artist.dynamicList.entries,
+        liveList: [],
         top: {},
         preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
         last_url: '',
@@ -203,41 +179,18 @@ Vue.component('live',
         let vue = this;
         vue.liveList.forEach((item, index) => {
           if(item.isTop){
-            vue.liveList.splice(index, 1);
-/*            vue.$nextTick(function () {
-              // DOM 更新后回调
-              vue.loadVideo('video_top', item.url, item.videoImage);
-            });*/
+            let _tmp = vue.liveList;
+            vue.liveList = [];
+            _tmp.splice(index, 1);
+            vue.liveList = _tmp;
+            /*            vue.$nextTick(function () {
+                          // DOM 更新后回调
+                          vue.loadVideo('video_top', item.url, item.videoImage);
+                        });*/
           }
-/*          else {
-            vue.$nextTick(function () {
-              // DOM 更新后回调
-              vue.loadVideo('video_' + index, item.url, item.videoImage);
-            });
-          }*/
 
         });
       },
-      /*loadVideo(id ,url, poster){
-        let vue = this;
-        if(id && url && poster){
-          var options = {
-            fluid: true,
-            aspectRatio: '2:1',
-            preload: 'auto',
-            poster: poster
-          };
-          var player = videojs(id, options, function onPlayerReady() {
-            this.src(url);
-            videojs.log('Your player is ready!');
-            this.play();
-            this.on('ended', function() {
-              videojs.log('Awww...over so soon?!');
-            });
-          });
-        }
-
-      },*/
     },
   }
 );

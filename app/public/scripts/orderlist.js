@@ -2,7 +2,7 @@ let app = new Vue(
   {
     mounted: function() {
       let vue = this;
-      vue.category(config.status || -1);
+      vue.tab_num = config.status;
     },
     directives: {
       'load-more': {
@@ -161,11 +161,6 @@ let app = new Vue(
         vue.tab_num = i;
         vue.orderlist = {};
         vue.pager = {};
-        // if(index == 0){
-        //   vue.status = '';
-        // }else {
-        //   vue.status = index - 1;
-        // }
         vue.status = i;
         var _url = config.orderlist_url + '?status=' + vue.status;
         jAjax({

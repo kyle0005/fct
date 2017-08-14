@@ -87,6 +87,7 @@ let app = new Vue(
         let vue = this;
         vue.preventRepeatReuqest = false;
         vue.tab_num = index;
+        vue.commissionlist = {};
         if(index == 0){
           vue.status = 0;
         }else {

@@ -110,24 +110,22 @@
     <section class="ptop">
       <div class="text">{{ top.content }}</div>
       <div class="media" >
-        <!--<mVideo v-if="top.videoUrl !== ''" :item="top"></mVideo>-->
         <mVideo v-if="top.videoUrl !== ''" :poster="top.videoImage" :url="top.videoUrl" id="'video' + top.id"></mVideo>
-        <ul class="img-list" v-if="topImg">
-          <li v-for="imgs in top.images">
-            <img :src="imgs">
+        <ul class="img-list clearfix" v-if="topImg">
+          <li v-for="(imgs, index) in top.images">
+            <img v-img="{ group: 'top', lsrc: top.largeImages[index]}"  v-view="imgs" src="public/images/img_loader.gif">
           </li>
         </ul>
       </div>
     </section>
     <ul class="news" v-load-more="nextPage" type="1">
       <li class="item" v-for="(item, index) in liveList">
-        <div class="text">{{ item.content }}</div>
+        <div class="text">{{ item.content }}{{ item.id }}</div>
         <div class="media">
-          <!--<mVideo v-if="item.videoUrl !== ''" :item="item"></mVideo>-->
           <mVideo v-if="item.videoUrl !== ''" :poster="item.videoImage" :url="item.videoUrl" id="'video' + item.id"></mVideo>
-          <ul class="img-list" v-if="item.images.length > 0">
+          <ul class="img-list clearfix" v-if="item.images.length > 0">
             <li v-for="(img, i) in item.images">
-              <img :src="img">
+              <img v-img="{ group: item.id, lsrc: item.largeImages[index]}"  v-view="img" src="public/images/img_loader.gif">
             </li>
           </ul>
         </div>
@@ -208,17 +206,6 @@
     <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
   </div>
 </script>
-<!--<template id="m_video">
-  <div class="m-video-container">
-    <div class="video-inner">
-      <div v-if="!isVideoLoad" class="play-container" @click="loadVideo(item.id)">
-        <img :src="item.videoImage" class="poster-img">
-        <img src="public/images/video_play.png" class="poster-play">
-      </div>
-      <video class="m-video" :src="item.videoUrl" :id="'video' + item.id" :poster="item.videoImage" preload="metadata" controls v-else></video>
-    </div>
-  </div>
-</template>-->
 <template id="m_video">
   <div class="m-video-container">
     <div class="video-inner">
@@ -268,30 +255,61 @@
           {
             "entries":
               [
-                {
+/*                {
                   "images":[],
+                  "largeImages": [],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
                   "videoUrl":"http://200006282.vod.myqcloud.com/200006282_42ca7ffa1e9011e692fe0785d455c86c.f20.mp4",
                   "id":1,
                   "content":"ssss",
                   "isTop": false
-                },
-                {
+                },*/
+/*                {
                   "images":
                     [
                       "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
                     ],
+                  "largeImages": [
+                    "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
+                  ],
                   "videoImage":"\/images\/default-null.png",
                   "videoUrl":"",
                   "id":2,
                   "content":"ssss",
                   "isTop": false
+                },*/
+                {
+                  "images":
+                    [
+                      "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png",
+                      "/public/images/resource/pro01.png",
+                      "/public/images/resource/pro.png",
+                      "/public/images/resource/pug.png",
+                    ],
+                  "largeImages": [
+                    "/public/images/resource/pro01.png",
+                    "/public/images/resource/pro01.png",
+                    "/public/images/resource/pug.png",
+                    "/public/images/resource/pug.png",
+                  ],
+                  "videoImage":"//vjs.zencdn.net/v/oceans.png",
+                  "videoUrl":"",
+                  "id":5,
+                  "content":"ssss",
+                  "isTop": true
                 },
                 {
                   "images":
                     [
-                      "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
+                      "/public/images/resource/pro.png",
+                      "/public/images/resource/pro02.png",
+                      "/public/images/resource/pro.png",
                     ],
+                  "largeImages": [
+                    "/public/images/resource/pro.png",
+                    "/public/images/resource/pro02.png",
+                    "/public/images/resource/pro.png",
+                  ],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
                   "videoUrl":"",
                   "id":4,
@@ -299,13 +317,86 @@
                   "isTop": false
                 },
                 {
+                  "images":
+                    [
+                      "/public/images/resource/pro01.png",
+                      "/public/images/resource/pro01.png",
+                      "/public/images/resource/pro01.png",
+                    ],
+                  "largeImages": [
+                    "/public/images/resource/pro01.png",
+                    "/public/images/resource/pro01.png",
+                    "/public/images/resource/pro01.png",
+                  ],
+                  "videoImage":"//vjs.zencdn.net/v/oceans.png",
+                  "videoUrl":"",
+                  "id":7,
+                  "content":"ssss",
+                  "isTop": false
+                },
+                {
+                  "images":
+                    [
+                      "/public/images/resource/pro02.png",
+                      "/public/images/resource/pro02.png",
+                      "/public/images/resource/pro02.png",
+                    ],
+                  "largeImages": [
+                    "/public/images/resource/pro02.png",
+                    "/public/images/resource/pro02.png",
+                    "/public/images/resource/pro02.png",
+                  ],
+                  "videoImage":"//vjs.zencdn.net/v/oceans.png",
+                  "videoUrl":"",
+                  "id":8,
+                  "content":"ssss",
+                  "isTop": false
+                },
+                {
+                  "images":
+                    [
+                      "/public/images/resource/pug.png",
+                      "/public/images/resource/pug.png",
+                      "/public/images/resource/pug.png",
+                    ],
+                  "largeImages": [
+                    "/public/images/resource/pug.png",
+                    "/public/images/resource/pug.png",
+                    "/public/images/resource/pug.png",
+                  ],
+                  "videoImage":"//vjs.zencdn.net/v/oceans.png",
+                  "videoUrl":"",
+                  "id":9,
+                  "content":"ssss",
+                  "isTop": false
+                },
+                {
+                  "images":
+                    [
+                      "/public/images/resource/pro.png",
+                      "/public/images/resource/pro02.png",
+                      "/public/images/resource/pro.png",
+                    ],
+                  "largeImages": [
+                    "/public/images/resource/pro.png",
+                    "/public/images/resource/pro02.png",
+                    "/public/images/resource/pro.png",
+                  ],
+                  "videoImage":"//vjs.zencdn.net/v/oceans.png",
+                  "videoUrl":"",
+                  "id":10,
+                  "content":"ssss",
+                  "isTop": false
+                },
+/*                {
                   "images": [],
+                  "largeImages": [],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
                   "videoUrl":"//vjs.zencdn.net/v/oceans.mp4",
                   "id":3,
                   "content":"组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件",
-                  "isTop": true
-                }
+                  "isTop": false
+                }*/
               ],
             "pager":
               {
@@ -318,7 +409,7 @@
               }
           }
       },
-    "artistPage_url": "http://localhost:3000/artistPage",
+    "artistPage_url": "http://localhost:3000/artistPagexxxx",
     "artistWorks_url": "http://localhost:3000/artistWorks",
     "artistChat_url": "http://localhost:3000/artistChat",
     "chat_url": "aaaaaa"

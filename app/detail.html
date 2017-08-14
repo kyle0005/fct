@@ -442,7 +442,7 @@
 </script>
 <script type="text/x-template" id="discuss">
   <section class="discuss">
-    <ul class="list">
+    <ul class="list" v-load-more="nextPage" type="1" v-if="commentlist && commentlist.length > 0">
       <li class="item" v-for="(item, index) in commentlist">
         <div class="user-info clearfix">
           <div class="left clearfix">
@@ -466,6 +466,7 @@
         </div>
       </li>
     </ul>
+    <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
   </section>
 </script>
 <script src="public/scripts/head.js"></script>

@@ -2267,16 +2267,11 @@ $foot-height: 250px;
   %media{
     width: 100%;
     ul.img-list{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       li{
         position: relative;
-        -moz-box-flex: 1.0; /* Firefox */
-        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
-        box-flex: 1.0;
+        float: left;
         width: calc((100% - (20 / 375 * 100%) * 2) / 3);
-        margin-right: calc(20 / 375 * 100%);
+        margin: 0 calc(20 / 375 * 100%) calc(20 / 375 * 100%) 0;
         padding-bottom: calc((100% - (20 / 375 * 100%) * 2) / 3);
         &:nth-child(3n){
           margin-right: 0;
@@ -2298,7 +2293,7 @@ $foot-height: 250px;
       background-size: auto 40px;
       font-size: $font-size-t12;
       min-height: 40px;
-      padding: 4%;
+      padding: 4% 4% 0 4%;
       margin-bottom: 4%;
       .text{
         @extend %text;
@@ -2310,7 +2305,7 @@ $foot-height: 250px;
     ul.news{
       li.item{
         width: 92%;
-        padding: 4%;
+        padding: 4% 4% 0 4%;
         background-color: $color-white;
         margin-bottom: 4%;
         .text{
@@ -2465,7 +2460,9 @@ $foot-height: 250px;
               background-color: $color-f2f2f2;
               color: $color-666;
               padding: 1% 2%;
+              width: calc(680/720*100% - 7%);
               margin-left: calc(65/720*100%);
+              margin-bottom: calc(10/720*100%);
             }
           }
         }

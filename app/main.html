@@ -32,10 +32,10 @@
             <span class="description">{{ item.description }}</span>
             <span class="pro-lists">
               <span class="imgs" v-for="(items, index) in item.pics">
-                <img v-img="{ group: item.id }" v-view="items" src="public/images/img_loader.gif">
+                <img v-view="items" src="public/images/img_loader.gif">
               </span>
             </span>
-              <span class="ops">
+            <span class="ops">
               <img src="public/images/clickAmount.png"><span>{{ item.clickAmount }}</span>
               <img src="public/images/saleAmount.png"><span>{{ item.saleAmount }}</span>
             </span>
@@ -119,7 +119,7 @@
     </div>
   </header>
 </script>
-<!--<template id="photo">
+<template id="photo">
   <div class="photogallery-container">
     <transition appear name="v-img-fade">
       <div v-if="!closed" class='fullscreen-v-img' @click.self="close()">
@@ -143,7 +143,7 @@
       </div>
     </transition>
   </div>
-</template>-->
+</template>
 <script>
   var config = {
     "productsType": [
@@ -209,9 +209,9 @@
         "default_pic": "/public/images/resource/imgs.png",
         "pics": [
           "/public/images/resource/pro01.png",
-          "/public/images/resource/pro.png",
-          "/public/images/resource/pug.png",
-          "/public/images/resource/pro02.png"
+          "/public/images/resource/pro01.png",
+          "/public/images/resource/pro01.png",
+          "/public/images/resource/pro01.png"
         ],
         "clickAmount": 99999999,
         "saleAmount": 11111111
@@ -226,10 +226,10 @@
         "description": "描述文字。。。。。001。",
         "default_pic": "/public/images/resource/pro.png",
         "pics": [
-          "/public/images/resource/pro01.png",
           "/public/images/resource/pro.png",
-          "/public/images/resource/pug.png",
-          "/public/images/resource/pro02.png"
+          "/public/images/resource/pro.png",
+          "/public/images/resource/pro.png",
+          "/public/images/resource/pro.png"
         ],
         "clickAmount": 99999999,
         "saleAmount": 11111111
@@ -244,10 +244,10 @@
         "description": "描述文字。。。。。001。",
         "default_pic": "/public/images/resource/pug.png",
         "pics": [
-          "/public/images/resource/pro01.png",
-          "/public/images/resource/pro.png",
           "/public/images/resource/pug.png",
-          "/public/images/resource/pro02.png"
+          "/public/images/resource/pug.png",
+          "/public/images/resource/pug.png",
+          "/public/images/resource/pug.png"
         ],
         "clickAmount": 99999999,
         "saleAmount": 11111111
@@ -262,9 +262,9 @@
         "description": "描述文字。。。。。001。",
         "default_pic": "/public/images/resource/pro02.png",
         "pics": [
-          "/public/images/resource/pro01.png",
-          "/public/images/resource/pro.png",
-          "/public/images/resource/pug.png",
+          "/public/images/resource/pro02.png",
+          "/public/images/resource/pro02.png",
+          "/public/images/resource/pro02.png",
           "/public/images/resource/pro02.png"
         ],
         "clickAmount": 99999999,

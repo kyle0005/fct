@@ -1150,11 +1150,7 @@ if (!Object.keys) {
   })()
 };
 
-/*if ('addEventListener' in document) {
-  document.addEventListener('DOMContentLoaded', function() {
-    FastClick.attach(document.body);
-  }, false);
-}*/
+/* lazyload */
 let _util = {
   /**
    * debounce 函数去抖
@@ -1217,7 +1213,6 @@ let _util = {
     }
   }
 };
-
 class VueViewload {
   /**
    * @attr  emptyPic              base64空白图片
@@ -1345,41 +1340,10 @@ class VueViewload {
     }
   }
 }
-
-/*let LazyImg = {
- install(Vue, options = {}) {
- let resourceEles = {},
- initRender
- Vue.directive('view', {
- bind(el, binding) {
- let containerName = binding.arg == undefined ? 'window' : binding.arg
- if (resourceEles[containerName] == undefined) {
- resourceEles[containerName] = []
- }
- resourceEles[containerName].push({
- ele: el,
- src: binding.value
- })
- Vue.nextTick(() => {
- if (typeof initRender == 'undefined') {
- initRender = _util.debounce(function () {
- for (let key in resourceEles) {
- options.container = key == 'window' ? window : document.getElementById(key)
- options.selector = resourceEles[key]
- new VueViewload(options).render()
- }
- }, 200)
- }
- initRender()
- })
- }
- })
- }
- };*/
 Vue.directive('view', {
   bind(el, binding) {
     let resourceEles = {},options = {
-      threshold: -50
+      // threshold: -50
     },initRender;
     let containerName = binding.arg == undefined ? 'window' : binding.arg
     if (resourceEles[containerName] == undefined) {
@@ -1403,6 +1367,7 @@ Vue.directive('view', {
     })
   }
 });
+/* lazyload --- end */
 
 /* photo gallery */
 let photo_html = '<div class="photogallery-container">' +
@@ -1502,7 +1467,7 @@ Vue.directive('img', {
     // Overriding options if they're provided in binding.value
     if (typeof binding.value !== 'undefined') {
       cursor = binding.value.cursor || cursor;
-      src = binding.value.src || src;
+      src = binding.value.lsrc || binding.value.src || src;
       group = binding.value.group || group;
     }
 
@@ -1539,13 +1504,14 @@ Vue.directive('img', {
       if (images.length == 0) {
         Vue.set(vm, 'images', [src]);
       } else {
-        Vue.set(vm, 'images', images.map(e => e.dataset.vueImgSrc || e.src));
+        Vue.set(vm, 'images', images.map(e => e.dataset.vueImgSrc || src));
         Vue.set(vm, 'currentImageIndex', images.indexOf(el));
       }
       Vue.set(vm, 'closed', false);
     });
   },
 });
+/* photo gallery --- end */
 
 /* pop */
 let pop_html = '<div class="alet_container">' +

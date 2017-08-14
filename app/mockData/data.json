@@ -1354,60 +1354,72 @@
     "message": "xxx",
     "url": "",
     "code": 200,
-    "data": [
-      {
-        "id": 0,
-        "photo": "public/images/resource/artist.png",
-        "username": "用户名",
-        "date": "1990-02-02",
-        "stars": 4,
-        "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
-        "imgs": [
-          "public/images/resource/pro01.png",
-          "public/images/resource/pro01.png",
-          "public/images/resource/pro01.png"
-        ]
-      },
-      {
-        "id": 1,
-        "photo": "public/images/resource/artist.png",
-        "username": "用户名",
-        "date": "1990-02-02",
-        "stars": 1,
-        "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
-        "imgs": [
-          "public/images/resource/pro01.png",
-          "public/images/resource/pro01.png",
-          "public/images/resource/pro01.png"
-        ]
-      },
-      {
-        "id": 2,
-        "photo": "public/images/resource/artist.png",
-        "username": "用户名",
-        "date": "1990-02-02",
-        "stars": 5,
-        "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
-        "imgs": [
-          "public/images/resource/pro01.png",
-          "public/images/resource/pro01.png",
-          "public/images/resource/pro01.png"
-        ]
-      },
-      {
-        "id": 3,
-        "photo": "public/images/resource/artist.png",
-        "username": "用户名",
-        "date": "1990-02-02",
-        "stars": 0,
-        "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
-        "imgs": [
-          "public/images/resource/pro01.png",
-          "public/images/resource/pro01.png",
-          "public/images/resource/pro01.png"
-        ]
+    "data":
+    {
+      "entries": [
+        {
+          "id": 0,
+          "photo": "public/images/resource/artist.png",
+          "username": "用户名",
+          "date": "1990-02-02",
+          "stars": 4,
+          "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
+          "imgs": [
+            "public/images/resource/pro01.png",
+            "public/images/resource/pro01.png",
+            "public/images/resource/pro01.png"
+          ]
+        },
+        {
+          "id": 1,
+          "photo": "public/images/resource/artist.png",
+          "username": "用户名",
+          "date": "1990-02-02",
+          "stars": 1,
+          "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
+          "imgs": [
+            "public/images/resource/pro01.png",
+            "public/images/resource/pro01.png",
+            "public/images/resource/pro01.png"
+          ]
+        },
+        {
+          "id": 2,
+          "photo": "public/images/resource/artist.png",
+          "username": "用户名",
+          "date": "1990-02-02",
+          "stars": 5,
+          "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
+          "imgs": [
+            "public/images/resource/pro01.png",
+            "public/images/resource/pro01.png",
+            "public/images/resource/pro01.png"
+          ]
+        },
+        {
+          "id": 3,
+          "photo": "public/images/resource/artist.png",
+          "username": "用户名",
+          "date": "1990-02-02",
+          "stars": 0,
+          "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
+          "imgs": [
+            "public/images/resource/pro01.png",
+            "public/images/resource/pro01.png",
+            "public/images/resource/pro01.png"
+          ]
+        }
+      ],
+      "pager": {
+        "prev": 0,
+        "current": 1,
+        "next": 1,
+        "page_size": 20,
+        "total_page": 1,
+        "total": 1
       }
-    ]
+    }
+
   },
   "artist": {
     "code": 200,
