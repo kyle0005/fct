@@ -392,6 +392,12 @@ $fc:#fff;
   }
 
 }
+.empty_data{
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+  padding: 10px 0;
+}
 
 /* lazyload */
 .lazy-loaded {
@@ -588,4 +594,12 @@ small.pri-mark{
     -webkit-transition: opacity .3s ease-in-out;
     transition: opacity .3s ease-in-out;
   }
+}
+
+.list-loader{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10%;
 }

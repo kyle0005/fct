@@ -24,6 +24,7 @@ let app = new Vue(
       last_url: '',
 
       search: '',
+      listloading: false
 
     },
     directives: {
@@ -89,6 +90,10 @@ let app = new Vue(
       }
     },
     methods: {
+      getBefore(){
+        let vue = this;
+        vue.listloading = true;
+      },
       subSearch(){
         let vue = this;
         let _url = config.shareUrl + '?';
@@ -99,12 +104,11 @@ let app = new Vue(
           _url += '&sort=' + vue.sortsel;
         }
         if(vue.search){
-          jAjax({
+          tools.ajaxGet(_url + '&keyword=' + vue.search, vue.searchSuc, vue.getBefore);
+          /*jAjax({
             type:'get',
-            url: _url,
-            data: {
-              'keyword': vue.search
-            },
+            url: _url + '&keyword=' + vue.search,
+            data: {},
             timeOut:5000,
             before:function(){
             },
@@ -124,9 +128,14 @@ let app = new Vue(
             },
             error:function(){
             }
-          });
+          });*/
         }
 
+      },
+      searchSuc(data){
+        let vue = this;
+        vue.shareList = data.data.entries;
+        vue.pager = data.data.pager;
       },
       searchTxt(){
         let vue = this;
@@ -149,7 +158,8 @@ let app = new Vue(
           }
           if(_url !== vue.last_url){
             vue.last_url = _url;
-            jAjax({
+            tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
+            /*jAjax({
               type:'get',
               url:_url,
               timeOut:5000,
@@ -172,10 +182,17 @@ let app = new Vue(
               error:function(){
                 console.log('error');
               }
-            });
+            });*/
           }
 
         }
+      },
+      pageSucc(data){
+        let vue = this;
+        vue.pager = data.data.pager;
+        vue.shareList = data.data.entries.concat(vue.shareList);
+        vue.preventRepeatReuqest = false;
+        vue.listloading = false;
       },
       sel(){
         let vue = this;
@@ -183,7 +200,8 @@ let app = new Vue(
         if(vue.categary){
           _url += '&code=' + vue.categary;
         }
-        jAjax({
+        tools.ajaxGet(_url, vue.selSucc, vue.getBefore);
+        /*jAjax({
           type:'get',
           url:_url,
           timeOut:5000,
@@ -205,7 +223,13 @@ let app = new Vue(
           error:function(){
             console.log('error');
           }
-        });
+        });*/
+      },
+      selSucc(data){
+        let vue = this;
+        vue.shareList = data.data.entries;
+        vue.pager = data.data.pager;
+        vue.listloading = false;
       },
       cate(){
         let vue = this;
@@ -213,7 +237,8 @@ let app = new Vue(
         if(vue.sortsel){
           _url += '&sort=' + vue.sortsel;
         }
-        jAjax({
+        tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
+        /*jAjax({
           type:'get',
           url:_url,
           timeOut:5000,
@@ -235,7 +260,13 @@ let app = new Vue(
           error:function(){
             console.log('error');
           }
-        });
+        });*/
+      },
+      cateSucc(data){
+        let vue = this;
+        vue.shareList = data.data.entries;
+        vue.pager = data.data.pager;
+        vue.listloading = false;
       },
       close(){
         this.showAlert = false;

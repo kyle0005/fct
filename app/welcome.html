@@ -11,24 +11,25 @@
   <!-- endbuild -->
 </head>
   <body>
-  <div class="index-container" id="welcome">
-    <div class="btns">
-      <div class="enter">
-        <a href="main.html">
-          <span>进入商城</span>
-        </a>
-      </div>
-      <div class="download">
-        <a href="">
-          <span>下载APP</span>
-        </a>
-      </div>
-    </div>
+  <div class="index-container" id="welcome" v-cloak>
+    <a href="main.html" class="enter"></a>
     <m-swipe swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
-      <div v-for="top in tops" class="swiper-slide" slot="swiper-con">
+      <div v-for="(top, index) in tops" class="swiper-slide" slot="swiper-con">
         <a :href="top.url">
           <img :data-src="top.image" class="swiper-lazy silde-img">
         </a>
+        <div class="top" v-if="index > 0">
+          <div class="inner">
+            <div class="text">
+              <div class="title">方寸堂</div>
+              <div class="vtitle">自有我天地</div>
+            </div>
+            <img src="public/images/logo2.png" class="logo">
+            <div class="btn-container">
+              <a href="main.html" class="btn">进入</a>
+            </div>
+          </div>
+        </div>
       </div>
     </m-swipe>
   </div>
@@ -48,35 +49,24 @@
     var config = {
       "slides": [
         {
-          "image": "/public/images/resource/00.png",
+          "image": "/public/images/resource/wel0.png",
           "url": "asdadaddsadadasd",
           "id": 0,
           "title": "aaa"
         },
         {
-          "image": "/public/images/resource/01.png",
+          "image": "/public/images/resource/wel1.png",
           "url": 0,
           "id": 1,
           "title": "bbb"
         },
         {
-          "image": "/public/images/resource/02.png",
+          "image": "/public/images/resource/wel2.png",
           "url": 0,
           "id": 2,
           "title": "ccc"
         },
-        {
-          "image": "/public/images/resource/03.png",
-          "url": 0,
-          "id": 3,
-          "title": "ddd"
-        },
-        {
-          "image": "/public/images/resource/02.png",
-          "url": 0,
-          "id": 4,
-          "title": "eee"
-        }
+
       ]
     };
   </script>

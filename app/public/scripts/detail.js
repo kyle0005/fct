@@ -77,10 +77,15 @@ Vue.component('artist',
         artistsingle: {},
         titleshow: false,
         chosen: false,
-        art_num: 0
+        art_num: 0,
+        listloading: false
       }
     },
     methods: {
+      getBefore(){
+        let vue = this;
+        vue.listloading = true;
+      },
       loadsingle(index){
         let vue = this;
         vue.art_num = index;
@@ -88,7 +93,8 @@ Vue.component('artist',
       },
       loadart() {
         let vue = this;
-        jAjax({
+        tools.ajaxGet(config.artist_url, vue.getSucc, vue.getBefore);
+        /*jAjax({
           type:'get',
           url:config.artist_url,
           timeOut:5000,
@@ -110,8 +116,15 @@ Vue.component('artist',
           error:function(){
             console.log('error');
           }
-        });
+        });*/
       },
+      getSucc(data){
+        let vue = this;
+        vue.artist = data.data;
+        vue.titleshow = vue.artist.length > 1;
+        vue.loadsingle(0);
+        vue.listloading = false;
+      }
     },
   }
 );
@@ -128,10 +141,15 @@ Vue.component('pug',
         pugsingle: {},
         titleshow: false,
         chosen: false,
-        pug_num: 0
+        pug_num: 0,
+        listloading: false
       }
     },
     methods: {
+      getBefore(){
+        let vue = this;
+        vue.listloading = true;
+      },
       loadsingle(index){
         let vue = this;
         vue.pug_num = index;
@@ -139,7 +157,8 @@ Vue.component('pug',
       },
       loadpug() {
         let vue = this;
-        jAjax({
+        tools.ajaxGet(config.pug_url, vue.pugSucc, vue.getBefore);
+        /*jAjax({
           type:'get',
           url:config.pug_url,
           timeOut:5000,
@@ -161,8 +180,15 @@ Vue.component('pug',
           error:function(){
             console.log('error');
           }
-        });
+        });*/
       },
+      pugSucc(data){
+        let vue =this;
+        vue.pugs = data.data;
+        vue.titleshow = vue.pugs.length > 1;
+        vue.loadsingle(0);
+        vue.listloading = false;
+      }
     },
   }
 );
@@ -192,6 +218,7 @@ Vue.component('discuss',
         commentlist: [],
         preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
         last_url: '',
+        listloading: false
       }
     },
     directives: {
@@ -257,6 +284,10 @@ Vue.component('discuss',
       }
     },
     methods: {
+      getBefore(){
+        let vue = this;
+        vue.listloading = true;
+      },
       c_star(num){
         let vue = this;
         return (5 - num);
@@ -268,7 +299,8 @@ Vue.component('discuss',
           var _url = config.discuss_url + '?page=' + vue.pager.next;
           if(_url !== vue.last_url){
             vue.last_url = _url;
-            jAjax({
+            tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
+            /*jAjax({
               type:'get',
               url:_url,
               timeOut:5000,
@@ -292,14 +324,22 @@ Vue.component('discuss',
               error:function(){
                 console.log('error');
               }
-            });
+            });*/
           }
 
         }
       },
+      pageSucc(data){
+        let vue = this;
+        vue.commentlist = data.data.entries.concat(vue.commentlist);
+        vue.pager = data.data.pager;
+        vue.preventRepeatReuqest = false;
+        vue.listloading = false;
+      },
       loadList() {
         let vue = this;
-        jAjax({
+        tools.ajaxGet(config.discuss_url, vue.listSucc, vue.getBefore);
+        /*jAjax({
           type:'get',
           url:config.discuss_url,
           timeOut:5000,
@@ -320,8 +360,14 @@ Vue.component('discuss',
           error:function(){
             console.log('error');
           }
-        });
+        });*/
       },
+      listSucc(data){
+        let vue = this;
+        vue.commentlist = data.data.entries;
+        vue.pager = data.data.pager;
+        vue.listloading = false;
+      }
     },
   }
 );

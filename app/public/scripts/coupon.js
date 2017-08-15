@@ -64,10 +64,14 @@ let app = new Vue(
       status: 0,
       tabs: ['未使用', '使用记录', '已过期'],
       tab_num: 0,
-    },
-    watch: {
+
+      listloading: false
     },
     methods: {
+      getBefore(){
+        let vue = this;
+        vue.listloading = true;
+      },
       pop(msg, url){
         let vue = this;
         vue.msg = msg;
@@ -90,7 +94,8 @@ let app = new Vue(
           vue.status = 3;
         }
         var _url = config.couponlistUrl + '?status=' + vue.status;
-        jAjax({
+        tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
+        /*jAjax({
           type:'get',
           url:_url,
           timeOut:5000,
@@ -111,10 +116,14 @@ let app = new Vue(
           error:function(){
             console.log('error');
           }
-        });
+        });*/
 
       },
-
+      cateSucc(data){
+        let vue = this;
+        vue.couponlist = data.data;
+        vue.listloading = false;
+      },
       succhandle(data){
         let vue = this;
         vue.msg = data.message;

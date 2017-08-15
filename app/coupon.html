@@ -29,6 +29,7 @@
       <coupons :couponitem="item"></coupons>
     </div>
   </section>
+  <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <script type="text/x-template" id="coupon_item">

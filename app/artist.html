@@ -46,6 +46,31 @@
 </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<template id="photo">
+  <div class="photogallery-container">
+    <transition appear name="v-img-fade">
+      <div v-if="!closed" class='fullscreen-v-img' @click.self="close()">
+        <div class="header-v-img">
+          <span v-if="images.length > 1" class="count-v-img">{{ currentImageIndex + 1 }}/{{ images.length }}</span>
+          <span class="close-v-img" @click="close">&times;</span>
+        </div>
+        <transition appear name="v-img-fade">
+        <span v-if="visibleUI && images.length !== 1" class="prev-v-img" @click="prev">
+          <svg width="25" height="25" viewBox="0 0 1792 1915" xmlns="http://www.w3.org/2000/svg"><path d="M1664 896v128q0 53-32.5 90.5t-84.5 37.5h-704l293 294q38 36 38 90t-38 90l-75 76q-37 37-90 37-52 0-91-37l-651-652q-37-37-37-90 0-52 37-91l651-650q38-38 91-38 52 0 90 38l75 74q38 38 38 91t-38 91l-293 293h704q52 0 84.5 37.5t32.5 90.5z" fill="#fff"/></svg>
+        </span>
+        </transition>
+        <transition appear name="v-img-fade">
+        <span v-if="visibleUI && images.length !== 1" class="next-v-img" @click="next">
+          <svg width="25" height="25" viewBox="0 0 1792 1915" xmlns="http://www.w3.org/2000/svg"><path d="M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293h-704q-52 0-84.5-37.5t-32.5-90.5v-128q0-53 32.5-90.5t84.5-37.5h704l-293-294q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z" fill="#fff"/></svg>
+        </span>
+        </transition>
+        <div class="content-v-img">
+          <img :src="images[currentImageIndex]" @click="next">
+        </div>
+      </div>
+    </transition>
+  </div>
+</template>
 <script type="text/x-template" id="head_top">
   <header class="head-container">
     <ul class="nav">
@@ -113,7 +138,7 @@
         <mVideo v-if="top.videoUrl !== ''" :poster="top.videoImage" :url="top.videoUrl" id="'video' + top.id"></mVideo>
         <ul class="img-list clearfix" v-if="topImg">
           <li v-for="(imgs, index) in top.images">
-            <img v-img="{ group: 'top', lsrc: top.largeImages[index]}"  v-view="imgs" src="public/images/img_loader.gif">
+            <!--<img v-img="{ group: 'top', lsrc: top.largeImages[index]}"  v-view="imgs" src="public/images/img_loader.gif">-->
           </li>
         </ul>
       </div>
@@ -125,7 +150,8 @@
           <mVideo v-if="item.videoUrl !== ''" :poster="item.videoImage" :url="item.videoUrl" id="'video' + item.id"></mVideo>
           <ul class="img-list clearfix" v-if="item.images.length > 0">
             <li v-for="(img, i) in item.images">
-              <img v-img="{ group: item.id, lsrc: item.largeImages[index]}"  v-view="img" src="public/images/img_loader.gif">
+              <img v-img="{ group: item.id, lsrc: item.largeImages[index]}" lsrc="item.largeImages[index]}"  v-view="img" src="public/images/img_loader.gif">
+              {{ item.largeImages[index] }}{{ item.largeImages[index] }}
             </li>
           </ul>
         </div>
@@ -255,7 +281,7 @@
           {
             "entries":
               [
-/*                {
+                {
                   "images":[],
                   "largeImages": [],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
@@ -263,8 +289,8 @@
                   "id":1,
                   "content":"ssss",
                   "isTop": false
-                },*/
-/*                {
+                },
+                {
                   "images":
                     [
                       "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
@@ -277,7 +303,7 @@
                   "id":2,
                   "content":"ssss",
                   "isTop": false
-                },*/
+                },
                 {
                   "images":
                     [
@@ -388,7 +414,7 @@
                   "content":"ssss",
                   "isTop": false
                 },
-/*                {
+                {
                   "images": [],
                   "largeImages": [],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
@@ -396,7 +422,7 @@
                   "id":3,
                   "content":"组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件",
                   "isTop": false
-                }*/
+                }
               ],
             "pager":
               {

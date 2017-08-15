@@ -82,11 +82,15 @@ let app = new Vue(
       status: config.status || -1,
       orderId: null,
       callback: null,
-      subText: '取消'
-    },
-    watch: {
+      subText: '取消',
+
+      listloading: false
     },
     methods: {
+      getBefore(){
+        let vue = this;
+        vue.listloading = true;
+      },
       cancel(orderId){
         let vue = this,
           post_url = config.cancel_url + '/' + orderId + '/cancel',
@@ -127,7 +131,8 @@ let app = new Vue(
           var _url = config.orderlist_url + '?status=' + vue.status + '&page=' + vue.pager.next;
           if(_url !== vue.last_url){
             vue.last_url = _url;
-            jAjax({
+            tools.ajaxGet(_url, vue.nextSucc, vue.getBefore);
+            /*jAjax({
               type:'get',
               url:_url,
               timeOut:5000,
@@ -150,7 +155,7 @@ let app = new Vue(
               error:function(){
                 console.log('error');
               }
-            });
+            });*/
           }
 
         }
@@ -163,7 +168,8 @@ let app = new Vue(
         vue.pager = {};
         vue.status = i;
         var _url = config.orderlist_url + '?status=' + vue.status;
-        jAjax({
+        tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
+        /*jAjax({
           type:'get',
           url:_url,
           timeOut:5000,
@@ -185,12 +191,13 @@ let app = new Vue(
           error:function(){
             console.log('error');
           }
-        });
+        });*/
 
       },
       subSearch(){
         let vue = this;
-        jAjax({
+        tools.ajaxGet(config.search_url + '?keyword=' + vue.keywords, vue.searchSucc, vue.getBefore);
+        /*jAjax({
           type:'get',
           url:config.search_url + '?keyword=' + vue.keywords,
           data: {},
@@ -215,8 +222,9 @@ let app = new Vue(
           error:function(){
             console.log('error');
           }
-        });
+        });*/
       },
+
       search(num){
         let vue = this;
         if(vue.show_search){
@@ -251,6 +259,25 @@ let app = new Vue(
         }
       },
 
+      searchSucc(data){
+        let vue = this;
+        vue.orderlist = data.data.entries;
+        vue.pager = data.data.pager;
+        vue.listloading = false;
+      },
+      cateSucc(data){
+        let vue = this;
+        vue.orderlist = data.data.entries;
+        vue.pager = data.data.pager;
+        vue.listloading = false;
+      },
+      nextSucc(data){
+        let vue = this;
+        vue.pager = data.data.pager;
+        vue.orderlist = data.data.entries.concat(vue.orderlist);
+        vue.preventRepeatReuqest = false;
+        vue.listloading = false;
+      },
       succhandle(data){
         let vue = this;
         vue.msg = data.message;

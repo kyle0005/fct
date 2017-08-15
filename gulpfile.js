@@ -492,7 +492,7 @@ gulp.task('serve', () => {
           },
 
         ],
-        'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
+        'pager': {'prev': 0, 'current': 1, 'next': 3, 'page_size': 20, 'total_page': 1, 'total': 13}
       }
 
     });

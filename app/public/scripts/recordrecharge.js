@@ -76,10 +76,15 @@ let app = new Vue(
       pager: config.chargeRecordList.pager,
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
+      listloading: false
     },
     watch: {
     },
     methods: {
+      getBefore(){
+        let vue = this;
+        vue.listloading = true;
+      },
       nextPage() {
         let vue = this;
         vue.preventRepeatReuqest = true;
@@ -87,7 +92,8 @@ let app = new Vue(
           var _url = config.chargeRecordUrl + '?page=' + vue.pager.next;
           if(_url !== vue.last_url){
             vue.last_url = _url;
-            jAjax({
+            tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
+            /*jAjax({
               type:'get',
               url:_url,
               timeOut:5000,
@@ -110,10 +116,17 @@ let app = new Vue(
               error:function(){
                 console.log('error');
               }
-            });
+            });*/
           }
 
         }
+      },
+      pageSucc(data){
+        let vue = this;
+        vue.pager = data.data.pager;
+        vue.chargeRecordList = data.data.entries.concat(vue.chargeRecordList);
+        vue.preventRepeatReuqest = false;
+        vue.listloading = false;
       },
       close(){
         this.showAlert = false;

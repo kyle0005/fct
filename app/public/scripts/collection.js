@@ -14,10 +14,15 @@ let app = new Vue(
       tabs: ['宝贝', '合作艺人'],
       tab_num: 0,
       collection: config.collection,
+      listloading: false
     },
     watch: {
     },
     methods: {
+      getBefore(){
+        let vue = this;
+        vue.listloading = true;
+      },
       del(item, index){
         let vue = this;
         jAjax({
@@ -51,7 +56,8 @@ let app = new Vue(
         vue.preventRepeatReuqest = false;
         vue.tab_num = index;
         var _url = config.collectionUrl + '?from_type=' + index;
-        jAjax({
+        tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
+        /*jAjax({
           type:'get',
           url:_url,
           timeOut:5000,
@@ -72,8 +78,13 @@ let app = new Vue(
           error:function(){
             console.log('error');
           }
-        });
+        });*/
 
+      },
+      cateSucc(data){
+        let vue = this;
+        vue.collection = data.data;
+        vue.listloading = false;
       },
       close(){
         this.showAlert = false;
