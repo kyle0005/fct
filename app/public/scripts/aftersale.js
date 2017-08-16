@@ -76,7 +76,8 @@ let app = new Vue(
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
       pager: config.refund.pager,
-      listloading: false
+      listloading: false,
+      nodata: false
     },
     watch: {
     },

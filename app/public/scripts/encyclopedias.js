@@ -80,6 +80,35 @@ Vue.component('m-swipe',
     }
   }
 );
+Vue.component('m-search',
+  {
+    template: '#search',
+    mounted: function() {
+    },
+    data() {
+      return {
+        show_search: false,
+        placeholder: '',
+        keywords: '',
+      }
+    },
+    methods: {
+      search(num){
+        let vue = this;
+        if(vue.show_search){
+          vue.placeholder = '';
+          if(num == 1){
+            vue.$emit('subSearch', vue.keywords);
+            vue.keywords = '';
+          }
+        }else {
+          vue.placeholder = '请输入关键字';
+        }
+        vue.show_search = !vue.show_search;
+      },
+    }
+  }
+);
 Vue.component('info',
   {
     template: '#info',
@@ -128,8 +157,6 @@ let app = new Vue(
       }
     },
     data: {
-      show_search: false,
-      show_search_d:false,
       ranks_list: [],
       pro_list: [],
       loading: false,
@@ -150,7 +177,10 @@ let app = new Vue(
       msg: null,
 
       wikiCategories: config.wikiCategories,
-      materials: config.materials
+      materials: config.materials,
+
+      listloading: false,
+      nodata: false
 
     },
     methods: {
@@ -162,19 +192,6 @@ let app = new Vue(
         vue.showAlert = true;
         vue.msg = item;
       },
-      search(num){
-        let vue = this;
-        switch(parseInt(num))
-        {
-          case 0:
-            vue.show_search = !vue.show_search;
-            break;
-          case 1:
-            vue.show_search_d = !vue.show_search_d;
-            break;
-        }
-
-      },
       getProductsType() {
         let vue = this;
         vue.wikiCategories.forEach((item) => {
@@ -185,6 +202,7 @@ let app = new Vue(
       },
       linkTo(num){
         let vue = this, _data = [];
+        vue.list = {};
         vue.tab_num = num;
         _data = vue.wikiCategories[num].subList;
         let resLength = _data.length;
@@ -204,10 +222,23 @@ let app = new Vue(
         let _data = vue.materials;
         let resLength = _data.length;
         let tmp = [];
-        for (let i = 0, j = 0; i < resLength; i += 12, j++) {
-          tmp[j] = _data.slice(0, 12);
+        for (let i = 0, j = 0; i < resLength; i += 20, j++) {
+          tmp[j] = _data.slice(0, 20);
         }
         vue.list_t = tmp;
+      },
+      subSearch(keywords){
+        let vue = this, _list = [];
+        vue.list = [];
+        _list = vue.wikiCategories[vue.tab_num].subList;
+
+
+        vue.listloading = false;
+        if(vue.orderlist.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       },
     },
     components: {

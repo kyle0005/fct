@@ -79,7 +79,8 @@ let app = new Vue(
       tab_num: 0,
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
-      listloading: false
+      listloading: false,
+      nodata: false
     },
     watch: {
     },
@@ -90,9 +91,9 @@ let app = new Vue(
       },
       category(index){
         let vue = this;
+        vue.nodata = false;
         vue.preventRepeatReuqest = false;
         vue.tab_num = index;
-        vue.commissionlist = {};
         if(index == 0){
           vue.status = 0;
         }else {
@@ -100,36 +101,19 @@ let app = new Vue(
         }
         var _url = config.commissionUrl + '?status=' + vue.status;
         tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
-        /*jAjax({
-          type:'get',
-          url:_url,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.orderlist = data.data.entries;
-                vue.pager = data.data.pager;
-              }else {
-                console.log('false')
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });*/
 
       },
       cateSucc(data){
         let vue = this;
-        vue.orderlist = data.data.entries;
+        vue.commissionlist = [];
+        vue.commissionlist = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
+        if(vue.commissionlist.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       },
       nextPage() {
         let vue = this;

@@ -76,7 +76,8 @@ let app = new Vue(
       pager: config.walletaccountList.pager,
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
-      listloading: false
+      listloading: false,
+      nodata: false
     },
     watch: {
     },

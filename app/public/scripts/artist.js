@@ -276,7 +276,8 @@ Vue.component('live',
         isVideoLoad: false,
         // lsrc: null,
 
-        listloading: false
+        listloading: false,
+        nodata: false
       }
     },
     methods:{
@@ -364,7 +365,8 @@ Vue.component('works',
       return {
         workslist: [],
         last_url: '',
-        listloading: false
+        listloading: false,
+        nodata: false
       }
     },
     methods: {
@@ -377,6 +379,7 @@ Vue.component('works',
         var _url = config.artistWorks_url;
         if(_url !== vue.last_url){
           vue.last_url = _url;
+          vue.nodata = false;
           tools.ajaxGet(_url, vue.workSucc, vue.getBefore);
           /*jAjax({
             type:'get',
@@ -407,6 +410,11 @@ Vue.component('works',
         let vue = this;
         vue.workslist = data.data;
         vue.listloading = false;
+        if(vue.workslist.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       }
     },
   }
@@ -495,7 +503,8 @@ Vue.component('chat',
         message: '', /* 提交聊天内容 */
         subText: '发送',
 
-        listloading: false
+        listloading: false,
+        nodata: false
       }
     },
     methods: {
@@ -601,6 +610,7 @@ Vue.component('chat',
         var _url = config.artistChat_url;
         if(_url !== vue.last_url){
           vue.last_url = _url;
+          vue.nodata = false;
           tools.ajaxGet(_url, vue.chatSucc, vue.getBefore);
           /*jAjax({
             type:'get',
@@ -632,6 +642,11 @@ Vue.component('chat',
         vue.chatlist = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
+        if(vue.chatlist.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       },
 
       succhandle(data){

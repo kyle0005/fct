@@ -71,8 +71,14 @@
     </div>
   </div>
   <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
-  <p v-if="pager.next == 0" class="empty_data">没有更多了</p>
-  <footer class="loader_more" v-else v-show="preventRepeatReuqest">正在加载更多...</footer>
+  <div class="noData" v-if="nodata">
+    <div class="inner">
+      <img src="public/images/no_data.png">
+      <span class="no">当前没有相关数据哟~</span>
+    </div>
+  </div>
+<!--  <p v-if="pager.next == 0" class="empty_data">没有更多了</p>
+  <footer class="loader_more" v-else v-show="preventRepeatReuqest">正在加载更多...</footer>-->
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
   <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :obj="orderId" :msg="msg"></confirm>
 </div>

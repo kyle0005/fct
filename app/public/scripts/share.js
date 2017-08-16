@@ -24,7 +24,8 @@ let app = new Vue(
       last_url: '',
 
       search: '',
-      listloading: false
+      listloading: false,
+      nodata: false
 
     },
     directives: {
@@ -96,6 +97,7 @@ let app = new Vue(
       },
       subSearch(){
         let vue = this;
+        vue.nodata = false;
         let _url = config.shareUrl + '?';
         if(vue.categary){
           _url += '&code=' + vue.categary;
@@ -136,6 +138,11 @@ let app = new Vue(
         let vue = this;
         vue.shareList = data.data.entries;
         vue.pager = data.data.pager;
+        if(vue.shareList.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       },
       searchTxt(){
         let vue = this;
@@ -196,6 +203,7 @@ let app = new Vue(
       },
       sel(){
         let vue = this;
+        vue.nodata = false;
         let _url = config.shareUrl + '?sort=' + vue.sortsel + '&page=' + vue.pager.next;
         if(vue.categary){
           _url += '&code=' + vue.categary;
@@ -230,9 +238,15 @@ let app = new Vue(
         vue.shareList = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
+        if(vue.shareList.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       },
       cate(){
         let vue = this;
+        vue.nodata = false;
         let _url = config.shareUrl + '?code=' + vue.categary + '&page=' + vue.pager.next;
         if(vue.sortsel){
           _url += '&sort=' + vue.sortsel;
@@ -267,6 +281,11 @@ let app = new Vue(
         vue.shareList = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
+        if(vue.shareList.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       },
       close(){
         this.showAlert = false;

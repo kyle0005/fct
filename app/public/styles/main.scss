@@ -8,7 +8,8 @@
 }
 %others{
   width: calc(100% - 60px);
-  padding: 10px 0;
+  padding: 10px 0 10%;
+  background-color: $color-f2f2f2;
   margin: 0 30px;
   display: flex;
   justify-content: space-between;
@@ -43,6 +44,7 @@
 .index-container{
   @extend %page;
   background-color: $color-white;
+  overflow: hidden;
   .enter{
     position: absolute;
     top: 0;
@@ -104,11 +106,8 @@
   img.silde-img{
     width: 100%;
   }
-  .swiper-pagination-bullet-active {
-    background: #999;
-  }
   .swiper-container-horizontal>.swiper-pagination-bullets{
-    bottom: 25px;
+    bottom: 5px;
   }
 }
 /* 首页 */
@@ -138,8 +137,6 @@
         }
       }
       li.item.chosen{
-        //background-color: $color-dcdcdc;
-        //opacity: .35;
         background: rgba(220, 220, 220, 0.35);
       }
     }
@@ -1105,6 +1102,7 @@ $foot-height: 250px;
         white-space: nowrap;
         overflow: auto;
         border-bottom: 1px solid $color-dcdcdc;
+        //margin-bottom: 10px;
         -webkit-overflow-scrolling: touch;
         &::-webkit-scrollbar{
           display: none;
@@ -1148,12 +1146,21 @@ $foot-height: 250px;
 
     .text-container{
       width: 92%;
-      padding: 2% 4% 4% 4%;
+      padding: 0 4% 4% 4%;
       overflow: hidden;
+      background-color: $color-f2f2f2;
+      img{
+        width: 100%;
+      }
+    }
+    .top-max{
+      padding: 6% 4% 4% 4%;
+    }
+    .top-min{
+      padding: 4%;
     }
     .artist{
       background-color: $color-f2f2f2;
-      padding: 4%;
       color: $color-666;
       .intro{
         .photo{
@@ -1176,6 +1183,7 @@ $foot-height: 250px;
         .artist-info{
           .artist-name{
             font-size: $font-size-t14;
+            line-height: $font-size-t14;
             font-weight: bold;
             margin-bottom: 3px;
             .v-title{
@@ -1221,133 +1229,27 @@ $foot-height: 250px;
       a.for-more{
         display: block;
         width: calc(100% - 60px);
-        padding: 20px 0 20%;
+        padding: 20px 0 10%;
         margin: 0 30px;
         text-align: center;
         color: $color-999;
       }
     }
   }
-
-  .tabs{
-    ul.pugs-list{
-      list-style-type: none;
-      white-space: nowrap;
-      overflow: auto;
-      border-bottom: 1px solid $color-dcdcdc;
-      -webkit-overflow-scrolling: touch;
-      &::-webkit-scrollbar{
-        display: none;
-      }
-      li{
-        display: inline-block;
-        width: calc(100% / 3);
-        a{
-          display: block;
-          padding: 12% 0;
-          width: 100%;
-          text-align: center;
-          .img-container{
-            position: relative;
-            display: block;
-            margin: 0 auto;
-            width: 50%;
-            padding-bottom: 50%;
-            img{
-              position: absolute;
-              top:0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              border-radius: 50%;
-            }
-          }
-          .name-container{
-            display: block;
-            width: 75%;
-            margin: 0 auto;
-            font-size: $font-size-t13;
-            text-align: center;
-          }
-
-        }
-        a.red{
-          color: $color-993333;
-        }
-      }
-    }
-    .pug-container{
-      background-color: $color-f2f2f2;
-      width: 92%;
-      padding: 0 4%;
-      overflow: hidden;
-      color: $color-666;
-      .intro{
-        padding: 4% 0;
-        .photo{
-          position: relative;
-          display: inline-block;
-          float: left;
-          width: 25%;
-          padding-bottom: 25%;
-          margin-right: 5.4%;
-          text-align: center;
-          img{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-          }
-        }
-        .pug{
-          .pug-name{
-            display: inline-block;
-            font-size: $font-size-t14;
-            margin-bottom: 3px;
-            font-weight: bold;
-          }
-          .pug-detail{
-            word-wrap:break-word;
-            word-break:normal;
-          }
-        }
-      }
-    }
-    .spec{
-      width: 100%;
-      word-wrap: break-word;
-      word-break: normal;
-    background-color: #f2f2f2;
-    //padding: 10px;
-    .title{
-      padding: 2px 0 2px 10px;
-      font-size: $font-size-t13;
-      line-height: $font-size-t13;
-      border-left: 4px solid $color-333;
-    }
-    .details{
-      padding: 10px;
-    }
-      .others{
-        @extend %others;
-      }
-  }
-
-  }
   .tabs{
     .service{
-      width: calc(100% - 20px);
+      width: 92%;
       word-wrap: break-word;
       word-break: normal;
-      padding: 10px 10px 58px 10px;
+      padding: 10px 4% 58px 4%;
       background-color: $color-f2f2f2;
+      color: $color-666;
       .title{
         width: 100%;
         padding: 24px 0;
         text-align: center;
         font-size: $font-size-t13;
+        font-weight: bold;
       }
     }
   }
@@ -1383,10 +1285,12 @@ $foot-height: 250px;
                 }
               }
               .user-opt{
-                float: left;
+                //float: left;
                 .stars{
-                  //color: $color-993333;
                   font-size: $font-size-t12;
+                  i{
+                    margin-right: 2%;
+                  }
                 }
               }
             }
@@ -1403,13 +1307,15 @@ $foot-height: 250px;
             }
             .imgs{
               display: flex;
-              justify-content: space-between;
+              justify-content: flex-start;
               align-items: center;
+              flex-wrap: wrap;
               img{
                 -moz-box-flex: 1.0; /* Firefox */
                 -webkit-box-flex: 1.0; /* Safari 和 Chrome */
                 box-flex: 1.0;
                 width: 29%;
+                margin-right: 6.5%;
                 &:last-child{
                   margin-right: 0;
                 }
@@ -1418,9 +1324,6 @@ $foot-height: 250px;
           }
 
         }
-      }
-      .stars{
-
       }
     }
   }
@@ -2170,7 +2073,7 @@ $foot-height: 250px;
           }
           img.i-img{
             width: 34%;
-            vertical-align: text-bottom;
+            vertical-align: text-top;
             margin-right: 8%;
           }
         }
@@ -2331,8 +2234,9 @@ $foot-height: 250px;
     }
     ul.news{
       li.item{
+        position: relative;
         width: 92%;
-        padding: 4% 4% 0 4%;
+        padding: 4%;
         background-color: $color-white;
         margin-bottom: 4%;
         .text{
@@ -2340,6 +2244,17 @@ $foot-height: 250px;
         }
         .media{
           @extend %media;
+        }
+      }
+      li.item:last-child{
+        &:after{
+          content: '';
+          position: absolute;
+          bottom: -40px;
+          left: 0;
+          width: 100%;
+          height: 40px;
+          background-color: #f2f2f2;
         }
       }
     }
@@ -2409,7 +2324,17 @@ $foot-height: 250px;
           }
         }
       }
-
+      li:last-child{
+        &:after{
+          content: '';
+          position: absolute;
+          bottom: -40px;
+          left: 0;
+          width: 100%;
+          height: 40px;
+          background-color: #f2f2f2;
+        }
+      }
 
     }
     ul.chat-list{
@@ -2676,6 +2601,7 @@ $foot-height: 250px;
     }
     .search-container{
       position: absolute;
+      z-index: 1;
       width: 10%;
       right: 4%;
       top: 50%;
@@ -2691,6 +2617,7 @@ $foot-height: 250px;
         border: none;
         color: $color-white;
         background-color: transparent;
+        text-indent: 10px;
       }
       a.search-link{
         position: absolute;
@@ -2791,8 +2718,10 @@ $foot-height: 250px;
     background-color: $color-f2f2f2;
     width: 92%;
     overflow: hidden;
-    padding: 4%;
+    padding: 6% 4% 4% 4%;
+    color: $color-666;
     .intro{
+      padding-bottom: 4%;
       .photo{
         position: relative;
         display: inline-block;
@@ -2812,7 +2741,8 @@ $foot-height: 250px;
       }
       .artist-info{
         .artist-name{
-          font-size: $font-size-t13;
+          font-size: $font-size-t14;
+          font-weight: bold;
           margin-bottom: 3px;
           .v-title{
             font-size: $font-size-t12;
@@ -2847,12 +2777,15 @@ $foot-height: 250px;
         color: $color-999;
       }
     }
+    img{
+      width: 100%;
+    }
   }
 }
 /* 轮播底部 */
 .en-pagination{
   display: inline-block;
-  width: 12px;
+  width: 10px;
   height: 2px;
   border-radius: 0;
   background-color: $color-333;
@@ -3473,14 +3406,20 @@ $foot-height: 250px;
       a.chat{
         position: relative;
         display: block;
-        width: calc(108 / 750 * 100%);
+        width: calc(300 / 750 * 100%);
         height: 100%;
         img{
-          width: calc(52 / 108 * 100%);
+          width: calc(36 / 300 * 100%);
           position: absolute;
           top: 50%;
-          left: 50%;
+          left: 16%;
           transform: translate(-50%, -50%);
+        }
+        .text{
+          position: absolute;
+          top: 50%;
+          left: calc(80 / 300 * 100%);
+          transform: translateY(-50%);
         }
       }
       .del{
@@ -4543,14 +4482,14 @@ $foot-height: 250px;
           }
         }
         .title-container{
-          width: calc(410 /750 * 100%);
+          width: calc(375 /750 * 100%);
           padding: calc(15 / 750 *100%) 0 0 0;
           .spec{
             color: $color-999;
           }
         }
         .price-container{
-          width: calc(140 /750 * 100%);
+          width: calc(175 /750 * 100%);
           padding: calc(15 / 750 *100%) 0 10px 0;
           margin-right: calc(30 / 750 *100%);
           text-align: right;
@@ -5852,6 +5791,7 @@ $foot-height: 250px;
 .logistics-container{
   @extend %page;
   background-color: $color-f2f2f2;
+  color: $color-666;
   .info-container{
     padding: calc(30/750*100%);
     width: calc(690/750*100%);
@@ -5983,15 +5923,21 @@ $foot-height: 250px;
     }
   }
   .footer{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: calc(700/750*100%);
-    padding: calc(25/750*100%);
-    background-color: $color-white;
-    img{
-      width: calc(36/700*100%);
-      margin-right: 2%;
+    position: relative;
+    width: 100%;
+    height: 46px;
+    border-top: 1px solid $color-dcdcdc;
+    .inner{
+      width: calc(700/750*100%);
+      padding: 14px calc(25/750*100%);
+      height: 18px;
+      line-height: 18px;
+      background-color: $color-white;
+      img{
+        width: 18px;
+        margin-right: 2%;
+      }
     }
+
   }
 }

@@ -370,7 +370,7 @@
         </a>
       </li>
     </ul>
-    <section class="artist">
+    <section class="artist" :class="{'top-max':!titleshow,'top-min':titleshow}">
       <div class="intro">
           <span class="photo">
             <img src="public/images/resource/artist.png">
@@ -385,7 +385,7 @@
       {{ artistsingle.description }}
     </div>
     <section class="comment">
-      <ul class="others">
+      <ul class="others" v-if="artistsingle.img && artistsingle.img.length > 0">
         <li v-for="img_item in artistsingle.img">
           <a href="javascript:;" class="item">
             <img :src="img_item.defaultImage">
@@ -398,8 +398,8 @@
   </div>
 </script>
 <script type="text/x-template" id="pug">
-  <div>
-    <ul class="pugs-list clearfix" v-if="titleshow">
+  <div class="artist-contianer">
+    <ul class="artist-list clearfix" v-if="titleshow">
       <li v-for="(item, index) in pugs">
         <a href="javascript:;" :class="{red:index===pug_num}" @click="loadsingle(index)">
         <span class="img-container">
@@ -409,21 +409,19 @@
         </a>
       </li>
     </ul>
-    <section class="pug-container">
-      <div class="intro clearfix">
-        <span class="photo">
-          <img :src="pugsingle.image">
-        </span>
-        <span class="pug">
-            <span class="pug-name">{{ pugsingle.name }}</span><br>
-            <span class="pug-detail">{{ pugsingle.intro }}</span>
+    <section class="artist" :class="{'top-max':!titleshow,'top-min':titleshow}">
+      <div class="intro">
+          <span class="photo">
+            <img :src="pugsingle.image">
           </span>
+        <span class="artist-info">
+          <span class="artist-name">{{ pugsingle.name }}</span><br>
+          <span>{{ pugsingle.intro }}</span>
+        </span>
       </div>
     </section>
-    <section class="pug-container" v-html="pugsingle.description">
-      {{ pugsingle.description }}
-    </section>
-    <section class="spec">
+    <div class="text-container" v-html="pugsingle.description"></div>
+    <section class="comment">
       <ul class="others">
         <li v-for="img_item in pugsingle.products">
           <a href="javascript:;" class="item">

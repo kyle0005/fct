@@ -84,7 +84,8 @@ let app = new Vue(
       callback: null,
       subText: '取消',
 
-      listloading: false
+      listloading: false,
+      nodata: false
     },
     methods: {
       getBefore(){
@@ -132,30 +133,6 @@ let app = new Vue(
           if(_url !== vue.last_url){
             vue.last_url = _url;
             tools.ajaxGet(_url, vue.nextSucc, vue.getBefore);
-            /*jAjax({
-              type:'get',
-              url:_url,
-              timeOut:5000,
-              before:function(){
-                console.log('before');
-              },
-              success:function(data){
-                if(data){
-                  data = JSON.parse(data);
-                  if(parseInt(data.code) == 200){
-                    vue.pager = data.data.pager;
-                    vue.orderlist = data.data.entries.concat(vue.orderlist);
-                    vue.preventRepeatReuqest = false;
-                  }else {
-                    console.log('false')
-                  }
-                }
-
-              },
-              error:function(){
-                console.log('error');
-              }
-            });*/
           }
 
         }
@@ -164,65 +141,21 @@ let app = new Vue(
         let vue = this;
         vue.preventRepeatReuqest = false;
         vue.tab_num = i;
+        vue.nodata = false;
         vue.orderlist = {};
         vue.pager = {};
         vue.status = i;
         var _url = config.orderlist_url + '?status=' + vue.status;
+        if(i == 3){
+          _url = _url + '&comment_status=0';
+        }
         tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
-        /*jAjax({
-          type:'get',
-          url:_url,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.orderlist = data.data.entries;
-                vue.pager = data.data.pager;
-              }else {
-                console.log('false')
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });*/
 
       },
       subSearch(){
         let vue = this;
+        vue.nodata = false;
         tools.ajaxGet(config.search_url + '?keyword=' + vue.keywords, vue.searchSucc, vue.getBefore);
-        /*jAjax({
-          type:'get',
-          url:config.search_url + '?keyword=' + vue.keywords,
-          data: {},
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.orderlist = data.data.entries;
-                vue.pager = data.data.pager;
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });*/
       },
 
       search(num){
@@ -264,12 +197,23 @@ let app = new Vue(
         vue.orderlist = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
+        if(vue.orderlist.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       },
       cateSucc(data){
         let vue = this;
         vue.orderlist = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
+        if(vue.orderlist.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
+
       },
       nextSucc(data){
         let vue = this;

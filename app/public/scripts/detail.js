@@ -78,7 +78,8 @@ Vue.component('artist',
         titleshow: false,
         chosen: false,
         art_num: 0,
-        listloading: false
+        listloading: false,
+        nodata: false
       }
     },
     methods: {
@@ -93,6 +94,7 @@ Vue.component('artist',
       },
       loadart() {
         let vue = this;
+        vue.nodata = false;
         tools.ajaxGet(config.artist_url, vue.getSucc, vue.getBefore);
         /*jAjax({
           type:'get',
@@ -124,6 +126,11 @@ Vue.component('artist',
         vue.titleshow = vue.artist.length > 1;
         vue.loadsingle(0);
         vue.listloading = false;
+        if(vue.artist.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       }
     },
   }
@@ -142,7 +149,8 @@ Vue.component('pug',
         titleshow: false,
         chosen: false,
         pug_num: 0,
-        listloading: false
+        listloading: false,
+        nodata: false
       }
     },
     methods: {
@@ -157,6 +165,7 @@ Vue.component('pug',
       },
       loadpug() {
         let vue = this;
+        vue.nodata = false;
         tools.ajaxGet(config.pug_url, vue.pugSucc, vue.getBefore);
         /*jAjax({
           type:'get',
@@ -188,6 +197,11 @@ Vue.component('pug',
         vue.titleshow = vue.pugs.length > 1;
         vue.loadsingle(0);
         vue.listloading = false;
+        if(vue.pugs.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       }
     },
   }
@@ -218,7 +232,8 @@ Vue.component('discuss',
         commentlist: [],
         preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
         last_url: '',
-        listloading: false
+        listloading: false,
+        nodata: false
       }
     },
     directives: {
@@ -338,6 +353,7 @@ Vue.component('discuss',
       },
       loadList() {
         let vue = this;
+        vue.nodata = false;
         tools.ajaxGet(config.discuss_url, vue.listSucc, vue.getBefore);
         /*jAjax({
           type:'get',
@@ -367,6 +383,11 @@ Vue.component('discuss',
         vue.commentlist = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
+        if(vue.commentlist.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       }
     },
   }

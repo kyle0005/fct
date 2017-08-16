@@ -14,7 +14,8 @@ let app = new Vue(
       tabs: ['宝贝', '合作艺人'],
       tab_num: 0,
       collection: config.collection,
-      listloading: false
+      listloading: false,
+      nodata: false
     },
     watch: {
     },
@@ -55,6 +56,7 @@ let app = new Vue(
         let vue = this;
         vue.preventRepeatReuqest = false;
         vue.tab_num = index;
+        vue.nodata = false;
         var _url = config.collectionUrl + '?from_type=' + index;
         tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
         /*jAjax({
@@ -85,6 +87,11 @@ let app = new Vue(
         let vue = this;
         vue.collection = data.data;
         vue.listloading = false;
+        if(vue.collection.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       },
       close(){
         this.showAlert = false;

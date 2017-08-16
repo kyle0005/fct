@@ -138,7 +138,7 @@
         <mVideo v-if="top.videoUrl !== ''" :poster="top.videoImage" :url="top.videoUrl" id="'video' + top.id"></mVideo>
         <ul class="img-list clearfix" v-if="topImg">
           <li v-for="(imgs, index) in top.images">
-            <!--<img v-img="{ group: 'top', lsrc: top.largeImages[index]}"  v-view="imgs" src="public/images/img_loader.gif">-->
+            <img v-img="{ group: 'top', lsrc: top.largeImages[index]}"  v-view="imgs" src="public/images/img_loader.gif">
           </li>
         </ul>
       </div>
@@ -151,7 +151,6 @@
           <ul class="img-list clearfix" v-if="item.images.length > 0">
             <li v-for="(img, i) in item.images">
               <img v-img="{ group: item.id, lsrc: item.largeImages[index]}" lsrc="item.largeImages[index]}"  v-view="img" src="public/images/img_loader.gif">
-              {{ item.largeImages[index] }}{{ item.largeImages[index] }}
             </li>
           </ul>
         </div>
@@ -330,10 +329,12 @@
                       "/public/images/resource/pro.png",
                       "/public/images/resource/pro02.png",
                       "/public/images/resource/pro.png",
+                      "/public/images/resource/pro.png",
                     ],
                   "largeImages": [
                     "/public/images/resource/pro.png",
                     "/public/images/resource/pro02.png",
+                    "/public/images/resource/pro.png",
                     "/public/images/resource/pro.png",
                   ],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",

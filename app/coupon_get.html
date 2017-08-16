@@ -12,7 +12,7 @@
 <div class="coupon-container" id="coupon" v-cloak>
   <section class="content">
     <div class="list-item" v-for="(item, index) in couponlist">
-      <coupons :couponitem="item" @pop="pop"></coupons>
+      <coupons :couponitem="item" @pop="pop" @succhandle="succhandle"></coupons>
     </div>
   </section>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>

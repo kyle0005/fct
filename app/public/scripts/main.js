@@ -10,18 +10,24 @@ let app = new Vue(
       msg: 0,
       isindex: config.isindex,
       code: '',
-      tab_num: null
+      tab_num: null,
+
+      listloading: false,
+      nodata: false
     },
     methods: {
       showImg(){
         return 'public/images/img_loader.gif';
       },
-
+      getBefore(){
+        let vue = this;
+        vue.listloading = true;
+      },
       /* 菜单分类加载 */
       getprolist(code, level_id, index) {
         let vue = this;
         vue.tab_num = index;
-
+        vue.nodata = false;
         vue.pro_list = {};
 
         let _url = '';
@@ -42,34 +48,20 @@ let app = new Vue(
           }
         }
         _url = config.product_url + _url;
-        jAjax({
-          type: 'get',
-          url: _url,
-          timeOut: 5000,
-          before: function () {
-            console.log('before');
-          },
-          success: function (data) {
-            if (data) {
-              data = JSON.parse(data);
-              if (parseInt(data.code) == 200) {
-                vue.pro_list = data.data;
-                vue.code = code;
-              } else {
-                console.log('false')
-              }
-            }
-
-          },
-          error: function () {
-            console.log('error');
-          }
-        });
+        tools.ajaxGet(_url, vue.getSucc, vue.getBefore);
 
       },
+      getSucc(data){
+        let vue = this;
+        vue.pro_list = data.data;
+        vue.code = code;
 
-      /* 滚动分页加载 */
-      getprolistbypage(msg) {
+        vue.listloading = false;
+        if(vue.orderlist.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
 
       },
     },

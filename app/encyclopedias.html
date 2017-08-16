@@ -19,15 +19,16 @@
         </a>
       </li>
     </ul>
-    <div class="search-container" :class="{show:show_search}">
-      <div class="cancel-search">
-        <a href="javascript:;" class="fork" @click="search(0)">取消</a>
-      </div>
-      <input type="search" class="search-input">
-      <a href="javascript:;" class="search-link" @click="search(0)">
-        <i class="fa fa-search"></i>
-      </a>
-    </div>
+    <!--<div class="search-container" :class="{show:show_search}">-->
+      <!--<div class="cancel-search">-->
+        <!--<a href="javascript:;" class="fork" @click="search(0)">取消</a>-->
+      <!--</div>-->
+      <!--<input type="search" class="search-input">-->
+      <!--<a href="javascript:;" class="search-link" @click="search(0)">-->
+        <!--<i class="fa fa-search"></i>-->
+      <!--</a>-->
+    <!--</div>-->
+    <m-search  @subSearch="subSearch"></m-search>
   </section>
   <section class="list">
     <div class="tab-list">
@@ -49,7 +50,7 @@
         <a href="javascript:;">泥料</a>
       </li>
     </ul>
-    <div class="search-container" :class="{show:show_search_d}">
+<!--    <div class="search-container" :class="{show:show_search_d}">
       <div class="cancel-search">
         <a href="javascript:;" class="fork" @click="search(1)">取消</a>
       </div>
@@ -57,7 +58,8 @@
       <a href="javascript:;" class="search-link" @click="search(1)">
         <i class="fa fa-search"></i>
       </a>
-    </div>
+    </div>-->
+    <m-search  @subSearch="subSearch"></m-search>
   </section>
   <section class="list">
     <div class="tab-list down">
@@ -84,6 +86,7 @@
 <script src="public/scripts/api/index.js"></script>
 <script>
   var config = {
+    "search_url": "asdfsd",
     "productsType": [
       {
         "name": "全部",
@@ -117,47 +120,47 @@
             [
               {
                 "image":"public/images/category1.png",
-                "name":"方器",
+                "name":"aaaaa",
                 "id":22
               },
               {
                 "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"方器",
+                "name":"bbbbb",
                 "id":22
               },
               {
                 "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"方器",
+                "name":"ccccc",
                 "id":22
               },
               {
                 "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"方器",
+                "name":"ddddd",
                 "id":22
               },
               {
                 "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"方器",
+                "name":"ddd",
                 "id":22
               },
               {
                 "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"方器",
+                "name":"ttttt",
                 "id":22
               },
               {
                 "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"方器",
+                "name":"dfgsg",
                 "id":22
               },
               {
                 "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"方器",
+                "name":"iopip",
                 "id":22
               },
               {
                 "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-12\/88992fa5712e4e219eb1dc39165ea2c8.png",
-                "name":"圆器",
+                "name":"xzxczxc",
                 "id":23
               }
             ],
@@ -250,6 +253,7 @@
 </script>
 <script src="public/scripts/head.js"></script>
 <script src="public/scripts/swiper.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script type="text/x-template" id="m_swipe">
   <div class="swiper-container tab-container" :class="swipeid">
     <div class="swiper-wrapper">
@@ -267,6 +271,17 @@
       <p class="text">{{ msg.text }}</p>
       <a href="javascript:;" class="close" @click="close()"></a>
     </section>
+  </div>
+</template>
+<template id="search">
+  <div class="search-container" :class="{show:show_search}">
+    <div class="cancel-search">
+      <a href="javascript:;" class="fork" @click="search(0)">取消</a>
+    </div>
+    <input type="search" class="search-input" :placeholder="placeholder" v-model="keywords">
+    <a href="javascript:;" class="search-link" @click="search(1)">
+      <i class="fa fa-search"></i>
+    </a>
   </div>
 </template>
 <script src="public/scripts/encyclopedias.js"></script>

@@ -65,7 +65,8 @@ let app = new Vue(
       tabs: ['未使用', '使用记录', '已过期'],
       tab_num: 0,
 
-      listloading: false
+      listloading: false,
+      nodata: false
     },
     methods: {
       getBefore(){
@@ -85,6 +86,7 @@ let app = new Vue(
       category(index){
         let vue = this;
         vue.preventRepeatReuqest = false;
+        vue.nodata = false;
         vue.tab_num = index;
         if(index == 0){
           vue.status = 0;
@@ -123,6 +125,11 @@ let app = new Vue(
         let vue = this;
         vue.couponlist = data.data;
         vue.listloading = false;
+        if(vue.couponlist.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
       },
       succhandle(data){
         let vue = this;
