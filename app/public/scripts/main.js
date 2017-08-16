@@ -10,6 +10,7 @@ let app = new Vue(
       msg: 0,
       isindex: config.isindex,
       code: '',
+      _code: '',
       tab_num: null,
 
       listloading: false,
@@ -47,6 +48,7 @@ let app = new Vue(
             }
           }
         }
+        vue._code = code;
         _url = config.product_url + _url;
         tools.ajaxGet(_url, vue.getSucc, vue.getBefore);
 
@@ -54,7 +56,7 @@ let app = new Vue(
       getSucc(data){
         let vue = this;
         vue.pro_list = data.data;
-        vue.code = code;
+        vue.code = vue._code;
 
         vue.listloading = false;
         if(vue.orderlist.length > 0){
