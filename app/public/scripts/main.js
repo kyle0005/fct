@@ -59,7 +59,7 @@ let app = new Vue(
         vue.code = vue._code;
 
         vue.listloading = false;
-        if(vue.orderlist.length > 0){
+        if(vue.pro_list.length > 0){
           vue.nodata = false;
         }else {
           vue.nodata = true;
