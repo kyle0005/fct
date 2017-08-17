@@ -39,7 +39,10 @@ new Vue(
         like_list: [],
         callback: null,
         showConfirm: false, /* 显示confirm组件 */
-        cartItem: null
+        cartItem: null,
+
+        listloading: false,
+        nodata: false
       }
     },
     mounted: function() {
@@ -207,7 +210,14 @@ new Vue(
       },
       loadPro(){
         let vue = this;
+        vue.listloading = true;
         vue.pro_list = config.carts;
+        if(vue.pro_list.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
+        vue.listloading = false;
       },
       buy(){
         let vue = this,cart_list = [];

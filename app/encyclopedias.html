@@ -19,20 +19,11 @@
         </a>
       </li>
     </ul>
-    <!--<div class="search-container" :class="{show:show_search}">-->
-      <!--<div class="cancel-search">-->
-        <!--<a href="javascript:;" class="fork" @click="search(0)">取消</a>-->
-      <!--</div>-->
-      <!--<input type="search" class="search-input">-->
-      <!--<a href="javascript:;" class="search-link" @click="search(0)">-->
-        <!--<i class="fa fa-search"></i>-->
-      <!--</a>-->
-    <!--</div>-->
-    <m-search  @subSearch="subSearch"></m-search>
+    <m-search @subsearch="subsearch" :dat="list" :sid="'up'"></m-search>
   </section>
   <section class="list">
     <div class="tab-list">
-      <m-swipe swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
+      <m-swipe swipeid="swipe" ref="swiper" :autoplay="0" effect="slide" v-if="(list && list.length > 0)">
         <div v-for="(item, index) in list" class="swiper-slide inner-container" :key="index" slot="swiper-con">
           <div class="items" v-for="(i_item, i_index) in item" :key="i_index">
             <a href="javascript:;" class="link">
@@ -42,6 +33,12 @@
           </div>
         </div>
       </m-swipe>
+      <div class="noData" v-if="(list && list.length <= 0) || nodata">
+        <div class="inner">
+          <img src="public/images/no_data.png">
+          <span class="no">当前没有相关数据哟~</span>
+        </div>
+      </div>
     </div>
   </section>
   <section class="nav-bar">
@@ -50,26 +47,23 @@
         <a href="javascript:;">泥料</a>
       </li>
     </ul>
-<!--    <div class="search-container" :class="{show:show_search_d}">
-      <div class="cancel-search">
-        <a href="javascript:;" class="fork" @click="search(1)">取消</a>
-      </div>
-      <input type="search" class="search-input">
-      <a href="javascript:;" class="search-link" @click="search(1)">
-        <i class="fa fa-search"></i>
-      </a>
-    </div>-->
-    <m-search  @subSearch="subSearch"></m-search>
+    <m-search @subsearch="subsearch" :dat="list_t" :sid="'down'"></m-search>
   </section>
   <section class="list">
     <div class="tab-list down">
-      <m-swipe swipeid="swipet" ref="swipert" :autoplay="0" effect="slide">
+      <m-swipe swipeid="swipet" ref="swipert" :autoplay="0" effect="slide" v-if="list_t && list_t.length > 0">
         <div v-for="(item, index) in list_t" class="swiper-slide inner-container" :key="index" slot="swiper-con">
           <div class="items" v-for="(i_item, i_index) in item" :key="i_index">
             <a href="javascript:;" class="link overText">{{ i_item.name }}</a>
           </div>
         </div>
       </m-swipe>
+      <div class="noData" v-if="(list_t && list_t.length <= 0) || nodata">
+        <div class="inner">
+          <img src="public/images/no_data.png">
+          <span class="no">当前没有相关数据哟~</span>
+        </div>
+      </div>
     </div>
   </section>
   <div class="copyright-container">
@@ -79,7 +73,6 @@
       <span class="bottom">沪ICP备12022967号-1&nbsp;沪公网安备11010502025474</span>
     </div>
   </div>
-  <info v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></info>
   </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/apis.js"></script>
@@ -113,82 +106,130 @@
     "main_url": "http://localhost:9000/main.html",
     "index": "index.html",
     "login": "login.html",
-    "wikiCategories":
-      [
+    "wikiCategories": [
         {
-          "subList":
-            [
-              {
-                "image":"public/images/category1.png",
-                "name":"aaaaa",
-                "id":22
-              },
-              {
-                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"bbbbb",
-                "id":22
-              },
-              {
-                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"ccccc",
-                "id":22
-              },
-              {
-                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"ddddd",
-                "id":22
-              },
-              {
-                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"ddd",
-                "id":22
-              },
-              {
-                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"ttttt",
-                "id":22
-              },
-              {
-                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"dfgsg",
-                "id":22
-              },
-              {
-                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png",
-                "name":"iopip",
-                "id":22
-              },
-              {
-                "image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-12\/88992fa5712e4e219eb1dc39165ea2c8.png",
-                "name":"xzxczxc",
-                "id":23
-              }
-            ],
-          "name":"方器",
-          "id":22
+      "subList": [
+        {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/ea2ecd8f89104a4a95c253391c325d2b.jpg!120",
+          "name": "半月",
+          "id": 28
         },
         {
-          "subList":
-            [
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-09\/9027f77894a041cd98eeb8e0aed0e5ec.png","name":"方器","id":22},
-              {"image":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-12\/88992fa5712e4e219eb1dc39165ea2c8.png","name":"圆器","id":23}
-            ],
-          "name":"圆器",
-          "id":23
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/7f7dc0d943a642deb24b0c800fde88c5.jpg!120",
+          "name": "西施",
+          "id": 24
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/366fcdfe903a4a769df38f025275f0d4.jpg!120",
+          "name": "石瓢",
+          "id": 29
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 30
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 31
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 32
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 33
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 34
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 35
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 36
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 37
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 38
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 39
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 40
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 41
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 42
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 43
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 44
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 45
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 46
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 47
+        }, {
+          "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+          "name": "仿古",
+          "id": 48
         }
+        ], "name": "圆器", "id": 23
+    }, {
+      "subList": [
+          {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-01\/df8346f53a6b4297ac3bfe220e06d199.png!120",
+        "name": "八方",
+        "id": 25
+      }
+      ], "name": "方器", "id": 22
+    },
+      {"subList": [], "name": "花器", "id": 26},
+      {"subList": [], "name": "筋纹器", "id": 27}
       ],
-    "materials": [{"name":"等各方面大法官告诉对方介","id":4}],
+    "materials": [
+        {"name": "原矿底槽青", "id": 25}, {"name": "原矿清水泥", "id": 24}, {
+      "name": "原矿底槽青",
+      "id": 23
+    }, {"name": "原矿清水泥", "id": 22}, {"name": "原矿底槽青", "id": 21}, {"name": "原矿清水泥", "id": 20}, {
+      "name": "原矿底槽青",
+      "id": 19
+    }, {"name": "原矿清水泥", "id": 18}, {"name": "原矿底槽青", "id": 17}, {"name": "原矿清水泥", "id": 16}, {
+      "name": "原矿底槽青",
+      "id": 15
+    }, {"name": "原矿清水泥", "id": 14}, {"name": "原矿底槽青", "id": 13}, {"name": "原矿清水泥", "id": 12}, {
+      "name": "原矿底槽青",
+      "id": 11
+    }, {"name": "原矿清水泥", "id": 10}, {"name": "原矿底槽青", "id": 9}, {"name": "原矿清水泥", "id": 8}, {
+      "name": "原矿底槽青",
+      "id": 7
+    }, {"name": "原矿清水泥", "id": 6}, {"name": "原矿底槽青", "id": 5}, {"name": "原矿清水泥", "id": 4}
+    ],
 
   }
 </script>

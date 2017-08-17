@@ -11,117 +11,27 @@
 <body>
 <div class="logistics-container" id="logistics" v-cloak>
   <div class="info-container clearfix">
-    <div class="img-container"><img src="public/images/resource/pro01.png"></div>
+    <div class="img-container"><img :src="logistics.image"></div>
     <div class="text-container">
       <div class="inner">
-        <div class="status">物流状态<span class="t">运输中</span></div>
-        <div>承运来源:&ensp;顺丰快递</div>
-        <div>运单编号:&ensp;43930523095803585258</div>
+        <div class="status">物流状态<span class="t">{{ logistics.expressStatus }}</span></div>
+        <div>承运来源:&ensp;{{ logistics.expressPlatform }}</div>
+        <div>运单编号:&ensp;{{ logistics.expressNO }}</div>
       </div>
     </div>
   </div>
   <div class="logistics-info">
-    <a href="javascript:;" class="title">
-      <img src="public/images/resource/sf.png">本数据由<span class="name">顺丰官网</span>提供<span class="wei-arrow-right"></span>
+    <a :href="logistics.expressUrl" class="title">
+      <img src="public/images/sfexpress.png">本数据由<span class="name">{{ logistics.expressPlatform }}</span>提供<span class="wei-arrow-right"></span>
     </a>
     <div class="detail">
       <ul>
-        <li class="item active">
-          <div class="inner clearfix">
+        <li class="item" v-for="(item, index) in logistics.expressInfoList">
+          <div class="inner">
             <div class="line"></div>
             <div class="content">
-              <div class="up">快件已从xxxx发出</div>
-              <div class="down">2017-08-08 02:03:04</div>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="inner clearfix">
-            <div class="line"></div>
-            <div class="content">
-              <div class="up">快件已从xxxx发出</div>
-              <div class="down">2017-08-08 02:03:04</div>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="inner clearfix">
-            <div class="line"></div>
-            <div class="content">
-              <div class="up">快件已从xxxx发出</div>
-              <div class="down">2017-08-08 02:03:04</div>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="inner clearfix">
-            <div class="line"></div>
-            <div class="content">
-              <div class="up">快件已从xxxx发出</div>
-              <div class="down">2017-08-08 02:03:04</div>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="inner clearfix">
-            <div class="line"></div>
-            <div class="content">
-              <div class="up">快件已从xxxx发出</div>
-              <div class="down">2017-08-08 02:03:04</div>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="inner clearfix">
-            <div class="line"></div>
-            <div class="content">
-              <div class="up">快件已从xxxx发出</div>
-              <div class="down">2017-08-08 02:03:04</div>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="inner clearfix">
-            <div class="line"></div>
-            <div class="content">
-              <div class="up">快件已从xxxx发出</div>
-              <div class="down">2017-08-08 02:03:04</div>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="inner clearfix">
-            <div class="line"></div>
-            <div class="content">
-              <div class="up">快件已从xxxx发出</div>
-              <div class="down">2017-08-08 02:03:04</div>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="inner clearfix">
-            <div class="line"></div>
-            <div class="content">
-              <div class="up">快件已从xxxx发出</div>
-              <div class="down">2017-08-08 02:03:04</div>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="inner clearfix">
-            <div class="line"></div>
-            <div class="content">
-              <div class="up">快件已从xxxx发出</div>
-              <div class="down">2017-08-08 02:03:04</div>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="inner clearfix">
-            <div class="line"></div>
-            <div class="content">
-              <div class="up">快件已从xxxx发出</div>
-              <div class="down">2017-08-08 02:03:04</div>
+              <div class="up">{{ item.status }}</div>
+              <div class="down">{{ item.time }}</div>
             </div>
           </div>
         </li>
@@ -137,6 +47,38 @@
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script src="public/scripts/common/tools.js"></script>
+<script>
+  let config = {
+      "logistics": {
+        "expressPlatform": "顺丰快递",
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-01\/3fc97e5c9dbf4d2481749a9d9b9b5033.jpg!120",
+        "expressInfoList": [
+          {
+            "time": "2017-06-20 12:35:58",
+            "status": "在官网\"运单资料&签收图\",可查看签收人信息"
+          }, {"time": "2017-06-20 12:33:28", "status": "已签收,感谢使用顺丰,期待再次为您服务"}, {
+            "time": "2017-06-20 08:17:39",
+            "status": "快件交给谭贤莹，正在派送途中（联系电话：18321723518）"
+          }, {
+            "time": "2017-06-20 07:44:09",
+            "status": "正在派送途中,请您准备签收(派件人:谭贤莹,电话:18321723518)"
+          }, {"time": "2017-06-20 06:12:31", "status": "快件到达 【上海闵行浦江营业点】"}, {
+            "time": "2017-06-20 04:36:02",
+            "status": "快件在【上海华新集散中心】已装车，准备发往 【上海闵行浦江营业点】"
+          }, {"time": "2017-06-20 02:07:37", "status": "快件到达 【上海华新集散中心】"}, {
+            "time": "2017-06-19 20:38:04",
+            "status": "快件在【上海宝尊项目营业部】已装车，准备发往下一站"
+          }, {"time": "2017-06-19 20:37:54", "status": "顺丰速运 已收取快件"}
+        ],
+        "expressUrl": "http:\/\/www.sf-express.com",
+        "orderId": "1708084231985058",
+        "expressNO": "615199192319",
+        "expressEnglishName": "sfexpress",
+        "totalCount": 1,
+        "expressStatus": "已签收"
+      }
+  }
+</script>
 <script src="public/scripts/orderlogistics.js"></script>
 </body>
 </html>

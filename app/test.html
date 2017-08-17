@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+</head>
+<body>
+<input type="text" id="search">
+<input type="button" value="search" onclick="Submit()">
+<div id="content"></div>
+<script>
+  var data = [
+    {
+      "NoteID": "b89d9991-3538-439e-8a60-bbc097765a17",
+      "Title": "张三的笔记",
+      "Content": "测试笔记",
+      "AddDate": "2016-06-24 10:27:46"
+    }, {
+      "NoteID": "b89d9991-3538-439e-8a60-bbc097765a17",
+      "Title": "李四的笔记",
+      "Content": "测试笔记",
+      "AddDate": "2016-06-24 10:27:46"
+    },
+    {
+      "NoteID": "5903b14d-7108-4a5f-b81c-fec208b9ee19",
+      "Title": "王五的笔记",
+      "Content": "< p > 内容 < / p > ",
+      "AddDate": "2016-06-25 17:12:41"
+    },
+    {
+      "NoteID": "5903b14d-7108-4a5f-b81c-fec208b9ee19",
+      "Title": "张四的笔记",
+      "Content": "< p > 内容 < / p > ",
+      "AddDate": "2016-06-25 17:12:41"
+    }
+  ];
+
+  function searchNotes(data, value) {
+    var aData = [],
+      aSearch = value.split(' '),
+      k = 0,
+      regStr = '',
+      reg;
+    for (var r = 0, lenR = aSearch.length; r < lenR; r++) {
+      regStr += '(' + aSearch[r] + ')([\\s\\S]*)';
+    }
+    reg = new RegExp(regStr);
+
+    for (var i = 0, lenI = data.length; i < lenI; i++) {
+      var title = data[i].Title,
+        regMatch = title.match(reg),
+        searchData = {};
+      k = 0;
+      if (regMatch !== null) {
+        var replaceReturn = "";
+        for (var j = 1, lenJ = regMatch.length; j < lenJ; j++) {
+          if (regMatch[j] === aSearch[k]) {
+            replaceReturn += '<span style="color:red;">$' + j + '</span>';
+            k++;
+          } else {
+            replaceReturn += '$' + j;
+          }
+        }
+
+        for (var obj in data[i]) {
+          if (data[i].hasOwnProperty(obj)) {
+            searchData[obj] = data[i][obj];
+          }
+        }
+        searchData.Title = searchData.Title.replace(reg, replaceReturn);//.replace(reg, replaceReturn);
+        aData.push(searchData);
+      }
+    }
+    return aData;
+  }
+
+  function Submit() {
+    var search = document.getElementById('search').value;
+    var aNotes = searchNotes(data, search);
+    var sNotes = '';
+    for (var i = 0, len = aNotes.length; i < len; i++) {
+      sNotes += aNotes[i].Title + '</br>';
+    }
+
+    document.getElementById('content').innerHTML = sNotes;
+  }
+</script>
+</body>
+</html>

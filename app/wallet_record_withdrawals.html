@@ -22,6 +22,12 @@
       </div>
     </li>
   </ul>
+  <div class="noData" v-else>
+    <div class="inner">
+      <img src="public/images/no_data.png">
+      <span class="no">当前没有相关数据哟~</span>
+    </div>
+  </div>
   <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>

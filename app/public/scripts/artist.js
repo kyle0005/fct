@@ -88,19 +88,15 @@ let screen = Vue.extend({
 );
 Vue.directive('img', {
   bind(el, binding) {
-    // Defaults
     let cursor = 'pointer';
     let src =  el.lsrc;
     let group = binding.arg || null;
-
-    // Overriding options if they're provided in binding.value
     if (typeof binding.value !== 'undefined') {
       cursor = binding.value.cursor || cursor;
       src = binding.value.lsrc;
       group = binding.value.group || group;
     }
 
-    // Setting up data attributes for groups of images
     el.setAttribute('data-vue-img-group', group || null);
     if (binding.value && binding.value.lsrc) {
       el.setAttribute('data-vue-img-src', binding.value.lsrc);
@@ -108,10 +104,8 @@ Vue.directive('img', {
 
     if (!src) console.error('v-img element missing src parameter.');
 
-    // Applying options
     el.style.cursor = cursor;
 
-    // Finding existing vm, or creating new one
     let vm = window.vueImg;
     if (!vm) {
       const element = document.createElement('div');
@@ -119,9 +113,6 @@ Vue.directive('img', {
       document.querySelector('body').appendChild(element);
       vm = window.vueImg = new screen().$mount('#imageScreen');
     }
-
-    // Updating vm's data, changin body overflow and position,
-    // which will be turn back on close
     el.addEventListener('click', () => {
       document.querySelector('body').classList.add('body-fs-v-img');
       const images = [
@@ -132,7 +123,7 @@ Vue.directive('img', {
       if (images.length == 0) {
         Vue.set(vm, 'images', [src]);
       } else {
-        Vue.set(vm, 'images', images.map(e => e.dataset.vueImgSrc || src));
+        Vue.set(vm, 'images', images.map(e => e.dataset.vueImgSrc || e.src));
         Vue.set(vm, 'currentImageIndex', images.indexOf(el));
       }
       Vue.set(vm, 'closed', false);
@@ -261,7 +252,7 @@ Vue.component('live',
             }
           }
         }
-      }
+      },
     },
     mounted: function() {
       let vue = this;
@@ -286,43 +277,13 @@ Vue.component('live',
         vue.listloading = true;
       },
       nextPage() {
-        let vue = this,
-          scrollTop = document.body.scrollTop,
-          clientHeight = document.body.clientHeight,
-          scrollHeight = document.body.scrollHeight;
+        let vue = this;
         vue.preventRepeatReuqest = true;
-        /* scrollTop + clientHeight == scrollHeight &&  */
         if(vue.dynamicList.pager.next > 0){
           var _url = config.artistPage_url + '?page=' + vue.dynamicList.pager.next;
           if(_url !== vue.last_url){
             vue.last_url = _url;
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
-            /*jAjax({
-              type:'get',
-              url:_url,
-              timeOut:5000,
-              before:function(){
-                console.log('before');
-              },
-              success:function(data){
-                if(data){
-                  data = JSON.parse(data);
-                  if(parseInt(data.code) == 200){
-                    vue.dynamicList = data.data;
-                    vue.liveList = data.data.entries.concat(vue.liveList);
-                    vue.loadLive();
-                    vue.preventRepeatReuqest = false;
-                    console.log('ok')
-                  }else {
-                    console.log('false')
-                  }
-                }
-
-              },
-              error:function(){
-                console.log('error');
-              }
-            });*/
           }
 
         }

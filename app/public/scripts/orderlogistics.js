@@ -8,7 +8,7 @@ let app = new Vue(
 
     },
     data: {
-
+      logistics: config.logistics
     },
     watch: {
     },

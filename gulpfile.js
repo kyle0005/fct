@@ -498,6 +498,134 @@ gulp.task('serve', () => {
     });
   });
 
+  server.get('/artistPage', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.name);
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data': {
+        'entries':
+          [
+            {
+              'images':
+                [
+                  'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png'
+                ],
+              'largeImages': [
+                '/public/images/resource/test7.png',
+              ],
+              'videoImage':'\/images\/default-null.png',
+              'videoUrl':'',
+              'id':2,
+              'content':'ssss',
+              'isTop': true
+            },
+            {
+              'images':
+                [
+                  '/public/images/resource/test1.png',
+                  '/public/images/resource/test1.png',
+                  '/public/images/resource/test1.png',
+                ],
+              'largeImages': [
+                '/public/images/resource/test2.png',
+                '/public/images/resource/test2.png',
+                '/public/images/resource/test2.png',
+              ],
+              'videoImage':'//vjs.zencdn.net/v/oceans.png',
+              'videoUrl':'',
+              'id':5,
+              'content':'ssss',
+              'isTop': false
+            },
+            {
+              'images':
+                [
+                  '/public/images/resource/test2.png',
+                  '/public/images/resource/test2.png',
+                  '/public/images/resource/test2.png',
+                ],
+              'largeImages': [
+                '/public/images/resource/test1.png',
+                '/public/images/resource/test1.png',
+                '/public/images/resource/test1.png',
+              ],
+              'videoImage':'//vjs.zencdn.net/v/oceans.png',
+              'videoUrl':'',
+              'id':4,
+              'content':'ssss',
+              'isTop': false
+            },
+            {
+              'images':
+                [
+                  '/public/images/resource/test3.png',
+                ],
+              'largeImages': [
+                '/public/images/resource/test4.png',
+              ],
+              'videoImage':'//vjs.zencdn.net/v/oceans.png',
+              'videoUrl':'',
+              'id':7,
+              'content':'ssss',
+              'isTop': false
+            },
+            {
+              'images':
+                [
+                  '/public/images/resource/test4.png',
+                ],
+              'largeImages': [
+                '/public/images/resource/test3.png',
+              ],
+              'videoImage':'//vjs.zencdn.net/v/oceans.png',
+              'videoUrl':'',
+              'id':8,
+              'content':'ssss',
+              'isTop': false
+            },
+            {
+              'images':
+                [
+                  '/public/images/resource/test5.png',
+                ],
+              'largeImages': [
+                '/public/images/resource/test6.png',
+              ],
+              'videoImage':'//vjs.zencdn.net/v/oceans.png',
+              'videoUrl':'',
+              'id':9,
+              'content':'ssss',
+              'isTop': false
+            },
+            {
+              'images':
+                [
+                  '/public/images/resource/test6.png',
+                  '/public/images/resource/test6.png',
+                ],
+              'largeImages': [
+                '/public/images/resource/test5.png',
+                '/public/images/resource/test5.png',
+              ],
+              'videoImage':'//vjs.zencdn.net/v/oceans.png',
+              'videoUrl':'',
+              'id':10,
+              'content':'ssss',
+              'isTop': false
+            },
+          ],
+        'pager': {'prev': 0, 'current': 1, 'next': 3, 'page_size': 20, 'total_page': 1, 'total': 13}
+      }
+
+    });
+  });
+
+
   server.get('/commission', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;

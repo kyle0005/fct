@@ -1,16 +1,6 @@
 Vue.component('m-swipe',
   {
     template: '#m_swipe',
-    computed: {
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
-    },
     props: {
       swipeid: {
         type: String,
@@ -92,13 +82,30 @@ Vue.component('m-search',
         keywords: '',
       }
     },
+    props: {
+      dat: {
+        type: Array,
+        default: []
+      },
+      sid: {
+        type: String,
+        default: ''
+      },
+    },
     methods: {
       search(num){
         let vue = this;
         if(vue.show_search){
           vue.placeholder = '';
           if(num == 1){
-            vue.$emit('subSearch', vue.keywords);
+            let _data = {}, _tmp = [];
+            _data.keywords = vue.keywords;
+            for (let i = 0; i < vue.dat.length; i++) {
+              _tmp = _tmp.concat(vue.dat[i]);
+            }
+            _data.dat = _tmp;
+            _data.sid = vue.sid;
+            vue.$emit('subsearch', _data);
             vue.keywords = '';
           }
         }else {
@@ -146,13 +153,13 @@ let app = new Vue(
       let vue = this;
       vue.getProductsType();
       let swiper = this.$refs.swiper;
-      if (swiper.dom) {
+      if (swiper && swiper.dom) {
         this.swiper = swiper.dom;
       }
 
       vue.getProductsOtherType();
       let swipert = this.$refs.swipert;
-      if (swipert.dom) {
+      if (swipert && swipert.dom) {
         this.swipert = swipert.dom;
       }
     },
@@ -198,20 +205,20 @@ let app = new Vue(
           vue.tabs.push(item.name);
         });
         vue.linkTo(0);
-
       },
       linkTo(num){
         let vue = this, _data = [];
-        vue.list = {};
+        vue.list = [];
         vue.tab_num = num;
-        _data = vue.wikiCategories[num].subList;
-        let resLength = _data.length;
-        let _tmp = [];
-        for (let i = 0, j = 0; i < resLength; i += 12, j++) {
-          _tmp[j] = _data.slice(0, 12);
+        if(vue.wikiCategories.length > 0){
+          _data = vue.wikiCategories[num].subList;
+          let resLength = _data.length;
+          let _tmp = [];
+          for (let i = 0, j = 0; i < resLength; i += 12, j++) {
+            _tmp[j] = _data.slice(i, 12 + i);
+          }
+          vue.list = _tmp;
         }
-        vue.list = _tmp;
-
       },
       getProductsOtherType() {
         let vue = this;
@@ -219,27 +226,102 @@ let app = new Vue(
       },
       linkToOther(num){
         let vue = this;
+        vue.list_t = [];
         let _data = vue.materials;
-        let resLength = _data.length;
-        let tmp = [];
-        for (let i = 0, j = 0; i < resLength; i += 20, j++) {
-          tmp[j] = _data.slice(0, 20);
+        if(_data.length > 0){
+          let resLength = _data.length;
+          let tmp = [];
+          for (let i = 0, j = 0; i < resLength; i += 20, j++) {
+            tmp[j] = _data.slice(i, i + 20);
+          }
+          vue.list_t = tmp;
         }
-        vue.list_t = tmp;
-      },
-      subSearch(keywords){
-        let vue = this, _list = [];
-        vue.list = [];
-        _list = vue.wikiCategories[vue.tab_num].subList;
 
+      },
+      upSearch(obj){
+        let vue = this, _data = [];
+        vue.list = [];
+        _data = vue.searchNotes(obj.dat, obj.keywords); /* 搜索 */
+        let resLength = _data.length;
+        let _tmp = [];
+        for (let i = 0, j = 0; i < resLength; i += 12, j++) {
+          _tmp[j] = _data.slice(i, 12 + i);
+        }
+        vue.list = _tmp;
 
         vue.listloading = false;
-        if(vue.orderlist.length > 0){
+        if(vue.list.length > 0){
           vue.nodata = false;
         }else {
           vue.nodata = true;
         }
       },
+      downSearch(obj){
+        let vue = this, _data = [];
+        vue.list_t = [];
+        _data = vue.searchNotes(obj.dat, obj.keywords); /* 搜索 */
+        let resLength = _data.length;
+        let _tmp = [];
+        for (let i = 0, j = 0; i < resLength; i += 20, j++) {
+          _tmp[j] = _data.slice(i, 20 + i);
+        }
+        vue.list_t = _tmp;
+
+        vue.listloading = false;
+        if(vue.list_t.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
+      },
+      subsearch(obj){
+        let vue = this, _data = [];
+        if(obj.sid == 'up'){
+          vue.upSearch(obj);
+        }
+        if(obj.sid == 'down'){
+          vue.downSearch(obj);
+        }
+
+      },
+      searchNotes(data, value) {
+        var aData = [],
+          aSearch = value.split(' '),
+          k = 0,
+          regStr = '',
+          reg;
+        for (var r = 0, lenR = aSearch.length; r < lenR; r++) {
+          regStr += '(' + aSearch[r] + ')([\\s\\S]*)';
+        }
+        reg = new RegExp(regStr);
+
+        for (var i = 0, lenI = data.length; i < lenI; i++) {
+          var title = data[i].name,
+            regMatch = title.match(reg),
+            searchData = {};
+          k = 0;
+          if (regMatch !== null) {
+            // var replaceReturn = '';
+            // for (var j = 1, lenJ = regMatch.length; j < lenJ; j++) {
+            //   if (regMatch[j] === aSearch[k]) {
+            //     replaceReturn += '<span style="color:red;">$' + j + '</span>';
+            //     k++;
+            //   } else {
+            //     replaceReturn += '$' + j;
+            //   }
+            // }
+
+            for (var obj in data[i]) {
+              if (data[i].hasOwnProperty(obj)) {
+                searchData[obj] = data[i][obj];
+              }
+            }
+            // searchData.Title = searchData.Title.replace(reg, replaceReturn);
+            aData.push(searchData);
+          }
+        }
+        return aData;
+      }
     },
     components: {
     }
