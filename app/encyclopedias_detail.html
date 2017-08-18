@@ -11,7 +11,42 @@
 <body>
 <div class="encyclopedias-container" id="encyclopediasdetail" v-cloak>
   <head-top></head-top>
-  <section class="artist">
+  <section class="encyclopedias-content">
+    <ul class="top-list clearfix">
+      <li v-for="(item, index) in encyclopedias_list" :class="{red:index===encynum}">
+        <a href="javascript:;" @click="loadsingle(index, item.id)">
+        <span class="img-container">
+          <img :src="item.image">
+        </span>
+          <span class="name-container overText">{{ item.name }}</span>
+        </a>
+      </li>
+    </ul>
+    <section class="content top-min">
+      <div class="intro">
+          <span class="photo">
+            <img :src="detail.image">
+          </span>
+        <span class="intro-info">
+          <span class="intro-name">{{ detail.name }}</span><br>
+          <span>{{ detail.intro }}</span>
+        </span>
+      </div>
+    </section>
+    <section class="text-container" v-html="detail.description"></section>
+    <section class="comment">
+      <ul class="others" v-if="detail.productList && detail.productList.length > 0">
+        <li v-for="img_item in detail.productList">
+          <a href="javascript:;" class="item">
+            <img :src="img_item.defaultImage">
+            <span class="p-title">{{ img_item.name }}</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </section>
+
+  <!--<section class="artist encyclopedias-content">
     <div class="intro">
         <span class="photo">
           <img :src="detail.image">
@@ -32,12 +67,13 @@
         </li>
       </ul>
     </div>
-  </section>
+  </section>-->
 
 </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/apis.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script>
   var config = {
     "productsType": [
@@ -64,6 +100,7 @@
 
     ],
     "main_url": "http://localhost:9000/main.html",
+    "ency_url":"http://localhost:9000/xxxx",
     "index": "index.html",
     "login": "login.html",
     "detail": {
@@ -78,7 +115,99 @@
         "defaultImage": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-01\/3fc97e5c9dbf4d2481749a9d9b9b5033.jpg!350"
       }]
 
-    }
+    },
+    "encyclopedias_list": [
+      {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/ea2ecd8f89104a4a95c253391c325d2b.jpg!120",
+        "name": "半月",
+        "id": 28
+      },
+      {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/7f7dc0d943a642deb24b0c800fde88c5.jpg!120",
+        "name": "西施",
+        "id": 24
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/366fcdfe903a4a769df38f025275f0d4.jpg!120",
+        "name": "石瓢",
+        "id": 29
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 30
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 31
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 32
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 33
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 5
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 35
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 36
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 37
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 38
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 39
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 40
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 41
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 42
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 43
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 44
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 45
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 46
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 47
+      }, {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/dbe7d5257509410b9150973583901009.jpg!120",
+        "name": "仿古",
+        "id": 48
+      }
+    ]
   }
 </script>
 <script type="text/x-template" id="head_top">

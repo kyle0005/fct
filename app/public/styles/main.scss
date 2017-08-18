@@ -9,7 +9,7 @@
 %others{
   width: calc(100% - 60px);
   padding: 10px 0 10%;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   margin: 0 30px;
   display: flex;
   justify-content: space-between;
@@ -114,7 +114,7 @@
 .main-container{
   @extend %page;
   //height: auto;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .cat-container{
     overflow-x: auto;
     overflow-y: hidden;
@@ -580,9 +580,9 @@ $foot-height: 250px;
           }
         }
         .sub{
-          /* position: absolute;
+           position: absolute;
            bottom: 0;
-           left: 0;*/
+           left: 0;
           display: block;
           width: 100%;
           line-height: 48px;
@@ -782,7 +782,7 @@ $foot-height: 250px;
   position: relative;
   width: 100%;
   height: 100px;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .info{
     position: absolute;
     top: 10%;
@@ -804,7 +804,7 @@ $foot-height: 250px;
 /* login */
 .login-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .logo{
     width: 100%;
     padding-bottom: 24%;
@@ -951,9 +951,149 @@ $foot-height: 250px;
     }
   }
 }
+%edit-container{
+  width: 100%;
+  ul.top-list{
+    list-style-type: none;
+    white-space: nowrap;
+    overflow: auto;
+    border-bottom: 1px solid $color-dcdcdc;
+    //margin-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    li{
+      display: inline-block;
+      width: calc(100% / 3);
+      a{
+        display: block;
+        margin: 12% 25%;
+        width: 50%;
+        .img-container{
+          position: relative;
+          display: block;
+          width: 100%;
+          padding-bottom: 100%;
+          img{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+          }
+        }
+        .name-container{
+          display: block;
+          width: 75%;
+          margin: 0 auto;
+          font-size: $font-size-t13;
+          text-align: center;
+        }
+
+      }
+    }
+    li.red{
+      background: rgba(220, 220, 220, 0.35);
+    }
+  }
+  .text-container{
+    width: 92%;
+    padding: 0 4% 4% 4%;
+    overflow: hidden;
+    background-color: $color-f5f5f5;
+    color: $color-666;
+    img{
+      width: 100%;
+    }
+  }
+  .top-max{
+    padding: 6% 4% 4% 4%;
+  }
+  .top-min{
+    padding: 4%;
+  }
+  .content{
+    background-color: $color-f5f5f5;
+    color: $color-666;
+    .intro{
+      .photo{
+        position: relative;
+        display: inline-block;
+        float: left;
+        width: 25%;
+        padding-bottom: 25%;
+        margin-right: 5.4%;
+        text-align: center;
+        img{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+      .intro-info{
+        .intro-name{
+          font-size: $font-size-t14;
+          line-height: $font-size-t14;
+          font-weight: bold;
+          margin-bottom: 3px;
+          .v-title{
+            font-size: $font-size-t12;
+          }
+        }
+      }
+    }
+  }
+  .comment{
+    background-color: $color-f5f5f5;
+    .title{
+      padding: 2px 0 2px 10px;
+      font-size: $font-size-t13;
+      line-height: $font-size-t13;
+      border-left: 4px solid $color-333;
+    }
+    .context{
+      width: calc(100% - 60px);
+      padding: 10px 0;
+      margin: 0 30px;
+      word-wrap:break-word;
+      word-break:normal;
+    }
+    .others{
+      @extend %others;
+    }
+    a.for-more{
+      display: block;
+      width: calc(100% - 60px);
+      padding: 2px 0 10%;
+      margin: 0 30px;
+      text-align: center;
+      color: $color-999;
+    }
+  }
+  .record{
+    background-color: $color-f5f5f5;
+    .title{
+      padding: 2px 0 2px 10px;
+      font-size: $font-size-t13;
+      line-height: $font-size-t13;
+      border-left: 4px solid $color-333;
+    }
+    .list{
+      padding: 10px 30px;
+      span{
+        display: block;
+      }
+    }
+  }
+}
 .detail-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .nav-bar{
     @extend %nav-bar;
   }
@@ -967,6 +1107,7 @@ $foot-height: 250px;
     }
   }
   .tabs{
+    /* live */
     .video-container{
       width: 100%;
       overflow: hidden;
@@ -1024,7 +1165,7 @@ $foot-height: 250px;
         display: block;
         width: 100%;
         height: 10px;
-        background-color: $color-f2f2f2;
+        background-color: $color-f5f5f5;
       }
     }
     .product-context.dis{
@@ -1055,7 +1196,7 @@ $foot-height: 250px;
         margin: 28px auto;
         width: 95%;
         height: 2px;
-        background-color: $color-f2f2f2;
+        background-color: $color-f5f5f5;
         a.get-coupon{
           position: absolute;
           top: 50%;
@@ -1083,167 +1224,32 @@ $foot-height: 250px;
       }
     }
     .edit-context{
-      width: 92%;
-      padding: 4%;
+      /*width: 92%;
+      padding: 4%;*/
+      padding: 10px 0 3% 0;
       overflow: hidden;
-      background-color: $color-f2f2f2;
+      //background-color: $color-f5f5f5;
       img, p{
-        padding: 2% 0;
+        //padding: 2% 0;
         width: 100%;
         text-align: center;
       }
     }
-  }
-  .tabs{
+
+    /* artist,pug */
     .artist-contianer{
-      width: 100%;
-      ul.artist-list{
-        list-style-type: none;
-        white-space: nowrap;
-        overflow: auto;
-        border-bottom: 1px solid $color-dcdcdc;
-        //margin-bottom: 10px;
-        -webkit-overflow-scrolling: touch;
-        &::-webkit-scrollbar{
-          display: none;
-        }
-        li{
-          display: inline-block;
-          width: calc(100% / 3);
-          a{
-            display: block;
-            margin: 12% 25%;
-            width: 50%;
-            .img-container{
-              position: relative;
-              display: block;
-              width: 100%;
-              padding-bottom: 100%;
-              img{
-                position: absolute;
-                top:0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-              }
-            }
-            .name-container{
-              display: block;
-              width: 75%;
-              margin: 0 auto;
-              font-size: $font-size-t13;
-              text-align: center;
-            }
-
-          }
-          a.red{
-            color: $color-993333;
-          }
-        }
-      }
+      @extend %edit-container;
     }
 
-    .text-container{
-      width: 92%;
-      padding: 0 4% 4% 4%;
-      overflow: hidden;
-      background-color: $color-f2f2f2;
-      color: $color-666;
-      img{
-        width: 100%;
-      }
-    }
-    .top-max{
-      padding: 6% 4% 4% 4%;
-    }
-    .top-min{
-      padding: 4%;
-    }
-    .artist{
-      background-color: $color-f2f2f2;
-      color: $color-666;
-      .intro{
-        .photo{
-          position: relative;
-          display: inline-block;
-          float: left;
-          width: 25%;
-          padding-bottom: 25%;
-          margin-right: 5.4%;
-          text-align: center;
-          img{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-          }
-        }
-        .artist-info{
-          .artist-name{
-            font-size: $font-size-t14;
-            line-height: $font-size-t14;
-            font-weight: bold;
-            margin-bottom: 3px;
-            .v-title{
-              font-size: $font-size-t12;
-            }
-          }
-        }
-      }
-    }
-    .record{
-      background-color: $color-f2f2f2;
-      .title{
-        padding: 2px 0 2px 10px;
-        font-size: $font-size-t13;
-        line-height: $font-size-t13;
-        border-left: 4px solid $color-333;
-      }
-      .list{
-        padding: 10px 30px;
-        span{
-          display: block;
-        }
-      }
-    }
-    .comment{
-      background-color: $color-f2f2f2;
-      .title{
-        padding: 2px 0 2px 10px;
-        font-size: $font-size-t13;
-        line-height: $font-size-t13;
-        border-left: 4px solid $color-333;
-      }
-      .context{
-        width: calc(100% - 60px);
-        padding: 10px 0;
-        margin: 0 30px;
-        word-wrap:break-word;
-        word-break:normal;
-      }
-      .others{
-        @extend %others;
-      }
-      a.for-more{
-        display: block;
-        width: calc(100% - 60px);
-        padding: 2px 0 10%;
-        margin: 0 30px;
-        text-align: center;
-        color: $color-999;
-      }
-    }
-  }
-  .tabs{
+
+    /* service */
     .service{
       width: 92%;
       word-wrap: break-word;
       word-break: normal;
-      padding: 10px 4% 58px 4%;
-      background-color: $color-f2f2f2;
+      //padding: 10px 4% 58px 4%;
+      padding: 10px 4% 35px;
+      background-color: $color-f5f5f5;
       color: $color-666;
       .title{
         width: 100%;
@@ -1253,8 +1259,8 @@ $foot-height: 250px;
         font-weight: bold;
       }
     }
-  }
-  .tabs{
+
+    /* discuss */
     .discuss{
       width: 100%;
       word-wrap: break-word;
@@ -1327,13 +1333,14 @@ $foot-height: 250px;
         }
       }
     }
+
   }
 }
 
 /* buy */
 .buy-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .address{
     width: 100%;
     margin-bottom: 10px;
@@ -1562,7 +1569,7 @@ $foot-height: 250px;
 
   }
   .agreement{
-    background-color: $color-f2f2f2;
+    background-color: $color-f5f5f5;
     padding: 4%;
     input.ck{
       @include checkbox();
@@ -1885,7 +1892,7 @@ $foot-height: 250px;
 /* pay */
 .pay-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   font-size: $font-size-t13;
   .tips{
     padding: 5.333% 0;
@@ -2026,7 +2033,7 @@ $foot-height: 250px;
 /* artist-list */
 .artist-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .swiper-container {
     width: 100%;
     padding-top: 50px;
@@ -2086,7 +2093,7 @@ $foot-height: 250px;
 /* art */
 .art-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .live{
     position: relative;
     width: 100%;
@@ -2218,7 +2225,7 @@ $foot-height: 250px;
     }
   }
   .tabs{
-    background-color: $color-f2f2f2;
+    background-color: $color-f5f5f5;
     .ptop{
       background: $color-white url("#{$img-path}/ptop.png") no-repeat 96% 10px;
       background-size: auto 40px;
@@ -2410,7 +2417,7 @@ $foot-height: 250px;
             }
             .reply{
               display: inline-block;
-              background-color: $color-f2f2f2;
+              background-color: $color-f5f5f5;
               color: $color-666;
               padding: 1% 2%;
               width: calc(680/720*100% - 7%);
@@ -2446,7 +2453,7 @@ $foot-height: 250px;
           height: calc(68/110*100%);
           border: 1px solid $color-dcdcdc;
           display: block;
-          background-color: $color-f2f2f2;
+          background-color: $color-f5f5f5;
           color: $color-999;
           .img{
             position: absolute;
@@ -2579,7 +2586,7 @@ $foot-height: 250px;
 /* encyclopedias */
 .encyclopedias-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .nav-bar{
     position: relative;
     width: 100%;
@@ -2689,7 +2696,7 @@ $foot-height: 250px;
   .list{
     width: 92%;
     padding: 4% 4% 0 4%;
-    background-color: $color-f2f2f2;
+    background-color: $color-f5f5f5;
     div.tab-list{
       position: relative;
       width: 100%;
@@ -2751,13 +2758,21 @@ $foot-height: 250px;
             }
       }
         }
+        .swiper-pagination-bullets{
+          bottom: -2px;
+
+        }
       }
     }
   }
 
   /* encyclopedias_detail */
-  .artist{
-    background-color: $color-f2f2f2;
+  .encyclopedias-content{
+    @extend %edit-container;
+  }
+
+ /* .artist{
+    background-color: $color-f5f5f5;
     width: 92%;
     overflow: hidden;
     padding: 6% 4% 4% 4%;
@@ -2793,7 +2808,7 @@ $foot-height: 250px;
       }
     }
     .comment{
-      background-color: $color-f2f2f2;
+      background-color: $color-f5f5f5;
       .title{
         padding: 2px 0 2px 10px;
         font-size: $font-size-t13;
@@ -2822,7 +2837,7 @@ $foot-height: 250px;
     img{
       width: 100%;
     }
-  }
+  }*/
 }
 /* 轮播底部 */
 .en-pagination{
@@ -2837,7 +2852,7 @@ $foot-height: 250px;
 /* cart */
 .cart-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .contianer{
     position: relative;
     min-height: 150px;
@@ -2930,7 +2945,7 @@ $foot-height: 250px;
   .guess-container{
     position: relative;
     width: 100%;
-    //background-color: $color-f2f2f2;
+    //background-color: $color-f5f5f5;
     //margin-bottom: 4%;
     &:after{
       content: '';
@@ -2939,7 +2954,7 @@ $foot-height: 250px;
       left: 0;
       width: 100%;
       height: 80px;
-      background-color: $color-f2f2f2;
+      background-color: $color-f5f5f5;
     }
     .title{
       width: 100%;
@@ -3069,7 +3084,7 @@ $foot-height: 250px;
 /* usercenter */
 .user-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .banner{
     position: relative;
     width: 100%;
@@ -3223,14 +3238,14 @@ $foot-height: 250px;
     left: 0;
     width: 100%;
     height: 50px;
-    background-color: $color-f2f2f2;
+    background-color: $color-f5f5f5;
   }
 }
 
 /* order */
 .order-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .info{
     position: relative;
     width: 100%;
@@ -3503,7 +3518,7 @@ $foot-height: 250px;
 /* share */
 .share-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .top{
     position: relative;
     width: 100%;
@@ -3655,7 +3670,7 @@ $foot-height: 250px;
 /* userinfo */
 .userinfo-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .photo-container{
     position: relative;
     width: 100%;
@@ -3815,7 +3830,7 @@ $foot-height: 250px;
 /* orderlist */
 .orderlist-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .tabs{
     position: relative;
     width: 100%;
@@ -3922,9 +3937,9 @@ $foot-height: 250px;
   }
   .orders-list{
     width: 100%;
-    background-color: $color-f2f2f2;
+    background-color: $color-f5f5f5;
     .items{
-      background-color: $color-f2f2f2;
+      background-color: $color-f5f5f5;
       margin-bottom: calc(18/750*100%);
       font-size: $font-size-t12;
       .info{
@@ -4052,7 +4067,7 @@ $foot-height: 250px;
 /* ordercomment */
 .ordercomment-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .list{
     width: 100%;
     background-color: $color-white;
@@ -4299,7 +4314,7 @@ $foot-height: 250px;
   .sub-btn{
     padding: 4%;
     width: 92%;
-    background-color: $color-f2f2f2;
+    background-color: $color-f5f5f5;
     a{
       $bg-color: $color-1d1d1d;
       @include wei-bg-btn($color-white, $bg-color, $bg-color, 49px, 49px, $font-size-t13);
@@ -4310,7 +4325,7 @@ $foot-height: 250px;
 /* orderreturn */
 .orderreturn-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .product{
     width: 100%;
     display: flex;
@@ -4464,7 +4479,7 @@ $foot-height: 250px;
     bottom: 0;
     margin: 4%;
     width: 92%;
-    background-color: $color-f2f2f2;
+    background-color: $color-f5f5f5;
     a{
       $bg-color: $color-1d1d1d;
       @include wei-bg-btn($color-white, $bg-color, $bg-color, 49px, 49px, $font-size-t13);
@@ -4476,11 +4491,11 @@ $foot-height: 250px;
 /* aftersale */
 .aftersale-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   ul.after-list{
     width: 100%;
     .items{
-      background-color: $color-f2f2f2;
+      background-color: $color-f5f5f5;
       margin-bottom: calc(18/750*100%);
       .info{
         display: flex;
@@ -4593,7 +4608,7 @@ $foot-height: 250px;
 
 .aftersaledetail-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .product{
     width: 100%;
     display: flex;
@@ -4754,11 +4769,57 @@ $foot-height: 250px;
     bottom: 0;
     margin: 4%;
     width: 92%;
-    background-color: $color-f2f2f2;
+    background-color: $color-f5f5f5;
     a{
       $bg-color: $color-1d1d1d;
       @include wei-bg-btn($color-white, $bg-color, $bg-color, 49px, 49px, $font-size-t13);
       @include fillet(false); /* 圆角 */
+    }
+  }
+
+  .list-container{
+    width: 100%;
+    background-color: $color-white;
+    margin-top: 8%;
+    .line{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-size: $font-size-t12;
+      border-bottom: 1px solid $color-dcdcdc;
+      .left{
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        width: 20%;
+        padding: 4% 0;
+      }
+      .right{
+        position: relative;
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        padding-right: 4%;
+        width: 76%;
+        text-align: right;
+        input.right-inp{
+          width: 100%;
+          border: none;
+        }
+        .wei-arrow-right {
+          @include wei-arrow('right', $color-999);
+          right: 4.5%;
+          left: initial;
+          top: 39.5%;
+        }
+      }
+      .status{
+        color: $color-993333;
+      }
+      &:last-child{
+        border: none;
+      }
     }
   }
 }
@@ -4766,7 +4827,7 @@ $foot-height: 250px;
 /* coupon */
 .coupon-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .tabs{
     position: relative;
     width: 100%;
@@ -4805,7 +4866,7 @@ $foot-height: 250px;
   .content{
     padding: calc(25/750*100%);
     width: calc(700/750*100%);
-    background-color: $color-f2f2f2;
+    background-color: $color-f5f5f5;
     .tips{
       background-color: $color-white;
       position: relative;
@@ -5013,7 +5074,7 @@ $foot-height: 250px;
 /* wallet */
 .wallet-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .top{
     position: relative;
     width: 100%;
@@ -5102,7 +5163,7 @@ $foot-height: 250px;
 
 .walletaccount-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   ul.list{
     width: 100%;
     padding-top: calc(20/750*100%);
@@ -5139,7 +5200,7 @@ $foot-height: 250px;
 /* record-recharge */
 .record-recharge-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   ul.list{
     width: 100%;
     padding-top: calc(20/750*100%);
@@ -5198,7 +5259,7 @@ $foot-height: 250px;
 /* recharge */
 .recharge-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .top{
     position: relative;
     width: 100%;
@@ -5330,7 +5391,7 @@ $foot-height: 250px;
 /* withdrawals */
 .withdrawals-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .list{
     width: 100%;
     background-color: $color-white;
@@ -5393,7 +5454,7 @@ $foot-height: 250px;
     bottom: 0;
     margin: 4%;
     width: 92%;
-    background-color: $color-f2f2f2;
+    background-color: $color-f5f5f5;
     a{
       $bg-color: $color-1d1d1d;
       @include wei-bg-btn($color-white, $bg-color, $bg-color, 49px, 49px, $font-size-t13);
@@ -5405,7 +5466,7 @@ $foot-height: 250px;
 /* commission */
 .commission-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .tabs{
     position: relative;
     width: 100%;
@@ -5445,7 +5506,7 @@ $foot-height: 250px;
   .orders-list{
     width: 100%;
     .items{
-      background-color: $color-f2f2f2;
+      background-color: $color-f5f5f5;
       margin-bottom: calc(18/750*100%);
       .info{
         display: flex;
@@ -5552,7 +5613,7 @@ $foot-height: 250px;
 /* authentication */
 .authentication-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   .list{
     width: 100%;
     background-color: $color-white;
@@ -5703,7 +5764,7 @@ $foot-height: 250px;
     bottom: 0;
     margin: 4%;
     width: 92%;
-    background-color: $color-f2f2f2;
+    background-color: $color-f5f5f5;
     a{
       $bg-color: $color-1d1d1d;
       @include wei-bg-btn($color-white, $bg-color, $bg-color, 49px, 49px, $font-size-t13);
@@ -5714,7 +5775,7 @@ $foot-height: 250px;
 
 .collection-container{
    @extend %page;
-   background-color: $color-f2f2f2;
+   background-color: $color-f5f5f5;
    .tabs{
      position: relative;
      width: 100%;
@@ -5752,7 +5813,7 @@ $foot-height: 250px;
    }
    .collection-list{
      width: 100%;
-     background-color: $color-f2f2f2;
+     background-color: $color-f5f5f5;
      .item{
        margin-top: calc(20/750*100%);
        width: 100%;
@@ -5836,7 +5897,7 @@ $foot-height: 250px;
 
 .logistics-container{
   @extend %page;
-  background-color: $color-f2f2f2;
+  background-color: $color-f5f5f5;
   color: $color-666;
   .info-container{
     padding: calc(30/750*100%);
@@ -5993,5 +6054,85 @@ $foot-height: 250px;
       }
     }
 
+  }
+}
+
+.invoice-container{
+  @extend %page;
+  background-color: $color-f5f5f5;
+  color: $color-666;
+  .list-container{
+    width: 100%;
+    background-color: $color-white;
+    margin-bottom: calc(10 / 375 * 100%);
+    .line{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 96%;
+      margin-left: 4%;
+      font-size: $font-size-t12;
+      border-bottom: 1px solid $color-dcdcdc;
+      .left{
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        width: 20%;
+        padding: 4% 0;
+      }
+      .right{
+        position: relative;
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        padding-right: 4%;
+        width: 76%;
+        text-align: right;
+        input.right-inp{
+          width: 100%;
+          border: none;
+        }
+        select{
+          width: 100%;
+          //float: right;
+          border: none;
+          //text-align: right;
+          //direction: rtl;
+          //margin-right: 5%;
+          background: url("../images/arr_down.png") no-repeat right center;
+          background-size: 14px auto;
+          option{
+            text-align: left;
+          }
+        }
+        .wei-arrow-right {
+          @include wei-arrow('right', $color-999);
+          right: 4.5%;
+          left: initial;
+          top: 39.5%;
+        }
+      }
+      .status{
+        color: $color-993333;
+      }
+      &:last-child{
+        border: none;
+      }
+    }
+  }
+  .info{
+    padding: 0 4%;
+  }
+  .sub-btn{
+    position: absolute;
+    bottom: 0;
+    margin: 4%;
+    width: 92%;
+    background-color: $color-f5f5f5;
+    a{
+      $bg-color: $color-1d1d1d;
+      @include wei-bg-btn($color-white, $bg-color, $bg-color, 49px, 49px, $font-size-t13);
+      @include fillet(false); /* 圆角 */
+    }
   }
 }

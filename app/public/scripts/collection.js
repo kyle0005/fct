@@ -59,35 +59,13 @@ let app = new Vue(
         vue.nodata = false;
         var _url = config.collectionUrl + '?from_type=' + index;
         tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
-        /*jAjax({
-          type:'get',
-          url:_url,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.collection = data.data;
-              }else {
-                console.log('false')
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });*/
 
       },
       cateSucc(data){
         let vue = this;
         vue.collection = data.data;
         vue.listloading = false;
-        if(vue.collection.length > 0){
+        if(vue.collection && vue.collection.length > 0){
           vue.nodata = false;
         }else {
           vue.nodata = true;

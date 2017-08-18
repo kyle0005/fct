@@ -115,94 +115,6 @@ gulp.task('serve', () => {
       data: slides
     });
   });
-  server.post('/uploadFile', (req, res) => {
-    res.json({
-      'code': 200,
-      'message': '获取成功',
-      'url': null,
-      'data': {
-        'url': '/public/images/resource/artist.png',
-        'fullUrl': 'http://localhost:9000/public/images/resource/artist.png'
-      }
-    });
-  });
-
-  server.post('/uploadReturnImg', (req, res) => {
-    res.json({
-      'code': 200,
-      'message': '获取成功',
-      'url': null,
-      'data': {
-        'url': '/public/images/resource/artist.png',
-        'fullUrl': 'http://localhost:9000/public/images/resource/artist.png'
-      }
-    });
-  });
-
-  server.post('/orderReturn', (req, res) => {
-    res.json({
-      'code': 200,
-      'message': '提交申请成功',
-      'url': null,
-      'data': ''
-    });
-  });
-
-  server.post('/userinfo', (req, res) => {
-    var _data = {};
-    req.on('data',function(data){
-      _data += data;
-      console.log('服务器接收到的数据：　'+decodeURIComponent(data));
-
-    });
-    req.on('end',function(){
-      console.log('客户端请求数据全部接收完毕');
-    });
-    res.json({
-      'code': 200,
-      'message': '修改成功',
-      'url': null,
-      'data': _data
-    });
-  });
-
-  server.post('/comment', (req, res) => {
-    var _data = {};
-    req.on('data',function(data){
-      _data += data;
-      console.log('服务器接收到的数据：　'+decodeURIComponent(data));
-
-    });
-    req.on('end',function(){
-      console.log('客户端请求数据全部接收完毕');
-    });
-    res.json({
-      'code': 200,
-      'message': '发表评论成功',
-      'url': null,
-      'data': ''
-    });
-  });
-
-  server.post('/delAddr', (req, res) => {
-    var _data = {};
-    req.on('data',function(data){
-      _data += data;
-      console.log('服务器接收到的数据：　'+decodeURIComponent(data));
-
-    });
-    req.on('end',function(){
-      console.log('客户端请求数据全部接收完毕');
-    });
-    res.json({
-      'code': 200,
-      'message': '删除成功',
-      'url': null,
-      'data': ''
-    });
-  });
-
-
   server.get('/orderlist', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
@@ -497,7 +409,6 @@ gulp.task('serve', () => {
 
     });
   });
-
   server.get('/artistPage', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
@@ -624,8 +535,6 @@ gulp.task('serve', () => {
 
     });
   });
-
-
   server.get('/commission', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
@@ -699,7 +608,6 @@ gulp.task('serve', () => {
 
     });
   });
-
   server.get('/chargeRecord', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
@@ -734,7 +642,6 @@ gulp.task('serve', () => {
 
     });
   });
-
   server.get('/withdrawalRecord', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
@@ -770,7 +677,6 @@ gulp.task('serve', () => {
 
     });
   });
-
   server.get('/walletaccount', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
@@ -795,7 +701,6 @@ gulp.task('serve', () => {
 
     });
   });
-
   server.get('/refundlist', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
@@ -832,7 +737,6 @@ gulp.task('serve', () => {
 
     });
   });
-
   server.get('/couponlist', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
@@ -931,7 +835,6 @@ gulp.task('serve', () => {
 
     });
   });
-
   server.get('/collection', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
@@ -941,30 +844,10 @@ gulp.task('serve', () => {
       'code': 200,
       'message': '修改成功',
       'url': null,
-      'data': [
-        {
-          'id':8,
-          'title':'xxxxx',
-          'image':'/public/images/resource/imgs.png',
-          'favoriteId': 5
-        },
-        {
-          'id':9,
-          'title':'dddd',
-          'image':'/public/images/resource/imgs.png',
-          'favoriteId': 7
-        },
-        {
-          'id':11,
-          'title':'dddd',
-          'image':'/public/images/resource/imgs.png',
-          'favoriteId': 9
-        }
-      ]
+      'data': null
 
     });
   });
-
   server.get('/share', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
@@ -1013,6 +896,87 @@ gulp.task('serve', () => {
     });
   });
 
+  server.post('/uploadFile', (req, res) => {
+    res.json({
+      'code': 200,
+      'message': '获取成功',
+      'url': null,
+      'data': {
+        'url': '/public/images/resource/artist.png',
+        'fullUrl': 'http://localhost:9000/public/images/resource/artist.png'
+      }
+    });
+  });
+  server.post('/uploadReturnImg', (req, res) => {
+    res.json({
+      'code': 200,
+      'message': '获取成功',
+      'url': null,
+      'data': {
+        'url': '/public/images/resource/artist.png',
+        'fullUrl': 'http://localhost:9000/public/images/resource/artist.png'
+      }
+    });
+  });
+  server.post('/orderReturn', (req, res) => {
+    res.json({
+      'code': 200,
+      'message': '提交申请成功',
+      'url': null,
+      'data': ''
+    });
+  });
+  server.post('/userinfo', (req, res) => {
+    var _data = {};
+    req.on('data',function(data){
+      _data += data;
+      console.log('服务器接收到的数据：　'+decodeURIComponent(data));
+
+    });
+    req.on('end',function(){
+      console.log('客户端请求数据全部接收完毕');
+    });
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data': _data
+    });
+  });
+  server.post('/comment', (req, res) => {
+    var _data = {};
+    req.on('data',function(data){
+      _data += data;
+      console.log('服务器接收到的数据：　'+decodeURIComponent(data));
+
+    });
+    req.on('end',function(){
+      console.log('客户端请求数据全部接收完毕');
+    });
+    res.json({
+      'code': 200,
+      'message': '发表评论成功',
+      'url': null,
+      'data': ''
+    });
+  });
+  server.post('/delAddr', (req, res) => {
+    var _data = {};
+    req.on('data',function(data){
+      _data += data;
+      console.log('服务器接收到的数据：　'+decodeURIComponent(data));
+
+    });
+    req.on('end',function(){
+      console.log('客户端请求数据全部接收完毕');
+    });
+    res.json({
+      'code': 200,
+      'message': '删除成功',
+      'url': null,
+      'data': ''
+    });
+  });
   server.post('/search', (req, res) => {
     var _data = {};
     req.on('data',function(data){
@@ -1030,7 +994,6 @@ gulp.task('serve', () => {
       'data': _data
     });
   });
-
   server.post('/saveAddress', (req, res) => {
     var _data = {};
     req.on('data',function(data){
@@ -1048,7 +1011,6 @@ gulp.task('serve', () => {
       'data': _data
     });
   });
-
   server.post('/authentication', (req, res) => {
     var _data = {};
     req.on('data',function(data){
@@ -1066,7 +1028,6 @@ gulp.task('serve', () => {
       'data': _data
     });
   });
-
   server.post('/getCoupon', (req, res) => {
     var _data = {};
     req.on('data',function(data){
@@ -1084,7 +1045,6 @@ gulp.task('serve', () => {
       'data': _data
     });
   });
-
 
   server.use(router);
   server.listen(3000, () => {

@@ -96,29 +96,6 @@ Vue.component('artist',
         let vue = this;
         vue.nodata = false;
         tools.ajaxGet(config.artist_url, vue.getSucc, vue.getBefore);
-        /*jAjax({
-          type:'get',
-          url:config.artist_url,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.artist = data.data;
-                vue.titleshow = vue.artist.length > 1;
-                vue.loadsingle(0);
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });*/
       },
       getSucc(data){
         let vue = this;
@@ -167,29 +144,6 @@ Vue.component('pug',
         let vue = this;
         vue.nodata = false;
         tools.ajaxGet(config.pug_url, vue.pugSucc, vue.getBefore);
-        /*jAjax({
-          type:'get',
-          url:config.pug_url,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.pugs = data.data;
-                vue.titleshow = vue.pugs.length > 1;
-                vue.loadsingle(0);
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });*/
       },
       pugSucc(data){
         let vue =this;

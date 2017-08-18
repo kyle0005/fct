@@ -360,9 +360,9 @@
 </script>
 <script type="text/x-template" id="artist">
   <div class="artist-contianer">
-    <ul class="artist-list clearfix" v-if="titleshow">
-      <li v-for="(item, index) in artist">
-        <a href="javascript:;" :class="{red:index===art_num}" @click="loadsingle(index)">
+    <ul class="top-list clearfix" v-if="titleshow">
+      <li v-for="(item, index) in artist" :class="{red:index===art_num}">
+        <a href="javascript:;" @click="loadsingle(index)">
         <span class="img-container">
           <img :src="item.artist_photo">
         </span>
@@ -370,20 +370,18 @@
         </a>
       </li>
     </ul>
-    <section class="artist" :class="{'top-max':!titleshow,'top-min':titleshow}">
+    <section class="content" :class="{'top-max':!titleshow,'top-min':titleshow}">
       <div class="intro">
           <span class="photo">
             <img src="public/images/resource/artist.png">
           </span>
-        <span class="artist-info">
-          <span class="artist-name">{{ artistsingle.name }}</span>&nbsp;-&nbsp;<span class="v-title">{{ artistsingle.title }}</span><br>
+        <span class="intro-info">
+          <span class="intro-name">{{ artistsingle.name }}</span>&nbsp;-&nbsp;<span class="v-title">{{ artistsingle.title }}</span><br>
           <span>{{ artistsingle.intro }}</span>
         </span>
       </div>
     </section>
-    <div class="text-container" v-html="artistsingle.description">
-      {{ artistsingle.description }}
-    </div>
+    <section class="text-container" v-html="artistsingle.description"></section>
     <section class="comment">
       <ul class="others" v-if="artistsingle.img && artistsingle.img.length > 0">
         <li v-for="img_item in artistsingle.img">
@@ -399,9 +397,9 @@
 </script>
 <script type="text/x-template" id="pug">
   <div class="artist-contianer">
-    <ul class="artist-list clearfix" v-if="titleshow">
-      <li v-for="(item, index) in pugs">
-        <a href="javascript:;" :class="{red:index===pug_num}" @click="loadsingle(index)">
+    <ul class="top-list clearfix" v-if="titleshow">
+      <li v-for="(item, index) in pugs" :class="{red:index===pug_num}">
+        <a href="javascript:;" @click="loadsingle(index)">
         <span class="img-container">
           <img :src="item.image">
         </span>
@@ -409,18 +407,18 @@
         </a>
       </li>
     </ul>
-    <section class="artist" :class="{'top-max':!titleshow,'top-min':titleshow}">
+    <section class="content" :class="{'top-max':!titleshow,'top-min':titleshow}">
       <div class="intro">
           <span class="photo">
             <img :src="pugsingle.image">
           </span>
-        <span class="artist-info">
-          <span class="artist-name">{{ pugsingle.name }}</span><br>
+        <span class="intro-info">
+          <span class="intro-name">{{ pugsingle.name }}</span><br>
           <span>{{ pugsingle.intro }}</span>
         </span>
       </div>
     </section>
-    <div class="text-container" v-html="pugsingle.description"></div>
+    <section class="text-container" v-html="pugsingle.description"></section>
     <section class="comment">
       <ul class="others">
         <li v-for="img_item in pugsingle.products">
@@ -434,9 +432,7 @@
   </div>
 </script>
 <script type="text/x-template" id="service">
-  <section class="service">
-    {{ tab_service }}
-  </section>
+  <section class="service" v-html="tab_service"></section>
 </script>
 <script type="text/x-template" id="discuss">
   <section class="discuss">

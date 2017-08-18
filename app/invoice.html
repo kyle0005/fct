@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="invoice-container" id="invoice" v-cloak>
+  <section class="list-container">
+    <div class="line">
+      <div class="left">发票抬头</div>
+      <div class="right">
+        <input type="text" class="right-inp" name="title" v-model="title">
+      </div>
+    </div>
+    <div class="line">
+      <div class="left">发票内容</div>
+      <div class="right">
+        <select class="select" v-model="content">
+          <option value="工艺礼品">工艺礼品</option>
+        </select>
+      </div>
+    </div>
+  </section>
+  <section class="info">
+    发票须知：<br>
+    1、开票金额为用户实际支付金额（不含优惠）<br>
+    2、未随箱寄出的纸质发票会在发货后15-30个工作日单独寄出<br>
+    3、单笔订单只支持开具一种发票类型，如须增值税专用发票请联系客服处理
+  </section>
+  <div class="sub-btn">
+    <a href="javascript:;">
+      <subpost :txt="subText" ref="subpost" @callback="sub" @succhandle="succhandle"></subpost>
+    </a>
+  </div>
+</div>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/common/tools.js"></script>
+<script>
+  var config = {
+    'invoiceUrl': 'sadadsadas'
+  }
+</script>
+<script src="public/scripts/invoice.js"></script>
+</body>
+</html>

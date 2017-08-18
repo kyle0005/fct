@@ -13,10 +13,50 @@ let app = new Vue(
       product: config.product,
       showConfirm: false, /* 显示confirm组件 */
       callback: null,
+
+      open: false,
+      docked: false,
+
+      name: '',
+      number: '',
+
+      subText: '确认提交'
     },
     watch: {
     },
     methods: {
+      sendback() {
+        let vue = this;
+        if (!vue.open) {
+          vue.docked = true;
+          vue.open = true;
+        } else {
+          vue.open = false;
+          setTimeout(function() {
+            vue.docked = false;
+          }, 300);
+        }
+
+      },
+      deliver(){
+        let vue = this,
+          post_url = config.sendbackUrl,
+          post_data = {
+            'name': vue.name,
+            'number': vue.number,
+          };
+        vue.$refs.subpost.post(post_url, post_data);
+      },
+      succhandle(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        if(data.url){
+          vue.close_auto(vue.linkto, data.url);
+        }else {
+          vue.close_auto();
+        }
+      },
       closeApp(){
         let vue = this;
         jAjax({
