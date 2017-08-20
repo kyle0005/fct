@@ -182,13 +182,13 @@ gulp.task('serve', () => {
             'cashAmount': 2563.4,
             'payAmount': 7554.8,      //used
             'totalAmount': 8888,
-            'couponCode': "",
+            'couponCode': '',
             'status': 3,                //used
             'statusName': '待收货',      //used
             'buyTotalCount': 10,        //used
             'payOrderId': null,
             'payPlatform': null,
-            'remark': "",
+            'remark': '',
             'orderGoods': [             //used
               {
                 'id': 60,
@@ -228,13 +228,13 @@ gulp.task('serve', () => {
             'cashAmount': 2563.4,
             'payAmount': 7554.8,      //used
             'totalAmount': 8888,
-            'couponCode': "",
+            'couponCode': '',
             'status': 2,                //used
             'statusName': '待收货',      //used
             'buyTotalCount': 10,        //used
             'payOrderId': null,
             'payPlatform': null,
-            'remark': "",
+            'remark': '',
             'orderGoods': [             //used
               {
                 'id': 60,
@@ -274,13 +274,13 @@ gulp.task('serve', () => {
             'cashAmount': 2563.4,
             'payAmount': 7554.8,      //used
             'totalAmount': 8888,
-            'couponCode': "",
+            'couponCode': '',
             'status': 1,                //used
             'statusName': '待收货',      //used
             'buyTotalCount': 10,        //used
             'payOrderId': null,
             'payPlatform': null,
-            'remark': "",
+            'remark': '',
             'orderGoods': [             //used
               {
                 'id': 60,
@@ -320,13 +320,13 @@ gulp.task('serve', () => {
             'cashAmount': 2563.4,
             'payAmount': 7554.8,      //used
             'totalAmount': 8888,
-            'couponCode': "",
+            'couponCode': '',
             'status': 0,                //used
             'statusName': '待收货',      //used
             'buyTotalCount': 10,        //used
             'payOrderId': null,
             'payPlatform': null,
-            'remark': "",
+            'remark': '',
             'orderGoods': [             //used
               {
                 'id': 60,
@@ -366,13 +366,13 @@ gulp.task('serve', () => {
             'cashAmount': 2563.4,
             'payAmount': 7554.8,      //used
             'totalAmount': 8888,
-            'couponCode': "",
+            'couponCode': '',
             'status': 4,                //used
             'statusName': '待收货',      //used
             'buyTotalCount': 10,        //used
             'payOrderId': null,
             'payPlatform': null,
-            'remark': "",
+            'remark': '',
             'orderGoods': [             //used
               {
                 'id': 60,
@@ -419,117 +419,135 @@ gulp.task('serve', () => {
       'message': '修改成功',
       'url': null,
       'data': {
-        'entries':
-          [
-            {
-              'images':
-                [
-                  'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png'
-                ],
-              'largeImages': [
-                '/public/images/resource/test7.png',
+          'entries':
+              [
+                /*{
+                 'images':[],
+                 'largeImages': [],
+                 'videoImage':'//vjs.zencdn.net/v/oceans.png',
+                 'videoUrl':'http://200006282.vod.myqcloud.com/200006282_42ca7ffa1e9011e692fe0785d455c86c.f20.mp4',
+                 'id':1,
+                 'content':'ssss',
+                 'isTop': false
+                 },*/
+                  {
+                      'images':
+                          [
+                              'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png'
+                          ],
+                      'largeImages': [
+                          '/public/images/resource/test7.png',
+                      ],
+                      'videoImage':'\/images\/default-null.png',
+                      'videoUrl':'',
+                      'id':2,
+                      'content':'ssss',
+                      'isTop': true
+                  },
+                  {
+                      'images':
+                          [
+                              '/public/images/resource/test1.png',
+                              '/public/images/resource/test1.png',
+                              '/public/images/resource/test1.png',
+                          ],
+                      'largeImages': [
+                          '/public/images/resource/test2.png',
+                          '/public/images/resource/test2.png',
+                          '/public/images/resource/test2.png',
+                      ],
+                      'videoImage':'//vjs.zencdn.net/v/oceans.png',
+                      'videoUrl':'',
+                      'id':5,
+                      'content':'ssss',
+                      'isTop': false
+                  },
+                  {
+                      'images':
+                          [
+                              '/public/images/resource/test2.png',
+                              '/public/images/resource/test2.png',
+                              '/public/images/resource/test2.png',
+                          ],
+                      'largeImages': [
+                          '/public/images/resource/test1.png',
+                          '/public/images/resource/test1.png',
+                          '/public/images/resource/test1.png',
+                      ],
+                      'videoImage':'//vjs.zencdn.net/v/oceans.png',
+                      'videoUrl':'',
+                      'id':4,
+                      'content':'ssss',
+                      'isTop': false
+                  },
+                  {
+                      'images':
+                          [
+                              '/public/images/resource/test3.png',
+                          ],
+                      'largeImages': [
+                          '/public/images/resource/test4.png',
+                      ],
+                      'videoImage':'//vjs.zencdn.net/v/oceans.png',
+                      'videoUrl':'',
+                      'id':7,
+                      'content':'ssss',
+                      'isTop': false
+                  },
+                  {
+                      'images':
+                          [
+                              '/public/images/resource/test4.png',
+                          ],
+                      'largeImages': [
+                          '/public/images/resource/test3.png',
+                      ],
+                      'videoImage':'//vjs.zencdn.net/v/oceans.png',
+                      'videoUrl':'',
+                      'id':8,
+                      'content':'ssss',
+                      'isTop': false
+                  },
+                  {
+                      'images':
+                          [
+                              '/public/images/resource/test5.png',
+                          ],
+                      'largeImages': [
+                          '/public/images/resource/test6.png',
+                      ],
+                      'videoImage':'//vjs.zencdn.net/v/oceans.png',
+                      'videoUrl':'',
+                      'id':9,
+                      'content':'ssss',
+                      'isTop': false
+                  },
+                  {
+                      'images':
+                          [
+                              '/public/images/resource/test6.png',
+                              '/public/images/resource/test6.png',
+                          ],
+                      'largeImages': [
+                          '/public/images/resource/test5.png',
+                          '/public/images/resource/test5.png',
+                      ],
+                      'videoImage':'//vjs.zencdn.net/v/oceans.png',
+                      'videoUrl':'',
+                      'id':10,
+                      'content':'ssss',
+                      'isTop': false
+                  },
+                /*{
+                 'images': [],
+                 'largeImages': [],
+                 'videoImage':'//vjs.zencdn.net/v/oceans.png',
+                 'videoUrl':'//vjs.zencdn.net/v/oceans.mp4',
+                 'id':3,
+                 'content':'组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件组件',
+                 'isTop': false
+                 }*/
               ],
-              'videoImage':'\/images\/default-null.png',
-              'videoUrl':'',
-              'id':2,
-              'content':'ssss',
-              'isTop': true
-            },
-            {
-              'images':
-                [
-                  '/public/images/resource/test1.png',
-                  '/public/images/resource/test1.png',
-                  '/public/images/resource/test1.png',
-                ],
-              'largeImages': [
-                '/public/images/resource/test2.png',
-                '/public/images/resource/test2.png',
-                '/public/images/resource/test2.png',
-              ],
-              'videoImage':'//vjs.zencdn.net/v/oceans.png',
-              'videoUrl':'',
-              'id':5,
-              'content':'ssss',
-              'isTop': false
-            },
-            {
-              'images':
-                [
-                  '/public/images/resource/test2.png',
-                  '/public/images/resource/test2.png',
-                  '/public/images/resource/test2.png',
-                ],
-              'largeImages': [
-                '/public/images/resource/test1.png',
-                '/public/images/resource/test1.png',
-                '/public/images/resource/test1.png',
-              ],
-              'videoImage':'//vjs.zencdn.net/v/oceans.png',
-              'videoUrl':'',
-              'id':4,
-              'content':'ssss',
-              'isTop': false
-            },
-            {
-              'images':
-                [
-                  '/public/images/resource/test3.png',
-                ],
-              'largeImages': [
-                '/public/images/resource/test4.png',
-              ],
-              'videoImage':'//vjs.zencdn.net/v/oceans.png',
-              'videoUrl':'',
-              'id':7,
-              'content':'ssss',
-              'isTop': false
-            },
-            {
-              'images':
-                [
-                  '/public/images/resource/test4.png',
-                ],
-              'largeImages': [
-                '/public/images/resource/test3.png',
-              ],
-              'videoImage':'//vjs.zencdn.net/v/oceans.png',
-              'videoUrl':'',
-              'id':8,
-              'content':'ssss',
-              'isTop': false
-            },
-            {
-              'images':
-                [
-                  '/public/images/resource/test5.png',
-                ],
-              'largeImages': [
-                '/public/images/resource/test6.png',
-              ],
-              'videoImage':'//vjs.zencdn.net/v/oceans.png',
-              'videoUrl':'',
-              'id':9,
-              'content':'ssss',
-              'isTop': false
-            },
-            {
-              'images':
-                [
-                  '/public/images/resource/test6.png',
-                  '/public/images/resource/test6.png',
-                ],
-              'largeImages': [
-                '/public/images/resource/test5.png',
-                '/public/images/resource/test5.png',
-              ],
-              'videoImage':'//vjs.zencdn.net/v/oceans.png',
-              'videoUrl':'',
-              'id':10,
-              'content':'ssss',
-              'isTop': false
-            },
-          ],
         'pager': {'prev': 0, 'current': 1, 'next': 3, 'page_size': 20, 'total_page': 1, 'total': 13}
       }
 

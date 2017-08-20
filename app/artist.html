@@ -43,10 +43,11 @@
     <component :is="currentView">
     </component>
   </keep-alive>
+  <!--<screen :imgarr="imgdata"></screen>-->
 </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
-<template id="photo">
+<!--<template id="photo">
   <div class="photogallery-container">
     <transition appear name="v-img-fade">
       <div v-if="!closed" class='fullscreen-v-img' @click.self="close()">
@@ -70,7 +71,7 @@
       </div>
     </transition>
   </div>
-</template>
+</template>-->
 <script type="text/x-template" id="head_top">
   <header class="head-container">
     <ul class="nav">
@@ -138,7 +139,8 @@
         <mVideo v-if="top.videoUrl !== ''" :poster="top.videoImage" :url="top.videoUrl" id="'video' + top.id"></mVideo>
         <ul class="img-list clearfix" v-if="topImg">
           <li v-for="(imgs, index) in top.images">
-            <img v-img="{ group: 'top', lsrc: top.largeImages[index]}"  v-view="imgs" src="public/images/img_loader.gif">
+            <img v-img="{ group: 'top', exsrc: top.largeImages[index]}"  v-view="imgs" src="public/images/img_loader.gif">
+            <!--<img v-view="imgs" src="public/images/img_loader.gif">-->
           </li>
         </ul>
       </div>
@@ -150,13 +152,14 @@
           <mVideo v-if="item.videoUrl !== ''" :poster="item.videoImage" :url="item.videoUrl" id="'video' + item.id"></mVideo>
           <ul class="img-list clearfix" v-if="item.images.length > 0">
             <li v-for="(img, i) in item.images">
-              <img v-img="{ group: item.id, lsrc: item.largeImages[index]}" lsrc="item.largeImages[index]}"  v-view="img" src="public/images/img_loader.gif">
+              <img v-img="{ group: item.id, exsrc: item.largeImages[i]}" v-view="img" src="public/images/img_loader.gif">
+              <!--<img v-view="img" src="public/images/img_loader.gif">-->
             </li>
           </ul>
         </div>
       </li>
     </ul>
-    <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
+    <!--<footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>-->
   </div>
 </script>
 <script type="text/x-template" id="works">
@@ -411,7 +414,7 @@
               {
                 "prev":0,
                 "current":1,
-                "next":1,
+                "next":3,
                 "page_size":20,
                 "total_page":1,
                 "total":1

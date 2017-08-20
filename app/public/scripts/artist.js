@@ -84,34 +84,99 @@ let screen = Vue.extend({
         this.showUI();
       });
     },
-  }
-);
+  });
+/*Vue.component('screen',
+    {
+        template: photo_html,
+        props: ['imgarr'],
+        data() {
+            return {
+                images: this.imgarr.images || [],
+                visibleUI: true,
+                currentImageIndex: this.imgarr.currentImageIndex || 0,
+                closed: this.imgarr.closed || true,
+                uiTimeout: null,
+            }
+        },
+        methods: {
+            close() {
+                document.querySelector('body').classList.remove('body-fs-v-img');
+                this.images = [];
+                this.currentImageIndex = 0;
+                this.closed = true;
+            },
+            next() {
+                // if next index not exists in array of images, set index to first element
+                if (this.currentImageIndex + 1 < this.images.length) {
+                    this.currentImageIndex++;
+                } else {
+                    this.currentImageIndex = 0;
+                }
+                ;
+            },
+            prev() {
+                // if prev index not exists in array of images, set index to last element
+                if (this.currentImageIndex > 0) {
+                    this.currentImageIndex--;
+                } else {
+                    this.currentImageIndex = this.images.length - 1;
+                }
+                ;
+            },
+            showUI(){
+                // UI's hidden, we reveal it for some time only on mouse move and
+                // ImageScreen appear
+                clearTimeout(this.uiTimeout);
+                this.visibleUI = true;
+                this.uiTimeout = setTimeout(() => {
+                    this.visibleUI = false
+                }, 3500)
+            }
+        },
+        created() {
+            window.addEventListener('keyup', (e) => {
+                // esc key and 'q' for quit
+                if (e.keyCode === 27 || e.keyCode === 81) this.close();
+                // arrow right and 'l' key (vim-like binding)
+                if (e.keyCode === 39 || e.keyCode === 76) this.next();
+                // arrow left and 'h' key (vim-like binding)
+                if (e.keyCode === 37 || e.keyCode === 72) this.prev();
+            });
+            window.addEventListener('scroll', () => {
+                this.close();
+            });
+            window.addEventListener('mousemove', () => {
+                this.showUI();
+            });
+        },
+    }
+);*/
 Vue.directive('img', {
   bind(el, binding) {
     let cursor = 'pointer';
-    let src =  el.lsrc;
+    let src =  '';
     let group = binding.arg || null;
     if (typeof binding.value !== 'undefined') {
       cursor = binding.value.cursor || cursor;
-      src = binding.value.lsrc;
+      src = binding.value.exsrc;
       group = binding.value.group || group;
     }
 
     el.setAttribute('data-vue-img-group', group || null);
-    if (binding.value && binding.value.lsrc) {
-      el.setAttribute('data-vue-img-src', binding.value.lsrc);
+    if (binding.value && binding.value.exsrc) {
+      el.setAttribute('data-vue-img-src', binding.value.exsrc);
     }
 
     if (!src) console.error('v-img element missing src parameter.');
 
     el.style.cursor = cursor;
 
-    let vm = window.vueImg;
+    let vm = document.vueImg;
     if (!vm) {
       const element = document.createElement('div');
       element.setAttribute('id', 'imageScreen');
       document.querySelector('body').appendChild(element);
-      vm = window.vueImg = new screen().$mount('#imageScreen');
+      vm = document.vueImg = new screen().$mount('#imageScreen');
     }
     el.addEventListener('click', () => {
       document.querySelector('body').classList.add('body-fs-v-img');
@@ -123,10 +188,24 @@ Vue.directive('img', {
       if (images.length == 0) {
         Vue.set(vm, 'images', [src]);
       } else {
-        Vue.set(vm, 'images', images.map(e => e.dataset.vueImgSrc || e.src));
+          Vue.set(vm, 'images', images.map(function(currentValue,index,arr){
+              return currentValue.dataset.vueImgSrc || currentValue.src;
+          }));
         Vue.set(vm, 'currentImageIndex', images.indexOf(el));
       }
       Vue.set(vm, 'closed', false);
+
+       /* let _data = {};
+        if (images.length == 0) {
+            _data.images = [src];
+        } else {
+            _data.images = images.map(function (currentValue, index, arr) {
+                return currentValue.dataset.vueImgSrc || currentValue.src;
+            });
+            _data.currentImageIndex = images.indexOf(el);
+        }
+        _data.closed = false;
+        Vue.$emit('setimgdata',_data);*/
     });
   },
 });
@@ -247,6 +326,7 @@ Vue.component('live',
           };
 
           const loadMore = () => {
+              console.log("windowHeight:" + (window.screen.height));
             if (scrollEl.scrollTop + windowHeight >= height + setTop + paddingBottom + marginBottom - scrollReduce) {
               binding.value();
             }
@@ -265,7 +345,7 @@ Vue.component('live',
         preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
         last_url: '',
         isVideoLoad: false,
-        // lsrc: null,
+        // exsrc: null,
 
         listloading: false,
         nodata: false
@@ -312,6 +392,7 @@ Vue.component('live',
 
         });
       },
+
     },
   }
 );
@@ -663,6 +744,8 @@ let app = new Vue(
       tab_num: 0,
       artist: config.artist,
 
+      // imgdata: {}
+
     },
     watch: {
     },
@@ -686,7 +769,10 @@ let app = new Vue(
         }
 
       },
-
+/*      setimgdata(data){
+          let vue = this;
+          vue.imgdata = data;
+      }*/
     },
     components: {
 
