@@ -43,35 +43,9 @@
     <component :is="currentView">
     </component>
   </keep-alive>
-  <!--<screen :imgarr="imgdata"></screen>-->
 </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
-<!--<template id="photo">
-  <div class="photogallery-container">
-    <transition appear name="v-img-fade">
-      <div v-if="!closed" class='fullscreen-v-img' @click.self="close()">
-        <div class="header-v-img">
-          <span v-if="images.length > 1" class="count-v-img">{{ currentImageIndex + 1 }}/{{ images.length }}</span>
-          <span class="close-v-img" @click="close">&times;</span>
-        </div>
-        <transition appear name="v-img-fade">
-        <span v-if="visibleUI && images.length !== 1" class="prev-v-img" @click="prev">
-          <svg width="25" height="25" viewBox="0 0 1792 1915" xmlns="http://www.w3.org/2000/svg"><path d="M1664 896v128q0 53-32.5 90.5t-84.5 37.5h-704l293 294q38 36 38 90t-38 90l-75 76q-37 37-90 37-52 0-91-37l-651-652q-37-37-37-90 0-52 37-91l651-650q38-38 91-38 52 0 90 38l75 74q38 38 38 91t-38 91l-293 293h704q52 0 84.5 37.5t32.5 90.5z" fill="#fff"/></svg>
-        </span>
-        </transition>
-        <transition appear name="v-img-fade">
-        <span v-if="visibleUI && images.length !== 1" class="next-v-img" @click="next">
-          <svg width="25" height="25" viewBox="0 0 1792 1915" xmlns="http://www.w3.org/2000/svg"><path d="M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293h-704q-52 0-84.5-37.5t-32.5-90.5v-128q0-53 32.5-90.5t84.5-37.5h704l-293-294q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z" fill="#fff"/></svg>
-        </span>
-        </transition>
-        <div class="content-v-img">
-          <img :src="images[currentImageIndex]" @click="next">
-        </div>
-      </div>
-    </transition>
-  </div>
-</template>-->
 <script type="text/x-template" id="head_top">
   <header class="head-container">
     <ul class="nav">
@@ -135,7 +109,7 @@
   <div class="tabs">
     <section class="ptop">
       <div class="text">{{ top.content }}</div>
-      <div class="media" >
+      <div class="media" :class="{vi: top.videoUrl!==''}">
         <mVideo v-if="top.videoUrl !== ''" :poster="top.videoImage" :url="top.videoUrl" id="'video' + top.id"></mVideo>
         <ul class="img-list clearfix" v-if="topImg">
           <li v-for="(imgs, index) in top.images">
@@ -148,7 +122,7 @@
     <ul class="news" v-load-more="nextPage" type="1">
       <li class="item" v-for="(item, index) in liveList">
         <div class="text">{{ item.content }}{{ item.id }}</div>
-        <div class="media">
+        <div class="media" :class="{vi: item.videoUrl!==''}">
           <mVideo v-if="item.videoUrl !== ''" :poster="item.videoImage" :url="item.videoUrl" id="'video' + item.id"></mVideo>
           <ul class="img-list clearfix" v-if="item.images.length > 0">
             <li v-for="(img, i) in item.images">
@@ -159,7 +133,13 @@
         </div>
       </li>
     </ul>
-    <!--<footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>-->
+    <div class="noData" v-if="nodata || (orderlist && orderlist.length <= 0)">
+      <div class="inner">
+        <img src="public/images/no_data.png">
+        <span class="no">当前没有相关数据哟~</span>
+      </div>
+    </div>
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
 </script>
 <script type="text/x-template" id="works">
@@ -181,6 +161,13 @@
         </div>
       </li>
     </ul>
+    <div class="noData" v-if="(orderlist && orderlist.length <= 0) || nodata">
+      <div class="inner">
+        <img src="public/images/no_data.png">
+        <span class="no">当前没有相关数据哟~</span>
+      </div>
+    </div>
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
 </script>
 <script type="text/x-template" id="chat">
@@ -203,7 +190,13 @@
         </div>
       </li>
     </ul>
-    <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
+    <div class="noData" v-if="(orderlist && orderlist.length <= 0) || nodata">
+      <div class="inner">
+        <img src="public/images/no_data.png">
+        <span class="no">当前没有相关数据哟~</span>
+      </div>
+    </div>
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
     <section class="sub-chat">
       <div class="inner">
         <a href="javascript:;" class="sub" @click="popchat()">
@@ -283,7 +276,7 @@
           {
             "entries":
               [
-                /*{
+/*                {
                   "images":[],
                   "largeImages": [],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",

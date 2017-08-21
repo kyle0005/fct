@@ -8,6 +8,7 @@ let app = new Vue(
         config.encyclopedias_list.forEach((item, index) => {
           if(item.id == vue.detail.id){
             vue.encynum = index;
+            item.scrollLeft = 0;
           }
         });
       }

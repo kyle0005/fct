@@ -385,9 +385,13 @@ $fc:#fff;
     img{
       width: 10%;
     }
+    img.no-cart{
+      width: 32%;
+    }
     .no{
       display: block;
       padding-top: 2%;
+      color: $color-666;
     }
   }
 

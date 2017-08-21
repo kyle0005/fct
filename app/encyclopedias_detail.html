@@ -12,7 +12,7 @@
 <div class="encyclopedias-container" id="encyclopediasdetail" v-cloak>
   <head-top></head-top>
   <section class="encyclopedias-content">
-    <ul class="top-list clearfix">
+    <ul class="top-list">
       <li v-for="(item, index) in encyclopedias_list" :class="{red:index===encynum}">
         <a href="javascript:;" @click="loadsingle(index, item.id)">
         <span class="img-container">
@@ -45,30 +45,6 @@
       </ul>
     </section>
   </section>
-
-  <!--<section class="artist encyclopedias-content">
-    <div class="intro">
-        <span class="photo">
-          <img :src="detail.image">
-        </span>
-      <span class="artist-info">
-        <span class="artist-name">{{ detail.name }}</span><br>
-        <span>{{ detail.intro }}</span>
-      </span>
-    </div>
-    <div v-html="detail.description"></div>
-    <div class="comment">
-      <ul class="others">
-        <li v-for="img_item in detail.productList">
-          <a href="javascript:;" class="item">
-            <img :src="img_item.defaultImage">
-            <span class="p-title">{{ img_item.name }}</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>-->
-
 </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/apis.js"></script>
@@ -119,12 +95,12 @@
     "encyclopedias_list": [
       {
         "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/ea2ecd8f89104a4a95c253391c325d2b.jpg!120",
-        "name": "半月",
+        "name": "半月半月半",
         "id": 28
       },
       {
         "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/7f7dc0d943a642deb24b0c800fde88c5.jpg!120",
-        "name": "西施",
+        "name": "西施西施西施d",
         "id": 24
       }, {
         "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-14\/366fcdfe903a4a769df38f025275f0d4.jpg!120",

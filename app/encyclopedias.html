@@ -66,6 +66,31 @@
       </div>
     </div>
   </section>
+  <section class="nav-bar">
+    <ul>
+      <li class="item chosen">
+        <a href="javascript:;">术语</a>
+      </li>
+    </ul>
+    <m-search @subsearch="subsearch" :dat="list_term" :sid="'term'"></m-search>
+  </section>
+  <section class="list">
+    <div class="tab-list down last">
+      <m-swipe swipeid="swipeterm" ref="swiperterm" :autoplay="0" effect="slide" v-if="list_term && list_term.length > 0">
+        <div v-for="(item, index) in list_term" class="swiper-slide inner-container" :key="index" slot="swiper-con">
+          <div class="items" v-for="(i_item, i_index) in item" :key="i_index">
+            <a href="javascript:;" class="link overText">{{ i_item.name }}</a>
+          </div>
+        </div>
+      </m-swipe>
+      <div class="noData" v-if="(list_term && list_term.length <= 0) || nodata">
+        <div class="inner">
+          <img src="public/images/no_data.png">
+          <span class="no">当前没有相关数据哟~</span>
+        </div>
+      </div>
+    </div>
+  </section>
   <div class="copyright-container">
     <div class="info">
       Copyright&nbsp;&copy;&nbsp;2017&nbsp;,fangcuntang&nbsp;Co.,Ltd.All&nbsp;Rights&nbsp;Reserved.<br>
@@ -230,7 +255,24 @@
       "id": 7
     }, {"name": "原矿清水泥", "id": 6}, {"name": "原矿底槽青", "id": 5}, {"name": "原矿清水泥", "id": 4}
     ],
-
+    "term": [
+      {"name": "原矿底槽青", "id": 25}, {"name": "原矿清水泥", "id": 24}, {
+        "name": "原矿底槽青",
+        "id": 23
+      }, {"name": "原矿清水泥", "id": 22}, {"name": "原矿底槽青", "id": 21}, {"name": "原矿清水泥", "id": 20}, {
+        "name": "原矿底槽青",
+        "id": 19
+      }, {"name": "原矿清水泥", "id": 18}, {"name": "原矿底槽青", "id": 17}, {"name": "原矿清水泥", "id": 16}, {
+        "name": "原矿底槽青",
+        "id": 15
+      }, {"name": "原矿清水泥", "id": 14}, {"name": "原矿底槽青", "id": 13}, {"name": "原矿清水泥", "id": 12}, {
+        "name": "原矿底槽青",
+        "id": 11
+      }, {"name": "原矿清水泥", "id": 10}, {"name": "原矿底槽青", "id": 9}, {"name": "原矿清水泥", "id": 8}, {
+        "name": "原矿底槽青",
+        "id": 7
+      }, {"name": "原矿清水泥", "id": 6}, {"name": "原矿底槽青", "id": 5}, {"name": "原矿清水泥", "id": 4}
+    ],
   }
 </script>
 <script type="text/x-template" id="head_top">

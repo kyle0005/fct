@@ -12,7 +12,8 @@
 </head>
 <body>
 <div class="cart-container" id="cart" v-cloak>
-  <form id="cart-form">
+  <head-top></head-top>
+  <form id="cart-form" v-if="pro_list && pro_list.length > 0">
     <div class="contianer">
       <ul class="cart-list" v-if="pro_list && pro_list.length > 0">
         <li class="cart-item" v-for="(item, index) in pro_list">
@@ -44,12 +45,6 @@
           </div>
         </li>
       </ul>
-      <div class="noData" v-if="(pro_list && pro_list.length <= 0) || nodata">
-        <div class="inner">
-          <img src="public/images/no_data.png">
-          <span class="no">当前没有相关数据哟~</span>
-        </div>
-      </div>
       <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
     </div>
     <section class="guess-container">
@@ -64,7 +59,7 @@
         </li>
       </ul>
     </section>
-    <footer class="foot-container">
+    <footer class="foot-container" >
       <div class="inner">
         <ul class="nav">
           <li class="choose">
@@ -84,16 +79,108 @@
       </div>
     </footer>
   </form>
+  <div class="noData" v-if="(pro_list && pro_list.length <= 0) || nodata">
+    <div class="inner">
+      <a href="javascript:;">
+        <img src="public/images/nocart.png" class="no-cart">
+        <span class="no">去添加点什么吧？</span>
+      </a>
+    </div>
+  </div>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
   <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :obj="cartItem" :msg="msg"></confirm>
   </div>
+<script type="text/x-template" id="head_top">
+  <header class="head-container">
+    <ul class="nav">
+      <li class="toggle" @click="toggle()">
+        <i class="fa fa-bars"></i>
+      </li>
+      <li class="logo" @click="toIndex()">
+        <img :src="img_url + '/logo.png'">
+      </li>
+      <li class="user" @click="toLogin()">
+        <span class="img-container">
+          <img src="public/images/resource/emptyPhoto.png">
+        </span>
+      </li>
+    </ul>
+    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
+      <div class="container">
+        <ul class="types">
+          <li class="item" v-for="(types, index) in typeList" @click="change(types.code)">
+            <span>{{ types.name }}</span>
+            <i class="fa fa-angle-right"></i>
+          </li>
+        </ul>
+        <ul class="lines clearfix">
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/images/menu1.png">
+              <span>合作艺师</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/images/menu2.png">
+              <span>百科</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/images/menu3.png">
+              <span>个性定制</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/images/menu4.png">
+              <span>APP下载</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/images/menu5.png">
+              <span>品牌理念</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</script>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script src="public/scripts/common/tools.js"></script>
+<script src="public/scripts/head.js"></script>
 <script>
   var config = {
-    "carts": [
+    "productsType": [
       {
+        "name": "全部",
+        "code": "a"
+      },
+      {
+        "name": "圆器",
+        "code": "b"
+      },
+      {
+        "name": "方器",
+        "code": "c"
+      },
+      {
+        "name": "花器",
+        "code": "d"
+      },
+      {
+        "name": "筋纹器",
+        "code": "e"
+      }
+
+    ],
+    "main_url": "http://localhost:9000/main.html",
+    "carts": [
+      /*{
         "id": 0,
         "goodsId": 0,
         "img": "public/images/resource/pro01.png",
@@ -102,8 +189,8 @@
         "price": 30000.00,
         "specId": 0,
         "specName": "刻龙",
-        "stockCount": 4,   /* 库存 */
-        "buyCount": 1       /* 购买数量 */
+        "stockCount": 4,   /!* 库存 *!/
+        "buyCount": 1       /!* 购买数量 *!/
       },
       {
         "id": 1,
@@ -114,7 +201,7 @@
         "price": 30000,
         "specId": 0,
         "specName": "刻龙",
-        "stockCount": 5,   /* 库存 */
+        "stockCount": 5,   /!* 库存 *!/
         "buyCount": 5
       },
       {
@@ -126,9 +213,9 @@
         "price": 30000,
         "specId": 0,
         "specName": "刻龙",
-        "stockCount": 5,   /* 库存 */
+        "stockCount": 5,   /!* 库存 *!/
         "buyCount": 2
-      },
+      },*/
 
     ],
     "like_list": [

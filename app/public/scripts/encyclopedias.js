@@ -162,6 +162,12 @@ let app = new Vue(
       if (swipert && swipert.dom) {
         this.swipert = swipert.dom;
       }
+
+      vue.getTermType();
+      let swiperterm = this.$refs.swiperterm;
+      if (swiperterm && swiperterm.dom) {
+        this.swiperterm = swiperterm.dom;
+      }
     },
     data: {
       ranks_list: [],
@@ -180,11 +186,15 @@ let app = new Vue(
       swipert: '',
       list_t: [],
 
+      swiperterm: '',
+      list_term: [],
+
       showAlert: false,
       msg: null,
 
       wikiCategories: config.wikiCategories,
       materials: config.materials,
+      term: config.term,
 
       listloading: false,
       nodata: false
@@ -220,6 +230,7 @@ let app = new Vue(
           vue.list = _tmp;
         }
       },
+
       getProductsOtherType() {
         let vue = this;
         vue.linkToOther(0);
@@ -238,6 +249,26 @@ let app = new Vue(
         }
 
       },
+
+      getTermType() {
+        let vue = this;
+        vue.linkToTerm(0);
+      },
+      linkToTerm(num){
+        let vue = this;
+        vue.list_term = [];
+        let _data = vue.term;
+        if(_data.length > 0){
+          let resLength = _data.length;
+          let tmp = [];
+          for (let i = 0, j = 0; i < resLength; i += 20, j++) {
+            tmp[j] = _data.slice(i, i + 20);
+          }
+          vue.list_term = tmp;
+        }
+
+      },
+
       upSearch(obj){
         let vue = this, _data = [];
         vue.list = [];
@@ -274,6 +305,25 @@ let app = new Vue(
           vue.nodata = true;
         }
       },
+      termSearch(obj){
+        let vue = this, _data = [];
+        vue.list_term = [];
+        _data = vue.searchNotes(obj.dat, obj.keywords); /* 搜索 */
+        let resLength = _data.length;
+        let _tmp = [];
+        for (let i = 0, j = 0; i < resLength; i += 20, j++) {
+          _tmp[j] = _data.slice(i, 20 + i);
+        }
+        vue.list_term = _tmp;
+
+        vue.listloading = false;
+        if(vue.list_term.length > 0){
+          vue.nodata = false;
+        }else {
+          vue.nodata = true;
+        }
+      },
+
       subsearch(obj){
         let vue = this, _data = [];
         if(obj.sid == 'up'){
@@ -281,6 +331,9 @@ let app = new Vue(
         }
         if(obj.sid == 'down'){
           vue.downSearch(obj);
+        }
+        if(obj.sid == 'term'){
+          vue.termSearch(obj);
         }
 
       },
