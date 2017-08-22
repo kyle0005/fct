@@ -22,16 +22,10 @@
       </div>
     </li>
   </ul>
-  <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
+  <no-data v-if="nodata"></no-data>
+  <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
-<template id="pop">
-  <div class="alet_container">
-    <section class="tip_text_container">
-      <div class="tip_text">{{ msg }}</div>
-    </section>
-  </div>
-</template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script src="public/scripts/common/tools.js"></script>
@@ -40,13 +34,13 @@
     "walletaccountUrl": "http://localhost:3000/walletaccount",
     "walletaccountList": {
       'entries': [
-        {
+        /*{
           "amount": 7554.8,
           "createTime": "2017-07-17 17:32",
           "remark": "购买goods",
           "balanceAmount": 4991.4
         },
-        {"amount": 7453.8, "createTime": "2017-07-17 17:30", "remark": "购买goods", "balanceAmount": 12546.2}
+        {"amount": 7453.8, "createTime": "2017-07-17 17:30", "remark": "购买goods", "balanceAmount": 12546.2}*/
       ],
       'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
     },

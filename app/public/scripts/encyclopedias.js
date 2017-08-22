@@ -196,9 +196,44 @@ let app = new Vue(
       materials: config.materials,
       term: config.term,
 
-      listloading: false,
-      nodata: false
+      listloading: true,
+      nodata: false,
 
+      listloading_t: true,
+      nodata_t: false,
+
+      listloading_term: true,
+      nodata_term: false,
+
+    },
+    watch: {
+      list: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.list && this.list.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      },
+      list_t: function (val, oldVal) {
+        if(!this.listloading_t){
+          if(this.list_t && this.list_t.length > 0){
+            this.nodata_t = false;
+          }else {
+            this.nodata_t = true;
+          }
+        }
+      },
+      list_term: function (val, oldVal) {
+        if(!this.listloading_term){
+          if(this.list_term && this.list_term.length > 0){
+            this.nodata_term = false;
+          }else {
+            this.nodata_term = true;
+          }
+        }
+      },
     },
     methods: {
       close(){
@@ -227,7 +262,10 @@ let app = new Vue(
           for (let i = 0, j = 0; i < resLength; i += 12, j++) {
             _tmp[j] = _data.slice(i, 12 + i);
           }
+          vue.nodata = false;
+          vue.listloading = true;
           vue.list = _tmp;
+          vue.listloading = false;
         }
       },
 
@@ -245,7 +283,10 @@ let app = new Vue(
           for (let i = 0, j = 0; i < resLength; i += 20, j++) {
             tmp[j] = _data.slice(i, i + 20);
           }
+          vue.nodata_t = false;
+          vue.listloading_t = true;
           vue.list_t = tmp;
+          vue.listloading_t = false;
         }
 
       },
@@ -264,7 +305,10 @@ let app = new Vue(
           for (let i = 0, j = 0; i < resLength; i += 20, j++) {
             tmp[j] = _data.slice(i, i + 20);
           }
+          vue.nodata_term = false;
+          vue.listloading_term = true;
           vue.list_term = tmp;
+          vue.listloading_term = false;
         }
 
       },
@@ -281,11 +325,6 @@ let app = new Vue(
         vue.list = _tmp;
 
         vue.listloading = false;
-        if(vue.list.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       },
       downSearch(obj){
         let vue = this, _data = [];
@@ -298,12 +337,7 @@ let app = new Vue(
         }
         vue.list_t = _tmp;
 
-        vue.listloading = false;
-        if(vue.list_t.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
+        vue.listloading_t = false;
       },
       termSearch(obj){
         let vue = this, _data = [];
@@ -316,12 +350,7 @@ let app = new Vue(
         }
         vue.list_term = _tmp;
 
-        vue.listloading = false;
-        if(vue.list_term.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
+        vue.listloading_term = false;
       },
 
       subsearch(obj){

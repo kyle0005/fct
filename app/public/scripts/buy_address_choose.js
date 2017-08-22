@@ -2,13 +2,33 @@ let app = new Vue(
   {
     mounted: function() {
       let vue = this;
+      vue.initData();
+    },
+    watch: {
+      address: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.address && this.address.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
     },
     data: {
-      address: config.address,
+      address: [],
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
+
+      listloading: true,
+      nodata: false
     },
     methods: {
+      initData(){
+        let vue = this;
+        vue.address = config.address;
+        vue.listloading = false;
+      },
       choose(item){
         let vue = this;
         jAjax({

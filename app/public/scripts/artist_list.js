@@ -1,16 +1,6 @@
 Vue.component('m-swipe',
   {
     template: '#m_swipe',
-    computed: {
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
-    },
     props: {
       swipeid: {
         type: String,
@@ -107,9 +97,6 @@ Vue.component('m-swipe',
 );
 let app = new Vue(
   {
-    computed: {
-
-    },
     mounted: function() {
       let vue = this;
       vue.load();
@@ -131,13 +118,25 @@ let app = new Vue(
     },
     data: {
       artist: [],
+      listloading: true,
+      nodata: false
     },
     watch: {
+      artist: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.artist && this.artist.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
     },
     methods: {
       load(){
         let vue = this;
         vue.artist = config.artist;
+        vue.listloading = false;
       }
     },
     components: {

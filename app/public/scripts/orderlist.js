@@ -3,6 +3,7 @@ let app = new Vue(
     mounted: function() {
       let vue = this;
       vue.tab_num = config.status;
+      vue.initData();
     },
     directives: {
       'load-more': {
@@ -66,6 +67,17 @@ let app = new Vue(
         }
       }
     },
+    watch: {
+      orderlist: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.orderlist && this.orderlist.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
+    },
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
@@ -73,7 +85,7 @@ let app = new Vue(
       show_search: false,
       placeholder: '',
       keywords: '',
-      orderlist: config.orderlist.entries,
+      orderlist: [],
       tabs: ['全部', '待付款', '待发货', '待收货', '待评价'],
       tab_num: 0,
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
@@ -84,10 +96,15 @@ let app = new Vue(
       callback: null,
       subText: '取消',
 
-      listloading: false,
+      listloading: true,
       nodata: false
     },
     methods: {
+      initData(){
+        let vue = this;
+        vue.orderlist = config.orderlist.entries;
+        vue.listloading = false;
+      },
       getBefore(){
         let vue = this;
         vue.listloading = true;
@@ -96,7 +113,6 @@ let app = new Vue(
         let vue = this,
           post_url = config.cancel_url + '/' + orderId + '/cancel',
           post_data = {};
-        // vue.$refs.subpost.post(post_url, post_data);
         jAjax({
           type:'post',
           url:post_url,
@@ -141,8 +157,8 @@ let app = new Vue(
         let vue = this;
         vue.preventRepeatReuqest = false;
         vue.tab_num = i;
-        vue.nodata = false;
         vue.orderlist = {};
+        vue.nodata = false;
         vue.pager = {};
         vue.status = i;
         var _url = config.orderlist_url + '?status=' + vue.status;
@@ -154,7 +170,6 @@ let app = new Vue(
       },
       subSearch(){
         let vue = this;
-        vue.nodata = false;
         tools.ajaxGet(config.search_url + '?keyword=' + vue.keywords, vue.searchSucc, vue.getBefore);
       },
 
@@ -191,28 +206,17 @@ let app = new Vue(
           callback(obj);
         }
       },
-
       searchSucc(data){
         let vue = this;
         vue.orderlist = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
-        if(vue.orderlist.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       },
       cateSucc(data){
         let vue = this;
         vue.orderlist = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
-        if(vue.orderlist.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
 
       },
       nextSucc(data){

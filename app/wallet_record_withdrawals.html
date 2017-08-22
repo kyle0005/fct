@@ -22,13 +22,8 @@
       </div>
     </li>
   </ul>
-  <div class="noData" v-else>
-    <div class="inner">
-      <img src="public/images/no_data.png">
-      <span class="no">当前没有相关数据哟~</span>
-    </div>
-  </div>
-  <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
+  <no-data v-if="nodata"></no-data>
+  <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <script src="public/scripts/vue.js"></script>
@@ -39,24 +34,24 @@
     "withdrawalRecordUrl": "http://localhost:3000/withdrawalRecord",
     "withdrawalRecordList": {
       'entries': [
-        {
+        /*{
           "createTime": "2017-02-02",
           "bankName": "建设银行",
           "amount": 224234,
-          "statusName": '等待财务处理'           /* 提现状态 */
+          "statusName": '等待财务处理'           /!* 提现状态 *!/
         },
         {
           "createTime": "2017-02-02",
           "bankName": 324123,
           "amount": 224234,
-          "statusName": '提现成功'           /* 提现状态 */
+          "statusName": '提现成功'           /!* 提现状态 *!/
         },
         {
           "createTime": "2017-02-02",
           "bankName": 324123,
           "amount": 224234,
-          "statusName": '提现成功'               /* 提现状态 */
-        },
+          "statusName": '提现成功'               /!* 提现状态 *!/
+        },*/
       ],
       'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 13}
     },

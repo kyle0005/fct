@@ -533,7 +533,7 @@ let photo_html = '<div class="photogallery-container">' +
   '</span>' +
   '</transition>' +
   '<div class="content-v-img">' +
-  '<img :src="images[currentImageIndex]" @click="next">' +
+  '<img :src="images[currentImageIndex]" id="img-slide">' +
   '</div>' +
   '</div>' +
   '</transition>' +
@@ -585,6 +585,7 @@ let imgscreen = Vue.extend({
     }
   },
   created() {
+    let vue = this;
 /*    window.addEventListener('keyup', (e) => {
       // esc key and 'q' for quit
       if (e.keyCode === 27 || e.keyCode === 81) this.close();
@@ -592,13 +593,22 @@ let imgscreen = Vue.extend({
       if (e.keyCode === 39 || e.keyCode === 76) this.next();
       // arrow left and 'h' key (vim-like binding)
       if (e.keyCode === 37 || e.keyCode === 72) this.prev();
-    });
+    });*/
     window.addEventListener('scroll', () => {
       this.close();
     });
     window.addEventListener('mousemove', () => {
       this.showUI();
-    });*/
+    });
+
+    let ele = document.querySelector('body');
+    let ham = new Hammer(ele);
+    ham.on('swipeleft', function(ev) {
+      vue.next();
+    });
+    ham.on('swiperight', function(ev) {
+      vue.prev();
+    });
   },
 });
 Vue.directive('img', {
@@ -645,17 +655,6 @@ Vue.directive('img', {
       }
       Vue.set(vm, 'closed', false);
 
-      /* let _data = {};
-       if (images.length == 0) {
-       _data.images = [src];
-       } else {
-       _data.images = images.map(function (currentValue, index, arr) {
-       return currentValue.dataset.vueImgSrc || currentValue.src;
-       });
-       _data.currentImageIndex = images.indexOf(el);
-       }
-       _data.closed = false;
-       Vue.$emit('setimgdata',_data);*/
     });
   },
 });
@@ -767,5 +766,22 @@ Vue.component('subpost',
 
       }
     }
+  }
+);
+
+let nodata_html = '<div class="noData">' +
+  '<div class="inner">' +
+  '<img src="../../images/no_data.png">' +
+  '<span class="no">当前没有相关数据哟~</span>' +
+'</div>' +
+'</div>';
+Vue.component('no-data',
+  {
+    template: nodata_html,
+    data(){
+      return {}
+    },
+    mounted() {},
+    methods: {}
   }
 );

@@ -23,10 +23,6 @@
     </div>
   </section>
   <section class="choose">
-<!--    <div class="item" :class="{chose: index===tab_num}" v-for="(item, index) in charge_nums" @click="choose(item[Object.keys(item)[0]], Object.keys(item)[0], index)">
-      <a href="javascript:;" class="link" v-if="showText(item)">其他金额</a>
-      <a href="javascript:;" class="link" v-else>{{ Object.keys(item)[0] }}</a>
-    </div>-->
     <div class="item" :class="{chose: index===tab_num}" v-for="(item, index) in charge_nums" @click="choose(item.giftPercent, item.price, index)">
       <a href="javascript:;" class="link" v-if="showText(item)">其他金额</a>
       <a href="javascript:;" class="link" v-else>{{ item.price }}</a>
@@ -53,12 +49,6 @@
       min:100,
       max:10000000,
       defaultGift: 0.2,
-//      rules: {
-//        500: 0.2,
-//        1000: 0.3,
-//        2000: 0.4,
-//        3000: 0.5,
-//      },
       rules: [
         {
           "giftPercent": 0.2,

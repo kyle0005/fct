@@ -32,7 +32,8 @@
       </div>
     </li>
   </ul>
-  <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
+  <no-data v-if="nodata"></no-data>
+  <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <script src="public/scripts/vue.js"></script>

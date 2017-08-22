@@ -5,13 +5,24 @@ let app = new Vue(
     },
     mounted: function() {
       let vue = this;
-
+      vue.initData();
+    },
+    watch: {
+      shareList: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.shareList && this.shareList.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
     },
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
 
-      shareList: config.share.entries,
+      shareList: [],
       pager: config.share.pager,
 
       productsType: config.productsType,
@@ -24,7 +35,7 @@ let app = new Vue(
       last_url: '',
 
       search: '',
-      listloading: false,
+      listloading: true,
       nodata: false
 
     },
@@ -91,6 +102,11 @@ let app = new Vue(
       }
     },
     methods: {
+      initData(){
+        let vue = this;
+        vue.shareList = config.share.entries;
+        vue.listloading = false;
+      },
       getBefore(){
         let vue = this;
         vue.listloading = true;
@@ -107,30 +123,6 @@ let app = new Vue(
         }
         if(vue.search){
           tools.ajaxGet(_url + '&keyword=' + vue.search, vue.searchSuc, vue.getBefore);
-          /*jAjax({
-            type:'get',
-            url: _url + '&keyword=' + vue.search,
-            data: {},
-            timeOut:5000,
-            before:function(){
-            },
-            success:function(data){
-              if(data){
-                data = JSON.parse(data);
-                if(parseInt(data.code) == 200){
-                  vue.shareList = data.data.entries;
-                  vue.pager = data.data.pager;
-                }else {
-                  vue.msg = data.message;
-                  vue.showAlert = true;
-                  vue.close_auto();
-                }
-              }
-
-            },
-            error:function(){
-            }
-          });*/
         }
 
       },
@@ -138,11 +130,6 @@ let app = new Vue(
         let vue = this;
         vue.shareList = data.data.entries;
         vue.pager = data.data.pager;
-        if(vue.shareList.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       },
       searchTxt(){
         let vue = this;
@@ -166,30 +153,6 @@ let app = new Vue(
           if(_url !== vue.last_url){
             vue.last_url = _url;
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
-            /*jAjax({
-              type:'get',
-              url:_url,
-              timeOut:5000,
-              before:function(){
-                console.log('before');
-              },
-              success:function(data){
-                if(data){
-                  data = JSON.parse(data);
-                  if(parseInt(data.code) == 200){
-                    vue.pager = data.data.pager;
-                    vue.shareList = data.data.entries.concat(vue.shareList);
-                    vue.preventRepeatReuqest = false;
-                  }else {
-                    console.log('false')
-                  }
-                }
-
-              },
-              error:function(){
-                console.log('error');
-              }
-            });*/
           }
 
         }
@@ -209,40 +172,12 @@ let app = new Vue(
           _url += '&code=' + vue.categary;
         }
         tools.ajaxGet(_url, vue.selSucc, vue.getBefore);
-        /*jAjax({
-          type:'get',
-          url:_url,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.shareList = data.data.entries;
-                vue.pager = data.data.pager;
-              }else {
-                console.log('false')
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });*/
       },
       selSucc(data){
         let vue = this;
         vue.shareList = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
-        if(vue.shareList.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       },
       cate(){
         let vue = this;
@@ -252,40 +187,12 @@ let app = new Vue(
           _url += '&sort=' + vue.sortsel;
         }
         tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
-        /*jAjax({
-          type:'get',
-          url:_url,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.shareList = data.data.entries;
-                vue.pager = data.data.pager;
-              }else {
-                console.log('false')
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });*/
       },
       cateSucc(data){
         let vue = this;
         vue.shareList = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
-        if(vue.shareList.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       },
       close(){
         this.showAlert = false;

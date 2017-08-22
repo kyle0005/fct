@@ -5,7 +5,7 @@ let app = new Vue(
     },
     mounted: function() {
       let vue = this;
-
+      vue.initData();
     },
     directives: {
       'load-more': {
@@ -69,19 +69,34 @@ let app = new Vue(
         }
       }
     },
+    watch: {
+      chargeRecordList: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.chargeRecordList && this.chargeRecordList.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
+    },
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      chargeRecordList: config.chargeRecordList.entries,
-      pager: config.chargeRecordList.pager,
+      chargeRecordList: [],
+      pager: {},
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
-      listloading: false,
+      listloading: true,
       nodata: false
     },
-    watch: {
-    },
     methods: {
+      initData(){
+        let vue = this;
+        vue.chargeRecordList = config.chargeRecordList.entries;
+        vue.pager = config.chargeRecordList.pager;
+        vue.listloading = false;
+      },
       getBefore(){
         let vue = this;
         vue.listloading = true;
@@ -94,30 +109,6 @@ let app = new Vue(
           if(_url !== vue.last_url){
             vue.last_url = _url;
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
-            /*jAjax({
-              type:'get',
-              url:_url,
-              timeOut:5000,
-              before:function(){
-                console.log('before');
-              },
-              success:function(data){
-                if(data){
-                  data = JSON.parse(data);
-                  if(parseInt(data.code) == 200){
-                    vue.pager = data.data.pager;
-                    vue.chargeRecordList = data.data.entries.concat(vue.chargeRecordList);
-                    vue.preventRepeatReuqest = false;
-                  }else {
-                    console.log('false')
-                  }
-                }
-
-              },
-              error:function(){
-                console.log('error');
-              }
-            });*/
           }
 
         }

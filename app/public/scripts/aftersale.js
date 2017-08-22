@@ -67,21 +67,35 @@ let app = new Vue(
     },
     mounted: function() {
       let vue = this;
-
+      vue.initdata();
     },
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      refund: config.refund.entries,
+      refund: [],
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
       pager: config.refund.pager,
-      listloading: false,
+      listloading: true,
       nodata: false
     },
     watch: {
+      refund: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.refund && this.refund.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
     },
     methods: {
+      initdata(){
+        let vue = this;
+        vue.refund = config.refund.entries;
+        vue.listloading = false;
+      },
       getBefore(){
         let vue = this;
         vue.listloading = true;
@@ -94,30 +108,6 @@ let app = new Vue(
           if(_url !== vue.last_url){
             vue.last_url = _url;
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
-            /*jAjax({
-              type:'get',
-              url:_url,
-              timeOut:5000,
-              before:function(){
-                console.log('before');
-              },
-              success:function(data){
-                if(data){
-                  data = JSON.parse(data);
-                  if(parseInt(data.code) == 200){
-                    vue.pager = data.data.pager;
-                    vue.refund = data.data.entries.concat(vue.refund);
-                    vue.preventRepeatReuqest = false;
-                  }else {
-                    console.log('false')
-                  }
-                }
-
-              },
-              error:function(){
-                console.log('error');
-              }
-            });*/
           }
 
         }

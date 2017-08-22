@@ -40,6 +40,17 @@ Vue.component('mVideo',
 Vue.component('live',
   {
     template: '#live',
+    watch: {
+      liveList: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.liveList && this.liveList.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
+    },
     computed: {
       topImg: function () {
         let vue = this, flag = false, _tmp = [];
@@ -51,8 +62,9 @@ Vue.component('live',
           }
         });
         vue.liveList = _tmp;
+        vue.listloading = false;
 
-        if(vue.top.images.length > 0){
+        if(vue.top.images && vue.top.images.length > 0){
           flag = true;
         }
         return flag;
@@ -131,9 +143,8 @@ Vue.component('live',
         preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
         last_url: '',
         isVideoLoad: false,
-        // exsrc: null,
 
-        listloading: false,
+        listloading: true,
         nodata: false
       }
     },
@@ -189,11 +200,22 @@ Vue.component('works',
       let vue = this;
       vue.loadWorks();
     },
+    watch: {
+      workslist: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.workslist && this.workslist.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
+    },
     data() {
       return {
         workslist: [],
         last_url: '',
-        listloading: false,
+        listloading: true,
         nodata: false
       }
     },
@@ -207,7 +229,6 @@ Vue.component('works',
         var _url = config.artistWorks_url;
         if(_url !== vue.last_url){
           vue.last_url = _url;
-          vue.nodata = false;
           tools.ajaxGet(_url, vue.workSucc, vue.getBefore);
         }
       },
@@ -215,11 +236,6 @@ Vue.component('works',
         let vue = this;
         vue.workslist = data.data;
         vue.listloading = false;
-        if(vue.workslist.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       }
     },
   }
@@ -295,6 +311,17 @@ Vue.component('chat',
       let vue = this;
       vue.loadChat();
     },
+    watch: {
+      chatlist: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.chatlist && this.chatlist.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
+    },
     data() {
       return {
         chatlist: [],
@@ -308,7 +335,7 @@ Vue.component('chat',
         message: '', /* 提交聊天内容 */
         subText: '发送',
 
-        listloading: false,
+        listloading: true,
         nodata: false
       }
     },
@@ -355,67 +382,13 @@ Vue.component('chat',
           };
         vue.$refs.subpost.post(config.chat_url, data);
 
-        /*jAjax({
-          type:'post',
-          url:config.chat_url,
-          data: {
-            'message': vue.message,
-          },
-          timeOut:5000,
-          before:function(){
-          },
-          success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = '留言提交成功，我们将通知“'+ config.artist.name +'”给您回复，请留意！';
-                vue.showAlert = true;
-                vue.close_auto();
-
-                vue.popchat();
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-
-          },
-          error:function(){
-          }
-        });*/
       },
       loadChat() {
         let vue = this;
         var _url = config.artistChat_url;
         if(_url !== vue.last_url){
           vue.last_url = _url;
-          vue.nodata = false;
           tools.ajaxGet(_url, vue.chatSucc, vue.getBefore);
-          /*jAjax({
-            type:'get',
-            url:_url,
-            timeOut:5000,
-            before:function(){
-              console.log('before');
-            },
-            success:function(data){
-              if(data){
-                data = JSON.parse(data);
-                if(parseInt(data.code) == 200){
-                  vue.chatlist = data.data.entries;
-                  vue.pager = data.data.pager;
-                }else {
-                  console.log('false')
-                }
-              }
-
-            },
-            error:function(){
-              console.log('error');
-            }
-          });*/
         }
       },
       chatSucc(data){
@@ -423,11 +396,6 @@ Vue.component('chat',
         vue.chatlist = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
-        if(vue.chatlist.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       },
 
       succhandle(data){

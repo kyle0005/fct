@@ -29,9 +29,6 @@ let app = new Vue(
       loadsingle(index, id){
         let vue = this, _url = config.ency_url + id;
         vue.encynum = index;
- /*       if(vue.detail.id == ''){
-
-        }*/
         tools.ajaxGet(_url, vue.encySucc, vue.getBefore);
       },
       loadency() {
@@ -44,11 +41,6 @@ let app = new Vue(
         vue.detail = [];
         vue.detail = data.data;
         vue.listloading = false;
-        if(vue.detail.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       }
     },
     components: {

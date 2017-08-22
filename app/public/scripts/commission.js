@@ -5,7 +5,7 @@ let app = new Vue(
     },
     mounted: function() {
       let vue = this;
-
+      vue.initData();
     },
     directives: {
       'load-more': {
@@ -72,19 +72,35 @@ let app = new Vue(
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      commissionlist: config.commissionlist.entries,
-      pager: config.commissionlist.pager,
+      commissionlist: [],
+      pager: {},
       status: 0,
       tabs: ['等待结算', '结算成功'],
       tab_num: 0,
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
-      listloading: false,
+
+      listloading: true,
       nodata: false
     },
     watch: {
+      commissionlist: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.commissionlist && this.commissionlist.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
     },
     methods: {
+      initData(){
+        let vue = this;
+        vue.commissionlist = config.commissionlist.entries;
+        vue.pager = config.commissionlist.pager;
+        vue.listloading = false;
+      },
       getBefore(){
         let vue = this;
         vue.listloading = true;
@@ -99,6 +115,8 @@ let app = new Vue(
         }else {
           vue.status = 2;
         }
+        vue.commissionlist = [];
+        vue.nodata = false;
         var _url = config.commissionUrl + '?status=' + vue.status;
         tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
 
@@ -109,11 +127,6 @@ let app = new Vue(
         vue.commissionlist = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
-        if(vue.commissionlist.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       },
       nextPage() {
         let vue = this;
@@ -123,30 +136,6 @@ let app = new Vue(
           if(_url !== vue.last_url){
             vue.last_url = _url;
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
-            /*jAjax({
-              type:'get',
-              url:_url,
-              timeOut:5000,
-              before:function(){
-                console.log('before');
-              },
-              success:function(data){
-                if(data){
-                  data = JSON.parse(data);
-                  if(parseInt(data.code) == 200){
-                    vue.pager = data.data.pager;
-                    vue.commissionlist = data.data.entries.concat(vue.commissionlist);
-                    vue.preventRepeatReuqest = false;
-                  }else {
-                    console.log('false')
-                  }
-                }
-
-              },
-              error:function(){
-                console.log('error');
-              }
-            });*/
           }
 
         }

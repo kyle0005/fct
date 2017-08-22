@@ -44,6 +44,8 @@
         </li>
       </ul>
     </section>
+    <no-data v-if="nodata"></no-data>
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   </section>
 </div>
 <script src="public/scripts/vue.js"></script>
@@ -76,7 +78,7 @@
 
     ],
     "main_url": "http://localhost:9000/main.html",
-    "ency_url":"http://localhost:9000/xxxx",
+    "ency_url":"http://localhost:3000/encydetail",
     "index": "index.html",
     "login": "login.html",
     "detail": {

@@ -14,6 +14,8 @@
     <div class="list-item" v-for="(item, index) in couponlist">
       <coupons :couponitem="item" @pop="pop" @succhandle="succhandle"></coupons>
     </div>
+    <no-data v-if="nodata"></no-data>
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   </section>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>

@@ -133,12 +133,7 @@
         </div>
       </li>
     </ul>
-    <div class="noData" v-if="nodata || (orderlist && orderlist.length <= 0)">
-      <div class="inner">
-        <img src="public/images/no_data.png">
-        <span class="no">当前没有相关数据哟~</span>
-      </div>
-    </div>
+    <no-data v-if="nodata"></no-data>
     <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
 </script>
@@ -161,12 +156,7 @@
         </div>
       </li>
     </ul>
-    <div class="noData" v-if="(orderlist && orderlist.length <= 0) || nodata">
-      <div class="inner">
-        <img src="public/images/no_data.png">
-        <span class="no">当前没有相关数据哟~</span>
-      </div>
-    </div>
+    <no-data v-if="nodata"></no-data>
     <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
 </script>
@@ -190,12 +180,7 @@
         </div>
       </li>
     </ul>
-    <div class="noData" v-if="(orderlist && orderlist.length <= 0) || nodata">
-      <div class="inner">
-        <img src="public/images/no_data.png">
-        <span class="no">当前没有相关数据哟~</span>
-      </div>
-    </div>
+    <no-data v-if="nodata"></no-data>
     <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
     <section class="sub-chat">
       <div class="inner">
@@ -303,13 +288,13 @@
                   "images":
                     [
                       "/public/images/resource/test1.png",
-                      "/public/images/resource/test1.png",
-                      "/public/images/resource/test1.png",
+                      "/public/images/resource/test2.png",
+                      "/public/images/resource/test3.png",
                     ],
                   "largeImages": [
+                    "/public/images/resource/test1.png",
                     "/public/images/resource/test2.png",
-                    "/public/images/resource/test2.png",
-                    "/public/images/resource/test2.png",
+                    "/public/images/resource/test3.png",
                   ],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
                   "videoUrl":"",
@@ -420,6 +405,7 @@
     "chat_url": "aaaaaa"
   }
 </script>
+<script src="public/scripts/hammer.js"></script>
 <script src="public/scripts/common/tools.js"></script>
 <script src="public/scripts/head.js"></script>
 <script src="public/scripts/artist.js"></script>

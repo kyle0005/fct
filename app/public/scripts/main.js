@@ -1,10 +1,12 @@
 let app = new Vue(
   {
     mounted: function () {
+      let vue = this;
+      vue.initData();
     },
     data: {
       ranks_list: config.productsRank,
-      pro_list: config.products,
+      pro_list: [],
       loading: false,
       refreshing: false,
       msg: 0,
@@ -13,10 +15,26 @@ let app = new Vue(
       _code: '',
       tab_num: null,
 
-      listloading: false,
+      listloading: true,
       nodata: false
     },
+    watch: {
+      pro_list: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.pro_list && this.pro_list.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
+    },
     methods: {
+      initData(){
+        let vue = this;
+        vue.pro_list = config.products;
+        vue.listloading = false;
+      },
       showImg(){
         return 'public/images/img_loader.gif';
       },
@@ -28,8 +46,8 @@ let app = new Vue(
       getprolist(code, level_id, index) {
         let vue = this;
         vue.tab_num = index;
-        vue.nodata = false;
         vue.pro_list = {};
+        vue.nodata = false;
 
         let _url = '';
         code = code || '';
@@ -59,11 +77,6 @@ let app = new Vue(
         vue.code = vue._code;
 
         vue.listloading = false;
-        if(vue.pro_list.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
 
       },
     },

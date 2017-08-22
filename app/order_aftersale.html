@@ -37,7 +37,8 @@
         </div>
     </li>
   </ul>
-  <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
+  <no-data v-if="nodata"></no-data>
+  <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <script src="public/scripts/vue.js"></script>
@@ -48,6 +49,69 @@
     "refund": {
       "refundUrl": "http://localhost:3000/refundlist",
       "entries": [
+        {
+          "id": "1707186898922467",
+          "memberId": 5,
+          "orderId": "18616311580",
+          "orderGoodsId": 0,
+          "isReceived": 0,
+          "serviceType": 4991.4,
+          "refundReason": 2563.4,
+          "status": 7554.8,      //used
+          "statusName": "退款成功",      //used
+          "buyTotalCount": 10,        //used
+          "refundMethod": 8888,
+          "createTime": "",
+          "updateTime": 4,                //used
+          "goodsId": 60,
+          "goodsSpecId": "1707186898922467",
+          "name": "goods",
+          "specName": "aaa",
+          "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+          "payAmount": 7554.8,
+        },
+        {
+          "id": "1707186898922467",
+          "memberId": 5,
+          "orderId": "18616311580",
+          "orderGoodsId": 0,
+          "isReceived": 0,
+          "serviceType": 4991.4,
+          "refundReason": 2563.4,
+          "status": 7554.8,      //used
+          "statusName": "退款成功",      //used
+          "buyTotalCount": 10,        //used
+          "refundMethod": 8888,
+          "createTime": "",
+          "updateTime": 4,                //used
+          "goodsId": 60,
+          "goodsSpecId": "1707186898922467",
+          "name": "goods",
+          "specName": "aaa",
+          "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+          "payAmount": 7554.8,
+        },
+        {
+          "id": "1707186898922467",
+          "memberId": 5,
+          "orderId": "18616311580",
+          "orderGoodsId": 0,
+          "isReceived": 0,
+          "serviceType": 4991.4,
+          "refundReason": 2563.4,
+          "status": 7554.8,      //used
+          "statusName": "退款成功",      //used
+          "buyTotalCount": 10,        //used
+          "refundMethod": 8888,
+          "createTime": "",
+          "updateTime": 4,                //used
+          "goodsId": 60,
+          "goodsSpecId": "1707186898922467",
+          "name": "goods",
+          "specName": "aaa",
+          "img": "\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png",
+          "payAmount": 7554.8,
+        },
         {
           "id": "1707186898922467",
           "memberId": 5,

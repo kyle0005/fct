@@ -393,6 +393,8 @@
       </ul>
       <a :href="artistsingle.link" class="for-more">点击了解更多》</a>
     </section>
+    <no-data v-if="nodata"></no-data>
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
 </script>
 <script type="text/x-template" id="pug">
@@ -429,10 +431,16 @@
         </li>
       </ul>
     </section>
+    <no-data v-if="nodata"></no-data>
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
 </script>
 <script type="text/x-template" id="service">
-  <section class="service" v-html="tab_service"></section>
+  <div>
+    <section class="service" v-html="tab_service"></section>
+    <no-data v-if="nodata"></no-data>
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
+  </div>
 </script>
 <script type="text/x-template" id="discuss">
   <section class="discuss">
@@ -460,7 +468,8 @@
         </div>
       </li>
     </ul>
-    <footer class="loader_more" v-show="preventRepeatReuqest">正在加载更多...</footer>
+    <no-data v-if="nodata"></no-data>
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   </section>
 </script>
 <script src="public/scripts/head.js"></script>

@@ -25,9 +25,12 @@
       </a>
     </div>
   </m-swipe>
+  <no-data v-if="nodata"></no-data>
+  <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
 </div>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/api/index.js"></script>
+<script src="public/scripts/common/tools.js"></script>
 <script src="public/scripts/swiper.js"></script>
 <script type="text/x-template" id="m_swipe">
   <div class="swiper-container" :class="swipeid">

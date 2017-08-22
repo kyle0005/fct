@@ -56,7 +56,9 @@ Vue.component('overview',
     },
     data() {
       return {
-        product: config.product
+        product: config.product,
+        listloading: true,
+        nodata: false
       }
     },
     methods: {
@@ -78,7 +80,7 @@ Vue.component('artist',
         titleshow: false,
         chosen: false,
         art_num: 0,
-        listloading: false,
+        listloading: true,
         nodata: false
       }
     },
@@ -94,7 +96,6 @@ Vue.component('artist',
       },
       loadart() {
         let vue = this;
-        vue.nodata = false;
         tools.ajaxGet(config.artist_url, vue.getSucc, vue.getBefore);
       },
       getSucc(data){
@@ -103,11 +104,6 @@ Vue.component('artist',
         vue.titleshow = vue.artist.length > 1;
         vue.loadsingle(0);
         vue.listloading = false;
-        if(vue.artist.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       }
     },
   }
@@ -126,7 +122,7 @@ Vue.component('pug',
         titleshow: false,
         chosen: false,
         pug_num: 0,
-        listloading: false,
+        listloading: true,
         nodata: false
       }
     },
@@ -142,7 +138,6 @@ Vue.component('pug',
       },
       loadpug() {
         let vue = this;
-        vue.nodata = false;
         tools.ajaxGet(config.pug_url, vue.pugSucc, vue.getBefore);
       },
       pugSucc(data){
@@ -151,11 +146,6 @@ Vue.component('pug',
         vue.titleshow = vue.pugs.length > 1;
         vue.loadsingle(0);
         vue.listloading = false;
-        if(vue.pugs.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       }
     },
   }
@@ -164,12 +154,22 @@ Vue.component('service',
   {
     template: '#service',
     mounted: function() {
-
+      let vue = this;
+      vue.initData();
     },
     data() {
       return {
-        tab_service: config.tab_service
+        tab_service: '',
+        listloading: true,
+        nodata: false
       }
+    },
+    methods: {
+      initData(){
+        let vue = this;
+        vue.tab_service = config.tab_service;
+        vue.listloading = false;
+      },
     },
   }
 );
@@ -180,13 +180,24 @@ Vue.component('discuss',
       let vue = this;
       vue.loadList();
     },
+    watch: {
+      commentlist: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.commentlist && this.commentlist.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
+    },
     data() {
       return {
         pager: {},
         commentlist: [],
         preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
         last_url: '',
-        listloading: false,
+        listloading: true,
         nodata: false
       }
     },
@@ -269,31 +280,6 @@ Vue.component('discuss',
           if(_url !== vue.last_url){
             vue.last_url = _url;
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
-            /*jAjax({
-              type:'get',
-              url:_url,
-              timeOut:5000,
-              before:function(){
-                console.log('before');
-              },
-              success:function(data){
-                if(data){
-                  data = JSON.parse(data);
-                  if(parseInt(data.code) == 200){
-                    vue.commentlist = data.data.entries.concat(vue.commentlist);
-                    vue.pager = data.data.pager;
-                    vue.preventRepeatReuqest = false;
-                    console.log('ok')
-                  }else {
-                    console.log('false')
-                  }
-                }
-
-              },
-              error:function(){
-                console.log('error');
-              }
-            });*/
           }
 
         }
@@ -309,39 +295,12 @@ Vue.component('discuss',
         let vue = this;
         vue.nodata = false;
         tools.ajaxGet(config.discuss_url, vue.listSucc, vue.getBefore);
-        /*jAjax({
-          type:'get',
-          url:config.discuss_url,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            //{message:"xxx", url:"", code:200, data:""}
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.commentlist = data.data.entries;
-                vue.pager = data.data.pager;
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });*/
       },
       listSucc(data){
         let vue = this;
         vue.commentlist = data.data.entries;
         vue.pager = data.data.pager;
         vue.listloading = false;
-        if(vue.commentlist.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       }
     },
   }
@@ -457,12 +416,8 @@ let app = new Vue(
           error:function(){
           }
         });
-
-
       },
-      change(index) {
-
-      },
+      change(index) {},
       add(){
         let vue = this,
           num = parseInt(vue.input_val.toString().replace(/[^\d]/g,''));

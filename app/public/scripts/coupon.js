@@ -49,26 +49,39 @@ Vue.component('coupons',
 );
 let app = new Vue(
   {
-    computed: {
-
-    },
     mounted: function() {
       let vue = this;
-
+      vue.initData();
+    },
+    watch: {
+      couponlist: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.couponlist && this.couponlist.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
     },
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      couponlist: config.couponlist,
+      couponlist: [],
       couponcount: config.couponcount,
       status: 0,
       tabs: ['未使用', '使用记录', '已过期'],
       tab_num: 0,
 
-      listloading: false,
+      listloading: true,
       nodata: false
     },
     methods: {
+      initData(){
+        let vue = this;
+        vue.couponlist = config.couponlist;
+        vue.listloading = false;
+      },
       getBefore(){
         let vue = this;
         vue.listloading = true;
@@ -95,41 +108,16 @@ let app = new Vue(
         }else {
           vue.status = 3;
         }
+        vue.couponlist = [];
+        vue.nodata = false;
         var _url = config.couponlistUrl + '?status=' + vue.status;
         tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
-        /*jAjax({
-          type:'get',
-          url:_url,
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.couponlist = data.data;
-              }else {
-                console.log('false')
-              }
-            }
-
-          },
-          error:function(){
-            console.log('error');
-          }
-        });*/
 
       },
       cateSucc(data){
         let vue = this;
         vue.couponlist = data.data;
         vue.listloading = false;
-        if(vue.couponlist.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       },
       succhandle(data){
         let vue = this;

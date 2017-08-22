@@ -33,12 +33,8 @@
           </div>
         </div>
       </m-swipe>
-      <div class="noData" v-if="(list && list.length <= 0) || nodata">
-        <div class="inner">
-          <img src="public/images/no_data.png">
-          <span class="no">当前没有相关数据哟~</span>
-        </div>
-      </div>
+      <no-data v-if="nodata"></no-data>
+      <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
     </div>
   </section>
   <section class="nav-bar">
@@ -58,12 +54,8 @@
           </div>
         </div>
       </m-swipe>
-      <div class="noData" v-if="(list_t && list_t.length <= 0) || nodata">
-        <div class="inner">
-          <img src="public/images/no_data.png">
-          <span class="no">当前没有相关数据哟~</span>
-        </div>
-      </div>
+      <no-data v-if="nodata_t"></no-data>
+      <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading_t">
     </div>
   </section>
   <section class="nav-bar">
@@ -83,12 +75,8 @@
           </div>
         </div>
       </m-swipe>
-      <div class="noData" v-if="(list_term && list_term.length <= 0) || nodata">
-        <div class="inner">
-          <img src="public/images/no_data.png">
-          <span class="no">当前没有相关数据哟~</span>
-        </div>
-      </div>
+      <no-data v-if="nodata_term"></no-data>
+      <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading_term">
     </div>
   </section>
   <div class="copyright-container">

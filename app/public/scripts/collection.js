@@ -5,7 +5,7 @@ let app = new Vue(
     },
     mounted: function() {
       let vue = this;
-
+      vue.initData();
     },
     data: {
       showAlert: false, //显示提示组件
@@ -13,13 +13,28 @@ let app = new Vue(
       status: 0,
       tabs: ['宝贝', '合作艺人'],
       tab_num: 0,
-      collection: config.collection,
-      listloading: false,
+      collection: [],
+
+      listloading: true,
       nodata: false
     },
     watch: {
+      collection: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.collection && this.collection.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
     },
     methods: {
+      initData(){
+        let vue = this;
+        vue.collection = config.collection;
+        vue.listloading = false;
+      },
       getBefore(){
         let vue = this;
         vue.listloading = true;
@@ -56,6 +71,7 @@ let app = new Vue(
         let vue = this;
         vue.preventRepeatReuqest = false;
         vue.tab_num = index;
+        vue.collection = [];
         vue.nodata = false;
         var _url = config.collectionUrl + '?from_type=' + index;
         tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
@@ -65,11 +81,6 @@ let app = new Vue(
         let vue = this;
         vue.collection = data.data;
         vue.listloading = false;
-        if(vue.collection && vue.collection.length > 0){
-          vue.nodata = false;
-        }else {
-          vue.nodata = true;
-        }
       },
       close(){
         this.showAlert = false;

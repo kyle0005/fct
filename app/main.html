@@ -42,12 +42,8 @@
           </a>
         </li>
       </ul>
-      <div class="noData" v-else>
-        <div class="inner">
-          <img src="public/images/no_data.png">
-          <span class="no">当前没有相关数据哟~</span>
-        </div>
-      </div>
+      <no-data v-if="nodata"></no-data>
+      <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
     </div>
     <div class="copyright-container">
       <div class="info">

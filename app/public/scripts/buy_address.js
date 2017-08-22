@@ -2,17 +2,37 @@ let app = new Vue(
   {
     mounted: function() {
       let vue = this;
+      vue.initdata();
       vue.defaultAddr();
     },
+    watch: {
+      address: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.address && this.address.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
+    },
     data: {
-      address: config.address,
+      address: [],
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
       picked: '',
       subText: '删除',
-      del_index: null
+      del_index: null,
+
+      listloading: true,
+      nodata: false
     },
     methods: {
+      initdata(){
+        let vue = this;
+        vue.address = config.address;
+        vue.listloading = false;
+      },
       setDefault(item){
         let vue = this;
         vue.address.forEach((item, index) => {
