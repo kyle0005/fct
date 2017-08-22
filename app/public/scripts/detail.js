@@ -73,6 +73,9 @@ Vue.component('artist',
       let vue = this;
       vue.loadart();
     },
+/*    activated: function () {
+      this.listloading = true;
+    },*/
     data() {
       return {
         artist: [],
@@ -87,12 +90,12 @@ Vue.component('artist',
     methods: {
       getBefore(){
         let vue = this;
-        vue.listloading = true;
       },
       loadsingle(index){
         let vue = this;
         vue.art_num = index;
         vue.artistsingle = vue.artist[index];
+        vue.listloading = false;
       },
       loadart() {
         let vue = this;
@@ -103,7 +106,6 @@ Vue.component('artist',
         vue.artist = data.data;
         vue.titleshow = vue.artist.length > 1;
         vue.loadsingle(0);
-        vue.listloading = false;
       }
     },
   }

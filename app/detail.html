@@ -21,11 +21,11 @@
       </ul>
     </section>
   <div class="tabs">
-    <keep-alive>
-      <component :is="currentView" v-cloak>
+    <!--<keep-alive>-->
+      <component :is="currentView">
         <!-- 组件在 vm.currentview 变化时改变！ -->
       </component>
-    </keep-alive>
+    <!--</keep-alive>-->
   </div>
     <a href="javascript:;" class="top" @click="top()">
       <img src="public/images/top.png">
@@ -360,11 +360,13 @@
 </script>
 <script type="text/x-template" id="artist">
   <div class="artist-contianer">
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <no-data v-if="nodata"></no-data>
     <ul class="top-list" v-if="titleshow">
       <li v-for="(item, index) in artist" :class="{red:index===art_num}">
         <a href="javascript:;" @click="loadsingle(index)">
         <span class="img-container">
-          <img :src="item.artist_photo">
+          <img :src="item.headPortrait">
         </span>
           <span class="name-container overText">{{ item.name }}</span>
         </a>
@@ -373,7 +375,7 @@
     <section class="content" :class="{'top-max':!titleshow,'top-min':titleshow}">
       <div class="intro">
           <span class="photo">
-            <img src="public/images/resource/artist.png">
+            <img :src="artistsingle.headPortrait">
           </span>
         <span class="intro-info">
           <span class="intro-name">{{ artistsingle.name }}</span>&nbsp;-&nbsp;<span class="v-title">{{ artistsingle.title }}</span><br>
@@ -393,12 +395,13 @@
       </ul>
       <a :href="artistsingle.link" class="for-more">点击了解更多》</a>
     </section>
-    <no-data v-if="nodata"></no-data>
-    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
+
   </div>
 </script>
 <script type="text/x-template" id="pug">
   <div class="artist-contianer">
+    <no-data v-if="nodata"></no-data>
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
     <ul class="top-list" v-if="titleshow">
       <li v-for="(item, index) in pugs" :class="{red:index===pug_num}">
         <a href="javascript:;" @click="loadsingle(index)">
@@ -431,19 +434,19 @@
         </li>
       </ul>
     </section>
-    <no-data v-if="nodata"></no-data>
-    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
 </script>
 <script type="text/x-template" id="service">
   <div>
-    <section class="service" v-html="tab_service"></section>
     <no-data v-if="nodata"></no-data>
     <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <section class="service" v-html="tab_service"></section>
   </div>
 </script>
 <script type="text/x-template" id="discuss">
   <section class="discuss">
+    <no-data v-if="nodata"></no-data>
+    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
     <ul class="list" v-load-more="nextPage" type="1" v-if="commentlist && commentlist.length > 0">
       <li class="item" v-for="(item, index) in commentlist">
         <div class="user-info clearfix">
@@ -468,8 +471,6 @@
         </div>
       </li>
     </ul>
-    <no-data v-if="nodata"></no-data>
-    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
   </section>
 </script>
 <script src="public/scripts/head.js"></script>

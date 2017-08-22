@@ -3,14 +3,18 @@ let app = new Vue(
     computed: {
     },
     mounted: function() {
-      let vue = this;
+      let vue = this, _obj = '';
       if(config.encyclopedias_list && config.encyclopedias_list.length > 0){
         config.encyclopedias_list.forEach((item, index) => {
           if(item.id == vue.detail.id){
             vue.encynum = index;
-            item.scrollLeft = 0;
+            _obj = 'list' + index;
+
           }
         });
+        let _li = document.querySelector('li[name=' + _obj + ']');
+        let _ul = document.querySelector('ul[name=top]');
+        _ul.scrollLeft = _li.offsetLeft;
       }
     },
     data: {
