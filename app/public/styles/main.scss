@@ -8,8 +8,8 @@
 }
 %others{
   width: calc(100% - 60px);
-  padding: 10px 0 10%;
-  background-color: $color-f5f5f5;
+  padding: 10px 0 6%;
+  background-color: $color-white;
   margin: 0 30px;
   display: flex;
   justify-content: space-between;
@@ -967,12 +967,15 @@ $foot-height: 250px;
       background-color: $color-f5f5f5;
       z-index: 1;
     }
+    .inner.o{
+      top: 88px;
+    }
   }
   ul.top-list{
     list-style-type: none;
     white-space: nowrap;
     overflow: auto;
-    //border-bottom: 6px solid rgba(220, 220, 220, 0.35);
+    border-bottom: 6px solid rgba(220, 220, 220, 0.35);
     -webkit-overflow-scrolling: touch;
     font-size: 0;  /* 去除inline-block的子元素间隙 */
     height: 90px;
@@ -1031,54 +1034,71 @@ $foot-height: 250px;
     width: 92%;
     padding: 0 4% 4% 4%;
     overflow: hidden;
-    background-color: $color-f5f5f5;
+    background-color: $color-white;
     color: $color-666;
     img{
       width: 100%;
     }
   }
   .top-max{
-    padding: 6% 4% 4% 4%;
+    padding: 6% 4% 0 4%;
   }
   .top-min{
-    padding: 4%;
+    padding: 5% 4% 0 4%;
   }
   .content{
-    background-color: $color-f5f5f5;
+    background-color: $color-white;
     color: $color-666;
     .intro{
+      text-align: center;
       .photo{
         position: relative;
         display: inline-block;
-        float: left;
-        width: 25%;
-        padding-bottom: 25%;
-        margin-right: 5.4%;
+        width: calc(480/690*100%);
+        margin: 0 auto;
+        padding-bottom: calc(480/690*100%);
         text-align: center;
+        background: url("../images/d_bg.png") $color-212122 no-repeat center center;
+        background-size: 100% auto;
         img{
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
+          bottom: 3%;
+          left: 12%;
+          width: calc(440/480*100%);
+          border-radius: 100%;
         }
       }
       .intro-info{
+        display: block;
         .intro-name{
-          font-size: $font-size-t14;
-          line-height: $font-size-t14;
+          display: inline-block;
+          font-size: $font-size-t12;
+          line-height: $font-size-t12;
           font-weight: bold;
-          margin-bottom: 3px;
+          margin-bottom: 8%;
           .v-title{
             font-size: $font-size-t12;
           }
+        }
+        .intro-content{
+          display: block;
+          text-align: left;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          border-color: rgb(240, 240, 244);
+          color: rgb(136, 136, 136);
+          border-radius: 4px;
+          padding: 15px;
+          font-size: $font-size-t12;
+          white-space: normal;
+          line-height: 1.5em;
+          background-color: rgb(240, 240, 244);
         }
       }
     }
   }
   .comment{
-    background-color: $color-f5f5f5;
+    background-color: $color-white;
     .title{
       padding: 2px 0 2px 10px;
       font-size: $font-size-t13;
@@ -1091,6 +1111,26 @@ $foot-height: 250px;
       margin: 0 30px;
       word-wrap:break-word;
       word-break:normal;
+    }
+    .lines{
+      position: relative;
+      margin: 28px auto;
+      width: 36%;
+      height: 1px;
+      background-color: $color-ccc;
+      .text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        transform: translateX(-50%);
+        margin-top: -12px;
+        width: 80px;
+        height: 24px;
+        text-align: center;
+        background-color: $color-white;
+        font-size: $font-size-t13;
+      }
     }
     .others{
       @extend %others;
@@ -1137,136 +1177,138 @@ $foot-height: 250px;
   }
   .tabs{
     /* live */
-    .video-container{
-      width: 100%;
-      overflow: hidden;
-    }
-    .product-context{
-      position: relative;
-      padding-top: 20px;
-      text-align: center;
-      background-color: $color-white;
-      .title{
+    .overview-container{
+      background-color: $color-f5f5f5;
+      .video-container{
         position: relative;
-        display:inline-block;
-        margin: 0 auto;
-        //width: 100%;
-        max-width: 60%;
-        //text-align: center;
-        font-size: $font-size-t14;
-        padding-bottom: 5px;
-        //.main{
-        //  display: inline-block;
-        //}
-        .discount-container{
+        width: 100%;
+        overflow: hidden;
+        .sale{
           position: absolute;
-          right: -45px;
-          top: -10px;
-          //display: inline-block;
-          padding: 1px 6px;
-          background-color: $color-993333;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 35px;
+          line-height: 35px;
+          background-color: rgba(153, 51, 51, 0.85);
           color: $color-white;
-          font-size: $font-size-t12;
+          .left{
+            float: left;
+            display: inline-block;
+            padding-left: 4%;
+            .title{
+              font-size: $font-size-t13;
+            }
+          }
+          .right{
+            float: right;
+            display: inline-block;
+            padding-right: 4%;
+            text-align: right;
+          }
         }
       }
-      .vice-title{
-        padding-bottom: 5px;
-        color: $color-999;
-      }
-      .price{
+      .product-context{
         position: relative;
-        display: inline-block;
-        max-width: 60%;
-        margin: 0 auto;
-        font-size: $font-size-t15;
-        color: $color-993333;
-        padding-bottom: 16px;
-        .del-price{
-          position: absolute;
-          right: -55px;
-          bottom: 12px;
+        background-color: $color-white;
+        padding-top: 4%;
+        margin-bottom: 10px;
+        .title{
+          display: block;
+          margin-left: 4%;
+          font-size: $font-size-t14;
+          padding-bottom: 2%;
+        }
+        .vice-title{
+          margin-left: 4%;
+          padding-bottom: 2%;
           color: $color-999;
-          font-size: $font-size-t12;
         }
-      }
-      &:after{
-        content: '';
-        display: block;
-        width: 100%;
-        height: 10px;
-        background-color: $color-f5f5f5;
-      }
-    }
-    .product-context.dis{
-      padding-top: 30px;
-    }
-    .info{
-      background-color: $color-white;
-      padding: 20px 4% .1px 4%;
-      font-size: $font-size-t12;
-      .item{
-        width: 100%;
-        margin-bottom: 12px;
-        .left{
-          display: inline-block;
-          margin-right: 4%;
-
+        .price{
+          margin-left: 4%;
+          font-size: $font-size-t15;
+          color: $color-993333;
+          padding-bottom: 2%;
+          .del-price{
+            color: $color-999;
+            font-size: $font-size-t12;
+          }
         }
-        .right{
-          display: inline-block;
-          color: $color-666;
-          .discount-color{
-            color: $color-993333;
+        .sale-info{
+          margin-left: 4%;
+          color: $color-999;
+          padding-bottom: 4%;
+          img{
+            width: 4.5%;
+            margin-right: 1%;
+            vertical-align: sub;
+          }
+        }
+        .view{
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: calc(186/750*100%);
+          padding-bottom: calc(102/750*100%);
+          border-left: 1px dashed $color-dcdcdc;
+          .inner{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            text-align: center;
+            .num{
+              font-size: $font-size-t15;
+            }
           }
         }
       }
       .coupon{
         position: relative;
-        margin: 28px auto;
-        width: 95%;
-        height: 2px;
-        background-color: $color-f5f5f5;
-        a.get-coupon{
+        width: 92%;
+        height: 42px;
+        line-height: 42px;
+        padding: 0 4%;
+        background-color: $color-white;
+        margin-bottom: 10px;
+        img{
+          width: 10%;
+          margin-right: 3%;
+          vertical-align: text-top;
+        }
+        .get-coupon{
           position: absolute;
+          right: 4%;
           top: 50%;
-          left: 50%;
-          display: block;
-          margin-left: -19.325%;
-          margin-top: -12px;
-          width: 38.65%;
-          height: 24px;
-          text-align: center;
-          background-color: $color-white;
-          color: $color-993333;
-          font-size: $font-size-t13;
-          &:after{
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 15%;
-            height: 1px;
-            background-color: $color-993333;
+          transform: translateY(-50%);
+          width: 60px;
+          a.coup-link{
+            @include wei-bg-btn($color-1d1d1d, $color-white, $color-1d1d1d, 28px, 28px, $font-size-t12);
+            @include fillet(false);
           }
         }
       }
-    }
-    .edit-context{
-      /*width: 92%;
-      padding: 4%;*/
-      padding: 10px 0 3% 0;
-      overflow: hidden;
-      //background-color: $color-f5f5f5;
-      img, p{
-        //padding: 2% 0;
-        width: 100%;
-        text-align: center;
+
+      .edit-context{
+        /*width: 92%;
+        padding: 4%;*/
+        padding: 10px 0 3% 0;
+        overflow: hidden;
+        //background-color: $color-f5f5f5;
+        img, p{
+          //padding: 2% 0;
+          width: 100%;
+          text-align: center;
+        }
       }
     }
 
+
     /* artist,pug */
     .artist-contianer{
+      background-color: $color-white;
       @extend %edit-container;
     }
 
@@ -2621,7 +2663,7 @@ $foot-height: 250px;
 /* encyclopedias */
 .encyclopedias-container{
   @extend %page;
-  background-color: $color-f5f5f5;
+  background-color: $color-white;
   .nav-bar{
     position: relative;
     width: 100%;
@@ -2921,8 +2963,6 @@ $foot-height: 250px;
   .guess-container{
     position: relative;
     width: 100%;
-    //background-color: $color-f5f5f5;
-    //margin-bottom: 4%;
     &:after{
       content: '';
       position: absolute;
@@ -2937,7 +2977,26 @@ $foot-height: 250px;
       text-align: center;
       padding: 7.73% 0;
       background-color: $color-white;
-      font-size: $font-size-t14;
+      .lines{
+        position: relative;
+        margin: 28px auto;
+        width: 36%;
+        height: 1px;
+        background-color: $color-ccc;
+        .text{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          display: block;
+          transform: translateX(-50%);
+          margin-top: -12px;
+          width: 80px;
+          height: 24px;
+          text-align: center;
+          background-color: $color-white;
+          font-size: $font-size-t14;
+        }
+      }
     }
     ul.guess{
       width: 100%;

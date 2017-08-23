@@ -21,11 +21,11 @@
       </ul>
     </section>
   <div class="tabs">
-    <!--<keep-alive>-->
+    <keep-alive>
       <component :is="currentView">
         <!-- 组件在 vm.currentview 变化时改变！ -->
       </component>
-    <!--</keep-alive>-->
+    </keep-alive>
   </div>
     <a href="javascript:;" class="top" @click="top()">
       <img src="public/images/top.png">
@@ -161,8 +161,8 @@
 
     ],
     "main_url": "http://localhost:9000/main.html",
-    "product": {
-      "hasCoupon":false,   /* 是否有优惠券  */
+/*    "product": {
+      "hasCoupon":false,   /!* 是否有优惠券  *!/
       "hasDiscount": true,
       "discount": {
         "id": 0,
@@ -175,21 +175,63 @@
       "subTitle":"登堂入室，泰斗顾景舟",
       "salePrice":8888,
       "price": 10000.00,
-      "cartProductCount":0,  /* 现有购物车中 产品种类数量(即图标显示值) */
+      "cartProductCount":0,  /!* 现有购物车中 产品种类数量(即图标显示值) *!/
       "name":"稀有xx段【x瓢】",
       "specification":[
-        /*{"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
-        {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}*/
+        /!*{"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
+        {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}*!/
       ],
-      "favoriteState":false,  /* 是否收藏 */
+      "favoriteState":false,  /!* 是否收藏 *!/
       "id":2,
       "video":{
         "poster":"http:\/\/oss-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/7db5dda78b5b4098809d520603cbc637.jpg",
         "url":"//vjs.zencdn.net/v/oceans.mp4"
       },
-      "content":"<div>aaaaa</div>",   /* html内容直接输出 */
-      "status":1,   /* 1为上架，0为下架,下架按钮为灰色 */
-      "stockCount":10   /* 库存 */
+      "content":"<div>aaaaa</div>",   /!* html内容直接输出 *!/
+      "status":1,   /!* 1为上架，0为下架,下架按钮为灰色 *!/
+      "stockCount":10   /!* 库存 *!/
+    },*/
+    "product": {
+      "code": "1697635",
+      "salePrice": 122214,
+      "promotionPrice": 45544,
+      "cartProductCount": 1,
+      "hasDiscount": false,
+      "volumes": [150, 350],    /* 容量 */
+      "discount": {
+        "id": 0,
+        "name": '首单优惠活动',
+        "discountRate": 0.75,
+        "discountTime": 90,
+        "hasBegin": true,
+        "canBuy": true,
+        "singleCount": 4    /* 限购数 */
+      },
+      "specification": [
+        /*{"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
+         {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}*/
+      ],
+      "video": {
+        "poster": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-01\/25742b692c6e4ac8b5951a396ae7e1e2.png!750",
+        "url": "http:\/\/1253930304.vod2.myqcloud.com\/399bd37dvodgzp1253930304\/43628ff29031868223073846887\/JVfmp4X8LN8A.mp4"
+      },
+      "materialId": "4",
+      "content": "<p><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e202643.jpg\" title=\"5677c2e202643.jpg\" alt=\"福泰一生花丝吊坠_01.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e4e6047.jpg\" title=\"5677c2e4e6047.jpg\" alt=\"福泰一生花丝吊坠_02.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e870c31.jpg\" title=\"5677c2e870c31.jpg\" alt=\"福泰一生花丝吊坠_03.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2ebe554a.jpg\" title=\"5677c2ebe554a.jpg\" alt=\"福泰一生花丝吊坠_04.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2ef0f0e8.jpg\" title=\"5677c2ef0f0e8.jpg\" alt=\"福泰一生花丝吊坠_05.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2f2c8e52.jpg\" title=\"5677c2f2c8e52.jpg\" alt=\"福泰一生花丝吊坠_06.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c307ae5ec.jpg\" title=\"5677c307ae5ec.jpg\" alt=\"镂空花丝金镶玉繁花似玉吊坠_06.jpg\"><\/p>",
+      "hasCoupon": 1,
+      "subTitle": "原矿大红袍",
+      "intro": " 传统的供春纹理要做好很不容易，龙隐约在壶身上出现又不抢春味还要溶入整个风格之中不是那么容易做到，质地特纯,泥质细腻、成色稳重。",
+      "name": "测试宝贝",
+      "favoriteState": 1,
+      "id": 7,
+      "defaultImage": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg!120",
+      "status": 1,
+      "stockCount": 43,
+      "artistNames": "顾景舟",
+      "materialNames": "原矿清水泥",
+      "categoryNames": "圆弧",
+      "viewCount": 9809,
+      "hasBuy": 1,    /* 是否可以买，1为可以买 */
+      "hasCart": 1      /* 是否可以添加购物车，1为可以 */
     },
     "fav_url" : "http://localhost:3000/fav",
     "discuss_url" : "http://localhost:3000/discuss",
@@ -256,6 +298,11 @@
     </div>
   </div>
 </template>
+<template id="m_time">
+    <span :endTime="endTime" :callback="callback" :endText="endText">
+        <slot>{{ content }}</slot>
+    </span>
+</template>
 <script type="text/x-template" id="head_top">
   <header class="head-container">
     <ul class="nav">
@@ -316,41 +363,44 @@
   </header>
 </script>
 <script type="text/x-template" id="overview">
-  <div>
+  <div class="overview-container">
     <section class="video-container">
       <mVideo :poster="product.video.poster" :url="product.video.url" id="videotop"></mVideo>
-    </section>
-    <section class="product-context" v-if="!(product.hasDiscount && (product.discount.hasBegin || !product.discount.canBuy))">
-      <div class="title">{{ product.name }}</div>
-      <div class="vice-title">{{ product.subTitle }}</div>
-      <div class="price"><small class="pri-mark">￥</small>{{ product.salePrice }}</div>
-    </section>
-    <section class="product-context dis" v-else>
-      <div class="title">
-        {{ product.name }}
-        <div class="discount-container"><span v-if="product.discount.canBuy">秒杀</span><span v-else>促销</span></div>
+      <div class="sale clearfix">
+        <div class="left">
+          <span class="title">{{ product.discount.name }}</span>&ensp;享<span class="discount-color">{{ product.discount.discountRate * 10 }}折，限购{{ product.discount.singleCount }}件</span>
+        </div>
+        <div class="right">
+          距<span v-if="product.discount.hasBegin">开始</span><span v-else>结束</span>仅剩<m-time :endTime="product.discount.discountTime" :callback="end" endText="结束"></m-time>
+        </div>
       </div>
+    </section>
+    <section class="product-context">
+      <strong class="title">{{ product.name }}</strong>
       <div class="vice-title">{{ product.subTitle }}</div>
       <div class="price">
-        <small class="pri-mark">￥</small>{{ product.salePrice }}
-        <del class="del-price">{{ product.price }}</del>
+        <small class="pri-mark">￥</small>{{ product.promotionPrice }}&ensp;<del class="del-price">{{ product.salePrice }}</del>
+      </div>
+      <div class="sale-info">
+        <img src="public/images/items.png">包邮&emsp;<img src="public/images/items.png">保真保值&emsp;<img src="public/images/items.png">30天无忧退换货
+      </div>
+      <div class="view">
+        <div class="inner">
+          <div class="num">{{ product.viewCount }}</div>
+          <div>人围观</div>
+        </div>
+      </div>
+    </section>
+    <section class="coupon" v-if="product.hasCoupon">
+      <img src="public/images/d_coup.png">领取优惠券
+      <div class="get-coupon">
+        <a :href="product.coupon_url" class="coup-link">领取</a>
       </div>
     </section>
     <section class="info">
-      <div class="item" v-if="product.hasDiscount">
-        <span class="left">优惠</span>
-        <span class="right">{{ product.discount.name }}、享受<span class="discount-color">{{ product.discount.discountRate * 10 }}折</span>(还剩<span class="discount-color">{{ product.discount.discountTime }}天</span><span v-if="product.discount.hasBegin">开始</span><span v-else>结束</span>)</span>
-      </div>
-      <div class="item">
-        <span class="left">服务</span>
-        <span class="right">&bull;&nbsp;顺丰包邮&emsp;&bull;&nbsp;30天无忧退货</span>
-      </div>
       <div class="item">
         <span class="left">库存</span>
         <span class="right">{{ calstock }}</span>
-      </div>
-      <div class="coupon" v-if="product.hasCoupon">
-        <a :href="product.coupon_url" class="get-coupon">领取优惠券</a>
       </div>
     </section>
     <section class="edit-context" v-html="product.content">
@@ -362,29 +412,36 @@
   <div class="artist-contianer">
     <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
     <no-data v-if="nodata"></no-data>
-    <ul class="top-list" v-if="titleshow">
-      <li v-for="(item, index) in artist" :class="{red:index===art_num}">
-        <a href="javascript:;" @click="loadsingle(index)">
-        <span class="img-container">
-          <img :src="item.headPortrait">
-        </span>
-          <span class="name-container overText">{{ item.name }}</span>
-        </a>
-      </li>
-    </ul>
+    <div class="top-container" v-if="titleshow">
+      <div class="inner o">
+        <ul class="top-list">
+          <li v-for="(item, index) in artist" :class="{red:index===art_num}">
+            <a href="javascript:;" @click="loadsingle(index)">
+            <span class="img-container">
+              <img :src="item.headPortrait">
+            </span>
+              <span class="name-container overText">{{ item.name }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <section class="content" :class="{'top-max':!titleshow,'top-min':titleshow}">
       <div class="intro">
           <span class="photo">
             <img :src="artistsingle.headPortrait">
           </span>
         <span class="intro-info">
-          <span class="intro-name">{{ artistsingle.name }}</span>&nbsp;-&nbsp;<span class="v-title">{{ artistsingle.title }}</span><br>
-          <span>{{ artistsingle.intro }}</span>
+          <span class="intro-name">{{ artistsingle.name }}&nbsp;-&nbsp;<span class="v-title">{{ artistsingle.title }}</span></span>
+          <span class="intro-content">{{ artistsingle.intro }}</span>
         </span>
       </div>
     </section>
     <section class="text-container" v-html="artistsingle.description"></section>
     <section class="comment">
+      <div class="lines">
+        <div class="text">相关宝贝</div>
+      </div>
       <ul class="others" v-if="artistsingle.img && artistsingle.img.length > 0">
         <li v-for="img_item in artistsingle.img">
           <a href="javascript:;" class="item">
@@ -402,29 +459,36 @@
   <div class="artist-contianer">
     <no-data v-if="nodata"></no-data>
     <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
-    <ul class="top-list" v-if="titleshow">
-      <li v-for="(item, index) in pugs" :class="{red:index===pug_num}">
-        <a href="javascript:;" @click="loadsingle(index)">
-        <span class="img-container">
-          <img :src="item.image">
-        </span>
-          <span class="name-container overText">{{ item.name }}</span>
-        </a>
-      </li>
-    </ul>
+    <div class="top-container" v-if="titleshow">
+      <div class="inner o">
+        <ul class="top-list">
+          <li v-for="(item, index) in pugs" :class="{red:index===pug_num}">
+            <a href="javascript:;" @click="loadsingle(index)">
+            <span class="img-container">
+              <img :src="item.image">
+            </span>
+              <span class="name-container overText">{{ item.name }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <section class="content" :class="{'top-max':!titleshow,'top-min':titleshow}">
       <div class="intro">
           <span class="photo">
             <img :src="pugsingle.image">
           </span>
         <span class="intro-info">
-          <span class="intro-name">{{ pugsingle.name }}</span><br>
-          <span>{{ pugsingle.intro }}</span>
+          <span class="intro-name">{{ pugsingle.name }}</span>
+          <span class="intro-content">{{ pugsingle.intro }}</span>
         </span>
       </div>
     </section>
     <section class="text-container" v-html="pugsingle.description"></section>
     <section class="comment">
+      <div class="lines">
+        <div class="text">相关宝贝</div>
+      </div>
       <ul class="others">
         <li v-for="img_item in pugsingle.products">
           <a href="javascript:;" class="item">
