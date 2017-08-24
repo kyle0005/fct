@@ -34,6 +34,7 @@ let app = new Vue(
         let vue = this;
         vue.pro_list = config.products;
         vue.listloading = false;
+        vue.tab_num = 0;
       },
       showImg(){
         return 'public/images/img_loader.gif';
@@ -58,7 +59,7 @@ let app = new Vue(
             _url += '&level_id=' + level_id;
           }
         } else {
-          if (level_id > 0) {
+          if (level_id >= 0) {
             code = vue.code;
             _url = '?level_id=' + level_id;
             if (code != '') {

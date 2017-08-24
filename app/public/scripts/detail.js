@@ -37,22 +37,27 @@ Vue.component('mVideo',
     }
   }
 );
+
+let _time_html = '<span :endTime="endTime" :callback="callback" >'+
+  '<slot><span class="time-block">{{ time_content.hour }}</span>:<span class="time-block">{{ time_content.min }}</span>:<span class="time-block">{{ time_content.sec }}</span></slot>' +
+'</span>';
 Vue.component('m-time',
   {
-    template: '#m_time',
+    template: _time_html,
     data(){
       return {
-        content: '',
+        time_content: {
+          day: '00',
+          hour: '00',
+          min: '00',
+          sec: '00',
+        },
       }
     },
     props:{
       endTime:{
-        type: String,
-        default :''
-      },
-      endText:{
-        type : String,
-        default:''
+        type: Number,
+        default :0
       },
       callback : {
         type : Function,
@@ -69,29 +74,32 @@ Vue.component('m-time',
           let nowTime = new Date();
           let endTime = new Date(timestamp * 1000 + _initTime);
           let t = endTime.getTime() - nowTime.getTime();
-          // let t = endTime.getTime();
           if(t>0){
             let day = Math.floor(t/86400000);
             let hour=Math.floor((t/3600000)%24);
             let min=Math.floor((t/60000)%60);
             let sec=Math.floor((t/1000)%60);
-            hour = hour < 10 ? "0" + hour : hour;
-            min = min < 10 ? "0" + min : min;
-            sec = sec < 10 ? "0" + sec : sec;
-            let format = '';
+            hour = hour + day * 24;
+            hour = hour < 10 ? '0' + hour : hour;
+            min = min < 10 ? '0' + min : min;
+            sec = sec < 10 ? '0' + sec : sec;
             if(day > 0){
-              format =  `${day}天${hour}小时${min}分${sec}秒`;
+              // format =  `${day}天${hour}小时${min}分${sec}秒`;
+              self.time_content.hour = hour;
+              self.time_content.min = min;
+              self.time_content.sec = sec;
             }
             if(day <= 0 && hour > 0 ){
-              format = `${hour}小时${min}分${sec}秒`;
+              self.time_content.hour = hour;
+              self.time_content.min = min;
+              self.time_content.sec = sec;
             }
             if(day <= 0 && hour <= 0){
-              format =`${min}分${sec}秒`;
+              self.time_content.min = min;
+              self.time_content.sec = sec;
             }
-            self.content = format;
           }else{
             clearInterval(timer);
-            self.content = self.endText;
             self._callback();
           }
         },1000);
@@ -109,6 +117,7 @@ Vue.component('overview',
     template: '#overview',
     mounted: function() {
       let vue = this;
+      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
     },
     computed: {
       calstock: function () {
@@ -140,6 +149,7 @@ Vue.component('artist',
     template: '#artist',
     mounted: function() {
       let vue = this;
+      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
       vue.loadart();
     },
 /*    activated: function () {
@@ -162,6 +172,8 @@ Vue.component('artist',
       },
       loadsingle(index){
         let vue = this;
+        tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+        vue.artistsingle = {};
         vue.art_num = index;
         vue.artistsingle = vue.artist[index];
         vue.listloading = false;
@@ -184,6 +196,7 @@ Vue.component('pug',
     template: '#pug',
     mounted: function() {
       let vue = this;
+      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
       vue.loadpug();
     },
     data() {
@@ -204,6 +217,8 @@ Vue.component('pug',
       },
       loadsingle(index){
         let vue = this;
+        tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+        vue.pugsingle = {};
         vue.pug_num = index;
         vue.pugsingle = vue.pugs[index];
       },
@@ -226,6 +241,7 @@ Vue.component('service',
     template: '#service',
     mounted: function() {
       let vue = this;
+      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
       vue.initData();
     },
     data() {
@@ -249,6 +265,7 @@ Vue.component('discuss',
     template: '#discuss',
     mounted: function() {
       let vue = this;
+      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
       vue.loadList();
     },
     watch: {

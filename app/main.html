@@ -15,6 +15,10 @@
     <head-top @changelist="getprolist" :isindex="isindex"></head-top>
     <section class="cat-container">
       <ul class="category clearfix">
+<!--        <li class="item" :class="{chosen: 0===tab_num}" @click="getprolist('', 0, 0)">
+          <img src= "public/images/rank_00.png">
+          <span>所有品级</span>
+        </li>-->
         <li class="item" v-for="(ranks, index) in ranks_list" :class="{chosen: index===tab_num}" @click="getprolist('', ranks.level_id, index)">
           <img :src= "ranks.img">
           <span>{{ ranks.name }}</span>
@@ -141,6 +145,11 @@
 
     ],
     "productsRank": [
+/*      {
+        "name": "所有品级",
+        "level_id": "0",
+        "img": "public/images/rank_00.png"
+      },*/
       {
         "name": "登堂入室",
         "level_id": "1",

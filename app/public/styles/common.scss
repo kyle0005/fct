@@ -608,3 +608,19 @@ small.pri-mark{
   transform: translate(-50%, -50%);
   width: 10%;
 }
+
+.time-block{
+  display: inline-block;
+  background-color: $color-3e3c3c;
+  margin: 0 1%;
+  padding: 0 1%;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+.time-block:first-child{
+  margin: 0 1% 0 2%;
+}
+.time-block:last-child{
+  margin: 0 0 0 1%;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="./../public/styles/main.css">
+</head>
+<body>
+<div class="help-container" id="help" v-cloak>
+  <section class="user-sec">
+    <ul class="funcs-list">
+      <li v-for="(item, index) in articleCategories">
+        <router-link to="/main" href="javascript:;" class="link">
+          <span class="img-container item">
+            <img :src="item.image">
+          </span>
+          <span class="item t">{{ item.name }}</span>
+          <span class="wei-arrow-right"></span>
+        </router-link>>
+      </li>
+<!--      <li>
+        <a href="javascript:;" class="link">
+          <span class="img-container item">
+            <img src="public/images/u_coupon.png">
+          </span>
+          <span class="item t">优惠券</span>
+          <span class="wei-arrow-right"></span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:;" class="link">
+          <span class="img-container item">
+          <img src="public/images/u_fav.png">
+          </span>
+          <span class="item t">我的收藏</span>
+          <span class="wei-arrow-right"></span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:;" class="link">
+          <span class="img-container item">
+          <img src="public/images/u_address.png">
+          </span>
+          <span class="item t">地址管理</span>
+          <span class="wei-arrow-right"></span>
+        </a>
+      </li>-->
+    </ul>
+  </section>
+</div>
+<script src="public/scripts/vue.js"></script>
+<script src="public/scripts/vue-router.js"></script>
+<script src="public/scripts/api/index.js"></script>
+<script>
+  /**
+   *  articles：表示为多篇文章，有内容则跳转到list界面for 显示 title，指向帮助详情根据 id，
+   *  articleid：表示直接指向某文章详情，if(articleid>0){}
+   *  img: 列表标题前的icon
+   *  br： 如果为 1的时候，表示分段。
+   *
+   *  www.fangcun.com/help/?cate=1&id=10
+   */
+  config = {
+    "index": "http://dev.fangcuntang.com",
+    "login": "http://dev.fangcuntang.com/my",
+    "product_url": "http://dev.fangcuntang.com",
+    'categoryId': 0,
+    'articleId': 0,
+    'productsType': [
+      {"name": "全部", "code": ""},
+      {"code": ",23,", "name": "圆器"},
+      {"code": ",22,","name": "方器"},
+      {"code": ",26,", "name": "花器"},
+      {"code": ",27,", "name": "筋纹器"}
+      ],
+    'articleCategories': [
+        {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-18\/cdd5c948c19c4aba820a5cae40c728f5.png!120",
+        "name": "常见问题",
+        "articleId": 3,
+        "id": 5,
+        "hasBr": 0,
+        "articles": []
+        },
+        {
+        "image": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-23\/c2948475b40345cfa8b54938df8737a9.png!120",
+        "name": "配送与验收",
+        "articleId": 0,
+        "id": 6,
+        "hasBr": 0,
+        "articles": [{"name": "发货时间", "id": 4}, {"name": "配送范围及费用", "id": 5}]
+        }
+    ],
+    'articles': [
+        {
+      "id": 3,
+      "title": "常见问题",
+      "content": "<h4><span style=\"color: rgb(34, 34, 34); font-family: Menlo, monospace; white-space: pre-wrap; font-weight: bold;\">1.方寸堂的商品都是正品吗?<\/span><\/h4><p><span style=\"color: rgb(34, 34, 34); font-family: Menlo, monospace; white-space: pre-wrap;\">方寸堂秉承严谨态度,&nbsp;对商品的产地、工艺、原材料都严格把关,&nbsp;力求帮消费者甄选到最优质的商品,&nbsp;你可以放心选购。<\/span><span style=\"color: rgb(34, 34, 34); font-family: Menlo, monospace; white-space: pre-wrap;\"><br><\/span><\/p><h4><span style=\"color: rgb(34, 34, 34); font-family: Menlo, monospace; white-space: pre-wrap;\">2.方寸堂用什么快递?<\/span><\/h4><p><span style=\"color: rgb(34, 34, 34); font-family: Menlo, monospace; white-space: pre-wrap;\">一般情况下,&nbsp;我们采用顺丰快递,&nbsp;部分地区&nbsp;(内蒙古&nbsp;(除包头市)&nbsp;,&nbsp;湖北,&nbsp;西藏)&nbsp;包裹可能使用EMS快递,&nbsp;暂不支持自选快递。<\/span><span style=\"color: rgb(34, 34, 34); font-family: Menlo, monospace; white-space: pre-wrap;\"><br><\/span><\/p>"
+    }, {
+      "id": 4,
+      "title": "发货时间",
+      "content": "<p><span style=\"color: rgb(34, 34, 34); font-family: Menlo, monospace; white-space: pre-wrap;\">我们会在订单支付成功后1-3天内发货&nbsp;(节假日顺延,&nbsp;部分特殊商品七天内发货)&nbsp;,&nbsp;送达时间视快递配送时间而定。<\/span><br><\/p><p><span style=\"color: rgb(34, 34, 34); font-family: Menlo, monospace; white-space: pre-wrap;\">由于商品存放仓库位置不同,&nbsp;一个订单中的商品可能会被拆分为多个包裹配送。不同的包裹配送时间会略有不同。<\/span><span style=\"color: rgb(34, 34, 34); font-family: Menlo, monospace; white-space: pre-wrap;\"><br><\/span><\/p>"
+    }, {
+      "id": 5,
+      "title": "配送范围及费用",
+      "content": "<p><span style=\"color: rgb(34, 34, 34); font-family: Menlo, monospace; white-space: pre-wrap;\">方寸堂配送范围覆盖全国大部分地区&nbsp;(部分商品不支持配送港澳台地区)&nbsp;； 其中部分商品也支持海外国家地区配送&nbsp;(欧盟主要国家和日韩)&nbsp;，详细支持配送海外地区见商品详情页服务中说明。<\/span><br><\/p>"
+    }],
+
+  }
+</script>
+<script src="public/scripts/common/tools.js"></script>
+<script src="public/scripts/help.js"></script>
+</body>
+</html>

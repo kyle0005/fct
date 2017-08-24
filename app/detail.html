@@ -21,11 +21,11 @@
       </ul>
     </section>
   <div class="tabs">
-    <keep-alive>
+    <!--<keep-alive>-->
       <component :is="currentView">
         <!-- 组件在 vm.currentview 变化时改变！ -->
       </component>
-    </keep-alive>
+    <!--</keep-alive>-->
   </div>
     <a href="javascript:;" class="top" @click="top()">
       <img src="public/images/top.png">
@@ -200,9 +200,9 @@
       "volumes": [150, 350],    /* 容量 */
       "discount": {
         "id": 0,
-        "name": '首单优惠活动',
+        "name": '首单优惠',
         "discountRate": 0.75,
-        "discountTime": 90,
+        "discountTime": 93600,
         "hasBegin": true,
         "canBuy": true,
         "singleCount": 4    /* 限购数 */
@@ -298,11 +298,6 @@
     </div>
   </div>
 </template>
-<template id="m_time">
-    <span :endTime="endTime" :callback="callback" :endText="endText">
-        <slot>{{ content }}</slot>
-    </span>
-</template>
 <script type="text/x-template" id="head_top">
   <header class="head-container">
     <ul class="nav">
@@ -368,10 +363,10 @@
       <mVideo :poster="product.video.poster" :url="product.video.url" id="videotop"></mVideo>
       <div class="sale clearfix">
         <div class="left">
-          <span class="title">{{ product.discount.name }}</span>&ensp;享<span class="discount-color">{{ product.discount.discountRate * 10 }}折，限购{{ product.discount.singleCount }}件</span>
+          <span class="title">{{ product.discount.name }}</span>&ensp;享{{ product.discount.discountRate * 10 }}折，限购{{ product.discount.singleCount }}件
         </div>
         <div class="right">
-          距<span v-if="product.discount.hasBegin">开始</span><span v-else>结束</span>仅剩<m-time :endTime="product.discount.discountTime" :callback="end" endText="结束"></m-time>
+          距<span v-if="product.discount.hasBegin">开始</span><span v-else>结束</span>仅剩<m-time :endTime="product.discount.discountTime" :callback="end"></m-time>
         </div>
       </div>
     </section>
@@ -397,10 +392,33 @@
         <a :href="product.coupon_url" class="coup-link">领取</a>
       </div>
     </section>
-    <section class="info">
+    <section class="info clearfix">
+      <div class="item">
+        <span class="left">艺人</span>
+        <span class="right">{{ product.artistNames }}</span>
+      </div>
+      <div class="item">
+        <span class="left">泥料</span>
+        <span class="right">{{ product.materialNames }}</span>
+      </div>
+      <div class="item">
+        <span class="left">壶型</span>
+        <span class="right">{{ product.categoryNames }}</span>
+      </div>
+      <div class="item">
+        <span class="left">容量</span>
+        <span class="right">
+          <span v-if="product.volumes instanceof Array">{{ product.volumes[0] }}CC&nbsp;~&nbsp;{{ product.volumes[1] }}CC</span>
+          <span v-else>{{ product.volumes }}CC</span>
+        </span>
+      </div>
       <div class="item">
         <span class="left">库存</span>
         <span class="right">{{ calstock }}</span>
+      </div>
+      <div class="item">
+        <span class="left">编号</span>
+        <span class="right">{{ product.code }}</span>
       </div>
     </section>
     <section class="edit-context" v-html="product.content">
@@ -418,7 +436,7 @@
           <li v-for="(item, index) in artist" :class="{red:index===art_num}">
             <a href="javascript:;" @click="loadsingle(index)">
             <span class="img-container">
-              <img :src="item.headPortrait">
+              <img v-view="item.headPortrait" src="public/images/img_loader.gif">
             </span>
               <span class="name-container overText">{{ item.name }}</span>
             </a>
@@ -465,7 +483,7 @@
           <li v-for="(item, index) in pugs" :class="{red:index===pug_num}">
             <a href="javascript:;" @click="loadsingle(index)">
             <span class="img-container">
-              <img :src="item.image">
+              <img v-view="item.image" src="public/images/img_loader.gif">
             </span>
               <span class="name-container overText">{{ item.name }}</span>
             </a>
