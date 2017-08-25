@@ -10,59 +10,81 @@
 </head>
 <body>
 <div class="help-container" id="help" v-cloak>
+  <router-view></router-view>
+</div>
+<template id="articlecate">
   <section class="user-sec">
-    <ul class="funcs-list">
-      <li v-for="(item, index) in articleCategories">
-        <router-link to="/main" href="javascript:;" class="link">
+    <div class="search-container">
+      <a href="javascript:;" class="inner" @click="pop()">
+        <i class="fa fa-search"></i>&nbsp;请输入问题关键词
+      </a>
+      <div class="bg" :class="{show: show}" @click.prevent="pop()">
+        <div class="search-box"  @click.stop="">
+          <div class="inner clearfix">
+            <a href="javascript:;" class="search" @click="search()">
+              <i class="fa fa-search"></i>
+            </a>
+            <input type="text" v-focus="" placeholder="请输入问题关键词" class="keywords" v-model="keywords">
+            <a href="javascript:;" class="fork-link" @click="clear()" v-if="keywords !== ''">
+              <i class="fa fa-times-circle"></i>
+            </a>
+            <a href="javascript:;" @click="pop()" class="cancel">取消</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="funcs-list" v-if="searchlist.length <= 0">
+      <li v-for="(item, index) in articleCategories" :class="{br: item.hasBr == 1}">
+        <router-link v-if="item.articleId == 0 && item.articles.length > 0"
+                     :to="{ name: 'list', query: { id:item.id }}"
+                     class="link">
           <span class="img-container item">
             <img :src="item.image">
           </span>
           <span class="item t">{{ item.name }}</span>
           <span class="wei-arrow-right"></span>
-        </router-link>>
-      </li>
-<!--      <li>
-        <a href="javascript:;" class="link">
+        </router-link>
+        <router-link v-else :to="{ name: 'detail', query: { articleId: item.articleId }}" class="link">
           <span class="img-container item">
-            <img src="public/images/u_coupon.png">
+            <img :src="item.image">
           </span>
-          <span class="item t">优惠券</span>
+          <span class="item t">{{ item.name }}</span>
           <span class="wei-arrow-right"></span>
-        </a>
+        </router-link>
       </li>
-      <li>
-        <a href="javascript:;" class="link">
-          <span class="img-container item">
-          <img src="public/images/u_fav.png">
-          </span>
-          <span class="item t">我的收藏</span>
+    </ul>
+    <ul class="funcs-list" v-else>
+      <li v-for="(obj, i) in searchlist">
+        <router-link :to="{ name: 'detail', query: { articleId: obj.id }}" class="link">
+          <span class="item">{{ obj.title }}</span>
           <span class="wei-arrow-right"></span>
-        </a>
+        </router-link>
       </li>
-      <li>
-        <a href="javascript:;" class="link">
-          <span class="img-container item">
-          <img src="public/images/u_address.png">
-          </span>
-          <span class="item t">地址管理</span>
-          <span class="wei-arrow-right"></span>
-        </a>
-      </li>-->
     </ul>
   </section>
-</div>
+</template>
+<template id="articlelist">
+  <section class="user-sec">
+    <ul class="funcs-list">
+      <li v-for="(item, index) in articles">
+        <router-link :to="{ name: 'detail', query: { articleId: item.id }}" class="link">
+          <span class="item">{{ item.name }}</span>
+          <span class="wei-arrow-right"></span>
+        </router-link>
+      </li>
+    </ul>
+  </section>
+</template>
+<template id="articledetail">
+  <section class="detail-container">
+    <div class="title">{{ article.title }}</div>
+    <div class="content" v-html="article.content"></div>
+  </section>
+</template>
 <script src="public/scripts/vue.js"></script>
 <script src="public/scripts/vue-router.js"></script>
 <script src="public/scripts/api/index.js"></script>
 <script>
-  /**
-   *  articles：表示为多篇文章，有内容则跳转到list界面for 显示 title，指向帮助详情根据 id，
-   *  articleid：表示直接指向某文章详情，if(articleid>0){}
-   *  img: 列表标题前的icon
-   *  br： 如果为 1的时候，表示分段。
-   *
-   *  www.fangcun.com/help/?cate=1&id=10
-   */
   config = {
     "index": "http://dev.fangcuntang.com",
     "login": "http://dev.fangcuntang.com/my",
@@ -108,7 +130,6 @@
       "title": "配送范围及费用",
       "content": "<p><span style=\"color: rgb(34, 34, 34); font-family: Menlo, monospace; white-space: pre-wrap;\">方寸堂配送范围覆盖全国大部分地区&nbsp;(部分商品不支持配送港澳台地区)&nbsp;； 其中部分商品也支持海外国家地区配送&nbsp;(欧盟主要国家和日韩)&nbsp;，详细支持配送海外地区见商品详情页服务中说明。<\/span><br><\/p>"
     }],
-
   }
 </script>
 <script src="public/scripts/common/tools.js"></script>

@@ -3239,7 +3239,7 @@ $foot-height: 250px;
           text-align: center;
           padding: 10% 0;
           img{
-            width: 35%;
+            width: 26%;
           }
         }
       }
@@ -5204,7 +5204,7 @@ $foot-height: 250px;
           color: $color-666;
           img{
             margin-top: 28%;
-            width: 18%;
+            width: 22%;
           }
         }
       }
@@ -6199,8 +6199,72 @@ $foot-height: 250px;
   background-color: $color-f5f5f5;
   .user-sec{
     width: 100%;
-    background-color: $color-white;
-    margin-bottom: calc(10 / 375 * 100%);
+    .search-container{
+      padding: 2% 4%;
+      width: 92%;
+      a.inner{
+        display: block;
+        background-color: $color-white;
+        text-align: center;
+        line-height: $font-size-t20;
+        color: $color-999;
+      }
+      .bg{
+        position: fixed;
+        z-index: 2;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        visibility: hidden;
+        .search-box{
+          width: 100%;
+          background-color: $color-f5f5f5;
+          .inner{
+            position: relative;
+            padding: 2% 4%;
+            width: 92%;
+            font-size: 0;
+            line-height: $font-size-t24;
+            a.search{
+              display: inline-block;
+              width: 10%;
+              text-align: center;
+              background-color: $color-white;
+              font-size: $font-size-t12;
+              color: $color-999;
+            }
+            input.keywords{
+              width: 80%;
+              background-color: $color-white;
+              border: none;
+              font-size: $font-size-t12;
+              color: $color-999;
+            }
+            a.fork-link{
+              position: absolute;
+              right: 13%;
+              display: inline-block;
+              text-align: center;
+              width: 10%;
+              font-size: $font-size-t12;
+              color: $color-666;
+            }
+            a.cancel{
+              display: inline-block;
+              width: 10%;
+              text-align: right;
+              font-size: $font-size-t12;
+              color: $color-666;
+            }
+          }
+        }
+      }
+      .bg.show{
+        visibility: visible;
+      }
+    }
     .order{
       position: relative;
       display: block;
@@ -6214,31 +6278,11 @@ $foot-height: 250px;
         left: initial;
       }
     }
-    ul.list{
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      li{
-        width: 20%;
-        -moz-box-flex: 1.0; /* Firefox */
-        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
-        box-flex: 1.0;
-        a.link{
-          display: block;
-          width: 100%;
-          text-align: center;
-          padding: 10% 0;
-          img{
-            width: 35%;
-          }
-        }
-      }
-    }
     ul.funcs-list{
       li{
         position: relative;
         width: 100%;
+        background-color: $color-white;
         padding-bottom: calc(48 / 375 * 100%);
         a.link{
           position: absolute;
@@ -6246,6 +6290,7 @@ $foot-height: 250px;
           display: block;
           margin: 0 0 0 4%;
           width: 96%;
+          z-index: 1;
           border-bottom: 1px solid $color-dcdcdc;
           .img-container{
             display: inline-block;
@@ -6277,14 +6322,29 @@ $foot-height: 250px;
           }
         }
       }
+      .br{
+        margin-bottom: 10px;
+        a.link{
+          margin: 0 0 0 4%;
+          border-bottom: none;
+        }
+      }
     }
   }
-  &:after{
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background-color: $color-f5f5f5;
+  .detail-container{
+    width: 92%;
+    padding: 0 4%;
+    background-color: $color-white;
+    .title{
+      padding: 2% 0;
+      line-height: $font-size-t24;
+      font-size: $font-size-t12;
+      color: $color-333;
+      border-bottom: 1px solid $color-dcdcdc;
+      margin-bottom: 4%;
+    }
+    .content{
+
+    }
   }
 }

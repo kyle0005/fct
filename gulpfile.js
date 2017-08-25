@@ -34,7 +34,7 @@ gulp.task('scripts', () => {
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
     .pipe($.babel({
-      ignore: 'vue.js'
+      ignore: ['vue.js','vue-router.js']
     }))
     .pipe($.if(dev, $.sourcemaps.write('.')))
     .pipe(gulp.dest('.tmp/public/scripts'))
