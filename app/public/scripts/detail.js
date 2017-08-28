@@ -393,6 +393,21 @@ Vue.component('discuss',
     },
   }
 );
+/*Vue.component('vhtml',{
+  props:['hcon'],
+  template: '<div v-html="hcon"></div>',
+  methods: {
+    click_user(){
+      console.log('user clicker');
+    }
+  }
+});*/
+/*Vue.component('vhtml',{
+ props:['hcon'],
+ template: '<img src="public/images/img_loader.gif"/>',
+ methods: {}
+ });*/
+
 let app = new Vue(
   {
     data: {
@@ -420,7 +435,9 @@ let app = new Vue(
       isbuy:false,
       cart_num: config.product.cartProductCount,
 
-      subText: '加入购物车'
+      subText: '加入购物车',
+
+      test_img: '<img v-view="http://localhost:9000/public/images/resource/pro01.png" src="public/images/img_loader.gif">'
 
     },
     mounted: function() {

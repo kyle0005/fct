@@ -21,11 +21,14 @@
       </ul>
     </section>
   <div class="tabs">
-    <!--<keep-alive>-->
+   <!-- <vhtml :hcon="test_img"></vhtml>-->
+    <!--<div v-html="test_img"></div>-->
+     <!--<vhtml :hcon="test_img"></vhtml>-->
+    <keep-alive>
       <component :is="currentView">
         <!-- 组件在 vm.currentview 变化时改变！ -->
       </component>
-    <!--</keep-alive>-->
+    </keep-alive>
   </div>
     <a href="javascript:;" class="top" @click="top()">
       <img src="public/images/top.png">
@@ -161,36 +164,6 @@
 
     ],
     "main_url": "http://localhost:9000/main.html",
-/*    "product": {
-      "hasCoupon":false,   /!* 是否有优惠券  *!/
-      "hasDiscount": true,
-      "discount": {
-        "id": 0,
-        "name": '首单优惠活动',
-        "discountRate": 0.75,
-        "discountTime": 10,
-        "hasBegin": true,
-        "canBuy": true,
-      },
-      "subTitle":"登堂入室，泰斗顾景舟",
-      "salePrice":8888,
-      "price": 10000.00,
-      "cartProductCount":0,  /!* 现有购物车中 产品种类数量(即图标显示值) *!/
-      "name":"稀有xx段【x瓢】",
-      "specification":[
-        /!*{"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
-        {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}*!/
-      ],
-      "favoriteState":false,  /!* 是否收藏 *!/
-      "id":2,
-      "video":{
-        "poster":"http:\/\/oss-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/7db5dda78b5b4098809d520603cbc637.jpg",
-        "url":"//vjs.zencdn.net/v/oceans.mp4"
-      },
-      "content":"<div>aaaaa</div>",   /!* html内容直接输出 *!/
-      "status":1,   /!* 1为上架，0为下架,下架按钮为灰色 *!/
-      "stockCount":10   /!* 库存 *!/
-    },*/
     "product": {
       "code": "1697635",
       "salePrice": 122214,
@@ -239,43 +212,6 @@
     "pug_url" : "http://localhost:3000/pug",
     "addcart_url": "http://localhost:3000/addcart",
     "buy_url": "http://localhost:9000/buy.html",
-    "tab_artist": {
-        //请求 文本编辑器html内容 和 底部产品内容
-      "text": "<div class='text-container'>" +
-              "<section class='artist'>" +
-              "<div class='intro'>" +
-              "<span class='photo'>" +
-              "<img src='public/images/resource/artist.png'>" +
-              "</span>" +
-              "<span class='artist-info'>" +
-              "<span class='artist-name'>顾景舟&nbsp;GU&nbsp;JING&nbsp;ZHOU</span><br>" +
-              "<span>宜兴紫砂壶名艺xxx<br>中国美术协会会员<br>中国工艺美术大师</span>" +
-              "</span>" +
-              "</div>" +
-              "<div class=''>" +
-              "顾景舟，（1915-1966），原名景洲。18岁拜名师学艺xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" +
-              "</div>" +
-              "</section>" +
-              "<section class='record'>" +
-              "<div class='title'>成交记录</div>" +
-              "<div class='list'>" +
-              "<span>xxxx壶拍卖 成交价1234万</span>" +
-              "<span>xxxx壶拍卖 成交价1234万</span>" +
-              "<span>xxxx壶拍卖 成交价1234万</span>" +
-              "</div>" +
-              "</section>" +
-              "<section class='comment'>" +
-              "<div class='title'>社会评价</div>" +
-              "<p class='context'>" +
-              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" +
-              "</p>" +
-              "</section>" +
-              "</div>",
-      "": ""
-    },
-    "tab_pug": {
-      //请求 数据对象 和 底部产品内容
-    },
     "tab_service": "<div class='title'>退换货政策</div><p>自您签收商品之日起10日内，淘壶人将为您办理退换货服务，且寄回商品实际运费由客户承担；如需办理退换货业务，请您致电客服热线400-0510-570咨询办理。</p><p>" +
     "<br>政策说明：<br><br>1、一张订单淘壶人只为您提供一次退换货服务，为了确保您的权益，请考虑周全后与我们联系。<br>2、请您确保退换货时，商品各种包装完整。<br>" +
       "3、因您个人原因造成的商品损坏（如壶身破损等），不予退换。<br>4、由于物品质量问题造成的退换货，由淘壶人承担双程运费。由于个人喜好原因造成退货，由客户支付双程邮费。感谢您的理解！<br>" +
@@ -447,7 +383,7 @@
     <section class="content" :class="{'top-max':!titleshow,'top-min':titleshow}">
       <div class="intro">
           <span class="photo">
-            <img :src="artistsingle.headPortrait">
+            <img v-view="artistsingle.headPortrait" src="public/images/img_loader.gif">
           </span>
         <span class="intro-info">
           <span class="intro-name">{{ artistsingle.name }}&nbsp;-&nbsp;<span class="v-title">{{ artistsingle.title }}</span></span>
@@ -455,7 +391,27 @@
         </span>
       </div>
     </section>
-    <section class="text-container" v-html="artistsingle.description"></section>
+    <!--<section class="text-container" v-html="artistsingle.description"></section>-->
+    <section class="text-container">
+      <div class="editor-container">
+        <div class="e-title">生平经历</div>
+        <p class="e-para">1954年10月，他响应政府号召，积极参与汤渡陶业生产合作社紫砂生产工场的组建筹划工作。</p>
+        <p class="e-para">1954年10月，他响应政府号召，积极参与汤渡陶业生产合作社紫砂生产工场的组建筹划工作。</p>
+        <div class="e-img">
+          <img src="https://cdn.fangcun.com/upload/editor/2017-08-22/0237c5bd4c854ee0bb70504f7617ba52.jpeg">
+        </div>
+        <p class="e-para">1954年10月，他响应政府号召，积极参与汤渡陶业生产合作社紫砂生产工场的组建筹划工作。</p>
+        <div class="e-vtitle"><strong class="str">成</strong><span class="o">交记录</span></div>
+        <div class="e-list">
+          <div class="inner">
+            <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+            <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+            <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+            <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="comment">
       <div class="lines">
         <div class="text">相关宝贝</div>
@@ -483,7 +439,7 @@
           <li v-for="(item, index) in pugs" :class="{red:index===pug_num}">
             <a href="javascript:;" @click="loadsingle(index)">
             <span class="img-container">
-              <img v-view="item.image" src="public/images/img_loader.gif">
+              <img :src="item.image">
             </span>
               <span class="name-container overText">{{ item.name }}</span>
             </a>
@@ -522,7 +478,55 @@
   <div>
     <no-data v-if="nodata"></no-data>
     <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
-    <section class="service" v-html="tab_service"></section>
+    <!--<section class="service" v-html="tab_service"></section>-->
+    <section class="service">
+      <div class="service-container">
+        <section class="sec">
+          <div class="title">退换货政策</div>
+          <div class="info">
+            自您签收商品之日起30日内，方寸堂将为您办理退换货服务，且寄回商品实际运费由客户承担；如需办理退换货业务，请您致电客服热线400-0510-555咨询办理。
+          </div>
+          <div class="content">
+            <div class="t"><span class="l">政</span>策说明：</div>
+            <div class="ball"></div>
+            1.一张订单方寸堂只为您提供一次退换货服务，为了确保您的   权益，请考虑周全后与我们联系。<br>
+            2.请您确保退换货时，商品各种包装完整。<br>
+            3.因您个人原因造成的商品损坏（如壶身破损等）,不予退换。<br>
+            4.由于物品质量问题造成的退换货，由淘壶人承担双程运费。由于个人喜好原因造成退货，由客户支付双程邮费。<br>
+            5.退换货发生时，请您选择顺丰快递将商品寄回给我们。<br>
+            6、礼包或超值组合装中的商品不可以选择部分退换货，因退   货后，原礼包或套装中商品将无法享受购买时优惠。<br>
+            7.图片及信息仅供参照，因拍摄灯光及不同显示器色差等问题   可能造成商品图片与实物有一定色差，一切以实物为准。色差问题不在退换货服务行列。
+          </div>
+        </section>
+        <section class="sec">
+          <div class="title">拒收政策</div>
+          <div class="info">
+            在您签收商品前，请先核查商品外包装是否完好，并确认您对产品是否满意。
+          </div>
+          <div class="content">
+            无专用封箱胶
+            在收取快递包时，若发现外包装中无“方寸堂”专用封箱   胶，或“方寸堂”专用封箱胶被严重损坏(特别是有被重新   封装的痕迹)，您可以拒收。
+            物品与所购不符
+            签收后，若包装完好但是包裹中的商品数量与您实际购买   的商品不吻合时，或所接收的物品与您所购的物品不相符   时，请先与快递人员确认，现场拍照；并及时联系我们的   客服，我们在与快递公司确认后，将及时为您补发/换发   所缺商品。
+            对产品（或部分）不满意
+            若您对某件或某几件商品的质量不满意，您在拒收这些商   品的同时，可正常接收其它商品，对于其它不满意的商品   可根据您的意愿联系“方寸堂”的客服为您换货或退款。
+          </div>
+        </section>
+        <section class="sec">
+          <div class="title">发票问题</div>
+          <div class="info">
+            方寸堂的所有产品价格均不含税价，所有要求增开发票，需要补7%个税点。补足税点后再予以开票。
+          </div>
+          <div class="content">
+            <div class="t"><span class="l">如</span>何开具发票：</div>
+            <div class="ball"></div>
+            1.如需开具普通发票，请在交易完成后订单详情里选择“我要开发票”并填写相关信息；<br>
+            2.如需开具增值税专用发票，请在购买后联系客服办理；<br>
+            3.可选开票内容： 工艺礼品
+          </div>
+        </section>
+      </div>
+    </section>
   </div>
 </script>
 <script type="text/x-template" id="discuss">
@@ -534,7 +538,7 @@
         <div class="user-info clearfix">
           <div class="left clearfix">
             <div class="user-photo">
-              <img :src="item.photo">
+              <img v-view="item.photo" src="public/images/img_loader.gif">
             </div>
             <div class="user-opt">
               <div>{{ item.username }}</div>
@@ -548,7 +552,7 @@
         <div class="comments">
           <span class="text">{{ item.text }}</span>
           <span class="imgs">
-            <img :src="img_item" v-for="(img_item, index) in item.imgs">
+            <img v-view="img_item" src="public/images/img_loader.gif" v-for="(img_item, index) in item.imgs">
           </span>
         </div>
       </li>
