@@ -151,6 +151,7 @@ Vue.component('artist',
       let vue = this;
       tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
       vue.loadart();
+
     },
 /*    activated: function () {
       this.listloading = true;
@@ -198,6 +199,26 @@ Vue.component('pug',
       let vue = this;
       tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
       vue.loadpug();
+
+/*      vue.$nextTick(function() {
+       setTimeout(function () {
+         document.getElementById('pugHtml').innerHTML = vue.pugsingle.description;
+       }, 0)
+     });*/
+
+
+/*      vue.$nextTick(function() {
+        setTimeout(function () {
+          let i = document.getElementById('pugHtml').querySelectorAll('img');
+          console.log(i);
+          i.forEach(function(el) {
+            el.setAttribute('v-view', el.getAttribute('v-view'));
+            Vue.$compile(el);
+          });
+        }, 0)
+      })*/
+
+
     },
     data() {
       return {
@@ -393,15 +414,26 @@ Vue.component('discuss',
     },
   }
 );
-/*Vue.component('vhtml',{
+Vue.component('vhtml',{
   props:['hcon'],
-  template: '<div v-html="hcon"></div>',
+  template: '<div id="pugHtml">{{ hcon }}</div>',
+  mounted: function() {
+    let vue = this;
+    console.log(vue.hcon);
+    document.getElementById('pugHtml').innerHTML = vue.hcon;
+/*    vue.$nextTick(function() {
+      setTimeout(function () {
+        document.getElementById('pugHtml').innerHTML = vue.hcon;
+      }, 0)
+    });*/
+
+  },
   methods: {
     click_user(){
       console.log('user clicker');
     }
   }
-});*/
+});
 /*Vue.component('vhtml',{
  props:['hcon'],
  template: '<img src="public/images/img_loader.gif"/>',
@@ -418,7 +450,7 @@ let app = new Vue(
       refreshing: false,
       img_url: 'public/images',
       currentView: 'overview',
-      tabs: ['概览', '艺人', '泥料', '售后保障', '评论'],
+      tabs: ['概览', '作者', '泥料', '售后保障', '评论'],
       tab_num: 0,
       showAlert: false, //显示提示组件
       msg: null, //提示的内容,

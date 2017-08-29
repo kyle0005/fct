@@ -1113,14 +1113,16 @@ $foot-height: 250px;
           padding-left: 10px;
           padding-top: 20px;
           padding-bottom: 10px;
-          line-height: 25.6px;
           color: rgb(136, 136, 136);
+          p{
+            margin: 1% 0;
+          }
         }
         &:after{
           content: '';
           position: absolute;
           left: -5%;
-          top: 17%;
+          top: 28px;
           width: 4em;
           height: 1px;
           background-color: rgb(215, 215, 215);
@@ -1362,7 +1364,7 @@ $foot-height: 250px;
             transform: translateY(-50%);
             width: 100%;
             text-align: center;
-            color: $color-666;
+            color: $color-999;
             .num{
               font-size: $font-size-t15;
               color: $color-black;
@@ -1445,7 +1447,7 @@ $foot-height: 250px;
             width: 100%;
             padding: 14px 0 10px 0;
             text-align: center;
-            font-size: $font-size-t13;
+            font-size: $font-size-t14;
             font-weight: bold;
             &:after{
               content: '';
@@ -1483,7 +1485,7 @@ $foot-height: 250px;
               top: -10px;
               left: 0;
               background-color: $color-white;
-              width: 30%;
+              padding-right: 10%;
               line-height: $font-size-t16;
               .l{
                 font-size: $font-size-t16;
@@ -1492,7 +1494,7 @@ $foot-height: 250px;
             .ball{
               position: absolute;
               right: -2.8%;
-              top: -2.8%;
+              top: -10px;
               width: calc(36/690*100%);
               padding-bottom: calc(36/690*100%);
               background-color: $color-white;
@@ -1511,7 +1513,30 @@ $foot-height: 250px;
 
           }
         }
+        .sec.refuse{
+          .content{
+            padding: 0 4% 0 0;
+            border: none;
+            strong.s-title{
+              position: relative;
+              padding-left: 8px;
+              font-size: $font-size-t13;
+              line-height: $font-size-t30;
+              &:before{
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 5px;
+                height: 5px;
 
+                background-color: $color-333;
+                border-radius: 50%;
+              }
+            }
+          }
+        }
       }
 
     }

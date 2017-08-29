@@ -68,6 +68,9 @@ Vue.component('m-swipe',
         lazyLoading: true,
         paginationBulletRender: function (swiper, index, className) {
           return '<span class="en-pagination ' + className + '"></span>';
+        },
+        onTransitionStart: function (swiper) {
+          That.$emit('slideindex',swiper.activeIndex);
         }
       })
     },
@@ -83,6 +86,7 @@ var app = new Vue(
       if (swiper.dom) {
         this.swiper = swiper.dom;
       }
+
     },
     activated() {
       if (this.swiper) {
@@ -95,6 +99,8 @@ var app = new Vue(
         this.swiper.stopAutoplay();
       }
     },
+    watch: {
+    },
     data() {
       return {
         refreshing: false,
@@ -104,10 +110,19 @@ var app = new Vue(
         scroller: null,
         list: [],
         swiper: '',
-        tops: []
+        tops: [],
+        flagIndex: false
       }
     },
     methods: {
+      slideindex(activeIndex){
+        let vue = this;
+        if(activeIndex > 0){
+          vue.flagIndex = true;
+        }else {
+          vue.flagIndex = false;
+        }
+      },
       getList() {
         let vue = this;
         vue.tops = config.slides;
