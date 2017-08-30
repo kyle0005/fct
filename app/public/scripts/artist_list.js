@@ -63,7 +63,7 @@ Vue.component('m-swipe',
         observer: true, //修改swiper自己或子元素时，自动初始化swiper
         observeParents: true, //修改swiper的父元素时，自动初始化swiper
         height : window.innerHeight,
-        lazyLoading: true,
+        lazyLoading: false,
         centeredSlides: That.centeredSlides,
         slidesPerView: That.slidesPerView,
         coverflow: {
@@ -72,27 +72,12 @@ Vue.component('m-swipe',
           depth: 100,
           modifier: 1,
           slideShadows : false
+        },
+        onTransitionStart: function (swiper) {
+
         }
       });
-
-      // var swiper = new Swiper('.swiper-container', {
-      //   effect: 'coverflow',
-      //   centeredSlides: true,
-      //   slidesPerView: 'auto',
-      //   loop: false,
-      //   coverflow: {
-      //     rotate: 50,
-      //     stretch: 0,
-      //     depth: 100,
-      //     modifier: 1,
-      //     slideShadows : false
-      //   }
-      // });
-
-
     },
-    components: {
-    }
   }
 );
 let app = new Vue(
@@ -104,6 +89,9 @@ let app = new Vue(
       if (swiper.dom) {
         this.swiper = swiper.dom;
       }
+      window.addEventListener('scroll', function () {
+        console.log('aaa')
+      })
     },
     activated() {
       if (this.swiper) {

@@ -14,12 +14,13 @@
   <div class="index-container" id="welcome" v-cloak>
     <m-swipe swipeid="swipe" ref="swiper" :autoplay="0" effect="slide" @slideindex="slideindex">
       <div v-for="(top, index) in tops" class="swiper-slide" slot="swiper-con">
-        <a :href="top.url">
+        <a :href="top.url" class="link">
           <img :data-src="top.image" class="swiper-lazy silde-img">
         </a>
         <a href="main.html" class="enter"  v-if="index==0"></a>
       </div>
     </m-swipe>
+    <transition name="fade">
     <div class="top" v-if="flagIndex">
       <div class="inner">
         <div class="text">
@@ -32,6 +33,7 @@
         </div>
       </div>
     </div>
+    </transition>
 
   </div>
   <script src="public/scripts/vue.js"></script>

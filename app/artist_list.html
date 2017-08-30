@@ -11,11 +11,16 @@
 <body>
 <div class="artist-container" id="artist_list">
   <m-swipe swipeid="swipe" ref="swiper" :autoplay="0" effect="coverflow">
-    <div v-for="item in artist" class="swiper-slide" slot="swiper-con">
+    <div v-for="(item, index) in artist" class="swiper-slide" slot="swiper-con">
       <a href="javascript:;" class="link-item">
-        <span class="img-con">
+<!--        <span class="img-con">
           <img :data-src="item.image" class="swiper-lazy silde-img">
+          <span class="swiper-lazy-preloader"></span>
+        </span>-->
+        <span class="img-con">
+          <img v-view="item.image" src="public/images/img_loader.gif" class="silde-img" :item="index">
         </span>
+
         <span class="art-con">
             <span class="title">{{ item.name }}</span><span class="">sssssssssss</span><br>
             <span class="product-num overText"><i class="fa fa-heart-o"></i>{{ item.followCount }}</span>
@@ -47,8 +52,8 @@
           "goodsCount": 4,
           "followCount": 0,
           "intro": "顾景舟（1915-1996），原名景洲。别称：曼希、瘦萍、武陵逸人、荆南山樵。自号壶叟、老萍。宜兴紫砂名艺人，中国美术家协会会员，中国工艺美术大师。",
-          "name": "顾景舟11",
-          "id": 1
+          "name": "顾景舟00",
+          "id": 0
         },
         {
           "image": "public/images/resource/pro01.png",
@@ -56,14 +61,22 @@
           "followCount":270,
           "intro": "顾景舟（1915-1996），原名景洲。别称：曼希、瘦萍、武陵逸人、荆南山樵。自号壶叟、老萍。宜兴紫砂名艺人，中国美术家协会会员，中国工艺美术大师。",
           "name": "顾景舟11",
-          "id": 2
+          "id": 1
         },
         {
           "image": "http://fct-nick.img-cn-shanghai.aliyuncs.com/upload/2017-06-22/39191f8a014c42bc95065ea3bbefc5ad.png",
           "goodsCount": 4,
           "followCount": 0,
           "intro": "顾景舟（1915-1996），原名景洲。别称：曼希、瘦萍、武陵逸人、荆南山樵。自号壶叟、老萍。宜兴紫砂名艺人，中国美术家协会会员，中国工艺美术大师。",
-          "name": "顾景舟11",
+          "name": "顾景舟22",
+          "id": 2
+        },
+       /* {
+          "image": "http://fct-nick.img-cn-shanghai.aliyuncs.com/upload/2017-06-22/39191f8a014c42bc95065ea3bbefc5ad.png",
+          "goodsCount": 4,
+          "followCount": 0,
+          "intro": "顾景舟（1915-1996），原名景洲。别称：曼希、瘦萍、武陵逸人、荆南山樵。自号壶叟、老萍。宜兴紫砂名艺人，中国美术家协会会员，中国工艺美术大师。",
+          "name": "顾景舟33",
           "id": 3
         },
         {
@@ -71,17 +84,9 @@
           "goodsCount": 4,
           "followCount": 0,
           "intro": "顾景舟（1915-1996），原名景洲。别称：曼希、瘦萍、武陵逸人、荆南山樵。自号壶叟、老萍。宜兴紫砂名艺人，中国美术家协会会员，中国工艺美术大师。",
-          "name": "顾景舟11",
+          "name": "顾景舟44",
           "id": 4
-        },
-        {
-          "image": "http://fct-nick.img-cn-shanghai.aliyuncs.com/upload/2017-06-22/39191f8a014c42bc95065ea3bbefc5ad.png",
-          "goodsCount": 4,
-          "followCount": 0,
-          "intro": "顾景舟（1915-1996），原名景洲。别称：曼希、瘦萍、武陵逸人、荆南山樵。自号壶叟、老萍。宜兴紫砂名艺人，中国美术家协会会员，中国工艺美术大师。",
-          "name": "顾景舟11",
-          "id": 5
-        },
+        },*/
 
       ]
   }

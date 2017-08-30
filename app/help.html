@@ -77,8 +77,56 @@
 </template>
 <template id="articledetail">
   <section class="detail-container">
-    <div class="title">{{ article.title }}</div>
-    <div class="content" v-html="article.content"></div>
+    <div class="service-container" v-html="article.content"></div>
+    <div class="service-container">
+      <section class="sec">
+        <div class="title">{{ article.title }}</div>
+        <div v-html="article.content">
+
+        </div>
+        <div class="info">
+          自您签收商品之日起30日内，方寸堂将为您办理退换货服务，且寄回商品实际运费由客户承担；如需办理退换货业务，请您致电客服热线400-0510-555咨询办理。
+        </div>
+        <div class="content">
+          <div class="t"><span class="l">政</span>策说明</div>
+          <div class="ball"></div>
+          1.一张订单方寸堂只为您提供一次退换货服务，为了确保您的权益，请考虑周全后与我们联系。<br>
+          2.请您确保退换货时，商品各种包装完整。<br>
+          3.因您个人原因造成的商品损坏（如壶身破损等）,不予退换。<br>
+          4.由于物品质量问题造成的退换货，由淘壶人承担双程运费。由于个人喜好原因造成退货，由客户支付双程邮费。<br>
+          5.退换货发生时，请您选择顺丰快递将商品寄回给我们。<br>
+          6、礼包或超值组合装中的商品不可以选择部分退换货，因退货后，原礼包或套装中商品将无法享受购买时优惠。<br>
+          7.图片及信息仅供参照，因拍摄灯光及不同显示器色差等问题可能造成商品图片与实物有一定色差，一切以实物为准。色差问题不在退换货服务行列。
+        </div>
+      </section>
+      <section class="sec refuse">
+        <div class="title">拒收政策</div>
+        <div class="info">
+          在您签收商品前，请先核查商品外包装是否完好，并确认您对产品是否满意。
+        </div>
+        <div class="content">
+          <strong class="s-title">无专用封箱胶</strong>
+          <div>在收取快递包时，若发现外包装中无“方寸堂”专用封箱胶，或“方寸堂”专用封箱胶被严重损坏(特别是有被重新封装的痕迹)，您可以拒收。</div>
+          <strong class="s-title">物品与所购不符</strong>
+          <div>签收后，若包装完好但是包裹中的商品数量与您实际购买的商品不吻合时，或所接收的物品与您所购的物品不相符时，请先与快递人员确认，现场拍照；并及时联系我们的客服，我们在与快递公司确认后，将及时为您补发/换发所缺商品。</div>
+          <strong class="s-title">对产品（或部分）不满意</strong>
+          <div>若您对某件或某几件商品的质量不满意，您在拒收这些商品的同时，可正常接收其它商品，对于其它不满意的商品可根据您的意愿联系“方寸堂”的客服为您换货或退款。</div>
+        </div>
+      </section>
+      <section class="sec">
+        <div class="title">发票问题</div>
+        <div class="info">
+          方寸堂的所有产品价格均不含税价，所有要求增开发票，需要补7%个税点。补足税点后再予以开票。
+        </div>
+        <div class="content">
+          <div class="t"><span class="l">如</span>何开具发票：</div>
+          <div class="ball"></div>
+          1.如需开具普通发票，请在交易完成后订单详情里选择“我要开发票”并填写相关信息；<br>
+          2.如需开具增值税专用发票，请在购买后联系客服办理；<br>
+          3.可选开票内容： 工艺礼品
+        </div>
+      </section>
+    </div>
   </section>
 </template>
 <script src="public/scripts/vue.js"></script>
