@@ -75,7 +75,7 @@ Vue.component('m-swipe',
         },
         onTransitionStart: function (swiper) {
           def_target.fireEvent({
-            type: "slide"
+            type: 'slide'
           });
 
 /*          window.addEventListener('slide',function () {

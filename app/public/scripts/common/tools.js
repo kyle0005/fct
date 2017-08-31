@@ -470,7 +470,7 @@ class VueViewload {
         window.addEventListener(item, this.delayRender, false)
       }
     });
-    def_target.addEvent("slide", this.delayRender);
+    def_target.addEvent('slide', this.delayRender);
 
   }
 
@@ -484,7 +484,7 @@ class VueViewload {
         window.removeEventListener(item, this.delayRender, false)
       }
     });
-    def_target.removeEvent("slide", this.delayRender);
+    def_target.removeEvent('slide', this.delayRender);
   }
 
   /**
