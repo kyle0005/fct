@@ -74,7 +74,13 @@ Vue.component('m-swipe',
           slideShadows : false
         },
         onTransitionStart: function (swiper) {
+          def_target.fireEvent({
+            type: "slide"
+          });
 
+/*          window.addEventListener('slide',function () {
+            console.log('aaa')
+          },false);*/
         }
       });
     },
@@ -89,9 +95,7 @@ let app = new Vue(
       if (swiper.dom) {
         this.swiper = swiper.dom;
       }
-      window.addEventListener('scroll', function () {
-        console.log('aaa')
-      })
+
     },
     activated() {
       if (this.swiper) {

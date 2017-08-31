@@ -295,70 +295,63 @@ function base64_encode(str) {
   return buf.join('');
 }
 
-//跨浏览器的事件处理程序
-//调用时候直接用domEvent.addEvent( , , );直接调用
-//使用时候，先用addEvent添加事件，然后在handleFun里面直接写其他函数方法，如getEvent；
-//addEventListener和attachEvent---都是dom2级事件处理程序
-var domEvent = {
-  //element:dom对象，event:待处理的事件，handleFun:处理函数
-  //事件名称，不含“on”，比如“click”、“mouseover”、“keydown”等
-  addEvent:function(element,event,handleFun){
-    //addEventListener----应用于mozilla
-    if(element.addEventListener){
-      element.addEventListener(event,handleFun,false);
-    }//attachEvent----应用于IE
-    else if(element.attachEvent){
-      element.attachEvent("on"+event,handleFun);
-    }//其他的选择dom0级事件处理程序
-    else{
-      //element.onclick===element["on"+event];
-      element["on"+event] = handleFun;
+//自定义事件构造函数
+function EventTarget(){
+  //事件处理程序数组集合
+  this.handlers = {};
+}
+//自定义事件的原型对象
+EventTarget.prototype = {
+  //设置原型构造函数链
+  constructor: EventTarget,
+  //注册给定类型的事件处理程序，
+  //type -> 自定义事件类型， handler -> 自定义事件回调函数
+  addEvent: function(type, handler){
+    //判断事件处理数组是否有该类型事件
+    if(typeof this.handlers[type] == 'undefined'){
+      this.handlers[type] = [];
+    }
+    //将处理事件push到事件处理数组里面
+    this.handlers[type].push(handler);
+  },
+  //触发一个事件
+  //event -> 为一个js对象，属性中至少包含type属性，
+  //因为类型是必须的，其次可以传一些处理函数需要的其他变量参数。（这也是为什么要传js对象的原因）
+  fireEvent: function(event){
+    //模拟真实事件的event
+    if(!event.target){
+      event.target = this;
+    }
+    //判断是否存在该事件类型
+    if(this.handlers[event.type] instanceof Array){
+      var handlers = this.handlers[event.type];
+      //在同一个事件类型下的可能存在多种处理事件，找出本次需要处理的事件
+      for(var i = 0; i < handlers.length; i++){
+        //执行触发
+        handlers[i](event);
+      }
     }
   },
-  //事件名称，含“on”，比如“onclick”、“onmouseover”、“onkeydown”等
-  removeEvent:function(element,event,handleFun){
-    //removeEventListener----应用于mozilla
-    if (element.removeEventListener) {
-      element.removeEventListener(event,handleFun,false);
-    }//detachEvent----应用于IE
-    else if (element.detachEvent) {
-      element.detachEvent("on"+event,handleFun);
-    }//其他的选择dom0级事件处理程序
-    else {
-      element["on"+event] = null;
+  //注销事件
+  //type -> 自定义事件类型， handler -> 自定义事件回调函数
+  removeEvent: function(type, handler){
+    //判断是否存在该事件类型
+    if(this.handlers[type] instanceof Array){
+      var handlers = this.handlers[type];
+      //在同一个事件类型下的可能存在多种处理事件
+      for(var i = 0; i < handlers.length; i++){
+        //找出本次需要处理的事件下标
+        if(handlers[i] == handler){
+          break;
+        }
+      }
+      //从事件处理数组里面删除
+      handlers.splice(i, 1);
     }
-  },
-  //阻止事件冒泡
-  stopPropagation:function(event){
-    if(event.stopPropagation){
-      event.stopPropagation();
-    }else{
-      event.cancelBubble = true;//IE阻止事件冒泡，true代表阻止
-    }
-  },
-  //阻止事件默认行为
-  preventDefault:function(event){
-    if(event.preventDefault){
-      event.preventDefault();
-    }else{
-      event.returnValue = false;//IE阻止事件冒泡，false代表阻止
-    }
-  },
-  //获得事件元素
-  //event.target--非IE
-  //event.srcElement--IE
-  getElement:function(event){
-    return event.target || event.srcElement;
-  },
-  //获得事件
-  getEvent:function(event){
-    return event? event : window.event;
-  },
-  //获得事件类型
-  getType:function(event){
-    return event.type;
   }
 };
+
+var def_target = new EventTarget();
 
 /* lazyload */
 let _util = {
@@ -476,7 +469,9 @@ class VueViewload {
       if (this.container !== window && item == 'resize') {
         window.addEventListener(item, this.delayRender, false)
       }
-    })
+    });
+    def_target.addEvent("slide", this.delayRender);
+
   }
 
   /**
@@ -488,7 +483,8 @@ class VueViewload {
       if (this.container !== window && item == 'resize') {
         window.removeEventListener(item, this.delayRender, false)
       }
-    })
+    });
+    def_target.removeEvent("slide", this.delayRender);
   }
 
   /**
