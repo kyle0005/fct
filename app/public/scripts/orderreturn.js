@@ -15,7 +15,7 @@ let app = new Vue(
       uploadItem: [],
       subUpload: [],
       maxNum: 3,
-      servicetype: 0,
+      servicetype: 1,
       reason: '',
       subText: '提交申请'
     },
