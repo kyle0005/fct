@@ -206,17 +206,17 @@ Vue.component('pug',
        }, 0)
      });*/
 
-
-/*      vue.$nextTick(function() {
+        console.log(vue.pugsingle.description);
+      // vue.$nextTick(function() {
         setTimeout(function () {
           let i = document.getElementById('pugHtml').querySelectorAll('img');
           console.log(i);
           i.forEach(function(el) {
-            el.setAttribute('v-view', el.getAttribute('v-view'));
-            Vue.$compile(el);
+            el.setAttribute('v-view', el.getAttribute('vUrl'));
+            vue.$parent.$compile(el);
           });
-        }, 0)
-      })*/
+        }, 500)
+      // })
 
 
     },
@@ -416,7 +416,27 @@ Vue.component('discuss',
 );
 Vue.component('vhtml',{
   props:['hcon'],
-  template: '<div id="pugHtml">{{ hcon }}</div>',
+  render: function (createElement) {
+    return createElement(
+      'div',
+      {},
+      [
+        createElement('a', {
+          attrs: {
+            name: headingId,
+            href: '#' + headingId
+          }
+        }, this.$slots.default),
+
+        createElement(MyComponent, {
+          props: {
+            someProp: 'foobar'
+          }
+        })
+      ]
+    )
+  },
+  // template: '<div id="pugHtml">{{ hcon }}</div>',
   mounted: function() {
     let vue = this;
     console.log(vue.hcon);
@@ -434,11 +454,6 @@ Vue.component('vhtml',{
     }
   }
 });
-/*Vue.component('vhtml',{
- props:['hcon'],
- template: '<img src="public/images/img_loader.gif"/>',
- methods: {}
- });*/
 
 let app = new Vue(
   {
