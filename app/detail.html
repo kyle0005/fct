@@ -458,8 +458,12 @@
         </span>
       </div>
     </section>
-    <section class="text-container" id="pugHtml" v-html="pugsingle.description">
-       <!--<vhtml :hcon="pugsingle.description"></vhtml>-->
+    <!--<section v-html="pugsingle.description"></section>-->
+    <section class="text-container" id="pugHtml">
+       <vhtml :hcon="pugsingle.description"></vhtml>
+      <!--<vimg :vsrc="'http://localhost:9000/public/images/resource/pro01.png'"></vimg>-->
+      <!--<vimg :vsrc="'http://localhost:9000/public/images/resource/pro02.png'"></vimg>-->
+      <!--<vimg :vsrc="'http://localhost:9000/public/images/resource/pro03.png'"></vimg>-->
     </section>
     <section class="comment">
       <div class="lines">

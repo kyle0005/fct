@@ -206,17 +206,19 @@ Vue.component('pug',
        }, 0)
      });*/
 
-        console.log(vue.pugsingle.description);
-      // vue.$nextTick(function() {
+        // console.log(vue.pugsingle.description);
+      vue.$nextTick(function() {
         setTimeout(function () {
-          let i = document.getElementById('pugHtml').querySelectorAll('img');
-          console.log(i);
-          i.forEach(function(el) {
-            el.setAttribute('v-view', el.getAttribute('vUrl'));
-            vue.$parent.$compile(el);
-          });
+/*          let i = document.getElementById('pugHtml').querySelectorAll('img');
+          let i = document.getElementById('pugHtml').innerHTML;
+          Vue.compile(i);
+          console.log(i);*/
+/*          i.forEach(function(el) {
+            // el.setAttribute('v-view', el.getAttribute('vUrl'));
+            Vue.compile(el);
+          });*/
         }, 500)
-      // })
+      })
 
 
     },
@@ -414,33 +416,195 @@ Vue.component('discuss',
     },
   }
 );
+
+let _vText='<img v-view=\"http://localhost:9000/public/images/resource/pro01.png\" src=\"public/images/img_loader.gif\" style=\"width: 550px;\">';
 Vue.component('vhtml',{
+  directives: {
+    'view': {
+      inserted: (el, binding) => {
+        let resourceEles = {},options = {
+          threshold: -50
+        },initRender;
+        let containerName = binding.arg == undefined ? 'window' : binding.arg
+        if (resourceEles[containerName] == undefined) {
+          resourceEles[containerName] = []
+        }
+        resourceEles[containerName].push({
+          ele: el,
+          src: binding.value
+        });
+        Vue.nextTick(() => {
+          if (typeof initRender == 'undefined') {
+            initRender = _util.debounce(function () {
+              for (let key in resourceEles) {
+                options.container = key == 'window' ? window : document.getElementById(key);
+                options.selector = resourceEles[key];
+                new VueViewload(options).render();
+              }
+            }, 200)
+          }
+          initRender();
+        })
+      },
+      bind: (el, binding) => {
+        let resourceEles = {},options = {
+          threshold: -50
+        },initRender;
+        let containerName = binding.arg == undefined ? 'window' : binding.arg
+        if (resourceEles[containerName] == undefined) {
+          resourceEles[containerName] = []
+        }
+        resourceEles[containerName].push({
+          ele: el,
+          src: binding.value
+        });
+        Vue.nextTick(() => {
+          if (typeof initRender == 'undefined') {
+            initRender = _util.debounce(function () {
+              for (let key in resourceEles) {
+                options.container = key == 'window' ? window : document.getElementById(key);
+                options.selector = resourceEles[key];
+                new VueViewload(options).render();
+              }
+            }, 200)
+          }
+          initRender();
+        })
+      },
+      update: (el, binding) => {
+        let resourceEles = {},options = {
+          threshold: -50
+        },initRender;
+        let containerName = binding.arg == undefined ? 'window' : binding.arg
+        if (resourceEles[containerName] == undefined) {
+          resourceEles[containerName] = []
+        }
+        resourceEles[containerName].push({
+          ele: el,
+          src: binding.value
+        });
+        Vue.nextTick(() => {
+          if (typeof initRender == 'undefined') {
+            initRender = _util.debounce(function () {
+              for (let key in resourceEles) {
+                options.container = key == 'window' ? window : document.getElementById(key);
+                options.selector = resourceEles[key];
+                new VueViewload(options).render();
+              }
+            }, 200)
+          }
+          initRender();
+        })
+      },
+      componentUpdated: (el, binding) => {
+        let resourceEles = {},options = {
+          threshold: -50
+        },initRender;
+        let containerName = binding.arg == undefined ? 'window' : binding.arg
+        if (resourceEles[containerName] == undefined) {
+          resourceEles[containerName] = []
+        }
+        resourceEles[containerName].push({
+          ele: el,
+          src: binding.value
+        });
+        Vue.nextTick(() => {
+          if (typeof initRender == 'undefined') {
+            initRender = _util.debounce(function () {
+              for (let key in resourceEles) {
+                options.container = key == 'window' ? window : document.getElementById(key);
+                options.selector = resourceEles[key];
+                new VueViewload(options).render();
+              }
+            }, 200)
+          }
+          initRender();
+        })
+      }
+    },
+  },
   props:['hcon'],
   render: function (createElement) {
     return createElement(
       'div',
-      {},
+      {
+        // DOM 属性
+        domProps: {
+          innerHTML: this.hcon
+        },
+/*        directives: [
+          {
+            name: 'view',
+            value: 'http://localhost:9000/public/images/resource/pro01.png',
+            // expression: '1 + 1',
+            // arg: '',
+            // modifiers: {
+            //   bar: true
+            // }
+          }
+        ]*/
+      },
       [
-        createElement('a', {
+        createElement('img', {
           attrs: {
-            name: headingId,
-            href: '#' + headingId
-          }
-        }, this.$slots.default),
-
-        createElement(MyComponent, {
-          props: {
-            someProp: 'foobar'
-          }
-        })
+            id: 'xxxx',
+            src: 'public/images/img_loader.gif',
+            'v-view': 'http://localhost:9000/public/images/resource/pro01.png'
+          },
+          directives: [
+            {
+              name: 'view',
+              value: 'http://localhost:9000/public/images/resource/pro01.png',
+              // expression: '1 + 1',
+              // arg: '',
+              // modifiers: {
+              //   bar: true
+              // }
+            }
+          ],
+        }),
+        createElement('img', {
+          attrs: {
+            id: 'xxxx',
+            src: 'public/images/img_loader.gif',
+            'v-view': 'http://localhost:9000/public/images/resource/pro02.png'
+          },
+          directives: [
+            {
+              name: 'view',
+              value: 'http://localhost:9000/public/images/resource/pro02.png',
+              // expression: '1 + 1',
+              // arg: '',
+              // modifiers: {
+              //   bar: true
+              // }
+            }
+          ],
+        }),
+        createElement('div', {
+            domProps: {
+              innerHTML: _vText
+            },
+            directives: [
+              {
+                name: 'view',
+                value: 'http://localhost:9000/public/images/resource/pro03.png',
+                // expression: '1 + 1',
+                // arg: '',
+                // modifiers: {
+                //   bar: true
+                // }
+              }
+            ],
+          }, [])
       ]
     )
   },
   // template: '<div id="pugHtml">{{ hcon }}</div>',
   mounted: function() {
     let vue = this;
-    console.log(vue.hcon);
-    document.getElementById('pugHtml').innerHTML = vue.hcon;
+    // console.log(vue.hcon);
+    // document.getElementById('pugHtml').innerHTML = vue.hcon;
 /*    vue.$nextTick(function() {
       setTimeout(function () {
         document.getElementById('pugHtml').innerHTML = vue.hcon;
@@ -450,8 +614,142 @@ Vue.component('vhtml',{
   },
   methods: {
     click_user(){
-      console.log('user clicker');
+      // console.log('user clicker');
     }
+  }
+});
+
+Vue.component('vimg',{
+  directives: {
+    'view': {
+      inserted: (el, binding) => {
+        let resourceEles = {},options = {
+          threshold: -50
+        },initRender;
+        let containerName = binding.arg == undefined ? 'window' : binding.arg
+        if (resourceEles[containerName] == undefined) {
+          resourceEles[containerName] = []
+        }
+        resourceEles[containerName].push({
+          ele: el,
+          src: binding.value
+        });
+        Vue.nextTick(() => {
+          if (typeof initRender == 'undefined') {
+            initRender = _util.debounce(function () {
+              for (let key in resourceEles) {
+                options.container = key == 'window' ? window : document.getElementById(key);
+                options.selector = resourceEles[key];
+                new VueViewload(options).render();
+              }
+            }, 200)
+          }
+          initRender();
+        })
+      },
+      bind: (el, binding) => {
+        let resourceEles = {},options = {
+          threshold: -50
+        },initRender;
+        let containerName = binding.arg == undefined ? 'window' : binding.arg
+        if (resourceEles[containerName] == undefined) {
+          resourceEles[containerName] = []
+        }
+        resourceEles[containerName].push({
+          ele: el,
+          src: binding.value
+        });
+        Vue.nextTick(() => {
+          if (typeof initRender == 'undefined') {
+            initRender = _util.debounce(function () {
+              for (let key in resourceEles) {
+                options.container = key == 'window' ? window : document.getElementById(key);
+                options.selector = resourceEles[key];
+                new VueViewload(options).render();
+              }
+            }, 200)
+          }
+          initRender();
+        })
+      },
+      update: (el, binding) => {
+        let resourceEles = {},options = {
+          threshold: -50
+        },initRender;
+        let containerName = binding.arg == undefined ? 'window' : binding.arg
+        if (resourceEles[containerName] == undefined) {
+          resourceEles[containerName] = []
+        }
+        resourceEles[containerName].push({
+          ele: el,
+          src: binding.value
+        });
+        Vue.nextTick(() => {
+          if (typeof initRender == 'undefined') {
+            initRender = _util.debounce(function () {
+              for (let key in resourceEles) {
+                options.container = key == 'window' ? window : document.getElementById(key);
+                options.selector = resourceEles[key];
+                new VueViewload(options).render();
+              }
+            }, 200)
+          }
+          initRender();
+        })
+      },
+      componentUpdated: (el, binding) => {
+        let resourceEles = {},options = {
+          threshold: -50
+        },initRender;
+        let containerName = binding.arg == undefined ? 'window' : binding.arg
+        if (resourceEles[containerName] == undefined) {
+          resourceEles[containerName] = []
+        }
+        resourceEles[containerName].push({
+          ele: el,
+          src: binding.value
+        });
+        Vue.nextTick(() => {
+          if (typeof initRender == 'undefined') {
+            initRender = _util.debounce(function () {
+              for (let key in resourceEles) {
+                options.container = key == 'window' ? window : document.getElementById(key);
+                options.selector = resourceEles[key];
+                new VueViewload(options).render();
+              }
+            }, 200)
+          }
+          initRender();
+        })
+      }
+    },
+  },
+  props:['vsrc'],
+  render: function (createElement) {
+    return createElement('img', {
+      attrs: {
+        id: 'xxxx',
+        src: 'public/images/img_loader.gif',
+        'v-view': this.vsrc
+      },
+      directives: [
+        {
+          name: 'view',
+          value: this.vsrc
+          // expression: '1 + 1',
+          // arg: '',
+          // modifiers: {
+          //   bar: true
+          // }
+        }
+      ],
+    })
+  },
+  mounted: function() {
+    let vue = this;
+
+  },
+  methods: {
   }
 });
 

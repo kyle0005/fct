@@ -547,7 +547,82 @@ class VueViewload {
   }
 }
 Vue.directive('view', {
+  inserted(el, binding) {
+    let resourceEles = {},options = {
+      threshold: -50
+    },initRender;
+    let containerName = binding.arg == undefined ? 'window' : binding.arg
+    if (resourceEles[containerName] == undefined) {
+      resourceEles[containerName] = []
+    }
+    resourceEles[containerName].push({
+      ele: el,
+      src: binding.value
+    });
+    Vue.nextTick(() => {
+      if (typeof initRender == 'undefined') {
+        initRender = _util.debounce(function () {
+          for (let key in resourceEles) {
+            options.container = key == 'window' ? window : document.getElementById(key);
+            options.selector = resourceEles[key];
+            new VueViewload(options).render();
+          }
+        }, 200)
+      }
+      initRender();
+    })
+  },
   bind(el, binding) {
+    let resourceEles = {},options = {
+      threshold: -50
+    },initRender;
+    let containerName = binding.arg == undefined ? 'window' : binding.arg
+    if (resourceEles[containerName] == undefined) {
+      resourceEles[containerName] = []
+    }
+    resourceEles[containerName].push({
+      ele: el,
+      src: binding.value
+    });
+    Vue.nextTick(() => {
+      if (typeof initRender == 'undefined') {
+        initRender = _util.debounce(function () {
+          for (let key in resourceEles) {
+            options.container = key == 'window' ? window : document.getElementById(key);
+            options.selector = resourceEles[key];
+            new VueViewload(options).render();
+          }
+        }, 200)
+      }
+      initRender();
+    })
+  },
+  update(el, binding){
+    let resourceEles = {},options = {
+      threshold: -50
+    },initRender;
+    let containerName = binding.arg == undefined ? 'window' : binding.arg
+    if (resourceEles[containerName] == undefined) {
+      resourceEles[containerName] = []
+    }
+    resourceEles[containerName].push({
+      ele: el,
+      src: binding.value
+    });
+    Vue.nextTick(() => {
+      if (typeof initRender == 'undefined') {
+        initRender = _util.debounce(function () {
+          for (let key in resourceEles) {
+            options.container = key == 'window' ? window : document.getElementById(key);
+            options.selector = resourceEles[key];
+            new VueViewload(options).render();
+          }
+        }, 200)
+      }
+      initRender();
+    })
+  },
+  componentUpdated(el, binding){
     let resourceEles = {},options = {
       threshold: -50
     },initRender;
