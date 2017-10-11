@@ -37,7 +37,7 @@ let app = new Vue(
         vue.tab_num = 0;
       },
       showImg(){
-        return 'public/images/img_loader.gif';
+        return 'public/img/mobile/img_loader.gif';
       },
       getBefore(){
         let vue = this;

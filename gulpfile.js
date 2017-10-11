@@ -77,7 +77,7 @@ gulp.task('html', ['styles', 'scripts'], () => {
 });
 
 gulp.task('images', () => {
-  return gulp.src('app/public/images/**/*')
+  return gulp.src('app/public/img/mobile/**/*')
     .pipe($.cache($.imagemin()))
     .pipe(gulp.dest('dist/images'));
 });
@@ -436,7 +436,7 @@ gulp.task('serve', () => {
                               'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png'
                           ],
                       'largeImages': [
-                          '/public/images/resource/test7.png',
+                          '/public/img/mobile/resource/test7.png',
                       ],
                       'videoImage':'\/images\/default-null.png',
                       'videoUrl':'',
@@ -447,14 +447,14 @@ gulp.task('serve', () => {
                   {
                       'images':
                           [
-                              '/public/images/resource/test1.png',
-                              '/public/images/resource/test1.png',
-                              '/public/images/resource/test1.png',
+                              '/public/img/mobile/resource/test1.png',
+                              '/public/img/mobile/resource/test1.png',
+                              '/public/img/mobile/resource/test1.png',
                           ],
                       'largeImages': [
-                          '/public/images/resource/test2.png',
-                          '/public/images/resource/test2.png',
-                          '/public/images/resource/test2.png',
+                          '/public/img/mobile/resource/test2.png',
+                          '/public/img/mobile/resource/test2.png',
+                          '/public/img/mobile/resource/test2.png',
                       ],
                       'videoImage':'//vjs.zencdn.net/v/oceans.png',
                       'videoUrl':'',
@@ -465,14 +465,14 @@ gulp.task('serve', () => {
                   {
                       'images':
                           [
-                              '/public/images/resource/test2.png',
-                              '/public/images/resource/test2.png',
-                              '/public/images/resource/test2.png',
+                              '/public/img/mobile/resource/test2.png',
+                              '/public/img/mobile/resource/test2.png',
+                              '/public/img/mobile/resource/test2.png',
                           ],
                       'largeImages': [
-                          '/public/images/resource/test1.png',
-                          '/public/images/resource/test1.png',
-                          '/public/images/resource/test1.png',
+                          '/public/img/mobile/resource/test1.png',
+                          '/public/img/mobile/resource/test1.png',
+                          '/public/img/mobile/resource/test1.png',
                       ],
                       'videoImage':'//vjs.zencdn.net/v/oceans.png',
                       'videoUrl':'',
@@ -483,10 +483,10 @@ gulp.task('serve', () => {
                   {
                       'images':
                           [
-                              '/public/images/resource/test3.png',
+                              '/public/img/mobile/resource/test3.png',
                           ],
                       'largeImages': [
-                          '/public/images/resource/test4.png',
+                          '/public/img/mobile/resource/test4.png',
                       ],
                       'videoImage':'//vjs.zencdn.net/v/oceans.png',
                       'videoUrl':'',
@@ -497,10 +497,10 @@ gulp.task('serve', () => {
                   {
                       'images':
                           [
-                              '/public/images/resource/test4.png',
+                              '/public/img/mobile/resource/test4.png',
                           ],
                       'largeImages': [
-                          '/public/images/resource/test3.png',
+                          '/public/img/mobile/resource/test3.png',
                       ],
                       'videoImage':'//vjs.zencdn.net/v/oceans.png',
                       'videoUrl':'',
@@ -511,10 +511,10 @@ gulp.task('serve', () => {
                   {
                       'images':
                           [
-                              '/public/images/resource/test5.png',
+                              '/public/img/mobile/resource/test5.png',
                           ],
                       'largeImages': [
-                          '/public/images/resource/test6.png',
+                          '/public/img/mobile/resource/test6.png',
                       ],
                       'videoImage':'//vjs.zencdn.net/v/oceans.png',
                       'videoUrl':'',
@@ -525,12 +525,12 @@ gulp.task('serve', () => {
                   {
                       'images':
                           [
-                              '/public/images/resource/test6.png',
-                              '/public/images/resource/test6.png',
+                              '/public/img/mobile/resource/test6.png',
+                              '/public/img/mobile/resource/test6.png',
                           ],
                       'largeImages': [
-                          '/public/images/resource/test5.png',
-                          '/public/images/resource/test5.png',
+                          '/public/img/mobile/resource/test5.png',
+                          '/public/img/mobile/resource/test5.png',
                       ],
                       'videoImage':'//vjs.zencdn.net/v/oceans.png',
                       'videoUrl':'',
@@ -775,13 +775,13 @@ gulp.task('serve', () => {
           'auditStatus': 0,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
           'goods': [
             {
-              'defaultImage': 'public/images/resource/pro01.png'
+              'defaultImage': 'public/img/mobile/resource/pro01.png'
             },
             {
-              'defaultImage': 'public/images/resource/pro01.png'
+              'defaultImage': 'public/img/mobile/resource/pro01.png'
             },
             {
-              'defaultImage': 'public/images/resource/pro01.png'
+              'defaultImage': 'public/img/mobile/resource/pro01.png'
             },
           ],
 
@@ -796,13 +796,13 @@ gulp.task('serve', () => {
           'auditStatus': 2,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
           'goods': [
             {
-              'defaultImage': 'public/images/resource/pro01.png'
+              'defaultImage': 'public/img/mobile/resource/pro01.png'
             },
             {
-              'defaultImage': 'public/images/resource/pro01.png'
+              'defaultImage': 'public/img/mobile/resource/pro01.png'
             },
             {
-              'defaultImage': 'public/images/resource/pro01.png'
+              'defaultImage': 'public/img/mobile/resource/pro01.png'
             },
           ],
 
@@ -963,7 +963,7 @@ gulp.task('serve', () => {
             'id': 2,
             'replyContent': [],
             'userName': 'jon',
-            'headPortrait': '/images/default-null.png',
+            'headPortrait': '/img/mobile/default-null.png',
             'content': 'Virtual machine templates for BSD flavours'
           },
           {
@@ -973,7 +973,7 @@ gulp.task('serve', () => {
               '回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复'
             ],
             'userName': 'jon',
-            'headPortrait': '/images/default-null.png',
+            'headPortrait': '/img/mobile/default-null.png',
             'content': 'Virtual machine templates for Ubuntu'
           },
           {
@@ -981,7 +981,7 @@ gulp.task('serve', () => {
             'id': 2,
             'replyContent': [],
             'userName': 'jon',
-            'headPortrait': '/images/default-null.png',
+            'headPortrait': '/img/mobile/default-null.png',
             'content': 'Virtual machine templates for BSD flavours'
           },
           {
@@ -991,7 +991,7 @@ gulp.task('serve', () => {
               '回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复'
             ],
             'userName': 'jon',
-            'headPortrait': '/images/default-null.png',
+            'headPortrait': '/img/mobile/default-null.png',
             'content': 'Virtual machine templates for Ubuntu'
           },
           {
@@ -999,7 +999,7 @@ gulp.task('serve', () => {
             'id': 2,
             'replyContent': [],
             'userName': 'jon',
-            'headPortrait': '/images/default-null.png',
+            'headPortrait': '/img/mobile/default-null.png',
             'content': 'Virtual machine templates for BSD flavours'
           },
           {
@@ -1009,7 +1009,7 @@ gulp.task('serve', () => {
               '回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复'
             ],
             'userName': 'jon',
-            'headPortrait': '/images/default-null.png',
+            'headPortrait': '/img/mobile/default-null.png',
             'content': 'Virtual machine templates for Ubuntu'
           },
           {
@@ -1017,7 +1017,7 @@ gulp.task('serve', () => {
             'id': 2,
             'replyContent': [],
             'userName': 'jon',
-            'headPortrait': '/images/default-null.png',
+            'headPortrait': '/img/mobile/default-null.png',
             'content': 'Virtual machine templates for BSD flavours'
           },
           {
@@ -1027,7 +1027,7 @@ gulp.task('serve', () => {
               '回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复'
             ],
             'userName': 'jon',
-            'headPortrait': '/images/default-null.png',
+            'headPortrait': '/img/mobile/default-null.png',
             'content': 'Virtual machine templates for Ubuntu'
           },
           {
@@ -1035,7 +1035,7 @@ gulp.task('serve', () => {
             'id': 2,
             'replyContent': [],
             'userName': 'jon',
-            'headPortrait': '/images/default-null.png',
+            'headPortrait': '/img/mobile/default-null.png',
             'content': 'Virtual machine templates for BSD flavours'
           },
           {
@@ -1045,7 +1045,7 @@ gulp.task('serve', () => {
               '回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复回复'
             ],
             'userName': 'jon',
-            'headPortrait': '/images/default-null.png',
+            'headPortrait': '/img/mobile/default-null.png',
             'content': 'Virtual machine templates for Ubuntu'
           }
         ],
@@ -1092,8 +1092,8 @@ gulp.task('serve', () => {
       'message': '获取成功',
       'url': null,
       'data': {
-        'url': '/public/images/resource/artist.png',
-        'fullUrl': 'http://localhost:9000/public/images/resource/artist.png'
+        'url': '/public/img/mobile/resource/artist.png',
+        'fullUrl': 'http://localhost:9000/public/img/mobile/resource/artist.png'
       }
     });
   });
@@ -1103,8 +1103,8 @@ gulp.task('serve', () => {
       'message': '获取成功',
       'url': null,
       'data': {
-        'url': '/public/images/resource/artist.png',
-        'fullUrl': 'http://localhost:9000/public/images/resource/artist.png'
+        'url': '/public/img/mobile/resource/artist.png',
+        'fullUrl': 'http://localhost:9000/public/img/mobile/resource/artist.png'
       }
     });
   });
@@ -1254,7 +1254,7 @@ gulp.task('serve', () => {
 
     // gulp.watch([
     //   'app/*.html',
-    //   'app/public/images/**/*',
+    //   'app/public/img/mobile/**/*',
     //   '.tmp/public/fonts/**/*'
     // ]).on('change', reload);
 

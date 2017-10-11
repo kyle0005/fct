@@ -21,7 +21,7 @@
         </span>
           <span class="info live-now">正在直播</span>
         </a>
-        <img src="public/images/resource/imgs.png" >
+        <img src="public/img/mobile/resource/imgs.png" >
         <div class="info join-num">1234214241人关注</div>
       </div>
       <div class="inner" v-else>
@@ -57,7 +57,7 @@
       </li>
       <li class="user" @click="toLogin()">
         <span class="img-container">
-          <img src="public/images/nologin-head.png">
+          <img src="public/img/mobile/nologin-head.png">
         </span>
       </li>
     </ul>
@@ -72,31 +72,31 @@
         <ul class="lines clearfix">
           <li class="item">
             <a href="javascript:;">
-              <img src="public/images/menu1.png">
+              <img src="public/img/mobile/menu1.png">
               <span>合作艺师</span>
             </a>
           </li>
           <li class="item">
             <a href="javascript:;">
-              <img src="public/images/menu2.png">
+              <img src="public/img/mobile/menu2.png">
               <span>百科</span>
             </a>
           </li>
           <li class="item">
             <a href="javascript:;">
-              <img src="public/images/menu3.png">
+              <img src="public/img/mobile/menu3.png">
               <span>个性定制</span>
             </a>
           </li>
           <li class="item">
             <a href="javascript:;">
-              <img src="public/images/menu4.png">
+              <img src="public/img/mobile/menu4.png">
               <span>APP下载</span>
             </a>
           </li>
           <li class="item">
             <a href="javascript:;">
-              <img src="public/images/menu5.png">
+              <img src="public/img/mobile/menu5.png">
               <span>品牌理念</span>
             </a>
           </li>
@@ -113,8 +113,8 @@
         <mVideo v-if="top.videoUrl !== ''" :poster="top.videoImage" :url="top.videoUrl" id="'video' + top.id"></mVideo>
         <ul class="img-list clearfix" v-if="topImg">
           <li v-for="(imgs, index) in top.images">
-            <img v-img="{ group: 'top', exsrc: top.largeImages[index]}"  v-view="imgs" src="public/images/img_loader.gif">
-            <!--<img v-view="imgs" src="public/images/img_loader.gif">-->
+            <img v-img="{ group: 'top', exsrc: top.largeImages[index]}"  v-view="imgs" src="public/img/mobile/img_loader.gif">
+            <!--<img v-view="imgs" src="public/img/mobile/img_loader.gif">-->
           </li>
         </ul>
       </div>
@@ -126,15 +126,15 @@
           <mVideo v-if="item.videoUrl !== ''" :poster="item.videoImage" :url="item.videoUrl" id="'video' + item.id"></mVideo>
           <ul class="img-list clearfix" v-if="item.images.length > 0">
             <li v-for="(img, i) in item.images">
-              <img v-img="{ group: item.id, exsrc: item.largeImages[i]}" v-view="img" src="public/images/img_loader.gif">
-              <!--<img v-view="img" src="public/images/img_loader.gif">-->
+              <img v-img="{ group: item.id, exsrc: item.largeImages[i]}" v-view="img" src="public/img/mobile/img_loader.gif">
+              <!--<img v-view="img" src="public/img/mobile/img_loader.gif">-->
             </li>
           </ul>
         </div>
       </li>
     </ul>
     <no-data v-if="nodata"></no-data>
-    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
 </script>
 <script type="text/x-template" id="works">
@@ -157,7 +157,7 @@
       </li>
     </ul>
     <no-data v-if="nodata"></no-data>
-    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
 </script>
 <script type="text/x-template" id="chat">
@@ -174,19 +174,19 @@
           </div>
           <div class="context">{{ item.content }}</div>
           <div class="reply-container" v-if="item.replyContent.length > 0">
-            <div class="icon"><img src="public/images/reply.png"></div>
+            <div class="icon"><img src="public/img/mobile/reply.png"></div>
             <div class="reply" v-for="(reply, index) in item.replyContent">{{ reply }}</div>
           </div>
         </div>
       </li>
     </ul>
     <no-data v-if="nodata"></no-data>
-    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
     <section class="sub-chat">
       <div class="inner">
         <a href="javascript:;" class="sub" @click="popchat()">
         <span class="img">
-          <img src="public/images/reply_chat.png">
+          <img src="public/img/mobile/reply_chat.png">
         </span>
           <span class="txt">请输入要表达的信息</span>
         </a>
@@ -217,7 +217,7 @@
     <div class="video-inner">
       <div v-if="!isVideoLoad" class="play-container" @click="loadVideo()">
         <img :src="poster" class="poster-img" />
-        <img src="public/images/video_play.png" class="poster-play" />
+        <img src="public/img/mobile/video_play.png" class="poster-play" />
       </div>
       <video class="m-video" :src="url" :id="id" preload="metadata" controls v-else></video>
     </div>
@@ -276,7 +276,7 @@
                       "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-23\/8101370a8a1b48669c9a64f0f74264bc.png"
                     ],
                   "largeImages": [
-                    "/public/images/resource/test7.png",
+                    "/public/img/mobile/resource/test7.png",
                   ],
                   "videoImage":"\/images\/default-null.png",
                   "videoUrl":"",
@@ -287,14 +287,14 @@
                 {
                   "images":
                     [
-                      "/public/images/resource/test1.png",
-                      "/public/images/resource/test2.png",
-                      "/public/images/resource/test3.png",
+                      "/public/img/mobile/resource/test1.png",
+                      "/public/img/mobile/resource/test2.png",
+                      "/public/img/mobile/resource/test3.png",
                     ],
                   "largeImages": [
-                    "/public/images/resource/test1.png",
-                    "/public/images/resource/test2.png",
-                    "/public/images/resource/test3.png",
+                    "/public/img/mobile/resource/test1.png",
+                    "/public/img/mobile/resource/test2.png",
+                    "/public/img/mobile/resource/test3.png",
                   ],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
                   "videoUrl":"",
@@ -305,14 +305,14 @@
                 {
                   "images":
                     [
-                      "/public/images/resource/test2.png",
-                      "/public/images/resource/test2.png",
-                      "/public/images/resource/test2.png",
+                      "/public/img/mobile/resource/test2.png",
+                      "/public/img/mobile/resource/test2.png",
+                      "/public/img/mobile/resource/test2.png",
                     ],
                   "largeImages": [
-                    "/public/images/resource/test1.png",
-                    "/public/images/resource/test1.png",
-                    "/public/images/resource/test1.png",
+                    "/public/img/mobile/resource/test1.png",
+                    "/public/img/mobile/resource/test1.png",
+                    "/public/img/mobile/resource/test1.png",
                   ],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
                   "videoUrl":"",
@@ -323,10 +323,10 @@
                 {
                   "images":
                     [
-                      "/public/images/resource/test3.png",
+                      "/public/img/mobile/resource/test3.png",
                     ],
                   "largeImages": [
-                    "/public/images/resource/test4.png",
+                    "/public/img/mobile/resource/test4.png",
                   ],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
                   "videoUrl":"",
@@ -337,10 +337,10 @@
                 {
                   "images":
                     [
-                      "/public/images/resource/test4.png",
+                      "/public/img/mobile/resource/test4.png",
                     ],
                   "largeImages": [
-                    "/public/images/resource/test3.png",
+                    "/public/img/mobile/resource/test3.png",
                   ],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
                   "videoUrl":"",
@@ -351,10 +351,10 @@
                 {
                   "images":
                     [
-                      "/public/images/resource/test5.png",
+                      "/public/img/mobile/resource/test5.png",
                     ],
                   "largeImages": [
-                    "/public/images/resource/test6.png",
+                    "/public/img/mobile/resource/test6.png",
                   ],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
                   "videoUrl":"",
@@ -365,12 +365,12 @@
                 {
                   "images":
                     [
-                      "/public/images/resource/test6.png",
-                      "/public/images/resource/test6.png",
+                      "/public/img/mobile/resource/test6.png",
+                      "/public/img/mobile/resource/test6.png",
                     ],
                   "largeImages": [
-                    "/public/images/resource/test5.png",
-                    "/public/images/resource/test5.png",
+                    "/public/img/mobile/resource/test5.png",
+                    "/public/img/mobile/resource/test5.png",
                   ],
                   "videoImage":"//vjs.zencdn.net/v/oceans.png",
                   "videoUrl":"",

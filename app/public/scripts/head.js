@@ -24,7 +24,7 @@ Vue.component('head-top',
         typeList: [],
         loading: false,
         refreshing: false,
-        img_url: 'public/images',
+        img_url: 'public/img/mobile',
         pro_list_type: []
       }
     },

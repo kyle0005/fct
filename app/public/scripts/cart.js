@@ -205,7 +205,7 @@ new Vue(
       },
       linkto(url){
         if(url){
-          location.href = 'http://localhost:9000/login.html';
+          location.href = '';
         }
       },
       loadPro(){

@@ -1141,7 +1141,7 @@ $foot-height: 250px;
       }
       .e-img{
         border: 26px solid rgb(249, 110, 87);
-        -webkit-border-image: url(../images/edit_img_bg.png) 20 fill;
+        -webkit-border-image: url(../img/mobile/edit_img_bg.png) 20 fill;
         box-sizing: border-box;
         margin-bottom: 10px;
         img{
@@ -1207,7 +1207,8 @@ $foot-height: 250px;
         margin: 0 auto;
         padding-bottom: calc(480/690*100%);
         text-align: center;
-        background: url("../images/d_bg.png") $color-212122 no-repeat center center;
+        border: none;
+        background: url("../img/mobile/d_bg.png") $color-212122 no-repeat center center;
         background-size: 100% auto;
         img{
           position: absolute;
@@ -2025,7 +2026,7 @@ $foot-height: 250px;
               width: 6.38%;
               margin-right: 5px;
               padding-bottom: 6.38%;
-              background: url("../images/check3.png") no-repeat center center;
+              background: url("../img/mobile/check3.png") no-repeat center center;
               background-size: 100% auto;
               vertical-align: sub;
               border: none;
@@ -2034,7 +2035,7 @@ $foot-height: 250px;
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                background: url("../images/check2.png") no-repeat center center;
+                background: url("../img/mobile/check2.png") no-repeat center center;
                 background-size: 100% auto;
               }
             }
@@ -2341,7 +2342,7 @@ $foot-height: 250px;
             transform: translateY(-50%);
             width: 7.12%;
             padding-bottom: 7.12%;
-            background: url("../images/check3.png") no-repeat center center;
+            background: url("../img/mobile/check3.png") no-repeat center center;
             background-size: 100% auto;
             border: none;
             &:checked:after{
@@ -2349,7 +2350,7 @@ $foot-height: 250px;
               position: absolute;
               width: 100%;
               height: 100%;
-              background: url("../images/check2.png") no-repeat center center;
+              background: url("../img/mobile/check2.png") no-repeat center center;
               background-size: 100% auto;
             }
           }
@@ -2379,7 +2380,8 @@ $foot-height: 250px;
   .swiper-container {
     width: 100%;
     padding-top: 50px;
-    padding-bottom: 50px;
+    //padding-bottom: 50px;
+    max-height: calc(100% - 50px);
   }
   .swiper-slide {
     background-color: $color-white;
@@ -2393,6 +2395,9 @@ $foot-height: 250px;
       span{
         display: inline-block;
         line-height: 20px;
+      }
+      .intro{
+        display: -webkit-box;
       }
       .img-con{
         position: relative;
@@ -3845,7 +3850,7 @@ $foot-height: 250px;
         box-flex: 1.0;
         select.sel{
           width: 92%;
-          background: url("../images/arr_down.png") no-repeat right center;
+          background: url("../img/mobile/arr_down.png") no-repeat right center;
           background-size: auto 7px;
           border: none;
         }
@@ -4075,7 +4080,7 @@ $foot-height: 250px;
             width: $font-size-t13;
             margin-right: 3px;
             padding-bottom: $font-size-t13;
-            background: url("../images/check3.png") no-repeat center center;
+            background: url("../img/mobile/check3.png") no-repeat center center;
             background-size: 100% auto;
             vertical-align: sub;
             border: none;
@@ -4084,7 +4089,7 @@ $foot-height: 250px;
               position: absolute;
               width: 100%;
               height: 100%;
-              background: url("../images/check2.png") no-repeat center center;
+              background: url("../img/mobile/check2.png") no-repeat center center;
               background-size: 100% auto;
             }
           }
@@ -4529,7 +4534,7 @@ $foot-height: 250px;
             width: $font-size-t13;
             margin-right: 3px;
             padding-bottom: $font-size-t13;
-            background: url("../images/check3.png") no-repeat center center;
+            background: url("../img/mobile/check3.png") no-repeat center center;
             background-size: 100% auto;
             vertical-align: sub;
             border: none;
@@ -4538,7 +4543,7 @@ $foot-height: 250px;
               position: absolute;
               width: 100%;
               height: 100%;
-              background: url("../images/check2_r.png") no-repeat center center;
+              background: url("../img/mobile/check2_r.png") no-repeat center center;
               background-size: 100% auto;
             }
           }
@@ -4718,7 +4723,7 @@ $foot-height: 250px;
             border: none;
             text-align: right;
             direction: rtl;
-            background: url("../images/arr_down.png") no-repeat right center;
+            background: url("../img/mobile/arr_down.png") no-repeat right center;
             background-size: 14px auto;
           }
         }
@@ -5743,7 +5748,7 @@ $foot-height: 250px;
           border: none;
           text-align: right;
           direction: rtl;
-          background: url(../images/arr_right.png) no-repeat right center;
+          background: url(../img/mobile/arr_right.png) no-repeat right center;
           background-size: auto 15px;
         }
 
@@ -5970,7 +5975,7 @@ $foot-height: 250px;
           border: none;
           text-align: right;
           direction: rtl;
-          background: url(../images/arr_right.png) no-repeat right center;
+          background: url(../img/mobile/arr_right.png) no-repeat right center;
           background-size: auto 15px;
         }
 
@@ -6012,7 +6017,7 @@ $foot-height: 250px;
           position: relative;
           width: calc(125/690*100%);
           padding-bottom: calc(125/690*100%);
-          background: url("../images/upload_bg.png") no-repeat center center;
+          background: url("../img/mobile/upload_bg.png") no-repeat center center;
           background-size: 100% auto;
           img{
             position: absolute;
@@ -6405,7 +6410,7 @@ $foot-height: 250px;
           //text-align: right;
           //direction: rtl;
           //margin-right: 5%;
-          background: url("../images/arr_down.png") no-repeat right center;
+          background: url("../img/mobile/arr_down.png") no-repeat right center;
           background-size: 14px auto;
           option{
             text-align: left;

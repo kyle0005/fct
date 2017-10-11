@@ -24,8 +24,8 @@
           <span class="">默认地址</span>
         </label>
         <div class="options-container">
-          <a href="javascript:;" @click="edit(item)"><img src="public/images/edit.png"><span class="items">编辑</span></a>
-          <a href="javascript:;"><img src="public/images/del.png">
+          <a href="javascript:;" @click="edit(item)"><img src="public/img/mobile/edit.png"><span class="items">编辑</span></a>
+          <a href="javascript:;"><img src="public/img/mobile/del.png">
             <span class="items">
               <subpost :txt="subText" :ref="'subpost' + index" @callback="del({item,index})" @succhandle="succhandle"></subpost>
             </span>
@@ -36,7 +36,7 @@
   </li>
 </ul>
   <no-data v-if="nodata"></no-data>
-  <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
+  <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   <div class="address-btn">
     <a href="buy_address_opt.html">添加新地址</a>
   </div>

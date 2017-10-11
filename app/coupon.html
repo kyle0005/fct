@@ -19,7 +19,7 @@
     <div class="tips">
       <a href="coupon_get.html" class="link">
           <span class="img-container item">
-            <img src="public/images/coupon.png">
+            <img src="public/img/mobile/coupon.png">
           </span>
         <span class="item t">您有<span class="num">{{ couponcount }}</span>张待领取的优惠券哦</span>
         <span class="wei-arrow-right"></span>
@@ -29,7 +29,7 @@
       <coupons :couponitem="item"></coupons>
     </div>
     <no-data v-if="nodata"></no-data>
-    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   </section>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
@@ -55,15 +55,15 @@
           <div class="info clearfix">
             <span class="text">详细信息</span>
             <a href="javascript:;" class="pin" :class="{open:show_detail}" @click="showdetail()">
-              <img src="public/images/pin.png">
+              <img src="public/img/mobile/pin.png">
             </a>
           </div>
         </div>
         <div class="used-bg" v-if="couponitem.auditStatus == 2">
-          <img src="public/images/used.png">
+          <img src="public/img/mobile/used.png">
         </div>
         <div class="used-bg" v-if="couponitem.auditStatus == 3">
-          <img src="public/images/overdue.png">
+          <img src="public/img/mobile/overdue.png">
         </div>
       </div>
     </div>
@@ -98,13 +98,13 @@
         "fullAmount": 231,
         "goods": [
           {
-            "defaultImage": "public/images/resource/pro01.png"
+            "defaultImage": "public/img/mobile/resource/pro01.png"
           },
           {
-            "defaultImage": "public/images/resource/pro01.png"
+            "defaultImage": "public/img/mobile/resource/pro01.png"
           },
           {
-            "defaultImage": "public/images/resource/pro01.png"
+            "defaultImage": "public/img/mobile/resource/pro01.png"
           },
         ],
 
@@ -120,13 +120,13 @@
         'auditStatus': 0,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
         'goods': [
           {
-            'defaultImage': 'public/images/resource/pro01.png'
+            'defaultImage': 'public/img/mobile/resource/pro01.png'
           },
           {
-            'defaultImage': 'public/images/resource/pro01.png'
+            'defaultImage': 'public/img/mobile/resource/pro01.png'
           },
           {
-            'defaultImage': 'public/images/resource/pro01.png'
+            'defaultImage': 'public/img/mobile/resource/pro01.png'
           },
         ],
 
@@ -142,13 +142,13 @@
         'auditStatus': 2,     /* 0：未使用，1：使用中，2：已使用，3：已过期 */
         'goods': [
           {
-            'defaultImage': 'public/images/resource/pro01.png'
+            'defaultImage': 'public/img/mobile/resource/pro01.png'
           },
           {
-            'defaultImage': 'public/images/resource/pro01.png'
+            'defaultImage': 'public/img/mobile/resource/pro01.png'
           },
           {
-            'defaultImage': 'public/images/resource/pro01.png'
+            'defaultImage': 'public/img/mobile/resource/pro01.png'
           },
         ],
 

@@ -1,31 +1,31 @@
 {
   "slides": [
     {
-      "image": "/public/images/resource/00.png",
+      "image": "/public/img/mobile/resource/00.png",
       "type_name": 0,
       "id": 0,
       "title": "aaa"
     },
     {
-      "image": "/public/images/resource/01.png",
+      "image": "/public/img/mobile/resource/01.png",
       "type_name": 0,
       "id": 1,
       "title": "bbb"
     },
     {
-      "image": "/public/images/resource/02.png",
+      "image": "/public/img/mobile/resource/02.png",
       "type_name": 0,
       "id": 2,
       "title": "ccc"
     },
     {
-      "image": "/public/images/resource/03.png",
+      "image": "/public/img/mobile/resource/03.png",
       "type_name": 0,
       "id": 3,
       "title": "ddd"
     },
     {
-      "image": "/public/images/resource/02.png",
+      "image": "/public/img/mobile/resource/02.png",
       "type_name": 0,
       "id": 4,
       "title": "eee"
@@ -45,12 +45,12 @@
           "artist": "李某某001",
           "title": "【精雕细刻】束云茶叶罐001",
           "description": "描述文字。。。。。001。",
-          "default_pic": "/public/images/resource/imgs.png",
+          "default_pic": "/public/img/mobile/resource/imgs.png",
           "pics": [
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png"
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png"
           ],
           "clickAmount": 99999999,
           "saleAmount": 11111111
@@ -63,12 +63,12 @@
           "artist": "李某某001",
           "title": "【精雕细刻】束云茶叶罐001",
           "description": "描述文字。。。。。001。",
-          "default_pic": "/public/images/resource/imgs.png",
+          "default_pic": "/public/img/mobile/resource/imgs.png",
           "pics": [
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png"
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png"
           ],
           "clickAmount": 99999999,
           "saleAmount": 11111111
@@ -81,12 +81,12 @@
           "artist": "李某某001",
           "title": "【精雕细刻】束云茶叶罐001",
           "description": "描述文字。。。。。001。",
-          "default_pic": "/public/images/resource/imgs.png",
+          "default_pic": "/public/img/mobile/resource/imgs.png",
           "pics": [
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png"
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png"
           ],
           "clickAmount": 99999999,
           "saleAmount": 11111111
@@ -99,12 +99,12 @@
           "artist": "李某某001",
           "title": "【精雕细刻】束云茶叶罐001",
           "description": "描述文字。。。。。001。",
-          "default_pic": "/public/images/resource/imgs.png",
+          "default_pic": "/public/img/mobile/resource/imgs.png",
           "pics": [
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png"
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png"
           ],
           "clickAmount": 99999999,
           "saleAmount": 11111111
@@ -117,12 +117,12 @@
           "artist": "李某某001",
           "title": "【精雕细刻】束云茶叶罐001",
           "description": "描述文字。。。。。001。",
-          "default_pic": "/public/images/resource/imgs.png",
+          "default_pic": "/public/img/mobile/resource/imgs.png",
           "pics": [
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png"
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png"
           ],
           "clickAmount": 99999999,
           "saleAmount": 11111111
@@ -135,12 +135,12 @@
           "artist": "李某某001",
           "title": "【精雕细刻】束云茶叶罐001",
           "description": "描述文字。。。。。001。",
-          "default_pic": "/public/images/resource/imgs.png",
+          "default_pic": "/public/img/mobile/resource/imgs.png",
           "pics": [
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png"
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png"
           ],
           "clickAmount": 99999999,
           "saleAmount": 11111111
@@ -153,12 +153,12 @@
           "artist": "李某某001",
           "title": "【精雕细刻】束云茶叶罐001",
           "description": "描述文字。。。。。001。",
-          "default_pic": "/public/images/resource/imgs.png",
+          "default_pic": "/public/img/mobile/resource/imgs.png",
           "pics": [
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png"
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png"
           ],
           "clickAmount": 99999999,
           "saleAmount": 11111111
@@ -171,12 +171,12 @@
           "artist": "李某某001",
           "title": "【精雕细刻】束云茶叶罐001",
           "description": "描述文字。。。。。001。",
-          "default_pic": "/public/images/resource/imgs.png",
+          "default_pic": "/public/img/mobile/resource/imgs.png",
           "pics": [
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png",
-            "/public/images/resource/imgs.png"
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png",
+            "/public/img/mobile/resource/imgs.png"
           ],
           "clickAmount": 99999999,
           "saleAmount": 11111111
@@ -199,169 +199,169 @@
       "data": [
         {
           "id": 0,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "西施",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 1,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "半月",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 2,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 3,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 4,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 5,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 6,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 7,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 8,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 9,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 10,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 11,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 12,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 13,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 14,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 15,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 16,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         }
@@ -373,109 +373,109 @@
       "data": [
         {
           "id": 0,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 1,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "半月",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 2,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 3,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 4,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 5,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 6,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 7,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 8,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 9,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 10,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 11,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 12,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 13,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 14,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 15,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 16,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         }
@@ -487,109 +487,109 @@
       "data": [
         {
           "id": 0,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "xxxx西施",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 1,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "半月",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 2,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 3,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 4,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 5,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 6,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 7,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 8,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 9,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 10,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 11,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 12,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 13,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 14,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 15,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 16,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         }
@@ -601,109 +601,109 @@
       "data": [
         {
           "id": 0,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "zzzzz西施",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 1,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "半月",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 2,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 3,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 4,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 5,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 6,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 7,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 8,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 9,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 10,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 11,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 12,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 13,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 14,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 15,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 16,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         }
@@ -717,151 +717,151 @@
       "data": [
         {
           "id": 0,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "西施",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 1,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "半月",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 2,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 3,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 4,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 5,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 6,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 7,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 8,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 9,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 10,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 11,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 12,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 13,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 14,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 15,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 16,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 18,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 19,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 20,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 21,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 22,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 23,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 24,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         }
@@ -873,109 +873,109 @@
       "data": [
         {
           "id": 0,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "西施",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 1,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "半月",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 2,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 3,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 4,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 5,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 6,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 7,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 8,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 9,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 10,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 11,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 12,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 13,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 14,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 15,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 16,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         },
         {
           "id": 17,
-          "img": "public/images/category1.png",
+          "img": "public/img/mobile/category1.png",
           "name": "石瓢",
           "text": "海上生明月，天涯共此时xxxxxxxxxxx"
         }
@@ -1363,54 +1363,54 @@
       "entries": [
         {
           "id": 0,
-          "photo": "public/images/resource/artist.png",
+          "photo": "public/img/mobile/resource/artist.png",
           "username": "用户名",
           "date": "1990-02-02",
           "stars": 4,
           "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
           "imgs": [
-            "public/images/resource/pro01.png",
-            "public/images/resource/pro01.png",
-            "public/images/resource/pro01.png"
+            "public/img/mobile/resource/pro01.png",
+            "public/img/mobile/resource/pro01.png",
+            "public/img/mobile/resource/pro01.png"
           ]
         },
         {
           "id": 1,
-          "photo": "public/images/resource/artist.png",
+          "photo": "public/img/mobile/resource/artist.png",
           "username": "用户名",
           "date": "1990-02-02",
           "stars": 1,
           "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
           "imgs": [
-            "public/images/resource/pro01.png",
-            "public/images/resource/pro01.png",
-            "public/images/resource/pro01.png"
+            "public/img/mobile/resource/pro01.png",
+            "public/img/mobile/resource/pro01.png",
+            "public/img/mobile/resource/pro01.png"
           ]
         },
         {
           "id": 2,
-          "photo": "public/images/resource/artist.png",
+          "photo": "public/img/mobile/resource/artist.png",
           "username": "用户名",
           "date": "1990-02-02",
           "stars": 5,
           "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
           "imgs": [
-            "public/images/resource/pro01.png",
-            "public/images/resource/pro01.png",
-            "public/images/resource/pro01.png"
+            "public/img/mobile/resource/pro01.png",
+            "public/img/mobile/resource/pro01.png",
+            "public/img/mobile/resource/pro01.png"
           ]
         },
         {
           "id": 3,
-          "photo": "public/images/resource/artist.png",
+          "photo": "public/img/mobile/resource/artist.png",
           "username": "用户名",
           "date": "1990-02-02",
           "stars": 0,
           "text": "评论内容评论内容评论内容评论内容评论内容jfjaslfjaslf评论内容",
           "imgs": [
-            "public/images/resource/pro01.png",
-            "public/images/resource/pro01.png",
-            "public/images/resource/pro01.png"
+            "public/img/mobile/resource/pro01.png",
+            "public/img/mobile/resource/pro01.png",
+            "public/img/mobile/resource/pro01.png"
           ]
         }
       ],
@@ -1435,22 +1435,22 @@
         "title": "assasfaf",
         "description": "<p></p><div class=\"configModuleBanner\" style=\"color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\"></div><div class=\"lemmaWgt-focusAndRelation\" style=\"margin: 15px 0px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\"><ul class=\"focusAndRelation\" style=\"margin: 0px; padding: 0px; list-style: none; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: 20px; font-family: Arial, Verdana, Helvetica, &quot;Microsoft Yahei&quot;, SimSun; overflow: hidden; float: left; position: relative; clear: both;\"><li class=\"module relation\" style=\"margin: 0px; padding: 0px; list-style: none; display: block; float: left; vertical-align: top; position: relative; width: 92px; text-align: center;\"><div class=\"flag\" style=\"font-size: 14px; line-height: 22px; position: relative; float: left; margin-bottom: -22px;\"></div></li></ul></div><p></p><div class=\"lemma-summary\" label-module=\"lemmaSummary\" style=\"clear: both; font-size: 14px; word-wrap: break-word; color: rgb(51, 51, 51); margin-bottom: 15px; text-indent: 2em; line-height: 24px; zoom: 1; font-family: arial, 宋体, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\"><div class=\"para\" label-module=\"para\" style=\"font-size: 14px; word-wrap: break-word; color: rgb(51, 51, 51); margin-bottom: 15px; text-indent: 2em; line-height: 24px; zoom: 1;\">顾景舟（1915-1996），原名景洲。别称：曼希、瘦萍、武陵逸人、荆南山樵。自号壶叟、老萍。<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E5%AE%9C%E5%85%B4%E7%B4%AB%E7%A0%82\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">宜兴紫砂</a>名艺人，<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E7%BE%8E%E6%9C%AF%E5%AE%B6%E5%8D%8F%E4%BC%9A\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">中国美术家协会</a>会员，<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E5%B7%A5%E8%89%BA%E7%BE%8E%E6%9C%AF%E5%A4%A7%E5%B8%88\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">中国工艺美术大师</a>。18岁拜名师学艺。三十年代后期至上海制壶仿古。54年进入宜兴<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E8%9C%80%E5%B1%B1\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">蜀山</a>陶业合作社。56年被江苏省政府任命为技术辅导，带徒<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E5%BE%90%E6%B1%89%E6%A3%A0\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">徐汉棠</a>、<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E9%AB%98%E6%B5%B7%E5%BA%9A\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">高海庚</a>、<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E6%9D%8E%E6%98%8C%E9%B8%BF\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">李昌鸿</a>、<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E6%B2%88%E9%81%BD%E5%8D%8E\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">沈遽华</a>、<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E6%9D%9F%E5%87%A4%E8%8B%B1\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">束凤英</a>、吴群祥等人。一生三次参加全国工艺美术代表大会，在港、澳、台、东南亚影响特大，被海内外誉为“壶艺泰斗”，作品为海内外各大博物馆、文物馆收藏。</div><div class=\"para\" label-module=\"para\" style=\"font-size: 14px; word-wrap: break-word; color: rgb(51, 51, 51); margin-bottom: 15px; text-indent: 2em; line-height: 24px; zoom: 1;\">1915年生于江苏<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E5%AE%9C%E5%85%B4\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">宜兴</a>川埠乡上袁村，顾景舟可以说是历代<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E7%B4%AB%E7%A0%82%E9%99%B6%E8%89%BA\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">紫砂陶艺</a>名家中，名号最多的一位，他本名景洲，后改名为景舟、名号有曼晞、瘦萍、武陵逸人、荆南山樵及壶叟等。曾自创堂号为自怡轩。他在壶艺上的成就极高，技巧精湛，且取材甚广。可说是近代陶艺家中最有成就的一位，所享的声誉可媲美明代的<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E6%97%B6%E5%A4%A7%E5%BD%AC\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">时大彬</a>，世称“<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E4%B8%80%E4%BB%A3%E5%AE%97%E5%B8%88\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">一代宗师</a>”、“壶艺泰斗”。</div></div>",
         "id": 1,
-        "headPortrait": "http://localhost:9000/public/images/resource/pro01.png",
+        "headPortrait": "http://localhost:9000/public/img/mobile/resource/pro01.png",
         "products": [
           {
             "name": "测试宝贝",
             "id": 7,
-            "defaultImage": "https://cdn.fangcun.com/upload/images/2017-07-19/74d498ef6d884219816b34d50a1a9f88.jpg!350"
+            "defaultImage": "https://cdn.fangcun.com/upload/img/mobile/2017-07-19/74d498ef6d884219816b34d50a1a9f88.jpg!350"
           },
           {
             "name": "goods",
             "id": 2,
-            "defaultImage": "https://cdn.fangcun.com/upload/images/2017-08-01/c00ee2a72c8c4c55bacb982267a9392b.png!350"
+            "defaultImage": "https://cdn.fangcun.com/upload/img/mobile/2017-08-01/c00ee2a72c8c4c55bacb982267a9392b.png!350"
           },
           {
             "name": "《天心月圆》",
             "id": 5,
-            "defaultImage": "https://cdn.fangcun.com/upload/images/2017-08-01/01c8c89a01f24f32ba6c5b8483638fa7.png!350"
+            "defaultImage": "https://cdn.fangcun.com/upload/img/mobile/2017-08-01/01c8c89a01f24f32ba6c5b8483638fa7.png!350"
           }
         ]
       }
@@ -1462,34 +1462,34 @@
     "url": null,
     "data": [
       {
-        "image": "https://cdn.fangcun.com/upload/images/2017-08-01/f4c9613452bd4f16b30678f563c290a8.jpg!120",
+        "image": "https://cdn.fangcun.com/upload/img/mobile/2017-08-01/f4c9613452bd4f16b30678f563c290a8.jpg!120",
         "name": "黄龙山异品·三色土",
         "intro": "asdsdasdasd",
-        "description": "<p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">还是这张照片，拉个近景看看。2007年的6月15日，在黄龙山沉睡了三亿年，也许不止三亿年的“三色土”即将被隆隆的机器唤醒。这一觉睡得太久了，她也许在提前和我打招呼呢。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center;\"><img v-view=\"http://cdn.fangcun.com/upload/editor/2017-08-01/9d876b3f49ae4b05be092df725392c16.jpg\" src=\"public/images/img_loader.gif\" style=\"width: 550px;\"><br></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">6月24日晚，A君打电话说有急事要借五千块钱，次日下午我亲自送去，他甚感谢。他知道我收藏泥料，说黄龙山修路时挖出一支异品，叫三色土。一看果然绚丽多彩，前所未见，当即全部买下。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center;\"><img v-view=\"http://pic.taohuren.com/images/article/2017/0627/e880a451b9e06cd9.jpg\" src=\"public/images/img_loader.gif\" alt=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">大自然的造化就这么神奇。这种水乳交融的相互渗透不是人为配置所能比拟的。</p><vimg :vsrc=\"'http://localhost:9000/public/images/resource/pro01.png'\"></vimg>",
+        "description": "<p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">还是这张照片，拉个近景看看。2007年的6月15日，在黄龙山沉睡了三亿年，也许不止三亿年的“三色土”即将被隆隆的机器唤醒。这一觉睡得太久了，她也许在提前和我打招呼呢。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center;\"><img v-view=\"http://cdn.fangcun.com/upload/editor/2017-08-01/9d876b3f49ae4b05be092df725392c16.jpg\" src=\"public/img/mobile/img_loader.gif\" style=\"width: 550px;\"><br></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">6月24日晚，A君打电话说有急事要借五千块钱，次日下午我亲自送去，他甚感谢。他知道我收藏泥料，说黄龙山修路时挖出一支异品，叫三色土。一看果然绚丽多彩，前所未见，当即全部买下。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center;\"><img v-view=\"http://pic.taohuren.com/img/mobile/article/2017/0627/e880a451b9e06cd9.jpg\" src=\"public/img/mobile/img_loader.gif\" alt=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">大自然的造化就这么神奇。这种水乳交融的相互渗透不是人为配置所能比拟的。</p><vimg :vsrc=\"'http://localhost:9000/public/img/mobile/resource/pro01.png'\"></vimg>",
         "id": 4,
         "products": [
           {
             "name": "测试宝贝",
             "id": 7,
-            "defaultImage": "https://cdn.fangcun.com/upload/images/2017-07-19/74d498ef6d884219816b34d50a1a9f88.jpg!350"
+            "defaultImage": "https://cdn.fangcun.com/upload/img/mobile/2017-07-19/74d498ef6d884219816b34d50a1a9f88.jpg!350"
           },
           {
             "name": "goods",
             "id": 2,
-            "defaultImage": "https://cdn.fangcun.com/upload/images/2017-08-01/c00ee2a72c8c4c55bacb982267a9392b.png!350"
+            "defaultImage": "https://cdn.fangcun.com/upload/img/mobile/2017-08-01/c00ee2a72c8c4c55bacb982267a9392b.png!350"
           },
           {
             "name": "《天心月圆》",
             "id": 5,
-            "defaultImage": "https://cdn.fangcun.com/upload/images/2017-08-01/01c8c89a01f24f32ba6c5b8483638fa7.png!350"
+            "defaultImage": "https://cdn.fangcun.com/upload/img/mobile/2017-08-01/01c8c89a01f24f32ba6c5b8483638fa7.png!350"
           }
         ]
       },
       {
-        "image": "https://cdn.fangcun.com/upload/images/2017-08-01/3fddfb549ca542538fc5bf5e0925eced.jpg!120",
+        "image": "https://cdn.fangcun.com/upload/img/mobile/2017-08-01/3fddfb549ca542538fc5bf5e0925eced.jpg!120",
         "name": "紫砂矿料·紫泥",
         "intro": "asdsdasdasd",
-        "description": "<p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">紫泥属泥质粉砂岩，目前仅产于丁蜀镇黄龙山矿区，一般产于甲泥矿层的中、上部位，质地比较均匀，以多种夹层的形式存在。矿层呈“薄层状”、“透镜状”等形态，泥层厚度一般在数十厘米到一米左右，有的仅数厘米，稳定性差，有时不延续而灭尖。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">紫泥古时也称“青泥”，是制作各种紫砂器最主要的原料，也是历史作品中最常见的泥料品种。紫泥原料可塑性好，泥坯强度高，干燥、烧成收缩小，具有优良的工艺性能。紫泥矿料的种类很多，根据开采矿区及矿层的区别，具有多种不同的外观特征及烧成效果。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">四号矿井白麻子紫泥</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">在矿层中偶然出现，含矿量极少。矿料外观呈紫褐色致密块状，易碎略坚硬，含有少量的白色云母碎片，矿料上有较多的白色麻点状。熟泥可塑性较好，成型时略酥，制作时带有泥沙性，烧成温度范围较宽。一般烧成1200～1240℃左右，收缩率4%左右。烧成后呈褐紫红色调，胎质纯正温润，表面黄白色的砂点颗粒丰富而自然，色泽浑朴古雅。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/e2a07261dec1d5d8.jpg\" alt=\"\" width=\"500\" height=\"284\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/52c6c59a06f76651.jpg\" alt=\"\" width=\"500\" height=\"332\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">秦韵 &nbsp;四号矿井白麻子紫泥 &nbsp;36目 1210℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/25119453a7daff90.jpg\" alt=\"\" width=\"500\" height=\"330\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">新韵 &nbsp;四号矿井白麻子紫泥 &nbsp;60目 1240℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">四号矿井紫泥</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">矿料外观呈紫褐色致密块状，比较坚硬，含有一定量的白色云母碎片，矿料上有青绿色的豆斑、斑纹状及紫黑色的条纹花斑状。熟泥可塑性一般，成型时略酥，制作时带有一定沙性，烧成温度范围较宽。一般烧成1180～1240℃左右，收缩率4%左右。烧成后呈紫棕红色调，胎质中颗粒隐现，色泽纯正明润，外观效果十分丰富。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/b4f330338b4cbf48.jpg\" alt=\"\" width=\"500\" height=\"320\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/31f91d6292c2dbe1.jpg\" alt=\"\" width=\"500\" height=\"341\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">掇只 &nbsp;四号矿井紫泥 &nbsp;40目 1210℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/cb7429e1c52e605f.jpg\" alt=\"\" width=\"500\" height=\"320\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">乳鼎 &nbsp;四号矿井紫泥 &nbsp;40目 1230℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">台西矿区紫泥（中层）</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">产于台西村露天矿。矿料外观呈紫红、紫褐色致密块状，比较坚硬，含有一定量的白色云母碎片，矿料上有淡绿色的斑点、斑纹状及紫黑色的花斑状。熟泥可塑性一般，成型时略酥，制作时带有一定沙性，烧成温度范围较宽。一般烧成1190～1220℃左右，收缩率4%左右。烧成后呈紫棕红色调，胎质颗粒隐现，色泽效果比较丰富。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/f5161c97e5a1a312.jpg\" alt=\"\" width=\"500\" height=\"352\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/04e19e3c8aaf4c9c.jpg\" alt=\"\" width=\"500\" height=\"316\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">天韵 &nbsp;台西矿区紫泥（中层） 40目 1220℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/8b347670f2e91ec7.jpg\" alt=\"\" width=\"500\" height=\"326\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">汉铎 &nbsp;台西矿区紫泥（中层） 40目 1230℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">天青泥</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">产于蠡墅大水潭北侧向西一百多米处。矿料外观质地均匀细腻，呈紫褐微透红色致密块状，易碎略坚硬，白色云母碎片含量极少，表面呈贝壳纹理状，有白色腊质状（烧成后会形成白点状），断面呈紫黑微透红色。前人因这种矿料颜色与天青染色料相似，故习惯称为“天青泥”。熟泥比较细腻，可塑性较好，成型制作时带有一定泥沙性，烧成温度范围较宽。一般烧成1160～1210℃左右，收缩率8%左右。烧成后呈深猪肝色，表面呈细梨皮状，胎质细密坚润，色泽效果细腻而丰富。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">天青泥贴层是梨皮泥，烧成后呈梨冻色，和《阳羡茗壶系》中记载：“天青泥出蠡墅，陶之变黯肝色，又其夹支有梨皮泥，陶现梨冻色。”完全吻合。光绪八年《宜兴县志》记载：“天青泥于诸泥最贵，制茗壶者特用之”。天青泥在古时就不多见，现代更是久已不见。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/162ed7665ea14059.jpg\" alt=\"\" width=\"500\" height=\"323\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/41fa0827f9e18cfa.jpg\" alt=\"\" width=\"500\" height=\"363\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">仿鼓 &nbsp;天青泥 &nbsp;60目 1190℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">青灰紫泥</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">和天青泥同矿层产出。矿料外观呈灰紫褐色致密块状，比较坚硬，含有少量微细的白色云母碎片，矿料上有淡绿色的豆斑状，表面呈纹理状。熟泥比较细腻，可塑性较好，成型制作时带有一定泥沙性，烧成温度范围一般。一般烧成1180～1200℃左右，收缩率6%左右。烧成后呈褐紫泛青灰色调，胎质呈细梨皮状，质坚而致密，表面纯正光润，色泽效果细腻而丰富。经一定的高温呈紫黑色调。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/50f7b23ef34b6456.jpg\" alt=\"\" width=\"500\" height=\"345\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/c6d115e1b8a404bc.jpg\" alt=\"\" width=\"500\" height=\"391\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">掇球 &nbsp;青灰紫泥 &nbsp;60目 1190℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">台西矿区中层紫泥（黑星紫泥）</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">产于台西村露天矿。矿料外观呈褐紫红色致密块状，易碎较坚硬，含有一定量的黑云母及较多的白色云母碎片，矿料上有青绿色的条纹、花斑纹。烧成后矿料中的黑云母能在胎质表面呈现出非常密集的黑色颗粒质点。熟泥可塑性略差，成型时较酥，制作时带有一定沙性，烧成温度范围较宽。一般烧成温度1170～1200℃左右，收缩率3.5%左右。烧成后胎质细腻光润，古朴典雅。根据烧成温度的不同，胎质呈色越浅，黑星颗粒的呈现就愈明显。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/9874e4fac2942b23.jpg\" alt=\"\" width=\"500\" height=\"355\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/0e78ca7102631701.jpg\" alt=\"\" width=\"500\" height=\"389\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">乳鼎 &nbsp;台西矿区中层紫泥（黑星紫泥） &nbsp;40目 1185℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">台西矿区中层紫泥（铁砂紫泥）</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">产于台西村露天矿。矿料外观呈灰褐色致密块状，比较坚硬，含有少量的白色云母碎片，矿料上有青绿色的豆斑状。熟泥可塑性一般，成型时较酥，制作时带有一定沙性，烧成温度范围较宽。一般烧成1190～1220℃左右，收缩率4%左右。烧成后胎质中隐隐透出黄色和黑砂质点。因矿料中含有较多的针铁矿等成分，会在表面产生黑色的微小熔孔，形成灰褐色的表面微细铁质斑点隐现，色泽效果十分丰富。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/dbf4cec63a0f8806.jpg\" alt=\"\" width=\"500\" height=\"313\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/255eb08922a4c9d9.jpg\" alt=\"\" width=\"500\" height=\"396\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">乳鼎 &nbsp;台西矿区中层紫泥（铁砂紫泥）36目 1210℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none;\"><span style=\"font-weight: 700;\">宝山矿区嫩紫泥</span></span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">宝山矿区嫩紫泥矿料外观呈紫褐色致密块状，易碎略坚硬，含有少量的白色云母碎片，宝山矿区嫩紫泥矿料上有紫黑色的花斑状，表面有锈片状。熟泥可塑性较好，成型时略酥，制作时带有泥沙性，烧成温度范围较宽。一般成1170-1220℃左右，收缩率5.5%左右。宝山矿区嫩紫泥烧成后呈紫红色调，胎质呈细梨皮状，砂质细密温润，色泽效果十分丰富。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/4f1b03d163ba4010.jpg\" alt=\"\" width=\"500\" height=\"338\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/47a829f5774440fb.jpg\" alt=\"\" width=\"500\" height=\"309\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">石瓢 &nbsp;宝山矿区嫩紫泥 &nbsp;60目 1180℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/images/article/2016/0922/e708aef612b10c9c.jpg\" alt=\"\" width=\"500\" height=\"287\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">虚扁 &nbsp;宝山矿区嫩紫泥 &nbsp;60目 1210℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">青龙山甲泥矿红棕泥</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">矿料外观呈紫棕色致密块状，质地比较坚脆，含有一定量的白色云母碎片，矿料上有淡绿色的条纹、花斑纹。熟泥可塑性较差，成型时易酥开、断裂，制作时沙性较重，烧成温度范围较宽。一般烧成1190～1220℃左右，收缩率4%左右。烧成后呈紫棕红色调，胎质比较干涩，色泽纯度较差，制品容易产生开裂等缺陷。经一定高温烧成后表面易产生油点等杂质。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">红棕泥不适宜单独成型，原来一般作为甲泥使用，或用作生产花盆之类产品。因其矿料中太钛量较高，能加深铁化合物的着色，故有部分矿料精选后被用作调配拼紫泥等。</p>",
+        "description": "<p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">紫泥属泥质粉砂岩，目前仅产于丁蜀镇黄龙山矿区，一般产于甲泥矿层的中、上部位，质地比较均匀，以多种夹层的形式存在。矿层呈“薄层状”、“透镜状”等形态，泥层厚度一般在数十厘米到一米左右，有的仅数厘米，稳定性差，有时不延续而灭尖。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">紫泥古时也称“青泥”，是制作各种紫砂器最主要的原料，也是历史作品中最常见的泥料品种。紫泥原料可塑性好，泥坯强度高，干燥、烧成收缩小，具有优良的工艺性能。紫泥矿料的种类很多，根据开采矿区及矿层的区别，具有多种不同的外观特征及烧成效果。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">四号矿井白麻子紫泥</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">在矿层中偶然出现，含矿量极少。矿料外观呈紫褐色致密块状，易碎略坚硬，含有少量的白色云母碎片，矿料上有较多的白色麻点状。熟泥可塑性较好，成型时略酥，制作时带有泥沙性，烧成温度范围较宽。一般烧成1200～1240℃左右，收缩率4%左右。烧成后呈褐紫红色调，胎质纯正温润，表面黄白色的砂点颗粒丰富而自然，色泽浑朴古雅。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/e2a07261dec1d5d8.jpg\" alt=\"\" width=\"500\" height=\"284\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/52c6c59a06f76651.jpg\" alt=\"\" width=\"500\" height=\"332\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">秦韵 &nbsp;四号矿井白麻子紫泥 &nbsp;36目 1210℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/25119453a7daff90.jpg\" alt=\"\" width=\"500\" height=\"330\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">新韵 &nbsp;四号矿井白麻子紫泥 &nbsp;60目 1240℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">四号矿井紫泥</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">矿料外观呈紫褐色致密块状，比较坚硬，含有一定量的白色云母碎片，矿料上有青绿色的豆斑、斑纹状及紫黑色的条纹花斑状。熟泥可塑性一般，成型时略酥，制作时带有一定沙性，烧成温度范围较宽。一般烧成1180～1240℃左右，收缩率4%左右。烧成后呈紫棕红色调，胎质中颗粒隐现，色泽纯正明润，外观效果十分丰富。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/b4f330338b4cbf48.jpg\" alt=\"\" width=\"500\" height=\"320\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/31f91d6292c2dbe1.jpg\" alt=\"\" width=\"500\" height=\"341\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">掇只 &nbsp;四号矿井紫泥 &nbsp;40目 1210℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/cb7429e1c52e605f.jpg\" alt=\"\" width=\"500\" height=\"320\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">乳鼎 &nbsp;四号矿井紫泥 &nbsp;40目 1230℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">台西矿区紫泥（中层）</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">产于台西村露天矿。矿料外观呈紫红、紫褐色致密块状，比较坚硬，含有一定量的白色云母碎片，矿料上有淡绿色的斑点、斑纹状及紫黑色的花斑状。熟泥可塑性一般，成型时略酥，制作时带有一定沙性，烧成温度范围较宽。一般烧成1190～1220℃左右，收缩率4%左右。烧成后呈紫棕红色调，胎质颗粒隐现，色泽效果比较丰富。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/f5161c97e5a1a312.jpg\" alt=\"\" width=\"500\" height=\"352\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/04e19e3c8aaf4c9c.jpg\" alt=\"\" width=\"500\" height=\"316\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">天韵 &nbsp;台西矿区紫泥（中层） 40目 1220℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/8b347670f2e91ec7.jpg\" alt=\"\" width=\"500\" height=\"326\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">汉铎 &nbsp;台西矿区紫泥（中层） 40目 1230℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">天青泥</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">产于蠡墅大水潭北侧向西一百多米处。矿料外观质地均匀细腻，呈紫褐微透红色致密块状，易碎略坚硬，白色云母碎片含量极少，表面呈贝壳纹理状，有白色腊质状（烧成后会形成白点状），断面呈紫黑微透红色。前人因这种矿料颜色与天青染色料相似，故习惯称为“天青泥”。熟泥比较细腻，可塑性较好，成型制作时带有一定泥沙性，烧成温度范围较宽。一般烧成1160～1210℃左右，收缩率8%左右。烧成后呈深猪肝色，表面呈细梨皮状，胎质细密坚润，色泽效果细腻而丰富。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">天青泥贴层是梨皮泥，烧成后呈梨冻色，和《阳羡茗壶系》中记载：“天青泥出蠡墅，陶之变黯肝色，又其夹支有梨皮泥，陶现梨冻色。”完全吻合。光绪八年《宜兴县志》记载：“天青泥于诸泥最贵，制茗壶者特用之”。天青泥在古时就不多见，现代更是久已不见。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/162ed7665ea14059.jpg\" alt=\"\" width=\"500\" height=\"323\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/41fa0827f9e18cfa.jpg\" alt=\"\" width=\"500\" height=\"363\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">仿鼓 &nbsp;天青泥 &nbsp;60目 1190℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">青灰紫泥</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">和天青泥同矿层产出。矿料外观呈灰紫褐色致密块状，比较坚硬，含有少量微细的白色云母碎片，矿料上有淡绿色的豆斑状，表面呈纹理状。熟泥比较细腻，可塑性较好，成型制作时带有一定泥沙性，烧成温度范围一般。一般烧成1180～1200℃左右，收缩率6%左右。烧成后呈褐紫泛青灰色调，胎质呈细梨皮状，质坚而致密，表面纯正光润，色泽效果细腻而丰富。经一定的高温呈紫黑色调。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/50f7b23ef34b6456.jpg\" alt=\"\" width=\"500\" height=\"345\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/c6d115e1b8a404bc.jpg\" alt=\"\" width=\"500\" height=\"391\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">掇球 &nbsp;青灰紫泥 &nbsp;60目 1190℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">台西矿区中层紫泥（黑星紫泥）</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">产于台西村露天矿。矿料外观呈褐紫红色致密块状，易碎较坚硬，含有一定量的黑云母及较多的白色云母碎片，矿料上有青绿色的条纹、花斑纹。烧成后矿料中的黑云母能在胎质表面呈现出非常密集的黑色颗粒质点。熟泥可塑性略差，成型时较酥，制作时带有一定沙性，烧成温度范围较宽。一般烧成温度1170～1200℃左右，收缩率3.5%左右。烧成后胎质细腻光润，古朴典雅。根据烧成温度的不同，胎质呈色越浅，黑星颗粒的呈现就愈明显。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/9874e4fac2942b23.jpg\" alt=\"\" width=\"500\" height=\"355\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/0e78ca7102631701.jpg\" alt=\"\" width=\"500\" height=\"389\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">乳鼎 &nbsp;台西矿区中层紫泥（黑星紫泥） &nbsp;40目 1185℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">台西矿区中层紫泥（铁砂紫泥）</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">产于台西村露天矿。矿料外观呈灰褐色致密块状，比较坚硬，含有少量的白色云母碎片，矿料上有青绿色的豆斑状。熟泥可塑性一般，成型时较酥，制作时带有一定沙性，烧成温度范围较宽。一般烧成1190～1220℃左右，收缩率4%左右。烧成后胎质中隐隐透出黄色和黑砂质点。因矿料中含有较多的针铁矿等成分，会在表面产生黑色的微小熔孔，形成灰褐色的表面微细铁质斑点隐现，色泽效果十分丰富。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/dbf4cec63a0f8806.jpg\" alt=\"\" width=\"500\" height=\"313\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/255eb08922a4c9d9.jpg\" alt=\"\" width=\"500\" height=\"396\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">乳鼎 &nbsp;台西矿区中层紫泥（铁砂紫泥）36目 1210℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none;\"><span style=\"font-weight: 700;\">宝山矿区嫩紫泥</span></span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">宝山矿区嫩紫泥矿料外观呈紫褐色致密块状，易碎略坚硬，含有少量的白色云母碎片，宝山矿区嫩紫泥矿料上有紫黑色的花斑状，表面有锈片状。熟泥可塑性较好，成型时略酥，制作时带有泥沙性，烧成温度范围较宽。一般成1170-1220℃左右，收缩率5.5%左右。宝山矿区嫩紫泥烧成后呈紫红色调，胎质呈细梨皮状，砂质细密温润，色泽效果十分丰富。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/4f1b03d163ba4010.jpg\" alt=\"\" width=\"500\" height=\"338\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/47a829f5774440fb.jpg\" alt=\"\" width=\"500\" height=\"309\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">石瓢 &nbsp;宝山矿区嫩紫泥 &nbsp;60目 1180℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\"><img src=\"http://pic.taohuren.com/img/mobile/article/2016/0922/e708aef612b10c9c.jpg\" alt=\"\" width=\"500\" height=\"287\" title=\"\" align=\"\" style=\"margin: 0px 0px 0px 6px; padding: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: none; max-width: 650px;\"></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-align: center; text-indent: 2em;\">虚扁 &nbsp;宝山矿区嫩紫泥 &nbsp;60目 1210℃</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\"><span style=\"font-weight: 700;\">青龙山甲泥矿红棕泥</span></p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">矿料外观呈紫棕色致密块状，质地比较坚脆，含有一定量的白色云母碎片，矿料上有淡绿色的条纹、花斑纹。熟泥可塑性较差，成型时易酥开、断裂，制作时沙性较重，烧成温度范围较宽。一般烧成1190～1220℃左右，收缩率4%左右。烧成后呈紫棕红色调，胎质比较干涩，色泽纯度较差，制品容易产生开裂等缺陷。经一定高温烧成后表面易产生油点等杂质。</p><p style=\"margin: 14px auto; padding: 0px; border: 0px; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;, sans-serif; vertical-align: baseline; list-style: none; color: rgb(102, 102, 102); text-indent: 2em;\">红棕泥不适宜单独成型，原来一般作为甲泥使用，或用作生产花盆之类产品。因其矿料中太钛量较高，能加深铁化合物的着色，故有部分矿料精选后被用作调配拼紫泥等。</p>",
         "id": 5,
         "products": []
       }
@@ -1518,7 +1518,7 @@
           "images": [
             "http://fct-nick.img-cn-shanghai.aliyuncs.com/upload/2017-06-23/8101370a8a1b48669c9a64f0f74264bc.png"
           ],
-          "videoImage": "/images/default-null.png",
+          "videoImage": "/img/mobile/default-null.png",
           "videoId": "",
           "id": 10,
           "content": "ssss",

@@ -23,12 +23,12 @@
       <div class="content">
         <span class="title">{{ item.title }}</span>
         <a href="javascript:;" class="close" @click="del(item, index)">
-          <img src="public/images/close.png">
+          <img src="public/img/mobile/close.png">
         </a>
       </div>
     </div>
     <no-data v-if="nodata"></no-data>
-    <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
@@ -43,14 +43,14 @@
       {
       "id":0,
       "title":"eeee",
-      "image":"/public/images/resource/imgs.png",
+      "image":"/public/img/mobile/resource/imgs.png",
       "favoriteId": 0,
         "favType": 0
       },
       {
         "id":1,
         "title":"llllll",
-        "image":"/public/images/resource/imgs.png",
+        "image":"/public/img/mobile/resource/imgs.png",
         "favoriteId": 2,
         "favType": 1
       }

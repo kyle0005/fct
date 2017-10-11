@@ -37,13 +37,13 @@
     <li>
       <a href="javascript:;" class="link">
         <span class="left">
-          <img src="public/images/resource/pro01.png">
+          <img src="public/img/mobile/resource/pro01.png">
         </span>
         <span class="center">
           <span class="title">表标题壶</span>
           <span class="t2">紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶</span>
         </span>
-        <span class="right"><img src="public/images/share.png"></span>
+        <span class="right"><img src="public/img/mobile/share.png"></span>
       </a>
     </li>
   </ul>
@@ -60,12 +60,12 @@
           <span class="t2" v-if="item.commission instanceof Array">利润：<strong class="pri"><small class="pri-mark">￥</small>{{ item.commission[0] }}&sim;￥{{ item.commission[1] }}</strong></span>
           <span class="t2" v-else>利润：<strong class="pri"><small class="pri-mark">￥</small>{{ item.commission }}</strong></span>
         </span>
-        <span class="right"><img src="public/images/share.png"></span>
+        <span class="right"><img src="public/img/mobile/share.png"></span>
       </a>
     </li>
   </ul>
   <no-data v-if="nodata"></no-data>
-  <img src="public/images/img_loader_s.gif" class="list-loader" v-if="listloading">
+  <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <script src="public/scripts/vue.js"></script>
