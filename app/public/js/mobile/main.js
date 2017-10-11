@@ -36,9 +36,9 @@ let app = new Vue(
         vue.listloading = false;
         vue.tab_num = 0;
       },
-      showImg(){
-        return 'public/img/mobile/img_loader.gif';
-      },
+      // showImg(){
+      //   return 'public/img/mobile/img_loader.gif';
+      // },
       getBefore(){
         let vue = this;
         vue.listloading = true;

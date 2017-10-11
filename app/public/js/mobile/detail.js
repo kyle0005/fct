@@ -761,7 +761,7 @@ let app = new Vue(
       pro_list: [],
       loading: false,
       refreshing: false,
-      img_url: 'public/img/mobile',
+      // img_url: 'public/img/mobile',
       currentView: 'overview',
       tabs: ['概览', '作者', '泥料', '售后保障', '评论'],
       tab_num: 0,

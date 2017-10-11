@@ -30,14 +30,14 @@ gulp.task('styles', () => {
 });
 
 gulp.task('scripts', () => {
-  return gulp.src('app/public/scripts/**/*.js')
+  return gulp.src('app/public/js/mobile/**/*.js')
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
     .pipe($.babel({
       ignore: ['vue.js','vue-router.js']
     }))
     .pipe($.if(dev, $.sourcemaps.write('.')))
-    .pipe(gulp.dest('.tmp/public/scripts'))
+    .pipe(gulp.dest('.tmp/public/js/mobile'))
     // .pipe(reload({stream: true}));
 });
 
@@ -50,8 +50,8 @@ function lint(files) {
 }
 
 gulp.task('lint', () => {
-  return lint('app/public/scripts/**/*.js')
-    .pipe(gulp.dest('app/public/scripts'));
+  return lint('app/public/js/mobile/**/*.js')
+    .pipe(gulp.dest('app/public/js/mobile'));
 });
 gulp.task('lint:test', () => {
   return lint('test/spec/**/*.js')
@@ -79,7 +79,7 @@ gulp.task('html', ['styles', 'scripts'], () => {
 gulp.task('images', () => {
   return gulp.src('app/public/img/mobile/**/*')
     .pipe($.cache($.imagemin()))
-    .pipe(gulp.dest('dist/images'));
+    .pipe(gulp.dest('dist/img/mobile'));
 });
 
 gulp.task('fonts', () => {
@@ -1259,7 +1259,7 @@ gulp.task('serve', () => {
     // ]).on('change', reload);
 
     gulp.watch('app/public/styles/**/*.scss', ['styles']);
-    gulp.watch('app/public/scripts/**/*.js', ['scripts']);
+    gulp.watch('app/public/js/mobile/**/*.js', ['scripts']);
     gulp.watch('app/public/fonts/**/*', ['fonts']);
     // gulp.watch('bower.json', ['wiredep', 'fonts']);
   });
@@ -1297,7 +1297,7 @@ gulp.task('build_css', ['lint', 'html'], () => {
 });
 gulp.task('uglify_script', function() {
   // 1\. 找到文件
-  gulp.src('.tmp/public/scripts/**/*.js')
+  gulp.src('.tmp/public/js/mobile/**/*.js')
     // .pipe($.concat('main.js'))
     // 2\. 压缩文件
     .pipe($.uglify())

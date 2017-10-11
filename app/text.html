@@ -8,51 +8,71 @@
   <title>main</title>
 </head>
 <body>
-<view class="pay-container">
-  <view class="tips">
+<view class="cart-container">
+  <view class="contianer">
+    <view class="cart-list">
+      <view class="cart-item" v-for="(item, index) in pro_list">
+        <checkbox color="#1d1d1d"></checkbox>
+        <view class="product col">
+          <view class="pro-item pro-img">
+            <image src="https://cdn.fangcun.com/upload/images/2017-07-19/74d498ef6d884219816b34d50a1a9f88.jpg!120" mode='widthFix'></image>
+          </view>
+            <view class="pro-item pro-t">
+            <view class="t">
+              <view class="title overText">name</view>
+              <view class="spec">规格: xxxx</view>
+              <view class="price"><text class="pri-mark">￥</text>332424.00<del><text class="pri-mark">￥</text>.3454</del></view>
+            </view>
+          </view>
+        </view>
+        <view class="num-container col">
+          <view class="num clearfix">
+            <view :class="{dis:min}" @click="minus(item, index)">
+              <image mode="widthFix" src="https://cdn.fangcun.com/static/img/pay/num_minus.png"></image>
+            </view>
+            <input type="text" class="numbers" :value="item.buyCount">
+            <view :class="{dis:max}" @click="add(item)">
+              <image mode="widthFix" src="https://cdn.fangcun.com/static/img/pay/num_add.png"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="guess-container">
     <view class="title">
-      <image src="public/img/mobile/check.png" class="check"><text>订单提交成功，请尽快前往付款。</text>
-    </view>
-    <view class="text">
-      应付金额：<view class="pri"><text class="pri-mark">￥</text>999999.00</view>
-    </view>
-  </view>
-  <view class="ways">
-    <view class="ul way-list">
-      <view class="view">
-        <label for="alipay">
-          <image src="public/img/mobile/pay_ali.png"></image><view class="line">
-            <text class="txt">支付宝支付</text>
-            <!--<input type="radio" class="" name="pay" id="alipay">-->
-            <view class="add-btn">
-              <icon type="success" color="orange" size="30"></icon>
-            </view>
-          </view>
-        </label>
+      <view class="lines">
+        <view class="text">猜你喜欢</view>
       </view>
-      <view class="view">
-        <label for="weipay">
-          <image src="public/img/mobile/pay_weichat.png"></image><view class="line">
-            <text class="txt">微信支付</text>
-            <view class="add-btn">
-              <icon type="circle" color="orange" size="30"></icon>
-            </view>
-          </view>
-        </label>
-      </view>
-      <view class="view">
-        <label for="unionpay">
-          <image src="public/img/mobile/pay_union.png"></image><view class="line unline">
-            <text class="txt">银联支付</text>
-            <view class="add-btn">
-              <icon type="circle" color="orange" size="30"></icon>
-            </view>
-          </view>
-        </label>
+    </view>
+    <view class="guess clearfix">
+      <view v-for="(item, index) in like_list">
+        <view class="guess-link">
+          <image src="https://cdn.fangcun.com/upload/images/2017-07-19/74d498ef6d884219816b34d50a1a9f88.jpg!120" mode='widthFix'></image>
+        </view>
+        <view class="v-title">name</view>
+        <view class="v-price"><text class="pri-mark">￥</text>45646.00</view>
       </view>
     </view>
   </view>
-  <view class="pay-sub">确认支付</view>
+  <view class="foot-container" >
+    <view class="inner">
+      <view class="nav">
+        <view class="choose">
+          <view class="chk-container">
+            <label class="text-container">
+              <checkbox color="#1d1d1d"></checkbox><text class="chosen">已选( 0 )</text>
+            </label>
+          </view>
+        </view>
+        <view class="price"><text class="pri-mark">￥</text>6565.00</view>
+        <view class="buy" :class="{disabled: ischeck.length <= 0}">
+          <a href="javascript:;" @click="buy()" v-if="ischeck.length > 0">立即购买</a>
+          <a href="javascript:;" v-else>立即购买</a>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
 </body>
 </html>

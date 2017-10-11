@@ -907,7 +907,7 @@ Vue.component('subpost',
 
 let nodata_html = '<div class="noData">' +
   '<div class="inner">' +
-  '<img src="../../img/mobile/no_data.png">' +
+  '<img src="../../../img/mobile/no_data.png">' +
   '<span class="no">当前没有相关数据哟~</span>' +
 '</div>' +
 '</div>';

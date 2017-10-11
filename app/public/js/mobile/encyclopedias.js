@@ -174,7 +174,7 @@ let app = new Vue(
       pro_list: [],
       loading: false,
       refreshing: false,
-      img_url: 'public/img/mobile',
+      // img_url: 'public/img/mobile',
       currentView: 'overview',
       tabs: [],     /* 顶部分类 */
       tab_num: 0,

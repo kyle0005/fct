@@ -27,7 +27,7 @@ var app = new Vue(
       getVerifyCode(){
         let vue = this;
         if (this.rightPhoneNumber) {
-          this.computedTime = 30;
+          this.computedTime = 60;
           this.timer = setInterval(() => {
             this.computedTime --;
             if (this.computedTime == 0) {
