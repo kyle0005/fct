@@ -108,6 +108,168 @@ gulp.task('serve', () => {
   const middlewares = jsonServer.defaults();
   server.use(middlewares);
 
+  server.get('/', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.name);
+    res.json({
+      'code': 200,
+      'message': '',
+      'url': null,
+      'data': {
+        'entries': [
+          {
+            "id": 0,
+            "code": 1,
+            "level_id": 0,
+            "name": "束云茶叶罐001",
+            "artist": "李某某001",
+            "title": "【精雕细刻】束云茶叶罐001",
+            "description": "整款器形古朴浑厚，细腻柔和，古韵悠然，壶身扁圆饱满，线条柔和构筑，弯流如意壶嘴，出水爽利，断水干净利落，端握合适，拿捏舒适，壶肩格勒出的线条，一眼看上便觉心清气爽。",
+            "default_pic": "/public/img/mobile/resource/imgs.png",
+            "pics": [
+              "/public/img/mobile/resource/pro01.png",
+              "/public/img/mobile/resource/pro01.png",
+              "/public/img/mobile/resource/pro01.png",
+              "/public/img/mobile/resource/pro01.png"
+            ],
+            "clickAmount": 99999999,
+            "saleAmount": 11111111
+          },
+          {
+            "id": 1,
+            "code": 1,
+            "level_id": 1,
+            "name": "束云茶叶罐001",
+            "artist": "李某某001",
+            "title": "【精雕细刻】束云茶叶罐001",
+            "description": "描述文字。。。。。001。",
+            "default_pic": "/public/img/mobile/resource/pro.png",
+            "pics": [
+              "/public/img/mobile/resource/pro.png",
+              "/public/img/mobile/resource/pro.png",
+              "/public/img/mobile/resource/pro.png",
+              "/public/img/mobile/resource/pro.png"
+            ],
+            "clickAmount": 99999999,
+            "saleAmount": 11111111
+          },
+          {
+            "id": 2,
+            "code": 2,
+            "level_id": 2,
+            "name": "束云茶叶罐001",
+            "artist": "李某某001",
+            "title": "【精雕细刻】束云茶叶罐001",
+            "description": "描述文字。。。。。001。",
+            "default_pic": "/public/img/mobile/resource/pug.png",
+            "pics": [
+              "/public/img/mobile/resource/pug.png",
+              "/public/img/mobile/resource/pug.png",
+              "/public/img/mobile/resource/pug.png",
+              "/public/img/mobile/resource/pug.png"
+            ],
+            "clickAmount": 99999999,
+            "saleAmount": 11111111
+          },
+          {
+            "id": 3,
+            "code": 3,
+            "level_id": 3,
+            "name": "束云茶叶罐001",
+            "artist": "李某某001",
+            "title": "【精雕细刻】束云茶叶罐001",
+            "description": "描述文字。。。。。001。",
+            "default_pic": "/public/img/mobile/resource/pro02.png",
+            "pics": [
+              "/public/img/mobile/resource/pro02.png",
+              "/public/img/mobile/resource/pro02.png",
+              "/public/img/mobile/resource/pro02.png",
+              "/public/img/mobile/resource/pro02.png"
+            ],
+            "clickAmount": 99999999,
+            "saleAmount": 11111111
+          },
+          {
+            "id": 4,
+            "code": 2,
+            "level_id": 4,
+            "name": "束云茶叶罐001",
+            "artist": "李某某001",
+            "title": "【精雕细刻】束云茶叶罐001",
+            "description": "描述文字。。。。。001。",
+            "default_pic": "/public/img/mobile/resource/pro01.png",
+            "pics": [
+              "/public/img/mobile/resource/pro01.png",
+              "/public/img/mobile/resource/pro.png",
+              "/public/img/mobile/resource/pug.png",
+              "/public/img/mobile/resource/pro02.png"
+            ],
+            "clickAmount": 99999999,
+            "saleAmount": 11111111
+          },
+          {
+            "id": 5,
+            "code": 1,
+            "level_id": 3,
+            "name": "束云茶叶罐001",
+            "artist": "李某某001",
+            "title": "【精雕细刻】束云茶叶罐001",
+            "description": "描述文字。。。。。001。",
+            "default_pic": "/public/img/mobile/resource/imgs.png",
+            "pics": [
+              "/public/img/mobile/resource/imgs.png",
+              "/public/img/mobile/resource/imgs.png",
+              "/public/img/mobile/resource/imgs.png",
+              "/public/img/mobile/resource/imgs.png"
+            ],
+            "clickAmount": 99999999,
+            "saleAmount": 11111111
+          },
+          {
+            "id": 6,
+            "code": 3,
+            "level_id": 1,
+            "name": "束云茶叶罐001",
+            "artist": "李某某001",
+            "title": "【精雕细刻】束云茶叶罐001",
+            "description": "描述文字。。。。。001。",
+            "default_pic": "/public/img/mobile/resource/imgs.png",
+            "pics": [
+              "/public/img/mobile/resource/pro01.png",
+              "/public/img/mobile/resource/pro.png",
+              "/public/img/mobile/resource/pug.png",
+              "/public/img/mobile/resource/pro02.png"
+            ],
+            "clickAmount": 99999999,
+            "saleAmount": 11111111
+          },
+          {
+            "id": 7,
+            "code": 2,
+            "level_id": 2,
+            "name": "束云茶叶罐001",
+            "artist": "李某某001",
+            "title": "【精雕细刻】束云茶叶罐001",
+            "description": "描述文字。。。。。001。",
+            "default_pic": "/public/img/mobile/resource/imgs.png",
+            "pics": [
+              "/public/img/mobile/resource/imgs.png",
+              "/public/img/mobile/resource/imgs.png",
+              "/public/img/mobile/resource/imgs.png",
+              "/public/img/mobile/resource/imgs.png"
+            ],
+            "clickAmount": 99999999,
+            "saleAmount": 11111111
+          },
+        ],
+        'pager': {'prev': 0, 'current': 1, 'next': 3, 'page_size': 20, 'total_page': 1, 'total': 13}
+      }
+
+    });
+  });
+
   server.get('/detail', (req, res) => {
     res.json({
       code: 0 ,
@@ -886,27 +1048,7 @@ gulp.task('serve', () => {
                 'id': 7,
                 'defaultImage': 'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg'
               },
-              {
-                'price': 99999,
-                'name': '《寿桃》',
-                'commission': 1000,
-                'id': 6,
-                'defaultImage': 'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg'
-              },
-              {
-              'price': [8888, 9999],
-              'name': 'goods',
-              'commission': [200, 200],
-              'id': 2,
-              'defaultImage': 'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png'
-              },
-              {
-              'price': 120000,
-              'name': '《天心月圆》',
-              'commission': 1000,
-              'id': 5,
-              'defaultImage': 'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-12\/ccdabaaeec514f1ba17905d683172d22.jpg'
-              }
+
             ],
           'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 4}
         },
