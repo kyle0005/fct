@@ -109,10 +109,18 @@ gulp.task('serve', () => {
   server.use(middlewares);
 
   server.get('/', (req, res) => {
-    //得到键值对
     var arg1=url.parse(req.url,true).query;
-    //打印键值对中的值
-    console.log(arg1.name);
+
+    if(arg1)
+    {
+      var page = url.parse(decodeURI(req.url),true).query.page; //解析参数为id的值
+      if(page)
+        console.log(page);
+      var code = url.parse(decodeURI(req.url),true).query.code;//解析参数为name的值
+      if(code)
+        console.log(code);
+    }
+
     res.json({
       'code': 200,
       'message': '',
@@ -264,7 +272,7 @@ gulp.task('serve', () => {
             "saleAmount": 11111111
           },
         ],
-        'pager': {'prev': 0, 'current': 1, 'next': 3, 'page_size': 20, 'total_page': 1, 'total': 13}
+        'pager': {'prev': 0, 'current': 1, 'next': parseInt(page) + 1, 'page_size': 20, 'total_page': 1, 'total': 13}
       }
 
     });
@@ -1031,8 +1039,19 @@ gulp.task('serve', () => {
   server.get('/share', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
-    //打印键值对中的值
-    console.log(arg1.name);
+
+    if(arg1)
+    {
+      var page = url.parse(decodeURI(req.url),true).query.page; //解析参数为id的值
+      if(page)
+        console.log(page);
+      var code = url.parse(decodeURI(req.url),true).query.code;//解析参数为name的值
+      if(code)
+        console.log(code);
+    }
+
+    // //打印键值对中的值
+    // console.log(arg1.name);
     res.json({
       'code': 200,
       'message': '修改成功',
@@ -1048,9 +1067,177 @@ gulp.task('serve', () => {
                 'id': 7,
                 'defaultImage': 'http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg'
               },
+              {
+                "price": 0.01,
+                "name": "测试宝贝",
+                "commission": 0,
+                "id": 7,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg"
+              },
+              {
+                "price": 99999,
+                "name": "《寿桃》",
+                "commission": 1000,
+                "id": 6,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg"
+              },
+              {
+                "price": [8888, 9999],
+                "name": "goods",
+                "commission": [200, 200],
+                "id": 2,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png"
+              },
+              {
+                "price": 0.01,
+                "name": "测试宝贝",
+                "commission": 0,
+                "id": 7,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg"
+              },
+              {
+                "price": 99999,
+                "name": "《寿桃》",
+                "commission": 1000,
+                "id": 6,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg"
+              },
+              {
+                "price": [8888, 9999],
+                "name": "goods",
+                "commission": [200, 200],
+                "id": 2,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png"
+              },
+              {
+                "price": 99999,
+                "name": "《寿桃》",
+                "commission": 1000,
+                "id": 6,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg"
+              },
+              {
+                "price": [8888, 9999],
+                "name": "goods",
+                "commission": [200, 200],
+                "id": 2,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png"
+              },
+              {
+                "price": 0.01,
+                "name": "测试宝贝",
+                "commission": 0,
+                "id": 7,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg"
+              },
+              {
+                "price": 99999,
+                "name": "《寿桃》",
+                "commission": 1000,
+                "id": 6,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg"
+              },
+              {
+                "price": [8888, 9999],
+                "name": "goods",
+                "commission": [200, 200],
+                "id": 2,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png"
+              },
+              {
+                "price": 0.01,
+                "name": "测试宝贝",
+                "commission": 0,
+                "id": 7,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg"
+              },
+              {
+                "price": 99999,
+                "name": "《寿桃》",
+                "commission": 1000,
+                "id": 6,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg"
+              },
+              {
+                "price": [8888, 9999],
+                "name": "goods",
+                "commission": [200, 200],
+                "id": 2,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png"
+              },
+              {
+                "price": 99999,
+                "name": "《寿桃》",
+                "commission": 1000,
+                "id": 6,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg"
+              },
+              {
+                "price": [8888, 9999],
+                "name": "goods",
+                "commission": [200, 200],
+                "id": 2,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png"
+              },
+              {
+                "price": 0.01,
+                "name": "测试宝贝",
+                "commission": 0,
+                "id": 7,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg"
+              },
+              {
+                "price": 99999,
+                "name": "《寿桃》",
+                "commission": 1000,
+                "id": 6,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg"
+              },
+              {
+                "price": [8888, 9999],
+                "name": "goods",
+                "commission": [200, 200],
+                "id": 2,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png"
+              },
+              {
+                "price": 0.01,
+                "name": "测试宝贝",
+                "commission": 0,
+                "id": 7,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg"
+              },
+              {
+                "price": 99999,
+                "name": "《寿桃》",
+                "commission": 1000,
+                "id": 6,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg"
+              },
+              {
+                "price": [8888, 9999],
+                "name": "goods",
+                "commission": [200, 200],
+                "id": 2,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png"
+              },
+              {
+                "price": 99999,
+                "name": "《寿桃》",
+                "commission": 1000,
+                "id": 6,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg"
+              },
+              {
+                "price": [8888, 9999],
+                "name": "goods",
+                "commission": [200, 200],
+                "id": 2,
+                "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-08\/5f2a876426944448866798b34f08c43f.png"
+              },
 
             ],
-          'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 20, 'total_page': 1, 'total': 4}
+          'pager': {'prev': 0, 'current': 1, 'next': parseInt(page)+1, 'page_size': 20, 'total_page': 1, 'total': 4}
         },
 
     });

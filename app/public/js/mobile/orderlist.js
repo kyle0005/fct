@@ -5,7 +5,7 @@ let app = new Vue(
       vue.tab_num = config.status;
       vue.initData();
     },
-    directives: {
+/*    directives: {
       'load-more': {
         bind: (el, binding) => {
           let windowHeight = window.screen.height;
@@ -66,7 +66,7 @@ let app = new Vue(
           }
         }
       }
-    },
+    },*/
     watch: {
       orderlist: function (val, oldVal) {
         if(!this.listloading){

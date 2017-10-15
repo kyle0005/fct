@@ -1,68 +1,60 @@
-<view class="cart-container">
-  <view class="contianer">
-    <view class="cart-list">
-      <view class="cart-item" v-for="(item, index) in pro_list">
-        <checkbox color="#1d1d1d"></checkbox>
-        <view class="product col">
-          <view class="pro-item pro-img">
-            <image src="https://cdn.fangcun.com/upload/images/2017-07-19/74d498ef6d884219816b34d50a1a9f88.jpg!120" mode='widthFix'></image>
-          </view>
-            <view class="pro-item pro-t">
-            <view class="t">
-              <view class="title overText">name</view>
-              <view class="spec">规格: xxxx</view>
-              <view class="price"><text class="pri-mark">￥</text>332424.00<del><text class="pri-mark">￥</text>.3454</del></view>
-            </view>
-          </view>
-        </view>
-        <view class="num-container col">
-          <view class="num clearfix">
-            <view :class="{dis:min}" @click="minus(item, index)">
-              <image mode="widthFix" src="https://cdn.fangcun.com/static/img/pay/num_minus.png"></image>
-            </view>
-            <input type="text" class="numbers" :value="item.buyCount">
-            <view :class="{dis:max}" @click="add(item)">
-              <image mode="widthFix" src="https://cdn.fangcun.com/static/img/pay/num_add.png"></image>
-            </view>
-          </view>
-        </view>
+<view class="orderlist-container">
+  <view class="tabs">
+    <view class="item" v-for="(item, index) in tabs" :class="{chosen: (index - 1)===tab_num}" @click="category(index - 1)">
+      <view class="link">{{ item }}</view>
+    </view>
+    <view class="search-container" :class="{show:show_search}">
+      <view class="cancel-search">
+        <view class="fork">取消</view>
       </view>
+      <input type="search" class="search-input">
+      <a href="javascript:;" class="search-link" @click="search(1)">
+        <i class="fa fa-search"></i>
+      </a>
     </view>
   </view>
-  <view class="guess-container">
-    <view class="title">
-      <view class="lines">
-        <view class="text">猜你喜欢</view>
+  <view class="orders-list" v-load-more="nextPage" type="1" v-if="orderlist && orderlist.length > 0">
+    <view class="items" v-for="(item, index) in orderlist">
+      <view class="info">
+        <view class="left">订单号：{{ item.orderId }}</view>
+        <view class="right">{{ item.statusName }}</view>
       </view>
-    </view>
-    <view class="guess clearfix">
-      <view v-for="(item, index) in like_list">
-        <view class="guess-link">
-          <image src="https://cdn.fangcun.com/upload/images/2017-07-19/74d498ef6d884219816b34d50a1a9f88.jpg!120" mode='widthFix'></image>
-        </view>
-        <view class="v-title">name</view>
-        <view class="v-price"><text class="pri-mark">￥</text>45646.00</view>
-      </view>
-    </view>
-  </view>
-  <view class="foot-container" >
-    <view class="inner">
-      <view class="nav">
-        <view class="choose">
-          <view class="chk-container">
-            <label class="text-container">
-              <checkbox color="#1d1d1d"></checkbox><text class="chosen">已选( 0 )</text>
-            </label>
+      <ul class="list">
+        <li class="product" v-for="(good, index) in item.orderGoods" @click="todetail(item)">
+          <view class="pro-item img-container">
+            <img :src="good.img">
           </view>
+          <view class="pro-item title-container">
+            <view class="title">{{ good.name }}</view>
+            <view class="spec">规格:{{ good.specName }}</view>
+          </view>
+          <view class="pro-item price-container">
+            <view class="price"><small class="pri-mark">￥</small>{{ good.price }}</view>
+            <view class="num">*{{ good.buyCount }}</view>
+          </view>
+        </li>
+      </ul>
+      <view class="total">
+        <view class="inner">共{{ item.buyTotalCount }}件商品&nbsp;合计:<span class="payAmount"><small class="pri-mark">￥</small>{{ item.payAmount }}</span>（含运费）</view>
+      </view>
+      <view class="btn clearfix" v-if="item.status == 0">
+        <view class="btn-container">
+          <a href="javascript:;" class="black">我要付款</a>
         </view>
-        <view class="price"><text class="pri-mark">￥</text>6565.00</view>
-        <view class="buy" :class="{disabled: ischeck.length <= 0}">
-          <a href="javascript:;" @click="buy()" v-if="ischeck.length > 0">立即购买</a>
-          <a href="javascript:;" v-else>立即购买</a>
+        <view class="btn-container">
+          <a href="javascript:;" class="grey" @click="confirm(item.orderId, cancel)">关闭订单</a>
+        </view>
+      </view>
+      <view class="btn clearfix" v-if="item.status == 2">
+        <view class="btn-container">
+          <a href="javascript:;" class="black">查看物流</a>
+        </view>
+      </view>
+      <view class="btn clearfix" v-if="item.status == 3">
+        <view class="btn-container">
+          <a href="javascript:;" class="black">评价</a>
         </view>
       </view>
     </view>
   </view>
 </view>
-
-

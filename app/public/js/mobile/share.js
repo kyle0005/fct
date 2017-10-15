@@ -39,10 +39,11 @@ let app = new Vue(
       nodata: false
 
     },
-    directives: {
+/*    directives: {
       'load-more': {
         bind: (el, binding) => {
           let windowHeight = window.screen.height;
+          // let windowHeight = el.parentNode.offsetHeight;
           let height;
           let setTop;
           let paddingBottom;
@@ -100,7 +101,7 @@ let app = new Vue(
           }
         }
       }
-    },
+    },*/
     methods: {
       initData(){
         let vue = this;
@@ -160,7 +161,7 @@ let app = new Vue(
       pageSucc(data){
         let vue = this;
         vue.pager = data.data.pager;
-        vue.shareList = data.data.entries.concat(vue.shareList);
+        vue.shareList = vue.shareList.concat(data.data.entries);
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
       },

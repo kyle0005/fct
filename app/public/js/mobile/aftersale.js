@@ -3,7 +3,7 @@ let app = new Vue(
     computed: {
 
     },
-    directives: {
+/*    directives: {
       'load-more': {
         bind: (el, binding) => {
           let windowHeight = window.screen.height;
@@ -64,7 +64,7 @@ let app = new Vue(
           }
         }
       }
-    },
+    },*/
     mounted: function() {
       let vue = this;
       vue.initdata();
@@ -115,7 +115,7 @@ let app = new Vue(
       pageSucc(data){
         let vue = this;
         vue.pager = data.data.pager;
-        vue.refund = data.data.entries.concat(vue.refund);
+        vue.refund = vue.refund.concat(data.data.entries);
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
       },

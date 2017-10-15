@@ -312,7 +312,7 @@ Vue.component('discuss',
         nodata: false
       }
     },
-    directives: {
+/*    directives: {
       'load-more': {
         bind: (el, binding) => {
           let windowHeight = window.screen.height;
@@ -373,7 +373,7 @@ Vue.component('discuss',
           }
         }
       }
-    },
+    },*/
     methods: {
       getBefore(){
         let vue = this;
@@ -397,7 +397,7 @@ Vue.component('discuss',
       },
       pageSucc(data){
         let vue = this;
-        vue.commentlist = data.data.entries.concat(vue.commentlist);
+        vue.commentlist = vue.commentlist.concat(data.data.entries);
         vue.pager = data.data.pager;
         vue.preventRepeatReuqest = false;
         vue.listloading = false;

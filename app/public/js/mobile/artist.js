@@ -70,7 +70,7 @@ Vue.component('live',
         return flag;
       },
     },
-    directives: {
+/*    directives: {
       'load-more': {
         bind: (el, binding) => {
           let windowHeight = window.screen.height;
@@ -131,7 +131,7 @@ Vue.component('live',
           }
         }
       },
-    },
+    },*/
     mounted: function() {
       let vue = this;
     },
@@ -168,7 +168,7 @@ Vue.component('live',
       pageSucc(data){
         let vue = this;
         vue.dynamicList = data.data;
-        vue.liveList = data.data.entries.concat(vue.liveList);
+        vue.liveList = vue.liveList.concat(data.data.entries);
         vue.loadLive();
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
@@ -245,7 +245,7 @@ Vue.component('chat',
     template: '#chat',
     computed: {
     },
-    directives: {
+/*    directives: {
       'load-more': {
         bind: (el, binding) => {
           let windowHeight = window.screen.height;
@@ -306,7 +306,7 @@ Vue.component('chat',
           }
         }
       }
-    },
+    },*/
     mounted: function() {
       let vue = this;
       vue.loadChat();
@@ -359,7 +359,7 @@ Vue.component('chat',
       pageSucc(data){
         let vue = this;
         vue.pager = data.data.pager;
-        vue.chatlist = data.data.entries.concat(vue.chatlist);
+        vue.chatlist = vue.chatlist.concat(data.data.entries);
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
       },

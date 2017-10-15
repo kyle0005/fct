@@ -7,7 +7,7 @@ let app = new Vue(
       let vue = this;
       vue.initData();
     },
-    directives: {
+/*    directives: {
       'load-more': {
         bind: (el, binding) => {
           let windowHeight = window.screen.height;
@@ -68,7 +68,7 @@ let app = new Vue(
           }
         }
       }
-    },
+    },*/
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
@@ -143,7 +143,7 @@ let app = new Vue(
       pageSucc(data){
         let vue = this;
         vue.pager = data.data.pager;
-        vue.commissionlist = data.data.entries.concat(vue.commissionlist);
+        vue.commissionlist = vue.commissionlist.concat(data.data.entries);
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
       },

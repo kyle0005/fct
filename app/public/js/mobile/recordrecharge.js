@@ -7,7 +7,7 @@ let app = new Vue(
       let vue = this;
       vue.initData();
     },
-    directives: {
+/*    directives: {
       'load-more': {
         bind: (el, binding) => {
           let windowHeight = window.screen.height;
@@ -68,7 +68,7 @@ let app = new Vue(
           }
         }
       }
-    },
+    },*/
     watch: {
       chargeRecordList: function (val, oldVal) {
         if(!this.listloading){
@@ -116,7 +116,7 @@ let app = new Vue(
       pageSucc(data){
         let vue = this;
         vue.pager = data.data.pager;
-        vue.chargeRecordList = data.data.entries.concat(vue.chargeRecordList);
+        vue.chargeRecordList = vue.chargeRecordList.concat(data.data.entries);
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
       },
