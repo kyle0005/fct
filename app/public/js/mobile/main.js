@@ -16,6 +16,8 @@ let app = new Vue(
       tab_num: null,
 
       listloading: true,
+      pagerloading: false,
+      isPage: false,
       nodata: false,
 
       pager_url: '?level_id=0',
@@ -43,7 +45,7 @@ let app = new Vue(
       },
       getBefore(){
         let vue = this;
-        vue.listloading = true;
+        vue.isPage ? vue.pagerloading = true : vue.listloading = true;
       },
       /* 菜单分类加载 */
       getprolist(code, level_id, index) {
@@ -91,6 +93,7 @@ let app = new Vue(
           var _url = vue.pager_url + '&page=' + vue.pager.next;
           if(_url !== vue.last_url){
             vue.last_url = _url;
+            vue.isPage = true;
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
           }
 
@@ -102,6 +105,8 @@ let app = new Vue(
         vue.pro_list = vue.pro_list.concat(data.data.entries);
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
+        vue.pagerloading = false;
+        vue.isPage = false;
       },
     },
   }

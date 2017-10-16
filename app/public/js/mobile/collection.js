@@ -16,6 +16,8 @@ let app = new Vue(
       collection: [],
 
       listloading: true,
+      pagerloading: false,
+      isPage: false,
       nodata: false
     },
     watch: {

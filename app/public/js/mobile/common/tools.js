@@ -255,6 +255,37 @@ var tools = {
         console.log('error');
       }
     });
+  },
+  getScrollTop: function () {     //滚动条在Y轴上的滚动距离
+    var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
+    if(document.body){
+      bodyScrollTop = document.body.scrollTop;
+    }
+    if(document.documentElement){
+      documentScrollTop = document.documentElement.scrollTop;
+    }
+    scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+    return scrollTop;
+  },
+  getScrollHeight: function () {    //文档的总高度
+    var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
+    if(document.body){
+      bodyScrollHeight = document.body.scrollHeight;
+    }
+    if(document.documentElement){
+      documentScrollHeight = document.documentElement.scrollHeight;
+    }
+    scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+    return scrollHeight;
+  },
+  getWindowHeight: function () {      //浏览器视口的高度
+    var windowHeight = 0;
+    if(document.compatMode == 'CSS1Compat'){
+      windowHeight = document.documentElement.clientHeight;
+    }else{
+      windowHeight = document.body.clientHeight;
+    }
+    return windowHeight;
   }
 };
 
@@ -688,8 +719,16 @@ Vue.directive('load-more', {
 
     el.addEventListener('touchend', () => {
       oldScrollTop = scrollEl.scrollTop;
-      moveEnd();
+      // moveEnd();
     }, false);
+
+    window.addEventListener('scroll', () => {
+      if (parseFloat(tools.getScrollTop()) + parseFloat(tools.getWindowHeight()) == parseFloat(tools.getScrollHeight())) {
+      //  滚动到底部
+        moveEnd();
+      }
+    });
+
 
     const moveEnd = () => {
       requestFram = requestAnimationFrame(() => {
@@ -705,9 +744,9 @@ Vue.directive('load-more', {
     };
 
     const loadMore = () => {
-      if (window.pageYOffset + windowHeight >= height + setTop + paddingBottom + marginBottom - scrollReduce) {
+      // if (window.pageYOffset + windowHeight >= height + setTop + paddingBottom + marginBottom - scrollReduce) {
         binding.value();
-      }
+      // }
     }
   }
 });

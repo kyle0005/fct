@@ -77,6 +77,8 @@ let app = new Vue(
       last_url: '',
       pager: config.refund.pager,
       listloading: true,
+      pagerloading: false,
+      isPage: false,
       nodata: false
     },
     watch: {
@@ -98,7 +100,7 @@ let app = new Vue(
       },
       getBefore(){
         let vue = this;
-        vue.listloading = true;
+        vue.isPage ? vue.pagerloading = true : vue.listloading = true;
       },
       nextPage() {
         let vue = this;
@@ -107,6 +109,7 @@ let app = new Vue(
           var _url = config.refund.refundUrl + '?page=' + vue.pager.next;
           if(_url !== vue.last_url){
             vue.last_url = _url;
+            vue.isPage = true;
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
           }
 
@@ -118,6 +121,8 @@ let app = new Vue(
         vue.refund = vue.refund.concat(data.data.entries);
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
+        vue.pagerloading = false;
+        vue.isPage = false;
       },
       close(){
         this.showAlert = false;

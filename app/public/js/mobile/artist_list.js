@@ -111,6 +111,8 @@ let app = new Vue(
     data: {
       artist: [],
       listloading: true,
+      pagerloading: false,
+      isPage: false,
       nodata: false
     },
     watch: {

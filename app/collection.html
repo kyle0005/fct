@@ -29,6 +29,7 @@
     </div>
     <no-data v-if="nodata"></no-data>
     <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <img src="public/img/mobile/img_loader_s.gif" class="pager-loader" v-if="pagerloading">
   </div>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>

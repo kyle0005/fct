@@ -97,6 +97,8 @@ let app = new Vue(
       subText: '取消',
 
       listloading: true,
+      pagerloading: false,
+      isPage: false,
       nodata: false
     },
     methods: {
@@ -107,7 +109,7 @@ let app = new Vue(
       },
       getBefore(){
         let vue = this;
-        vue.listloading = true;
+        vue.isPage ? vue.pagerloading = true : vue.listloading = true;
       },
       cancel(orderId){
         let vue = this,
@@ -148,6 +150,7 @@ let app = new Vue(
           var _url = config.orderlist_url + '?status=' + vue.status + '&page=' + vue.pager.next;
           if(_url !== vue.last_url){
             vue.last_url = _url;
+            vue.isPage = true;
             tools.ajaxGet(_url, vue.nextSucc, vue.getBefore);
           }
 
@@ -225,6 +228,8 @@ let app = new Vue(
         vue.orderlist = data.data.entries.concat(vue.orderlist);
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
+        vue.pagerloading = false;
+        vue.isPage = false;
       },
       succhandle(data){
         let vue = this;

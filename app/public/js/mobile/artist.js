@@ -145,13 +145,15 @@ Vue.component('live',
         isVideoLoad: false,
 
         listloading: true,
+        pagerloading: false,
+        isPage: false,
         nodata: false
       }
     },
     methods:{
       getBefore(){
         let vue = this;
-        vue.listloading = true;
+        vue.isPage ? vue.pagerloading = true : vue.listloading = true;
       },
       nextPage() {
         let vue = this;
@@ -160,6 +162,7 @@ Vue.component('live',
           var _url = config.artistPage_url + '?page=' + vue.dynamicList.pager.next;
           if(_url !== vue.last_url){
             vue.last_url = _url;
+            vue.isPage = true;
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
           }
 
@@ -172,6 +175,8 @@ Vue.component('live',
         vue.loadLive();
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
+        vue.pagerloading = false;
+        vue.isPage = false;
       },
       loadLive(){
         let vue = this;
@@ -216,6 +221,8 @@ Vue.component('works',
         workslist: [],
         last_url: '',
         listloading: true,
+        pagerloading: false,
+        isPage: false,
         nodata: false
       }
     },
@@ -336,13 +343,15 @@ Vue.component('chat',
         subText: '发送',
 
         listloading: true,
+        pagerloading: false,
+        isPage: false,
         nodata: false
       }
     },
     methods: {
       getBefore(){
         let vue = this;
-        vue.listloading = true;
+        vue.isPage ? vue.pagerloading = true : vue.listloading = true;
       },
       nextPage() {
         let vue = this;
@@ -351,6 +360,7 @@ Vue.component('chat',
           var _url = config.artistChat_url + '?page=' + vue.pager.next;
           if(_url !== vue.last_url){
             vue.last_url = _url;
+            vue.isPage = true;
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
           }
 
@@ -362,6 +372,8 @@ Vue.component('chat',
         vue.chatlist = vue.chatlist.concat(data.data.entries);
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
+        vue.pagerloading = false;
+        vue.isPage = false;
       },
       popchat() {
         let vue = this;

@@ -74,6 +74,8 @@ let app = new Vue(
       tab_num: 0,
 
       listloading: true,
+      pagerloading: false,
+      isPage: false,
       nodata: false
     },
     methods: {

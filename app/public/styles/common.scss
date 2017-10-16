@@ -608,6 +608,14 @@ small.pri-mark{
   transform: translate(-50%, -50%);
   width: 10%;
 }
+.pager-loader{
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 10px 0;
+  z-index: 2;
+  width: 10%;
+}
 
 .time-block{
   display: inline-block;
