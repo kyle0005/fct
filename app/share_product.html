@@ -41,7 +41,7 @@
         </span>
         <span class="center">
           <span class="title">表标题壶</span>
-          <span class="t2">紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶</span>
+          <span class="t2">紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂</span>
         </span>
         <span class="right"><img src="public/img/mobile/share.png"></span>
       </a>
@@ -68,6 +68,20 @@
   <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   <img src="public/img/mobile/img_loader_s.gif" class="pager-loader" v-if="pagerloading">
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+  <footer class="footer">
+    <div class="inner">
+      <a href="order_list_m.html" class="link">
+        <img src="public/img/mobile/share_point.png"><br>销售订单
+      </a>
+      <a href="javascript:;" class="link">
+        <img src="public/img/mobile/share_detail.png"><br>结算明细
+      </a>
+      <a href="javascript:;" class="link">
+        <img src="public/img/mobile/share_help.png"><br>使用帮助
+      </a>
+    </div>
+
+  </footer>
 </div>
 <script src="public/js/mobile/vue.js"></script>
 <script src="public/js/mobile/api/index.js"></script>

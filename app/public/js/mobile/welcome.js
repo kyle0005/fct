@@ -1,16 +1,6 @@
 Vue.component('m-swipe',
   {
     template: '#m_swipe',
-    computed: {
-    },
-    watch: {
-    },
-    activated() {
-
-    },
-    deactivated() {
-
-    },
     props: {
       swipeid: {
         type: String,

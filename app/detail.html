@@ -169,7 +169,7 @@
       "salePrice": 122214,
       "promotionPrice": 45544,
       "cartProductCount": 1,
-      "hasDiscount": false,
+      "hasDiscount": true,
       "volumes": [150, 350],    /* 容量 */
       "discount": {
         "id": 0,
@@ -177,28 +177,36 @@
         "discountRate": 0.75,
         "discountTime": 93600,
         "hasBegin": true,
-        "canBuy": true,
+        "canBuy": false,
         "singleCount": 4    /* 限购数 */
       },
       "specification": [
         /*{"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
          {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}*/
       ],
-      "video": {
-        "poster": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-01\/25742b692c6e4ac8b5951a396ae7e1e2.png!750",
-        "url": "http:\/\/1253930304.vod2.myqcloud.com\/399bd37dvodgzp1253930304\/43628ff29031868223073846887\/JVfmp4X8LN8A.mp4"
-      },
+//      "video": {
+//        "poster": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-01\/25742b692c6e4ac8b5951a396ae7e1e2.png!750",
+//        "url": "http:\/\/1253930304.vod2.myqcloud.com\/399bd37dvodgzp1253930304\/43628ff29031868223073846887\/JVfmp4X8LN8A.mp4"
+//      },
       "materialId": "4",
       "content": "<p><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e202643.jpg\" title=\"5677c2e202643.jpg\" alt=\"福泰一生花丝吊坠_01.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e4e6047.jpg\" title=\"5677c2e4e6047.jpg\" alt=\"福泰一生花丝吊坠_02.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e870c31.jpg\" title=\"5677c2e870c31.jpg\" alt=\"福泰一生花丝吊坠_03.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2ebe554a.jpg\" title=\"5677c2ebe554a.jpg\" alt=\"福泰一生花丝吊坠_04.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2ef0f0e8.jpg\" title=\"5677c2ef0f0e8.jpg\" alt=\"福泰一生花丝吊坠_05.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2f2c8e52.jpg\" title=\"5677c2f2c8e52.jpg\" alt=\"福泰一生花丝吊坠_06.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c307ae5ec.jpg\" title=\"5677c307ae5ec.jpg\" alt=\"镂空花丝金镶玉繁花似玉吊坠_06.jpg\"><\/p>",
       "hasCoupon": 1,
       "subTitle": "原矿大红袍",
       "intro": " 传统的供春纹理要做好很不容易，龙隐约在壶身上出现又不抢春味还要溶入整个风格之中不是那么容易做到，质地特纯,泥质细腻、成色稳重。",
       "name": "测试宝贝",
+      "images":     /* 如果没有视频，则显示图片切换 */
+        [
+          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/045696394ae5484391aa97f9c92e8b1d.JPG!750",
+          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/1648f5a4ac6447dea70db167e9edf0a6.JPG!750",
+          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/0f2b4b1d02694ea4bcd884542a257e63.JPG!750",
+          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/780da6ec74484db697e2c8b5878f6957.JPG!750",
+          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/e5d7e5bb3ca34115a1ea78613bdac309.JPG!750"
+        ],
       "favoriteState": 1,
       "id": 7,
       "defaultImage": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg!120",
       "status": 1,
-      "stockCount": 43,
+      "stockCount": 0,
       "artistNames": "顾景舟",
       "materialNames": "原矿清水泥",
       "categoryNames": "圆弧",
@@ -241,7 +249,7 @@
         <i class="fa fa-bars"></i>
       </li>
       <li class="logo" @click="toIndex()">
-        <img :src="img_url + '/logo.png'">
+        <img src="public/img/mobile/logo.png">
       </li>
       <li class="user" @click="toLogin()">
         <span class="img-container">
@@ -296,8 +304,15 @@
 <script type="text/x-template" id="overview">
   <div class="overview-container">
     <section class="video-container">
-      <mVideo :poster="product.video.poster" :url="product.video.url" id="videotop"></mVideo>
-      <div class="sale clearfix">
+      <mVideo v-if="product.video" :poster="product.video.poster" :url="product.video.url" id="videotop"></mVideo>
+      <m-swipe v-else swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
+        <div v-for="(top, index) in tops" class="swiper-slide" slot="swiper-con">
+          <a :href="top.url" class="link">
+            <img :data-src="top" class="swiper-lazy silde-img">
+          </a>
+        </div>
+      </m-swipe>
+      <div class="sale clearfix hide">
         <div class="left">
           <span class="title">{{ product.discount.name }}</span>&ensp;享{{ product.discount.discountRate * 10 }}折，限购{{ product.discount.singleCount }}件
         </div>
@@ -329,32 +344,32 @@
       </div>
     </section>
     <section class="info clearfix">
-      <div class="item">
+      <div class="item clearfix">
         <span class="left">艺人</span>
-        <span class="right">{{ product.artistNames }}</span>
+        <span class="right overText">{{ product.artistNames }}</span>
       </div>
-      <div class="item">
+      <div class="item clearfix">
         <span class="left">泥料</span>
-        <span class="right">{{ product.materialNames }}</span>
+        <span class="right overText">{{ product.materialNames }}</span>
       </div>
-      <div class="item">
+      <div class="item clearfix">
         <span class="left">壶型</span>
-        <span class="right">{{ product.categoryNames }}</span>
+        <span class="right overText">{{ product.categoryNames }}</span>
       </div>
-      <div class="item">
+      <div class="item clearfix">
         <span class="left">容量</span>
-        <span class="right">
+        <span class="right overText">
           <span v-if="product.volumes instanceof Array">{{ product.volumes[0] }}CC&nbsp;~&nbsp;{{ product.volumes[1] }}CC</span>
           <span v-else>{{ product.volumes }}CC</span>
         </span>
       </div>
-      <div class="item">
+      <div class="item clearfix">
         <span class="left">库存</span>
-        <span class="right">{{ calstock }}</span>
+        <span class="right overText">{{ calstock }}</span>
       </div>
-      <div class="item">
+      <div class="item clearfix">
         <span class="left">编号</span>
-        <span class="right">{{ product.code }}</span>
+        <span class="right overText">{{ product.code }}</span>
       </div>
     </section>
     <section class="edit-context" v-html="product.content">
@@ -565,8 +580,18 @@
     </ul>
   </section>
 </script>
+<script type="text/x-template" id="m_swipe">
+  <div class="swiper-container" :class="swipeid">
+    <div class="swiper-wrapper">
+      <slot name="swiper-con"></slot>
+    </div>
+    <!-- 分页器 -->
+    <div :class="{'swiper-pagination':pagination}"></div>
+  </div>
+</script>
 <script src="public/js/mobile/head.js"></script>
 <script src="public/js/mobile/common/tools.js"></script>
+<script src="public/js/mobile/swiper.js"></script>
 <script src="public/js/mobile/detail.js"></script>
 </body>
 </html>

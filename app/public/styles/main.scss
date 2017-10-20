@@ -220,7 +220,7 @@
   width: 100%;
   .nav{
     position: fixed;
-    z-index: 3;
+    z-index: 4;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -284,7 +284,7 @@
 
   .aside {
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     left: 0;
     right: 0;
     top: 48px;
@@ -482,7 +482,10 @@ $foot-height: 250px;
         }
       }
       .disabled{
-        opacity: .3;
+        a{
+          opacity: .3;
+        }
+
       }
       .buy{
         height: 49px;
@@ -984,7 +987,7 @@ $foot-height: 250px;
     justify-content: flex-start;
     align-items: center;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     background-color: $color-3e3c3c;
     width: 92%;
     padding: 0 4%;
@@ -1337,6 +1340,7 @@ $foot-height: 250px;
           position: absolute;
           bottom: 0;
           left: 0;
+          z-index: 1;
           width: 100%;
           height: 35px;
           line-height: 35px;
@@ -1369,6 +1373,12 @@ $foot-height: 250px;
             transform-origin: right center;
           }
         }
+      }
+      img.silde-img{
+        width: 100%;
+      }
+      .en-pagination{
+        background-color: white;
       }
       .product-context{
         position: relative;
@@ -1464,7 +1474,15 @@ $foot-height: 250px;
           float: left;
           width: 50%;
           line-height: $font-size-t24;
+          .left{
+            float: left;
+            display: inline-block;
+            width: 25%;
+          }
           .right{
+            float: left;
+            display: inline-block;
+            width: 70%;
             margin-left: 5%;
             color: $color-999;
           }
@@ -3832,14 +3850,17 @@ $foot-height: 250px;
   .top{
     position: relative;
     width: 100%;
-    padding-bottom: calc(45 /375 *100%);
+    height: 45px;
+    //padding-bottom: calc(45 /375 *100%);
     background-color: $color-white;
     .inner{
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
+      z-index: 2;
       width: 100%;
-      height: 100%;
+      height: 45px;
+      background-color: white;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -3973,6 +3994,37 @@ $foot-height: 250px;
           }
         }
 
+      }
+    }
+  }
+  .footer{
+    position: relative;
+    width: 100%;
+    height: 49px;
+    .inner{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 92%;
+      padding: 0 4%;
+      height: 49px;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      a.link{
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        display: inline-block;
+        height: 100%;
+        width: 60px;
+        text-align: center;
+        img{
+          margin-top: 4px;
+          width: 40%;
+        }
       }
     }
   }
