@@ -1,55 +1,12 @@
-<view class="head-container">
-  <view class="nav">
-    <view class="li toggle" @click="toggle()">
-      <image mode="widthFix" src="http://test.fangcuntang.com/images/head_bars.png"></image>
-    </view>
-    <view class="li logo">
-      <image mode="widthFix" src="http://test.fangcuntang.com/images/logo.png"></image>
-    </view>
-    <view class="li user">
-        <view class="img-container">
-          <image mode="widthFix" src="http://test.fangcuntang.com/images/nologin-head.png"></image>
-        </view>
-    </view>
+<view class="sale clearfix" hidden='true'>
+  <view class="left">
+    <text class="title">首单优惠</text>
+    \t\t享5折，限购5件
   </view>
-  <view class="aside" :class="{open:open,docked:docked}" @click="toggle()">
-    <view class="container">
-      <view class="types">
-        <view class="li item">
-          <text>全部</text>
-          <image mode="widthFix" src="http://test.fangcuntang.com/images/head_r.png"></image>
-        </view>
-        <view class="li item">
-          <text>圆器</text>
-          <image mode="widthFix" src="http://test.fangcuntang.com/images/head_r.png"></image>
-        </view>
-        <view class="li item">
-          <text>方器</text>
-          <image mode="widthFix" src="http://test.fangcuntang.com/images/head_r.png"></image>
-        </view>
-        <view class="li item">
-          <text>花器</text>
-          <image mode="widthFix" src="http://test.fangcuntang.com/images/head_r.png"></image>
-        </view>
-        <view class="li item">
-          <text>筋纹器</text>
-          <image mode="widthFix" src="http://test.fangcuntang.com/images/head_r.png"></image>
-        </view>
-      </view>
-      <view class="lines clearfix">
-        <view class="li item">
-            <image mode="widthFix" src="http://test.fangcuntang.com/images/menu1.png"></image>
-            <text>守艺师</text>
-        </view>
-        <view class="li item">
-            <image mode="widthFix" src="http://test.fangcuntang.com/images/menu2.png"></image>
-            <text>百科</text>
-        </view>
-        <view class="li item">
-            <image mode="widthFix" src="http://test.fangcuntang.com/images/menu5.png"></image>
-            <text>品牌理念</text>
-        </view>
-      </view>
-    </view>
+  <view class="right">
+    距结束仅剩
+    <text>
+      <text class="time-block">24</text>:<text class="time-block">24</text> :<text class="time-block">24</text>
+    </text>
   </view>
 </view>

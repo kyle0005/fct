@@ -1,164 +1,50 @@
-.head-container {
-  width: 100%;
-}
-
-.head-container > .nav {
-  position: fixed;
-  z-index: 4;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: black;
-  background-image: linear-gradient(black, #141414);
-  width: 100%;
-  height: 48px;
-  color: #dddddd;
-}
-
-.head-container .nav > .li {
-  -webkit-box-flex: 1.0; /* Safari 和 Chrome */
-  box-flex: 1.0;
-  width: 96 rpx;
-  margin: 0 3%;
-  height: 100%;
-  text-align: center;
-  line-height: 96 rpx;
-  font-size: 40 rpx;
-}
-
-.head-container .nav .logo > image {
-  vertical-align: baseline;
-  padding: 20%;
-  width: 60%;
-}
-
-.head-container .nav > .user {
-  position: relative;
-}
-
-.head-container .nav .user > .img-container {
+.sale {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 56%;
-  padding-bottom: 56%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  background-color: rgba(153, 51, 51, 0.85);
+  color: white;
 }
 
-.head-container .nav .user .img-container > image {
+.sale>.left {
   position: absolute;
   top: 0;
-  left: 0;
-  width: calc(100% - 2rpx);
-  height: calc(100% - 2rpx);
-  border-radius: 50%;
-  border: 2 rpx solid white;
-}
-
-.head-container:after {
-  content: '';
-  position: relative;
-  z-index: -1;
-  display: block;
-  padding-bottom: 96 rpx;
-  width: 100%;
-}
-
-.head-container.aside {
-  position: fixed;
-  z-index: 3;
-  left: 0;
-  right: 0;
-  top: 96 rpx;
-  bottom: 0;
-  visibility: hidden;
-}
-
-.head-container.aside::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  -webkit-appearance: none;
-  opacity: 0 !important;
-}
-
-.head-container.aside > .container {
-  margin: 0;
-  width: 100%;
-  overflow: auto;
-  background: black;
-  transform: translate(0, -100%);
-  transition: transform 0.3s ease;
-  -webkit-overflow-scrolling: touch;
-}
-
-.head-container.aside > .container::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  -webkit-appearance: none;
-  opacity: 0 !important;
-}
-
-.head-container.aside .container .types > .li.item {
-  position: relative;
-  margin: 0 0 0 4%;
-  height: 88 rpx;
-  line-height: 88 rpx;
-  font-size: 26 rpx;
-  color: #dddddd;
-  border-bottom: 1px solid #333;
-}
-
-.head-container.aside .container .types .li.item > image {
-  position: absolute;
-  right: 4%;
-  top: 15px;
-  width: 20 rpx;
-}
-
-.head-container.aside .container > .lines {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 6% 0;
-}
-
-.head-container.aside .container .lines > .li.item {
-  -webkit-box-flex: 1.0; /* Safari 和 Chrome */
-  box-flex: 1.0;
-  width: 20%;
-  text-align: center;
-  color: #dddddd;
-}
-
-.head-container.aside .container .lines .li.item > image {
-  display: block;
-  margin: 0 auto 10 rpx;
-  width: 35%;
-}
-
-.head-container.aside > .cover {
-  width: 100%;
+  left: 4%;
+  width: 96%;
   height: 100%;
-  opacity: 0;
-  display: none;
-  background: #f2f2f2;
-  transition: opacity 0.3s ease;
+  text-align: left;
 }
 
-.head-container.aside.open > .container {
-  transform: translate(0);
+.sale .left>.title {
+  font-size: 30rpx;
 }
 
-.head-container.aside.open > .cover {
-  opacity: 1;
+.sale>.right {
+  position: absolute;
+  top: 0;
+  right: 4%;
+  width: 96%;
+  height: 100%;
+  text-align: right;
 }
 
-.head-container.aside.docked {
-  visibility: visible;
+.time-block {
+  display: inline-block;
+  background-color: #3e3c3c;
+  margin: 0 1%;
+  padding: 0 1%;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
 }
 
-.head-container.aside.docked > .cover {
-  display: block;
+.time-block:first-child {
+  margin: 0 1% 0 2%;
+}
+
+.time-block:last-child {
+  margin: 0 0 0 1%;
 }

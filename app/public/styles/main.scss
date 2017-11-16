@@ -693,6 +693,7 @@ $foot-height: 250px;
       padding-bottom: 10px;
       margin-bottom: 10px;
       background-color: $color-white;
+      border-bottom: 1px solid $color-dcdcdc;
       a{
         display: block;
         width: 100%;
@@ -1523,6 +1524,7 @@ $foot-height: 250px;
           margin-bottom: 10px;
           background-color: $color-white;
           .user-info{
+            color: $color-999;
             .left{
               width: 50%;
               float: left;
@@ -6651,6 +6653,155 @@ $foot-height: 250px;
     }
     .content{
 
+    }
+  }
+}
+
+/* auction */
+.auction-container{
+  @extend %page;
+  background-color: $color-f5f5f5;
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0;
+  }
+  .fade-choose-enter-active, .fade-choose-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-choose-leave, .fade-choose-leave-active {
+    display: none;
+  }
+  .fade-choose-enter, .fade-choose-leave-active {
+    opacity: 0;
+  }
+  .prolist-container{
+    ul.prolist{
+      padding-top: 0;
+      li.item{
+        a{
+          .pro-main{
+            position: relative;
+            .info{
+              position: relative;
+              display: block;
+              padding-bottom: calc(122/750*100%);
+              width: 100%;
+              .photo{
+                position: absolute;
+                left: calc(50/750*100%);
+                top: calc(200/750*100%);
+                display: block;
+                width: calc(130/750*100%);
+                padding-bottom: calc(130/750*100%);
+                img{
+                  position: absolute;
+                  width: calc(100% - 4px);
+                  height: calc(100% - 4px);
+                  border: 2px solid $color-white;
+                  border-radius: 50%;
+                }
+              }
+              .context{
+                position: absolute;
+                left: calc(200/750*100%);
+                bottom: calc(100/750*100%);
+                display: inline-block;
+                width: initial;
+                font-size: $font-size-t13;
+                .vtitle{
+                  display: inline;
+                  margin-left: 5px;
+                  font-size: $font-size-t12;
+                  color: $color-999;
+                }
+              }
+              .mark{
+                display: inline-block;
+                position: absolute;
+                bottom: calc(100/750*100%);
+                right: calc(20/750*100%);
+                width: initial;
+                padding: 0 calc(10/750*100%);
+                color: $color-993333;
+                background-color: $color-f9f9f9;
+                font-size: $font-size-t12;
+              }
+
+            }
+            .sale{
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 35px;
+              line-height: 35px;
+              background-color: rgba(51, 51, 51, 0.55);
+              color: white;
+              span{
+                display: inline-block;
+              }
+              .left{
+                position: absolute;
+                top: 0;
+                left: 4%;
+                width: 96%;
+                height: 100%;
+                text-align: left;
+                .title{
+                  margin: 0;
+                  width: initial;
+                  font-size: $font-size-t14;
+                }
+              }
+              .right{
+                position: absolute;
+                top: 0;
+                right: 4%;
+                width: 96%;
+                height: 100%;
+                text-align: right;
+                .time-block{
+                  display: inline-block;
+                  background-color: $color-3e3c3c;
+                  margin: 0 1%;
+                  padding: 0 1%;
+                  height: 20px;
+                  line-height: 20px;
+                  width: initial;
+                  text-align: center;
+                  &:first-child{
+                    margin: 0 1% 0 2%;
+                  }
+                  &:last-child{
+                    margin: 0 0 0 1%;
+                  }
+                }
+              }
+            }
+          }
+          .ops{
+            position: relative;
+            margin-top: 5%;
+            img{
+              vertical-align: sub;
+            }
+            span.right{
+              position: absolute;
+              right: 1%;
+              top: 0;
+              max-width: initial;
+              margin: 0;
+              img{
+                width: 22%;
+                margin-right: 2%;
+                vertical-align: bottom;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

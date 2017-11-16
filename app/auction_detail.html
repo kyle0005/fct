@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="detail-container" id="detail" v-cloak>
+  <head-top></head-top>
+  <section class="nav-bar">
+    <ul>
+      <li class="item" v-for="(item, index) in tabs" :class="{chosen: index===tab_num}" @click="linkTo(index)">
+        <a href="javascript:;">
+          {{ item }}
+        </a>
+      </li>
+    </ul>
+  </section>
+  <div class="tabs">
+    <!-- <vhtml :hcon="test_img"></vhtml>-->
+    <!--<div v-html="test_img"></div>-->
+    <!--<vhtml :hcon="test_img"></vhtml>-->
+    <keep-alive>
+      <component :is="currentView">
+        <!-- 组件在 vm.currentview 变化时改变！ -->
+      </component>
+    </keep-alive>
+  </div>
+  <a href="javascript:;" class="top" @click="top()">
+    <img src="public/img/mobile/top.png">
+  </a>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+  <footer class="foot-container">
+    <div class="inner">
+      <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
+        <div class="container">
+          <form id="addcart">
+            <div class="choose" @click.stop="">
+              <div class="clearfix">
+                <div class="pro-img">
+                  <img src="public/img/mobile/resource/pro01.png">
+                </div>
+                <div class="info">
+                  <span class="title">{{ product.name }}</span>
+                  <span class="price"><small class="pri-mark">￥</small>{{ showprice }}</span>
+                  <span class="stock">库存：{{ calstock }}</span>
+                </div>
+              </div>
+              <input id="pro_id" name="pro_id" type="hidden" :value="product.id">
+              <div v-if="product.specification.length > 0">
+                <input id="spec_id" name="spec_id" type="hidden" :value="specs_single.id">
+              </div>
+              <ul class="spec" v-if="product.specification.length > 0">
+                <li class="item" v-for="(item, index) in product.specification" :class="{active: index===specs_num}" @click="footLinkTo(index)">
+                  {{ item.name }}
+                </li>
+              </ul>
+              <div class="num">
+                <div class="item"><span class="name">数量</span></div>
+                <div class="item">
+                  <div class="num-container">
+                    <a href="javascript:;" :class="{dis:min}" @click="minus()">
+                      <i class="fa fa-minus"></i>
+                    </a>
+                    <input type="text" name="number" class="numbers" v-model="input_val">
+                    <a href="javascript:;" @click="add()" :class="{dis:max}">
+                      <i class="fa fa-plus"></i>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+              <div class="fork-container" @click="choose()">
+                <a href="javascript:;" class="fork" >&nbsp;</a>
+              </div>
+
+            </div>
+            <!--<a href="javascript:;" class="sub" @click="buy()">确定</a>-->
+            <ul class="nav">
+              <li class="message" @click="">
+                <a href="javascript:;" class="foot-link">
+                  <img src="public/img/mobile/msg.png">
+                </a>
+              </li>
+              <li class="cart">
+                <a href="cart.html" class="foot-link">
+                  <img src="public/img/mobile/cart.png">
+                  <span class="nums" v-if="numsshow">{{ cart_num }}</span>
+                </a>
+              </li>
+              <li class="collection" :class="{red:collected}"  @click="collection()">
+                <i class="fa fa-heart"></i>
+              </li>
+              <li class="add">
+                <a href="javascript:;">
+                  <subpost :txt="subText" ref="subpost" @callback="buy(0)" @succhandle="succhandle"></subpost>
+                </a>
+              </li>
+              <li class="buy">
+                <a href="javascript:;" @click="buy(1)">立即购买</a>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+      <ul class="nav">
+        <li class="message" @click="">
+          <a href="javascript:;" class="foot-link">
+            <img src="public/img/mobile/msg.png">
+          </a>
+        </li>
+        <li class="cart">
+          <a href="cart.html" class="foot-link">
+            <img src="public/img/mobile/cart.png">
+            <span class="nums" v-if="numsshow">{{ cart_num }}</span>
+          </a>
+        </li>
+        <li class="collection" :class="{red:collected}"  @click="collection()">
+          <i class="fa fa-heart"></i>
+        </li>
+        <li class="add" :class="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">
+          <a href="javascript:;" @click="choose(0)" v-if="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">加入购物车</a>
+          <a href="javascript:;" v-else>加入购物车</a>
+        </li>
+        <li class="buy" :class="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">
+          <a href="javascript:;" @click="choose(1)" v-if="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">立即购买</a>
+          <a href="javascript:;" v-else>立即购买</a>
+        </li>
+      </ul>
+    </div>
+
+  </footer>
+</div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script src="public/js/mobile/api/apis.js"></script>
+<script>
+  var config = {
+    "productsType": [
+      {
+        "name": "全部",
+        "code": "a"
+      },
+      {
+        "name": "圆器",
+        "code": "b"
+      },
+      {
+        "name": "方器",
+        "code": "c"
+      },
+      {
+        "name": "花器",
+        "code": "d"
+      },
+      {
+        "name": "筋纹器",
+        "code": "e"
+      }
+
+    ],
+    "main_url": "http://localhost:9000/main.html",
+    "product": {
+      "code": "1697635",
+      "salePrice": 122214,
+      "promotionPrice": 45544,
+      "cartProductCount": 1,
+      "hasDiscount": true,
+      "volumes": [150, 350],    /* 容量 */
+      "discount": {
+        "id": 0,
+        "name": '首单优惠',
+        "discountRate": 0.75,
+        "discountTime": 93600,
+        "hasBegin": true,
+        "canBuy": false,
+        "singleCount": 4    /* 限购数 */
+      },
+      "specification": [
+        /*{"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
+         {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}*/
+      ],
+//      "video": {
+//        "poster": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-01\/25742b692c6e4ac8b5951a396ae7e1e2.png!750",
+//        "url": "http:\/\/1253930304.vod2.myqcloud.com\/399bd37dvodgzp1253930304\/43628ff29031868223073846887\/JVfmp4X8LN8A.mp4"
+//      },
+      "materialId": "4",
+      "content": "<p><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e202643.jpg\" title=\"5677c2e202643.jpg\" alt=\"福泰一生花丝吊坠_01.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e4e6047.jpg\" title=\"5677c2e4e6047.jpg\" alt=\"福泰一生花丝吊坠_02.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e870c31.jpg\" title=\"5677c2e870c31.jpg\" alt=\"福泰一生花丝吊坠_03.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2ebe554a.jpg\" title=\"5677c2ebe554a.jpg\" alt=\"福泰一生花丝吊坠_04.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2ef0f0e8.jpg\" title=\"5677c2ef0f0e8.jpg\" alt=\"福泰一生花丝吊坠_05.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2f2c8e52.jpg\" title=\"5677c2f2c8e52.jpg\" alt=\"福泰一生花丝吊坠_06.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c307ae5ec.jpg\" title=\"5677c307ae5ec.jpg\" alt=\"镂空花丝金镶玉繁花似玉吊坠_06.jpg\"><\/p>",
+      "hasCoupon": 1,
+      "subTitle": "原矿大红袍",
+      "intro": " 传统的供春纹理要做好很不容易，龙隐约在壶身上出现又不抢春味还要溶入整个风格之中不是那么容易做到，质地特纯,泥质细腻、成色稳重。",
+      "name": "测试宝贝",
+      "images":     /* 如果没有视频，则显示图片切换 */
+        [
+          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/045696394ae5484391aa97f9c92e8b1d.JPG!750",
+          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/1648f5a4ac6447dea70db167e9edf0a6.JPG!750",
+          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/0f2b4b1d02694ea4bcd884542a257e63.JPG!750",
+          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/780da6ec74484db697e2c8b5878f6957.JPG!750",
+          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/e5d7e5bb3ca34115a1ea78613bdac309.JPG!750"
+        ],
+      "favoriteState": 1,
+      "id": 7,
+      "defaultImage": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg!120",
+      "status": 1,
+      "stockCount": 0,
+      "artistNames": "顾景舟",
+      "materialNames": "原矿清水泥",
+      "categoryNames": "圆弧",
+      "viewCount": 9809,
+      "hasBuy": 1,    /* 是否可以买，1为可以买 */
+      "hasCart": 1      /* 是否可以添加购物车，1为可以 */
+    },
+    "fav_url" : "http://localhost:3000/fav",
+    "discuss_url" : "http://localhost:3000/discuss",
+    "artist_url" : "http://localhost:3000/artist",
+    "pug_url" : "http://localhost:3000/pug",
+    "addcart_url": "http://localhost:3000/addcart",
+    "buy_url": "http://localhost:9000/buy.html",
+    "tab_service": "<div class='title'>退换货政策</div><p>自您签收商品之日起10日内，淘壶人将为您办理退换货服务，且寄回商品实际运费由客户承担；如需办理退换货业务，请您致电客服热线400-0510-570咨询办理。</p><p>" +
+    "<br>政策说明：<br><br>1、一张订单淘壶人只为您提供一次退换货服务，为了确保您的权益，请考虑周全后与我们联系。<br>2、请您确保退换货时，商品各种包装完整。<br>" +
+    "3、因您个人原因造成的商品损坏（如壶身破损等），不予退换。<br>4、由于物品质量问题造成的退换货，由淘壶人承担双程运费。由于个人喜好原因造成退货，由客户支付双程邮费。感谢您的理解！<br>" +
+    "5、退换货发生时，请您选择顺丰快递将商品寄回给我们。<br>6、礼包或超值组合装中的商品不可以选择部分退换货，因退货后，原礼包或套装中商品将无法享受购买时优惠。<br>" +
+    "7、图片及信息仅供参照，因拍摄灯光及不同显示器色差等问题可能造成商品图片与实物有一定色差，一切以实物为准。色差问题不在退换货服务行列。" +
+    "</p><div class='title'>拒收政策</div><p>在您签收商品前，请先核查商品外包装是否完好，并确认您对产品是否满意。</p><p>1、无专用封箱胶<br>" +
+    "在收取快递包时，若发现外包装中无“淘壶人”专用封箱胶，或“淘壶人”专用封箱胶被严重损坏(特别是有被重新封装的痕迹)，您可以拒收。<br>" +
+    "2、物品与所购不符<br>签收后，若包装完好但是包裹中的商品数量与您实际购买的商品不吻合时，或所接收的物品与您所购的物品不相符时，请先与快递人员确认，现场拍照；并及时联系我们的客服，我们在与快递公司确认后，将及时为您补发/换发所缺商品。<br>" +
+    "3、对产品（或部分）不满意<br>若您对某件或某几件商品的质量不满意，您在拒收这些商品的同时，可正常接收其它商品，对于其它不满意的商品可根据您的意愿联系“淘壶人”的客服为您换货或退款。<br></p>"
+  }
+</script>
+<template id="m_video">
+  <div class="m-video-container">
+    <div class="video-inner">
+      <div v-if="!isVideoLoad" class="play-container" @click="loadVideo()">
+        <img :src="poster" class="poster-img" />
+        <img src="public/img/mobile/video_play.png" class="poster-play" />
+      </div>
+      <video class="m-video" :src="url" :id="id" preload="metadata" controls v-else></video>
+    </div>
+  </div>
+</template>
+<script type="text/x-template" id="head_top">
+  <header class="head-container">
+    <ul class="nav">
+      <li class="toggle" @click="toggle()">
+        <i class="fa fa-bars"></i>
+      </li>
+      <li class="logo" @click="toIndex()">
+        <img src="public/img/mobile/logo.png">
+      </li>
+      <li class="user" @click="toLogin()">
+        <span class="img-container">
+          <img src="public/img/mobile/nologin-head.png">
+        </span>
+      </li>
+    </ul>
+    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
+      <div class="container">
+        <ul class="types">
+          <li class="item" v-for="(types, index) in typeList" @click="change(types.code)">
+            <span>{{ types.name }}</span>
+            <i class="fa fa-angle-right"></i>
+          </li>
+        </ul>
+        <ul class="lines clearfix">
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/img/mobile/menu1.png">
+              <span>合作艺师</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/img/mobile/menu2.png">
+              <span>百科</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/img/mobile/menu3.png">
+              <span>个性定制</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/img/mobile/menu4.png">
+              <span>APP下载</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/img/mobile/menu5.png">
+              <span>品牌理念</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</script>
+<script type="text/x-template" id="overview">
+  <div class="overview-container">
+    <section class="video-container">
+      <mVideo v-if="product.video" :poster="product.video.poster" :url="product.video.url" id="videotop"></mVideo>
+      <m-swipe v-else swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
+        <div v-for="(top, index) in tops" class="swiper-slide" slot="swiper-con">
+          <a :href="top.url" class="link">
+            <img :data-src="top" class="swiper-lazy silde-img">
+          </a>
+        </div>
+      </m-swipe>
+      <div class="sale clearfix hide">
+        <div class="left">
+          <span class="title">{{ product.discount.name }}</span>&ensp;享{{ product.discount.discountRate * 10 }}折，限购{{ product.discount.singleCount }}件
+        </div>
+        <div class="right">
+          距<span v-if="product.discount.hasBegin">开始</span><span v-else>结束</span>仅剩<m-time :endTime="product.discount.discountTime" :callback="end"></m-time>
+        </div>
+      </div>
+    </section>
+    <section class="product-context">
+      <strong class="title">{{ product.name }}</strong>
+      <div class="vice-title">{{ product.subTitle }}</div>
+      <div class="price">
+        <small class="pri-mark">￥</small>{{ product.promotionPrice }}&ensp;<del class="del-price">{{ product.salePrice }}</del>
+      </div>
+      <div class="sale-info">
+        <img src="public/img/mobile/items.png">包邮&emsp;<img src="public/img/mobile/items.png">保真保值&emsp;<img src="public/img/mobile/items.png">30天无忧退换货
+      </div>
+      <div class="view">
+        <div class="inner">
+          <div class="num">{{ product.viewCount }}</div>
+          <div>人围观</div>
+        </div>
+      </div>
+    </section>
+    <section class="coupon" v-if="product.hasCoupon">
+      <img src="public/img/mobile/d_coup.png">领取优惠券
+      <div class="get-coupon">
+        <a :href="product.coupon_url" class="coup-link">领取</a>
+      </div>
+    </section>
+    <section class="info clearfix">
+      <div class="item clearfix">
+        <span class="left">艺人</span>
+        <span class="right overText">{{ product.artistNames }}</span>
+      </div>
+      <div class="item clearfix">
+        <span class="left">泥料</span>
+        <span class="right overText">{{ product.materialNames }}</span>
+      </div>
+      <div class="item clearfix">
+        <span class="left">壶型</span>
+        <span class="right overText">{{ product.categoryNames }}</span>
+      </div>
+      <div class="item clearfix">
+        <span class="left">容量</span>
+        <span class="right overText">
+          <span v-if="product.volumes instanceof Array">{{ product.volumes[0] }}CC&nbsp;~&nbsp;{{ product.volumes[1] }}CC</span>
+          <span v-else>{{ product.volumes }}CC</span>
+        </span>
+      </div>
+      <div class="item clearfix">
+        <span class="left">库存</span>
+        <span class="right overText">{{ calstock }}</span>
+      </div>
+      <div class="item clearfix">
+        <span class="left">编号</span>
+        <span class="right overText">{{ product.code }}</span>
+      </div>
+    </section>
+    <section class="edit-context" v-html="product.content">
+      {{ product.content }}
+    </section>
+  </div>
+</script>
+<script type="text/x-template" id="artist">
+  <div class="artist-contianer">
+    <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <no-data v-if="nodata"></no-data>
+    <div class="top-container" v-if="titleshow">
+      <div class="inner o">
+        <ul class="top-list">
+          <li v-for="(item, index) in artist" :class="{red:index===art_num}">
+            <a href="javascript:;" @click="loadsingle(index)">
+            <span class="img-container">
+              <img v-view="item.headPortrait" src="public/img/mobile/img_loader.gif">
+            </span>
+              <span class="name-container overText">{{ item.name }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <section class="content" :class="{'top-max':!titleshow,'top-min':titleshow}">
+      <div class="intro">
+          <span class="photo">
+            <img v-view="artistsingle.headPortrait" src="public/img/mobile/img_loader.gif">
+          </span>
+        <span class="intro-info">
+          <span class="intro-name">{{ artistsingle.name }}&nbsp;-&nbsp;<span class="v-title">{{ artistsingle.title }}</span></span>
+          <span class="intro-content">{{ artistsingle.intro }}</span>
+        </span>
+      </div>
+    </section>
+    <!--<section class="text-container" v-html="artistsingle.description"></section>-->
+    <section class="text-container">
+      <div class="editor-container">
+        <div class="e-title">生平经历</div>
+        <p class="e-para">1954年10月，他响应政府号召，积极参与汤渡陶业生产合作社紫砂生产工场的组建筹划工作。</p>
+        <p class="e-para">1954年10月，他响应政府号召，积极参与汤渡陶业生产合作社紫砂生产工场的组建筹划工作。</p>
+        <div class="e-img">
+          <img src="https://cdn.fangcun.com/upload/editor/2017-08-22/0237c5bd4c854ee0bb70504f7617ba52.jpeg">
+        </div>
+        <p class="e-para">1954年10月，他响应政府号召，积极参与汤渡陶业生产合作社紫砂生产工场的组建筹划工作。</p>
+        <div class="e-vtitle"><strong class="str">成</strong><span class="o">交记录</span></div>
+        <div class="e-list">
+          <div class="inner">
+            <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+            <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+            <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+            <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="comment">
+      <div class="lines">
+        <div class="text">相关宝贝</div>
+      </div>
+      <ul class="others" v-if="artistsingle.img && artistsingle.img.length > 0">
+        <li v-for="img_item in artistsingle.img">
+          <a href="javascript:;" class="item">
+            <img :src="img_item.defaultImage">
+            <span class="p-title">{{ img_item.name }}</span>
+          </a>
+        </li>
+      </ul>
+      <a :href="artistsingle.link" class="for-more">点击了解更多》</a>
+    </section>
+
+  </div>
+</script>
+<script type="text/x-template" id="pug">
+  <div class="artist-contianer">
+    <no-data v-if="nodata"></no-data>
+    <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <div class="top-container" v-if="titleshow">
+      <div class="inner o">
+        <ul class="top-list">
+          <li v-for="(item, index) in pugs" :class="{red:index===pug_num}">
+            <a href="javascript:;" @click="loadsingle(index)">
+            <span class="img-container">
+              <img :src="item.image">
+            </span>
+              <span class="name-container overText">{{ item.name }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <section class="content" :class="{'top-max':!titleshow,'top-min':titleshow}">
+      <div class="intro">
+          <span class="photo">
+            <img :src="pugsingle.image">
+          </span>
+        <span class="intro-info">
+          <span class="intro-name">{{ pugsingle.name }}</span>
+          <span class="intro-content">{{ pugsingle.intro }}</span>
+        </span>
+      </div>
+    </section>
+    <!--<section v-html="pugsingle.description"></section>-->
+    <section class="text-container" id="pugHtml">
+      <vhtml :hcon="pugsingle.description"></vhtml>
+      <!--<vimg :vsrc="'http://localhost:9000/public/img/mobile/resource/pro01.png'"></vimg>-->
+      <!--<vimg :vsrc="'http://localhost:9000/public/img/mobile/resource/pro02.png'"></vimg>-->
+      <!--<vimg :vsrc="'http://localhost:9000/public/img/mobile/resource/pro03.png'"></vimg>-->
+    </section>
+    <section class="comment">
+      <div class="lines">
+        <div class="text">相关宝贝</div>
+      </div>
+      <ul class="others">
+        <li v-for="img_item in pugsingle.products">
+          <a href="javascript:;" class="item">
+            <img :src="img_item.defaultImage">
+            <span class="p-title">{{ img_item.name }}</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</script>
+<script type="text/x-template" id="service">
+  <div>
+    <no-data v-if="nodata"></no-data>
+    <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <!--<section class="service" v-html="tab_service"></section>-->
+    <section class="service">
+      <div class="service-container">
+        <section class="sec">
+          <div class="title">退换货政策</div>
+          <div class="info">
+            自您签收商品之日起30日内，方寸堂将为您办理退换货服务，且寄回商品实际运费由客户承担；如需办理退换货业务，请您致电客服热线400-0510-555咨询办理。
+          </div>
+          <div class="content">
+            <div class="t"><span class="l">政</span>策说明</div>
+            <div class="ball"></div>
+            1.一张订单方寸堂只为您提供一次退换货服务，为了确保您的权益，请考虑周全后与我们联系。<br>
+            2.请您确保退换货时，商品各种包装完整。<br>
+            3.因您个人原因造成的商品损坏（如壶身破损等）,不予退换。<br>
+            4.由于物品质量问题造成的退换货，由淘壶人承担双程运费。由于个人喜好原因造成退货，由客户支付双程邮费。<br>
+            5.退换货发生时，请您选择顺丰快递将商品寄回给我们。<br>
+            6、礼包或超值组合装中的商品不可以选择部分退换货，因退货后，原礼包或套装中商品将无法享受购买时优惠。<br>
+            7.图片及信息仅供参照，因拍摄灯光及不同显示器色差等问题可能造成商品图片与实物有一定色差，一切以实物为准。色差问题不在退换货服务行列。
+          </div>
+        </section>
+        <section class="sec refuse">
+          <div class="title">拒收政策</div>
+          <div class="info">
+            在您签收商品前，请先核查商品外包装是否完好，并确认您对产品是否满意。
+          </div>
+          <div class="content">
+            <strong class="s-title">无专用封箱胶</strong>
+            <div>在收取快递包时，若发现外包装中无“方寸堂”专用封箱胶，或“方寸堂”专用封箱胶被严重损坏(特别是有被重新封装的痕迹)，您可以拒收。</div>
+            <strong class="s-title">物品与所购不符</strong>
+            <div>签收后，若包装完好但是包裹中的商品数量与您实际购买的商品不吻合时，或所接收的物品与您所购的物品不相符时，请先与快递人员确认，现场拍照；并及时联系我们的客服，我们在与快递公司确认后，将及时为您补发/换发所缺商品。</div>
+            <strong class="s-title">对产品（或部分）不满意</strong>
+            <div>若您对某件或某几件商品的质量不满意，您在拒收这些商品的同时，可正常接收其它商品，对于其它不满意的商品可根据您的意愿联系“方寸堂”的客服为您换货或退款。</div>
+          </div>
+        </section>
+        <section class="sec">
+          <div class="title">发票问题</div>
+          <div class="info">
+            方寸堂的所有产品价格均不含税价，所有要求增开发票，需要补7%个税点。补足税点后再予以开票。
+          </div>
+          <div class="content">
+            <div class="t"><span class="l">如</span>何开具发票：</div>
+            <div class="ball"></div>
+            1.如需开具普通发票，请在交易完成后订单详情里选择“我要开发票”并填写相关信息；<br>
+            2.如需开具增值税专用发票，请在购买后联系客服办理；<br>
+            3.可选开票内容： 工艺礼品
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+</script>
+<script type="text/x-template" id="discuss">
+  <section class="discuss">
+    <no-data v-if="nodata"></no-data>
+    <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <ul class="list" v-load-more="nextPage" type="1" v-if="commentlist && commentlist.length > 0">
+      <li class="item" v-for="(item, index) in commentlist">
+        <div class="user-info clearfix">
+          <div class="left clearfix">
+            <div class="user-photo">
+              <img v-view="item.photo" src="public/img/mobile/img_loader.gif">
+            </div>
+            <div class="user-opt">
+              <div>{{ item.username }}</div>
+              <div class="stars">
+                <i class="fa fa-star" v-for="m in item.stars"></i><i class="fa fa-star-o" v-for="n in c_star(item.stars)"></i>
+              </div>
+            </div>
+          </div>
+          <div class="right">{{ item.date }}</div>
+        </div>
+        <div class="comments">
+          <span class="text">{{ item.text }}</span>
+          <span class="imgs">
+            <img v-view="img_item" src="public/img/mobile/img_loader.gif" v-for="(img_item, index) in item.imgs">
+          </span>
+        </div>
+      </li>
+    </ul>
+  </section>
+</script>
+<script type="text/x-template" id="m_swipe">
+  <div class="swiper-container" :class="swipeid">
+    <div class="swiper-wrapper">
+      <slot name="swiper-con"></slot>
+    </div>
+    <!-- 分页器 -->
+    <div :class="{'swiper-pagination':pagination}"></div>
+  </div>
+</script>
+<script src="public/js/mobile/head.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script src="public/js/mobile/swiper.js"></script>
+<script src="public/js/mobile/detail.js"></script>
+</body>
+</html>
