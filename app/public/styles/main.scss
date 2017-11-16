@@ -6805,3 +6805,278 @@ $foot-height: 250px;
     }
   }
 }
+
+.auctiondetail-container{
+  @extend %page;
+  background-color: $color-f5f5f5;
+  .nav-bar{
+    @extend %nav-bar;
+  }
+  .top{
+    position: fixed;
+    right: 3%;
+    bottom: 150px;
+    width: 10.6%;
+    img {
+      width: 100%;
+    }
+  }
+  .tabs{
+    /* live */
+    .overview-container{
+      background-color: $color-f5f5f5;
+      .video-container{
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        .sale{
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: 1;
+          width: 100%;
+          height: 35px;
+          line-height: 35px;
+          background-color: rgba(153, 51, 51, 0.85);
+          color: $color-white;
+          .left{
+            position: absolute;
+            top: 0;
+            left: 4%;
+            width: 100%;
+            height: 100%;
+            -webkit-transform: scale(.85);
+            transform: scale(.85);
+            -webkit-transform-origin: left center;
+            transform-origin: left center;
+            .title{
+              font-size: $font-size-t14;
+            }
+          }
+          .right{
+            position: absolute;
+            top: 0;
+            right: 4%;
+            width: 100%;
+            height: 100%;
+            text-align: right;
+            -webkit-transform: scale(.85);
+            transform: scale(.85);
+            -webkit-transform-origin: right center;
+            transform-origin: right center;
+          }
+        }
+      }
+      img.silde-img{
+        width: 100%;
+      }
+      .en-pagination{
+        background-color: white;
+      }
+      .product-context{
+        position: relative;
+        background-color: $color-white;
+        padding-top: 4%;
+        margin-bottom: 10px;
+        .title{
+          display: block;
+          margin-left: 4%;
+          font-size: $font-size-t14;
+        }
+        .vice-title{
+          margin-left: 4%;
+          padding-bottom: 1%;
+          color: $color-999;
+        }
+        .price{
+          margin-left: 4%;
+          font-size: $font-size-t15;
+          color: $color-993333;
+          padding-bottom: 1%;
+          .del-price{
+            color: $color-999;
+            font-size: $font-size-t12;
+          }
+        }
+        .sale-info{
+          margin-left: 4%;
+          color: $color-999;
+          padding-bottom: 4%;
+          -webkit-transform: scale(.85);
+          transform: scale(.85);
+          -webkit-transform-origin: left center;
+          transform-origin: left center;
+          img{
+            width: 4.5%;
+            margin-right: 1%;
+            vertical-align: sub;
+          }
+        }
+        .view{
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: calc(186/750*100%);
+          padding-bottom: calc(102/750*100%);
+          border-left: 1px dashed $color-dcdcdc;
+          .inner{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            text-align: center;
+            color: $color-999;
+            .num{
+              font-size: $font-size-t15;
+              color: $color-black;
+            }
+          }
+        }
+      }
+      .coupon{
+        position: relative;
+        width: 92%;
+        height: 42px;
+        line-height: 42px;
+        padding: 0 4%;
+        background-color: $color-white;
+        margin-bottom: 10px;
+        img{
+          width: 13%;
+          margin-right: 3%;
+        }
+        .get-coupon{
+          position: absolute;
+          right: 4%;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 60px;
+          a.coup-link{
+            @include wei-bg-btn($color-1d1d1d, $color-white, $color-1d1d1d, 28px, 28px, $font-size-t12);
+            @include fillet(false);
+          }
+        }
+      }
+      .info{
+        padding: 4%;
+        width: 92%;
+        background-color: $color-white;
+        .item{
+          float: left;
+          width: 50%;
+          line-height: $font-size-t24;
+          .left{
+            float: left;
+            display: inline-block;
+            width: 25%;
+          }
+          .right{
+            float: left;
+            display: inline-block;
+            width: 70%;
+            margin-left: 5%;
+            color: $color-999;
+          }
+        }
+      }
+      .edit-context{
+        /*width: 92%;
+        padding: 4%;*/
+        padding: 10px 0 3% 0;
+        overflow: hidden;
+        //background-color: $color-f5f5f5;
+        img, p{
+          //padding: 2% 0;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+    /* artist,pug */
+    .artist-contianer{
+      background-color: $color-white;
+      @extend %edit-container;
+    }
+    /* service */
+    .service{
+      width: 100%;
+    }
+    /* discuss */
+    .discuss{
+      width: 100%;
+      word-wrap: break-word;
+      word-break: normal;
+      ul.list{
+        margin-bottom: 48px;
+        li.item{
+          width: 92%;
+          padding: 12px 4%;
+          margin-bottom: 10px;
+          background-color: $color-white;
+          .user-info{
+            color: $color-999;
+            .left{
+              width: 50%;
+              float: left;
+              margin-bottom: 5px;
+              .user-photo{
+                position: relative;
+                float: left;
+                width: 22%;
+                margin-right: 10%;
+                padding-bottom: 22%;
+                img{
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 50%;
+                }
+              }
+              .user-opt{
+                //float: left;
+                .stars{
+                  font-size: $font-size-t12;
+                  i{
+                    margin-right: 2%;
+                  }
+                }
+              }
+            }
+            .right{
+              width: 50%;
+              float: left;
+              text-align: right;
+            }
+          }
+          .comments{
+            .text{
+              display: block;
+              margin-bottom: 5px;
+            }
+            .imgs{
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              flex-wrap: wrap;
+              img{
+                -moz-box-flex: 1.0; /* Firefox */
+                -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+                box-flex: 1.0;
+                width: 29%;
+                margin-right: 6.5%;
+                &:last-child{
+                  margin-right: 0;
+                }
+              }
+            }
+          }
+
+        }
+      }
+    }
+  }
+}

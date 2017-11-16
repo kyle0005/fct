@@ -183,617 +183,6 @@ Vue.component('m-time',
     }
   }
 );
-Vue.component('overview',
-  {
-    template: '#overview',
-    mounted: function() {
-      let vue = this;
-      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
-
-      vue.tops = config.product.images;
-      let swiper = this.$refs.swiper;
-      if (swiper.dom) {
-        this.swiper = swiper.dom;
-      }
-    },
-    activated() {
-      if (this.swiper) {
-        this.swiper.startAutoplay();
-      }
-    },
-    deactivated() {
-      this.loop = false;
-      if (this.swiper) {
-        this.swiper.stopAutoplay();
-      }
-    },
-    computed: {
-      calstock: function () {
-        let vue = this;
-        let _stock = '无货';
-        if(vue.product.stockCount > 0){
-          _stock = '有货';
-        }
-        return _stock;
-
-      }
-    },
-    data() {
-      return {
-        product: config.product,
-        listloading: true,
-        pagerloading: false,
-        isPage: false,
-        nodata: false,
-
-        swiper: '',
-        tops: [],
-      }
-    },
-    methods: {
-      end(){
-        console.log('end')
-      }
-    },
-  }
-);
-Vue.component('artist',
-  {
-    template: '#artist',
-    mounted: function() {
-      let vue = this;
-      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
-      vue.loadart();
-
-    },
-    /*    activated: function () {
-     this.listloading = true;
-     },*/
-    data() {
-      return {
-        artist: [],
-        artistsingle: {},
-        titleshow: false,
-        chosen: false,
-        art_num: 0,
-        listloading: true,
-        pagerloading: false,
-        isPage: false,
-        nodata: false
-      }
-    },
-    methods: {
-      getBefore(){
-        let vue = this;
-      },
-      loadsingle(index){
-        let vue = this;
-        tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
-        vue.artistsingle = {};
-        vue.art_num = index;
-        vue.artistsingle = vue.artist[index];
-        vue.listloading = false;
-      },
-      loadart() {
-        let vue = this;
-        tools.ajaxGet(config.artist_url, vue.getSucc, vue.getBefore);
-      },
-      getSucc(data){
-        let vue = this;
-        vue.artist = data.data;
-        vue.titleshow = vue.artist.length > 1;
-        vue.loadsingle(0);
-      }
-    },
-  }
-);
-Vue.component('pug',
-  {
-    template: '#pug',
-    mounted: function() {
-      let vue = this;
-      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
-      vue.loadpug();
-
-      /*      vue.$nextTick(function() {
-       setTimeout(function () {
-       document.getElementById('pugHtml').innerHTML = vue.pugsingle.description;
-       }, 0)
-       });*/
-
-      // console.log(vue.pugsingle.description);
-      vue.$nextTick(function() {
-        setTimeout(function () {
-          /*          let i = document.getElementById('pugHtml').querySelectorAll('img');
-           let i = document.getElementById('pugHtml').innerHTML;
-           Vue.compile(i);
-           console.log(i);*/
-          /*          i.forEach(function(el) {
-           // el.setAttribute('v-view', el.getAttribute('vUrl'));
-           Vue.compile(el);
-           });*/
-        }, 500)
-      })
-
-
-    },
-    data() {
-      return {
-        pugs: [],
-        pugsingle: {},
-        titleshow: false,
-        chosen: false,
-        pug_num: 0,
-        listloading: true,
-        pagerloading: false,
-        isPage: false,
-        nodata: false
-      }
-    },
-    methods: {
-      getBefore(){
-        let vue = this;
-        vue.listloading = true;
-      },
-      loadsingle(index){
-        let vue = this;
-        tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
-        vue.pugsingle = {};
-        vue.pug_num = index;
-        vue.pugsingle = vue.pugs[index];
-      },
-      loadpug() {
-        let vue = this;
-        tools.ajaxGet(config.pug_url, vue.pugSucc, vue.getBefore);
-      },
-      pugSucc(data){
-        let vue =this;
-        vue.pugs = data.data;
-        vue.titleshow = vue.pugs.length > 1;
-        vue.loadsingle(0);
-        vue.listloading = false;
-      }
-    },
-  }
-);
-Vue.component('service',
-  {
-    template: '#service',
-    mounted: function() {
-      let vue = this;
-      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
-      vue.initData();
-    },
-    data() {
-      return {
-        tab_service: '',
-        listloading: true,
-        pagerloading: false,
-        isPage: false,
-        nodata: false
-      }
-    },
-    methods: {
-      initData(){
-        let vue = this;
-        vue.tab_service = config.tab_service;
-        vue.listloading = false;
-      },
-    },
-  }
-);
-Vue.component('discuss',
-  {
-    template: '#discuss',
-    mounted: function() {
-      let vue = this;
-      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
-      vue.loadList();
-    },
-    watch: {
-      commentlist: function (val, oldVal) {
-        if(!this.listloading){
-          if(this.commentlist && this.commentlist.length > 0){
-            this.nodata = false;
-          }else {
-            this.nodata = true;
-          }
-        }
-      }
-    },
-    data() {
-      return {
-        pager: {},
-        commentlist: [],
-        preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
-        last_url: '',
-        listloading: true,
-        pagerloading: false,
-        isPage: false,
-        nodata: false
-      }
-    },
-    methods: {
-      getBefore(){
-        let vue = this;
-        vue.isPage ? vue.pagerloading = true : vue.listloading = true;
-      },
-      c_star(num){
-        let vue = this;
-        return (5 - num);
-      },
-      nextPage() {
-        let vue = this;
-        vue.preventRepeatReuqest = true;
-        if(vue.pager.next > 0){
-          var _url = config.discuss_url + '?page=' + vue.pager.next;
-          if(_url !== vue.last_url){
-            vue.last_url = _url;
-            vue.isPage = true;
-            tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
-          }
-
-        }
-      },
-      pageSucc(data){
-        let vue = this;
-        vue.commentlist = vue.commentlist.concat(data.data.entries);
-        vue.pager = data.data.pager;
-        vue.preventRepeatReuqest = false;
-        vue.listloading = false;
-        vue.pagerloading = false;
-        vue.isPage = false;
-      },
-      loadList() {
-        let vue = this;
-        vue.nodata = false;
-        tools.ajaxGet(config.discuss_url, vue.listSucc, vue.getBefore);
-      },
-      listSucc(data){
-        let vue = this;
-        vue.commentlist = data.data.entries;
-        vue.pager = data.data.pager;
-        vue.listloading = false;
-      }
-    },
-  }
-);
-
-// let _vText='<img v-view=\"http://localhost:9000/public/img/mobile/resource/pro01.png\" src=\"public/img/mobile/img_loader.gif\" style=\"width: 550px;\">';
-// Vue.component('vhtml',{
-//   directives: {
-//     'view': {
-//       inserted: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       bind: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       update: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       componentUpdated: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       }
-//     },
-//   },
-//   props:['hcon'],
-//   render: function (createElement) {
-//     return createElement(
-//       'div',
-//       {
-//         // DOM 属性
-//         domProps: {
-//           innerHTML: this.hcon
-//         },
-// /*        directives: [
-//           {
-//             name: 'view',
-//             value: 'http://localhost:9000/public/img/mobile/resource/pro01.png',
-//             // expression: '1 + 1',
-//             // arg: '',
-//             // modifiers: {
-//             //   bar: true
-//             // }
-//           }
-//         ]*/
-//       },
-//       [
-//         createElement('img', {
-//           attrs: {
-//             id: 'xxxx',
-//             src: 'public/img/mobile/img_loader.gif',
-//             'v-view': 'http://localhost:9000/public/img/mobile/resource/pro01.png'
-//           },
-//           directives: [
-//             {
-//               name: 'view',
-//               value: 'http://localhost:9000/public/img/mobile/resource/pro01.png',
-//               // expression: '1 + 1',
-//               // arg: '',
-//               // modifiers: {
-//               //   bar: true
-//               // }
-//             }
-//           ],
-//         }),
-//         createElement('img', {
-//           attrs: {
-//             id: 'xxxx',
-//             src: 'public/img/mobile/img_loader.gif',
-//             'v-view': 'http://localhost:9000/public/img/mobile/resource/pro02.png'
-//           },
-//           directives: [
-//             {
-//               name: 'view',
-//               value: 'http://localhost:9000/public/img/mobile/resource/pro02.png',
-//               // expression: '1 + 1',
-//               // arg: '',
-//               // modifiers: {
-//               //   bar: true
-//               // }
-//             }
-//           ],
-//         }),
-//         createElement('div', {
-//             domProps: {
-//               innerHTML: _vText
-//             },
-//             directives: [
-//               {
-//                 name: 'view',
-//                 value: 'http://localhost:9000/public/img/mobile/resource/pro03.png',
-//                 // expression: '1 + 1',
-//                 // arg: '',
-//                 // modifiers: {
-//                 //   bar: true
-//                 // }
-//               }
-//             ],
-//           }, [])
-//       ]
-//     )
-//   },
-//   // template: '<div id="pugHtml">{{ hcon }}</div>',
-//   mounted: function() {
-//     let vue = this;
-//     // console.log(vue.hcon);
-//     // document.getElementById('pugHtml').innerHTML = vue.hcon;
-// /*    vue.$nextTick(function() {
-//       setTimeout(function () {
-//         document.getElementById('pugHtml').innerHTML = vue.hcon;
-//       }, 0)
-//     });*/
-//
-//   },
-//   methods: {
-//     click_user(){
-//       // console.log('user clicker');
-//     }
-//   }
-// });
-//
-// Vue.component('vimg',{
-//   directives: {
-//     'view': {
-//       inserted: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       bind: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       update: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       componentUpdated: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       }
-//     },
-//   },
-//   props:['vsrc'],
-//   render: function (createElement) {
-//     return createElement('img', {
-//       attrs: {
-//         id: 'xxxx',
-//         src: 'public/img/mobile/img_loader.gif',
-//         'v-view': this.vsrc
-//       },
-//       directives: [
-//         {
-//           name: 'view',
-//           value: this.vsrc
-//           // expression: '1 + 1',
-//           // arg: '',
-//           // modifiers: {
-//           //   bar: true
-//           // }
-//         }
-//       ],
-//     })
-//   },
-//   mounted: function() {
-//     let vue = this;
-//
-//   },
-//   methods: {
-//   }
-// });
 
 let app = new Vue(
   {
@@ -803,10 +192,7 @@ let app = new Vue(
       pro_list: [],
       loading: false,
       refreshing: false,
-      // img_url: 'public/img/mobile',
       currentView: 'overview',
-      tabs: ['概览', '作者', '泥料', '售后保障', '评论'],
-      tab_num: 0,
       showAlert: false, //显示提示组件
       msg: null, //提示的内容,
       open: false,
@@ -822,18 +208,28 @@ let app = new Vue(
       isbuy:false,
       cart_num: config.product.cartProductCount,
 
-      subText: '加入购物车'
+      subText: '加入购物车',
 
-      // test_img: '<img v-view="http://localhost:9000/public/img/mobile/resource/pro01.png" src="public/img/mobile/img_loader.gif">'
+      swiper: '',
+      tops: config.product.images,
+
 
     },
     mounted: function() {
       let vue = this;
+      let swiper = this.$refs.swiper;
+      if (swiper.dom) {
+        this.swiper = swiper.dom;
+      }
+      window.onscroll = function(){
+        var t = document.documentElement.scrollTop || document.body.scrollTop;
+        console.log(document.documentElement.scrollTop)
+      };
       vue.loadcart();
       vue.specs_single = vue.product.specification[0];
     },
     computed: {
-      calstock: function () {
+/*      calstock: function () {
         let vue = this;
         let _stock = 0;
         if(vue.product.specification.length <= 0){
@@ -841,25 +237,30 @@ let app = new Vue(
             _stock = '有货';
           }
         }else {
-          // vue.specs_single = vue.product.specification[0];
           if(vue.specs_single.stockCount > 0){
             _stock = '有货';
           }
         }
 
         return _stock;
+      },*/
+      calstock: function () {
+        let vue = this;
+        let _stock = '无货';
+        if(vue.product.stockCount > 0){
+          _stock = '有货';
+        }
+        return _stock;
+
       },
       showprice: function () {
         let vue = this, _price = 0;
         if(vue.product.specification.length <= 0){
-          // _price = vue.product.salePrice;
           _price = (vue.product.hasDiscount && (vue.product.discount.hasBegin || vue.product.discount.canBuy))
             ? vue.product.promotionPrice : vue.product.salePrice;
         }else {
-          // vue.specs_single = vue.product.specification[0];
           _price = (vue.product.hasDiscount && (vue.product.discount.hasBegin || vue.product.discount.canBuy))
             ? vue.specs_single.promotionPrice : vue.specs_single.salePrice;
-          // _price = vue.specs_single.salePrice;
         }
         return _price;
 
@@ -876,7 +277,7 @@ let app = new Vue(
         }
       },
       top(){
-        tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+        tools.animate(document.getElementsByClassName('overview-container'), {scrollTop: '0'}, 400,'ease-out');
       },
       collection(){
         let vue = this;
@@ -989,34 +390,6 @@ let app = new Vue(
           let post_url = config.addcart_url,
             post_data = formData.serializeForm('addcart');
           vue.$refs.subpost.post(post_url, post_data);
-          /* jAjax({
-           type:'post',
-           url:config.addcart_url,
-           data: formData.serializeForm('addcart'),
-           timeOut:5000,
-           before:function(){
-           },
-           success:function(data){
-           if(data){
-           data = JSON.parse(data);
-           if(parseInt(data.code) == 200){
-           vue.cart_num = data.data.cartProductCount;
-           vue.loadcart();
-           vue.msg = data.message;
-           vue.showAlert = true;
-           vue.close_auto();
-
-           }else {
-           vue.msg = data.message;
-           vue.showAlert = true;
-           vue.close_auto();
-           }
-           }
-
-           },
-           error:function(status, statusText){
-           }
-           });*/
         }
 
       },
@@ -1045,7 +418,9 @@ let app = new Vue(
         }
 
       },
-
+      end(){
+        console.log('end')
+      },
       succhandle(data){
         let vue = this;
         vue.cart_num = data.data.cartProductCount;
@@ -1082,4 +457,4 @@ let app = new Vue(
     components: {
     }
   }
-).$mount('#detail');
+).$mount('#auctiondetail');
