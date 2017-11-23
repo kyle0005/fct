@@ -188,7 +188,7 @@ Vue.component('overview',
     template: '#overview',
     mounted: function() {
       let vue = this;
-      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+      tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
 
       vue.tops = config.product.images;
       let swiper = this.$refs.swiper;
@@ -242,7 +242,7 @@ Vue.component('artist',
     template: '#artist',
     mounted: function() {
       let vue = this;
-      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+      tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
       vue.loadart();
 
     },
@@ -268,7 +268,7 @@ Vue.component('artist',
       },
       loadsingle(index){
         let vue = this;
-        tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+        tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
         vue.artistsingle = {};
         vue.art_num = index;
         vue.artistsingle = vue.artist[index];
@@ -292,7 +292,7 @@ Vue.component('pug',
     template: '#pug',
     mounted: function() {
       let vue = this;
-      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+      tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
       vue.loadpug();
 
 /*      vue.$nextTick(function() {
@@ -337,7 +337,7 @@ Vue.component('pug',
       },
       loadsingle(index){
         let vue = this;
-        tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+        tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
         vue.pugsingle = {};
         vue.pug_num = index;
         vue.pugsingle = vue.pugs[index];
@@ -361,7 +361,7 @@ Vue.component('service',
     template: '#service',
     mounted: function() {
       let vue = this;
-      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+      tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
       vue.initData();
     },
     data() {
@@ -387,7 +387,7 @@ Vue.component('discuss',
     template: '#discuss',
     mounted: function() {
       let vue = this;
-      tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+      tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
       vue.loadList();
     },
     watch: {
@@ -876,7 +876,7 @@ let app = new Vue(
         }
       },
       top(){
-        tools.animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+        tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
       },
       collection(){
         let vue = this;

@@ -10,7 +10,10 @@
 <body>
 <input type="text" id="search">
 <input type="button" value="search" onclick="Submit()">
-<div id="content"></div>
+<div id="content" class="con" style="height: 1000px;"></div>
+<a href="javascript:;" onclick="totop()" style="position: fixed;bottom: 20px; left: 50%;display: block;width: 50%;height: 30px;">top</a>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
 <script>
   var data = [
     {
@@ -89,7 +92,12 @@
   }
 
   var status = 0 != 1;
-  console.log(status)
+  console.log(status);
+
+  function totop() {
+    tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
+  }
+
 </script>
 </body>
 </html>

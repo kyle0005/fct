@@ -96,9 +96,9 @@ Vue.component('m-swipe',
         observeParents: true, //修改swiper的父元素时，自动初始化swiper
         height : window.innerHeight,
         lazyLoading: true,
-        paginationBulletRender: function (swiper, index, className) {
-          return '<span class="en-pagination ' + className + '"></span>';
-        },
+        // paginationBulletRender: function (swiper, index, className) {
+        //   return '<span class="en-pagination ' + className + '"></span>';
+        // },
         onTransitionStart: function (swiper) {
           That.$emit('slideindex',swiper.activeIndex);
         }
@@ -221,10 +221,6 @@ let app = new Vue(
       if (swiper.dom) {
         this.swiper = swiper.dom;
       }
-      window.onscroll = function(){
-        var t = document.documentElement.scrollTop || document.body.scrollTop;
-        console.log(document.documentElement.scrollTop)
-      };
       vue.loadcart();
       vue.specs_single = vue.product.specification[0];
     },
@@ -277,7 +273,7 @@ let app = new Vue(
         }
       },
       top(){
-        tools.animate(document.getElementsByClassName('overview-container'), {scrollTop: '0'}, 400,'ease-out');
+        tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
       },
       collection(){
         let vue = this;

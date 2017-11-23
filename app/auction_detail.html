@@ -10,9 +10,8 @@
 </head>
 <body>
 <div class="auctiondetail-container" id="auctiondetail" v-cloak>
-  <head-top></head-top>
-  <div class="tabs">
-    <div class="overview-container">
+  <!--<head-top></head-top>-->
+  <section class="overview-container">
       <section class="video-container">
         <mVideo v-if="product.video" :poster="product.video.poster" :url="product.video.url" id="videotop"></mVideo>
         <m-swipe v-else swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
@@ -34,163 +33,158 @@
       <section class="product-context">
         <strong class="title">{{ product.name }}</strong>
         <div class="vice-title">{{ product.subTitle }}</div>
-        <div class="price">
-          <small class="pri-mark">￥</small>{{ product.promotionPrice }}&ensp;<del class="del-price">{{ product.salePrice }}</del>
-        </div>
-        <div class="sale-info">
-          <img src="public/img/mobile/items.png">包邮&emsp;<img src="public/img/mobile/items.png">保真保值&emsp;<img src="public/img/mobile/items.png">30天无忧退换货
-        </div>
-        <div class="view">
+        <div class="total">
           <div class="inner">
-            <div class="num">{{ product.viewCount }}</div>
-            <div>人围观</div>
+            <div class="num">5416</div>
+            <div class='text'>人出价</div>
           </div>
-        </div>
-      </section>
-      <section class="coupon" v-if="product.hasCoupon">
-        <img src="public/img/mobile/d_coup.png">领取优惠券
-        <div class="get-coupon">
-          <a :href="product.coupon_url" class="coup-link">领取</a>
+          <div class="inner">
+            <div class="num">541</div>
+            <div class='text'>人围观</div>
+          </div>
         </div>
       </section>
       <section class="info clearfix">
         <div class="item clearfix">
-          <span class="left">艺人</span>
-          <span class="right overText">{{ product.artistNames }}</span>
+          <span class="left">市场估价</span>
+          <span class="right overText">￥234.00</span>
         </div>
         <div class="item clearfix">
-          <span class="left">泥料</span>
-          <span class="right overText">{{ product.materialNames }}</span>
+          <span class="left">保证金</span>
+          <span class="right color-pri overText">￥234.00</span>
         </div>
         <div class="item clearfix">
-          <span class="left">壶型</span>
-          <span class="right overText">{{ product.categoryNames }}</span>
+          <span class="left">竞争周期</span>
+          <span class="right overText">30分钟</span>
         </div>
         <div class="item clearfix">
-          <span class="left">容量</span>
-          <span class="right overText">
-          <span v-if="product.volumes instanceof Array">{{ product.volumes[0] }}CC&nbsp;~&nbsp;{{ product.volumes[1] }}CC</span>
-          <span v-else>{{ product.volumes }}CC</span>
-        </span>
-        </div>
-        <div class="item clearfix">
-          <span class="left">库存</span>
-          <span class="right overText">{{ calstock }}</span>
-        </div>
-        <div class="item clearfix">
-          <span class="left">编号</span>
-          <span class="right overText">{{ product.code }}</span>
+          <span class="left">延时周期</span>
+          <span class="right overText">5分/次</span>
         </div>
       </section>
-      <section class="edit-context" v-html="product.content">
-        {{ product.content }}
+      <section class='artist'>
+        <img class='photo' src="https://cdn.fangcun.com/upload/images/2017-08-01/0e0801a023b64b9f952bdac63aa9583e.png!120"/>
+        <img class='arrow' src="https://cdn.fangcun.com/static/img/mobile/arrow_right.png"/>
+        <div class='content'>
+          <span class='title'>顾景舟</span><span class='vtitle'>壶艺泰斗</span>
+          <span class='text overTextH3'>该套壶以竹为题材，选用原矿降坡泥制成，以绞泥工艺做出斑竹痕，成，以绞泥工艺做出斑竹痕，成，以绞泥工艺做出斑竹痕，成，以绞泥工艺做出斑竹痕，杯碟依同样手法装饰，生动自然。</span>
+        </div>
       </section>
+      <section class="content">ssssssssssssssssssssss少时诵诗书所所所所所所所所所所所所所ssssssssssssssssssssssss少时诵诗书所所所所所所所所所所所所所ssssssssssssssssssssssss少时诵诗书所所所所所所所所所所所所所ss</section>
+  </section>
+  <section class='det-container'>
+    <div class='main'>
+      <div class='info'>
+        <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
+        <div class='user'>用户名</div>
+        <div class='status'>领先</div>
+      </div>
+      <div class='price'>
+        <div class='up'>当前价：<span class='low'>最低+100</span></div>
+        <div class='down'>4000元</div>
+      </div>
+    </div>
+    <div class='other clearfix'>
+      <div class="left">
+        <img src="https://cdn.fangcun.com/static/img/mobile/auction/remind-yw.png"/>
+        <div class='text'>距结束仅剩：<span class='num'>21</span>小时<span class='num'>21</span>分<span class='num'>23</span>秒</div>
+      </div>
+      <div class="right">
+        同场其他拍品
+        <img src="https://cdn.fangcun.com/static/img/mobile/head_r.png"/>
+      </div>
+    </div>
+  </section>
+  <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
+    <div class="container">
+      <div class='chat-inner'>
+        <div class='chat-item'>
+          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
+          <div class='content'>
+            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
+            <div class='main'>p安排p安排p安排p安排p安排p安排p安排p安排</div>
+          </div>
+        </div>
+        <div class='chat-item host'>
+          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
+          <div class='content'>
+            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
+            <div class='main'>p安排p安排p安排p安排p安排p安排p安排p安排</div>
+          </div>
+        </div>
+        <div class='chat-item price'>
+          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
+          <div class='content'>
+            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
+            <div class='main'>出价：231234元<span class='text off'>失效</span></div>
+          </div>
+        </div>
+        <div class='chat-item price'>
+          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
+          <div class='content'>
+            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
+            <div class='main'>出价：231234元<span class='text on'>有效</span></div>
+          </div>
+        </div>
+
+        <div class='chat-item'>
+          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
+          <div class='content'>
+            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
+            <div class='main'>p安排p安排p安排p安排p安排p安排p安排p安排</div>
+          </div>
+        </div>
+        <div class='chat-item host'>
+          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
+          <div class='content'>
+            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
+            <div class='main'>p安排p安排p安排p安排p安排p安排p安排p安排</div>
+          </div>
+        </div>
+        <div class='chat-item price'>
+          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
+          <div class='content'>
+            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
+            <div class='main'>出价：231234元<span class='text off'>失效</span></div>
+          </div>
+        </div>
+        <div class='chat-item price'>
+          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
+          <div class='content'>
+            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
+            <div class='main'>出价：231234元<span class='text on'>有效</span></div>
+          </div>
+        </div>
+      </div>
+      <div class='send clearfix'>
+        <input type='number' class='amount' placeholder='输入想要表达的信息'/>
+        <a href="javascript:;" class='btn'>发送</a>
+      </div>
+      <div class='slide'>
+        <img class='tips-img' src="https://cdn.fangcun.com/static/img/mobile/auction/slide.png"/>
+        <a href="javascript:;" class='tips'>右滑查看拍品</a>
+      </div>
     </div>
   </div>
-  <a href="javascript:;" class="top" @click="top()">
-    <img src="public/img/mobile/top.png">
-  </a>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
   <footer class="foot-container">
     <div class="inner">
-      <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
-        <div class="container">
-          <form id="addcart">
-            <div class="choose" @click.stop="">
-              <div class="clearfix">
-                <div class="pro-img">
-                  <img src="public/img/mobile/resource/pro01.png">
-                </div>
-                <div class="info">
-                  <span class="title">{{ product.name }}</span>
-                  <span class="price"><small class="pri-mark">￥</small>{{ showprice }}</span>
-                  <span class="stock">库存：{{ calstock }}</span>
-                </div>
-              </div>
-              <input id="pro_id" name="pro_id" type="hidden" :value="product.id">
-              <div v-if="product.specification.length > 0">
-                <input id="spec_id" name="spec_id" type="hidden" :value="specs_single.id">
-              </div>
-              <ul class="spec" v-if="product.specification.length > 0">
-                <li class="item" v-for="(item, index) in product.specification" :class="{active: index===specs_num}" @click="footLinkTo(index)">
-                  {{ item.name }}
-                </li>
-              </ul>
-              <div class="num">
-                <div class="item"><span class="name">数量</span></div>
-                <div class="item">
-                  <div class="num-container">
-                    <a href="javascript:;" :class="{dis:min}" @click="minus()">
-                      <i class="fa fa-minus"></i>
-                    </a>
-                    <input type="text" name="number" class="numbers" v-model="input_val">
-                    <a href="javascript:;" @click="add()" :class="{dis:max}">
-                      <i class="fa fa-plus"></i>
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-              <div class="fork-container" @click="choose()">
-                <a href="javascript:;" class="fork" >&nbsp;</a>
-              </div>
-
-            </div>
-            <!--<a href="javascript:;" class="sub" @click="buy()">确定</a>-->
-            <ul class="nav">
-              <li class="message" @click="">
-                <a href="javascript:;" class="foot-link">
-                  <img src="public/img/mobile/msg.png">
-                </a>
-              </li>
-              <li class="cart">
-                <a href="cart.html" class="foot-link">
-                  <img src="public/img/mobile/cart.png">
-                  <span class="nums" v-if="numsshow">{{ cart_num }}</span>
-                </a>
-              </li>
-              <li class="collection" :class="{red:collected}"  @click="collection()">
-                <i class="fa fa-heart"></i>
-              </li>
-              <li class="add">
-                <a href="javascript:;">
-                  <subpost :txt="subText" ref="subpost" @callback="buy(0)" @succhandle="succhandle"></subpost>
-                </a>
-              </li>
-              <li class="buy">
-                <a href="javascript:;" @click="buy(1)">立即购买</a>
-              </li>
-            </ul>
-          </form>
-        </div>
-      </div>
-      <ul class="nav">
-        <li class="message" @click="">
+      <div class="nav">
+        <div class="lis message">
           <a href="javascript:;" class="foot-link">
-            <img src="public/img/mobile/msg.png">
+            <img src="https://cdn.fangcun.com/static/img/mobile/auction/chat.png"/>
           </a>
-        </li>
-        <li class="cart">
-          <a href="cart.html" class="foot-link">
-            <img src="public/img/mobile/cart.png">
-            <span class="nums" v-if="numsshow">{{ cart_num }}</span>
-          </a>
-        </li>
-        <li class="collection" :class="{red:collected}"  @click="collection()">
-          <i class="fa fa-heart"></i>
-        </li>
-        <li class="add" :class="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">
-          <a href="javascript:;" @click="choose(0)" v-if="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">加入购物车</a>
-          <a href="javascript:;" v-else>加入购物车</a>
-        </li>
-        <li class="buy" :class="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">
-          <a href="javascript:;" @click="choose(1)" v-if="{ disabled: product.hasDiscount && ( product.discount.hasBegin || !product.discount.canBuy) && product.stockCount <= 0 }">立即购买</a>
-          <a href="javascript:;" v-else>立即购买</a>
-        </li>
-      </ul>
+        </div>
+        <div class="lis inp">
+          <input type='text' class='input' placeholder='最低加价100'/>
+        </div>
+        <a href="javascript:;" class="lis add">+</a>
+        <a href="javascript:;" class="lis buy" @click='choose'>预交保证金</a>
+      </div>
     </div>
 
   </footer>
+
 </div>
 <script src="public/js/mobile/vue.js"></script>
 <script src="public/js/mobile/api/index.js"></script>

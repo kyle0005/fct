@@ -20,21 +20,21 @@
             <span class="pro-main">
               <span class="info">
                 <span class="photo">
-                  <img v-view="'https://cdn.fangcun.com/upload/images/2017-10-26/38c6f99c7f984d16a50d063699112a29.jpg!350'"
+                  <img v-view="item.artistImg"
                        src="public/img/mobile/img_loader.gif">
                 </span>
-                <span class='context'>顾景舟<span class='vtitle'>壶艺泰斗</span></span>
-                <span class='mark'>进行中</span>
+                <span class='context'>{{ item.artistName }}<span class='vtitle'>{{ item.artistTitle }}</span></span>
+                <span class='mark'>{{ item.statusName }}</span>
               </span>
-              <img v-view="item.default_pic" src="public/img/mobile/img_loader.gif">
+              <img v-view="item.defaultImg" src="public/img/mobile/img_loader.gif">
               <span class="sale clearfix">
                 <span class="left">
                   <span class="title">当前价</span>
-                  ￥1213.00
+                  ￥{{ item.bidPrice }}
                 </span>
                 <span class="right">
-                  距结束仅剩
-                    <span class="time-block">24</span>:<span class="time-block">24</span> :<span class="time-block">24</span>
+                  距{{item.status === 0 ? "开始" : "结束"}}仅剩
+                  <m-time :endTime="item.status === 0 ? item.startTime : item.endTime" :callback="end"></m-time>
                 </span>
               </span>
             </span>
@@ -101,18 +101,6 @@
               <span>百科</span>
             </a>
           </li>
-          <!--<li class="item">-->
-            <!--<a href="javascript:;">-->
-              <!--<img src="public/img/mobile/menu3.png">-->
-              <!--<span>个性定制</span>-->
-            <!--</a>-->
-          <!--</li>-->
-          <!--<li class="item">-->
-            <!--<a href="javascript:;">-->
-              <!--<img src="public/img/mobile/menu4.png">-->
-              <!--<span>APP下载</span>-->
-            <!--</a>-->
-          <!--</li>-->
           <li class="item">
             <a href="javascript:;">
               <img src="public/img/mobile/menu5.png">
@@ -149,351 +137,62 @@
       }
 
     ],
-    "productsRank": [
-      {
-        "name": "所有品级",
-        "level_id": "0",
-        "img": "public/img/mobile/rank_00.png"
-      },
-      {
-        "name": "登堂入室",
-        "level_id": "1",
-        "img": "public/img/mobile/rank_01.png"
-      },
-      {
-        "name": "略有小成",
-        "level_id": "2",
-        "img": "public/img/mobile/rank_02.png"
-      },
-      {
-        "name": "炉火纯青",
-        "level_id": "3",
-        "img": "public/img/mobile/rank_03.png"
-      },
-      {
-        "name": "出神入化",
-        "level_id": "4",
-        "img": "public/img/mobile/rank_04.png"
-      },
-      {
-        "name": "登峰造极",
-        "level_id": "5",
-        "img": "public/img/mobile/rank_05.png"
-      }
-
-    ],
-//    "products": [
-//      {
-//        "id": 0,
-//        "code": 1,
-//        "level_id": 0,
-//        "name": "束云茶叶罐001",
-//        "artist": "李某某001",
-//        "title": "【精雕细刻】束云茶叶罐001",
-//        "description": "整款器形古朴浑厚，细腻柔和，古韵悠然，壶身扁圆饱满，线条柔和构筑，弯流如意壶嘴，出水爽利，断水干净利落，端握合适，拿捏舒适，壶肩格勒出的线条，一眼看上便觉心清气爽。",
-//        "default_pic": "/public/img/mobile/resource/imgs.png",
-//        "pics": [
-//          "/public/img/mobile/resource/pro01.png",
-//          "/public/img/mobile/resource/pro01.png",
-//          "/public/img/mobile/resource/pro01.png",
-//          "/public/img/mobile/resource/pro01.png"
-//        ],
-//        "clickAmount": 99999999,
-//        "saleAmount": 11111111
-//      },
-//      {
-//        "id": 1,
-//        "code": 1,
-//        "level_id": 1,
-//        "name": "束云茶叶罐001",
-//        "artist": "李某某001",
-//        "title": "【精雕细刻】束云茶叶罐001",
-//        "description": "描述文字。。。。。001。",
-//        "default_pic": "/public/img/mobile/resource/pro.png",
-//        "pics": [
-//          "/public/img/mobile/resource/pro.png",
-//          "/public/img/mobile/resource/pro.png",
-//          "/public/img/mobile/resource/pro.png",
-//          "/public/img/mobile/resource/pro.png"
-//        ],
-//        "clickAmount": 99999999,
-//        "saleAmount": 11111111
-//      },
-//      {
-//        "id": 2,
-//        "code": 2,
-//        "level_id": 2,
-//        "name": "束云茶叶罐001",
-//        "artist": "李某某001",
-//        "title": "【精雕细刻】束云茶叶罐001",
-//        "description": "描述文字。。。。。001。",
-//        "default_pic": "/public/img/mobile/resource/pug.png",
-//        "pics": [
-//          "/public/img/mobile/resource/pug.png",
-//          "/public/img/mobile/resource/pug.png",
-//          "/public/img/mobile/resource/pug.png",
-//          "/public/img/mobile/resource/pug.png"
-//        ],
-//        "clickAmount": 99999999,
-//        "saleAmount": 11111111
-//      },
-//      {
-//        "id": 3,
-//        "code": 3,
-//        "level_id": 3,
-//        "name": "束云茶叶罐001",
-//        "artist": "李某某001",
-//        "title": "【精雕细刻】束云茶叶罐001",
-//        "description": "描述文字。。。。。001。",
-//        "default_pic": "/public/img/mobile/resource/pro02.png",
-//        "pics": [
-//          "/public/img/mobile/resource/pro02.png",
-//          "/public/img/mobile/resource/pro02.png",
-//          "/public/img/mobile/resource/pro02.png",
-//          "/public/img/mobile/resource/pro02.png"
-//        ],
-//        "clickAmount": 99999999,
-//        "saleAmount": 11111111
-//      },
-//      {
-//        "id": 4,
-//        "code": 2,
-//        "level_id": 4,
-//        "name": "束云茶叶罐001",
-//        "artist": "李某某001",
-//        "title": "【精雕细刻】束云茶叶罐001",
-//        "description": "描述文字。。。。。001。",
-//        "default_pic": "/public/img/mobile/resource/pro01.png",
-//        "pics": [
-//          "/public/img/mobile/resource/pro01.png",
-//          "/public/img/mobile/resource/pro.png",
-//          "/public/img/mobile/resource/pug.png",
-//          "/public/img/mobile/resource/pro02.png"
-//        ],
-//        "clickAmount": 99999999,
-//        "saleAmount": 11111111
-//      },
-//      {
-//        "id": 5,
-//        "code": 1,
-//        "level_id": 3,
-//        "name": "束云茶叶罐001",
-//        "artist": "李某某001",
-//        "title": "【精雕细刻】束云茶叶罐001",
-//        "description": "描述文字。。。。。001。",
-//        "default_pic": "/public/img/mobile/resource/imgs.png",
-//        "pics": [
-//          "/public/img/mobile/resource/imgs.png",
-//          "/public/img/mobile/resource/imgs.png",
-//          "/public/img/mobile/resource/imgs.png",
-//          "/public/img/mobile/resource/imgs.png"
-//        ],
-//        "clickAmount": 99999999,
-//        "saleAmount": 11111111
-//      },
-//      {
-//        "id": 6,
-//        "code": 3,
-//        "level_id": 1,
-//        "name": "束云茶叶罐001",
-//        "artist": "李某某001",
-//        "title": "【精雕细刻】束云茶叶罐001",
-//        "description": "描述文字。。。。。001。",
-//        "default_pic": "/public/img/mobile/resource/imgs.png",
-//        "pics": [
-//          "/public/img/mobile/resource/pro01.png",
-//          "/public/img/mobile/resource/pro.png",
-//          "/public/img/mobile/resource/pug.png",
-//          "/public/img/mobile/resource/pro02.png"
-//        ],
-//        "clickAmount": 99999999,
-//        "saleAmount": 11111111
-//      },
-//      {
-//        "id": 7,
-//        "code": 2,
-//        "level_id": 2,
-//        "name": "束云茶叶罐001",
-//        "artist": "李某某001",
-//        "title": "【精雕细刻】束云茶叶罐001",
-//        "description": "描述文字。。。。。001。",
-//        "default_pic": "/public/img/mobile/resource/imgs.png",
-//        "pics": [
-//          "/public/img/mobile/resource/imgs.png",
-//          "/public/img/mobile/resource/imgs.png",
-//          "/public/img/mobile/resource/imgs.png",
-//          "/public/img/mobile/resource/imgs.png"
-//        ],
-//        "clickAmount": 99999999,
-//        "saleAmount": 11111111
-//      },
-//    ],
     "products":{
         'entries': [
           {
-            "id": 0,
-            "code": 1,
-            "level_id": 0,
-            "name": "束云茶叶罐001",
-            "artist": "李某某001",
-            "title": "【精雕细刻】束云茶叶罐001",
-            "description": "整款器形古朴浑厚，细腻柔和，古韵悠然，壶身扁圆饱满，线条柔和构筑，弯流如意壶嘴，出水爽利，断水干净利落，端握合适，拿捏舒适，壶肩格勒出的线条，一眼看上便觉心清气爽。",
-            "default_pic": "/public/img/mobile/resource/imgs.png",
-            "pics": [
-              "/public/img/mobile/resource/pro01.png",
-              "/public/img/mobile/resource/pro01.png",
-              "/public/img/mobile/resource/pro01.png",
-              "/public/img/mobile/resource/pro01.png"
-            ],
-            "clickAmount": 99999999,
-            "saleAmount": 11111111
-          },
-          {
             "id": 1,
-            "code": 1,
-            "level_id": 1,
-            "name": "束云茶叶罐001",
-            "artist": "李某某001",
-            "title": "【精雕细刻】束云茶叶罐001",
-            "description": "描述文字。。。。。001。",
-            "default_pic": "/public/img/mobile/resource/pro.png",
-            "pics": [
-              "/public/img/mobile/resource/pro.png",
-              "/public/img/mobile/resource/pro.png",
-              "/public/img/mobile/resource/pro.png",
-              "/public/img/mobile/resource/pro.png"
-            ],
-            "clickAmount": 99999999,
-            "saleAmount": 11111111
+            "defaultImg": "https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750",
+            "name": "《夺魁》",
+            "intro": "此壶百分百选择天然原矿紫砂料，由紫砂名家手工制作，款型古朴高雅，线条流畅自然，极具收藏价值。作品我们均经过 精挑细选，深蕴内涵，典雅蕴涵，工艺精细，型用完备，深受藏家和紫砂爱好者喜爱。",
+            "artistName": "徐秀棠",
+            "artistImg": "https://cdn.fangcun.com/upload/images/2017-09-27/f1314ad8348f4fe4b93ede9df9ea129d.png!750",
+            "artistTitle": "中国工艺美术大师",
+            "statusName": "已结束",
+            "status": 2,            /* 0: 未开始；1：已开始： 2：已结束 */
+            "viewCount": 100,
+            "bidCount": 16,
+            "bidPrice": 0.00,
+            "remindId": 0,
+            "isFaster": 0,
+            "startTime": 1510310940000,
+            "endTime": 1510748100000
           },
           {
-            "id": 2,
-            "code": 1,
-            "level_id": 0,
-            "name": "束云茶叶罐001",
-            "artist": "李某某001",
-            "title": "【精雕细刻】束云茶叶罐001",
-            "description": "整款器形古朴浑厚，细腻柔和，古韵悠然，壶身扁圆饱满，线条柔和构筑，弯流如意壶嘴，出水爽利，断水干净利落，端握合适，拿捏舒适，壶肩格勒出的线条，一眼看上便觉心清气爽。",
-            "default_pic": "/public/img/mobile/resource/imgs.png",
-            "pics": [
-              "/public/img/mobile/resource/pro01.png",
-              "/public/img/mobile/resource/pro01.png",
-              "/public/img/mobile/resource/pro01.png",
-              "/public/img/mobile/resource/pro01.png"
-            ],
-            "clickAmount": 99999999,
-            "saleAmount": 11111111
+            "id": 3,
+            "defaultImg": "https://cdn.fangcun.com/upload/images/2017-11-15/73df8f3e4e514b7b8e5ce22c51956e4b.png!750",
+            "name": "国宝级",
+            "intro": "不错的宝贝",
+            "artistName": "袁小强",
+            "artistImg": "https://cdn.fangcun.com/upload/images/2017-10-26/a065cae436d34a88b20fa2ab1c9b9022.jpg!750",
+            "artistTitle": "中青辈优秀实力派陶艺家",
+            "statusName": "已结束",
+            "status": 2,
+            "viewCount": 142,
+            "bidCount": 1,
+            "bidPrice": 15.00,
+            "remindId": 0,
+            "isFaster": 1,
+            "startTime": 1510761600000,
+            "endTime": 1510914960000
           },
-
-
-//          {
-//            "id": 2,
-//            "code": 2,
-//            "level_id": 2,
-//            "name": "束云茶叶罐001",
-//            "artist": "李某某001",
-//            "title": "【精雕细刻】束云茶叶罐001",
-//            "description": "描述文字。。。。。001。",
-//            "default_pic": "/public/img/mobile/resource/pug.png",
-//            "pics": [
-//              "/public/img/mobile/resource/pug.png",
-//              "/public/img/mobile/resource/pug.png",
-//              "/public/img/mobile/resource/pug.png",
-//              "/public/img/mobile/resource/pug.png"
-//            ],
-//            "clickAmount": 99999999,
-//            "saleAmount": 11111111
-//          },
-//          {
-//            "id": 3,
-//            "code": 3,
-//            "level_id": 3,
-//            "name": "束云茶叶罐001",
-//            "artist": "李某某001",
-//            "title": "【精雕细刻】束云茶叶罐001",
-//            "description": "描述文字。。。。。001。",
-//            "default_pic": "/public/img/mobile/resource/pro02.png",
-//            "pics": [
-//              "/public/img/mobile/resource/pro02.png",
-//              "/public/img/mobile/resource/pro02.png",
-//              "/public/img/mobile/resource/pro02.png",
-//              "/public/img/mobile/resource/pro02.png"
-//            ],
-//            "clickAmount": 99999999,
-//            "saleAmount": 11111111
-//          },
-//          {
-//            "id": 4,
-//            "code": 2,
-//            "level_id": 4,
-//            "name": "束云茶叶罐001",
-//            "artist": "李某某001",
-//            "title": "【精雕细刻】束云茶叶罐001",
-//            "description": "描述文字。。。。。001。",
-//            "default_pic": "/public/img/mobile/resource/pro01.png",
-//            "pics": [
-//              "/public/img/mobile/resource/pro01.png",
-//              "/public/img/mobile/resource/pro.png",
-//              "/public/img/mobile/resource/pug.png",
-//              "/public/img/mobile/resource/pro02.png"
-//            ],
-//            "clickAmount": 99999999,
-//            "saleAmount": 11111111
-//          },
-//          {
-//            "id": 5,
-//            "code": 1,
-//            "level_id": 3,
-//            "name": "束云茶叶罐001",
-//            "artist": "李某某001",
-//            "title": "【精雕细刻】束云茶叶罐001",
-//            "description": "描述文字。。。。。001。",
-//            "default_pic": "/public/img/mobile/resource/imgs.png",
-//            "pics": [
-//              "/public/img/mobile/resource/imgs.png",
-//              "/public/img/mobile/resource/imgs.png",
-//              "/public/img/mobile/resource/imgs.png",
-//              "/public/img/mobile/resource/imgs.png"
-//            ],
-//            "clickAmount": 99999999,
-//            "saleAmount": 11111111
-//          },
-//          {
-//            "id": 6,
-//            "code": 3,
-//            "level_id": 1,
-//            "name": "束云茶叶罐001",
-//            "artist": "李某某001",
-//            "title": "【精雕细刻】束云茶叶罐001",
-//            "description": "描述文字。。。。。001。",
-//            "default_pic": "/public/img/mobile/resource/imgs.png",
-//            "pics": [
-//              "/public/img/mobile/resource/pro01.png",
-//              "/public/img/mobile/resource/pro.png",
-//              "/public/img/mobile/resource/pug.png",
-//              "/public/img/mobile/resource/pro02.png"
-//            ],
-//            "clickAmount": 99999999,
-//            "saleAmount": 11111111
-//          },
-//          {
-//            "id": 7,
-//            "code": 2,
-//            "level_id": 2,
-//            "name": "束云茶叶罐001",
-//            "artist": "李某某001",
-//            "title": "【精雕细刻】束云茶叶罐001",
-//            "description": "描述文字。。。。。001。",
-//            "default_pic": "/public/img/mobile/resource/imgs.png",
-//            "pics": [
-//              "/public/img/mobile/resource/imgs.png",
-//              "/public/img/mobile/resource/imgs.png",
-//              "/public/img/mobile/resource/imgs.png",
-//              "/public/img/mobile/resource/imgs.png"
-//            ],
-//            "clickAmount": 99999999,
-//            "saleAmount": 11111111
-//          },
+          {
+            "id": 4,
+            "defaultImg": "https://cdn.fangcun.com/upload/images/2017-11-22/59fbde503ce046b287eeee2ee1b4f1f3.png!750",
+            "name": "websocket测试",
+            "intro": "websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试",
+            "artistName": "陆小强",
+            "artistImg": "https://cdn.fangcun.com/upload/images/2017-10-26/d3c767e6e35e46e4a2e61c1c3a0e309f.jpg!750",
+            "artistTitle": "中青年陶艺家",
+            "statusName": "进行中",
+            "status": 1,
+            "viewCount": 100,
+            "bidCount": 0,
+            "bidPrice": 0.00,
+            "remindId": 0,
+            "isFaster": 1,
+            "startTime": 1511280000000,
+            "endTime": 1511971200000
+          }
         ],
         'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 5, 'total_page': 1, 'total': 13}
 
@@ -501,7 +200,7 @@
     "index": "index.html",
     "login": "login.html",
     "product_url": "http://localhost:3000/",
-    "isindex": true
+
   }
 </script>
 <script src="public/js/mobile/head.js"></script>

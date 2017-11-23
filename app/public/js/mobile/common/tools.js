@@ -104,7 +104,8 @@ var tools = {
             element.style.filter = 'alpha(opacity:' + (iCurrent + iSpeed) + ')';
             element.style.opacity = (iCurrent + iSpeed) / 100;
           } else if (attr === 'scrollTop') {
-            element.scrollTop = iCurrent + iSpeed;
+            element.documentElement.scrollTop = iCurrent + iSpeed;
+            element.body.scrollTop = iCurrent + iSpeed;
           }else{
             element.style[attr] = iCurrent + iSpeed + 'px';
           }
@@ -218,7 +219,8 @@ var tools = {
     var target;
     // scrollTop 获取方式不同，没有它不属于style，而且只有document.body才能用
     if (attr === 'scrollTop') {
-      target = element.scrollTop;
+      target = element.documentElement.scrollTop || element.body.scrollTop;
+      // target = element.scrollTop;
     }else if(element.currentStyle){
       target = element.currentStyle[attr];
     }else{
