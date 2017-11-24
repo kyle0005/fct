@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="auctionorderdetail-container" id="order" v-cloak>
+  <section class="info">
+    <div class="text">
+      <span v-if="order_detail.status == 0">
+        <img src="public/img/mobile/fork_w.png">待付款
+      </span>
+      <span v-if="order_detail.status !== 0 && order_detail.status !== 4">
+        <img src="public/img/mobile/check_w.png">付款成功
+        <span class="status">{{ order_detail.statusName }}</span>
+      </span>
+      <span v-if="order_detail.status == 4">
+        <img src="public/img/mobile/fork_w.png">订单关闭
+      </span>
+    </div>
+  </section>
+  <section class="detail">
+    <div class="express" v-if="order_detail.orderReceiver.expressNO">
+      <a href="javascript:;" class="link">
+        <span class="img-container item">
+            <img src="public/img/mobile/order_transport.png">
+          </span>
+        <span class="item t">{{ order_detail.orderReceiver.expressPlatform }}({{ order_detail.orderReceiver.expressNO }})<br><span class="time">{{ order_detail.orderReceiver.deliveryTime }}</span></span>
+        <span class="wei-arrow-right"></span>
+      </a>
+    </div>
+    <div class="addr">
+      <div class="img-container">
+        <img src="public/img/mobile/order_addr.png">
+      </div>
+      <div class="addr-info">
+        <div class="item">收货人：{{ order_detail.orderReceiver.name }}</div>
+        <div class="item right">{{ order_detail.orderReceiver.phone }}</div>
+      </div>
+      <div class="address">收货地址：{{ order_detail.orderReceiver.province + "&nbsp;" + order_detail.orderReceiver.city + "&nbsp;" +  order_detail.orderReceiver.region + "&nbsp;" + order_detail.orderReceiver.address }}</div>
+    </div>
+    <div class="express invoice">
+      <a href="invoice.html" class="link">
+        <span class="img-container item">
+            <img src="public/img/mobile/order_invoice.png">
+          </span>
+        <span class="item t">申请发票</span>
+        <span class="wei-arrow-right"></span>
+      </a>
+    </div>
+  </section>
+  <section class="">
+    <div class="product" v-for="(item, index) in order_detail.orderGoods">
+      <div class="pro-item img-container">
+        <img :src="item.img">
+      </div>
+      <div class="pro-item title-container">
+        <div class="title">{{ item.name }}</div>
+        <div class="spec">保证金：{{ item.specName }}</div>
+      </div>
+      <div class="pro-item price-container">
+        <div class="price"><small class="pri-mark">￥</small>{{ item.price }}</div>
+        <!--<div class="num">*{{ item.buyCount }}</div>-->
+        <a href="order_return.html" class="after-sale" v-if="item.status == -1">申请售后</a>
+        <a href="/refud/status" class="after-sale" v-if="item.statusName">{{ item.statusName }}</a>      <!-- href的url带参数status -->
+      </div>
+    </div>
+  </section>
+  <section class="total">
+    <div class="inner">共<span class="pri-color">{{ order_detail.buyTotalCount }}</span>件商品&nbsp;合计:<span class="pri-color"><small class="pri-mark">￥</small>{{ order_detail.payAmount }}</span>（含运费）</div>
+  </section>
+  <section class="order-detail">
+    <div class="inner">
+      <span v-if="order_detail.orderId">订单编号：{{ order_detail.orderId }}<br></span>
+      <span v-if="order_detail.payOrderId">支付单号：{{ order_detail.payOrderId }}<br></span>
+      <span v-if="order_detail.payPlatform">支付方式：{{ order_detail.payPlatform }}<br></span>
+      <span v-if="order_detail.createTime">创建时间：{{ order_detail.createTime }}<br></span>
+      <span v-if="order_detail.payTime">付款时间：{{ order_detail.payTime }}<br></span>
+      <span v-if="order_detail.expiresTime">发货时间：{{ order_detail.expiresTime }}<br></span>
+      <span v-if="order_detail.finishTime">完成时间：{{ order_detail.finishTime }}</span>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="inner">
+      <a href="javascript:;" class="chat"><img src="public/img/mobile/order_chat.png"><span class="text">在线客服</span></a>
+      <div class="del">
+        <a href="javascript:;" @click="confirm(order_detail.orderId, finish)">
+          删除订单
+          <!--<subpost :txt="delText" ref="subpost" @callback="confirm(order_detail.orderId, finish)" @succhandle="succhandle"></subpost>-->
+        </a>
+      </div>
+      <div class="comment">
+        <a href="javascript:;" @click="confirm(order_detail.orderId, cancel)">
+          取消订单
+          <!--<subpost :txt="cancelText" ref="cancelpost" @callback="confirm(order_detail.orderId, cancel)" @succhandle="succhandle"></subpost>-->
+        </a>
+      </div>
+    </div>
+  </footer>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+  <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :obj="orderId" :msg="msg"></confirm>
+</div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script>
+  var config = {
+      "finish_url": "asdfasd",
+      "order_detail": {
+        "orderId": "1707186898922467",      //used
+        "payAmount": 7554.8,          //used
+        "status": 4,
+        "statusName": "待收货",      //used
+        "buyTotalCount": 10,        //used
+        "payOrderId": null,         //used
+        "payPlatform": "alipay_fctwap",     //used
+        "orderGoods": [{
+          "name": "goods",          //used
+          "specName": "aaa",        //used
+          "img": "public/img/mobile/resource/pro01.png",      //used
+          "buyCount": 1,          //used
+          "status": -1,           //used
+          "statusName": "",       //used
+          "price": 8888,          //used
+        }],
+        "orderReceiver": {
+          "name": "小寒",             //used
+          "phone": "18616311580",     //used
+          "province": "上海",         //used
+          "city": "上海",             //used
+          "region": "普陀",           //used
+          "address": "金沙江地铁站",    //used
+          "expressPlatform": "顺丰快递",   //used
+          "expressNO": 122212,        //used
+          "deliveryTime": "2017-01-01"        //used
+        },
+        "payTime": null,                  //used
+        "createTime": 1500376189000,      //used
+        "expiresTime": 1503140989000,     //used
+        "finishTime": "",                 //used
+      }
+  }
+</script>
+<script src="public/js/mobile/auction_orderdetail.js"></script>
+</body>
+</html>

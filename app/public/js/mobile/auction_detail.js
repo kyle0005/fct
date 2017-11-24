@@ -224,44 +224,6 @@ let app = new Vue(
       vue.loadcart();
       vue.specs_single = vue.product.specification[0];
     },
-    computed: {
-/*      calstock: function () {
-        let vue = this;
-        let _stock = 0;
-        if(vue.product.specification.length <= 0){
-          if(vue.product.stockCount > 0){
-            _stock = '有货';
-          }
-        }else {
-          if(vue.specs_single.stockCount > 0){
-            _stock = '有货';
-          }
-        }
-
-        return _stock;
-      },*/
-      calstock: function () {
-        let vue = this;
-        let _stock = '无货';
-        if(vue.product.stockCount > 0){
-          _stock = '有货';
-        }
-        return _stock;
-
-      },
-      showprice: function () {
-        let vue = this, _price = 0;
-        if(vue.product.specification.length <= 0){
-          _price = (vue.product.hasDiscount && (vue.product.discount.hasBegin || vue.product.discount.canBuy))
-            ? vue.product.promotionPrice : vue.product.salePrice;
-        }else {
-          _price = (vue.product.hasDiscount && (vue.product.discount.hasBegin || vue.product.discount.canBuy))
-            ? vue.specs_single.promotionPrice : vue.specs_single.salePrice;
-        }
-        return _price;
-
-      }
-    },
     methods: {
       loadcart(){
         let vue = this;

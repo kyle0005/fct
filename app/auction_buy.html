@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="auctionbuy-container" id="buy" v-cloak>
+  <form id="buyOrder">
+    <section class="address no" v-if="!hasAddress">
+      <a href="buy_address.html" class="link">亲，请新建或选择默认收货地址以确保宝贝顺利到达<span class="wei-arrow-right"></span></a>
+    </section>
+    <section class="address" v-else>
+      <a href="buy_address.html" class="link">
+        <span class="left item">
+          <span class="overText">{{ address.name }}</span>
+          <span class="def">默认</span>
+        </span>
+          <span class="right item">
+          <span>{{ address.cellPhone }}</span>
+          <span class="overText">{{ addressStr }}</span>
+        </span>
+        <span class="wei-arrow-right"></span>
+      </a>
+    </section>
+    <section class="product">
+      <a href="javascript:;" class="link" v-for="(item, index) in carts">
+      <span class="item intro">
+        <img :src="item.img">
+      </span>
+        <span class="item info">
+        <span class="container overText">
+          <span class="name">{{ item.name }}</span>
+          <span class="price">保证金：<small class="pri-mark">￥</small>{{ item.promotionPrice }}</span>
+        </span>
+      </span>
+        <span class="num">
+        <span class="container overText">
+          <small class="pri-mark">￥</small>{{ item.promotionPrice }}
+        </span>
+      </span>
+      </a>
+    </section>
+    <section class="options">
+      <div class="line">
+        <div class="left">
+          订单优惠<span class="coupon" v-if="hasCoupon">(省{{ coupon.couponAmount }}元)</span>
+        </div>
+        <div class="right clearfix">
+          <div class="switch-container" v-if="!hasCoupon">
+            <input class="switch" id="used_merit" name="used_merit" v-model="coupPri" @change="showCoup()" type="checkbox" >
+          </div>
+        </div>
+      </div>
+      <div class="line buy-ani" :class="{show:show_coup}">
+        <div class="left">
+          <input type="text" v-model="couponcode" class="coup-code" placeholder="请输入优惠券码">
+        </div>
+        <div class="right clearfix">
+          <div class="sub-container">
+            <a href="javascript:;" class="sub">
+              <subpost :txt="coupText" ref="usecoup" @callback="getCoupon" @succhandle="succhandle"></subpost>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="line">
+        <div class="left">
+          <span v-if="!usePoint">可用<span class="coupon">{{ points }}</span>积分</span><span v-else>已用<span class="coupon">{{ usedPoint }}</span>积分</span>
+        </div>
+        <div class="right clearfix">
+          <div class="switch-container">
+            <input class="switch" id="used_points" name="used_points" @change="calculateAmount(1)" type="checkbox" >
+          </div>
+        </div>
+      </div>
+      <div class="line">
+        <div class="left">
+          <span v-if="!useAccountAmount">可用<span class="coupon">{{ accountAmount }}</span>余额</span><span v-else>已用<span class="coupon">{{ usedAccountAmount }}</span>余额</span>
+        </div>
+        <div class="right clearfix">
+          <div class="switch-container">
+            <input class="switch" id="used_accountAmount" name="used_accountAmount" @change="calculateAmount(2)" type="checkbox" >
+          </div>
+        </div>
+      </div>
+      <textarea name="remark" maxlength="150" v-model="remark" placeholder="可以写上您的要求...(限150字以内)" class="msg"></textarea>
+    </section>
+    <section class="agreement">
+      <input type="checkbox" id="agree" name="agree" v-model="has_terms" class="ck">
+      <label for="agree" class="agree-container">我已认真阅读并同意方寸堂《服务协议》</label>
+    </section>
+    <footer class="foot">
+      <div class="inner">
+        <div class="pri">应付：<small class="pri-mark">￥</small><span class="pri">{{ totalPrice.toFixed(2) }}</span></div>
+        <div class="sub">
+          <a href="javascript:;" class="sub">
+            <subpost :txt="payText" ref="paypost" @callback="pay" @succhandle="payhandle"></subpost>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </form>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+</div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script>
+  config = {
+    "carts": [
+      {
+        "id": 0,
+        "goodsId": 0,
+        "img": "public/img/mobile/resource/pro01.png",
+        "name": "稀有xx段【x瓢】",
+        "promotionPrice": 300.00,
+        "price": 30000.00,
+        "goodsSpecId": 0,
+        "specName": "刻龙",
+//        "stockCount": 4,   /* 库存 */
+        "buyCount": 1       /* 购买数量 */
+      },
+
+    ],
+    "address": {
+      "id": 0,    /* 地址 id */
+      "name": "用户名",
+      "cellPhone": 1383838388,
+      "province": "上海市",
+      "cityId": "上海市",
+      "townId": "静安区",
+      "address": "xxx街道xx号",
+      "isDefault": 1    /* 1是默认，0不是默认 */
+    },
+    "coupon": {
+      "couponCode": "", /* 优惠券码 */
+      "couponAmount": 0   /* 优惠券面额 */
+    },
+    "points": 0,   /* 积分,100积分等于1元 */
+    "accountAmount": 0,    /* 余额,单位元 */
+    "validateCoupon": "",   /* 验证优惠券 */
+    "has_terms": true,
+    "coupon_url": 'xxxxxxxx',
+    "pay_url": "aaaaaaaaaaa"
+  }
+</script>
+<script src="public/js/mobile/auction_buy.js"></script>
+</body>
+</html>

@@ -96,7 +96,8 @@ let app = new Vue(
       pager_url: '?level_id=0',
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
-      pager: config.products.pager
+      pager: config.products.pager,
+
     },
     watch: {
       pro_list: function (val, oldVal) {
@@ -110,6 +111,43 @@ let app = new Vue(
       }
     },
     methods: {
+      setClock(timestamp){
+        let vue = this, _initTime = new Date().getTime();
+        let time_content = {
+          day: '00',
+          hour: '00',
+          min: '00',
+          sec: '00',
+        };
+        let nowTime = new Date();
+        let endTime = new Date(timestamp * 1000 + _initTime);
+        let t = endTime.getTime() - nowTime.getTime();
+        if(t>0) {
+          let day = Math.floor(t / 86400000);
+          let hour = Math.floor((t / 3600000) % 24);
+          let min = Math.floor((t / 60000) % 60);
+          let sec = Math.floor((t / 1000) % 60);
+          hour = hour + day * 24;
+          hour = hour < 10 ? '0' + hour : hour;
+          min = min < 10 ? '0' + min : min;
+          sec = sec < 10 ? '0' + sec : sec;
+          if (day > 0) {
+            time_content.hour = hour;
+            time_content.min = min;
+            time_content.sec = sec;
+          }
+          if (day <= 0 && hour > 0) {
+            time_content.hour = hour;
+            time_content.min = min;
+            time_content.sec = sec;
+          }
+          if (day <= 0 && hour <= 0) {
+            time_content.min = min;
+            time_content.sec = sec;
+          }
+        }
+        return time_content;
+      },
       initData(){
         let vue = this;
         vue.pro_list = config.products.entries;

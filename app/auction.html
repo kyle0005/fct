@@ -15,7 +15,7 @@
     <head-top @changelist="getprolist" :isindex="isindex"></head-top>
     <div class="prolist-container">
       <ul class="prolist" v-if="pro_list.length" v-load-more="nextPage" type="1">
-        <li class="item" v-for="item in pro_list">
+        <li class="item" v-for="(item, index) in pro_list">
           <a href="javascript:;">
             <span class="pro-main">
               <span class="info">
@@ -34,15 +34,17 @@
                 </span>
                 <span class="right">
                   距{{item.status === 0 ? "开始" : "结束"}}仅剩
-                  <m-time :endTime="item.status === 0 ? item.startTime : item.endTime" :callback="end"></m-time>
+                  <span class="time-block">{{setClock(item.status === 0 ? item.startTime : item.endTime).hour}}</span>:<span
+                  class="time-block">{{setClock(item.status === 0 ? item.startTime : item.endTime).min}}</span> :<span
+                  class="time-block">{{setClock(item.status === 0 ? item.startTime : item.endTime).sec}}</span>
                 </span>
               </span>
             </span>
-            <span class="title">{{ item.title }}</span>
-            <span class="description">{{ item.description }}</span>
+            <span class="title">{{ item.name }}</span>
+            <span class="description">{{ item.intro }}</span>
             <span class="ops clearfix">
-              <img src="public/img/mobile/auction/viewcount.png"><span>{{ item.clickAmount }}</span>
-              <img src="public/img/mobile/auction/hammer.png"><span>{{ item.saleAmount }}</span>
+              <img src="public/img/mobile/auction/viewcount.png"><span>{{ item.viewCount }}</span>
+              <img src="public/img/mobile/auction/hammer.png"><span>{{ item.bidCount }}</span>
               <span class="right">
                 <img src="public/img/mobile/auction/remind-red.png">提醒我
               </span>

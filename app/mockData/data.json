@@ -1561,3 +1561,41 @@
     }
   }
 }
+
+
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": 4,
+    "artistId": 5579,
+    "artistName": "陆小强",
+    "artistImg": "https://cdn.fangcun.com/upload/images/2017-10-26/d3c767e6e35e46e4a2e61c1c3a0e309f.jpg!750",
+    "artistTitle": "中青年陶艺家",
+    "artistIntro": "陆小强(晓强)，1967年出生于宜兴丁蜀陶艺世家，中青年陶艺家。1984年进紫砂工艺厂，师从江苏省工艺美术大师蒋小彦。1992年到中央工艺美术学院紫砂造型设计班进修。所制作品构思新颖，独树一帜，擅长在素器上雕、捏塑、嵌，制作精致、细腻，形象逼真，观后大呼惊叹，不可思议，在国内外市场很受欢迎。多件作品被国内博物馆所收藏。",
+    "images": [
+      "https://cdn.fangcun.com/upload/images/2017-11-22/5c35992a91ab4d69b1a03f78fe478a85.png!750"
+    ],
+    "name": "websocket测试",
+    "subTitle": "websocket测试websocket测试",
+    "defaultImage": "https://cdn.fangcun.com/upload/images/2017-11-22/5c35992a91ab4d69b1a03f78fe478a85.png!750",
+    "videoUrl": "",
+    "videoImg": "/upload/images/2017-11-22/59fbde503ce046b287eeee2ee1b4f1f3.png",
+    "content": "<p>websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试<br></p>",
+    "materialName": "黄花泥",
+    "volume": 500,
+    "marketPrice": 500.00,
+    "startPrice": 50.00,
+    "increasePrice": 10.00,
+    "deposit": 50.00,
+    "startTime": 1511280000000,
+    "endTime": 1511971200000,
+    "viewCount": 100,
+    "bidCount": 0,
+    "bidPrice": 50.00,
+    "delaySecond": "10秒/次",
+    "status": 2,
+    "duration": "192小时",
+    "signupId": 0
+  }
+}
