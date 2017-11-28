@@ -12,7 +12,7 @@
 <div class="auctiondetail-container" id="auctiondetail" v-cloak>
   <section class="overview-container">
       <section class="video-container">
-        <mVideo v-if="product.video" :poster="product.video.poster" :url="product.video.url" id="videotop"></mVideo>
+        <mVideo v-if="product.videoUrl" :poster="product.videoImg" :url="product.videoUrl" id="videotop"></mVideo>
         <m-swipe v-else swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
           <div v-for="(top, index) in tops" class="swiper-slide" slot="swiper-con">
             <a :href="top.url" class="link">
@@ -20,25 +20,17 @@
             </a>
           </div>
         </m-swipe>
-        <div class="sale clearfix hide">
-          <div class="left">
-            <span class="title">{{ product.discount.name }}</span>&ensp;享{{ product.discount.discountRate * 10 }}折，限购{{ product.discount.singleCount }}件
-          </div>
-          <div class="right">
-            距<span v-if="product.discount.hasBegin">开始</span><span v-else>结束</span>仅剩<m-time :endTime="product.discount.discountTime" :callback="end"></m-time>
-          </div>
-        </div>
       </section>
       <section class="product-context">
         <strong class="title">{{ product.name }}</strong>
         <div class="vice-title">{{ product.subTitle }}</div>
         <div class="total">
           <div class="inner">
-            <div class="num">5416</div>
+            <div class="num">{{ product.bidCount }}</div>
             <div class='text'>人出价</div>
           </div>
           <div class="inner">
-            <div class="num">541</div>
+            <div class="num">{{ product.viewCount }}</div>
             <div class='text'>人围观</div>
           </div>
         </div>
@@ -46,47 +38,47 @@
       <section class="info clearfix">
         <div class="item clearfix">
           <span class="left">市场估价</span>
-          <span class="right overText">￥234.00</span>
+          <span class="right overText">￥{{ product.marketPrice }}</span>
         </div>
         <div class="item clearfix">
           <span class="left">保证金</span>
-          <span class="right color-pri overText">￥234.00</span>
+          <span class="right color-pri overText">￥{{ product.deposit }}</span>
         </div>
         <div class="item clearfix">
           <span class="left">竞争周期</span>
-          <span class="right overText">30分钟</span>
+          <span class="right overText">{{ product.duration }}</span>
         </div>
         <div class="item clearfix">
           <span class="left">延时周期</span>
-          <span class="right overText">5分/次</span>
+          <span class="right overText">{{ product.delaySecond }}</span>
         </div>
       </section>
       <section class='artist'>
         <img class='photo' src="https://cdn.fangcun.com/upload/images/2017-08-01/0e0801a023b64b9f952bdac63aa9583e.png!120"/>
         <img class='arrow' src="https://cdn.fangcun.com/static/img/mobile/arrow_right.png"/>
         <div class='content'>
-          <span class='title'>顾景舟</span><span class='vtitle'>壶艺泰斗</span>
-          <span class='text overTextH3'>该套壶以竹为题材，选用原矿降坡泥制成，以绞泥工艺做出斑竹痕，成，以绞泥工艺做出斑竹痕，成，以绞泥工艺做出斑竹痕，成，以绞泥工艺做出斑竹痕，杯碟依同样手法装饰，生动自然。</span>
+          <span class='title'>{{ product.artistName }}</span><span class='vtitle'>{{ product.artistTitle }}</span>
+          <span class='text overTextH3'>{{ product.artistIntro }}</span>
         </div>
       </section>
-      <section class="content">ssssssssssssssssssssss少时诵诗书所所所所所所所所所所所所所ssssssssssssssssssssssss少时诵诗书所所所所所所所所所所所所所ssssssssssssssssssssssss少时诵诗书所所所所所所所所所所所所所ss</section>
+      <section class="content">{{ product.content }}</section>
   </section>
   <section class='det-container'>
     <div class='main'>
       <div class='info'>
-        <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
-        <div class='user'>用户名</div>
-        <div class='status'>领先</div>
+        <img class='photo' :src="product.bidUserHeadPortrait"/>
+        <div class='user'>{{ product.bidUserName }}</div>
+        <div class='status'>{{ product.bidStatusName }}</div>
       </div>
       <div class='price'>
-        <div class='up'>当前价：<span class='low'>最低+100</span></div>
-        <div class='down'>4000元</div>
+        <div class='up'>当前价：<span class='low'>最低+{{ product.increasePrice }}</span></div>
+        <div class='down'>{{ product.bidPrice }}元</div>
       </div>
     </div>
     <div class='other clearfix'>
       <div class="left">
         <img src="https://cdn.fangcun.com/static/img/mobile/auction/remind-yw.png"/>
-        <div class='text'>距结束仅剩：<span class='num'>21</span>小时<span class='num'>21</span>分<span class='num'>23</span>秒</div>
+        <div class='text'>距结束仅剩：<m-time :end-time="product.endTime" :callback="end"></m-time></div>
       </div>
       <div class="right">
         同场其他拍品
@@ -170,15 +162,16 @@
     <div class="inner">
       <div class="nav">
         <div class="lis message">
-          <a href="javascript:;" class="foot-link">
-            <img src="https://cdn.fangcun.com/static/img/mobile/auction/chat.png"/>
+          <a href="javascript:;" class="foot-link" @click='choose'>
+            <img src="https://cdn.fangcun.com/static/img/mobile/auction/hu.png" v-if="open"/>
+            <img src="https://cdn.fangcun.com/static/img/mobile/auction/chat.png" v-else/>
           </a>
         </div>
         <div class="lis inp">
           <input type='text' class='input' placeholder='最低加价100'/>
         </div>
-        <a href="javascript:;" class="lis add">+</a>
-        <a href="javascript:;" class="lis buy" @click='choose'>预交保证金</a>
+        <a href="javascript:;" class="lis add" @click="add">+</a>
+        <a href="javascript:;" class="lis buy">预交保证金</a>
       </div>
     </div>
 
@@ -215,70 +208,44 @@
     ],
     "main_url": "http://localhost:9000/main.html",
     "product": {
-      "code": "1697635",
-      "salePrice": 122214,
-      "promotionPrice": 45544,
-      "cartProductCount": 1,
-      "hasDiscount": true,
-      "volumes": [150, 350],    /* 容量 */
-      "discount": {
-        "id": 0,
-        "name": '首单优惠',
-        "discountRate": 0.75,
-        "discountTime": 93600,
-        "hasBegin": true,
-        "canBuy": false,
-        "singleCount": 4    /* 限购数 */
-      },
-      "specification": [
-        /*{"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
-         {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}*/
+      "id": 4,
+      "artistId": 5579,
+      "artistName": "陆小强",
+      "artistImg": "https://cdn.fangcun.com/upload/images/2017-10-26/d3c767e6e35e46e4a2e61c1c3a0e309f.jpg!750",
+      "artistTitle": "中青年陶艺家",
+      "artistIntro": "陆小强(晓强)，1967年出生于宜兴丁蜀陶艺世家，中青年陶艺家。1984年进紫砂工艺厂，师从江苏省工艺美术大师蒋小彦。1992年到中央工艺美术学院紫砂造型设计班进修。所制作品构思新颖，独树一帜，擅长在素器上雕、捏塑、嵌，制作精致、细腻，形象逼真，观后大呼惊叹，不可思议，在国内外市场很受欢迎。多件作品被国内博物馆所收藏。",
+      "images": [
+        "https://cdn.fangcun.com/upload/images/2017-11-22/5c35992a91ab4d69b1a03f78fe478a85.png!750"
       ],
-//      "video": {
-//        "poster": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-01\/25742b692c6e4ac8b5951a396ae7e1e2.png!750",
-//        "url": "http:\/\/1253930304.vod2.myqcloud.com\/399bd37dvodgzp1253930304\/43628ff29031868223073846887\/JVfmp4X8LN8A.mp4"
-//      },
-      "materialId": "4",
-      "content": "<p><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e202643.jpg\" title=\"5677c2e202643.jpg\" alt=\"福泰一生花丝吊坠_01.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e4e6047.jpg\" title=\"5677c2e4e6047.jpg\" alt=\"福泰一生花丝吊坠_02.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e870c31.jpg\" title=\"5677c2e870c31.jpg\" alt=\"福泰一生花丝吊坠_03.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2ebe554a.jpg\" title=\"5677c2ebe554a.jpg\" alt=\"福泰一生花丝吊坠_04.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2ef0f0e8.jpg\" title=\"5677c2ef0f0e8.jpg\" alt=\"福泰一生花丝吊坠_05.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2f2c8e52.jpg\" title=\"5677c2f2c8e52.jpg\" alt=\"福泰一生花丝吊坠_06.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c307ae5ec.jpg\" title=\"5677c307ae5ec.jpg\" alt=\"镂空花丝金镶玉繁花似玉吊坠_06.jpg\"><\/p>",
-      "hasCoupon": 1,
-      "subTitle": "原矿大红袍",
-      "intro": " 传统的供春纹理要做好很不容易，龙隐约在壶身上出现又不抢春味还要溶入整个风格之中不是那么容易做到，质地特纯,泥质细腻、成色稳重。",
-      "name": "测试宝贝",
-      "images":     /* 如果没有视频，则显示图片切换 */
-        [
-          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/045696394ae5484391aa97f9c92e8b1d.JPG!750",
-          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/1648f5a4ac6447dea70db167e9edf0a6.JPG!750",
-          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/0f2b4b1d02694ea4bcd884542a257e63.JPG!750",
-          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/780da6ec74484db697e2c8b5878f6957.JPG!750",
-          "https:\/\/cdn.fangcun.com\/upload\/images\/2017-10-09\/e5d7e5bb3ca34115a1ea78613bdac309.JPG!750"
-        ],
-      "favoriteState": 1,
-      "id": 7,
-      "defaultImage": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg!120",
-      "status": 1,
-      "stockCount": 0,
-      "artistNames": "顾景舟",
-      "materialNames": "原矿清水泥",
-      "categoryNames": "圆弧",
-      "viewCount": 9809,
-      "hasBuy": 1,    /* 是否可以买，1为可以买 */
-      "hasCart": 1      /* 是否可以添加购物车，1为可以 */
+      "name": "websocket测试",
+      "subTitle": "websocket测试websocket测试",
+      "defaultImage": "https://cdn.fangcun.com/upload/images/2017-11-22/5c35992a91ab4d69b1a03f78fe478a85.png!750",
+      "videoUrl": "",
+      "videoImg": "/upload/images/2017-11-22/59fbde503ce046b287eeee2ee1b4f1f3.png",
+      "content": "<p>websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试<br></p>",
+      "materialName": "黄花泥",
+      "volume": 500,
+      "marketPrice": 500.00,
+      "startPrice": 50.00,
+      "increasePrice": 10.00,
+      "deposit": 50.00,
+      "startTime": 151128,
+      "endTime": 151197,
+      "viewCount": 100,
+      "bidCount": 0,
+      "bidPrice": 50.00,
+      "delaySecond": "10秒/次",
+      "status": 2,
+      "duration": "192小时",
+      "signupId": 0,
+
+      "bidUserName": "12313",
+      "bidStatusName": "领先",
+      "bidUserHeadPortrait": "",
+
     },
-    "fav_url" : "http://localhost:3000/fav",
-    "discuss_url" : "http://localhost:3000/discuss",
-    "artist_url" : "http://localhost:3000/artist",
-    "pug_url" : "http://localhost:3000/pug",
     "addcart_url": "http://localhost:3000/addcart",
     "buy_url": "http://localhost:9000/buy.html",
-    "tab_service": "<div class='title'>退换货政策</div><p>自您签收商品之日起10日内，淘壶人将为您办理退换货服务，且寄回商品实际运费由客户承担；如需办理退换货业务，请您致电客服热线400-0510-570咨询办理。</p><p>" +
-    "<br>政策说明：<br><br>1、一张订单淘壶人只为您提供一次退换货服务，为了确保您的权益，请考虑周全后与我们联系。<br>2、请您确保退换货时，商品各种包装完整。<br>" +
-    "3、因您个人原因造成的商品损坏（如壶身破损等），不予退换。<br>4、由于物品质量问题造成的退换货，由淘壶人承担双程运费。由于个人喜好原因造成退货，由客户支付双程邮费。感谢您的理解！<br>" +
-    "5、退换货发生时，请您选择顺丰快递将商品寄回给我们。<br>6、礼包或超值组合装中的商品不可以选择部分退换货，因退货后，原礼包或套装中商品将无法享受购买时优惠。<br>" +
-    "7、图片及信息仅供参照，因拍摄灯光及不同显示器色差等问题可能造成商品图片与实物有一定色差，一切以实物为准。色差问题不在退换货服务行列。" +
-    "</p><div class='title'>拒收政策</div><p>在您签收商品前，请先核查商品外包装是否完好，并确认您对产品是否满意。</p><p>1、无专用封箱胶<br>" +
-    "在收取快递包时，若发现外包装中无“淘壶人”专用封箱胶，或“淘壶人”专用封箱胶被严重损坏(特别是有被重新封装的痕迹)，您可以拒收。<br>" +
-    "2、物品与所购不符<br>签收后，若包装完好但是包裹中的商品数量与您实际购买的商品不吻合时，或所接收的物品与您所购的物品不相符时，请先与快递人员确认，现场拍照；并及时联系我们的客服，我们在与快递公司确认后，将及时为您补发/换发所缺商品。<br>" +
-    "3、对产品（或部分）不满意<br>若您对某件或某几件商品的质量不满意，您在拒收这些商品的同时，可正常接收其它商品，对于其它不满意的商品可根据您的意愿联系“淘壶人”的客服为您换货或退款。<br></p>"
   }
 </script>
 <template id="m_video">
