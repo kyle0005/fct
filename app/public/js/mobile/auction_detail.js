@@ -200,6 +200,8 @@ let app = new Vue(
       swiper: '',
       tops: config.product.images,
 
+      addpri: 0.00
+
     },
     mounted: function() {
       let vue = this;
@@ -227,7 +229,7 @@ let app = new Vue(
       },
       add(){
         let vue = this;
-
+        vue.addpri = parseFloat(vue.addpri) + parseFloat(vue.product.increasePrice);
       },
       end(){
         console.log('end')

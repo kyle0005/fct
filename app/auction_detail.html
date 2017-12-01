@@ -168,10 +168,16 @@
           </a>
         </div>
         <div class="lis inp">
-          <input type='text' class='input' placeholder='最低加价100'/>
+          <input type='number' class='input' placeholder='最低加价100' v-model.number="addpri"/>
         </div>
         <a href="javascript:;" class="lis add" @click="add">+</a>
-        <a href="javascript:;" class="lis buy">预交保证金</a>
+        <a href="javascript:;" class="lis buy">
+          <span class="txt grey" v-if="product.status == 1">拍卖未开始</span>
+          <span class="txt" v-else-if="product.status < 3">预交保证金</span>
+          <span class="txt" v-else-if="product.status > 10">继续报名</span>
+          <span class="txt" v-else-if="product.status === 3">我要出价</span>
+          <span class="txt grey" v-else-if="product.status === 4">拍卖结束</span>
+        </a>
       </div>
     </div>
 

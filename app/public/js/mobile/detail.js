@@ -31,6 +31,12 @@ Vue.component('mVideo',
           // DOM 更新后回调
           let _ref = document.getElementById(vue.id);
           _ref.play();
+
+          _ref.addEventListener('ended', function(){
+              //播放完成后
+              vue.isVideoLoad = false;
+            }
+          );
         });
 
       },
@@ -192,7 +198,7 @@ Vue.component('overview',
 
       vue.tops = config.product.images;
       let swiper = this.$refs.swiper;
-      if (swiper.dom) {
+      if (swiper && swiper.dom) {
         this.swiper = swiper.dom;
       }
     },
