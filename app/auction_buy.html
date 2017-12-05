@@ -28,46 +28,24 @@
       </a>
     </section>
     <section class="product">
-      <a href="javascript:;" class="link" v-for="(item, index) in carts">
+      <a href="javascript:;" class="link">
       <span class="item intro">
-        <img :src="item.img">
+        <img :src="product.img">
       </span>
         <span class="item info">
         <span class="container overText">
-          <span class="name">{{ item.name }}</span>
-          <span class="price">保证金：<small class="pri-mark">￥</small>{{ item.promotionPrice }}</span>
+          <span class="name">{{ product.goodsName }}</span>
+          <span class="price">保证金：<small class="pri-mark">￥</small>{{ product.deposit }}</span>
         </span>
       </span>
         <span class="num">
         <span class="container overText">
-          <small class="pri-mark">￥</small>{{ item.promotionPrice }}
+          <small class="pri-mark">￥</small>{{ product.bidPrice }}
         </span>
       </span>
       </a>
     </section>
     <section class="options">
-      <div class="line">
-        <div class="left">
-          订单优惠<span class="coupon" v-if="hasCoupon">(省{{ coupon.couponAmount }}元)</span>
-        </div>
-        <div class="right clearfix">
-          <div class="switch-container" v-if="!hasCoupon">
-            <input class="switch" id="used_merit" name="used_merit" v-model="coupPri" @change="showCoup()" type="checkbox" >
-          </div>
-        </div>
-      </div>
-      <div class="line buy-ani" :class="{show:show_coup}">
-        <div class="left">
-          <input type="text" v-model="couponcode" class="coup-code" placeholder="请输入优惠券码">
-        </div>
-        <div class="right clearfix">
-          <div class="sub-container">
-            <a href="javascript:;" class="sub">
-              <subpost :txt="coupText" ref="usecoup" @callback="getCoupon" @succhandle="succhandle"></subpost>
-            </a>
-          </div>
-        </div>
-      </div>
       <div class="line">
         <div class="left">
           <span v-if="!usePoint">可用<span class="coupon">{{ points }}</span>积分</span><span v-else>已用<span class="coupon">{{ usedPoint }}</span>积分</span>
@@ -96,7 +74,7 @@
     </section>
     <footer class="foot">
       <div class="inner">
-        <div class="pri">应付：<small class="pri-mark">￥</small><span class="pri">{{ totalPrice.toFixed(2) }}</span></div>
+        <div class="pri">应付：<small class="pri-mark">￥</small><span class="pri">{{ toFloat(totalPrice) }}</span></div>
         <div class="sub">
           <a href="javascript:;" class="sub">
             <subpost :txt="payText" ref="paypost" @callback="pay" @succhandle="payhandle"></subpost>
@@ -112,21 +90,13 @@
 <script src="public/js/mobile/common/tools.js"></script>
 <script>
   config = {
-    "carts": [
-      {
-        "id": 0,
-        "goodsId": 0,
-        "img": "public/img/mobile/resource/pro01.png",
-        "name": "稀有xx段【x瓢】",
-        "promotionPrice": 300.00,
-        "price": 30000.00,
-        "goodsSpecId": 0,
-        "specName": "刻龙",
-//        "stockCount": 4,   /* 库存 */
-        "buyCount": 1       /* 购买数量 */
-      },
-
-    ],
+    "product": {
+      "goodsName": "《夺魁》",
+      "goodsId": 1,
+      "goodsImg": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-11-03\/b9f1fb6dc64f4a6f8b71705ac3ef4b56.JPG!120",
+      "deposit": 0.01,
+      "bidPrice": 1300
+    },
     "address": {
       "id": 0,    /* 地址 id */
       "name": "用户名",
@@ -137,16 +107,11 @@
       "address": "xxx街道xx号",
       "isDefault": 1    /* 1是默认，0不是默认 */
     },
-    "coupon": {
-      "couponCode": "", /* 优惠券码 */
-      "couponAmount": 0   /* 优惠券面额 */
-    },
-    "points": 0,   /* 积分,100积分等于1元 */
-    "accountAmount": 0,    /* 余额,单位元 */
-    "validateCoupon": "",   /* 验证优惠券 */
+    "points": 100,   /* 积分,100积分等于1元 */
+    "amount": 0,    /* 余额,单位元 */
     "has_terms": true,
-    "coupon_url": 'xxxxxxxx',
-    "pay_url": "aaaaaaaaaaa"
+    "pay_url": "aaaaaaaaaaa",
+    "signup_id": 55
   }
 </script>
 <script src="public/js/mobile/auction_buy.js"></script>

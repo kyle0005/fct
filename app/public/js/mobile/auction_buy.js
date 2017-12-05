@@ -7,46 +7,33 @@ let app = new Vue(
     },
     mounted: function() {
       let vue = this;
+      vue.product = config.product;
       vue.loadAddress();
-      vue.loadCarts();
-      vue.coupon = config.coupon;
-      vue.loadCoupon();
       vue.calTotal();
       vue.calculateAmount(0);
     },
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
-      show_coup: false,
-      coupPri: null,
-      carts: [],
+      product:{},
       address: {},
       hasAddress: false,
       remark: '',
       has_terms: config.has_terms,
-      couponcode: '',
-      hasCoupon: false,
-      coupon: {},
-      couponAmount: 0,
       totalPrice: 0,
       points: config.points,  /* 积分 */
       usedPoint: 0,   /* 已使用积分 */
       usePoint: false,
 
-      accountAmount: config.accountAmount,     /* 余额 */
+      accountAmount: config.amount,     /* 余额 */
       usedAccountAmount: 0,   /* 已使用余额 */
       useAccountAmount: false,
 
-      coupText: '使用',
       payText: '我要付款'
     },
     watch: {
     },
     methods: {
-      showCoup(){
-        let vue = this;
-        vue.show_coup = !vue.show_coup
-      },
       loadAddress(){
         let vue = this;
         vue.address = config.address;
@@ -56,62 +43,27 @@ let app = new Vue(
           vue.hasAddress = false;
         }
       },
-      loadCarts(){
-        let vue = this;
-        vue.carts = config.carts;
-
-      },
-      loadCoupon(){
-        let vue = this;
-        if(!vue.coupon || !vue.coupon.couponCode){
-          /* 优惠券为空 */
-          vue.hasCoupon = false;
-        }else {
-          vue.hasCoupon = true;
-          vue.couponAmount = vue.coupon.couponAmount;
-        }
-      },
-      getCoupon(){
-        let vue = this,
-          post_url = config.coupon_url,
-          post_data = {
-          'validateCoupon': config.validateCoupon,
-          'couponCode': vue.couponcode,
-        };
-        vue.$refs.usecoup.post(post_url, post_data);
-
-      },
       calTotal(){
         let vue = this, price = 0;
-        vue.carts.forEach((item) => {
-          price += parseFloat(item.promotionPrice) * parseFloat(item.buyCount)
-        });
+        price = parseFloat(vue.product.bidPrice) - parseFloat(vue.product.deposit);
         vue.totalPrice = price.toFixed(2);
       },
+      toFloat(num) {
+        return parseFloat(num).toFixed(2);
+      },
+
       pay(){
-        let vue = this, cart_list = [], _temp = '',
+        let vue = this,
           post_url = config.pay_url,
           post_data = {};
-        vue.carts.forEach((item) => {
-          let _item = {};
-          _item.goodsId = item.goodsId;
-          _item.specId = item.goodsSpecId;
-          _item.buyCount = item.buyCount;
-          cart_list.push(_item);
-        });
-        if(!vue.coupon || !vue.coupon.couponCode){}
-        else {
-          _temp = vue.coupon.couponCode;
-        }
         if(vue.has_terms){
           post_data = {
             'points': vue.usedPoint,
-            'accountAmount': vue.usedAccountAmount,
-            'couponCode': _temp,
+            'account_amount': vue.usedAccountAmount,
             'remark': vue.remark,
-            'addressId': vue.address.id,
-            'orderGoodsInfo': JSON.stringify(cart_list),
-            'has_terms': vue.has_terms
+            'address_id': vue.address.id,
+            'has_terms': vue.has_terms,
+            'signup_id': config.signup_id
           };
           vue.$refs.paypost.post(post_url, post_data);
 
@@ -125,9 +77,8 @@ let app = new Vue(
       calculateAmount(num){
         let vue= this;
         vue.calTotal();
-          vue.totalPrice = vue.totalPrice - vue.couponAmount; //应付金额
-          vue.points = config.points ;//用户当前积分
-          vue.accountAmount = config.accountAmount;  //用户当前余额
+        vue.points = config.points ;//用户当前积分
+        vue.accountAmount = config.accountAmount;  //用户当前余额
 
         if(num == 1){
           vue.usePoint = !vue.usePoint;
@@ -135,35 +86,31 @@ let app = new Vue(
           vue.useAccountAmount = !vue.useAccountAmount;
         }
 
-          vue.usedPoint = 0;//最终使用积分
-          vue.usedAccountAmount = 0;//最终使用余额
-          if(vue.points>0 && vue.usePoint){
-            //如果当用可用积分大于应付金额
-            if(vue.points/100 > vue.totalPrice){
-              vue.usedPoint = vue.totalPrice*100;
-              vue.totalPrice = 0;
-            }else{
-              vue.totalPrice = vue.totalPrice - vue.points/100;
-              vue.usedPoint = vue.points; //积分全部扣掉
-            }
+        vue.usedPoint = 0;//最终使用积分
+        vue.usedAccountAmount = 0;//最终使用余额
+        if(vue.points>0 && vue.usePoint){
+          //如果当用可用积分大于应付金额
+          if(vue.points/100 > vue.totalPrice){
+            vue.usedPoint = vue.totalPrice*100;
+            vue.totalPrice = 0;
+          }else{
+            vue.totalPrice = vue.totalPrice - vue.points/100;
+            vue.usedPoint = vue.points; //积分全部扣掉
           }
-          if(vue.totalPrice>0 && vue.accountAmount>0 && vue.useAccountAmount){
-            //当余额可抵扣支付金额时
-            if(vue.accountAmount>vue.totalPrice){
-              vue.usedAccountAmount = vue.totalPrice; //
-              vue.totalPrice = 0;
-            }else{
-              vue.totalPrice = vue.totalPrice - vue.accountAmount;
-              vue.usedAccountAmount = vue.accountAmount;
-            }
+        }
+        if(vue.totalPrice>0 && vue.accountAmount>0 && vue.useAccountAmount){
+          //当余额可抵扣支付金额时
+          if(vue.accountAmount>vue.totalPrice){
+            vue.usedAccountAmount = vue.totalPrice; //
+            vue.totalPrice = 0;
+          }else{
+            vue.totalPrice = vue.totalPrice - vue.accountAmount;
+            vue.usedAccountAmount = vue.accountAmount;
           }
+        }
 
 
       },
-      toFloat(num) {
-        return num.toFixed(2);
-      },
-
       payhandle(data){
         let vue = this;
         vue.msg = data.message;
@@ -176,10 +123,6 @@ let app = new Vue(
       },
       succhandle(data){
         let vue = this;
-        vue.showCoup();
-        vue.coupon.couponAmount = data.data;
-        vue.coupon.couponCode = vue.couponcode;
-        vue.loadCoupon();
         vue.calculateAmount(0);
         if(data.url){
           vue.close_auto(vue.linkto, data.url);

@@ -77,8 +77,10 @@
     </div>
     <div class='other clearfix'>
       <div class="left">
-        <img src="https://cdn.fangcun.com/static/img/mobile/auction/remind-yw.png"/>
-        <div class='text'>距结束仅剩：<m-time :end-time="product.endTime" :callback="end"></m-time></div>
+        <div v-if="product.status !== 4 && parseInt((product.endTime - (new Date()).valueOf()) / 1000) > 0">
+          <img src="https://cdn.fangcun.com/static/img/mobile/auction/remind-yw.png"/>
+          <div class='text'>距结束仅剩：<m-time :end-time="product.endTime" :callback="end"></m-time></div>
+        </div>
       </div>
       <div class="right">
         同场其他拍品
@@ -87,68 +89,19 @@
     </div>
   </section>
   <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
-    <div class="container">
+    <div class="container" @click.stop="">
       <div class='chat-inner'>
-        <div class='chat-item'>
+        <div class='chat-item' :class="{price:items.roleType===1,host:items.roleType===2}" v-for="(items, index) in product.chatList">
           <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
           <div class='content'>
-            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
-            <div class='main'>p安排p安排p安排p安排p安排p安排p安排p安排</div>
-          </div>
-        </div>
-        <div class='chat-item host'>
-          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
-          <div class='content'>
-            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
-            <div class='main'>p安排p安排p安排p安排p安排p安排p安排p安排</div>
-          </div>
-        </div>
-        <div class='chat-item price'>
-          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
-          <div class='content'>
-            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
-            <div class='main'>出价：231234元<span class='text off'>失效</span></div>
-          </div>
-        </div>
-        <div class='chat-item price'>
-          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
-          <div class='content'>
-            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
-            <div class='main'>出价：231234元<span class='text on'>有效</span></div>
+            <div class='title'>{{ items.userName }}<span class='time'>{{ items.createTime }}</span></div>
+            <div class='main'>{{ items.content }}<span class='text off' v-if="items.roleType===1 && items.bidStatus===0">失效</span><span class='text on' v-if="items.roleType===1 && items.bidStatus===1">有效</span></div>
           </div>
         </div>
 
-        <div class='chat-item'>
-          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
-          <div class='content'>
-            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
-            <div class='main'>p安排p安排p安排p安排p安排p安排p安排p安排</div>
-          </div>
-        </div>
-        <div class='chat-item host'>
-          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
-          <div class='content'>
-            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
-            <div class='main'>p安排p安排p安排p安排p安排p安排p安排p安排</div>
-          </div>
-        </div>
-        <div class='chat-item price'>
-          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
-          <div class='content'>
-            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
-            <div class='main'>出价：231234元<span class='text off'>失效</span></div>
-          </div>
-        </div>
-        <div class='chat-item price'>
-          <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
-          <div class='content'>
-            <div class='title'>方寸小拍<span class='time'>17小时前</span></div>
-            <div class='main'>出价：231234元<span class='text on'>有效</span></div>
-          </div>
-        </div>
       </div>
       <div class='send clearfix'>
-        <input type='number' class='amount' placeholder='输入想要表达的信息'/>
+        <input type='text' class='amount' placeholder='输入想要表达的信息'/>
         <a href="javascript:;" class='btn'>发送</a>
       </div>
       <div class='slide'>
@@ -168,9 +121,10 @@
           </a>
         </div>
         <div class="lis inp">
-          <input type='number' class='input' placeholder='最低加价100' v-model.number="addpri"/>
+          <input type='number' class='input' :disabled="product.status !== 3" placeholder='最低加价100' v-model.number="addpri"/>
         </div>
-        <a href="javascript:;" class="lis add" @click="add">+</a>
+        <a href="javascript:;" class="lis add" v-if="product.status === 3" @click="add">+</a>
+        <a href="javascript:;" class="lis add grey" v-else>+</a>
         <a href="javascript:;" class="lis buy">
           <span class="txt grey" v-if="product.status == 1">拍卖未开始</span>
           <span class="txt" v-else-if="product.status < 3">预交保证金</span>
@@ -213,42 +167,200 @@
 
     ],
     "main_url": "http://localhost:9000/main.html",
+    "ws_auction_url": "",
     "product": {
-      "id": 4,
-      "artistId": 5579,
-      "artistName": "陆小强",
-      "artistImg": "https://cdn.fangcun.com/upload/images/2017-10-26/d3c767e6e35e46e4a2e61c1c3a0e309f.jpg!750",
-      "artistTitle": "中青年陶艺家",
-      "artistIntro": "陆小强(晓强)，1967年出生于宜兴丁蜀陶艺世家，中青年陶艺家。1984年进紫砂工艺厂，师从江苏省工艺美术大师蒋小彦。1992年到中央工艺美术学院紫砂造型设计班进修。所制作品构思新颖，独树一帜，擅长在素器上雕、捏塑、嵌，制作精致、细腻，形象逼真，观后大呼惊叹，不可思议，在国内外市场很受欢迎。多件作品被国内博物馆所收藏。",
-      "images": [
-        "https://cdn.fangcun.com/upload/images/2017-11-22/5c35992a91ab4d69b1a03f78fe478a85.png!750"
-      ],
-      "name": "websocket测试",
-      "subTitle": "websocket测试websocket测试",
-      "defaultImage": "https://cdn.fangcun.com/upload/images/2017-11-22/5c35992a91ab4d69b1a03f78fe478a85.png!750",
+      "token": "asdsd",
+      "id": 1,
+      "artistId": 5575,
+      "artistName": "马璟辉",
+      "artistImg": "https://cdn.fangcun.com/upload/images/2017-10-25/c7838372c55448c99ae895dfa6210e9c.jpg!750",
+      "artistTitle": "高工",
+      "artistIntro": "马璟辉又名：马景辉，1976年生于宜兴，2017年高工，先后师从江苏省工艺美术大师谈跃伟、中国陶瓷艺术大师陈国良，1996年毕业于陶瓷工艺美术专业，后从事全手工壶艺创作，精通格式壶艺制作流程和泥料配制。因壶艺精湛、作品拔萃，成为中青辈实力派制壶艺人，作品在上海春秋堂、北京翰海等多家拍卖行拍卖，均以较高价成交。其作品在国内外展览中多次获奖，并被国内多家博物馆收藏。",
+      "images": ["https://cdn.fangcun.com/upload/images/2017-11-03/b9f1fb6dc64f4a6f8b71705ac3ef4b56.JPG!750", "https://cdn.fangcun.com/upload/images/2017-11-03/3dbd43f8a7bf4db99b3c280f3fff6ed6.jpg!750"],
+      "name": "《夺魁》",
+      "subTitle": "古朴高雅，线条流畅自然",
+      "defaultImage": "https://cdn.fangcun.com/upload/images/2017-11-03/b9f1fb6dc64f4a6f8b71705ac3ef4b56.JPG!750",
       "videoUrl": "",
-      "videoImg": "/upload/images/2017-11-22/59fbde503ce046b287eeee2ee1b4f1f3.png",
-      "content": "<p>websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试websocket测试<br></p>",
-      "materialName": "黄花泥",
-      "volume": 500,
-      "marketPrice": 500.00,
-      "startPrice": 50.00,
-      "increasePrice": 10.00,
-      "deposit": 50.00,
-      "startTime": 151128,
-      "endTime": 151197,
-      "viewCount": 100,
-      "bidCount": 0,
-      "bidPrice": 50.00,
-      "delaySecond": "10秒/次",
+      "videoImg": "/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg",
+      "content": "<p style=\"margin-bottom: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; color: rgb(102, 102, 102); font-family: 微软雅黑, SimSun, &quot;Arial Narrow&quot;, HELVETICA;\"><img alt=\"Image title\" class=\"fr-fin fr-dib\" src=\"http://res.yufuhui.com/pic/public/upload/paimai/2017-03-23/art_fd217cf7-446d-42cb-8d02-2a417922ee45.jpg\" style=\"margin: 15px auto 0px; padding: 0px; outline: 0px; vertical-align: baseline; display: block;width:100%;\"></p><p style=\"margin-bottom: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; color: rgb(102, 102, 102); font-family: 微软雅黑, SimSun, &quot;Arial Narrow&quot;, HELVETICA;\"><br style=\"margin: 0px; padding: 0px;\"></p><p style=\"margin-bottom: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; color: rgb(102, 102, 102); font-family: 微软雅黑, SimSun, &quot;Arial Narrow&quot;, HELVETICA;\"><img alt=\"Image title\" class=\"fr-fin fr-dib\" src=\"http://res.yufuhui.com/pic/public/upload/paimai/2017-03-23/art_4e5ff304-ca25-427d-bdea-8c8eff11b52b.jpg\" style=\"margin: 15px auto 0px; padding: 0px; outline: 0px; vertical-align: baseline; display: block;width:100%; \"></p>",
+      "materialName": "原矿本山段泥",
+      "volume": 280,
+      "marketPrice": 5000.00,
+      "startPrice": 1000.00,
+      "increasePrice": 100.00,
+      "deposit": 0.01,
+      "startTime": 1512470400000,
+      "endTime": 1512470520000,
+      "viewCount": 205,
+      "bidCount": 5,
+      "bidPrice": 1545.00,
+      "bidStatusName": "竞拍成功",
+      "bidUserName": "小寒",
+      "bidUserHeadPortrait": "https://cdn.fangcun.com/upload/head/2017-11-17/9caa1049877f478caf68a1428bedb92d.o6zajsyckrvxi80k5s4telguoqjw!120",
+      "delaySecond": "30秒/次",
       "status": 2,
-      "duration": "192小时",
+      "duration": "10分钟",
       "signupId": 0,
-
-      "bidUserName": "12313",
-      "bidStatusName": "领先",
-      "bidUserHeadPortrait": "",
-
+      "chatList": [
+/*        {   /!* websocket单次消息体 *!/
+          "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-29/f3747d28cf36412aa870cc08113f0497.jpg!120",
+          "userName": "江水滔滔",
+          "content": "hi",
+          "roleType": 0,      /!* 0:普通消息(白色) 1：出价(红色) 2：系统消息(黄色) *!/
+          "bidStatus": 0      /!* 出价'roleType'字段为1时，设置此字段，1：有效 0：无效 *!/
+        },*/
+          {
+        "id": 42923,
+        "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-29/f3747d28cf36412aa870cc08113f0497.jpg!120",
+        "memberId": 1,
+        "userName": "江水滔滔",
+        "createTime": "24分钟前",
+        "content": "hi",
+        "roleType": 0,      /* 0:普通消息(白色) 1：出价(红色) 2：系统消息(黄色) */
+        "bidStatus": 0      /* 出价'roleType'字段为1时，设置此字段，1：有效 0：无效 */
+      },
+        {
+        "id": 42924,
+        "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-17/9caa1049877f478caf68a1428bedb92d.o6zajsyckrvxi80k5s4telguoqjw!120",
+        "memberId": 3,
+        "userName": "小寒",
+        "createTime": "22分钟前",
+        "content": "ga",
+        "roleType": 0,
+        "bidStatus": 0
+      },
+        {
+        "id": 42925,
+        "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
+        "memberId": 0,
+        "userName": "方寸拍拍",
+        "createTime": "21分钟前",
+        "content": "拍品 《夺魁》 开始拍卖",
+        "roleType": 2,
+        "bidStatus": 0
+      },
+        {
+        "id": 42926,
+        "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-17/9caa1049877f478caf68a1428bedb92d.o6zajsyckrvxi80k5s4telguoqjw!120",
+        "memberId": 3,
+        "userName": "小寒",
+        "createTime": "20分钟前",
+        "content": "出价：1100元",
+        "roleType": 1,
+        "bidStatus": 0
+      },
+        {
+        "id": 42927,
+        "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-29/f3747d28cf36412aa870cc08113f0497.jpg!120",
+        "memberId": 1,
+        "userName": "江水滔滔",
+        "createTime": "20分钟前",
+        "content": "出价：1200元",
+        "roleType": 1,
+        "bidStatus": 0
+      },
+        {
+        "id": 42928,
+        "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-17/9caa1049877f478caf68a1428bedb92d.o6zajsyckrvxi80k5s4telguoqjw!120",
+        "memberId": 3,
+        "userName": "小寒",
+        "createTime": "19分钟前",
+        "content": "出价：1345元",
+        "roleType": 1,
+        "bidStatus": 0
+      },
+        {
+        "id": 42929,
+        "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-29/f3747d28cf36412aa870cc08113f0497.jpg!120",
+        "memberId": 1,
+        "userName": "江水滔滔",
+        "createTime": "19分钟前",
+        "content": "出价：1445元",
+        "roleType": 1,
+        "bidStatus": 0
+      },
+        {
+        "id": 42930,
+        "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
+        "memberId": 0,
+        "userName": "方寸拍拍",
+        "createTime": "18分钟前",
+        "content": "拍品：《夺魁》 \n作者：马璟辉 \n材质：原矿本山段泥 \n容量：280CC",
+        "roleType": 2,
+        "bidStatus": 0
+      },
+        {
+        "id": 42931,
+        "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
+        "memberId": 0,
+        "userName": "方寸拍拍",
+        "createTime": "16分钟前",
+        "content": "当前最高价 1445.00 元，出价的是 江水滔滔(9868) ",
+        "roleType": 2,
+        "bidStatus": 0
+      },
+        {
+        "id": 42932,
+        "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
+        "memberId": 0,
+        "userName": "方寸拍拍",
+        "createTime": "16分钟前",
+        "content": "还有再出一口的吗？ ",
+        "roleType": 2,
+        "bidStatus": 0
+      },
+        {
+        "id": 42933,
+        "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
+        "memberId": 0,
+        "userName": "方寸拍拍",
+        "createTime": "13分钟前",
+        "content": "还有再出一口的吗？ ",
+        "roleType": 2,
+        "bidStatus": 0
+      },
+        {
+        "id": 42934,
+        "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-17/9caa1049877f478caf68a1428bedb92d.o6zajsyckrvxi80k5s4telguoqjw!120",
+        "memberId": 3,
+        "userName": "小寒",
+        "createTime": "11分钟前",
+        "content": "出价：1545元",
+        "roleType": 1,
+        "bidStatus": 1
+      },
+        {
+        "id": 42935,
+        "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
+        "memberId": 0,
+        "userName": "方寸拍拍",
+        "createTime": "10分钟前",
+        "content": "开始10秒倒计时，当前最高价 1545.00 元，出价的是 小寒(1580)",
+        "roleType": 2,
+        "bidStatus": 0
+      },
+        {
+        "id": 42936,
+        "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
+        "memberId": 0,
+        "userName": "方寸拍拍",
+        "createTime": "10分钟前",
+        "content": "倒计时：5秒",
+        "roleType": 2,
+        "bidStatus": 0
+      },
+        {
+        "id": 42937,
+        "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
+        "memberId": 0,
+        "userName": "方寸拍拍",
+        "createTime": "10分钟前",
+        "content": "恭喜 小寒(1580) 成功拍得 《夺魁》",
+        "roleType": 2,
+        "bidStatus": 0
+      }
+      ],
+      "nowTime": 1512439925300
     },
     "addcart_url": "http://localhost:3000/addcart",
     "buy_url": "http://localhost:9000/buy.html",
@@ -265,65 +377,6 @@
     </div>
   </div>
 </template>
-<script type="text/x-template" id="head_top">
-  <header class="head-container">
-    <ul class="nav">
-      <li class="toggle" @click="toggle()">
-        <i class="fa fa-bars"></i>
-      </li>
-      <li class="logo" @click="toIndex()">
-        <img src="public/img/mobile/logo.png">
-      </li>
-      <li class="user" @click="toLogin()">
-        <span class="img-container">
-          <img src="public/img/mobile/nologin-head.png">
-        </span>
-      </li>
-    </ul>
-    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
-      <div class="container">
-        <ul class="types">
-          <li class="item" v-for="(types, index) in typeList" @click="change(types.code)">
-            <span>{{ types.name }}</span>
-            <i class="fa fa-angle-right"></i>
-          </li>
-        </ul>
-        <ul class="lines clearfix">
-          <li class="item">
-            <a href="javascript:;">
-              <img src="public/img/mobile/menu1.png">
-              <span>合作艺师</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="javascript:;">
-              <img src="public/img/mobile/menu2.png">
-              <span>百科</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="javascript:;">
-              <img src="public/img/mobile/menu3.png">
-              <span>个性定制</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="javascript:;">
-              <img src="public/img/mobile/menu4.png">
-              <span>APP下载</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="javascript:;">
-              <img src="public/img/mobile/menu5.png">
-              <span>品牌理念</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </header>
-</script>
 <script type="text/x-template" id="m_swipe">
   <div class="swiper-container" :class="swipeid">
     <div class="swiper-wrapper">

@@ -111,6 +111,34 @@ let app = new Vue(
       }
     },
     methods: {
+      tip(item, index){
+        let vue = this;
+        jAjax({
+          type:'post',
+          url:config.auction_remind_url,
+          data: {
+            'goods_id': item.id
+          },
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) == 200){
+                vue.pro_list[index].remindId = data.data;
+              }else {
+                console.log('false')
+              }
+            }
+
+          },
+          error:function(status, statusText){
+            console.log(statusText);
+          }
+        });
+      },
       setClock(timestamp){
         let vue = this, _initTime = new Date().getTime();
         let time_content = {
@@ -159,31 +187,16 @@ let app = new Vue(
         vue.isPage ? vue.pagerloading = true : vue.listloading = true;
       },
       /* 菜单分类加载 */
-      getprolist(code, level_id, index) {
+      getprolist(code) {
         let vue = this;
-        vue.tab_num = index || 0;
         vue.pro_list = {};
         vue.nodata = false;
 
         let _url = '';
         code = code || '';
-        level_id = level_id || 0;
-        if (code != '') {
-          _url = '?code=' + code;
-          if (level_id > 0) {
-            _url += '&level_id=' + level_id;
-          }
-        } else {
-          if (level_id >= 0) {
-            code = vue.code;
-            _url = '?level_id=' + level_id;
-            if (code != '') {
-              _url += '&code=' + code;
-            }
-          }
-        }
+        _url = '?code=' + code;
         vue._code = code;
-        _url = config.product_url + _url;
+        _url = config.auction_url + _url;
         vue.pager_url = _url;
         tools.ajaxGet(_url, vue.getSucc, vue.getBefore);
 

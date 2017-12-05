@@ -6790,6 +6790,9 @@ $foot-height: 250px;
                 width: 96%;
                 height: 100%;
                 text-align: right;
+                span.time{
+                  display: initial;
+                }
                 .time-block{
                   display: inline-block;
                   background-color: $color-3e3c3c;
@@ -6809,26 +6812,42 @@ $foot-height: 250px;
               }
             }
           }
-          .ops{
-            position: relative;
-            margin-top: 5%;
+
+        }
+        .ops{
+          display: inline-block;
+          padding: 1px 2%;
+          width: 96%;
+          color: $color-999;
+          position: relative;
+          margin-top: 5%;
+          a.right{
+            position: absolute;
+            right: 1%;
+            top: 0;
+            max-width: initial;
+            margin: 0;
             img{
-              vertical-align: sub;
-            }
-            span.right{
-              position: absolute;
-              right: 1%;
-              top: 0;
-              max-width: initial;
-              margin: 0;
-              img{
-                width: 22%;
-                margin-right: 2%;
-                vertical-align: bottom;
-              }
+              width: 22%;
+              margin-right: 2%;
+              vertical-align: bottom;
             }
           }
+
+
+          img{
+            vertical-align: middle;
+            margin-left: 2%;
+            width: 4.5%;
+          }
+          a{
+            display: inline-block;
+            width: auto;
+            max-width: 12%;
+            margin: 0 5% 0 1%;
+          }
         }
+
       }
     }
   }
@@ -7302,7 +7321,7 @@ $foot-height: 250px;
             .time{
               display: inline-block;
               color: #999;
-              background-color: #3d3b3c;
+              background-color: rgba(40, 40, 40, 0.4);
               border-radius: 5px;
               padding: 0 5px;
               margin-left: 10px;
@@ -7478,6 +7497,7 @@ $foot-height: 250px;
             height: 100%;
             text-align: left;
             font-size: $font-size-t14;
+            background-color: $color-white;
           }
         }
         .message {
@@ -7520,6 +7540,9 @@ $foot-height: 250px;
           .grey{
             background-color:rgba(255, 255, 255, 0.8);
           }
+        }
+        .grey{
+          background-color:rgba(154, 51, 52, 0.3);
         }
       }
       &:before{
