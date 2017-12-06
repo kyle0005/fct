@@ -103,9 +103,7 @@ let app = new Vue(
         vue.pager = {};
         vue.status = i;
         var _url = config.orderlist_url + '?status=' + vue.status;
-        if(i == 3){
-          _url = _url + '&comment_status=0';
-        }
+
         tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
 
       },

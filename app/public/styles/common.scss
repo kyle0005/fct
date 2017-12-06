@@ -365,6 +365,24 @@ $fc:#fff;
   }
 }
 }
+.confirm-container.pay{
+  .inner{
+    .confirm-text{
+      color: $color-999;
+      font-size: $font-size-t12;
+      .title{
+        color: $color-333;
+        font-size: $font-size-t14;
+      }
+    }
+    .confirm-btn{
+      .ok{
+        color: $color-8dc14b;
+
+      }
+    }
+  }
+}
 
 .loader_more{
   text-align: center;

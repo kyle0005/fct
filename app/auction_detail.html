@@ -72,37 +72,37 @@
       </div>
       <div class='price'>
         <div class='up'>当前价：<span class='low'>最低+{{ product.increasePrice }}</span></div>
-        <div class='down'>{{ product.bidPrice }}元</div>
+        <div class='down'>{{ currentPrice }}元</div>
       </div>
     </div>
     <div class='other clearfix'>
       <div class="left">
         <div v-if="product.status !== 4 && parseInt((product.endTime - (new Date()).valueOf()) / 1000) > 0">
           <img src="https://cdn.fangcun.com/static/img/mobile/auction/remind-yw.png"/>
-          <div class='text'>距结束仅剩：<m-time :end-time="product.endTime" :callback="end"></m-time></div>
+          <div class='text'>距{{ product.status === 1 ? '开始': '结束'}}仅剩：<m-time v-if="reload" :end-time="product.status === 1 ? product.startTime: product.endTime" :callback="end"></m-time></div>
         </div>
       </div>
-      <div class="right">
+      <a href="javascript:;" class="right">
         同场其他拍品
         <img src="https://cdn.fangcun.com/static/img/mobile/head_r.png"/>
-      </div>
+      </a>
     </div>
   </section>
   <div class="aside" :class="{open:open,docked:docked}" @click.prevent="choose()">
     <div class="container" @click.stop="">
-      <div class='chat-inner'>
-        <div class='chat-item' :class="{price:items.roleType===1,host:items.roleType===2}" v-for="(items, index) in product.chatList">
+      <div class='chat-inner' id="chatContainer">
+        <div class='chat-item' :class="{price:items.roleType===1,host:items.roleType===2}" v-for="(items, index) in chat_list">
           <img class='photo' src="https://cdn.fangcun.com/static/img/mobile/nologin-head.png"/>
           <div class='content'>
             <div class='title'>{{ items.userName }}<span class='time'>{{ items.createTime }}</span></div>
-            <div class='main'>{{ items.content }}<span class='text off' v-if="items.roleType===1 && items.bidStatus===0">失效</span><span class='text on' v-if="items.roleType===1 && items.bidStatus===1">有效</span></div>
+            <div class='main'>{{ items.content }}<span class='text on' v-if="items.roleType===1 && items.id===onId">有效</span><span class='text off' v-else-if="items.roleType===1 && items.id !== onId">失效</span></div>
           </div>
         </div>
 
       </div>
       <div class='send clearfix'>
-        <input type='text' class='amount' placeholder='输入想要表达的信息'/>
-        <a href="javascript:;" class='btn'>发送</a>
+        <input type='text' class='amount' placeholder='输入想要表达的信息' v-model="wsMsg"/>
+        <a href="javascript:;" class='btn' @click="bindSendTap">发送</a>
       </div>
       <div class='slide'>
         <img class='tips-img' src="https://cdn.fangcun.com/static/img/mobile/auction/slide.png"/>
@@ -122,16 +122,19 @@
         </div>
         <div class="lis inp">
           <input type='number' class='input' :disabled="product.status !== 3" placeholder='最低加价100' v-model.number="addpri"/>
+          <a href="javascript:;" class="fork" @click="clear" v-if="addpri > 0">
+            <img src="https://cdn.fangcun.com/static/img/auction/del-price.png">
+          </a>
         </div>
         <a href="javascript:;" class="lis add" v-if="product.status === 3" @click="add">+</a>
         <a href="javascript:;" class="lis add grey" v-else>+</a>
-        <a href="javascript:;" class="lis buy">
-          <span class="txt grey" v-if="product.status == 1">拍卖未开始</span>
-          <span class="txt" v-else-if="product.status < 3">预交保证金</span>
-          <span class="txt" v-else-if="product.status > 10">继续报名</span>
-          <span class="txt" v-else-if="product.status === 3">我要出价</span>
-          <span class="txt grey" v-else-if="product.status === 4">拍卖结束</span>
-        </a>
+        <div class="lis buy">
+          <a href="javascript:;" class="txt grey" v-if="product.status == 1">拍卖未开始</a>
+          <a href="javascript:;" class="txt" v-else-if="product.status < 3" @click="bindDepositTap">预交保证金</a>
+          <a href="javascript:;" class="txt" v-else-if="product.status > 10">继续报名</a>
+          <a href="javascript:;" class="txt" v-else-if="product.status === 3" @click="bindSubmitTap">我要出价</a>
+          <a href="javascript:;" class="txt grey" v-else-if="product.status === 4">拍卖结束</a>
+        </div>
       </div>
     </div>
 
@@ -143,34 +146,14 @@
 <script src="public/js/mobile/api/apis.js"></script>
 <script>
   var config = {
-    "productsType": [
-      {
-        "name": "全部",
-        "code": "a"
-      },
-      {
-        "name": "圆器",
-        "code": "b"
-      },
-      {
-        "name": "方器",
-        "code": "c"
-      },
-      {
-        "name": "花器",
-        "code": "d"
-      },
-      {
-        "name": "筋纹器",
-        "code": "e"
-      }
-
-    ],
     "main_url": "http://localhost:9000/main.html",
-    "ws_auction_url": "",
+    "reload_url": "",
+    "ws_auction_url": "ws://test.chat.fangcuntang.com/",
+    "auction_signup_url": "",
+    "auction_bid_url": '',
     "product": {
-      "token": "asdsd",
-      "id": 1,
+      "token": "",
+      "id": 3,
       "artistId": 5575,
       "artistName": "马璟辉",
       "artistImg": "https://cdn.fangcun.com/upload/images/2017-10-25/c7838372c55448c99ae895dfa6210e9c.jpg!750",
@@ -198,18 +181,21 @@
       "bidUserName": "小寒",
       "bidUserHeadPortrait": "https://cdn.fangcun.com/upload/head/2017-11-17/9caa1049877f478caf68a1428bedb92d.o6zajsyckrvxi80k5s4telguoqjw!120",
       "delaySecond": "30秒/次",
-      "status": 2,
+      "status": 3,
       "duration": "10分钟",
       "signupId": 0,
-      "chatList": [
-/*        {   /!* websocket单次消息体 *!/
-          "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-29/f3747d28cf36412aa870cc08113f0497.jpg!120",
-          "userName": "江水滔滔",
-          "content": "hi",
-          "roleType": 0,      /!* 0:普通消息(白色) 1：出价(红色) 2：系统消息(黄色) *!/
-          "bidStatus": 0      /!* 出价'roleType'字段为1时，设置此字段，1：有效 0：无效 *!/
-        },*/
-          {
+      "nowTime": 1512439925300
+    },
+    "chatList": [
+      /*        {   /!* websocket单次消息体 *!/
+       "id": 1
+       "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-29/f3747d28cf36412aa870cc08113f0497.jpg!120",
+       "userName": "江水滔滔",
+       "content": "hi",
+       "roleType": 0,      /!* 0:普通消息(白色) 1：出价(红色) 2：系统消息(黄色) *!/
+       "bidStatus": 1      /!* 出价'roleType'字段为1时，设置此字段，1：有效 0：无效 *!/
+       },*/
+      {
         "id": 42923,
         "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-29/f3747d28cf36412aa870cc08113f0497.jpg!120",
         "memberId": 1,
@@ -219,7 +205,7 @@
         "roleType": 0,      /* 0:普通消息(白色) 1：出价(红色) 2：系统消息(黄色) */
         "bidStatus": 0      /* 出价'roleType'字段为1时，设置此字段，1：有效 0：无效 */
       },
-        {
+      {
         "id": 42924,
         "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-17/9caa1049877f478caf68a1428bedb92d.o6zajsyckrvxi80k5s4telguoqjw!120",
         "memberId": 3,
@@ -229,7 +215,7 @@
         "roleType": 0,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42925,
         "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
         "memberId": 0,
@@ -239,7 +225,7 @@
         "roleType": 2,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42926,
         "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-17/9caa1049877f478caf68a1428bedb92d.o6zajsyckrvxi80k5s4telguoqjw!120",
         "memberId": 3,
@@ -249,7 +235,7 @@
         "roleType": 1,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42927,
         "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-29/f3747d28cf36412aa870cc08113f0497.jpg!120",
         "memberId": 1,
@@ -259,7 +245,7 @@
         "roleType": 1,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42928,
         "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-17/9caa1049877f478caf68a1428bedb92d.o6zajsyckrvxi80k5s4telguoqjw!120",
         "memberId": 3,
@@ -269,7 +255,7 @@
         "roleType": 1,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42929,
         "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-29/f3747d28cf36412aa870cc08113f0497.jpg!120",
         "memberId": 1,
@@ -279,7 +265,7 @@
         "roleType": 1,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42930,
         "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
         "memberId": 0,
@@ -289,7 +275,7 @@
         "roleType": 2,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42931,
         "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
         "memberId": 0,
@@ -299,7 +285,7 @@
         "roleType": 2,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42932,
         "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
         "memberId": 0,
@@ -309,7 +295,7 @@
         "roleType": 2,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42933,
         "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
         "memberId": 0,
@@ -319,7 +305,7 @@
         "roleType": 2,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42934,
         "headPortrait": "https://cdn.fangcun.com/upload/head/2017-11-17/9caa1049877f478caf68a1428bedb92d.o6zajsyckrvxi80k5s4telguoqjw!120",
         "memberId": 3,
@@ -329,7 +315,7 @@
         "roleType": 1,
         "bidStatus": 1
       },
-        {
+      {
         "id": 42935,
         "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
         "memberId": 0,
@@ -339,7 +325,7 @@
         "roleType": 2,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42936,
         "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
         "memberId": 0,
@@ -349,7 +335,7 @@
         "roleType": 2,
         "bidStatus": 0
       },
-        {
+      {
         "id": 42937,
         "headPortrait": "https://cdn.fangcun.com/static/img/pm_header.png!120",
         "memberId": 0,
@@ -359,11 +345,7 @@
         "roleType": 2,
         "bidStatus": 0
       }
-      ],
-      "nowTime": 1512439925300
-    },
-    "addcart_url": "http://localhost:3000/addcart",
-    "buy_url": "http://localhost:9000/buy.html",
+    ],
   }
 </script>
 <template id="m_video">
@@ -386,6 +368,7 @@
     <div :class="{'swiper-pagination':pagination}"></div>
   </div>
 </script>
+<script src="public/js/mobile/hammer.js"></script>
 <script src="public/js/mobile/head.js"></script>
 <script src="public/js/mobile/common/tools.js"></script>
 <script src="public/js/mobile/swiper.js"></script>

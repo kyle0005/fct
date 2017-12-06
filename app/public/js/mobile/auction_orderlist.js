@@ -24,7 +24,7 @@ let app = new Vue(
       placeholder: '',
       keywords: '',
       orderlist: [],
-      tabs: ['全部', '待付款', '进行中', '拍失败', '拍成功'],
+      tabs: ['全部', '待付款', '待发货', '待收货', '已完成'],
       tab_num: 0,
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
@@ -103,9 +103,6 @@ let app = new Vue(
         vue.pager = {};
         vue.status = i;
         var _url = config.orderlist_url + '?status=' + vue.status;
-        if(i == 3){
-          _url = _url + '&comment_status=0';
-        }
         tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
 
       },

@@ -7254,6 +7254,7 @@ $foot-height: 250px;
       .right{
         text-align: right;
         padding-right: 1px;
+        color: $color-999;
         img{
           width: 20px;
           vertical-align: text-bottom;
@@ -7513,7 +7514,19 @@ $foot-height: 250px;
           }
         }
         .inp {
+          position: relative;
           width: calc(280/750*100%);
+          .fork{
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            display: inline-block;
+            width: 12%;
+            img{
+              width: 100%;
+            }
+          }
         }
         .add {
           width: calc(90/750*100%);

@@ -240,10 +240,12 @@ let app = new Vue(
   {
     data: {
       product: config.product,
+      chat_list: config.chatList,
       ranks_list: [],
       pro_list: [],
       loading: false,
       refreshing: false,
+      currentPrice: config.product.bidPrice,
       showAlert: false, //显示提示组件
       msg: null, //提示的内容,
       open: false,
@@ -251,11 +253,24 @@ let app = new Vue(
       chosen: false,
       swiper: '',
       tops: config.product.images,
-
+      onId: 0,
       addpri: 0.00,
 
       wsurl: config.ws_auction_url + '?token=' + config.product.token + '&relation_id=' + config.product.id,
 
+      ws: {},
+      wsMsg: '',
+      reload: true
+
+    },
+    watch: {
+      chat_list:function (val, oldVal){
+        this.$nextTick(function(){
+          let container = this.$el.querySelector('#chatContainer');
+          console.log(container);
+          container.scrollTop = container.scrollHeight;
+        });
+      }
     },
     mounted: function() {
       let vue = this;
@@ -264,10 +279,21 @@ let app = new Vue(
         this.swiper = swiper.dom;
       }
 
+      let ele = document.querySelector('#chatContainer');
+      let ham = new Hammer(ele);
+      ham.on('swipeleft', function(ev) {
+        console.log('swipeleft')
+      });
+      ham.on('swiperight', function(ev) {
+        vue.choose();
+      });
+
+      vue.choose();
       if(vue.product.status && parseInt(vue.product.status) === 1){
         //如果是没有开始，不显示聊天
         vue.choose();
       }
+      vue.init_ws();
 
     },
     methods: {
@@ -289,10 +315,31 @@ let app = new Vue(
       },
       add(){
         let vue = this;
-        vue.addpri = parseFloat(vue.addpri) + parseFloat(vue.product.increasePrice);
+        let _entity = vue.product;
+        let _myPrice = parseFloat(vue.addpri);
+        let _currentPrice = parseFloat(vue.currentPrice);
+        if (_entity.status === 3) {
+          if (_myPrice < _currentPrice)
+            _myPrice = _currentPrice + _entity.increasePrice;
+          else
+            _myPrice = _myPrice + _entity.increasePrice;
+          vue.addpri = _myPrice;
+        }
+
       },
       end(){
-        console.log('end')
+        console.log('end');
+        tools.ajaxGet(config.reload_url, this.reloadData_suc, this.reloadData_bef);
+      },
+      reloadData_bef(){
+        let vue = this;
+      },
+      reloadData_suc(data){
+        let vue = this;
+        vue.product = data.data;
+        vue.init_ws();
+        vue.reload = false;
+        vue.reload = true;
       },
       succhandle(data){
         let vue = this;
@@ -329,7 +376,7 @@ let app = new Vue(
         let _hasFirst = vue.isEmpty(vue.product) ? false : true;
 
         //已经结束的就不用发起websocket了,第一次请求
-        if (vue.product.status !== 4 && !_hasFirst) {
+        if (vue.product.status !== 4) {
           let socket = new WebSocket(vue.wsurl);
           socket.addEventListener('open', function (event) {
             // socket.send('Hello Server!');
@@ -337,7 +384,14 @@ let app = new Vue(
           socket.addEventListener('message', function (event) {
             vue.listenSocket(event)
           });
+          vue.ws = socket;
         }
+
+        vue.setBidOn(vue.chat_list);
+        // 自动滚动到最底部
+        let container = vue.$el.querySelector('#chatContainer');
+        console.log(container);
+        container.scrollTop = container.scrollHeight;
 
 
       },
@@ -354,15 +408,15 @@ let app = new Vue(
         }
         if (_data.data.roleType === 1) _data.data.bidStatus = 1;
         //加入聊天列表
-        let _entities = that.product.chatList;
+        let _entities = that.chat_list;
         _entities.push(_data.data);
         //出价次
         let _entity = that.product;
         _entity.bidCount = _entity.bidCount + 1;
 
-        that.product.chatList = [];
+        that.chat_list = [];
+        that.chat_list = _entities;
         that.product = {};
-        that.product.chatList = _entities;
         that.product = _entity;
 
         //设置出最高价的用户信息和价格
@@ -373,12 +427,28 @@ let app = new Vue(
           _tmp.product.bidUserName = _data.data.userName;
           _tmp.product.bidStatusName = _data.data.bidStatusName ? _data.data.bidStatusName : '领先';
           _tmp.product.bidPrice = _data.data.bidPrice;
+          that.currentPrice = _data.data.bidPrice;
           that.product = _tmp;
 
-            that.setBidOn(_entities);
+          that.setBidOn(that.chat_list);
         }
-        //自动滚动到最底部
-        that.wxScrollBottom();
+
+      },
+      //最后出价有效果
+      setBidOn(_entities) {
+        let vue = this;
+        let _onId = vue.onId;
+        if (_onId > 0) {
+          _onId = _entities[_entities.length - 1].id;
+        } else {
+          for (let _c in _entities) {
+            if (_entities[_c].bidStatus > 0) {
+              _onId = _entities[_c].id;
+              break;
+            }
+          }
+        }
+        vue.onId = _onId;
       },
       isEmpty(c){
         if (c === null || c === '' || c === undefined || c === false) return true;
@@ -387,8 +457,95 @@ let app = new Vue(
           return true;
         }
         return false;
-      }
+      },
 
+      //报名(预交保证金)
+      bindDepositTap(){
+        let vue = this;
+        let _entity = this.product;
+        let _postData = { goods_id: _entity.id };
+        if (_entity.status === 2) {
+          jAjax({
+            type:'post',
+            url:config.auction_signup_url,
+            data: _postData,
+            timeOut:5000,
+            before:function(){
+              console.log('before');
+            },
+            success:function(data){
+              if(data){
+                data = JSON.parse(data);
+                if(parseInt(data.code) === 200){
+                  vue.succhandle(data);
+                }else {
+                  console.log('false')
+                }
+              }
+
+            },
+            error:function(status, statusText){
+              console.log(statusText);
+            }
+          });
+
+        } else if (_entity.status === 1) {
+          vue.msg = '拍卖还未开始';
+          vue.showAlert = true;
+          vue.close_auto();
+        } else if (_entity.status !== 4) {
+          vue.msg = '您已报过名了';
+          vue.showAlert = true;
+          vue.close_auto();
+        } else if (_entity.status === 4) {
+          vue.msg = '拍卖已经结束了';
+          vue.showAlert = true;
+          vue.close_auto();
+        }
+      },
+      //我要出价
+      bindSubmitTap: function() {
+        let vue = this;
+        jAjax({
+          type:'post',
+          url:config.auction_bid_url,
+          data: {
+            'goods_id': vue.product.id,
+            'price': vue.addpri,
+          },
+          timeOut:5000,
+          before:function(){
+            console.log('before');
+          },
+          success:function(data){
+            if(data){
+              data = JSON.parse(data);
+              if(parseInt(data.code) === 200){
+
+              }else {
+                console.log('false')
+              }
+            }
+
+          },
+          error:function(status, statusText){
+            console.log(statusText);
+          }
+        });
+
+      },
+      //推送聊天消息
+      bindSendTap: function() {
+        let that = this;
+        if(that.product.token && that.product.token !== '' && that.product.token !== null){
+          that.ws.send(that.wsMsg);
+          that.wsMsg = '';
+        }
+      },
+      clear:function () {
+        let that = this;
+        that.addpri = 0;
+      }
     },
     components: {
     }
