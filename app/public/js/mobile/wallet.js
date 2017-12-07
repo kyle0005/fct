@@ -77,10 +77,15 @@ let app = new Vue(
           }
         });
       },
+      linkto(url){
+        if(url){
+          location.href = url;
+        }
+      },
       confirm(callback){
         let vue = this;
         vue.callback = callback;
-        vue.msg = '您确定要交纳拍卖保证金？';
+        vue.msg = '您确认交纳拍卖保证金2000元？';
         vue.showConfirm = true;
       },
       no(){

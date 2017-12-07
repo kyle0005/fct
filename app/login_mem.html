@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="public/styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+<div class="loginMem-container" id="login" v-cloak>
+    <div class="logo"></div>
+    <form id="userLogin">
+      <ul class="form-data">
+        <li class="items clearfix">
+          <div class="left">邀&ensp;请&ensp;码</div>
+          <div class="right">
+            <input type="text" name="phone" class="" placeholder="请输入邀请码" v-model.number="inviteCode"/>
+          </div>
+        </li>
+        <li class="items clearfix">
+          <div class="left">店&ensp;铺&ensp;名</div>
+          <div class="right">
+            <input type="password" name="password" class="val-code" placeholder="请输入店铺名" v-model="shopName"/>
+          </div>
+        </li>
+        <li class="items clearfix">
+          <div class="left">申请说明</div>
+          <div class="right">
+            <input type="password" name="password" class="val-code" placeholder="请输入申请说明" v-model="description"/>
+          </div>
+        </li>
+      </ul>
+      <div class="log-btn">
+        <div class="sub">
+          <subpost :txt="subText" ref="subpost" @callback="mobileLogin" @succhandle="succhandle"></subpost>
+        </div>
+      </div>
+    </form>
+    <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+  </div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/api/apis.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script src="public/js/mobile/login_mem.js"></script>
+</body>
+</html>

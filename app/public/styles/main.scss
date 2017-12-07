@@ -757,6 +757,9 @@ $foot-height: 250px;
           }
         }
       }
+      &:last-child{
+        margin-bottom: 0;
+      }
     }
   }
   .loading {
@@ -899,6 +902,121 @@ $foot-height: 250px;
       .right{
         position: relative;
         margin-left: 16%;
+        border-bottom: 1px solid $color-dcdcdc;
+        input{
+          width: 90%;
+          border: none;
+          outline: none;
+          color: $color-1d1d1d;
+          &::-webkit-input-placeholder { /* WebKit browsers */
+            color: $color-666;
+          }
+          &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: $color-666;
+          }
+          &::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: $color-666;
+          }
+          &:-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: $color-666;
+          }
+
+        }
+        input.q{
+          width: 60%;
+        }
+        .code-container{
+          position: absolute;
+          top: 0;
+          right: 5%;
+          width: 25.3968%;
+          a.get-code{
+            @include wei-bg-btn($color-1d1d1d, $color-white, $color-1d1d1d, 28px, 28px, $font-size-t12);
+            @include fillet(false);
+          }
+        }
+
+      }
+    }
+    .items:last-child{
+      .right{
+        border-bottom: none;
+      }
+    }
+  }
+  .log-btn{
+    margin: 5.333% 4% 2.666%;
+    .sub{
+      @include wei-bg-btn($color-white, $color-1d1d1d, $color-1d1d1d, 40px, 40px, $font-size-t13);
+      @include fillet(false);
+    }
+  }
+  .options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 4%;
+    a{
+      -moz-box-flex: 1.0; /* Firefox */
+      -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+      box-flex: 1.0;
+      display: inline-block;
+      color: $color-8a8a8a;
+      font-size: $font-size-t12;
+    }
+  }
+  .others{
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
+    color: $color-333;
+    font-size: $font-size-t13;
+    text-align: center;
+    a{
+      display: inline-block;
+      margin: 0 3.2%;
+      width: 11.733%;
+      img{
+        width: 100%;
+      }
+    }
+  }
+
+
+}
+
+/* login_mem */
+.loginMem-container{
+  @extend %page;
+  background-color: $color-f5f5f5;
+  .logo{
+    width: 100%;
+    padding-bottom: 24%;
+    background: url("#{$img-path}/logo2.png") no-repeat center center;
+    background-size: 15% auto;
+  }
+  .form-data{
+    background-color: $color-white;
+    font-size: $font-size-t12;
+    .items{
+      line-height: 47.5px;
+      .left{
+        float: left;
+        width: 20%;
+        text-align: center;
+        i{
+          color: $color-666;
+          font-size: $font-size-t24;
+          vertical-align: middle;
+        }
+        img{
+          width: 20px;
+        }
+      }
+      .right{
+        position: relative;
+        margin-left: 20%;
         border-bottom: 1px solid $color-dcdcdc;
         input{
           width: 90%;
@@ -3589,6 +3707,21 @@ $foot-height: 250px;
       }
     }
   }
+  .user-sec.logout{
+    display: block;
+    position: relative;
+    text-align: center;
+    padding: calc(20 / 375 * 100%) 0 0 0;
+    &:before{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      padding-bottom: calc(10 / 375 * 100%);
+      background-color: $color-f5f5f5;
+    }
+  }
   &:after{
     content: '';
     position: absolute;
@@ -3839,6 +3972,23 @@ $foot-height: 250px;
           top: 50%;
           left: calc(80 / 300 * 100%);
           transform: translateY(-50%);
+        }
+      }
+      .logo{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        width: calc(300 / 750 * 100%);
+        text-align: center;
+        img{
+          width: calc(46 / 300 * 100%);
+          margin-right: 3%;
+        }
+        .text{
+          display: inline-block;
+          vertical-align: middle;
         }
       }
       .del{
