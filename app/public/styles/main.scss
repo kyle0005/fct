@@ -757,9 +757,9 @@ $foot-height: 250px;
           }
         }
       }
-      &:last-child{
-        margin-bottom: 0;
-      }
+    }
+    li.item:last-child{
+      margin-bottom: 0;
     }
   }
   .loading {
@@ -3728,7 +3728,7 @@ $foot-height: 250px;
     //bottom: -50px;
     left: 0;
     width: 100%;
-    height: 50px;
+    height: 20px;
     background-color: $color-f5f5f5;
   }
 }
@@ -4538,6 +4538,10 @@ $foot-height: 250px;
             .spec{
               color: $color-999;
             }
+            .commission{
+              color: $color-993333;
+              padding-bottom: calc(20 / 750 *100%);
+            }
           }
           .price-container{
             width: calc(175 /750 * 100%);
@@ -4582,6 +4586,9 @@ $foot-height: 250px;
           color: $color-999;
           .payAmount{
             font-size: $font-size-t13;
+          }
+          .payAmount.pri{
+            color: $color-993333;
           }
         }
       }
@@ -6988,6 +6995,7 @@ $foot-height: 250px;
           img{
             vertical-align: middle;
             margin-left: 2%;
+            margin-right: 1%;
             width: 4.5%;
           }
           a{
@@ -6998,6 +7006,9 @@ $foot-height: 250px;
           }
         }
 
+      }
+      li.item:last-child{
+        margin-bottom: 0;
       }
     }
   }
@@ -7103,7 +7114,7 @@ $foot-height: 250px;
           width: 50%;
           text-align: center;
           color: #999;
-          font-size: $font-size-t13;
+          font-size: $font-size-t12;
           .num {
             padding: 0 10px;
             font-size: $font-size-t16;
@@ -7220,10 +7231,13 @@ $foot-height: 250px;
         }
       }
     }
+    .info.docked{
+      display: none;
+    }
     .artist{
       position: relative;
       width: 100%;
-      margin: 5px 0;
+      margin: 10px 0;
       background-color: $color-white;
       .content{
         width: 235px;
@@ -7265,12 +7279,18 @@ $foot-height: 250px;
       }
 
     }
+    .artist.docked{
+      display: none;
+    }
     .content{
       padding: 2% 4%;
       width: 92%;
       background-color: white;
       text-align: left;
       word-break:break-all;
+    }
+    .content.docked{
+      display: none;
     }
     }
   .det-container{
@@ -7279,7 +7299,7 @@ $foot-height: 250px;
     left: 0;
     z-index: 5;
     width: 100%;
-    background-color: rgba(51,51, 51, 0.85);
+    background-color: rgba(51,51, 51, 0.97);
     color: white;
     .main{
       width: 100%;
@@ -7345,14 +7365,14 @@ $foot-height: 250px;
         .down{
           color: #d1a356;
           text-align: left;
-          font-size: $font-size-t14;
+          font-size: $font-size-t15;
         }
       }
     }
     .other{
       position: relative;
       width: 100%;
-      border-top: 1px solid $color-333;
+      border-top: 1px solid $color-444;
       height: 40px;
       line-height: 40px;
       display: flex;
@@ -7402,6 +7422,10 @@ $foot-height: 250px;
         }
       }
       .right{
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
         text-align: right;
         padding-right: 1px;
         color: $color-999;
@@ -7432,7 +7456,7 @@ $foot-height: 250px;
       width: 100%;
       height: 100%;
       overflow: auto;
-      background: rgba(10, 10, 10, 0.8);
+      background: rgba(10, 10, 10, 0.85);
       transform: translate(100%, 0);
       transition: transform 0.3s ease;
       -webkit-overflow-scrolling: touch;
@@ -7519,7 +7543,7 @@ $foot-height: 250px;
         position: absolute;
         left: 0;
         bottom: 49px;
-        border-top: 1px solid #5c5c5c;
+        border-top: 1px solid #444;
         width: calc(696/750*100%);
         padding: 11px calc(27/750*100%);
         .amount{
@@ -7540,7 +7564,7 @@ $foot-height: 250px;
         }
         .btn{
           float: left;
-          width: 66px;
+          width: calc(140/696*100% - 4px);
           height: 41px;
           line-height: 41px;
           border: 1px solid #5c5c5c;
@@ -7652,14 +7676,15 @@ $foot-height: 250px;
           }
         }
         .message {
-          width: calc(99/750*100%);
+          width: calc(100/750*100%);
           &:after {
             content: '';
             position: absolute;
             right: 0;
             top: 0;
+            z-index: 2;
             height: 100%;
-            width: calc(1/750*100%);
+            width: 1px;
             background-color: $color-eee;
           }
         }

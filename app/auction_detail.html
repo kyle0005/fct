@@ -35,7 +35,7 @@
           </div>
         </div>
       </section>
-      <section class="info clearfix">
+      <section class="info clearfix" :class="{open:open,docked:docked}">
         <div class="item clearfix">
           <span class="left">市场估价</span>
           <span class="right overText">￥{{ product.marketPrice }}</span>
@@ -53,7 +53,7 @@
           <span class="right overText">{{ product.delaySecond }}</span>
         </div>
       </section>
-      <section class='artist'>
+      <section class='artist' :class="{open:open,docked:docked}">
         <img class='photo' src="https://cdn.fangcun.com/upload/images/2017-08-01/0e0801a023b64b9f952bdac63aa9583e.png!120"/>
         <img class='arrow' src="https://cdn.fangcun.com/static/img/mobile/arrow_right.png"/>
         <div class='content'>
@@ -61,7 +61,7 @@
           <span class='text overTextH3'>{{ product.artistIntro }}</span>
         </div>
       </section>
-      <section class="content">{{ product.content }}</section>
+      <section class="content" :class="{open:open,docked:docked}">{{ product.content }}</section>
   </section>
   <section class='det-container'>
     <div class='main'>
@@ -77,9 +77,12 @@
     </div>
     <div class='other clearfix'>
       <div class="left">
-        <div v-if="product.status !== 4 && parseInt((product.endTime - (new Date()).valueOf()) / 1000) > 0">
+        <div v-if="product.status !== 4">
           <img src="https://cdn.fangcun.com/static/img/mobile/auction/remind-yw.png"/>
+<!--
           <div class='text'>距{{ product.status === 1 ? '开始': '结束'}}仅剩：<m-time v-if="reload" :end-time="product.status === 1 ? product.startTime: product.endTime" :callback="end"></m-time></div>
+-->
+          <div class='text'>距{{ product.status === 1 ? '开始': '结束'}}仅剩：<span><span class="time-block">{{ time_content.hour }}</span>小时<span class="time-block">{{ time_content.min }}</span>分<span class="time-block">{{ time_content.sec }}</span>秒</span></div>
         </div>
       </div>
       <a href="javascript:;" class="right">
@@ -130,9 +133,13 @@
         <a href="javascript:;" class="lis add grey" v-else>+</a>
         <div class="lis buy">
           <a href="javascript:;" class="txt grey" v-if="product.status == 1">拍卖未开始</a>
-          <a href="javascript:;" class="txt" v-else-if="product.status < 3" @click="bindDepositTap">预交保证金</a>
+          <a href="javascript:;" class="txt " v-else-if="product.status < 3">
+            <subpost :txt="depositText" ref="deppost" @callback="bindDepositTap" @succhandle="succhandle"></subpost>
+          </a>
           <a href="javascript:;" class="txt" v-else-if="product.status > 10">继续报名</a>
-          <a href="javascript:;" class="txt" v-else-if="product.status === 3" @click="bindSubmitTap">我要出价</a>
+          <a href="javascript:;" class="txt grey" v-else-if="product.status === 3" @click="bindSubmitTap">
+            <subpost :txt="subText" ref="subpost" @callback="bindSubmitTap" @succhandle="succhandle"></subpost>
+          </a>
           <a href="javascript:;" class="txt grey" v-else-if="product.status === 4">拍卖结束</a>
         </div>
       </div>
@@ -172,8 +179,8 @@
       "startPrice": 1000.00,
       "increasePrice": 100.00,
       "deposit": 0.01,
-      "startTime": 1512470400000,
-      "endTime": 1512470520000,
+      "startTime":1512701584448,
+      "endTime": 1512701584448,
       "viewCount": 205,
       "bidCount": 5,
       "bidPrice": 1545.00,
@@ -184,7 +191,7 @@
       "status": 3,
       "duration": "10分钟",
       "signupId": 0,
-      "nowTime": 1512439925300
+      "nowTime": 1512701574448
     },
     "chatList": [
       /*        {   /!* websocket单次消息体 *!/

@@ -42,8 +42,8 @@
             <span class="description">{{ item.intro }}</span>
           </a>
           <div class="ops clearfix">
-              <img src="public/img/mobile/auction/viewcount.png"><span>{{ item.viewCount }}</span>
-              <img src="public/img/mobile/auction/hammer.png"><span>{{ item.bidCount }}</span>
+              <img src="https://cdn.fangcun.com/static/img/mobile/clickAmount.png"><span>{{ item.viewCount }}</span>
+              <img src="https://cdn.fangcun.com/static/img/auction/pm-icon.png"><span>{{ item.bidCount }}</span>
               <a href="javascript:;" class="right" @click="tip(item, index)">
                 <img src="public/img/mobile/auction/remind-red.png">{{ item.remindId > 0 ? "取消提醒" : "提醒我"}}
               </a>

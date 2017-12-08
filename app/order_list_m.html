@@ -40,6 +40,7 @@
           <div class="pro-item title-container">
             <div class="title">{{ good.name }}</div>
             <div class="spec">规格:{{ good.specName }}</div>
+            <div class="commission">佣金:{{ good.specName }}</div>
           </div>
           <div class="pro-item price-container">
             <div class="price"><small class="pri-mark">￥</small>{{ good.price }}</div>
@@ -48,7 +49,7 @@
         </li>
       </ul>
       <div class="total">
-        <div class="inner">共{{ item.buyTotalCount }}件商品&nbsp;合计:<span class="payAmount"><small class="pri-mark">￥</small>{{ item.payAmount }}</span>（含运费）</div>
+        <div class="inner">共{{ item.buyTotalCount }}件商品&nbsp;合计:<span class="payAmount pri"><small class="pri-mark">￥</small>{{ item.payAmount }}</span>（含运费）</div>
       </div>
       <div class="btn clearfix" v-if="item.status == 0">
         <div class="btn-container">
