@@ -35,38 +35,45 @@
   </section>
   <ul class="list">
     <li>
-      <a href="javascript:;" class="link">
-        <span class="left">
+      <div class="link">
+        <a href="javascript:;" class="left">
           <img src="public/img/mobile/resource/pro01.png">
-        </span>
-        <span class="center">
-          <span class="title">表标题壶</span>
-          <span class="t2">紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂</span>
-        </span>
-        <span class="right"><img src="public/img/mobile/share.png"></span>
-      </a>
+        </a>
+        <div class="center">
+          <a href="javascript:;" class="title">表标题壶</a>
+          <span class="t2 overTextH2">紫砂壶紫砂壶紫紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂砂壶紫砂壶紫砂壶紫砂</span>
+        </div>
+      </div>
+      <a href="javascript:;" class="right" @click="popqrcode(true)"><img src="public/img/mobile/share.png"></a>
     </li>
   </ul>
   <ul class="list" v-load-more="nextPage" type="1">
     <li v-for="(item, index) in shareList">
-      <a href="javascript:;" class="link">
-        <span class="left">
+      <div class="link">
+        <a href="javascript:;" class="left item">
           <img :src="item.defaultImage">
-        </span>
-        <span class="center">
-          <span class="title">{{ item.name }}</span>
+        </a>
+        <div class="center item">
+          <a href="javascript:;" class="title">{{ item.name }}</a>
           <span class="t1" v-if="item.price instanceof Array">价格：<small class="pri-mark">￥</small>{{ item.price[0] }}&sim;￥{{ item.price[1] }}</span>
           <span class="t1" v-else>价格：<small class="pri-mark">￥</small>{{ item.price }}</span>
           <span class="t2" v-if="item.commission instanceof Array">利润：<strong class="pri"><small class="pri-mark">￥</small>{{ item.commission[0] }}&sim;￥{{ item.commission[1] }}</strong></span>
           <span class="t2" v-else>利润：<strong class="pri"><small class="pri-mark">￥</small>{{ item.commission }}</strong></span>
-        </span>
-        <span class="right"><img src="public/img/mobile/share.png"></span>
-      </a>
+        </div>
+      </div>
+      <a href="javascript:;" class="right" @click="popqrcode(false, item)"><img src="public/img/mobile/share.png"></a>
     </li>
   </ul>
   <no-data v-if="nodata"></no-data>
   <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   <img src="public/img/mobile/img_loader_s.gif" class="pager-loader" v-if="pagerloading">
+  <div class="qrcode-container" :class="{show:show}">
+    <div class="inner">
+      <img :src="qrurl" class="qrcode">
+      <div class="qrtitle">{{ qrname }}</div>
+      <a href="javascript:;" class="fork" @click="popqrcode()"><img src="public/img/mobile/share_fork2.png"></a>
+    </div>
+  </div>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
   <footer class="footer">
     <div class="inner">
@@ -88,13 +95,17 @@
 <script src="public/js/mobile/common/tools.js"></script>
 <script>
   var config = {
+      "shareParam":"sid=12321",
     "shareUrl": "http://localhost:3000/share",
+    "shareTopUrl": "https://pan.baidu.com/share/qrcode?w=300&h=300&url=https://m.fangcun.com",
+    "shareProUrl": "https://pan.baidu.com/share/qrcode?w=300&h=300&url=https://m.fangcun.com/products",
     "share": {
       "entries":
         [
           {
             "price": 0.01,
             "name": "测试宝贝",
+            "artistName": "xxx大师",
             "commission": 0,
             "id": 7,
             "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/images\/2017-07-19\/74d498ef6d884219816b34d50a1a9f88.jpg"
@@ -102,6 +113,7 @@
           {
             "price": 99999,
             "name": "《寿桃》",
+            "artistName": "xxx大师",
             "commission": 1000,
             "id": 6,
             "defaultImage": "http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-13\/0e63189ca3b947a19d7ffb11e59a783e.jpg"

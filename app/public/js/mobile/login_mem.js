@@ -18,7 +18,7 @@ var app = new Vue(
         msg: null,
 
         action: 'login',
-        subText: '登录'
+        subText: '我要申请'
 
       }
     },
@@ -43,8 +43,13 @@ var app = new Vue(
           vue.close_auto();
           return
         }
+        let post_data = {
+          'code': vue.inviteCode,
+          'name': vue.shopName,
+          'remark': vue.description
+        };
         //用户名登录
-        vue.$refs.subpost.post(apis.userResource, formData.serializeForm('userLogin'));
+        vue.$refs.subpost.post(config.storeUrl, post_data);
       },
 
       succhandle(data){

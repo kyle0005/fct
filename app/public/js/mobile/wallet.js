@@ -77,6 +77,20 @@ let app = new Vue(
           }
         });
       },
+      close(){
+        this.showAlert = false;
+      },
+      close_auto(callback, obj){
+        let vue = this;
+        setTimeout(function () {
+          vue.showAlert = false;
+          if(callback){
+            callback(obj);
+          }
+
+        }, 1500);
+
+      },
       linkto(url){
         if(url){
           location.href = url;

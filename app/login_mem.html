@@ -18,19 +18,19 @@
         <li class="items clearfix">
           <div class="left">邀&ensp;请&ensp;码</div>
           <div class="right">
-            <input type="text" name="phone" class="" placeholder="请输入邀请码" v-model.number="inviteCode"/>
+            <input type="text" name="inviteCode" class="" placeholder="请输入邀请码" v-model.number="inviteCode"/>
           </div>
         </li>
         <li class="items clearfix">
           <div class="left">店&ensp;铺&ensp;名</div>
           <div class="right">
-            <input type="password" name="password" class="val-code" placeholder="请输入店铺名" v-model="shopName"/>
+            <input type="text" name="shopName" class="val-code" placeholder="请输入店铺名" v-model="shopName"/>
           </div>
         </li>
         <li class="items clearfix">
           <div class="left">申请说明</div>
           <div class="right">
-            <input type="password" name="password" class="val-code" placeholder="请输入申请说明" v-model="description"/>
+          <textarea class="val-code" name="description" placeholder="请输入申请说明" v-model="description"></textarea>
           </div>
         </li>
       </ul>
@@ -46,6 +46,11 @@
 <script src="public/js/mobile/api/apis.js"></script>
 <script src="public/js/mobile/api/index.js"></script>
 <script src="public/js/mobile/common/tools.js"></script>
+<script>
+  var config = {
+      "storeUrl" : "",
+  };
+</script>
 <script src="public/js/mobile/login_mem.js"></script>
 </body>
 </html>

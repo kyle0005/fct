@@ -467,13 +467,15 @@ let app = new Vue(
           that.close_auto();
           return ;
         }
-        if (_data.data.roleType === 1) _data.data.bidStatus = 1;
+        //出价次
+        let _entity = that.product;
+        if (_data.data.roleType === 1) {
+          _data.data.bidStatus = 1;
+          _entity.bidCount = _entity.bidCount + 1;
+        }
         //加入聊天列表
         let _entities = that.chat_list;
         _entities.push(_data.data);
-        //出价次
-        let _entity = that.product;
-        _entity.bidCount = _entity.bidCount + 1;
 
         that.chat_list = [];
         that.chat_list = _entities;

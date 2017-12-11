@@ -38,10 +38,26 @@ let app = new Vue(
       listloading: true,
       pagerloading: false,
       isPage: false,
-      nodata: false
+      nodata: false,
+
+      show: false,   /* 显示qrcode */
+      qrurl: '',
+      qrname: ''
 
     },
     methods: {
+      popqrcode(top, item){
+        let vue = this;
+        vue.show = !vue.show;
+        if(top){
+          vue.qrurl = config.shareTopUrl + '?' + config.shareParam;
+          vue.qrname = '方寸堂-只为不同';
+        }
+        if(item){
+          vue.qrurl = config.shareProUrl + '/' + item.id + '?' + config.shareParam;
+          vue.qrname = item.name + '-' + item.artistName;
+        }
+      },
       initData(){
         let vue = this;
         vue.shareList = config.share.entries;
