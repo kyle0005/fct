@@ -17,7 +17,7 @@
         <a :href="top.url" class="link">
           <img :data-src="top.image" class="swiper-lazy silde-img">
         </a>
-        <a href="main.html" class="enter"  v-if="index==0"></a>
+        <a href="main.html" class="enter"  v-if="index==3"></a>
       </div>
     </m-swipe>
     <transition name="fade">
@@ -27,7 +27,7 @@
           <div class="title">方寸堂</div>
           <div class="vtitle">自有我天地</div>
         </div>
-        <img src="public/img/mobile/logo2.png" class="logo">
+        <img src="public/img/mobile/logo.png" class="logo">
         <div class="btn-container">
           <a href="main.html" class="btn">进入</a>
         </div>
@@ -52,21 +52,27 @@
     var config = {
       "slides": [
         {
-          "image": "/public/img/mobile/resource/wel0.png",
+          "image": "/public/img/mobile/resource/guide1.jpg",
           "url": "asdadaddsadadasd",
           "id": 0,
           "title": "aaa"
         },
         {
-          "image": "/public/img/mobile/resource/wel1.png",
+          "image": "/public/img/mobile/resource/guide2.jpg",
           "url": 0,
           "id": 1,
           "title": "bbb"
         },
         {
-          "image": "/public/img/mobile/resource/wel2.png",
+          "image": "/public/img/mobile/resource/guide3.jpg",
           "url": 0,
           "id": 2,
+          "title": "ccc"
+        },
+        {
+          "image": "/public/img/mobile/resource/guide4.jpg",
+          "url": 0,
+          "id": 3,
           "title": "ccc"
         },
 

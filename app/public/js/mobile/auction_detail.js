@@ -374,7 +374,7 @@ let app = new Vue(
       add(){
         let vue = this;
         let _entity = vue.product;
-        let _myPrice = parseFloat(vue.addpri);
+        let _myPrice = parseFloat(vue.addpri) || 0.00;
         let _currentPrice = parseFloat(vue.currentPrice);
         if (_entity.status === 3) {
           if (_myPrice < _currentPrice)
@@ -461,12 +461,16 @@ let app = new Vue(
         if (that.isEmpty(res.data)) return ;
 
         let _data = JSON.parse(res.data);
+        if(_data.code === 401){
+          location.href = config.loginUrl;
+        }
         if (_data.code !== 200) {
           that.msg = _data.msg;
           that.showAlert = true;
           that.close_auto();
           return ;
         }
+
         //出价次
         let _entity = that.product;
         if (_data.data.roleType === 1) {
@@ -526,31 +530,9 @@ let app = new Vue(
       bindDepositTap(){
         let vue = this;
         let _entity = this.product;
-        let _postData = { goods_id: _entity.id };
+        let _postData = { 'goods_id': _entity.id };
         if (_entity.status === 2) {
-          /*jAjax({
-            type:'post',
-            url:config.auction_signup_url,
-            data: _postData,
-            timeOut:5000,
-            before:function(){
-              console.log('before');
-            },
-            success:function(data){
-              if(data){
-                data = JSON.parse(data);
-                if(parseInt(data.code) === 200){
-                  vue.succhandle(data);
-                }else {
-                  console.log(data.message)
-                }
-              }
-
-            },
-            error:function(status, statusText){
-              console.log(statusText);
-            }
-          });*/
+          console.log(vue.$refs)
           vue.$refs.deppost.post(config.auction_signup_url, _postData);
 
         } else if (_entity.status === 1) {
@@ -578,35 +560,7 @@ let app = new Vue(
           console.log('出价不能小于当前最高价！')
           return;
         }
-          /*jAjax({
-            type:'post',
-            url:config.auction_bid_url,
-            data: {
-              'goods_id': vue.product.id,
-              'price': vue.addpri,
-            },
-            timeOut:5000,
-            before:function(){
-              console.log('before');
-            },
-            success:function(data){
-              if(data){
-                data = JSON.parse(data);
-                if(parseInt(data.code) === 200){
-
-                }else {
-                  console.log(data.message)
-                }
-              }
-
-            },
-            error:function(status, statusText){
-              console.log(statusText);
-            }
-          });*/
         vue.$refs.subpost.post(config.auction_bid_url, _postData);
-
-
 
       },
       //推送聊天消息
@@ -615,6 +569,8 @@ let app = new Vue(
         if(that.product.token && that.product.token !== '' && that.product.token !== null){
           that.ws.send(that.wsMsg);
           that.wsMsg = '';
+        }else {
+          location.href = config.loginUrl;
         }
       },
       clear:function () {

@@ -101,13 +101,13 @@ var app = new Vue(
         list: [],
         swiper: '',
         tops: [],
-        flagIndex: false
+        flagIndex: true
       }
     },
     methods: {
       slideindex(activeIndex){
         let vue = this;
-        if(activeIndex > 0){
+        if(activeIndex < 3){
           vue.flagIndex = true;
         }else {
           vue.flagIndex = false;
