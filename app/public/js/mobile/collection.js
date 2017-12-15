@@ -14,6 +14,7 @@ let app = new Vue(
       tabs: ['宝贝', '合作艺人'],
       tab_num: 0,
       collection: [],
+      fromType: 0,
 
       listloading: true,
       pagerloading: false,
@@ -36,16 +37,18 @@ let app = new Vue(
         let vue = this;
         vue.collection = config.collection;
         vue.listloading = false;
+        vue.fromType = config.fromType;
       },
-      getBefore(){
-        let vue = this;
-        vue.listloading = true;
-      },
+
       del(item, index){
-        let vue = this;
-        jAjax({
+        let vue = this, _url = config.collectionDel + '?from_type=' + item.favType + '&from_id=' + item.id,
+        _data = {
+          'keyword': vue.keywords
+        };
+        tools.ajaxPost(_url, _data, vue.postSuc, vue.postBefore, vue.postError, index, vue.postTip);
+        /*jAjax({
           type:'post',
-          url:config.collectionDel + '?from_type=' + item.favType + '&from_id=' + item.favoriteId,
+          url:config.collectionDel + '?from_type=' + item.favType + '&from_id=' + item.id,
           data: {
             'keyword': vue.keywords
           },
@@ -67,7 +70,28 @@ let app = new Vue(
           },
           error:function(){
           }
-        });
+        });*/
+      },
+      postSuc(data, index){
+        let vue = this;
+        vue.collection.splice(index, 1);
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
+      },
+
+      getBefore(){
+        let vue = this;
+        vue.listloading = true;
       },
       category(index){
         let vue = this;
@@ -84,6 +108,7 @@ let app = new Vue(
         vue.collection = data.data;
         vue.listloading = false;
       },
+
       close(){
         this.showAlert = false;
       },

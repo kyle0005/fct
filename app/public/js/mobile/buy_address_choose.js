@@ -30,8 +30,10 @@ let app = new Vue(
         vue.listloading = false;
       },
       choose(item){
-        let vue = this;
-        jAjax({
+        let vue = this, _url = config.chooseAddrUrl + '?id=' + item.id,
+          _data = {};
+        tools.ajaxPost(_url, _data, vue.postSuc, vue.postBefore, vue.postError, {}, vue.postTip);
+        /*jAjax({
           type:'post',
           url:config.chooseAddrUrl + '?id=' + item.id,
           data: {},
@@ -53,7 +55,23 @@ let app = new Vue(
           },
           error:function(status, statusText){
           }
-        });
+        });*/
+      },
+      postSuc(data){
+        let vue = this;
+
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       close(){
         this.showAlert = false;

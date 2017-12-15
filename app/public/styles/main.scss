@@ -2169,7 +2169,7 @@ $foot-height: 250px;
             top: 0;
             height: 100%;
             display: inline-block;
-            width: 70%;
+            width: 60%;
             input[type=radio].choose-radio{
               position: absolute;
               left: 0;
@@ -2204,7 +2204,7 @@ $foot-height: 250px;
             right: 0;
             top: 0;
             height: 100%;
-            width: 30%;
+            width: 40%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -2225,9 +2225,10 @@ $foot-height: 250px;
               }
               span.items{
                 position: absolute;
-                right: 0;
+                left: 40%;
                 top: 50%;
                 transform: translateY(-50%);
+                text-align: left;
               }
             }
           }
@@ -2576,12 +2577,13 @@ $foot-height: 250px;
         .product-num{
           min-width: 20%;
           margin-right: 15px;
+          color: $color-cdcdcd;
           i{
             margin-right: 10%;
           }
           img.i-img{
             width: 34%;
-            vertical-align: text-top;
+            vertical-align: top;
             margin-right: 8%;
           }
         }
@@ -3660,13 +3662,13 @@ $foot-height: 250px;
           }
           img.bracket{
             position: absolute;
-            left: -5px;
+            right: -15px;
             top: 50%;
             transform: translateY(-50%);
             width: 13%;
           }
           .my{
-            color: $color-d1a356;
+            color: $color-black;
           }
         }
       }
@@ -4301,9 +4303,10 @@ $foot-height: 250px;
           position: absolute;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
+          width: calc(100% - 2px);
+          height: calc(100% - 2px);
           border-radius: 50%;
+          border: 1px solid $color-f5f5f5;
         }
       }
 
@@ -6433,6 +6436,7 @@ $foot-height: 250px;
        background: $color-white;
        .img-container{
          position: relative;
+         display: block;
          width: 100%;
          padding-bottom: calc(360/750*100%);
          img{

@@ -232,7 +232,7 @@ var tools = {
   getUrlKey:function(name){
     return decodeURIComponent((new RegExp('[?|&]'+name+'='+'([^&;]+?)(&|#|;|$)').exec(location.href)||[,''])[1].replace(/\+/g,'%20'))||null;
   },
-  ajaxGet: function (url, callback, before) {
+  ajaxGet: function (url, callback, before, error) {
     jAjax({
       type:'get',
       url:url,
@@ -245,7 +245,7 @@ var tools = {
       success:function(data){
         if(data){
           data = JSON.parse(data);
-          if(parseInt(data.code) == 200){
+          if(parseInt(data.code) == 200 && callback){
             callback(data);
           }else {
             console.log('false')
@@ -254,7 +254,70 @@ var tools = {
 
       },
       error:function(){
-        console.log('error');
+        if(error){
+          error();
+        }
+      }
+    });
+  },
+  ajaxPost: function (url, data, callback, before, error, paras, alert) {
+    jAjax({
+      type:'post',
+      url:url,
+      data: data || {},
+      timeOut:5000,
+      before:function(){
+        if(before){
+          before();
+        }
+      },
+      success:function(data){
+        /*
+         *
+         *  {
+         *    "code":200,
+         *    "message":null,
+         *    "url":"",
+         *    "data":
+         *           {
+         *             "entries": [],
+         *             "pager":{"prev":1,"current":"2","next":0,"page_size":10,"total_page":2,"total":15}
+         *            }
+         *  }
+         *
+         *  {
+         *      "code":404,
+         *      "message":"",
+         *      "url":null,
+         *      "data":{}
+         *   }
+         *
+         *   {
+         *      "code":401,
+         *      "message":"",
+         *      "url":null,
+         *      "data":[]
+         *   }
+         *
+         * */
+        if(data){
+          data = JSON.parse(data);
+          if(parseInt(data.code) == 200 && callback){
+            callback(data, paras);
+          }
+          if(data.message && data.message !== null && data.message !== '' && alert){
+            alert(data);
+          }
+          if(data.url){
+            location.href = url;
+          }
+
+        }
+      },
+      error:function(status, statusText){
+        if(error){
+          error();
+        }
       }
     });
   },
@@ -980,7 +1043,8 @@ Vue.component('subpost',
       },
       post(url, data){
         let vue = this;
-        jAjax({
+        tools.ajaxPost(url, data, vue.success, vue.before, vue.error, {}, vue.alert);
+        /*jAjax({
           type:'post',
           url:url,
           data: data,
@@ -1002,7 +1066,30 @@ Vue.component('subpost',
           error:function(status, statusText){
             vue.postProcess = false;
           }
-        });
+        });*/
+
+      },
+      before(){
+        let vue = this;
+        vue.$emit('before');
+        vue.postProcess = true;
+      },
+      success(data){
+        let vue = this;
+        vue.postProcess = false;
+        vue.$emit('success',data);
+      },
+      error(){
+        let vue = this;
+        vue.$emit('error');
+        vue.postProcess = false;
+      },
+      alert(data){
+        let vue = this;
+        vue.$emit('alert',data);
+        setTimeout(function () {
+          vue.postProcess = false;
+        }, 1500);
 
       }
     }
@@ -1011,7 +1098,7 @@ Vue.component('subpost',
 
 let nodata_html = '<div class="noData">' +
   '<div class="inner">' +
-  '<img src="../../../public/img/mobile/no_data.png">' +
+  '<img src="../img/mobile/no_data.png">' +
   '<span class="no">当前没有相关数据哟~</span>' +
 '</div>' +
 '</div>';

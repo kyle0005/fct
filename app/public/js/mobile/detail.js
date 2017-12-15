@@ -901,11 +901,11 @@ let app = new Vue(
                 if(vue.collected){
                   vue.showAlert = true;
                   vue.msg = data.message;
-                  vue.close_auto();
+                  vue.close_auto(vue.linkto, data.url);
                 }else {
                   vue.showAlert = true;
                   vue.msg = data.message;
-                  vue.close_auto();
+                  vue.close_auto(vue.linkto, data.url);
                 }
               }
             }

@@ -41,8 +41,10 @@ let app = new Vue(
         item.isDefault = 1;
       },
       changeDefault(item){
-        let vue = this;
-        jAjax({
+        let vue = this, _url = config.defaultAddrUrl + '?id=' + item.id,
+          _data = {};
+        tools.ajaxPost(_url, _data, vue.postSuc, vue.postBefore, vue.postError, item, vue.postTip);
+        /*jAjax({
           type:'post',
           url:config.defaultAddrUrl + '?id=' + item.id,
           data: {},
@@ -67,8 +69,26 @@ let app = new Vue(
           },
           error:function(status, statusText){
           }
-        });
+        });*/
       },
+      postSuc(data, item){
+        let vue = this;
+        vue.setDefault(item);
+        vue.defaultAddr();
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
+      },
+
       edit(item){
         let vue = this;
         location.href = config.editUrl + '?id=' + item.id;
@@ -101,16 +121,23 @@ let app = new Vue(
 
       succhandle(data){
         let vue = this;
-        vue.msg = data.message;
-        vue.showAlert = true;
         vue.address.splice(vue.del_index, 1);
-        vue.setDefault(vue.address[0]);
         vue.defaultAddr();
-        if(data.url){
-          vue.close_auto(vue.linkto, data.url);
+/*        vue.msg = data.message;
+        vue.showAlert = true;
+        if(parseInt(data.code) == 404){
+          return;
         }else {
-          vue.close_auto();
-        }
+          vue.address.splice(vue.del_index, 1);
+          // vue.setDefault(vue.address[0]);
+          vue.defaultAddr();
+          if(data.url){
+            vue.close_auto(vue.linkto, data.url);
+          }else {
+            vue.close_auto();
+          }
+        }*/
+
       },
       close(){
         this.showAlert = false;

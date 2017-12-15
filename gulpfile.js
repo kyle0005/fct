@@ -1491,7 +1491,7 @@ gulp.task('serve', () => {
     });
     res.json({
       'code': 200,
-      'message': '删除成功',
+      'message': 'tips',
       'url': null,
       'data': ''
     });

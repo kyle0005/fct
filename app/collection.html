@@ -17,9 +17,9 @@
   </div>
   <div class="collection-list">
     <div class="item" v-for="(item, index) in collection">
-      <div class="img-container">
+      <a href="javascript:;" class="img-container">
         <img :src="item.image">
-      </div>
+      </a>
       <div class="content">
         <span class="title">{{ item.title }}</span>
         <a href="javascript:;" class="close" @click="del(item, index)">
@@ -40,6 +40,7 @@
   var config = {
     "collectionUrl": "http://localhost:3000/collection",
     "collectionDel": "http://localhost:3000/del",
+    "fromType": 0,
     "collection": [
       {
       "id":0,

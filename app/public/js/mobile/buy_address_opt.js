@@ -81,7 +81,7 @@ let app = new Vue(
             'province': vue.provinceName,
             'city': vue.cityName,
             'county': vue.countyName,
-            'isDefault': vue.isDefault,
+            'isDefault': vue.isDefault ? 1:0,
             'address': vue.address,
             'cellPhone': vue.cellPhone,
             'name': vue.name
