@@ -55,7 +55,7 @@ Vue.component('m-swipe',
         observer: true, //修改swiper自己或子元素时，自动初始化swiper
         observeParents: true, //修改swiper的父元素时，自动初始化swiper
         height : window.innerHeight,
-        lazyLoading: true,
+        lazyLoading: false,
         paginationBulletRender: function (swiper, index, className) {
           return '<span class="en-pagination ' + className + '"></span>';
         },

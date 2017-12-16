@@ -123,21 +123,6 @@ let app = new Vue(
         let vue = this;
         vue.address.splice(vue.del_index, 1);
         vue.defaultAddr();
-/*        vue.msg = data.message;
-        vue.showAlert = true;
-        if(parseInt(data.code) == 404){
-          return;
-        }else {
-          vue.address.splice(vue.del_index, 1);
-          // vue.setDefault(vue.address[0]);
-          vue.defaultAddr();
-          if(data.url){
-            vue.close_auto(vue.linkto, data.url);
-          }else {
-            vue.close_auto();
-          }
-        }*/
-
       },
       close(){
         this.showAlert = false;

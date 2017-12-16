@@ -11,7 +11,7 @@ let app = new Vue(
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
       status: 0,
-      tabs: ['宝贝', '合作艺人'],
+      tabs: ['宝贝', '守艺人'],
       tab_num: 0,
       collection: [],
       fromType: 0,

@@ -114,128 +114,6 @@ Vue.component('m-swipe',
   }
 );
 
-// let _time_html = '<span :endTime="endTime" :callback="callback" >'+
-//   '<slot><span class="time-block">{{ time_content.hour }}</span>小时<span class="time-block">{{ time_content.min }}</span>分<span class="time-block">{{ time_content.sec }}</span>秒</slot>' +
-//   '</span>';
-// Vue.component('m-time',
-//   {
-//     template: _time_html,
-//     data(){
-//       return {
-//         product: config.product,
-//         time_content: {
-//           day: '00',
-//           hour: '00',
-//           min: '00',
-//           sec: '00',
-//         },
-//         _sec: 0
-//       }
-//     },
-//     props:{
-//       endTime:{
-//         type: Number,
-//         default :0
-//       },
-//       callback : {
-//         type : Function,
-//         default :''
-//       }
-//     },
-//     mounted () {
-//       this.initTime();
-//       this.countdowm(this._sec);
-//     },
-//     methods: {
-//       initTime(){
-//         let vue = this;
-//         let data = vue.product;
-//         let _sec = 0;
-//         if (data.status === 1) {
-//           _sec = parseInt((data.startTime - data.nowTime) / 1000);
-//         } else if (data.status !== 4) {
-//           _sec = parseInt((data.endTime - data.nowTime) / 1000);
-//         }
-//         vue._sec = _sec;
-//
-//       },
-//       _countdown(that, t, callback){
-//         let _temp = {
-//           d: 0,
-//           df: 0,
-//           h: 0,
-//           hf: 0,
-//           m: 0,
-//           s: 0,
-//         }
-//         let _countDown = {
-//           h:0,
-//           m: 0,
-//           s: 0,
-//         }
-//         let o = setInterval(function () {
-//           if (t > 0) {
-//             _temp.d = Math.floor(t / 86400);
-//             _temp.df = t % 86400;
-//             _temp.h = Math.floor(_temp.df / 3600);
-//             _temp.hf = _temp.df % 3600;
-//             _temp.m = Math.floor(_temp.hf / 60);
-//             _temp.s = t % 60;
-//             _countDown.h = _temp.h.toString().length > 1 ? _temp.h : ('0' + _temp.h);
-//             _countDown.m = _temp.m.toString().length > 1 ? _temp.m : ('0' + _temp.m);
-//             _countDown.s = _temp.s.toString().length > 1 ? _temp.s : ('0' + _temp.s);
-//             t = t - 1;
-//             callback(that, _countDown);
-//           } else {
-//             clearInterval(o);
-//           }
-//         }, 1000);
-//       },
-//       countdowm(timestamp){
-//         let self = this, _initTime = new Date().getTime();
-//         let timer = setInterval(function(){
-//           let nowTime = new Date();
-//           let endTime = new Date(timestamp * 1000 + _initTime);
-//           let t = endTime.getTime() - nowTime.getTime();
-//           if(t>0){
-//             let day = Math.floor(t/86400000);
-//             let hour=Math.floor((t/3600000)%24);
-//             let min=Math.floor((t/60000)%60);
-//             let sec=Math.floor((t/1000)%60);
-//             hour = hour + day * 24;
-//             hour = hour < 10 ? '0' + hour : hour;
-//             min = min < 10 ? '0' + min : min;
-//             sec = sec < 10 ? '0' + sec : sec;
-//             if(day > 0){
-//               // format =  `${day}天${hour}小时${min}分${sec}秒`;
-//               self.time_content.hour = hour;
-//               self.time_content.min = min;
-//               self.time_content.sec = sec;
-//             }
-//             if(day <= 0 && hour > 0 ){
-//               self.time_content.hour = hour;
-//               self.time_content.min = min;
-//               self.time_content.sec = sec;
-//             }
-//             if(day <= 0 && hour <= 0){
-//               self.time_content.min = min;
-//               self.time_content.sec = sec;
-//             }
-//           }else{
-//             clearInterval(timer);
-//             self._callback();
-//           }
-//         },1000);
-//       },
-//       _callback(){
-//         if(this.callback && this.callback instanceof Function){
-//           this.callback(...this);
-//         }
-//       }
-//     }
-//   }
-// );
-
 let app = new Vue(
   {
     data: {
@@ -246,8 +124,6 @@ let app = new Vue(
         sec: '00',
       },
       _sec: 0,
-
-
       product: config.product,
       chat_list: config.chatList,
       ranks_list: [],
@@ -532,7 +408,6 @@ let app = new Vue(
         let _entity = this.product;
         let _postData = { 'goods_id': _entity.id };
         if (_entity.status === 2) {
-          console.log(vue.$refs)
           vue.$refs.deppost.post(config.auction_signup_url, _postData);
 
         } else if (_entity.status === 1) {
@@ -548,6 +423,22 @@ let app = new Vue(
           vue.showAlert = true;
           vue.close_auto();
         }
+      },
+      postSuc(data, item){
+        let vue = this;
+
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       //我要出价
       bindSubmitTap: function() {
