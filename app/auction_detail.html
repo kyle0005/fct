@@ -134,12 +134,12 @@
         <div class="lis buy">
           <a href="javascript:;" class="txt grey" v-if="product.status == 1">拍卖未开始</a>
           <a href="javascript:;" class="txt " v-else-if="product.status < 3">
-            <subpost :txt="depositText" ref="deppost" @callback="bindDepositTap" @before="postBefore"
+            <subpost :txt="'预交保证金'" :status="true" ref="deppost" @callback="bindDepositTap" @before="postBefore"
                      @success="postSuc" @error="postError" @alert="postTip"></subpost>
           </a>
           <a href="javascript:;" class="txt" v-else-if="product.status > 10">继续报名</a>
           <a href="javascript:;" class="txt grey" v-else-if="product.status === 3">
-            <subpost :txt="subText" ref="subpost" @callback="bindSubmitTap" @before="postBefore"
+            <subpost :txt="'我要出价'" :status="true" ref="subpost" @callback="bindSubmitTap" @before="postBefore"
                      @success="postSuc" @error="postError" @alert="postTip"></subpost>
           </a>
           <a href="javascript:;" class="txt grey" v-else-if="product.status === 4">拍卖结束</a>

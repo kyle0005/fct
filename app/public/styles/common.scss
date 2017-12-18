@@ -455,11 +455,11 @@ small.pri-mark{
   transform-origin: left center;*/
 }
 
-.post-container{
+span#post.post-container{
   display: inline-block;
   width: 100%;
   height: 100%;
-  .post-inner{
+  span.post-inner{
     display: inline-block;
     width: 100%;
     height: 100%;

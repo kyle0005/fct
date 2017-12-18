@@ -146,8 +146,8 @@ let app = new Vue(
       ws: {},
       wsMsg: '',
 
-      depositText: '预交保证金',
-      subText: '我要出价'
+/*      depositText: '预交保证金',
+      subText: '我要出价'*/
     },
     watch: {
       chat_list:function (val, oldVal){

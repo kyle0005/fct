@@ -89,15 +89,15 @@
     <div class="inner">
       <a href="javascript:;" class="chat"><img src="public/img/mobile/order_chat.png"><span class="text">在线客服</span></a>
       <div class="del">
-        <a href="javascript:;" @click="confirm(order_detail.orderId, finish)">
-          删除订单
-          <!--<subpost :txt="delText" ref="subpost" @callback="confirm(order_detail.orderId, finish)" @succhandle="succhandle"></subpost>-->
+        <a href="javascript:;">
+          <subpost :txt="'删除订单'" :status="false" ref="delref" @callback="confirm(order_detail.orderId, finish)"
+                   @before="postBefore" @success="postSuc" @error="postError" @alert="postTip"></subpost>
         </a>
       </div>
       <div class="comment">
-        <a href="javascript:;" @click="confirm(order_detail.orderId, cancel)">
-          取消订单
-          <!--<subpost :txt="cancelText" ref="cancelpost" @callback="confirm(order_detail.orderId, cancel)" @succhandle="succhandle"></subpost>-->
+        <a href="javascript:;">
+          <subpost :txt="'取消订单'" :status="false" ref="cancelref" @callback="confirm(order_detail.orderId, cancel)"
+                   @before="postBefore" @success="postSuc" @error="postError" @alert="postTip"></subpost>
         </a>
       </div>
     </div>

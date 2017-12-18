@@ -112,8 +112,13 @@ let app = new Vue(
     },
     methods: {
       tip(item, index){
-        let vue = this;
-        jAjax({
+        let vue = this, _url = config.auction_remind_url,
+          _data = {
+            'goods_id': item.id
+          };
+        vue.$refs.tipsref[index].post(_url, _data, index);
+        // tools.ajaxPost(_url, _data, vue.postSuc, vue.postBefore, vue.postError, index, vue.postTip);
+        /*jAjax({
           type:'post',
           url:config.auction_remind_url,
           data: {
@@ -137,7 +142,23 @@ let app = new Vue(
           error:function(status, statusText){
             console.log(statusText);
           }
-        });
+        });*/
+      },
+      postSuc(data, index){
+        let vue = this;
+        vue.pro_list[index].remindId = data.data;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       linkto(url){
         if(url){

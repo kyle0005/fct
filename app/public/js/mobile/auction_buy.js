@@ -29,7 +29,7 @@ let app = new Vue(
       usedAccountAmount: 0,   /* 已使用余额 */
       useAccountAmount: false,
 
-      payText: '我要付款'
+      // payText: '我要付款'
     },
     watch: {
     },
@@ -74,6 +74,22 @@ let app = new Vue(
         }
 
       },
+      postSuc(data, item){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
+      },
+
       calculateAmount(num){
         let vue= this;
         vue.calTotal();

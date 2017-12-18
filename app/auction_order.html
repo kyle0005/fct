@@ -17,7 +17,7 @@
     <div class="search-container" :class="{show:show_search}">
       <div class="cancel-search">
         <a href="javascript:;" class="fork">
-          <subpost :txt="subText" ref="subpost" @callback="search(0)" @succhandle="succhandle"></subpost>
+          <subpost :txt="'取消'" ref="subpost" @callback="search(0)" @succhandle="succhandle"></subpost>
         </a>
       </div>
       <input type="search" class="search-input" :placeholder="placeholder" v-model="keywords">
@@ -52,7 +52,10 @@
           <a href="javascript:;" class="black">我要付款</a>
         </div>
         <div class="btn-container">
-          <a href="javascript:;" class="grey" @click="confirm(item.orderId, cancel)">关闭订单</a>
+          <a href="javascript:;" class="grey">
+            <subpost :txt="'关闭订单'" :status="false" :ref="'closesref' + index" @callback="confirm({'o':item, 'i':index}, cancel)"
+                     @before="postBefore" @success="postSuc" @error="postError" @alert="postTip"></subpost>
+          </a>
         </div>
       </div>
       <div class="btn clearfix" v-if="item.status == 2">
@@ -72,7 +75,7 @@
   <no-data v-if="nodata"></no-data>
   <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
-  <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :obj="orderId" :msg="msg"></confirm>
+  <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :obj="order_obj" :msg="msg"></confirm>
 </div>
 <script src="public/js/mobile/vue.js"></script>
 <script src="public/js/mobile/common/tools.js"></script>

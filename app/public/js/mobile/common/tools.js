@@ -1015,8 +1015,8 @@ Vue.component('confirm',
   }
 );
 
-let post_html = '<span class="post-container">' +
-  '<span class="post-inner" v-if="postProcess">{{ txt }}...</span>' +
+let post_html = '<span id="post" class="post-container">' +
+  '<span class="post-inner" v-if="postProcess">{{ txt }}<span v-if="status">...</span></span>' +
 '<span class="post-inner" @click="sub()" v-else>{{ txt }}</span>' +
 '</span>';
 Vue.component('subpost',
@@ -1027,6 +1027,10 @@ Vue.component('subpost',
         type: String,
         default: ''
       },
+      status: {
+        type: Boolean,
+        default: false
+      }
     },
     data(){
       return {
@@ -1041,9 +1045,9 @@ Vue.component('subpost',
         let vue = this;
         vue.$emit('callback');
       },
-      post(url, data){
+      post(url, data, paras){
         let vue = this;
-        tools.ajaxPost(url, data, vue.success, vue.before, vue.error, {}, vue.alert);
+        tools.ajaxPost(url, data, vue.success, vue.before, vue.error, paras, vue.alert);
         /*jAjax({
           type:'post',
           url:url,
@@ -1074,10 +1078,10 @@ Vue.component('subpost',
         vue.$emit('before');
         vue.postProcess = true;
       },
-      success(data){
+      success(data, paras){
         let vue = this;
         vue.postProcess = false;
-        vue.$emit('success',data);
+        vue.$emit('success',data, paras);
       },
       error(){
         let vue = this;

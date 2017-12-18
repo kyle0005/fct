@@ -21,7 +21,7 @@ let app = new Vue(
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
       picked: '',
-      subText: '删除',
+      // subText: '删除',
       del_index: null,
 
       listloading: true,

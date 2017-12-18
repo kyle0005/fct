@@ -16,8 +16,6 @@ let app = new Vue(
       orderId: null,
       callback: null,
 
-      delText: '删除订单',
-      cancelText: '取消订单'
     },
     watch: {
     },
@@ -26,8 +24,9 @@ let app = new Vue(
         let vue = this,
           post_url = config.finish_url + '/' + orderId + '/finish',
           post_data = {};
-        // vue.$refs.subpost.post(post_url, post_data);
-        jAjax({
+        vue.$refs.delref.post(post_url, post_data, {});
+        // tools.ajaxPost(post_url, post_data, vue.postSuc, vue.postBefore, vue.postError, {}, vue.postTip);
+        /*jAjax({
           type:'post',
           url:post_url,
           data: post_data,
@@ -55,14 +54,30 @@ let app = new Vue(
           },
           error:function(){
           }
-        });
+        });*/
+      },
+      postSuc(data, item){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       cancel(orderId){
         let vue = this,
           post_url = config.cancel_url + '/' + orderId + '/cancel',
           post_data = {};
-        // vue.$refs.cancelpost.post(post_url, post_data);;
-        jAjax({
+        vue.$refs.cancelref.post(post_url, post_data, {});
+        // tools.ajaxPost(post_url, post_data, vue.postSuc, vue.postBefore, vue.postError, {}, vue.postTip);
+        /*jAjax({
           type:'post',
           url:post_url,
           data: post_data,
@@ -90,7 +105,7 @@ let app = new Vue(
           },
           error:function(){
           }
-        });
+        });*/
       },
       order_detail(){
         let vue = this;
