@@ -8,7 +8,7 @@ let app = new Vue(
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
 
-      subText: '申请发票',
+      // subText: '申请发票',
       title: '',
       content: '工艺礼品',
 

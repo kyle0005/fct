@@ -69,7 +69,8 @@
     </div>
     <div class="address-btn">
       <a href="javascript:;">
-        <subpost :txt="subText" ref="subpost" @callback="sub" @succhandle="succhandle"></subpost>
+        <subpost :txt="'确认保存'" :status="true" ref="subpost" @callback="sub" @before="postBefore"
+                 @success="postSuc" @error="postError" @alert="postTip"></subpost>
       </a>
     </div>
   </form>

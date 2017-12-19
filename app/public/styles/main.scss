@@ -2649,15 +2649,23 @@ $foot-height: 250px;
         .info{
           height: 22px;
           line-height: 22px;
-          background-color: $color-black;
+          background-color: rgba(0,0,0,.5);
           color: $color-white;
-          opacity: .5;
           padding: 0 10px;
         }
         .join-num{
           position: absolute;
           right: 5px;
           bottom: 5px;
+          i{
+            margin-right: 5px;
+          }
+        }
+        .join-num.fav{
+          i{
+            color: $color-333;
+          }
+
         }
 
       }
@@ -5766,6 +5774,16 @@ $foot-height: 250px;
           img{
             margin-top: 28%;
             width: 22%;
+          }
+          .text{
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            width: 100%;
+            padding-top: 50%;
+            text-align: center;
+            height: 50%;
           }
         }
       }

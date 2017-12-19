@@ -14,7 +14,7 @@ let app = new Vue(
       withdrawals: config.withdrawals,
       max: config.withdrawals.withdrawAmount,
       min: 100,
-      subText: '提交申请'
+      // subText: '提交申请'
     },
     watch: {
       amount: function (val, oldVal) {
@@ -32,6 +32,21 @@ let app = new Vue(
             'amount': vue.amount
           };
         vue.$refs.subpost.post(post_url, post_data);
+      },
+      postSuc(data, index){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       succhandle(data){
         let vue = this;

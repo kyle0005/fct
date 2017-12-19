@@ -63,7 +63,12 @@ new Vue(
             vue.max = true;
           }
         }
-        jAjax({
+        tools.ajaxPost(config.cart_add_url, {
+          'buy_number': num - item.buyCount,
+          'product_id': item.goodsId,
+          'spec_id': item.specId
+        }, vue.postSuc, vue.postBefore, vue.postError, {}, vue.postTip);
+        /*jAjax({
           type:'post',
           url:config.cart_add_url,
           data: {
@@ -90,7 +95,7 @@ new Vue(
           error:function(status, statusText){
             console.log(statusText);
           }
-        });
+        });*/
         item.buyCount = num;
         vue.caltotalpri();
       },
@@ -105,7 +110,12 @@ new Vue(
           if(num === 0){
             vue.min = true;
           }
-          jAjax({
+          tools.ajaxPost(config.cart_minus_url, {
+            'buy_number': num - item.buyCount,
+            'product_id': item.goodsId,
+            'spec_id': item.specId
+          }, vue.postSuc, vue.postBefore, vue.postError, {}, vue.postTip);
+          /*jAjax({
             type:'post',
             url:config.cart_minus_url,
             data: {
@@ -131,7 +141,7 @@ new Vue(
             error:function(status, statusText){
               console.log(statusText);
             }
-          });
+          });*/
           item.buyCount = num;
         }
         else if(num === 1){
@@ -142,8 +152,10 @@ new Vue(
       },
       delCart(item){
         let vue = this,
-          num = parseInt(item.buyCount.toString().replace(/[^\d]/g,''));
-        jAjax({
+          num = parseInt(item.buyCount.toString().replace(/[^\d]/g,'')),
+        _url = config.delete_url + '/' + item.id + '/delete';
+        tools.ajaxPost(_url, {}, vue.delsuccess, vue.postBefore, vue.postError, item, vue.postTip);
+        /*jAjax({
           type:'post',
           url:config.delete_url + '/' + item.id + '/delete',
           data: {},
@@ -173,7 +185,26 @@ new Vue(
           error:function(status, statusText){
             console.log(statusText);
           }
-        });
+        });*/
+      },
+      delsuccess(data, item){
+        let vue = this;
+        vue.pro_list.splice(item.index, 1);
+      },
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       caltotalpri(){
         let vue = this;

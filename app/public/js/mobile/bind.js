@@ -24,7 +24,7 @@ var app = new Vue(
 
         openid: config.openid,
         action: 'bind',
-        subText: '绑定'
+        // subText: '绑定'
       }
     },
     methods: {
@@ -40,7 +40,11 @@ var app = new Vue(
             }
           }, 1000);
           //发送短信验证码
-          jAjax({
+          vue.$refs.coderef.post(apis.smsUrl, {
+            'cellphone': this.phoneNumber,
+            'action': this.action,
+          });
+          /*jAjax({
             type:'post',
             url:apis.smsUrl,
             data: {
@@ -72,7 +76,7 @@ var app = new Vue(
               vue.msg = '请求失败';
               vue.close_auto();
             }
-          });
+          });*/
 
 
         }
@@ -81,6 +85,21 @@ var app = new Vue(
           vue.showAlert = true;
           vue.close_auto();
         }
+      },
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       //发送登录信息
       mobileMsgLogin(){

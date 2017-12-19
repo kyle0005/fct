@@ -16,7 +16,7 @@ let app = new Vue(
       bank: '',
       name: '',
       uploadImg: {},
-      subText: '提交申请'
+      // subText: '提交申请'
     },
     watch: {
     },
@@ -33,11 +33,12 @@ let app = new Vue(
         formData.append('action', 'head');
         formData.append('file', file);
 
-        jAjax({
+        tools.ajaxPost(config.uploadFileUrl, formData, vue.postSuc, vue.postBefore, vue.postError, {}, vue.postTip, false);
+        /*jAjax({
           type:'post',
           url:config.uploadFileUrl,
           data: formData,
-          contentType: false,   /* false为上传文件 */
+          contentType: false,   /!* false为上传文件 *!/
           timeOut:60000,
           success:function(data){
             if(data){
@@ -47,7 +48,23 @@ let app = new Vue(
               }
             }
           }
-        });
+        });*/
+      },
+      postSuc(data){
+        let vue = this;
+        vue.uploadImg = data.data;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       sub(){
         let vue = this, data = {};
@@ -122,13 +139,6 @@ let app = new Vue(
 
       succhandle(data){
         let vue = this;
-        vue.msg = data.message;
-        vue.showAlert = true;
-        if(data.url){
-          vue.close_auto(vue.linkto, data.url);
-        }else {
-          vue.close_auto();
-        }
       },
       close(){
         this.showAlert = false;

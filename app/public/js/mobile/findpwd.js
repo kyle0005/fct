@@ -19,7 +19,7 @@ var app = new Vue(
         codeNumber: null, //验证码
         action: 'forget',
 
-        subText: '登录'
+        // subText: '登录'
       }
     },
     methods: {
@@ -35,7 +35,11 @@ var app = new Vue(
             }
           }, 1000);
           //发送短信验证码
-          jAjax({
+          vue.$refs.coderef.post(apis.mobileCodeResource, {
+            'cellphone': this.phoneNumber,
+            'action': this.action,
+          });
+          /*jAjax({
             type:'post',
             url:apis.mobileCodeResource,
             data: {
@@ -68,7 +72,7 @@ var app = new Vue(
               vue.msg = '请求失败';
               vue.close_auto();
             }
-          });
+          });*/
 
 
         }
@@ -77,6 +81,21 @@ var app = new Vue(
           vue.showAlert = true;
           vue.close_auto();
         }
+      },
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       //发送修改信息
       update(){

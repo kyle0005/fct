@@ -26,8 +26,13 @@
   <section class="items">
     <ul class="list">
       <li>
-        <a href="javascript:;" class="link" @click="comf">
-          <img src="public/img/mobile/wallet_recharge.png"><br>交纳保证金
+        <a href="javascript:;" class="link">
+          <img src="public/img/mobile/wallet_recharge.png">
+          <span class="text">
+            <subpost :txt="'交纳保证金'" :status="false" ref="confref" @callback="comf" @before="postBefore"
+                     @success="postSuc" @error="postError" @alert="postTip"></subpost>
+          </span>
+
         </a>
       </li>
       <li>
@@ -60,6 +65,7 @@
   <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :msg="msg"></confirm>
 </div>
 <script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
 <script src="public/js/mobile/api/index.js"></script>
 <script>
   var config = {

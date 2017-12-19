@@ -37,8 +37,8 @@ let app = new Vue(
       usedAccountAmount: 0,   /* 已使用余额 */
       useAccountAmount: false,
 
-      coupText: '使用',
-      payText: '我要付款'
+      // coupText: '使用',
+      // payText: '我要付款'
     },
     watch: {
     },
@@ -234,7 +234,6 @@ let app = new Vue(
       toFloat(num) {
         return num.toFixed(2);
       },
-
       payhandle(data){
         let vue = this;
         vue.msg = data.message;
@@ -252,11 +251,21 @@ let app = new Vue(
         vue.coupon.couponCode = vue.couponcode;
         vue.loadCoupon();
         vue.calculateAmount(0);
-        if(data.url){
-          vue.close_auto(vue.linkto, data.url);
-        }else {
-          vue.close_auto();
-        }
+      },
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       close(){
         this.showAlert = false;

@@ -340,7 +340,7 @@ Vue.component('chat',
         showAlert: false, //显示提示组件
         msg: null, //提示的内容
         message: '', /* 提交聊天内容 */
-        subText: '发送',
+        // subText: '发送',
 
         listloading: true,
         pagerloading: false,
@@ -394,6 +394,22 @@ Vue.component('chat',
           };
         vue.$refs.subpost.post(config.chat_url, data);
 
+      },
+      postSuc(data, index){
+        let vue = this;
+        vue.popchat();
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = '留言提交成功，我们将通知“'+ config.artist.name +'”给您回复，请留意！';
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       loadChat() {
         let vue = this;
@@ -457,18 +473,39 @@ let app = new Vue(
     deactivated() {
     },
     data: {
-      haslive: true,
+      haslive: false,
       currentView: 'live',
       tabs: ['实时动态', '相关作品', '对话艺人'],
       tab_num: 0,
       artist: config.artist,
-
-      // imgdata: {}
-
+      collected: config.artist.collected
     },
     watch: {
     },
     methods: {
+      collection(){
+        let vue = this;
+        tools.ajaxPost(config.fav_url, {}, vue.favSuc, vue.postBefore, vue.postError, {}, vue.postTip);
+      },
+      favSuc(data){
+        let vue = this;
+        vue.collected = data.data.favoriteState;
+      },
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
+      },
       linkTo(num){
         let vue = this;
         this.tab_num = num;

@@ -260,12 +260,17 @@ var tools = {
       }
     });
   },
-  ajaxPost: function (url, data, callback, before, error, paras, alert) {
+  ajaxPost: function (url, data, callback, before, error, paras, alert, upload) {
+    let _timeout = 5000;
+    if(!upload){
+      _timeout = 60000;
+    }
     jAjax({
       type:'post',
       url:url,
       data: data || {},
-      timeOut:5000,
+      timeOut:_timeout,
+      contentType: upload,    /* 如果是上传文件，为false，否则, 为undefined */
       before:function(){
         if(before){
           before();
@@ -1102,8 +1107,8 @@ Vue.component('subpost',
 
 let nodata_html = '<div class="noData">' +
   '<div class="inner">' +
-  '<img src="../img/mobile/no_data.png">' +
-  '<span class="no">当前没有相关数据哟~</span>' +
+  '<img :src="imgurl">' +
+  '<span class="no">{{ text }}</span>' +
 '</div>' +
 '</div>';
 Vue.component('no-data',
@@ -1111,6 +1116,16 @@ Vue.component('no-data',
     template: nodata_html,
     data(){
       return {}
+    },
+    props: {
+      imgurl: {
+        type: String,
+        default: ''
+      },
+      text: {
+        type: String,
+        default: ''
+      }
     },
     mounted() {},
     methods: {}

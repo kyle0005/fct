@@ -21,7 +21,7 @@ let app = new Vue(
       discount: config.charge.defaultGift,
       hasNum:false,
 
-      subText: '我要充值'
+      // subText: '我要充值'
 
     },
     directives: {
@@ -79,22 +79,12 @@ let app = new Vue(
           'giftPercent': vue.discount,
           'price': 0,
         };
-/*        for (let i in config.charge.rules){
-          let item = {};
-          if (config.charge.rules.hasOwnProperty(i)) {
-            item[i] = config.charge.rules[i];
-            vue.charge_nums.push(item);
-          }
-         }*/
         vue.charge_nums.push(other);
 
 
       },
       choose(discount, value, num){
         let vue = this;
-/*        if(num == vue.tab_num){
-          return;
-        }*/
         vue.tab_num = num;
         if(parseFloat(value) == 0){
           value = '';
@@ -115,6 +105,21 @@ let app = new Vue(
           };
         vue.$refs.subpost.post(post_url, post_data);
 
+      },
+      postSuc(data, index){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       succhandle(data){
         let vue = this;

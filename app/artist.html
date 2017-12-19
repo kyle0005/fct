@@ -21,12 +21,12 @@
         </span>
           <span class="info live-now">正在直播</span>
         </a>
-        <img src="public/img/mobile/resource/imgs.png" >
-        <div class="info join-num">1234214241人关注</div>
+        <img :src="artist.banner">
+        <div class="info join-num" :class="{fav:collected}" @click="collection"><i class="fa fa-heart"></i>111111111</div>
       </div>
       <div class="inner" v-else>
         <img :src="artist.banner">
-        <div class="info join-num">{{ artist.followCount }}人关注</div>
+        <div class="info join-num" :class="{fav:collected}" @click="collection"><i class="fa fa-heart"></i>111111111</div>
       </div>
     </div>
   </section>
@@ -53,7 +53,7 @@
         <i class="fa fa-bars"></i>
       </li>
       <li class="logo" @click="toIndex()">
-        <img :src="img_url + '/logo.png'">
+        <img src="public/img/mobile/logo.png">
       </li>
       <li class="user" @click="toLogin()">
         <span class="img-container">
@@ -120,7 +120,7 @@
       </div>
     </section>
     <ul class="news" v-load-more="nextPage" type="1">
-      <li class="item" v-for="(item, index) in liveList">
+      <li class="item" v-for="(item, index)  in liveList">
         <div class="text">{{ item.content }}{{ item.id }}</div>
         <div class="media" :class="{vi: item.videoUrl!==''}">
           <mVideo v-if="item.videoUrl !== ''" :poster="item.videoImage" :url="item.videoUrl" id="'video' + item.id"></mVideo>
@@ -133,7 +133,7 @@
         </div>
       </li>
     </ul>
-    <no-data v-if="nodata"></no-data>
+    <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
     <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
 </script>
@@ -156,7 +156,7 @@
         </div>
       </li>
     </ul>
-    <no-data v-if="nodata"></no-data>
+    <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
     <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   </div>
 </script>
@@ -180,7 +180,7 @@
         </div>
       </li>
     </ul>
-    <no-data v-if="nodata"></no-data>
+    <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
     <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
     <section class="sub-chat">
       <div class="inner">
@@ -198,7 +198,8 @@
                   <a href="javascript:;" class="cancel" @click.prevent="popchat()">取消</a>
                   <span class="title">我来聊两句</span>
                   <a href="javascript:;" class="send">
-                    <subpost :txt="subText" ref="subpost" @callback="send" @succhandle="succhandle"></subpost>
+                    <subpost :txt="'发送'" ref="subpost" :status="true" @callback="send" @before="postBefore"
+                             @success="postSuc" @error="postError" @alert="postTip"></subpost>
                   </a>
                 </div>
                 <textarea class="textarea" v-model="message"></textarea>
@@ -255,8 +256,9 @@
       {
         "followCount":0,
         "name":"顾景舟11",
-        "banner":"http:\/\/fct-nick.img-cn-shanghai.aliyuncs.com\/upload\/2017-06-22\/682efd0ab90940e0a9f664d029cf7d14.jpeg",
+        "banner":"https://cdn.fangcun.com/upload/images/2017-10-09/2a9cef5d45074c5e8c6e711ff6ff0c58.jpg!750",
         "id":1,
+        "collected": false,
         "dynamicList":
           {
             "entries":

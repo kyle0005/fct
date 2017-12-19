@@ -66,13 +66,11 @@ Vue.component('upload',
         var formData = new FormData();
         formData.append('action', 'head');
         formData.append('file', file);
-
-        jAjax({
+        tools.ajaxPost(config.uploadFileUrl, formData, vue.postSuc, vue.postBefore, vue.postError, {}, vue.postTip, false);
+        /*jAjax({
           type:'post',
           url:config.uploadFileUrl,
           data: formData,
-          // contentType: 'multipart/form-data',
-          // enctype: 'multipart/form-data',
           contentType: false,
           timeOut:60000,
           before:function(){
@@ -88,7 +86,24 @@ Vue.component('upload',
           },
           error:function(){
           }
-        });
+        });*/
+      },
+      postSuc(data){
+        let vue = this;
+        vue.uploadItem.push(data.data.fullUrl);
+        vue.subUpload.push(data.data.url);
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
     }
   }
@@ -105,11 +120,26 @@ let app = new Vue(
       anonymous: false,
       is_break: false,
 
-      subText: '提交评论'
+      // subText: '提交评论'
     },
     watch: {
     },
     methods: {
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
+      },
       sub(){
         let vue = this, orderGoods_list = [];
         vue.order_detail.orderGoods.forEach((item, index) => {

@@ -20,7 +20,7 @@ let app = new Vue(
       name: '',
       number: '',
 
-      subText: '确认提交'
+      // subText: '确认提交'
     },
     watch: {
     },
@@ -47,6 +47,21 @@ let app = new Vue(
           };
         vue.$refs.subpost.post(post_url, post_data);
       },
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
+      },
       succhandle(data){
         let vue = this;
         vue.msg = data.message;
@@ -59,7 +74,8 @@ let app = new Vue(
       },
       closeApp(){
         let vue = this;
-        jAjax({
+        vue.$refs.closeref.post(config.cancel_url, {});
+        /*jAjax({
           type:'post',
           url:config.cancel_url,
           data: {},
@@ -87,7 +103,7 @@ let app = new Vue(
           },
           error:function(){
           }
-        });
+        });*/
       },
       confirm(callback){
         let vue = this;

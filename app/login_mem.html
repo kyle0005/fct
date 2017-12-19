@@ -36,7 +36,8 @@
       </ul>
       <div class="log-btn">
         <div class="sub">
-          <subpost :txt="subText" ref="subpost" @callback="mobileLogin" @succhandle="succhandle"></subpost>
+          <subpost :txt="'我要申请'" :status="true" ref="subpost" @callback="mobileLogin" @before="postBefore"
+                   @success="postSuc" @error="postError" @alert="postTip"></subpost>
         </div>
       </div>
     </form>

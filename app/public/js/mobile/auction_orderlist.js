@@ -51,9 +51,9 @@ let app = new Vue(
         let vue = this;
         vue.isPage ? vue.pagerloading = true : vue.listloading = true;
       },
-      cancel(orderId){
+      cancel(order_obj){
         let vue = this,
-          post_url = config.cancel_url + '/' + orderId + '/cancel',
+          post_url = config.cancel_url + '/' + order_obj.orderId + '/cancel',
           post_data = {};
         let _ref = 'closesref' + order_obj.index;
         vue.$refs[_ref][0].post(post_url, post_data, {});

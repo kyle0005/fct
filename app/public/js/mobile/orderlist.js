@@ -5,68 +5,6 @@ let app = new Vue(
       vue.tab_num = config.status;
       vue.initData();
     },
-/*    directives: {
-      'load-more': {
-        bind: (el, binding) => {
-          let windowHeight = window.screen.height;
-          let height;
-          let setTop;
-          let paddingBottom;
-          let marginBottom;
-          let requestFram;
-          let oldScrollTop;
-          let scrollEl;
-          let heightEl;
-          let scrollType = el.attributes.type && el.attributes.type.value;
-          let scrollReduce = 2;
-          if (scrollType == 2) {
-            scrollEl = el;
-            heightEl = el.children[0];
-          } else {
-            scrollEl = document.body;
-            heightEl = el;
-          }
-
-          el.addEventListener('touchstart', () => {
-            height = heightEl.clientHeight;
-            if (scrollType == 2) {
-              height = height
-            }
-            setTop = el.offsetTop;
-            paddingBottom = tools.getStyle(el, 'paddingBottom');
-            marginBottom = tools.getStyle(el, 'marginBottom');
-          }, false)
-
-          el.addEventListener('touchmove', () => {
-            loadMore();
-          }, false)
-
-          el.addEventListener('touchend', () => {
-            oldScrollTop = scrollEl.scrollTop;
-            moveEnd();
-          }, false);
-
-          const moveEnd = () => {
-            requestFram = requestAnimationFrame(() => {
-              if (scrollEl.scrollTop != oldScrollTop) {
-                oldScrollTop = scrollEl.scrollTop;
-                moveEnd()
-              } else {
-                cancelAnimationFrame(requestFram);
-                height = heightEl.clientHeight;
-                loadMore();
-              }
-            })
-          };
-
-          const loadMore = () => {
-            if (scrollEl.scrollTop + windowHeight >= height + setTop + paddingBottom + marginBottom - scrollReduce) {
-              binding.value();
-            }
-          }
-        }
-      }
-    },*/
     watch: {
       orderlist: function (val, oldVal) {
         if(!this.listloading){
@@ -92,9 +30,11 @@ let app = new Vue(
       last_url: '',
       pager: config.orderlist.pager,
       status: config.status || -1,
+
+      order_obj: {},
       orderId: null,
       callback: null,
-      subText: '取消',
+      // subText: '取消',
 
       listloading: true,
       pagerloading: false,
@@ -111,11 +51,13 @@ let app = new Vue(
         let vue = this;
         vue.isPage ? vue.pagerloading = true : vue.listloading = true;
       },
-      cancel(orderId){
+      cancel(order_obj){
         let vue = this,
-          post_url = config.cancel_url + '/' + orderId + '/cancel',
+          post_url = config.cancel_url + '/' + order_obj.orderId + '/cancel',
           post_data = {};
-        jAjax({
+        let _ref = 'closesref' + order_obj.index;
+        vue.$refs[_ref][0].post(post_url, post_data, {});
+        /*jAjax({
           type:'post',
           url:post_url,
           data: post_data,
@@ -137,7 +79,22 @@ let app = new Vue(
           },
           error:function(){
           }
-        });
+        });*/
+      },
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       todetail(item){
         let vue = this;
@@ -191,10 +148,14 @@ let app = new Vue(
 
 
       },
-      confirm(orderId, callback){
+      confirm(item, callback){
         let vue = this;
         vue.msg = '您确认要执行此操作？';
-        vue.orderId = orderId;
+        vue.order_obj = {
+          'orderId': item.o.orderId,
+          'index': item.i
+        };
+        vue.orderId = item.o.orderId;
         vue.callback = callback;
         vue.showConfirm = true;
       },

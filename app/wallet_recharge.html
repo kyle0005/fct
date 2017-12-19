@@ -33,7 +33,8 @@
     <div class="pri">应付:<small class="pri-mark">￥</small>{{ toFloat(charge_num) }}</div>
     <div class="sub">
       <a href="javascript:;" class="sub">
-        <subpost :txt="subText" ref="subpost" @callback="sub" @succhandle="succhandle"></subpost>
+        <subpost :txt="'我要充值'" :status="true" ref="subpost" @callback="sub" @before="postBefore"
+                 @success="postSuc" @error="postError" @alert="postTip"></subpost>
       </a>
     </div>
   </footer>

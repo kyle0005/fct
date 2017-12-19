@@ -37,7 +37,7 @@
         </div>
     </li>
   </ul>
-  <no-data v-if="nodata"></no-data>
+  <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
   <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>

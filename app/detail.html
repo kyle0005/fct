@@ -79,7 +79,6 @@
               </div>
 
             </div>
-            <!--<a href="javascript:;" class="sub" @click="buy()">确定</a>-->
             <ul class="nav">
               <li class="message" @click="">
                 <a href="javascript:;" class="foot-link">
@@ -97,7 +96,8 @@
               </li>
               <li class="add">
                 <a href="javascript:;">
-                  <subpost :txt="subText" ref="subpost" @callback="buy(0)" @succhandle="succhandle"></subpost>
+                  <subpost :txt="'加入购物车'" :status="true" ref="subpost" @callback="buy(0)" @before="postBefore"
+                           @success="succhandle" @error="postError" @alert="postTip"></subpost>
                 </a>
               </li>
               <li class="buy">
@@ -380,7 +380,7 @@
 <script type="text/x-template" id="artist">
   <div class="artist-contianer">
     <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
-    <no-data v-if="nodata"></no-data>
+    <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
     <div class="top-container" v-if="titleshow">
       <div class="inner o">
         <ul class="top-list">
@@ -446,7 +446,7 @@
 </script>
 <script type="text/x-template" id="pug">
   <div class="artist-contianer">
-    <no-data v-if="nodata"></no-data>
+    <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
     <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
     <div class="top-container" v-if="titleshow">
       <div class="inner o">
@@ -497,7 +497,7 @@
 </script>
 <script type="text/x-template" id="service">
   <div>
-    <no-data v-if="nodata"></no-data>
+    <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
     <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
     <!--<section class="service" v-html="tab_service"></section>-->
     <section class="service">
@@ -552,7 +552,7 @@
 </script>
 <script type="text/x-template" id="discuss">
   <section class="discuss">
-    <no-data v-if="nodata"></no-data>
+    <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
     <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
     <ul class="list" v-load-more="nextPage" type="1" v-if="commentlist && commentlist.length > 0">
       <li class="item" v-for="(item, index) in commentlist">

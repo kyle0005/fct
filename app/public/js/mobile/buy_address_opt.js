@@ -70,7 +70,7 @@ let app = new Vue(
       cellPhone: config.address.cellPhone || '',
       name: config.address.name || '',
 
-      subText: '确认保存'
+      // subText: '确认保存'
     },
     methods: {
       sub(){
@@ -112,7 +112,21 @@ let app = new Vue(
           }
         });
       },
-
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
+      },
       succhandle(data){
         let vue = this;
         vue.msg = data.message;

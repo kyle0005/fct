@@ -18,7 +18,7 @@ var app = new Vue(
         msg: null,
 
         action: 'login',
-        subText: '我要申请'
+        // subText: '我要申请'
 
       }
     },
@@ -51,7 +51,21 @@ var app = new Vue(
         //用户名登录
         vue.$refs.subpost.post(config.storeUrl, post_data);
       },
-
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
+      },
       succhandle(data){
         let vue = this;
         vue.msg = data.message;

@@ -46,7 +46,11 @@ let app = new Vue(
       },
       link(){
         let vue = this;
-        jAjax({
+        vue.$refs.confref.post(config.rechange_url, {
+          'can_withdraw': 1,
+          'pay_amount': 2000
+        });
+        /*jAjax({
           type:'post',
           url:config.rechange_url,
           data: {
@@ -75,7 +79,22 @@ let app = new Vue(
           },
           error:function(){
           }
-        });
+        });*/
+      },
+      postSuc(data, index){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       close(){
         this.showAlert = false;

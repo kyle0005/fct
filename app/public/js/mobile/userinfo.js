@@ -14,7 +14,7 @@ let app = new Vue(
       uploadImg: {},
       sex: config.userinfo.sex,
       date: config.userinfo.birthday,
-      subText: '确认保存'
+      // subText: '确认保存'
     },
     watch: {
     },
@@ -30,14 +30,14 @@ let app = new Vue(
         var formData = new FormData();
          formData.append('action', 'head');
         formData.append('file', file);
-
-        jAjax({
+        tools.ajaxPost(config.uploadFileUrl, formData, vue.uploadSuc, vue.postBefore, vue.postError, {}, vue.postTip, false);
+        /*jAjax({
           type:'post',
           url:config.uploadFileUrl,
           data: formData,
           // contentType: 'multipart/form-data',
           // enctype: 'multipart/form-data',
-          contentType: false,   /* false为上传文件 */
+          contentType: false,   /!* false为上传文件 *!/
           timeOut:60000,
           success:function(data){
             if(data){
@@ -49,7 +49,27 @@ let app = new Vue(
               }
             }
           }
-        });
+        });*/
+      },
+      uploadSuc(data){
+        let vue = this;
+        vue.uploadImg = data.data;
+        vue.userinfo.headPortrait = vue.uploadImg.fullUrl;
+      },
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       sub(){
         let vue = this,

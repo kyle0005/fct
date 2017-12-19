@@ -465,342 +465,6 @@ Vue.component('discuss',
   }
 );
 
-// let _vText='<img v-view=\"http://localhost:9000/public/img/mobile/resource/pro01.png\" src=\"public/img/mobile/img_loader.gif\" style=\"width: 550px;\">';
-// Vue.component('vhtml',{
-//   directives: {
-//     'view': {
-//       inserted: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       bind: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       update: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       componentUpdated: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       }
-//     },
-//   },
-//   props:['hcon'],
-//   render: function (createElement) {
-//     return createElement(
-//       'div',
-//       {
-//         // DOM 属性
-//         domProps: {
-//           innerHTML: this.hcon
-//         },
-// /*        directives: [
-//           {
-//             name: 'view',
-//             value: 'http://localhost:9000/public/img/mobile/resource/pro01.png',
-//             // expression: '1 + 1',
-//             // arg: '',
-//             // modifiers: {
-//             //   bar: true
-//             // }
-//           }
-//         ]*/
-//       },
-//       [
-//         createElement('img', {
-//           attrs: {
-//             id: 'xxxx',
-//             src: 'public/img/mobile/img_loader.gif',
-//             'v-view': 'http://localhost:9000/public/img/mobile/resource/pro01.png'
-//           },
-//           directives: [
-//             {
-//               name: 'view',
-//               value: 'http://localhost:9000/public/img/mobile/resource/pro01.png',
-//               // expression: '1 + 1',
-//               // arg: '',
-//               // modifiers: {
-//               //   bar: true
-//               // }
-//             }
-//           ],
-//         }),
-//         createElement('img', {
-//           attrs: {
-//             id: 'xxxx',
-//             src: 'public/img/mobile/img_loader.gif',
-//             'v-view': 'http://localhost:9000/public/img/mobile/resource/pro02.png'
-//           },
-//           directives: [
-//             {
-//               name: 'view',
-//               value: 'http://localhost:9000/public/img/mobile/resource/pro02.png',
-//               // expression: '1 + 1',
-//               // arg: '',
-//               // modifiers: {
-//               //   bar: true
-//               // }
-//             }
-//           ],
-//         }),
-//         createElement('div', {
-//             domProps: {
-//               innerHTML: _vText
-//             },
-//             directives: [
-//               {
-//                 name: 'view',
-//                 value: 'http://localhost:9000/public/img/mobile/resource/pro03.png',
-//                 // expression: '1 + 1',
-//                 // arg: '',
-//                 // modifiers: {
-//                 //   bar: true
-//                 // }
-//               }
-//             ],
-//           }, [])
-//       ]
-//     )
-//   },
-//   // template: '<div id="pugHtml">{{ hcon }}</div>',
-//   mounted: function() {
-//     let vue = this;
-//     // console.log(vue.hcon);
-//     // document.getElementById('pugHtml').innerHTML = vue.hcon;
-// /*    vue.$nextTick(function() {
-//       setTimeout(function () {
-//         document.getElementById('pugHtml').innerHTML = vue.hcon;
-//       }, 0)
-//     });*/
-//
-//   },
-//   methods: {
-//     click_user(){
-//       // console.log('user clicker');
-//     }
-//   }
-// });
-//
-// Vue.component('vimg',{
-//   directives: {
-//     'view': {
-//       inserted: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       bind: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       update: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       },
-//       componentUpdated: (el, binding) => {
-//         let resourceEles = {},options = {
-//           threshold: -50
-//         },initRender;
-//         let containerName = binding.arg == undefined ? 'window' : binding.arg
-//         if (resourceEles[containerName] == undefined) {
-//           resourceEles[containerName] = []
-//         }
-//         resourceEles[containerName].push({
-//           ele: el,
-//           src: binding.value
-//         });
-//         Vue.nextTick(() => {
-//           if (typeof initRender == 'undefined') {
-//             initRender = _util.debounce(function () {
-//               for (let key in resourceEles) {
-//                 options.container = key == 'window' ? window : document.getElementById(key);
-//                 options.selector = resourceEles[key];
-//                 new VueViewload(options).render();
-//               }
-//             }, 200)
-//           }
-//           initRender();
-//         })
-//       }
-//     },
-//   },
-//   props:['vsrc'],
-//   render: function (createElement) {
-//     return createElement('img', {
-//       attrs: {
-//         id: 'xxxx',
-//         src: 'public/img/mobile/img_loader.gif',
-//         'v-view': this.vsrc
-//       },
-//       directives: [
-//         {
-//           name: 'view',
-//           value: this.vsrc
-//           // expression: '1 + 1',
-//           // arg: '',
-//           // modifiers: {
-//           //   bar: true
-//           // }
-//         }
-//       ],
-//     })
-//   },
-//   mounted: function() {
-//     let vue = this;
-//
-//   },
-//   methods: {
-//   }
-// });
-
 let app = new Vue(
   {
     data: {
@@ -809,7 +473,6 @@ let app = new Vue(
       pro_list: [],
       loading: false,
       refreshing: false,
-      // img_url: 'public/img/mobile',
       currentView: 'overview',
       tabs: ['概览', '作者', '泥料', '售后保障', '评论'],
       tab_num: 0,
@@ -828,9 +491,7 @@ let app = new Vue(
       isbuy:false,
       cart_num: config.product.cartProductCount,
 
-      subText: '加入购物车'
-
-      // test_img: '<img v-view="http://localhost:9000/public/img/mobile/resource/pro01.png" src="public/img/mobile/img_loader.gif">'
+      // subText: '加入购物车'
 
     },
     mounted: function() {
@@ -886,7 +547,8 @@ let app = new Vue(
       },
       collection(){
         let vue = this;
-        jAjax({
+        tools.ajaxPost(config.fav_url, {}, vue.favSuc, vue.postBefore, vue.postError, {}, vue.postTip);
+        /*jAjax({
           type:'post',
           url:config.fav_url,
           timeOut:5000,
@@ -913,7 +575,26 @@ let app = new Vue(
           },
           error:function(){
           }
-        });
+        });*/
+      },
+      favSuc(data){
+        let vue = this;
+        vue.collected = data.data.favoriteState;
+      },
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       change(index) {},
       add(){
@@ -1056,13 +737,7 @@ let app = new Vue(
         let vue = this;
         vue.cart_num = data.data.cartProductCount;
         vue.loadcart();
-        vue.msg = data.message;
-        vue.showAlert = true;
-        if(data.url){
-          vue.close_auto(vue.linkto, data.url);
-        }else {
-          vue.close_auto();
-        }
+
       },
       close(){
         this.showAlert = false;

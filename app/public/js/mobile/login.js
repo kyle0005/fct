@@ -22,7 +22,7 @@ var app = new Vue(
         captchaCodeImg: null, //验证码地址
         codeNumber: null, //验证码
         action: 'login',
-        subText: '登录'
+        // subText: '登录'
 
       }
     },
@@ -43,7 +43,11 @@ var app = new Vue(
             }
           }, 1000);
           //发送短信验证码
-          jAjax({
+          vue.$refs.coderef.post(apis.mobileCodeResource, {
+            'cellphone': this.phoneNumber,
+            'action': this.action,
+          });
+          /*jAjax({
             type:'post',
             url:apis.mobileCodeResource,
             data: {
@@ -75,7 +79,7 @@ var app = new Vue(
               vue.msg = '请求失败';
               vue.close_auto();
             }
-          });
+          });*/
 
 
         }
@@ -101,38 +105,6 @@ var app = new Vue(
         }
         //用户名登录
         vue.$refs.subpost.post(apis.userResource, formData.serializeForm('userLogin'));
-        /*jAjax({
-          type:'post',
-          url:apis.userResource,
-          data: formData.serializeForm('userLogin'),
-          timeOut:5000,
-
-          before:function(){
-            // vue.postProcess = true;
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto(vue.linkto, data.url);
-
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-            // vue.postProcess = false;
-
-          },
-          error:function(status, statusText){
-            // vue.postProcess = false;
-          }
-        });*/
-
-
       },
       mobileMsgLogin(){
         let vue = this, post_url = apis.userResource, post_data = formData.serializeForm('quickLogin');
@@ -146,7 +118,21 @@ var app = new Vue(
         vue.$refs.subpost.post(post_url, post_data);
 
       },
-
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
+      },
       succhandle(data){
         let vue = this;
         vue.msg = data.message;

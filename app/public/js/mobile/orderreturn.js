@@ -17,7 +17,7 @@ let app = new Vue(
       maxNum: 3,
       servicetype: 1,
       reason: '',
-      subText: '提交申请'
+      // subText: '提交申请'
     },
     watch: {
     },
@@ -26,6 +26,27 @@ let app = new Vue(
         let vue = this;
         vue.uploadItem.splice(index, 1);
         vue.subUpload.splice(index, 1);
+      },
+      postSuc(data){
+        let vue = this;
+
+      },
+      uploadSuc(data){
+        let vue = this;
+        vue.uploadItem.push(data.data.fullUrl);
+        vue.subUpload.push(data.data.url);
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       fileChange(event){
         let vue = this, file = {};
@@ -38,8 +59,8 @@ let app = new Vue(
         var form_data = new FormData();
         form_data.append('action', 'head');
         form_data.append('file', file);
-
-        jAjax({
+        tools.ajaxPost(config.uploadFileUrl, formData, vue.uploadSuc, vue.postBefore, vue.postError, {}, vue.postTip, false);
+        /*jAjax({
           type:'post',
           url:config.uploadFileUrl,
           data: form_data,
@@ -60,7 +81,7 @@ let app = new Vue(
           },
           error:function(){
           }
-        });
+        });*/
       },
       sub(){
         let vue = this,

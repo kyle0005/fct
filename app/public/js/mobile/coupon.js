@@ -5,8 +5,8 @@ Vue.component('coupons',
       return {
         show_search: false,
         show_detail: false,
-        useText: '立即使用',
-        getText: '点击领取'
+        // useText: '立即使用',
+        // getText: '点击领取'
       }
     },
     props: ['couponitem'],
@@ -43,6 +43,22 @@ Vue.component('coupons',
       succhandle(data){
         let vue = this;
         vue.$emit('succhandle',data);
+      },
+      postSuc(data){
+        let vue = this;
+        vue.$emit('postSuc',data);
+      },
+      postTip(data){
+        let vue = this;
+        vue.$emit('postTip',data);
+      },
+      postBefore(){
+        let vue = this;
+        vue.$emit('postBefore');
+      },
+      postError(){
+        let vue = this;
+        vue.$emit('postError');
       },
     }
   }
@@ -130,6 +146,21 @@ let app = new Vue(
         }else {
           vue.close_auto();
         }
+      },
+      postSuc(data){
+        let vue = this;
+      },
+      postTip(data){
+        let vue = this;
+        vue.msg = data.message;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      postBefore(){
+        let vue = this;
+      },
+      postError(){
+        let vue = this;
       },
       close(){
         this.showAlert = false;
