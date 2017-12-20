@@ -25,7 +25,10 @@ let app = new Vue(
       del_index: null,
 
       listloading: true,
-      nodata: false
+      nodata: false,
+
+      showConfirm: false, /* 显示confirm组件 */
+      addr_obj: {}
     },
     methods: {
       initdata(){
@@ -95,12 +98,33 @@ let app = new Vue(
       },
       del(obj){
         let vue = this,
-          post_url = config.delAddrUrl + '?id=' + obj.item.id,
+          post_url = config.delAddrUrl + '?id=' + obj.addr_id,
           post_data = {};
         vue.del_index = obj.index;
         let _ref = 'subpost' + obj.index;
         vue.$refs[_ref][0].post(post_url, post_data);
 
+      },
+      confirm(item, callback){
+        let vue = this;
+        vue.msg = '您确认要执行此操作？';
+        vue.addr_obj = {
+          'addr_id': item.o.id,
+          'index': item.i
+        };
+        vue.callback = callback;
+        vue.showConfirm = true;
+      },
+      no(){
+        let vue = this;
+        vue.showConfirm = false;
+      },
+      ok(callback, obj){
+        let vue = this;
+        vue.showConfirm = false;
+        if(callback){
+          callback(obj);
+        }
       },
       addressStr(item){
         let vue = this;

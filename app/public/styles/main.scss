@@ -12,13 +12,15 @@
   background-color: $color-white;
   margin: 0 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
   li{
     -moz-box-flex: 1.0; /* Firefox */
     -webkit-box-flex: 1.0; /* Safari 和 Chrome */
     box-flex: 1.0;
     width: 28%;
+    margin-right: 8%;
     a.item{
       position: relative;
       display: inline-block;
@@ -38,6 +40,9 @@
         text-align: center;
       }
     }
+  }
+  li:last-child{
+    margin-right: 0;
   }
 }
 /* 欢迎页 */
@@ -2651,12 +2656,13 @@ $foot-height: 250px;
           line-height: 22px;
           background-color: rgba(0,0,0,.5);
           color: $color-white;
-          padding: 0 10px;
+          padding: 0 5px;
         }
         .join-num{
           position: absolute;
           right: 5px;
           bottom: 5px;
+          border-radius: 4px;
           i{
             margin-right: 5px;
           }
@@ -7666,6 +7672,7 @@ $foot-height: 250px;
           color: white;
           background: url('https://cdn.fangcun.com/static/img/mobile/reply_chat.png') no-repeat 5px center;
           background-size: 20px auto;
+          border-radius: 0;
         }
         .btn{
           float: left;

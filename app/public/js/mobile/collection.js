@@ -99,7 +99,8 @@ let app = new Vue(
         vue.tab_num = index;
         vue.collection = [];
         vue.nodata = false;
-        var _url = config.collectionUrl + '?from_type=' + index;
+        vue.fromType = index;
+        let _url = config.collectionUrl + '?from_type=' + index;
         tools.ajaxGet(_url, vue.cateSucc, vue.getBefore);
 
       },

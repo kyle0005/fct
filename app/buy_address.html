@@ -27,7 +27,7 @@
           <a href="javascript:;" @click="edit(item)"><img src="public/img/mobile/edit.png"><span class="items">编辑</span></a>
           <a href="javascript:;"><img src="public/img/mobile/del.png">
             <span class="items">
-              <subpost :txt="'删除'" :status="false" :ref="'subpost' + index" @callback="del({item,index})" @before="postBefore"
+              <subpost :txt="'删除'" :status="false" :ref="'subpost' + index" @callback="confirm({'o':item, 'i':index}, del)" @before="postBefore"
                        @success="succhandle" @error="postError" @alert="postTip"></subpost>
             </span>
           </a>
@@ -36,6 +36,7 @@
     </div>
   </li>
 </ul>
+  <confirm v-if="showConfirm" :showHide="showConfirm" @ok="ok" @no="no" :callback="callback" :obj="addr_obj" :msg="msg"></confirm>
   <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
   <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   <div class="address-btn">

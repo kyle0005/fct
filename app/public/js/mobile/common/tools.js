@@ -314,7 +314,7 @@ var tools = {
             alert(data);
           }
           if(data.url){
-            location.href = url;
+            location.href = data.url;
           }
 
         }

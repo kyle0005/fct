@@ -478,7 +478,7 @@ let app = new Vue(
       tabs: ['实时动态', '相关作品', '对话艺人'],
       tab_num: 0,
       artist: config.artist,
-      collected: config.artist.collected
+      collected: config.artist.favoriteState
     },
     watch: {
     },
@@ -505,6 +505,20 @@ let app = new Vue(
       },
       postError(){
         let vue = this;
+      },
+      close(){
+        this.showAlert = false;
+      },
+      close_auto(callback, obj){
+        let vue = this;
+        setTimeout(function () {
+          vue.showAlert = false;
+          if(callback){
+            callback(obj);
+          }
+
+        }, 1500);
+
       },
       linkTo(num){
         let vue = this;
