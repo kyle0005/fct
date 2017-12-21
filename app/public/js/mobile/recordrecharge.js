@@ -1,8 +1,43 @@
+let pop_html = '<div class="pop-container" @click="fork">'+
+  '<div class="inner">'+
+  '<a href="javascript:;" class="fork" @click="fork">'+
+  '<img :src="imgpath + `close.png`">'+
+  '</a>'+
+  '<div class="content">'+
+  '<div v-if="obj.o.id">订单编号：{{ obj.o.id }}</div>'+
+'<div v-if="obj.o.payAmount">充值金额：￥{{ obj.o.payAmount }}</div>'+
+'<div v-if="obj.o.giftAmount">赠送金额：￥{{ obj.o.giftAmount }}</div>'+
+'<div v-if="obj.o.amount">获得金额：<span class="pri">￥{{ obj.o.amount }}</span></div>'+
+'<div v-if="obj.o.payOrderId">支付单号：{{ obj.o.payOrderId }}</div>'+
+'<div v-if="obj.o.payPlatform">支付方式：{{ obj.o.payPlatform }}</div>'+
+'<div v-if="obj.o.createTime">创建时间：{{ obj.o.createTime }}</div>'+
+'<div v-if="obj.o.payTime">付款时间：{{ obj.o.payTime }}</div>'+
+'</div>'+
+'<div class="status">'+
+  '<span v-if="obj.o.status==1"><img :src="imgpath + `check.png`">充值成功</span>'+
+  '<span v-else><img :src="imgpath + `fork.png`">充值失败</span>'+
+'</div>'+
+'</div>'+
+'</div>';
+Vue.component('pop-detail',
+  {
+    template: pop_html,
+    data() {
+      return {}
+    },
+    mounted: function() {
+      let vue = this;
+    },
+    props: ['obj', 'imgpath'],
+    methods: {
+      fork(){
+        this.$emit('fork');
+      }
+    }
+  }
+);
 let app = new Vue(
   {
-    computed: {
-
-    },
     mounted: function() {
       let vue = this;
       vue.initData();
@@ -29,9 +64,25 @@ let app = new Vue(
       listloading: true,
       pagerloading: false,
       isPage: false,
-      nodata: false
+      nodata: false,
+
+      item_obj: {},
+      callback: null,
+      showDetail: false   /* 显示弹窗 */
     },
     methods: {
+      popdetail(item, index){
+        let vue = this;
+        vue.item_obj = {
+          'o': item,
+          'i': index
+        };
+        vue.showDetail = true;
+      },
+      fork(){
+        let vue = this;
+        vue.showDetail = false;
+      },
       initData(){
         let vue = this;
         vue.chargeRecordList = config.chargeRecordList.entries;

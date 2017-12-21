@@ -1,103 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta charset="utf-8">
-  <meta name="description" content="">
-  <title>main</title>
-</head>
-<body>
-<input type="text" id="search">
-<input type="button" value="search" onclick="Submit()">
-<div id="content" class="con" style="height: 1000px;"></div>
-<a href="javascript:;" onclick="totop()" style="position: fixed;bottom: 20px; left: 50%;display: block;width: 50%;height: 30px;">top</a>
-<script src="public/js/mobile/vue.js"></script>
-<script src="public/js/mobile/common/tools.js"></script>
-<script>
-  var data = [
-    {
-      "NoteID": "b89d9991-3538-439e-8a60-bbc097765a17",
-      "Title": "张三的笔记",
-      "Content": "测试笔记",
-      "AddDate": "2016-06-24 10:27:46"
-    }, {
-      "NoteID": "b89d9991-3538-439e-8a60-bbc097765a17",
-      "Title": "李四的笔记",
-      "Content": "测试笔记",
-      "AddDate": "2016-06-24 10:27:46"
-    },
-    {
-      "NoteID": "5903b14d-7108-4a5f-b81c-fec208b9ee19",
-      "Title": "王五的笔记",
-      "Content": "< p > 内容 < / p > ",
-      "AddDate": "2016-06-25 17:12:41"
-    },
-    {
-      "NoteID": "5903b14d-7108-4a5f-b81c-fec208b9ee19",
-      "Title": "张四的笔记",
-      "Content": "< p > 内容 < / p > ",
-      "AddDate": "2016-06-25 17:12:41"
-    }
-  ];
-
-  function searchNotes(data, value) {
-    var aData = [],
-      aSearch = value.split(' '),
-      k = 0,
-      regStr = '',
-      reg;
-    for (var r = 0, lenR = aSearch.length; r < lenR; r++) {
-      regStr += '(' + aSearch[r] + ')([\\s\\S]*)';
-    }
-    reg = new RegExp(regStr);
-
-    for (var i = 0, lenI = data.length; i < lenI; i++) {
-      var title = data[i].Title,
-        regMatch = title.match(reg),
-        searchData = {};
-      k = 0;
-      if (regMatch !== null) {
-        var replaceReturn = "";
-        for (var j = 1, lenJ = regMatch.length; j < lenJ; j++) {
-          if (regMatch[j] === aSearch[k]) {
-            replaceReturn += '<span style="color:red;">$' + j + '</span>';
-            k++;
-          } else {
-            replaceReturn += '$' + j;
-          }
-        }
-
-        for (var obj in data[i]) {
-          if (data[i].hasOwnProperty(obj)) {
-            searchData[obj] = data[i][obj];
-          }
-        }
-        searchData.Title = searchData.Title.replace(reg, replaceReturn);//.replace(reg, replaceReturn);
-        aData.push(searchData);
-      }
-    }
-    return aData;
-  }
-
-  function Submit() {
-    var search = document.getElementById('search').value;
-    var aNotes = searchNotes(data, search);
-    var sNotes = '';
-    for (var i = 0, len = aNotes.length; i < len; i++) {
-      sNotes += aNotes[i].Title + '</br>';
-    }
-
-    document.getElementById('content').innerHTML = sNotes;
-  }
-
-  var status = 0 != 1;
-  console.log(status);
-
-  function totop() {
-    tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
-  }
-
-</script>
-</body>
-</html>
+<view class="pop-container">
+  <view class="inner">
+    <view class="fork">
+      <image mode="widthFix" src="https://cdn.fangcun.com/static/img/mobile/close.png"></image>
+    </view>
+    <view class="content">
+      <view>订单编号：234234234</view>
+      <view>充值金额：￥232234</view>
+      <view>赠送金额：￥234234</view>
+      <view>获得金额：<text class="pri">￥234234</text></view>
+      <view>支付单号：2423423</view>
+      <view>支付方式：dsdfsdfsdf</view>
+      <view>创建时间：24234234</view>
+      <view>付款时间：23423423423</view>
+    </view>
+    <view class="status">
+      <view><image mode="widthFix" src="https://cdn.fangcun.com/static/img/mobile/check.png"></image>充值成功</view>
+    </view>
+  </view>
+</view>;

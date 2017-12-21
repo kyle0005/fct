@@ -28,10 +28,11 @@
       </div>
       <div class="btn-container">
         <a href="javascript:;" class="btn" v-if="item.status == 0">我要付款</a>
-        <a href="javascript:;" class="btn" v-else="">查看详情</a>
+        <a href="javascript:;" class="btn" @click="popdetail(item, index)" v-else>查看详情</a>
       </div>
     </li>
   </ul>
+  <pop-detail v-if="showDetail" @fork="fork" :obj="item_obj" :imgpath="'public/img/mobile/'"></pop-detail>
   <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
   <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
@@ -57,7 +58,6 @@
           "payTime": "2017-02-02"
         },
         {
-
           "id": 234234,
           "createTime": "2017-02-02",
           "payAmount": 234234,   /* 充值金额 */
