@@ -7395,50 +7395,57 @@ $foot-height: 250px;
       width: 100%;
       margin: 10px 0;
       background-color: $color-white;
-      .content{
-        width: 235px;
-        margin-left: 93px;
-        padding: 10px 0;
-        text-align: left;
-        color: $color-999;
-        font-size: $font-size-t12;
-        .title{
-          display: inline-block;
-          font-size: $font-size-t15;
-          color: #333;
+      .link{
+        display: block;
+        width: 100%;
+        .content{
+          display: block;
+          width: 235px;
+          margin-left: 93px;
+          padding: 10px 0;
+          text-align: left;
+          color: $color-999;
+          font-size: $font-size-t12;
+          .title{
+            display: inline-block;
+            font-size: $font-size-t15;
+            color: #333;
+          }
+          .vtitle{
+            display: inline-block;
+            font-size: $font-size-t14;
+            margin-left: 5px;
+          }
+          .text{
+            height: 60px;
+            line-height: 20px;
+          }
         }
-        .vtitle{
-          display: inline-block;
-          font-size: $font-size-t14;
-          margin-left: 5px;
+        .photo{
+          position: absolute;
+          top: 50%;
+          left: 4%;
+          transform: translateY(-50%);
+          width: 65px;
+          height: 65px;
+          border-radius: 50%;
         }
-        .text{
-          height: 60px;
-          line-height: 20px;
+        .arrow{
+          position: absolute;
+          top: 50%;
+          right: 4%;
+          transform: translateY(-50%);
+          width: 30px;
         }
       }
-      .photo{
-        position: absolute;
-        top: 50%;
-        left: 4%;
-        transform: translateY(-50%);
-        width: 65px;
-        height: 65px;
-        border-radius: 50%;
-      }
-      .arrow{
-        position: absolute;
-        top: 50%;
-        right: 4%;
-        transform: translateY(-50%);
-        width: 30px;
-      }
+
 
     }
     .artist.docked{
       display: none;
     }
     .content{
+      display: block;
       padding: 2% 4%;
       width: 92%;
       background-color: white;
@@ -7700,7 +7707,7 @@ $foot-height: 250px;
         position: absolute;
         left: 0;
         bottom: 49px;
-        border-top: 1px solid #444;
+        border-top: 1px solid #353535;
         width: calc(696/750*100%);
         padding: 11px calc(27/750*100%);
         .amount{
@@ -8970,4 +8977,10 @@ $foot-height: 250px;
       }
     }
   }
+}
+
+.auctionartist-contianer{
+  @extend %page;
+  background-color: $color-white;
+  @extend %edit-container;
 }

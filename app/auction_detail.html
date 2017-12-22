@@ -38,11 +38,11 @@
       <section class="info clearfix" :class="{open:open,docked:docked}">
         <div class="item clearfix">
           <span class="left">市场估价</span>
-          <span class="right overText">￥{{ product.marketPrice }}</span>
+          <span class="right overText"><small class="pri-mark">￥</small>{{ product.marketPrice }}</span>
         </div>
         <div class="item clearfix">
           <span class="left">保证金</span>
-          <span class="right color-pri overText">￥{{ product.deposit }}</span>
+          <span class="right color-pri overText"><small class="pri-mark">￥</small>{{ product.deposit }}</span>
         </div>
         <div class="item clearfix">
           <span class="left">竞争周期</span>
@@ -54,12 +54,14 @@
         </div>
       </section>
       <section class='artist' :class="{open:open,docked:docked}">
-        <img class='photo' src="https://cdn.fangcun.com/upload/images/2017-08-01/0e0801a023b64b9f952bdac63aa9583e.png!120"/>
-        <img class='arrow' src="https://cdn.fangcun.com/static/img/mobile/arrow_right.png"/>
-        <div class='content'>
+        <a href="javascript:;" class="link">
+          <img class='photo' src="https://cdn.fangcun.com/upload/images/2017-08-01/0e0801a023b64b9f952bdac63aa9583e.png!120"/>
+          <img class='arrow' src="https://cdn.fangcun.com/static/img/mobile/arrow_right.png"/>
+          <span class='content'>
           <span class='title'>{{ product.artistName }}</span><span class='vtitle'>{{ product.artistTitle }}</span>
           <span class='text overTextH3'>{{ product.artistIntro }}</span>
-        </div>
+        </span>
+        </a>
       </section>
       <section class="content" :class="{open:open,docked:docked}">{{ product.content }}</section>
   </section>

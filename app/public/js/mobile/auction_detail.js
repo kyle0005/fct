@@ -274,7 +274,10 @@ let app = new Vue(
       reloadData_suc(data){
         let vue = this;
         vue.product = data.data;
-        vue.init_ws();
+
+        vue.initTime();
+        vue.countdowm(this._sec);
+        // vue.init_ws();
       },
       succhandle(data){
         let vue = this;
@@ -305,19 +308,46 @@ let app = new Vue(
           location.href = url;
         }
       },
+      ws_reConnect(){
+        let vue = this;
+        let _t = null;
+        let socket = new WebSocket(vue.wsurl);
+        socket.addEventListener('open', function (event) {
+          if(_t){
+            clearTimeout(_t);
+          }
 
+        });
+        socket.addEventListener('message', function (event) {
+          vue.listenSocket(event)
+        });
+        socket.addEventListener('close', function (event) {
+          _t = setTimeout(function(){
+            vue.ws_reConnect();
+          },1000);
+        });
+        vue.ws = socket;
+      },
       init_ws(){
         let vue = this;
         let _hasFirst = vue.isEmpty(vue.product) ? false : true;
 
         //已经结束的就不用发起websocket了,第一次请求
         if (vue.product.status !== 4) {
+          let _t = null;
           let socket = new WebSocket(vue.wsurl);
           socket.addEventListener('open', function (event) {
-            // socket.send('Hello Server!');
+            if(_t){
+              clearTimeout(_t);
+            }
           });
           socket.addEventListener('message', function (event) {
             vue.listenSocket(event)
+          });
+          socket.addEventListener('close', function (event) {
+            _t = setTimeout(function(){
+              vue.ws_reConnect();
+            },1000);
           });
           vue.ws = socket;
         }
@@ -325,7 +355,6 @@ let app = new Vue(
         vue.setBidOn(vue.chat_list);
         // 自动滚动到最底部
         let container = vue.$el.querySelector('#chatContainer');
-        console.log(container);
         container.scrollTop = container.scrollHeight;
 
         vue.initTime();
@@ -357,8 +386,13 @@ let app = new Vue(
         let _entities = that.chat_list;
         _entities.push(_data.data);
 
+        console.log(_entities);
+
         that.chat_list = [];
         that.chat_list = _entities;
+
+        console.log(that.chat_list);
+
         that.product = {};
         that.product = _entity;
 

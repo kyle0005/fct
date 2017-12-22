@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="auctionartist-contianer" id="auctionartist" v-cloak>
+  <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
+  <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
+  <section class="content top-max">
+    <div class="intro">
+          <span class="photo">
+            <img v-view="artistsingle.headPortrait" src="public/img/mobile/img_loader.gif">
+          </span>
+      <span class="intro-info">
+          <span class="intro-name">{{ artistsingle.name }}&nbsp;-&nbsp;<span class="v-title">{{ artistsingle.title }}</span></span>
+          <span class="intro-content">{{ artistsingle.intro }}</span>
+        </span>
+    </div>
+  </section>
+  <section class="text-container">
+    <div class="editor-container">
+      <div class="e-title">生平经历</div>
+      <p class="e-para">1954年10月，他响应政府号召，积极参与汤渡陶业生产合作社紫砂生产工场的组建筹划工作。</p>
+      <p class="e-para">1954年10月，他响应政府号召，积极参与汤渡陶业生产合作社紫砂生产工场的组建筹划工作。</p>
+      <div class="e-img">
+        <img src="https://cdn.fangcun.com/upload/editor/2017-08-22/0237c5bd4c854ee0bb70504f7617ba52.jpeg">
+      </div>
+      <p class="e-para">1954年10月，他响应政府号召，积极参与汤渡陶业生产合作社紫砂生产工场的组建筹划工作。</p>
+      <div class="e-vtitle"><strong class="str">成</strong><span class="o">交记录</span></div>
+      <div class="e-list">
+        <div class="inner">
+          <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+          <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+          <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+          <p>顾景舟提璧组壶拍卖 成交价1782.5万</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="comment">
+    <div class="lines">
+      <div class="text">相关宝贝</div>
+    </div>
+    <ul class="others" v-if="artistsingle.img && artistsingle.img.length > 0">
+      <li v-for="img_item in artistsingle.img">
+        <a href="javascript:;" class="item">
+          <img :src="img_item.defaultImage">
+          <span class="p-title">{{ img_item.name }}</span>
+        </a>
+      </li>
+    </ul>
+    <a :href="artistsingle.link" class="for-more">点击了解更多》</a>
+  </section>
+
+</div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script src="public/js/mobile/api/apis.js"></script>
+<script>
+  var config = {
+    "artist": {
+      "name": "顾景舟11",
+      "intro": "asdsdasdasd",
+      "title": "assasfaf",
+      "description": "<p></p><div class=\"configModuleBanner\" style=\"color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\"></div><div class=\"lemmaWgt-focusAndRelation\" style=\"margin: 15px 0px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\"><ul class=\"focusAndRelation\" style=\"margin: 0px; padding: 0px; list-style: none; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: 20px; font-family: Arial, Verdana, Helvetica, &quot;Microsoft Yahei&quot;, SimSun; overflow: hidden; float: left; position: relative; clear: both;\"><li class=\"module relation\" style=\"margin: 0px; padding: 0px; list-style: none; display: block; float: left; vertical-align: top; position: relative; width: 92px; text-align: center;\"><div class=\"flag\" style=\"font-size: 14px; line-height: 22px; position: relative; float: left; margin-bottom: -22px;\"></div></li></ul></div><p></p><div class=\"lemma-summary\" label-module=\"lemmaSummary\" style=\"clear: both; font-size: 14px; word-wrap: break-word; color: rgb(51, 51, 51); margin-bottom: 15px; text-indent: 2em; line-height: 24px; zoom: 1; font-family: arial, 宋体, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\"><div class=\"para\" label-module=\"para\" style=\"font-size: 14px; word-wrap: break-word; color: rgb(51, 51, 51); margin-bottom: 15px; text-indent: 2em; line-height: 24px; zoom: 1;\">顾景舟（1915-1996），原名景洲。别称：曼希、瘦萍、武陵逸人、荆南山樵。自号壶叟、老萍。<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E5%AE%9C%E5%85%B4%E7%B4%AB%E7%A0%82\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">宜兴紫砂</a>名艺人，<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E7%BE%8E%E6%9C%AF%E5%AE%B6%E5%8D%8F%E4%BC%9A\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">中国美术家协会</a>会员，<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E5%B7%A5%E8%89%BA%E7%BE%8E%E6%9C%AF%E5%A4%A7%E5%B8%88\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">中国工艺美术大师</a>。18岁拜名师学艺。三十年代后期至上海制壶仿古。54年进入宜兴<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E8%9C%80%E5%B1%B1\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">蜀山</a>陶业合作社。56年被江苏省政府任命为技术辅导，带徒<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E5%BE%90%E6%B1%89%E6%A3%A0\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">徐汉棠</a>、<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E9%AB%98%E6%B5%B7%E5%BA%9A\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">高海庚</a>、<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E6%9D%8E%E6%98%8C%E9%B8%BF\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">李昌鸿</a>、<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E6%B2%88%E9%81%BD%E5%8D%8E\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">沈遽华</a>、<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E6%9D%9F%E5%87%A4%E8%8B%B1\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">束凤英</a>、吴群祥等人。一生三次参加全国工艺美术代表大会，在港、澳、台、东南亚影响特大，被海内外誉为“壶艺泰斗”，作品为海内外各大博物馆、文物馆收藏。</div><div class=\"para\" label-module=\"para\" style=\"font-size: 14px; word-wrap: break-word; color: rgb(51, 51, 51); margin-bottom: 15px; text-indent: 2em; line-height: 24px; zoom: 1;\">1915年生于江苏<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E5%AE%9C%E5%85%B4\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">宜兴</a>川埠乡上袁村，顾景舟可以说是历代<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E7%B4%AB%E7%A0%82%E9%99%B6%E8%89%BA\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">紫砂陶艺</a>名家中，名号最多的一位，他本名景洲，后改名为景舟、名号有曼晞、瘦萍、武陵逸人、荆南山樵及壶叟等。曾自创堂号为自怡轩。他在壶艺上的成就极高，技巧精湛，且取材甚广。可说是近代陶艺家中最有成就的一位，所享的声誉可媲美明代的<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E6%97%B6%E5%A4%A7%E5%BD%AC\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">时大彬</a>，世称“<a target=\"_blank\" href=\"http://baike.baidu.com/item/%E4%B8%80%E4%BB%A3%E5%AE%97%E5%B8%88\" style=\"color: rgb(19, 110, 194); text-decoration: none;\">一代宗师</a>”、“壶艺泰斗”。</div></div>",
+      "id": 1,
+      "headPortrait": "http://localhost:9000/public/img/mobile/resource/pro01.png",
+    }
+  }
+</script>
+<script src="public/js/mobile/hammer.js"></script>
+<script src="public/js/mobile/head.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script src="public/js/mobile/auction_artist.js"></script>
+</body>
+</html>
