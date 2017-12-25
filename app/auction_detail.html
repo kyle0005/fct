@@ -35,7 +35,8 @@
           </div>
         </div>
       </section>
-      <section class="info clearfix" :class="{open:open,docked:docked}">
+    <!--  :class="{open:open,docked:docked}" -->
+      <section class="info clearfix">
         <div class="item clearfix">
           <span class="left">市场估价</span>
           <span class="right overText"><small class="pri-mark">￥</small>{{ product.marketPrice }}</span>
@@ -53,17 +54,32 @@
           <span class="right overText">{{ product.delaySecond }}</span>
         </div>
       </section>
-      <section class='artist' :class="{open:open,docked:docked}">
+      <section class='artist'>
         <a href="javascript:;" class="link">
           <img class='photo' src="https://cdn.fangcun.com/upload/images/2017-08-01/0e0801a023b64b9f952bdac63aa9583e.png!120"/>
           <img class='arrow' src="https://cdn.fangcun.com/static/img/mobile/arrow_right.png"/>
-          <span class='content'>
-          <span class='title'>{{ product.artistName }}</span><span class='vtitle'>{{ product.artistTitle }}</span>
-          <span class='text overTextH3'>{{ product.artistIntro }}</span>
-        </span>
+          <span class='cont'>
+            <span class='title'>{{ product.artistName }}</span><span class='vtitle'>{{ product.artistTitle }}</span>
+            <span class='text overTextH3'>{{ product.artistIntro }}</span>
+          </span>
         </a>
       </section>
-      <section class="content" :class="{open:open,docked:docked}">{{ product.content }}</section>
+      <section class="content">
+        <img v-view="product.cImgs.image0" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image1" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image2" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image3" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image4" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image5" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image6" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image7" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image8" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image9" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image10" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image11" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image12" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+        <img v-view="product.cImgs.image13" src="//cdn.fangcun.com/static/img/mobile/img_loader.gif?_rd=201712251644" style="width: 100%;">
+      </section>
   </section>
   <section class='det-container'>
     <div class='main'>
@@ -196,7 +212,23 @@
       "status": 3,
       "duration": "10分钟",
       "signupId": 0,
-      "nowTime": 1512701574448
+      "nowTime": 1512701574448,
+      "cImgs": {
+        'image0': 'https://cdn.fangcun.com/upload/editor/2017-12-24/99f24ae1a23b401dadae0dbbcbad6aac.png',
+        'image1': 'https://cdn.fangcun.com/upload/editor/2017-12-24/173688584016407ca7cacc271cb60ef9.png',
+        'image2': 'https://cdn.fangcun.com/upload/editor/2017-12-24/cf736c92f8194f7c947f91458032d763.png',
+        'image3': 'https://cdn.fangcun.com/upload/editor/2017-12-24/799abb4f6aa44e4cb3b5e10221eea144.png',
+        'image4': 'https://cdn.fangcun.com/upload/editor/2017-12-24/aff532a8919a4d41a8df83bf0ab20b65.png',
+        'image5': 'https://cdn.fangcun.com/upload/editor/2017-12-24/9b1c005ae353423ab5ad88fbf47dd429.png',
+        'image6': 'https://cdn.fangcun.com/upload/editor/2017-12-24/cda449c017684e03ada22626b686f598.png',
+        'image7': 'https://cdn.fangcun.com/upload/editor/2017-12-24/ea3c0c2c0fe54b098ca1a79e9bea5af7.png',
+        'image8': 'https://cdn.fangcun.com/upload/editor/2017-12-24/6f96f9e6f0b64de8b030850c443800ae.png',
+        'image9': 'https://cdn.fangcun.com/upload/editor/2017-12-24/8103536fd3964917a12271eb80e7701d.png',
+        'image10': 'https://cdn.fangcun.com/upload/editor/2017-12-24/234161f57a6f4810b40c7e8392e70771.png',
+        'image11': 'https://cdn.fangcun.com/upload/editor/2017-12-24/5ea83ae5fd6840e198041b1f22344345.png',
+        'image12': 'https://cdn.fangcun.com/upload/editor/2017-12-18/fc2cb74a4a644cd3bacf7706d2792a57.png',
+        'image13': 'https://cdn.fangcun.com/upload/editor/2017-12-18/58d4ca1b38464e0d8801e9b10a5210fe.png',
+      }
     },
     "chatList": [
       /*        {   /!* websocket单次消息体 *!/

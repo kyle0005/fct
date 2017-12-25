@@ -725,9 +725,9 @@ $foot-height: 250px;
           background: url("#{$img-path}/comma.png") no-repeat left top;
           background-size: auto $font-size-t13;
           text-align: center;
-          margin: 0 10%;
-          padding: 0 10%;
-          width: 60%;
+          margin: 0 5%;
+          padding: 0 5%;
+          width: 80%;
           color: $color-666;
           font-size: $font-size-t12;
         }
@@ -7072,10 +7072,15 @@ $foot-height: 250px;
                 width: 96%;
                 height: 100%;
                 text-align: left;
+                -webkit-transform: scale(.84);
+                transform: scale(.84);
+                -webkit-transform-origin: left center;
+                transform-origin: left center;
+                font-size: $font-size-t15;
                 .title{
                   margin: 0;
                   width: initial;
-                  font-size: $font-size-t14;
+                  font-size: $font-size-t12;
                 }
               }
               .right{
@@ -7085,8 +7090,13 @@ $foot-height: 250px;
                 width: 96%;
                 height: 100%;
                 text-align: right;
+                -webkit-transform: scale(.84);
+                transform: scale(.84);
+                -webkit-transform-origin: right center;
+                transform-origin: right center;
                 span.time{
                   display: initial;
+                  font-size: $font-size-t15;
                 }
                 .time-block{
                   display: inline-block;
@@ -7120,13 +7130,11 @@ $foot-height: 250px;
             position: absolute;
             right: 4%;
             top: 0;
-            display: inline-block;
             width: 20%;
             max-width: initial;
             margin: 0;
-            text-align: left;
             display: flex;
-            justify-content: flex-start;
+            justify-content: flex-end;
             align-items: center;
             flex-wrap: wrap;
             img{
@@ -7186,9 +7194,9 @@ $foot-height: 250px;
     }
   }
   .overview-container{
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
+    //top: 0;
+    //left: 0;
     width: 100%;
     height: calc(100% - 49px);
     overflow: auto;
@@ -7363,6 +7371,7 @@ $foot-height: 250px;
       }
     }
     .info{
+      visibility: visible;
       padding: 4%;
       width: 92%;
       background-color: $color-white;
@@ -7388,9 +7397,11 @@ $foot-height: 250px;
       }
     }
     .info.docked{
-      display: none;
+      //display: none;
+      visibility: hidden;
     }
     .artist{
+      visibility: visible;
       position: relative;
       width: 100%;
       margin: 10px 0;
@@ -7398,7 +7409,7 @@ $foot-height: 250px;
       .link{
         display: block;
         width: 100%;
-        .content{
+        .cont{
           display: block;
           width: 235px;
           margin-left: 93px;
@@ -7438,22 +7449,26 @@ $foot-height: 250px;
           width: 30px;
         }
       }
-
-
     }
     .artist.docked{
-      display: none;
+      //display: none;
+      visibility: hidden;
     }
     .content{
+      visibility: visible;
       display: block;
       padding: 2% 4%;
       width: 92%;
       background-color: white;
       text-align: left;
       word-break:break-all;
+      img{
+        width: 100%;
+      }
     }
     .content.docked{
-      display: none;
+      //display: none;
+      visibility: hidden;
     }
     }
   .det-container{

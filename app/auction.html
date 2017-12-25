@@ -30,7 +30,7 @@
               <span class="sale clearfix">
                 <span class="left">
                   <span class="title">当前价</span>
-                  ￥{{ item.bidPrice }}
+                  <small class="pri-mark">￥</small>{{ item.bidPrice }}
                 </span>
                 <span class="right">
                   {{item.status === 0 ? "开始" : "结束"}}时间：<span class="time" v-if="item.status === 0">{{ item.startTime }}</span><span
