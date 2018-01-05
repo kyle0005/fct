@@ -3,12 +3,16 @@ let app = new Vue(
     data: {
       showAlert: false, //显示提示组件
       msg: null, //提示的内容,
+      live_url: config.live_url,
+      img_url: config.img_url,
+      video_player: config.video_player,
+      app_id: config.app_id,
     },
     watch: {
     },
     mounted: function() {
       let vue = this;
-
+      vue.vodLive(vue.live_url);
     },
     methods: {
       close_auto(callback, obj){
@@ -39,16 +43,18 @@ let app = new Vue(
         let vue = this;
       },
       vodLive(live_url){
-  var wid = $(document).width();
+        let vue = this;
+        var wid = window.screen.width;
+        var hit = wid / (16 / 9);
   //live
   var PLAY_INFO = (function(){
     var ps = (window.location.href.split('?')[1] || '').split('&')
       , opt = {
-        "channel_id": live_url,
-        "app_id": configs.app_id,
-        "width": 0,
-        "height": 0,
-        "https":0
+        'channel_id': live_url,
+        'app_id': vue.app_id,
+        'width': 0,
+        'height': 0,
+        'https':0
       }
       , i1 = 0 , i2 = ps.length, i3, i4
     ;
@@ -73,12 +79,12 @@ let app = new Vue(
     return opt;
   })();
   (function () {
-    new qcVideo.Player("id_video_container", {
-      "channel_id": live_url,
-      "app_id": configs.app_id,
-      "width": wid,
-      "height": 244,
-      "https": 0
+    new qcVideo.Player('id_video_container', {
+      'channel_id': live_url,
+      'app_id': vue.app_id,
+      'width': wid,
+      'height': hit,
+      'https': 0
     });
 
   })();

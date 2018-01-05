@@ -10,17 +10,33 @@
 </head>
 <body>
 <div class="auctionlive-container" id="auctionlive" v-cloak>
-
+  <div class="m-video-container">
+    <div class="video-inner">
+<!--      <div v-if="!isVideoLoad" class="play-container" @click="loadVideo()">
+        <img :src="poster" class="poster-img" />
+        <img src="public/img/mobile/video_play.png" class="poster-play" />
+      </div>-->
+      <div class="live-container">
+        <div id="id_video_container"></div>
+      </div>
+    </div>
+  </div>
 </div>
 <script src="public/js/mobile/vue.js"></script>
 <script src="public/js/mobile/api/index.js"></script>
 <script src="public/js/mobile/api/apis.js"></script>
 <script>
-  var config = {};
+  var config = {
+    live_url: '10905947996253950356',
+    img_url: "Public/img/lotus.png",
+    video_player: "Public/img/video_player.png",
+    app_id: '1253930304',
+  };
 </script>
 <script src="public/js/mobile/hammer.js"></script>
 <script src="public/js/mobile/head.js"></script>
 <script src="public/js/mobile/common/tools.js"></script>
+<script src="//qzonestyle.gtimg.cn/open/qcloud/video/live/h5/live_connect.js"></script>
 <script src="public/js/mobile/auction_live.js"></script>
 </body>
 </html>

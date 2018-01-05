@@ -146,8 +146,8 @@ let app = new Vue(
       ws: {},
       wsMsg: '',
 
-/*      depositText: '预交保证金',
-      subText: '我要出价'*/
+      isLiveLoad: true,
+      app_id: config.app_id,
     },
     watch: {
       chat_list:function (val, oldVal){
@@ -161,7 +161,7 @@ let app = new Vue(
     mounted: function() {
       let vue = this;
       let swiper = this.$refs.swiper;
-      if (swiper.dom) {
+      if (swiper && swiper.dom) {
         this.swiper = swiper.dom;
       }
 
@@ -181,8 +181,63 @@ let app = new Vue(
       }
       vue.init_ws();
 
+      vue.vodLive(vue.product.liveId, vue.product.videoImg);
+
     },
     methods: {
+      vodLive(live_url, img){
+        let vue = this;
+        var wid = window.screen.width;
+        var hit = wid / (16 / 9);
+        //live
+        var PLAY_INFO = (function(){
+          var ps = (window.location.href.split('?')[1] || '').split('&')
+            , opt = {
+              'channel_id': live_url,
+              'app_id': vue.app_id,
+              'width': 0,
+              'height': 0,
+              'https':0
+            }
+            , i1 = 0 , i2 = ps.length, i3, i4
+          ;
+          for (; i1 < i2; i1++) {
+            i3 = ps[i1];
+            i4 = i3.split('=');
+            if(i4[0] == '$app_id' || i4[0] == 'app_id'){
+              opt.app_id = i4[1];
+            } else if(i4[0] == '$channel_id' || i4[0] == 'channel_id'){
+              opt.channel_id = i4[1];
+            } else if(i4[0] == '$sw' || i4[0] == 'sw'){
+              opt.width = i4[1];
+            } else if(i4[0] == '$sh' || i4[0] == 'sh'){
+              opt.height = i4[1];
+            } else if(i4[0] == 'cache_time'){
+              opt.cache_time = i4[1];
+            } else if(i4[0] == 'https'){
+              opt.https = i4[1];
+            }
+          }
+
+          return opt;
+        })();
+        (function () {
+          new qcVideo.Player('id_video_container', {
+            'channel_id': live_url,
+            'app_id': vue.app_id,
+            'width': wid,
+            'height': hit,
+            'https': 0,
+            'auto_play':1,
+            'h5_start_patch': {
+              'url' : img,
+              'stretch': true //是否拉伸图片铺面整个播放器，默认 false
+            }
+          });
+
+        })();
+        vue.isLiveLoad = false;
+      },
       initTime(){
         let vue = this;
         let data = vue.product;

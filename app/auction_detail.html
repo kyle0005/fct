@@ -12,7 +12,18 @@
 <div class="auctiondetail-container" id="auctiondetail" v-cloak>
   <section class="overview-container">
       <section class="video-container">
-        <mVideo v-if="product.videoUrl" :poster="product.videoImg" :url="product.videoUrl" id="videotop"></mVideo>
+        <div class="m-video-container live-container" v-if="product.liveId !== '' && product.liveId !== null && product.liveId !== undefined">
+          <div class="video-inner">
+            <!--<div v-if="isLiveLoad" class="play-container" @click="vodLive(product.liveId, product.videoImg)">-->
+              <!--<img :src="product.videoImg" class="poster-img" />-->
+              <!--<img src="public/img/mobile/live_play.png" class="poster-play" />-->
+            <!--</div>-->
+            <div class="live-container">
+              <div id="id_video_container"></div>
+            </div>
+          </div>
+        </div>
+        <mVideo v-else-if="product.videoUrl" :poster="product.videoImg" :url="product.videoUrl" id="videotop"></mVideo>
         <m-swipe v-else swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
           <div v-for="(top, index) in tops" class="swiper-slide" slot="swiper-con">
             <a :href="top.url" class="link">
@@ -135,9 +146,9 @@
   <footer class="foot-container">
     <div class="inner">
       <div class="nav">
-        <a href="auction_live.html" class="live" v-if="product.liveId !== '' && product.liveId !== null && product.liveId !== undefined">
+<!--        <a href="auction_live.html" class="live" v-if="product.liveId !== '' && product.liveId !== null && product.liveId !== undefined">
           <img src="public/img/mobile/live.png">
-        </a>
+        </a>-->
         <div class="con">
           <div class="lis message">
             <a href="javascript:;" class="foot-link" @click='choose'>
@@ -146,7 +157,7 @@
             </a>
           </div>
           <div class="lis inp">
-            <input type='number' class='input' :disabled="product.status !== 3" placeholder='最低加价100' v-model.number="addpri"/>
+            <input type='number' class='input' :disabled="product.status !== 3" :placeholder="'最低加价' + product.increasePrice" v-model.number="addpri"/>
             <a href="javascript:;" class="fork" @click="clear" v-if="addpri > 0">
               <img src="https://cdn.fangcun.com/static/img/auction/del-price.png">
             </a>
@@ -179,6 +190,7 @@
 <script src="public/js/mobile/api/apis.js"></script>
 <script>
   var config = {
+    "app_id": '1253930304',
     "main_url": "http://localhost:9000/main.html",
     "reload_url": "",
     "ws_auction_url": "ws://test.chat.fangcuntang.com/",
@@ -186,7 +198,7 @@
     "auction_bid_url": '',
     "loginUrl": '',
     "product": {
-      "liveId": 0,
+      "liveId": '10905947996253950356',
       "token": "",
       "id": 3,
       "artistId": 5575,
@@ -423,6 +435,7 @@
 <script src="public/js/mobile/head.js"></script>
 <script src="public/js/mobile/common/tools.js"></script>
 <script src="public/js/mobile/swiper.js"></script>
+<script src="//qzonestyle.gtimg.cn/open/qcloud/video/live/h5/live_connect.js"></script>
 <script src="public/js/mobile/auction_detail.js"></script>
 </body>
 </html>
