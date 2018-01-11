@@ -12,7 +12,8 @@
 <div class="coupon-container" id="coupon" v-cloak>
   <section class="content">
     <div class="list-item" v-for="(item, index) in couponlist">
-      <coupons :couponitem="item" @pop="pop" @succhandle="succhandle"></coupons>
+      <coupons :couponitem="item" @postbefore="postBefore"
+               @postsuc="postSuc" @posterror="postError" @posttip="postTip"></coupons>
     </div>
     <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
     <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
@@ -35,7 +36,7 @@
             <span class="btn">
               <a href="javascript:;" class="use-btn">
                 <subpost :txt="'点击领取'" :status="true" :ref="'subpost' + couponitem.id" @callback="receive(couponitem.id)" @before="postBefore"
-                         @success="postSuc" @error="postError" @alert="postTip""></subpost>
+                         @success="postSuc" @error="postError" @alert="postTip"></subpost>
               </a>
             </span>
           </div>

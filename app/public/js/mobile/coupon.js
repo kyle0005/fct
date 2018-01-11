@@ -5,8 +5,6 @@ Vue.component('coupons',
       return {
         show_search: false,
         show_detail: false,
-        // useText: '立即使用',
-        // getText: '点击领取'
       }
     },
     props: ['couponitem'],
@@ -16,7 +14,7 @@ Vue.component('coupons',
     methods:{
       showdetail(){
         let vue = this;
-        if(vue.couponitem.goods.length > 0){
+        if(vue.couponitem && vue.couponitem.goods.length > 0){
           vue.show_detail = !vue.show_detail;
         }
       },
@@ -46,19 +44,19 @@ Vue.component('coupons',
       },
       postSuc(data){
         let vue = this;
-        vue.$emit('postSuc',data);
+        vue.$emit('postsuc',data);
       },
       postTip(data){
         let vue = this;
-        vue.$emit('postTip',data);
+        vue.$emit('posttip',data);
       },
       postBefore(){
         let vue = this;
-        vue.$emit('postBefore');
+        vue.$emit('postbefore');
       },
       postError(){
         let vue = this;
-        vue.$emit('postError');
+        vue.$emit('posterror');
       },
     }
   }

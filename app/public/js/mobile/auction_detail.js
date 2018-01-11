@@ -233,7 +233,7 @@ let app = new Vue(
               'url' : img,
               'stretch': true //是否拉伸图片铺面整个播放器，默认 false
             }
-          });
+          });       mmmmmmmmmmmmmmmmmmmmmmmm
 
         })();
         vue.isLiveLoad = false;
