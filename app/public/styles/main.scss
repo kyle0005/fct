@@ -1344,13 +1344,17 @@ $foot-height: 250px;
       .photo{
         position: relative;
         display: inline-block;
-        width: calc(480/690*100%);
+        //width: calc(480/690*100%);
+        width: 20rem;
+        height: 20rem;
         margin: 0 auto;
-        padding-bottom: calc(480/690*100%);
+        //padding-bottom: calc(480/690*100%);
+        padding: 0;
         text-align: center;
-        border: none;
-        background: url("../img/mobile/d_bg.png") $color-212122 no-repeat center center;
+        background: url("../img/mobile/d_bg2.png") no-repeat top left;
         background-size: 100% auto;
+        border: none;
+        outline: none;
         img{
           position: absolute;
           bottom: 3%;
