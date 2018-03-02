@@ -7,12 +7,17 @@
   <meta name="description" content="">
   <title>main</title>
   <link rel="stylesheet" href="public/styles/main.css">
+  <style>
+    .f-full{
+
+    }
+  </style>
 </head>
 <body>
 <div class="screenshot-container" id="screenshot" v-cloak>
-  <img src="public/img/mobile/items.png">
-  <span style="font-size: 20px; color: green;">logo logo 啊啊啊啊啊</span>
-
+  <div style="font-size: 20px; color: green; text-align: center;line-height: 500px;">小凤鸣茗壶许艳春￥90000.00</div>
+  <img src="public/img/mobile/auction_m.png" style="width: 100%;">
+  <!--<img src="https://cdn.fangcun.com/upload/images/2017-12-19/8b0b1e7e056c46bd803c7faf2faac33d.jpg!750" style="width: 100%;">-->
   <a href="javascript:;" @click="convert2canvas()">截图</a>
   <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
 </div>
