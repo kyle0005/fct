@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="screenshot-container" id="screenshot" v-cloak>
+  <img src="public/img/mobile/items.png">
+  <span style="font-size: 20px; color: green;">logo logo 啊啊啊啊啊</span>
+
+  <a href="javascript:;" @click="convert2canvas()">截图</a>
+  <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
+</div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script src="public/js/mobile/html2canvas.js"></script>
+<script src="public/js/mobile/canvas2image.js"></script>
+<script>
+  var config = {
+    "productsType": [
+      {
+        "name": "全部",
+        "code": "a"
+      },
+      {
+        "name": "圆器",
+        "code": "b"
+      },
+      {
+        "name": "方器",
+        "code": "c"
+      },
+      {
+        "name": "花器",
+        "code": "d"
+      },
+      {
+        "name": "筋纹器",
+        "code": "e"
+      }
+
+    ],
+
+  }
+</script>
+<script src="public/js/mobile/share_screenshot.js"></script>
+</body>
+</html>

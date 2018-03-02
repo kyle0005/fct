@@ -190,52 +190,54 @@ let app = new Vue(
         var wid = window.screen.width;
         var hit = wid / (16 / 9);
         //live
-        var PLAY_INFO = (function(){
-          var ps = (window.location.href.split('?')[1] || '').split('&')
-            , opt = {
+        if(live_url !== '' && live_url !== null && live_url !== undefined){
+          var PLAY_INFO = (function(){
+            var ps = (window.location.href.split('?')[1] || '').split('&')
+              , opt = {
+                'channel_id': live_url,
+                'app_id': vue.app_id,
+                'width': 0,
+                'height': 0,
+                'https':0
+              }
+              , i1 = 0 , i2 = ps.length, i3, i4
+            ;
+            for (; i1 < i2; i1++) {
+              i3 = ps[i1];
+              i4 = i3.split('=');
+              if(i4[0] == '$app_id' || i4[0] == 'app_id'){
+                opt.app_id = i4[1];
+              } else if(i4[0] == '$channel_id' || i4[0] == 'channel_id'){
+                opt.channel_id = i4[1];
+              } else if(i4[0] == '$sw' || i4[0] == 'sw'){
+                opt.width = i4[1];
+              } else if(i4[0] == '$sh' || i4[0] == 'sh'){
+                opt.height = i4[1];
+              } else if(i4[0] == 'cache_time'){
+                opt.cache_time = i4[1];
+              } else if(i4[0] == 'https'){
+                opt.https = i4[1];
+              }
+            }
+
+            return opt;
+          })();
+          (function () {
+            new qcVideo.Player('id_video_container', {
               'channel_id': live_url,
               'app_id': vue.app_id,
-              'width': 0,
-              'height': 0,
-              'https':0
-            }
-            , i1 = 0 , i2 = ps.length, i3, i4
-          ;
-          for (; i1 < i2; i1++) {
-            i3 = ps[i1];
-            i4 = i3.split('=');
-            if(i4[0] == '$app_id' || i4[0] == 'app_id'){
-              opt.app_id = i4[1];
-            } else if(i4[0] == '$channel_id' || i4[0] == 'channel_id'){
-              opt.channel_id = i4[1];
-            } else if(i4[0] == '$sw' || i4[0] == 'sw'){
-              opt.width = i4[1];
-            } else if(i4[0] == '$sh' || i4[0] == 'sh'){
-              opt.height = i4[1];
-            } else if(i4[0] == 'cache_time'){
-              opt.cache_time = i4[1];
-            } else if(i4[0] == 'https'){
-              opt.https = i4[1];
-            }
-          }
+              'width': wid,
+              'height': hit,
+              'https': 0,
+              'auto_play':1,
+              'h5_start_patch': {
+                'url' : img,
+                'stretch': true //是否拉伸图片铺面整个播放器，默认 false
+              }
+            });
 
-          return opt;
-        })();
-        (function () {
-          new qcVideo.Player('id_video_container', {
-            'channel_id': live_url,
-            'app_id': vue.app_id,
-            'width': wid,
-            'height': hit,
-            'https': 0,
-            'auto_play':1,
-            'h5_start_patch': {
-              'url' : img,
-              'stretch': true //是否拉伸图片铺面整个播放器，默认 false
-            }
-          });       mmmmmmmmmmmmmmmmmmmmmmmm
-
-        })();
+          })();
+        }
         vue.isLiveLoad = false;
       },
       initTime(){
