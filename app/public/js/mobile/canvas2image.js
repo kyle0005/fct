@@ -199,7 +199,7 @@ var Canvas2Image = function () {
 	 */
 	var saveAsImage = function (canvas, width, height, type) {
 		if ($support.canvas && $support.dataURL) {
-			if (typeof canvas == "string") { canvas = document.getElementById(canvas); }
+			if (typeof canvas == 'string') { canvas = document.getElementById(canvas); }
 			if (type == undefined) { type = 'png'; }
 			type = fixType(type);
 			if (/bmp/.test(type)) {
@@ -215,7 +215,7 @@ var Canvas2Image = function () {
 
 	var convertToImage = function (canvas, width, height, type) {
 		if ($support.canvas && $support.dataURL) {
-			if (typeof canvas == "string") { canvas = document.getElementById(canvas); }
+			if (typeof canvas == 'string') { canvas = document.getElementById(canvas); }
 			if (type == undefined) { type = 'png'; }
 			type = fixType(type);
 

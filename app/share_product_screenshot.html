@@ -10,21 +10,16 @@
 </head>
 <body>
 <div class="screenshot-container" id="screenshot" v-cloak>
-  <!--<div class="convert-container" id="con_screen">-->
-    <!--<div style="font-size: 20px; color: green; text-align: center;line-height: 500px;">小凤鸣茗壶许艳春￥90000.00</div>-->
-    <!--<img src="http://localhost:9000/public/img/mobile/resource/pro01.png">-->
-  <!--</div>-->
-  <!--<img src="http://localhost:9000/public/img/mobile/resource/pro01.png" style="width: 100%">-->
-  <canvas id="con_screen"></canvas>
   <div class="result-container" id="con_result">
-    <a href="javascript:;">保存图片</a>
+    <div class="btn" id="btn">
+      <a href="javascript:;" @click="pop" class="save">保存图片</a>
+    </div>
   </div>
+  <pop v-if="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <script src="public/js/mobile/vue.js"></script>
 <script src="public/js/mobile/api/index.js"></script>
 <script src="public/js/mobile/common/tools.js"></script>
-<!--<script src="public/js/mobile/dom-to-image.min.js"></script>-->
-<!--<script src="public/js/mobile/html2canvas.js"></script>-->
 <script src="public/js/mobile/canvas2image.js"></script>
 <script>
   var config = {
@@ -51,7 +46,16 @@
       }
 
     ],
-
+    "imgObj": {
+        "id":"",
+        "name":"小凤鸣茗壶",
+        "defaultImage":"http://192.168.8.126:9000/public/img/mobile/resource/pro01.png",
+        "artistName":"许艳春",
+        "price":"￥90000.00",
+        "headPortrait": "http://192.168.8.126:9000/public/img/mobile/resource/emptyPhoto.png",
+        "qrcodeUrl": "http://192.168.8.126:9000/public/img/mobile/resource/qrcode-gzh.png"
+    },
+    'msg': '长按保存图片'
   }
 </script>
 <script src="public/js/mobile/share_screenshot.js"></script>

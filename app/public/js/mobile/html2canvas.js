@@ -5,7 +5,7 @@
   Released under  License
 */
 
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.html2canvas=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+!function(e){if('object'==typeof exports&&'undefined'!=typeof module)module.exports=e();else if('function'==typeof define&&define.amd)define([],e);else{var f;'undefined'!=typeof window?f=window:'undefined'!=typeof global?f=global:'undefined'!=typeof self&&(f=self),f.html2canvas=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=='function'&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error('Cannot find module \''+o+'\'');throw f.code='MODULE_NOT_FOUND',f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=='function'&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 (function (global){
 /*! http://mths.be/punycode v1.2.4 by @mathias */
 ;(function(root) {
@@ -515,7 +515,7 @@
 
 }(this));
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+}).call(this,typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {})
 },{}],2:[function(_dereq_,module,exports){
 var log = _dereq_('./log');
 
@@ -530,10 +530,10 @@ function cloneCanvasContents(canvas, clonedCanvas) {
         if (clonedCanvas) {
             clonedCanvas.width = canvas.width;
             clonedCanvas.height = canvas.height;
-            clonedCanvas.getContext("2d").putImageData(canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height), 0, 0);
+            clonedCanvas.getContext('2d').putImageData(canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height), 0, 0);
         }
     } catch(e) {
-        log("Unable to copy canvas content from", canvas, e);
+        log('Unable to copy canvas content from', canvas, e);
     }
 }
 
@@ -551,9 +551,9 @@ function cloneNode(node, javascriptEnabled) {
     if (node.nodeType === 1) {
         clone._scrollTop = node.scrollTop;
         clone._scrollLeft = node.scrollLeft;
-        if (node.nodeName === "CANVAS") {
+        if (node.nodeName === 'CANVAS') {
             cloneCanvasContents(node, clone);
-        } else if (node.nodeName === "TEXTAREA" || node.nodeName === "SELECT") {
+        } else if (node.nodeName === 'TEXTAREA' || node.nodeName === 'SELECT') {
             clone.value = node.value;
         }
     }
@@ -576,17 +576,17 @@ function initNode(node) {
 
 module.exports = function(ownerDocument, containerDocument, width, height, options, x ,y) {
     var documentElement = cloneNode(ownerDocument.documentElement, options.javascriptEnabled);
-    var container = containerDocument.createElement("iframe");
+    var container = containerDocument.createElement('iframe');
 
-    container.className = "html2canvas-container";
-    container.style.visibility = "hidden";
-    container.style.position = "fixed";
-    container.style.left = "-10000px";
-    container.style.top = "0px";
-    container.style.border = "0";
+    container.className = 'html2canvas-container';
+    container.style.visibility = 'hidden';
+    container.style.position = 'fixed';
+    container.style.left = '-10000px';
+    container.style.top = '0px';
+    container.style.border = '0';
     container.width = width;
     container.height = height;
-    container.scrolling = "no"; // ios won't scroll without it
+    container.scrolling = 'no'; // ios won't scroll without it
     containerDocument.body.appendChild(container);
 
     return new Promise(function(resolve) {
@@ -600,11 +600,11 @@ module.exports = function(ownerDocument, containerDocument, width, height, optio
                 if (documentClone.body.childNodes.length > 0) {
                     initNode(documentClone.documentElement);
                     clearInterval(interval);
-                    if (options.type === "view") {
+                    if (options.type === 'view') {
                         container.contentWindow.scrollTo(x, y);
                         if ((/(iPad|iPhone|iPod)/g).test(navigator.userAgent) && (container.contentWindow.scrollY !== y || container.contentWindow.scrollX !== x)) {
-                            documentClone.documentElement.style.top = (-y) + "px";
-                            documentClone.documentElement.style.left = (-x) + "px";
+                            documentClone.documentElement.style.top = (-y) + 'px';
+                            documentClone.documentElement.style.left = (-x) + 'px';
                             documentClone.documentElement.style.position = 'absolute';
                         }
                     }
@@ -614,7 +614,7 @@ module.exports = function(ownerDocument, containerDocument, width, height, optio
         };
 
         documentClone.open();
-        documentClone.write("<!DOCTYPE html><html></html>");
+        documentClone.write('<!DOCTYPE html><html></html>');
         // Chrome scrolls the parent document for some reason after the write to the cloned window???
         restoreOwnerScroll(ownerDocument, x, y);
         documentClone.replaceChild(documentClone.adoptNode(documentElement), documentClone.documentElement);
@@ -622,7 +622,7 @@ module.exports = function(ownerDocument, containerDocument, width, height, optio
     });
 };
 
-},{"./log":13}],3:[function(_dereq_,module,exports){
+},{'./log':13}],3:[function(_dereq_,module,exports){
 // http://dev.w3.org/csswg/css-color/
 
 function Color(value) {
@@ -721,8 +721,8 @@ Color.prototype.rgba = function(value) {
 
 Color.prototype.toString = function() {
     return this.a !== null && this.a !== 1 ?
-    "rgba(" + [this.r, this.g, this.b, this.a].join(",") + ")" :
-    "rgb(" + [this.r, this.g, this.b].join(",") + ")";
+    'rgba(' + [this.r, this.g, this.b, this.a].join(',') + ')' :
+    'rgb(' + [this.r, this.g, this.b].join(',') + ')';
 };
 
 Color.prototype.namedColor = function(value) {
@@ -732,7 +732,7 @@ Color.prototype.namedColor = function(value) {
         this.r = color[0];
         this.g = color[1];
         this.b = color[2];
-    } else if (value === "transparent") {
+    } else if (value === 'transparent') {
         this.r = this.g = this.b = this.a = 0;
         return true;
     }
@@ -744,154 +744,154 @@ Color.prototype.isColor = true;
 
 // JSON.stringify([].slice.call($$('.named-color-table tr'), 1).map(function(row) { return [row.childNodes[3].textContent, row.childNodes[5].textContent.trim().split(",").map(Number)] }).reduce(function(data, row) {data[row[0]] = row[1]; return data}, {}))
 var colors = {
-    "aliceblue": [240, 248, 255],
-    "antiquewhite": [250, 235, 215],
-    "aqua": [0, 255, 255],
-    "aquamarine": [127, 255, 212],
-    "azure": [240, 255, 255],
-    "beige": [245, 245, 220],
-    "bisque": [255, 228, 196],
-    "black": [0, 0, 0],
-    "blanchedalmond": [255, 235, 205],
-    "blue": [0, 0, 255],
-    "blueviolet": [138, 43, 226],
-    "brown": [165, 42, 42],
-    "burlywood": [222, 184, 135],
-    "cadetblue": [95, 158, 160],
-    "chartreuse": [127, 255, 0],
-    "chocolate": [210, 105, 30],
-    "coral": [255, 127, 80],
-    "cornflowerblue": [100, 149, 237],
-    "cornsilk": [255, 248, 220],
-    "crimson": [220, 20, 60],
-    "cyan": [0, 255, 255],
-    "darkblue": [0, 0, 139],
-    "darkcyan": [0, 139, 139],
-    "darkgoldenrod": [184, 134, 11],
-    "darkgray": [169, 169, 169],
-    "darkgreen": [0, 100, 0],
-    "darkgrey": [169, 169, 169],
-    "darkkhaki": [189, 183, 107],
-    "darkmagenta": [139, 0, 139],
-    "darkolivegreen": [85, 107, 47],
-    "darkorange": [255, 140, 0],
-    "darkorchid": [153, 50, 204],
-    "darkred": [139, 0, 0],
-    "darksalmon": [233, 150, 122],
-    "darkseagreen": [143, 188, 143],
-    "darkslateblue": [72, 61, 139],
-    "darkslategray": [47, 79, 79],
-    "darkslategrey": [47, 79, 79],
-    "darkturquoise": [0, 206, 209],
-    "darkviolet": [148, 0, 211],
-    "deeppink": [255, 20, 147],
-    "deepskyblue": [0, 191, 255],
-    "dimgray": [105, 105, 105],
-    "dimgrey": [105, 105, 105],
-    "dodgerblue": [30, 144, 255],
-    "firebrick": [178, 34, 34],
-    "floralwhite": [255, 250, 240],
-    "forestgreen": [34, 139, 34],
-    "fuchsia": [255, 0, 255],
-    "gainsboro": [220, 220, 220],
-    "ghostwhite": [248, 248, 255],
-    "gold": [255, 215, 0],
-    "goldenrod": [218, 165, 32],
-    "gray": [128, 128, 128],
-    "green": [0, 128, 0],
-    "greenyellow": [173, 255, 47],
-    "grey": [128, 128, 128],
-    "honeydew": [240, 255, 240],
-    "hotpink": [255, 105, 180],
-    "indianred": [205, 92, 92],
-    "indigo": [75, 0, 130],
-    "ivory": [255, 255, 240],
-    "khaki": [240, 230, 140],
-    "lavender": [230, 230, 250],
-    "lavenderblush": [255, 240, 245],
-    "lawngreen": [124, 252, 0],
-    "lemonchiffon": [255, 250, 205],
-    "lightblue": [173, 216, 230],
-    "lightcoral": [240, 128, 128],
-    "lightcyan": [224, 255, 255],
-    "lightgoldenrodyellow": [250, 250, 210],
-    "lightgray": [211, 211, 211],
-    "lightgreen": [144, 238, 144],
-    "lightgrey": [211, 211, 211],
-    "lightpink": [255, 182, 193],
-    "lightsalmon": [255, 160, 122],
-    "lightseagreen": [32, 178, 170],
-    "lightskyblue": [135, 206, 250],
-    "lightslategray": [119, 136, 153],
-    "lightslategrey": [119, 136, 153],
-    "lightsteelblue": [176, 196, 222],
-    "lightyellow": [255, 255, 224],
-    "lime": [0, 255, 0],
-    "limegreen": [50, 205, 50],
-    "linen": [250, 240, 230],
-    "magenta": [255, 0, 255],
-    "maroon": [128, 0, 0],
-    "mediumaquamarine": [102, 205, 170],
-    "mediumblue": [0, 0, 205],
-    "mediumorchid": [186, 85, 211],
-    "mediumpurple": [147, 112, 219],
-    "mediumseagreen": [60, 179, 113],
-    "mediumslateblue": [123, 104, 238],
-    "mediumspringgreen": [0, 250, 154],
-    "mediumturquoise": [72, 209, 204],
-    "mediumvioletred": [199, 21, 133],
-    "midnightblue": [25, 25, 112],
-    "mintcream": [245, 255, 250],
-    "mistyrose": [255, 228, 225],
-    "moccasin": [255, 228, 181],
-    "navajowhite": [255, 222, 173],
-    "navy": [0, 0, 128],
-    "oldlace": [253, 245, 230],
-    "olive": [128, 128, 0],
-    "olivedrab": [107, 142, 35],
-    "orange": [255, 165, 0],
-    "orangered": [255, 69, 0],
-    "orchid": [218, 112, 214],
-    "palegoldenrod": [238, 232, 170],
-    "palegreen": [152, 251, 152],
-    "paleturquoise": [175, 238, 238],
-    "palevioletred": [219, 112, 147],
-    "papayawhip": [255, 239, 213],
-    "peachpuff": [255, 218, 185],
-    "peru": [205, 133, 63],
-    "pink": [255, 192, 203],
-    "plum": [221, 160, 221],
-    "powderblue": [176, 224, 230],
-    "purple": [128, 0, 128],
-    "rebeccapurple": [102, 51, 153],
-    "red": [255, 0, 0],
-    "rosybrown": [188, 143, 143],
-    "royalblue": [65, 105, 225],
-    "saddlebrown": [139, 69, 19],
-    "salmon": [250, 128, 114],
-    "sandybrown": [244, 164, 96],
-    "seagreen": [46, 139, 87],
-    "seashell": [255, 245, 238],
-    "sienna": [160, 82, 45],
-    "silver": [192, 192, 192],
-    "skyblue": [135, 206, 235],
-    "slateblue": [106, 90, 205],
-    "slategray": [112, 128, 144],
-    "slategrey": [112, 128, 144],
-    "snow": [255, 250, 250],
-    "springgreen": [0, 255, 127],
-    "steelblue": [70, 130, 180],
-    "tan": [210, 180, 140],
-    "teal": [0, 128, 128],
-    "thistle": [216, 191, 216],
-    "tomato": [255, 99, 71],
-    "turquoise": [64, 224, 208],
-    "violet": [238, 130, 238],
-    "wheat": [245, 222, 179],
-    "white": [255, 255, 255],
-    "whitesmoke": [245, 245, 245],
-    "yellow": [255, 255, 0],
-    "yellowgreen": [154, 205, 50]
+    'aliceblue': [240, 248, 255],
+    'antiquewhite': [250, 235, 215],
+    'aqua': [0, 255, 255],
+    'aquamarine': [127, 255, 212],
+    'azure': [240, 255, 255],
+    'beige': [245, 245, 220],
+    'bisque': [255, 228, 196],
+    'black': [0, 0, 0],
+    'blanchedalmond': [255, 235, 205],
+    'blue': [0, 0, 255],
+    'blueviolet': [138, 43, 226],
+    'brown': [165, 42, 42],
+    'burlywood': [222, 184, 135],
+    'cadetblue': [95, 158, 160],
+    'chartreuse': [127, 255, 0],
+    'chocolate': [210, 105, 30],
+    'coral': [255, 127, 80],
+    'cornflowerblue': [100, 149, 237],
+    'cornsilk': [255, 248, 220],
+    'crimson': [220, 20, 60],
+    'cyan': [0, 255, 255],
+    'darkblue': [0, 0, 139],
+    'darkcyan': [0, 139, 139],
+    'darkgoldenrod': [184, 134, 11],
+    'darkgray': [169, 169, 169],
+    'darkgreen': [0, 100, 0],
+    'darkgrey': [169, 169, 169],
+    'darkkhaki': [189, 183, 107],
+    'darkmagenta': [139, 0, 139],
+    'darkolivegreen': [85, 107, 47],
+    'darkorange': [255, 140, 0],
+    'darkorchid': [153, 50, 204],
+    'darkred': [139, 0, 0],
+    'darksalmon': [233, 150, 122],
+    'darkseagreen': [143, 188, 143],
+    'darkslateblue': [72, 61, 139],
+    'darkslategray': [47, 79, 79],
+    'darkslategrey': [47, 79, 79],
+    'darkturquoise': [0, 206, 209],
+    'darkviolet': [148, 0, 211],
+    'deeppink': [255, 20, 147],
+    'deepskyblue': [0, 191, 255],
+    'dimgray': [105, 105, 105],
+    'dimgrey': [105, 105, 105],
+    'dodgerblue': [30, 144, 255],
+    'firebrick': [178, 34, 34],
+    'floralwhite': [255, 250, 240],
+    'forestgreen': [34, 139, 34],
+    'fuchsia': [255, 0, 255],
+    'gainsboro': [220, 220, 220],
+    'ghostwhite': [248, 248, 255],
+    'gold': [255, 215, 0],
+    'goldenrod': [218, 165, 32],
+    'gray': [128, 128, 128],
+    'green': [0, 128, 0],
+    'greenyellow': [173, 255, 47],
+    'grey': [128, 128, 128],
+    'honeydew': [240, 255, 240],
+    'hotpink': [255, 105, 180],
+    'indianred': [205, 92, 92],
+    'indigo': [75, 0, 130],
+    'ivory': [255, 255, 240],
+    'khaki': [240, 230, 140],
+    'lavender': [230, 230, 250],
+    'lavenderblush': [255, 240, 245],
+    'lawngreen': [124, 252, 0],
+    'lemonchiffon': [255, 250, 205],
+    'lightblue': [173, 216, 230],
+    'lightcoral': [240, 128, 128],
+    'lightcyan': [224, 255, 255],
+    'lightgoldenrodyellow': [250, 250, 210],
+    'lightgray': [211, 211, 211],
+    'lightgreen': [144, 238, 144],
+    'lightgrey': [211, 211, 211],
+    'lightpink': [255, 182, 193],
+    'lightsalmon': [255, 160, 122],
+    'lightseagreen': [32, 178, 170],
+    'lightskyblue': [135, 206, 250],
+    'lightslategray': [119, 136, 153],
+    'lightslategrey': [119, 136, 153],
+    'lightsteelblue': [176, 196, 222],
+    'lightyellow': [255, 255, 224],
+    'lime': [0, 255, 0],
+    'limegreen': [50, 205, 50],
+    'linen': [250, 240, 230],
+    'magenta': [255, 0, 255],
+    'maroon': [128, 0, 0],
+    'mediumaquamarine': [102, 205, 170],
+    'mediumblue': [0, 0, 205],
+    'mediumorchid': [186, 85, 211],
+    'mediumpurple': [147, 112, 219],
+    'mediumseagreen': [60, 179, 113],
+    'mediumslateblue': [123, 104, 238],
+    'mediumspringgreen': [0, 250, 154],
+    'mediumturquoise': [72, 209, 204],
+    'mediumvioletred': [199, 21, 133],
+    'midnightblue': [25, 25, 112],
+    'mintcream': [245, 255, 250],
+    'mistyrose': [255, 228, 225],
+    'moccasin': [255, 228, 181],
+    'navajowhite': [255, 222, 173],
+    'navy': [0, 0, 128],
+    'oldlace': [253, 245, 230],
+    'olive': [128, 128, 0],
+    'olivedrab': [107, 142, 35],
+    'orange': [255, 165, 0],
+    'orangered': [255, 69, 0],
+    'orchid': [218, 112, 214],
+    'palegoldenrod': [238, 232, 170],
+    'palegreen': [152, 251, 152],
+    'paleturquoise': [175, 238, 238],
+    'palevioletred': [219, 112, 147],
+    'papayawhip': [255, 239, 213],
+    'peachpuff': [255, 218, 185],
+    'peru': [205, 133, 63],
+    'pink': [255, 192, 203],
+    'plum': [221, 160, 221],
+    'powderblue': [176, 224, 230],
+    'purple': [128, 0, 128],
+    'rebeccapurple': [102, 51, 153],
+    'red': [255, 0, 0],
+    'rosybrown': [188, 143, 143],
+    'royalblue': [65, 105, 225],
+    'saddlebrown': [139, 69, 19],
+    'salmon': [250, 128, 114],
+    'sandybrown': [244, 164, 96],
+    'seagreen': [46, 139, 87],
+    'seashell': [255, 245, 238],
+    'sienna': [160, 82, 45],
+    'silver': [192, 192, 192],
+    'skyblue': [135, 206, 235],
+    'slateblue': [106, 90, 205],
+    'slategray': [112, 128, 144],
+    'slategrey': [112, 128, 144],
+    'snow': [255, 250, 250],
+    'springgreen': [0, 255, 127],
+    'steelblue': [70, 130, 180],
+    'tan': [210, 180, 140],
+    'teal': [0, 128, 128],
+    'thistle': [216, 191, 216],
+    'tomato': [255, 99, 71],
+    'turquoise': [64, 224, 208],
+    'violet': [238, 130, 238],
+    'wheat': [245, 222, 179],
+    'white': [255, 255, 255],
+    'whitesmoke': [245, 245, 245],
+    'yellow': [255, 255, 0],
+    'yellowgreen': [154, 205, 50]
 };
 
 module.exports = Color;
@@ -908,7 +908,7 @@ var createWindowClone = _dereq_('./clone');
 var loadUrlDocument = _dereq_('./proxy').loadUrlDocument;
 var getBounds = utils.getBounds;
 
-var html2canvasNodeAttribute = "data-html2canvas-node";
+var html2canvasNodeAttribute = 'data-html2canvas-node';
 var html2canvasCloneIndex = 0;
 
 function html2canvas(nodeList, options) {
@@ -919,17 +919,17 @@ function html2canvas(nodeList, options) {
         log.options.start = Date.now();
     }
 
-    options.async = typeof(options.async) === "undefined" ? true : options.async;
-    options.allowTaint = typeof(options.allowTaint) === "undefined" ? false : options.allowTaint;
-    options.removeContainer = typeof(options.removeContainer) === "undefined" ? true : options.removeContainer;
-    options.javascriptEnabled = typeof(options.javascriptEnabled) === "undefined" ? false : options.javascriptEnabled;
-    options.imageTimeout = typeof(options.imageTimeout) === "undefined" ? 10000 : options.imageTimeout;
-    options.renderer = typeof(options.renderer) === "function" ? options.renderer : CanvasRenderer;
+    options.async = typeof(options.async) === 'undefined' ? true : options.async;
+    options.allowTaint = typeof(options.allowTaint) === 'undefined' ? false : options.allowTaint;
+    options.removeContainer = typeof(options.removeContainer) === 'undefined' ? true : options.removeContainer;
+    options.javascriptEnabled = typeof(options.javascriptEnabled) === 'undefined' ? false : options.javascriptEnabled;
+    options.imageTimeout = typeof(options.imageTimeout) === 'undefined' ? 10000 : options.imageTimeout;
+    options.renderer = typeof(options.renderer) === 'function' ? options.renderer : CanvasRenderer;
     options.strict = !!options.strict;
 
-    if (typeof(nodeList) === "string") {
-        if (typeof(options.proxy) !== "string") {
-            return Promise.reject("Proxy must be used when rendering url");
+    if (typeof(nodeList) === 'string') {
+        if (typeof(options.proxy) !== 'string') {
+            return Promise.reject('Proxy must be used when rendering url');
         }
         var width = options.width != null ? options.width : window.innerWidth;
         var height = options.height != null ? options.height : window.innerHeight;
@@ -941,8 +941,8 @@ function html2canvas(nodeList, options) {
     var node = ((nodeList === undefined) ? [document.documentElement] : ((nodeList.length) ? nodeList : [nodeList]))[0];
     node.setAttribute(html2canvasNodeAttribute + index, index);
     return renderDocument(node.ownerDocument, options, node.ownerDocument.defaultView.innerWidth, node.ownerDocument.defaultView.innerHeight, index).then(function(canvas) {
-        if (typeof(options.onrendered) === "function") {
-            log("options.onrendered is deprecated, html2canvas returns a Promise containing the canvas");
+        if (typeof(options.onrendered) === 'function') {
+            log('options.onrendered is deprecated, html2canvas returns a Promise containing the canvas');
             options.onrendered(canvas);
         }
         return canvas;
@@ -954,8 +954,8 @@ html2canvas.NodeContainer = NodeContainer;
 html2canvas.log = log;
 html2canvas.utils = utils;
 
-var html2canvasExport = (typeof(document) === "undefined" || typeof(Object.create) !== "function" || typeof(document.createElement("canvas").getContext) !== "function") ? function() {
-    return Promise.reject("No canvas support");
+var html2canvasExport = (typeof(document) === 'undefined' || typeof(Object.create) !== 'function' || typeof(document.createElement('canvas').getContext) !== 'function') ? function() {
+    return Promise.reject('No canvas support');
 } : html2canvas;
 
 module.exports = html2canvasExport;
@@ -968,13 +968,13 @@ if (typeof(define) === 'function' && define.amd) {
 
 function renderDocument(document, options, windowWidth, windowHeight, html2canvasIndex) {
     return createWindowClone(document, document, windowWidth, windowHeight, options, document.defaultView.pageXOffset, document.defaultView.pageYOffset).then(function(container) {
-        log("Document cloned");
+        log('Document cloned');
         var attributeName = html2canvasNodeAttribute + html2canvasIndex;
-        var selector = "[" + attributeName + "='" + html2canvasIndex + "']";
+        var selector = '[' + attributeName + '=\'' + html2canvasIndex + '\']';
         document.querySelector(selector).removeAttribute(attributeName);
         var clonedWindow = container.contentWindow;
         var node = clonedWindow.document.querySelector(selector);
-        var oncloneHandler = (typeof(options.onclone) === "function") ? Promise.resolve(options.onclone(clonedWindow.document)) : Promise.resolve(true);
+        var oncloneHandler = (typeof(options.onclone) === 'function') ? Promise.resolve(options.onclone(clonedWindow.document)) : Promise.resolve(true);
         return oncloneHandler.then(function() {
             return renderWindow(node, container, options, windowWidth, windowHeight);
         });
@@ -986,15 +986,15 @@ function renderWindow(node, container, options, windowWidth, windowHeight) {
     var support = new Support(clonedWindow.document);
     var imageLoader = new ImageLoader(options, support);
     var bounds = getBounds(node);
-    var width = options.type === "view" ? windowWidth : documentWidth(clonedWindow.document);
-    var height = options.type === "view" ? windowHeight : documentHeight(clonedWindow.document);
+    var width = options.type === 'view' ? windowWidth : documentWidth(clonedWindow.document);
+    var height = options.type === 'view' ? windowHeight : documentHeight(clonedWindow.document);
     var renderer = new options.renderer(width, height, imageLoader, options, document);
     var parser = new NodeParser(node, renderer, support, imageLoader, options);
     return parser.ready.then(function() {
-        log("Finished rendering");
+        log('Finished rendering');
         var canvas;
 
-        if (options.type === "view") {
+        if (options.type === 'view') {
             canvas = crop(renderer.canvas, {width: renderer.canvas.width, height: renderer.canvas.height, top: 0, left: 0, x: 0, y: 0});
         } else if (node === clonedWindow.document.body || node === clonedWindow.document.documentElement || options.canvas != null) {
             canvas = renderer.canvas;
@@ -1010,12 +1010,12 @@ function renderWindow(node, container, options, windowWidth, windowHeight) {
 function cleanupContainer(container, options) {
     if (options.removeContainer) {
         container.parentNode.removeChild(container);
-        log("Cleaned up container");
+        log('Cleaned up container');
     }
 }
 
 function crop(canvas, bounds) {
-    var croppedCanvas = document.createElement("canvas");
+    var croppedCanvas = document.createElement('canvas');
     var x1 = Math.min(canvas.width - 1, Math.max(0, bounds.left));
     var x2 = Math.min(canvas.width, Math.max(1, bounds.left + bounds.width));
     var y1 = Math.min(canvas.height - 1, Math.max(0, bounds.top));
@@ -1024,9 +1024,9 @@ function crop(canvas, bounds) {
     croppedCanvas.height =  bounds.height;
     var width = x2-x1;
     var height = y2-y1;
-    log("Cropping canvas at:", "left:", bounds.left, "top:", bounds.top, "width:", width, "height:", height);
-    log("Resulting crop with width", bounds.width, "and height", bounds.height, "with x", x1, "and y", y1);
-    croppedCanvas.getContext("2d").drawImage(canvas, x1, y1, width, height, bounds.x, bounds.y, width, height);
+    log('Cropping canvas at:', 'left:', bounds.left, 'top:', bounds.top, 'width:', width, 'height:', height);
+    log('Resulting crop with width', bounds.width, 'and height', bounds.height, 'with x', x1, 'and y', y1);
+    croppedCanvas.getContext('2d').drawImage(canvas, x1, y1, width, height, bounds.x, bounds.y, width, height);
     return croppedCanvas;
 }
 
@@ -1047,21 +1047,21 @@ function documentHeight (doc) {
 }
 
 function absoluteUrl(url) {
-    var link = document.createElement("a");
+    var link = document.createElement('a');
     link.href = url;
     link.href = link.href;
     return link;
 }
 
-},{"./clone":2,"./imageloader":11,"./log":13,"./nodecontainer":14,"./nodeparser":15,"./proxy":16,"./renderers/canvas":20,"./support":22,"./utils":26}],5:[function(_dereq_,module,exports){
+},{'./clone':2,'./imageloader':11,'./log':13,'./nodecontainer':14,'./nodeparser':15,'./proxy':16,'./renderers/canvas':20,'./support':22,'./utils':26}],5:[function(_dereq_,module,exports){
 var log = _dereq_('./log');
 var smallImage = _dereq_('./utils').smallImage;
 
 function DummyImageContainer(src) {
     this.src = src;
-    log("DummyImageContainer for", src);
+    log('DummyImageContainer for', src);
     if (!this.promise || !this.image) {
-        log("Initiating DummyImageContainer");
+        log('Initiating DummyImageContainer');
         DummyImageContainer.prototype.image = new Image();
         var image = this.image;
         DummyImageContainer.prototype.promise = new Promise(function(resolve, reject) {
@@ -1077,7 +1077,7 @@ function DummyImageContainer(src) {
 
 module.exports = DummyImageContainer;
 
-},{"./log":13,"./utils":26}],6:[function(_dereq_,module,exports){
+},{'./log':13,'./utils':26}],6:[function(_dereq_,module,exports){
 var smallImage = _dereq_('./utils').smallImage;
 
 function Font(family, size) {
@@ -1088,7 +1088,7 @@ function Font(family, size) {
         baseline,
         middle;
 
-    container.style.visibility = "hidden";
+    container.style.visibility = 'hidden';
     container.style.fontFamily = family;
     container.style.fontSize = size;
     container.style.margin = 0;
@@ -1102,7 +1102,7 @@ function Font(family, size) {
 
     img.style.margin = 0;
     img.style.padding = 0;
-    img.style.verticalAlign = "baseline";
+    img.style.verticalAlign = 'baseline';
 
     span.style.fontFamily = family;
     span.style.fontSize = size;
@@ -1117,8 +1117,8 @@ function Font(family, size) {
     container.removeChild(span);
     container.appendChild(document.createTextNode(sampleText));
 
-    container.style.lineHeight = "normal";
-    img.style.verticalAlign = "super";
+    container.style.lineHeight = 'normal';
+    img.style.verticalAlign = 'super';
 
     middle = (img.offsetTop-container.offsetTop) + 1;
 
@@ -1131,7 +1131,7 @@ function Font(family, size) {
 
 module.exports = Font;
 
-},{"./utils":26}],7:[function(_dereq_,module,exports){
+},{'./utils':26}],7:[function(_dereq_,module,exports){
 var Font = _dereq_('./font');
 
 function FontMetrics() {
@@ -1139,15 +1139,15 @@ function FontMetrics() {
 }
 
 FontMetrics.prototype.getMetrics = function(family, size) {
-    if (this.data[family + "-" + size] === undefined) {
-        this.data[family + "-" + size] = new Font(family, size);
+    if (this.data[family + '-' + size] === undefined) {
+        this.data[family + '-' + size] = new Font(family, size);
     }
-    return this.data[family + "-" + size];
+    return this.data[family + '-' + size];
 };
 
 module.exports = FontMetrics;
 
-},{"./font":6}],8:[function(_dereq_,module,exports){
+},{'./font':6}],8:[function(_dereq_,module,exports){
 var utils = _dereq_('./utils');
 var getBounds = utils.getBounds;
 var loadUrlDocument = _dereq_('./proxy').loadUrlDocument;
@@ -1158,7 +1158,7 @@ function FrameContainer(container, sameOrigin, options) {
     var self = this;
     var bounds = getBounds(container);
     this.promise = (!sameOrigin ? this.proxyLoad(options.proxy, bounds, options) : new Promise(function(resolve) {
-        if (container.contentWindow.document.URL === "about:blank" || container.contentWindow.document.documentElement == null) {
+        if (container.contentWindow.document.URL === 'about:blank' || container.contentWindow.document.documentElement == null) {
             container.contentWindow.onload = container.onload = function() {
                 resolve(container);
             };
@@ -1180,7 +1180,7 @@ FrameContainer.prototype.proxyLoad = function(proxy, bounds, options) {
 
 module.exports = FrameContainer;
 
-},{"./core":4,"./proxy":16,"./utils":26}],9:[function(_dereq_,module,exports){
+},{'./core':4,'./proxy':16,'./utils':26}],9:[function(_dereq_,module,exports){
 function GradientContainer(imageData) {
     this.src = imageData.value;
     this.colorStops = [];
@@ -1213,7 +1213,7 @@ function ImageContainer(src, cors) {
         self.image.onload = resolve;
         self.image.onerror = reject;
         if (cors) {
-            self.image.crossOrigin = "anonymous";
+            self.image.crossOrigin = 'anonymous';
         }
         self.image.src = src;
         if (self.image.complete === true) {
@@ -1247,13 +1247,13 @@ ImageLoader.prototype.findImages = function(nodes) {
     var images = [];
     nodes.reduce(function(imageNodes, container) {
         switch(container.node.nodeName) {
-        case "IMG":
+        case 'IMG':
             return imageNodes.concat([{
                 args: [container.node.src],
-                method: "url"
+                method: 'url'
             }]);
-        case "svg":
-        case "IFRAME":
+        case 'svg':
+        case 'IFRAME':
             return imageNodes.concat([{
                 args: [container.node],
                 method: container.node.nodeName
@@ -1274,18 +1274,18 @@ ImageLoader.prototype.addImage = function(images, callback) {
         newImage.args.forEach(function(image) {
             if (!this.imageExists(images, image)) {
                 images.splice(0, 0, callback.call(this, newImage));
-                log('Added image #' + (images.length), typeof(image) === "string" ? image.substring(0, 100) : image);
+                log('Added image #' + (images.length), typeof(image) === 'string' ? image.substring(0, 100) : image);
             }
         }, this);
     };
 };
 
 ImageLoader.prototype.hasImageBackground = function(imageData) {
-    return imageData.method !== "none";
+    return imageData.method !== 'none';
 };
 
 ImageLoader.prototype.loadImage = function(imageData) {
-    if (imageData.method === "url") {
+    if (imageData.method === 'url') {
         var src = imageData.args[0];
         if (this.isSVG(src) && !this.support.svg && !this.options.allowTaint) {
             return new SVGContainer(src);
@@ -1300,13 +1300,13 @@ ImageLoader.prototype.loadImage = function(imageData) {
         } else {
             return new DummyImageContainer(src);
         }
-    } else if (imageData.method === "linear-gradient") {
+    } else if (imageData.method === 'linear-gradient') {
         return new LinearGradientContainer(imageData);
-    } else if (imageData.method === "gradient") {
+    } else if (imageData.method === 'gradient') {
         return new WebkitGradientContainer(imageData);
-    } else if (imageData.method === "svg") {
+    } else if (imageData.method === 'svg') {
         return new SVGNodeContainer(imageData.args[0], this.support.svg);
-    } else if (imageData.method === "IFRAME") {
+    } else if (imageData.method === 'IFRAME') {
         return new FrameContainer(imageData.args[0], this.isSameOrigin(imageData.args[0].src), this.options);
     } else {
         return new DummyImageContainer(imageData);
@@ -1314,7 +1314,7 @@ ImageLoader.prototype.loadImage = function(imageData) {
 };
 
 ImageLoader.prototype.isSVG = function(src) {
-    return src.substring(src.length - 3).toLowerCase() === "svg" || SVGContainer.prototype.isInline(src);
+    return src.substring(src.length - 3).toLowerCase() === 'svg' || SVGContainer.prototype.isInline(src);
 };
 
 ImageLoader.prototype.imageExists = function(images, src) {
@@ -1328,7 +1328,7 @@ ImageLoader.prototype.isSameOrigin = function(url) {
 };
 
 ImageLoader.prototype.getOrigin = function(url) {
-    var link = this.link || (this.link = document.createElement("a"));
+    var link = this.link || (this.link = document.createElement('a'));
     link.href = url;
     link.href = link.href; // IE9, LOL! - http://jsfiddle.net/niklasvh/2e48b/
     return link.protocol + link.hostname + link.port;
@@ -1354,13 +1354,13 @@ ImageLoader.prototype.fetch = function(nodes) {
     this.images = nodes.reduce(bind(this.findBackgroundImage, this), this.findImages(nodes));
     this.images.forEach(function(image, index) {
         image.promise.then(function() {
-            log("Succesfully loaded image #"+ (index+1), image);
+            log('Succesfully loaded image #'+ (index+1), image);
         }, function(e) {
-            log("Failed loading image #"+ (index+1), image, e);
+            log('Failed loading image #'+ (index+1), image, e);
         });
     });
     this.ready = Promise.all(this.images.map(this.getPromise, this));
-    log("Finished searching images");
+    log('Finished searching images');
     return this;
 };
 
@@ -1368,7 +1368,7 @@ ImageLoader.prototype.timeout = function(container, timeout) {
     var timer;
     var promise = Promise.race([container.promise, new Promise(function(res, reject) {
         timer = setTimeout(function() {
-            log("Timed out loading image", container);
+            log('Timed out loading image', container);
             reject(container);
         }, timeout);
     })]).then(function(container) {
@@ -1383,7 +1383,7 @@ ImageLoader.prototype.timeout = function(container, timeout) {
 
 module.exports = ImageLoader;
 
-},{"./dummyimagecontainer":5,"./framecontainer":8,"./imagecontainer":10,"./lineargradientcontainer":12,"./log":13,"./proxyimagecontainer":17,"./svgcontainer":23,"./svgnodecontainer":24,"./utils":26,"./webkitgradientcontainer":27}],12:[function(_dereq_,module,exports){
+},{'./dummyimagecontainer':5,'./framecontainer':8,'./imagecontainer':10,'./lineargradientcontainer':12,'./log':13,'./proxyimagecontainer':17,'./svgcontainer':23,'./svgnodecontainer':24,'./utils':26,'./webkitgradientcontainer':27}],12:[function(_dereq_,module,exports){
 var GradientContainer = _dereq_('./gradientcontainer');
 var Color = _dereq_('./color');
 
@@ -1397,23 +1397,23 @@ function LinearGradientContainer(imageData) {
     if (hasDirection) {
         imageData.args[0].split(/\s+/).reverse().forEach(function(position, index) {
             switch(position) {
-            case "left":
+            case 'left':
                 this.x0 = 0;
                 this.x1 = 1;
                 break;
-            case "top":
+            case 'top':
                 this.y0 = 0;
                 this.y1 = 1;
                 break;
-            case "right":
+            case 'right':
                 this.x0 = 1;
                 this.x1 = 0;
                 break;
-            case "bottom":
+            case 'bottom':
                 this.y0 = 1;
                 this.y1 = 0;
                 break;
-            case "to":
+            case 'to':
                 var y0 = this.y0;
                 var x0 = this.x0;
                 this.y0 = this.y1;
@@ -1421,7 +1421,7 @@ function LinearGradientContainer(imageData) {
                 this.x1 = x0;
                 this.y1 = y0;
                 break;
-            case "center":
+            case 'center':
                 break; // centered by default
             // Firefox internally converts position keywords to percentages:
             // http://www.w3.org/TR/2010/WD-CSS2-20101207/colors.html#propdef-background-position
@@ -1449,11 +1449,11 @@ function LinearGradientContainer(imageData) {
     this.colorStops = imageData.args.slice(hasDirection ? 1 : 0).map(function(colorStop) {
         var colorStopMatch = colorStop.match(GradientContainer.REGEXP_COLORSTOP);
         var value = +colorStopMatch[2];
-        var unit = value === 0 ? "%" : colorStopMatch[3]; // treat "0" as "0%"
+        var unit = value === 0 ? '%' : colorStopMatch[3]; // treat "0" as "0%"
         return {
             color: new Color(colorStopMatch[1]),
             // TODO: support absolute stop positions (e.g., compute gradient line length & convert px to ratio)
-            stop: unit === "%" ? value / 100 : null
+            stop: unit === '%' ? value / 100 : null
         };
     });
 
@@ -1487,10 +1487,10 @@ LinearGradientContainer.REGEXP_DIRECTION = /^\s*(?:to|left|right|top|bottom|cent
 
 module.exports = LinearGradientContainer;
 
-},{"./color":3,"./gradientcontainer":9}],13:[function(_dereq_,module,exports){
+},{'./color':3,'./gradientcontainer':9}],13:[function(_dereq_,module,exports){
 var logger = function() {
     if (logger.options.logging && window.console && window.console.log) {
-        Function.prototype.bind.call(window.console.log, (window.console)).apply(window.console, [(Date.now() - logger.options.start) + "ms", "html2canvas:"].concat([].slice.call(arguments, 0)));
+        Function.prototype.bind.call(window.console.log, (window.console)).apply(window.console, [(Date.now() - logger.options.start) + 'ms', 'html2canvas:'].concat([].slice.call(arguments, 0)));
     }
 };
 
@@ -1547,23 +1547,23 @@ NodeContainer.prototype.assignStack = function(stack) {
 
 NodeContainer.prototype.isElementVisible = function() {
     return this.node.nodeType === Node.TEXT_NODE ? this.parent.visible : (
-        this.css('display') !== "none" &&
-        this.css('visibility') !== "hidden" &&
-        !this.node.hasAttribute("data-html2canvas-ignore") &&
-        (this.node.nodeName !== "INPUT" || this.node.getAttribute("type") !== "hidden")
+        this.css('display') !== 'none' &&
+        this.css('visibility') !== 'hidden' &&
+        !this.node.hasAttribute('data-html2canvas-ignore') &&
+        (this.node.nodeName !== 'INPUT' || this.node.getAttribute('type') !== 'hidden')
     );
 };
 
 NodeContainer.prototype.css = function(attribute) {
     if (!this.computedStyles) {
-        this.computedStyles = this.isPseudoElement ? this.parent.computedStyle(this.before ? ":before" : ":after") : this.computedStyle(null);
+        this.computedStyles = this.isPseudoElement ? this.parent.computedStyle(this.before ? ':before' : ':after') : this.computedStyle(null);
     }
 
     return this.styles[attribute] || (this.styles[attribute] = this.computedStyles[attribute]);
 };
 
 NodeContainer.prototype.prefixedCss = function(attribute) {
-    var prefixes = ["webkit", "moz", "ms", "o"];
+    var prefixes = ['webkit', 'moz', 'ms', 'o'];
     var value = this.css(attribute);
     if (value === undefined) {
         prefixes.some(function(prefix) {
@@ -1593,13 +1593,13 @@ NodeContainer.prototype.cssFloat = function(attribute) {
 };
 
 NodeContainer.prototype.fontWeight = function() {
-    var weight = this.css("fontWeight");
+    var weight = this.css('fontWeight');
     switch(parseInt(weight, 10)){
     case 401:
-        weight = "bold";
+        weight = 'bold';
         break;
     case 400:
-        weight = "normal";
+        weight = 'normal';
         break;
     }
     return weight;
@@ -1619,7 +1619,7 @@ NodeContainer.prototype.parseClip = function() {
 };
 
 NodeContainer.prototype.parseBackgroundImages = function() {
-    return this.backgroundImages || (this.backgroundImages = parseBackgrounds(this.css("backgroundImage")));
+    return this.backgroundImages || (this.backgroundImages = parseBackgrounds(this.css('backgroundImage')));
 };
 
 NodeContainer.prototype.cssList = function(property, index) {
@@ -1633,7 +1633,7 @@ NodeContainer.prototype.cssList = function(property, index) {
 };
 
 NodeContainer.prototype.parseBackgroundSize = function(bounds, image, index) {
-    var size = this.cssList("backgroundSize", index);
+    var size = this.cssList('backgroundSize', index);
     var width, height;
 
     if (isPercentage(size[0])) {
@@ -1688,11 +1688,11 @@ NodeContainer.prototype.parseBackgroundPosition = function(bounds, image, index,
 };
 
 NodeContainer.prototype.parseBackgroundRepeat = function(index) {
-    return this.cssList("backgroundRepeat", index)[0];
+    return this.cssList('backgroundRepeat', index)[0];
 };
 
 NodeContainer.prototype.parseTextShadows = function() {
-    var textShadow = this.css("textShadow");
+    var textShadow = this.css('textShadow');
     var results = [];
 
     if (textShadow && textShadow !== 'none') {
@@ -1714,7 +1714,7 @@ NodeContainer.prototype.parseTransform = function() {
     if (!this.transformData) {
         if (this.hasTransform()) {
             var offset = this.parseBounds();
-            var origin = this.prefixedCss("transformOrigin").split(" ").map(removePx).map(asFloat);
+            var origin = this.prefixedCss('transformOrigin').split(' ').map(removePx).map(asFloat);
             origin[0] += offset.left;
             origin[1] += offset.top;
             this.transformData = {
@@ -1733,7 +1733,7 @@ NodeContainer.prototype.parseTransform = function() {
 
 NodeContainer.prototype.parseTransformMatrix = function() {
     if (!this.transformMatrix) {
-        var transform = this.prefixedCss("transform");
+        var transform = this.prefixedCss('transform');
         var matrix = transform ? parseMatrix(transform.match(this.MATRIX_PROPERTY)) : null;
         this.transformMatrix = matrix ? matrix : [1, 0, 0, 1, 0, 0];
     }
@@ -1745,17 +1745,17 @@ NodeContainer.prototype.parseBounds = function() {
 };
 
 NodeContainer.prototype.hasTransform = function() {
-    return this.parseTransformMatrix().join(",") !== "1,0,0,1,0,0" || (this.parent && this.parent.hasTransform());
+    return this.parseTransformMatrix().join(',') !== '1,0,0,1,0,0' || (this.parent && this.parent.hasTransform());
 };
 
 NodeContainer.prototype.getValue = function() {
-    var value = this.node.value || "";
-    if (this.node.tagName === "SELECT") {
+    var value = this.node.value || '';
+    if (this.node.tagName === 'SELECT') {
         value = selectionValue(this.node);
-    } else if (this.node.type === "password") {
+    } else if (this.node.type === 'password') {
         value = Array(value.length + 1).join('\u2022'); // jshint ignore:line
     }
-    return value.length === 0 ? (this.node.placeholder || "") : value;
+    return value.length === 0 ? (this.node.placeholder || '') : value;
 };
 
 NodeContainer.prototype.MATRIX_PROPERTY = /(matrix|matrix3d)\((.+)\)/;
@@ -1765,16 +1765,16 @@ NodeContainer.prototype.CLIP = /^rect\((\d+)px,? (\d+)px,? (\d+)px,? (\d+)px\)$/
 
 function selectionValue(node) {
     var option = node.options[node.selectedIndex || 0];
-    return option ? (option.text || "") : "";
+    return option ? (option.text || '') : '';
 }
 
 function parseMatrix(match) {
-    if (match && match[1] === "matrix") {
-        return match[2].split(",").map(function(s) {
+    if (match && match[1] === 'matrix') {
+        return match[2].split(',').map(function(s) {
             return parseFloat(s.trim());
         });
-    } else if (match && match[1] === "matrix3d") {
-        var matrix3d = match[2].split(",").map(function(s) {
+    } else if (match && match[1] === 'matrix3d') {
+        var matrix3d = match[2].split(',').map(function(s) {
           return parseFloat(s.trim());
         });
         return [matrix3d[0], matrix3d[1], matrix3d[4], matrix3d[5], matrix3d[12], matrix3d[13]];
@@ -1782,11 +1782,11 @@ function parseMatrix(match) {
 }
 
 function isPercentage(value) {
-    return value.toString().indexOf("%") !== -1;
+    return value.toString().indexOf('%') !== -1;
 }
 
 function removePx(str) {
-    return str.replace("px", "");
+    return str.replace('px', '');
 }
 
 function asFloat(str) {
@@ -1795,7 +1795,7 @@ function asFloat(str) {
 
 module.exports = NodeContainer;
 
-},{"./color":3,"./utils":26}],15:[function(_dereq_,module,exports){
+},{'./color':3,'./utils':26}],15:[function(_dereq_,module,exports){
 var log = _dereq_('./log');
 var punycode = _dereq_('punycode');
 var NodeContainer = _dereq_('./nodecontainer');
@@ -1811,7 +1811,7 @@ var parseBackgrounds = utils.parseBackgrounds;
 var offsetBounds = utils.offsetBounds;
 
 function NodeParser(element, renderer, support, imageLoader, options) {
-    log("Starting NodeParser");
+    log('Starting NodeParser');
     this.renderer = renderer;
     this.options = options;
     this.range = null;
@@ -1834,24 +1834,24 @@ function NodeParser(element, renderer, support, imageLoader, options) {
         return container.visible = container.isElementVisible();
     }).map(this.getPseudoElements, this));
     this.fontMetrics = new FontMetrics();
-    log("Fetched nodes, total:", this.nodes.length);
-    log("Calculate overflow clips");
+    log('Fetched nodes, total:', this.nodes.length);
+    log('Calculate overflow clips');
     this.calculateOverflowClips();
-    log("Start fetching images");
+    log('Start fetching images');
     this.images = imageLoader.fetch(this.nodes.filter(isElement));
     this.ready = this.images.ready.then(bind(function() {
-        log("Images loaded, starting parsing");
-        log("Creating stacking contexts");
+        log('Images loaded, starting parsing');
+        log('Creating stacking contexts');
         this.createStackingContexts();
-        log("Sorting stacking contexts");
+        log('Sorting stacking contexts');
         this.sortStackingContexts(this.stack);
         this.parse(this.stack);
-        log("Render queue created with " + this.renderQueue.length + " items");
+        log('Render queue created with ' + this.renderQueue.length + ' items');
         return new Promise(bind(function(resolve) {
             if (!options.async) {
                 this.renderQueue.forEach(this.paint, this);
                 resolve();
-            } else if (typeof(options.async) === "function") {
+            } else if (typeof(options.async) === 'function') {
                 options.async.call(this, this.renderQueue, resolve);
             } else if (this.renderQueue.length > 0){
                 this.renderIndex = 0;
@@ -1870,10 +1870,10 @@ NodeParser.prototype.calculateOverflowClips = function() {
                 container.appendToDOM();
             }
             container.borders = this.parseBorders(container);
-            var clip = (container.css('overflow') === "hidden") ? [container.borders.clip] : [];
+            var clip = (container.css('overflow') === 'hidden') ? [container.borders.clip] : [];
             var cssClip = container.parseClip();
-            if (cssClip && ["absolute", "fixed"].indexOf(container.css('position')) !== -1) {
-                clip.push([["rect",
+            if (cssClip && ['absolute', 'fixed'].indexOf(container.css('position')) !== -1) {
+                clip.push([['rect',
                         container.bounds.left + cssClip.left,
                         container.bounds.top + cssClip.top,
                         cssClip.right - cssClip.left,
@@ -1881,7 +1881,7 @@ NodeParser.prototype.calculateOverflowClips = function() {
                 ]]);
             }
             container.clip = hasParentClip(container) ? container.parent.clip.concat(clip) : clip;
-            container.backgroundClip = (container.css('overflow') !== "hidden") ? container.clip.concat([container.borders.clip]) : container.clip;
+            container.backgroundClip = (container.css('overflow') !== 'hidden') ? container.clip.concat([container.borders.clip]) : container.clip;
             if (isPseudoElement(container)) {
                 container.cleanDOM();
             }
@@ -1931,8 +1931,8 @@ NodeParser.prototype.createStyles = function(document, styles) {
 NodeParser.prototype.getPseudoElements = function(container) {
     var nodes = [[container]];
     if (container.node.nodeType === Node.ELEMENT_NODE) {
-        var before = this.getPseudoElement(container, ":before");
-        var after = this.getPseudoElement(container, ":after");
+        var before = this.getPseudoElement(container, ':before');
+        var after = this.getPseudoElement(container, ':after');
 
         if (before) {
             nodes.push(before);
@@ -1953,7 +1953,7 @@ function toCamelCase(str) {
 
 NodeParser.prototype.getPseudoElement = function(container, type) {
     var style = container.computedStyle(type);
-    if(!style || !style.content || style.content === "none" || style.content === "-moz-alt-content" || style.display === "none") {
+    if(!style || !style.content || style.content === 'none' || style.content === '-moz-alt-content' || style.display === 'none') {
         return null;
     }
 
@@ -1967,7 +1967,7 @@ NodeParser.prototype.getPseudoElement = function(container, type) {
         pseudoNode.style[property] = style[property];
     }
 
-    pseudoNode.className = PseudoElementContainer.prototype.PSEUDO_HIDE_ELEMENT_CLASS_BEFORE + " " + PseudoElementContainer.prototype.PSEUDO_HIDE_ELEMENT_CLASS_AFTER;
+    pseudoNode.className = PseudoElementContainer.prototype.PSEUDO_HIDE_ELEMENT_CLASS_BEFORE + ' ' + PseudoElementContainer.prototype.PSEUDO_HIDE_ELEMENT_CLASS_AFTER;
 
     if (isImage) {
         pseudoNode.src = parseBackgrounds(content)[0].args[0];
@@ -1983,7 +1983,7 @@ NodeParser.prototype.getPseudoElement = function(container, type) {
 NodeParser.prototype.getChildren = function(parentContainer) {
     return flatten([].filter.call(parentContainer.node.childNodes, renderableNode).map(function(node) {
         var container = [node.nodeType === Node.TEXT_NODE ? new TextContainer(node, parentContainer) : new NodeContainer(node, parentContainer)].filter(nonIgnoredElement);
-        return node.nodeType === Node.ELEMENT_NODE && container.length && node.tagName !== "TEXTAREA" ? (container[0].isElementVisible() ? container.concat(this.getChildren(container[0])) : []) : container;
+        return node.nodeType === Node.ELEMENT_NODE && container.length && node.tagName !== 'TEXTAREA' ? (container[0].isElementVisible() ? container.concat(this.getChildren(container[0])) : []) : container;
     }, this));
 };
 
@@ -2008,7 +2008,7 @@ NodeParser.prototype.createStackingContexts = function() {
 };
 
 NodeParser.prototype.isBodyWithTransparentRoot = function(container) {
-    return container.node.nodeName === "BODY" && container.parent.color('backgroundColor').isTransparent();
+    return container.node.nodeName === 'BODY' && container.parent.color('backgroundColor').isTransparent();
 };
 
 NodeParser.prototype.isRootElement = function(container) {
@@ -2022,11 +2022,11 @@ NodeParser.prototype.sortStackingContexts = function(stack) {
 
 NodeParser.prototype.parseTextBounds = function(container) {
     return function(text, index, textList) {
-        if (container.parent.css("textDecoration").substr(0, 4) !== "none" || text.trim().length !== 0) {
+        if (container.parent.css('textDecoration').substr(0, 4) !== 'none' || text.trim().length !== 0) {
             if (this.support.rangeBounds && !container.parent.hasTransform()) {
-                var offset = textList.slice(0, index).join("").length;
+                var offset = textList.slice(0, index).join('').length;
                 return this.getRangeBounds(container.node, offset, text.length);
-            } else if (container.node && typeof(container.node.data) === "string") {
+            } else if (container.node && typeof(container.node.data) === 'string') {
                 var replacementNode = container.node.splitText(text.length);
                 var bounds = this.getWrapperBounds(container.node, container.parent.hasTransform());
                 container.node = replacementNode;
@@ -2113,9 +2113,9 @@ NodeParser.prototype.paintNode = function(container) {
         }
     }
 
-    if (container.node.nodeName === "INPUT" && container.node.type === "checkbox") {
+    if (container.node.nodeName === 'INPUT' && container.node.type === 'checkbox') {
         this.paintCheckbox(container);
-    } else if (container.node.nodeName === "INPUT" && container.node.type === "radio") {
+    } else if (container.node.nodeName === 'INPUT' && container.node.type === 'radio') {
         this.paintRadio(container);
     } else {
         this.paintElement(container);
@@ -2134,29 +2134,29 @@ NodeParser.prototype.paintElement = function(container) {
 
     this.renderer.clip(container.backgroundClip, function() {
         switch (container.node.nodeName) {
-        case "svg":
-        case "IFRAME":
+        case 'svg':
+        case 'IFRAME':
             var imgContainer = this.images.get(container.node);
             if (imgContainer) {
                 this.renderer.renderImage(container, bounds, container.borders, imgContainer);
             } else {
-                log("Error loading <" + container.node.nodeName + ">", container.node);
+                log('Error loading <' + container.node.nodeName + '>', container.node);
             }
             break;
-        case "IMG":
+        case 'IMG':
             var imageContainer = this.images.get(container.node.src);
             if (imageContainer) {
                 this.renderer.renderImage(container, bounds, container.borders, imageContainer);
             } else {
-                log("Error loading <img>", container.node.src);
+                log('Error loading <img>', container.node.src);
             }
             break;
-        case "CANVAS":
+        case 'CANVAS':
             this.renderer.renderImage(container, bounds, container.borders, {image: container.node});
             break;
-        case "SELECT":
-        case "INPUT":
-        case "TEXTAREA":
+        case 'SELECT':
+        case 'INPUT':
+        case 'TEXTAREA':
             this.paintFormValue(container);
             break;
         }
@@ -2177,11 +2177,11 @@ NodeParser.prototype.paintCheckbox = function(container) {
     var borderPoints = calculateCurvePoints(bounds, radius, borders);
 
     this.renderer.clip(container.backgroundClip, function() {
-        this.renderer.rectangle(bounds.left + 1, bounds.top + 1, bounds.width - 2, bounds.height - 2, new Color("#DEDEDE"));
+        this.renderer.rectangle(bounds.left + 1, bounds.top + 1, bounds.width - 2, bounds.height - 2, new Color('#DEDEDE'));
         this.renderer.renderBorders(calculateBorders(borders, bounds, borderPoints, radius));
         if (container.node.checked) {
-            this.renderer.font(new Color('#424242'), 'normal', 'normal', 'bold', (size - 3) + "px", 'arial');
-            this.renderer.text("\u2714", bounds.left + size / 6, bounds.top + size - 1);
+            this.renderer.font(new Color('#424242'), 'normal', 'normal', 'bold', (size - 3) + 'px', 'arial');
+            this.renderer.text('\u2714', bounds.left + size / 6, bounds.top + size - 1);
         }
     }, this);
 };
@@ -2214,13 +2214,13 @@ NodeParser.prototype.paintFormValue = function(container) {
                 wrapper.style[property] = container.css(property);
             } catch(e) {
                 // Older IE has issues with "border"
-                log("html2canvas: Parse: Exception caught in renderFormValue: " + e.message);
+                log('html2canvas: Parse: Exception caught in renderFormValue: ' + e.message);
             }
         });
         var bounds = container.parseBounds();
-        wrapper.style.position = "fixed";
-        wrapper.style.left = bounds.left + "px";
-        wrapper.style.top = bounds.top + "px";
+        wrapper.style.position = 'fixed';
+        wrapper.style.left = bounds.left + 'px';
+        wrapper.style.top = bounds.top + 'px';
         wrapper.textContent = value;
         document.body.appendChild(wrapper);
         this.paintText(new TextContainer(wrapper.firstChild, container));
@@ -2259,38 +2259,38 @@ NodeParser.prototype.paintText = function(container) {
 };
 
 NodeParser.prototype.renderTextDecoration = function(container, bounds, metrics) {
-    switch(container.css("textDecoration").split(" ")[0]) {
-    case "underline":
+    switch(container.css('textDecoration').split(' ')[0]) {
+    case 'underline':
         // Draws a line at the baseline of the font
         // TODO As some browsers display the line as more than 1px if the font-size is big, need to take that into account both in position and size
-        this.renderer.rectangle(bounds.left, Math.round(bounds.top + metrics.baseline + metrics.lineWidth), bounds.width, 1, container.color("color"));
+        this.renderer.rectangle(bounds.left, Math.round(bounds.top + metrics.baseline + metrics.lineWidth), bounds.width, 1, container.color('color'));
         break;
-    case "overline":
-        this.renderer.rectangle(bounds.left, Math.round(bounds.top), bounds.width, 1, container.color("color"));
+    case 'overline':
+        this.renderer.rectangle(bounds.left, Math.round(bounds.top), bounds.width, 1, container.color('color'));
         break;
-    case "line-through":
+    case 'line-through':
         // TODO try and find exact position for line-through
-        this.renderer.rectangle(bounds.left, Math.ceil(bounds.top + metrics.middle + metrics.lineWidth), bounds.width, 1, container.color("color"));
+        this.renderer.rectangle(bounds.left, Math.ceil(bounds.top + metrics.middle + metrics.lineWidth), bounds.width, 1, container.color('color'));
         break;
     }
 };
 
 var borderColorTransforms = {
     inset: [
-        ["darken", 0.60],
-        ["darken", 0.10],
-        ["darken", 0.10],
-        ["darken", 0.60]
+        ['darken', 0.60],
+        ['darken', 0.10],
+        ['darken', 0.10],
+        ['darken', 0.60]
     ]
 };
 
 NodeParser.prototype.parseBorders = function(container) {
     var nodeBounds = container.parseBounds();
     var radius = getBorderRadiusData(container);
-    var borders = ["Top", "Right", "Bottom", "Left"].map(function(side, index) {
+    var borders = ['Top', 'Right', 'Bottom', 'Left'].map(function(side, index) {
         var style = container.css('border' + side + 'Style');
         var color = container.color('border' + side + 'Color');
-        if (style === "inset" && color.isBlack()) {
+        if (style === 'inset' && color.isBlack()) {
             color = new Color([255, 255, 255, color.a]); // this is wrong, but
         }
         var colorTransform = borderColorTransforms[style] ? borderColorTransforms[style][index] : null;
@@ -2375,8 +2375,8 @@ NodeParser.prototype.parseBackgroundClip = function(container, borderPoints, bor
         borderArgs = [];
 
     switch(backgroundClip) {
-    case "content-box":
-    case "padding-box":
+    case 'content-box':
+    case 'padding-box':
         parseCorner(borderArgs, radius[0], radius[1], borderPoints.topLeftInner, borderPoints.topRightInner, bounds.left + borders[3].width, bounds.top + borders[0].width);
         parseCorner(borderArgs, radius[1], radius[2], borderPoints.topRightInner, borderPoints.bottomRightInner, bounds.left + bounds.width - borders[1].width, bounds.top + borders[0].width);
         parseCorner(borderArgs, radius[2], radius[3], borderPoints.bottomRightInner, borderPoints.bottomLeftInner, bounds.left + bounds.width - borders[1].width, bounds.top + bounds.height - borders[2].width);
@@ -2463,10 +2463,10 @@ function bezierCurve(start, startControl, endControl, end) {
             return [bezierCurve(start, ab, abbc, dest), bezierCurve(dest, bccd, cd, end)];
         },
         curveTo: function(borderArgs) {
-            borderArgs.push(["bezierCurve", startControl.x, startControl.y, endControl.x, endControl.y, end.x, end.y]);
+            borderArgs.push(['bezierCurve', startControl.x, startControl.y, endControl.x, endControl.y, end.x, end.y]);
         },
         curveToReversed: function(borderArgs) {
-            borderArgs.push(["bezierCurve", endControl.x, endControl.y, startControl.x, startControl.y, start.x, start.y]);
+            borderArgs.push(['bezierCurve', endControl.x, endControl.y, startControl.x, startControl.y, start.x, start.y]);
         }
     };
 }
@@ -2475,27 +2475,27 @@ function drawSide(borderData, radius1, radius2, outer1, inner1, outer2, inner2) 
     var borderArgs = [];
 
     if (radius1[0] > 0 || radius1[1] > 0) {
-        borderArgs.push(["line", outer1[1].start.x, outer1[1].start.y]);
+        borderArgs.push(['line', outer1[1].start.x, outer1[1].start.y]);
         outer1[1].curveTo(borderArgs);
     } else {
-        borderArgs.push([ "line", borderData.c1[0], borderData.c1[1]]);
+        borderArgs.push([ 'line', borderData.c1[0], borderData.c1[1]]);
     }
 
     if (radius2[0] > 0 || radius2[1] > 0) {
-        borderArgs.push(["line", outer2[0].start.x, outer2[0].start.y]);
+        borderArgs.push(['line', outer2[0].start.x, outer2[0].start.y]);
         outer2[0].curveTo(borderArgs);
-        borderArgs.push(["line", inner2[0].end.x, inner2[0].end.y]);
+        borderArgs.push(['line', inner2[0].end.x, inner2[0].end.y]);
         inner2[0].curveToReversed(borderArgs);
     } else {
-        borderArgs.push(["line", borderData.c2[0], borderData.c2[1]]);
-        borderArgs.push(["line", borderData.c3[0], borderData.c3[1]]);
+        borderArgs.push(['line', borderData.c2[0], borderData.c2[1]]);
+        borderArgs.push(['line', borderData.c3[0], borderData.c3[1]]);
     }
 
     if (radius1[0] > 0 || radius1[1] > 0) {
-        borderArgs.push(["line", inner1[1].end.x, inner1[1].end.y]);
+        borderArgs.push(['line', inner1[1].end.x, inner1[1].end.y]);
         inner1[1].curveToReversed(borderArgs);
     } else {
-        borderArgs.push(["line", borderData.c4[0], borderData.c4[1]]);
+        borderArgs.push(['line', borderData.c4[0], borderData.c4[1]]);
     }
 
     return borderArgs;
@@ -2503,32 +2503,32 @@ function drawSide(borderData, radius1, radius2, outer1, inner1, outer2, inner2) 
 
 function parseCorner(borderArgs, radius1, radius2, corner1, corner2, x, y) {
     if (radius1[0] > 0 || radius1[1] > 0) {
-        borderArgs.push(["line", corner1[0].start.x, corner1[0].start.y]);
+        borderArgs.push(['line', corner1[0].start.x, corner1[0].start.y]);
         corner1[0].curveTo(borderArgs);
         corner1[1].curveTo(borderArgs);
     } else {
-        borderArgs.push(["line", x, y]);
+        borderArgs.push(['line', x, y]);
     }
 
     if (radius2[0] > 0 || radius2[1] > 0) {
-        borderArgs.push(["line", corner2[0].start.x, corner2[0].start.y]);
+        borderArgs.push(['line', corner2[0].start.x, corner2[0].start.y]);
     }
 }
 
 function negativeZIndex(container) {
-    return container.cssInt("zIndex") < 0;
+    return container.cssInt('zIndex') < 0;
 }
 
 function positiveZIndex(container) {
-    return container.cssInt("zIndex") > 0;
+    return container.cssInt('zIndex') > 0;
 }
 
 function zIndex0(container) {
-    return container.cssInt("zIndex") === 0;
+    return container.cssInt('zIndex') === 0;
 }
 
 function inlineLevel(container) {
-    return ["inline", "inline-block", "inline-table"].indexOf(container.css("display")) !== -1;
+    return ['inline', 'inline-block', 'inline-table'].indexOf(container.css('display')) !== -1;
 }
 
 function isStackingContext(container) {
@@ -2540,13 +2540,13 @@ function hasText(container) {
 }
 
 function noLetterSpacing(container) {
-    return (/^(normal|none|0px)$/.test(container.parent.css("letterSpacing")));
+    return (/^(normal|none|0px)$/.test(container.parent.css('letterSpacing')));
 }
 
 function getBorderRadiusData(container) {
-    return ["TopLeft", "TopRight", "BottomRight", "BottomLeft"].map(function(side) {
+    return ['TopLeft', 'TopRight', 'BottomRight', 'BottomLeft'].map(function(side) {
         var value = container.css('border' + side + 'Radius');
-        var arr = value.split(" ");
+        var arr = value.split(' ');
         if (arr.length <= 1) {
             arr[1] = arr[0];
         }
@@ -2559,21 +2559,21 @@ function renderableNode(node) {
 }
 
 function isPositionedForStacking(container) {
-    var position = container.css("position");
-    var zIndex = (["absolute", "relative", "fixed"].indexOf(position) !== -1) ? container.css("zIndex") : "auto";
-    return zIndex !== "auto";
+    var position = container.css('position');
+    var zIndex = (['absolute', 'relative', 'fixed'].indexOf(position) !== -1) ? container.css('zIndex') : 'auto';
+    return zIndex !== 'auto';
 }
 
 function isPositioned(container) {
-    return container.css("position") !== "static";
+    return container.css('position') !== 'static';
 }
 
 function isFloating(container) {
-    return container.css("float") !== "none";
+    return container.css('float') !== 'none';
 }
 
 function isInlineBlock(container) {
-    return ["inline-block", "inline-table"].indexOf(container.css("display")) !== -1;
+    return ['inline-block', 'inline-table'].indexOf(container.css('display')) !== -1;
 }
 
 function not(callback) {
@@ -2597,7 +2597,7 @@ function isTextNode(container) {
 
 function zIndexSort(contexts) {
     return function(a, b) {
-        return (a.cssInt("zIndex") + (contexts.indexOf(a) / contexts.length)) - (b.cssInt("zIndex") + (contexts.indexOf(b) / contexts.length));
+        return (a.cssInt('zIndex') + (contexts.indexOf(a) / contexts.length)) - (b.cssInt('zIndex') + (contexts.indexOf(b) / contexts.length));
     };
 }
 
@@ -2614,7 +2614,7 @@ function getWidth(border) {
 }
 
 function nonIgnoredElement(nodeContainer) {
-    return (nodeContainer.node.nodeType !== Node.ELEMENT_NODE || ["SCRIPT", "HEAD", "TITLE", "OBJECT", "BR", "OPTION"].indexOf(nodeContainer.node.nodeName) === -1);
+    return (nodeContainer.node.nodeType !== Node.ELEMENT_NODE || ['SCRIPT', 'HEAD', 'TITLE', 'OBJECT', 'BR', 'OPTION'].indexOf(nodeContainer.node.nodeName) === -1);
 }
 
 function flatten(arrays) {
@@ -2666,7 +2666,7 @@ function hasUnicode(string) {
 
 module.exports = NodeParser;
 
-},{"./color":3,"./fontmetrics":7,"./log":13,"./nodecontainer":14,"./pseudoelementcontainer":18,"./stackingcontext":21,"./textcontainer":25,"./utils":26,"punycode":1}],16:[function(_dereq_,module,exports){
+},{'./color':3,'./fontmetrics':7,'./log':13,'./nodecontainer':14,'./pseudoelementcontainer':18,'./stackingcontext':21,'./textcontainer':25,'./utils':26,'punycode':1}],16:[function(_dereq_,module,exports){
 var XHR = _dereq_('./xhr');
 var utils = _dereq_('./utils');
 var log = _dereq_('./log');
@@ -2676,7 +2676,7 @@ var decode64 = utils.decode64;
 function Proxy(src, proxyUrl, document) {
     var supportsCORS = ('withCredentials' in new XMLHttpRequest());
     if (!proxyUrl) {
-        return Promise.reject("No proxy configured");
+        return Promise.reject('No proxy configured');
     }
     var callback = createCallback(supportsCORS);
     var url = createProxyUrl(proxyUrl, src, callback);
@@ -2692,13 +2692,13 @@ function ProxyURL(src, proxyUrl, document) {
     var callback = createCallback(supportsCORSImage);
     var url = createProxyUrl(proxyUrl, src, callback);
     return (supportsCORSImage ? Promise.resolve(url) : jsonp(document, url, callback).then(function(response) {
-        return "data:" + response.type + ";base64," + response.content;
+        return 'data:' + response.type + ';base64,' + response.content;
     }));
 }
 
 function jsonp(document, url, callback) {
     return new Promise(function(resolve, reject) {
-        var s = document.createElement("script");
+        var s = document.createElement('script');
         var cleanup = function() {
             delete window.html2canvas.proxy[callback];
             document.body.removeChild(s);
@@ -2717,34 +2717,34 @@ function jsonp(document, url, callback) {
 }
 
 function createCallback(useCORS) {
-    return !useCORS ? "html2canvas_" + Date.now() + "_" + (++proxyCount) + "_" + Math.round(Math.random() * 100000) : "";
+    return !useCORS ? 'html2canvas_' + Date.now() + '_' + (++proxyCount) + '_' + Math.round(Math.random() * 100000) : '';
 }
 
 function createProxyUrl(proxyUrl, src, callback) {
-    return proxyUrl + "?url=" + encodeURIComponent(src) + (callback.length ? "&callback=html2canvas.proxy." + callback : "");
+    return proxyUrl + '?url=' + encodeURIComponent(src) + (callback.length ? '&callback=html2canvas.proxy.' + callback : '');
 }
 
 function documentFromHTML(src) {
     return function(html) {
         var parser = new DOMParser(), doc;
         try {
-            doc = parser.parseFromString(html, "text/html");
+            doc = parser.parseFromString(html, 'text/html');
         } catch(e) {
-            log("DOMParser not supported, falling back to createHTMLDocument");
-            doc = document.implementation.createHTMLDocument("");
+            log('DOMParser not supported, falling back to createHTMLDocument');
+            doc = document.implementation.createHTMLDocument('');
             try {
                 doc.open();
                 doc.write(html);
                 doc.close();
             } catch(ee) {
-                log("createHTMLDocument write not supported, falling back to document.body.innerHTML");
+                log('createHTMLDocument write not supported, falling back to document.body.innerHTML');
                 doc.body.innerHTML = html; // ie9 doesnt support writing to documentElement
             }
         }
 
-        var b = doc.querySelector("base");
+        var b = doc.querySelector('base');
         if (!b || !b.href.host) {
-            var base = doc.createElement("base");
+            var base = doc.createElement('base');
             base.href = src;
             doc.head.insertBefore(base, doc.head.firstChild);
         }
@@ -2763,18 +2763,18 @@ exports.Proxy = Proxy;
 exports.ProxyURL = ProxyURL;
 exports.loadUrlDocument = loadUrlDocument;
 
-},{"./clone":2,"./log":13,"./utils":26,"./xhr":28}],17:[function(_dereq_,module,exports){
+},{'./clone':2,'./log':13,'./utils':26,'./xhr':28}],17:[function(_dereq_,module,exports){
 var ProxyURL = _dereq_('./proxy').ProxyURL;
 
 function ProxyImageContainer(src, proxy) {
-    var link = document.createElement("a");
+    var link = document.createElement('a');
     link.href = src;
     src = link.href;
     this.src = src;
     this.image = new Image();
     var self = this;
     this.promise = new Promise(function(resolve, reject) {
-        self.image.crossOrigin = "Anonymous";
+        self.image.crossOrigin = 'Anonymous';
         self.image.onload = resolve;
         self.image.onerror = reject;
 
@@ -2786,13 +2786,13 @@ function ProxyImageContainer(src, proxy) {
 
 module.exports = ProxyImageContainer;
 
-},{"./proxy":16}],18:[function(_dereq_,module,exports){
+},{'./proxy':16}],18:[function(_dereq_,module,exports){
 var NodeContainer = _dereq_('./nodecontainer');
 
 function PseudoElementContainer(node, parent, type) {
     NodeContainer.call(this, node, parent);
     this.isPseudoElement = true;
-    this.before = type === ":before";
+    this.before = type === ':before';
 }
 
 PseudoElementContainer.prototype.cloneTo = function(stack) {
@@ -2809,24 +2809,24 @@ PseudoElementContainer.prototype.appendToDOM = function() {
     } else {
         this.parent.node.appendChild(this.node);
     }
-    this.parent.node.className += " " + this.getHideClass();
+    this.parent.node.className += ' ' + this.getHideClass();
 };
 
 PseudoElementContainer.prototype.cleanDOM = function() {
     this.node.parentNode.removeChild(this.node);
-    this.parent.node.className = this.parent.node.className.replace(this.getHideClass(), "");
+    this.parent.node.className = this.parent.node.className.replace(this.getHideClass(), '');
 };
 
 PseudoElementContainer.prototype.getHideClass = function() {
-    return this["PSEUDO_HIDE_ELEMENT_CLASS_" + (this.before ? "BEFORE" : "AFTER")];
+    return this['PSEUDO_HIDE_ELEMENT_CLASS_' + (this.before ? 'BEFORE' : 'AFTER')];
 };
 
-PseudoElementContainer.prototype.PSEUDO_HIDE_ELEMENT_CLASS_BEFORE = "___html2canvas___pseudoelement_before";
-PseudoElementContainer.prototype.PSEUDO_HIDE_ELEMENT_CLASS_AFTER = "___html2canvas___pseudoelement_after";
+PseudoElementContainer.prototype.PSEUDO_HIDE_ELEMENT_CLASS_BEFORE = '___html2canvas___pseudoelement_before';
+PseudoElementContainer.prototype.PSEUDO_HIDE_ELEMENT_CLASS_AFTER = '___html2canvas___pseudoelement_after';
 
 module.exports = PseudoElementContainer;
 
-},{"./nodecontainer":14}],19:[function(_dereq_,module,exports){
+},{'./nodecontainer':14}],19:[function(_dereq_,module,exports){
 var log = _dereq_('./log');
 
 function Renderer(width, height, images, options, document) {
@@ -2867,7 +2867,7 @@ Renderer.prototype.renderBackground = function(container, bounds, borderData) {
 };
 
 Renderer.prototype.renderBackgroundColor = function(container, bounds) {
-    var color = container.color("backgroundColor");
+    var color = container.color('backgroundColor');
     if (!color.isTransparent()) {
         this.rectangle(bounds.left, bounds.top, bounds.width, bounds.height, color);
     }
@@ -2887,27 +2887,27 @@ Renderer.prototype.renderBackgroundImage = function(container, bounds, borderDat
     var backgroundImages = container.parseBackgroundImages();
     backgroundImages.reverse().forEach(function(backgroundImage, index, arr) {
         switch(backgroundImage.method) {
-        case "url":
+        case 'url':
             var image = this.images.get(backgroundImage.args[0]);
             if (image) {
                 this.renderBackgroundRepeating(container, bounds, image, arr.length - (index+1), borderData);
             } else {
-                log("Error loading background-image", backgroundImage.args[0]);
+                log('Error loading background-image', backgroundImage.args[0]);
             }
             break;
-        case "linear-gradient":
-        case "gradient":
+        case 'linear-gradient':
+        case 'gradient':
             var gradientImage = this.images.get(backgroundImage.value);
             if (gradientImage) {
                 this.renderBackgroundGradient(gradientImage, bounds, borderData);
             } else {
-                log("Error loading background-image", backgroundImage.args[0]);
+                log('Error loading background-image', backgroundImage.args[0]);
             }
             break;
-        case "none":
+        case 'none':
             break;
         default:
-            log("Unknown background-image type", backgroundImage.args[0]);
+            log('Unknown background-image type', backgroundImage.args[0]);
         }
     }, this);
 };
@@ -2917,15 +2917,15 @@ Renderer.prototype.renderBackgroundRepeating = function(container, bounds, image
     var position = container.parseBackgroundPosition(bounds, imageContainer.image, index, size);
     var repeat = container.parseBackgroundRepeat(index);
     switch (repeat) {
-    case "repeat-x":
-    case "repeat no-repeat":
+    case 'repeat-x':
+    case 'repeat no-repeat':
         this.backgroundRepeatShape(imageContainer, position, size, bounds, bounds.left + borderData[3], bounds.top + position.top + borderData[0], 99999, size.height, borderData);
         break;
-    case "repeat-y":
-    case "no-repeat repeat":
+    case 'repeat-y':
+    case 'no-repeat repeat':
         this.backgroundRepeatShape(imageContainer, position, size, bounds, bounds.left + position.left + borderData[3], bounds.top + borderData[0], size.width, 99999, borderData);
         break;
-    case "no-repeat":
+    case 'no-repeat':
         this.backgroundRepeatShape(imageContainer, position, size, bounds, bounds.left + position.left + borderData[3], bounds.top + position.top + borderData[0], size.width, size.height, borderData);
         break;
     default:
@@ -2936,29 +2936,29 @@ Renderer.prototype.renderBackgroundRepeating = function(container, bounds, image
 
 module.exports = Renderer;
 
-},{"./log":13}],20:[function(_dereq_,module,exports){
+},{'./log':13}],20:[function(_dereq_,module,exports){
 var Renderer = _dereq_('../renderer');
 var LinearGradientContainer = _dereq_('../lineargradientcontainer');
 var log = _dereq_('../log');
 
 function CanvasRenderer(width, height) {
     Renderer.apply(this, arguments);
-    this.canvas = this.options.canvas || this.document.createElement("canvas");
+    this.canvas = this.options.canvas || this.document.createElement('canvas');
     if (!this.options.canvas) {
         this.canvas.width = width;
         this.canvas.height = height;
     }
-    this.ctx = this.canvas.getContext("2d");
-    this.taintCtx = this.document.createElement("canvas").getContext("2d");
-    this.ctx.textBaseline = "bottom";
+    this.ctx = this.canvas.getContext('2d');
+    this.taintCtx = this.document.createElement('canvas').getContext('2d');
+    this.ctx.textBaseline = 'bottom';
     this.variables = {};
-    log("Initialized CanvasRenderer with size", width, "x", height);
+    log('Initialized CanvasRenderer with size', width, 'x', height);
 }
 
 CanvasRenderer.prototype = Object.create(Renderer.prototype);
 
 CanvasRenderer.prototype.setFillStyle = function(fillStyle) {
-    this.ctx.fillStyle = typeof(fillStyle) === "object" && !!fillStyle.isColor ? fillStyle.toString() : fillStyle;
+    this.ctx.fillStyle = typeof(fillStyle) === 'object' && !!fillStyle.isColor ? fillStyle.toString() : fillStyle;
     return this.ctx;
 };
 
@@ -2992,7 +2992,7 @@ CanvasRenderer.prototype.taints = function(imageContainer) {
             this.taintCtx.getImageData(0, 0, 1, 1);
             imageContainer.tainted = false;
         } catch(e) {
-            this.taintCtx = document.createElement("canvas").getContext("2d");
+            this.taintCtx = document.createElement('canvas').getContext('2d');
             imageContainer.tainted = true;
         }
     }
@@ -3018,10 +3018,10 @@ CanvasRenderer.prototype.clip = function(shapes, callback, context) {
 CanvasRenderer.prototype.shape = function(shape) {
     this.ctx.beginPath();
     shape.forEach(function(point, index) {
-        if (point[0] === "rect") {
+        if (point[0] === 'rect') {
             this.ctx.rect.apply(this.ctx, point.slice(1));
         } else {
-            this.ctx[(index === 0) ? "moveTo" : point[0] + "To" ].apply(this.ctx, point.slice(1));
+            this.ctx[(index === 0) ? 'moveTo' : point[0] + 'To' ].apply(this.ctx, point.slice(1));
         }
     }, this);
     this.ctx.closePath();
@@ -3029,18 +3029,18 @@ CanvasRenderer.prototype.shape = function(shape) {
 };
 
 CanvasRenderer.prototype.font = function(color, style, variant, weight, size, family) {
-    this.setFillStyle(color).font = [style, variant, weight, size, family].join(" ").split(",")[0];
+    this.setFillStyle(color).font = [style, variant, weight, size, family].join(' ').split(',')[0];
 };
 
 CanvasRenderer.prototype.fontShadow = function(color, offsetX, offsetY, blur) {
-    this.setVariable("shadowColor", color.toString())
-        .setVariable("shadowOffsetY", offsetX)
-        .setVariable("shadowOffsetX", offsetY)
-        .setVariable("shadowBlur", blur);
+    this.setVariable('shadowColor', color.toString())
+        .setVariable('shadowOffsetY', offsetX)
+        .setVariable('shadowOffsetX', offsetY)
+        .setVariable('shadowBlur', blur);
 };
 
 CanvasRenderer.prototype.clearShadow = function() {
-    this.setVariable("shadowColor", "rgba(0,0,0,0)");
+    this.setVariable('shadowColor', 'rgba(0,0,0,0)');
 };
 
 CanvasRenderer.prototype.setOpacity = function(opacity) {
@@ -3067,10 +3067,10 @@ CanvasRenderer.prototype.text = function(text, left, bottom) {
 
 CanvasRenderer.prototype.backgroundRepeatShape = function(imageContainer, backgroundPosition, size, bounds, left, top, width, height, borderData) {
     var shape = [
-        ["line", Math.round(left), Math.round(top)],
-        ["line", Math.round(left + width), Math.round(top)],
-        ["line", Math.round(left + width), Math.round(height + top)],
-        ["line", Math.round(left), Math.round(height + top)]
+        ['line', Math.round(left), Math.round(top)],
+        ['line', Math.round(left + width), Math.round(top)],
+        ['line', Math.round(left + width), Math.round(height + top)],
+        ['line', Math.round(left), Math.round(height + top)]
     ];
     this.clip([shape], function() {
         this.renderBackgroundRepeat(imageContainer, backgroundPosition, size, bounds, borderData[3], borderData[0]);
@@ -3079,7 +3079,7 @@ CanvasRenderer.prototype.backgroundRepeatShape = function(imageContainer, backgr
 
 CanvasRenderer.prototype.renderBackgroundRepeat = function(imageContainer, backgroundPosition, size, bounds, borderLeft, borderTop) {
     var offsetX = Math.round(bounds.left + backgroundPosition.left + borderLeft), offsetY = Math.round(bounds.top + backgroundPosition.top + borderTop);
-    this.setFillStyle(this.ctx.createPattern(this.resizeImage(imageContainer, size), "repeat"));
+    this.setFillStyle(this.ctx.createPattern(this.resizeImage(imageContainer, size), 'repeat'));
     this.ctx.translate(offsetX, offsetY);
     this.ctx.fill();
     this.ctx.translate(-offsetX, -offsetY);
@@ -3108,7 +3108,7 @@ CanvasRenderer.prototype.resizeImage = function(imageContainer, size) {
     var ctx, canvas = document.createElement('canvas');
     canvas.width = size.width;
     canvas.height = size.height;
-    ctx = canvas.getContext("2d");
+    ctx = canvas.getContext('2d');
     ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, size.width, size.height );
     return canvas;
 };
@@ -3119,7 +3119,7 @@ function hasEntries(array) {
 
 module.exports = CanvasRenderer;
 
-},{"../lineargradientcontainer":12,"../log":13,"../renderer":19}],21:[function(_dereq_,module,exports){
+},{'../lineargradientcontainer':12,'../log':13,'../renderer':19}],21:[function(_dereq_,module,exports){
 var NodeContainer = _dereq_('./nodecontainer');
 
 function StackingContext(hasOwnStacking, opacity, element, parent) {
@@ -3139,7 +3139,7 @@ StackingContext.prototype.getParentStack = function(context) {
 
 module.exports = StackingContext;
 
-},{"./nodecontainer":14}],22:[function(_dereq_,module,exports){
+},{'./nodecontainer':14}],22:[function(_dereq_,module,exports){
 function Support(document) {
     this.rangeBounds = this.testRangeBounds(document);
     this.cors = this.testCORS();
@@ -3153,8 +3153,8 @@ Support.prototype.testRangeBounds = function(document) {
         range = document.createRange();
         if (range.getBoundingClientRect) {
             testElement = document.createElement('boundtest');
-            testElement.style.height = "123px";
-            testElement.style.display = "block";
+            testElement.style.height = '123px';
+            testElement.style.display = 'block';
             document.body.appendChild(testElement);
 
             range.selectNode(testElement);
@@ -3172,14 +3172,14 @@ Support.prototype.testRangeBounds = function(document) {
 };
 
 Support.prototype.testCORS = function() {
-    return typeof((new Image()).crossOrigin) !== "undefined";
+    return typeof((new Image()).crossOrigin) !== 'undefined';
 };
 
 Support.prototype.testSVG = function() {
     var img = new Image();
-    var canvas = document.createElement("canvas");
-    var ctx =  canvas.getContext("2d");
-    img.src = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'></svg>";
+    var canvas = document.createElement('canvas');
+    var ctx =  canvas.getContext('2d');
+    img.src = 'data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\'></svg>';
 
     try {
         ctx.drawImage(img, 0, 0);
@@ -3211,7 +3211,7 @@ function SVGContainer(src) {
 }
 
 SVGContainer.prototype.hasFabric = function() {
-    return !window.html2canvas.svg || !window.html2canvas.svg.fabric ? Promise.reject(new Error("html2canvas.svg.js is not loaded, cannot render svg")) : Promise.resolve();
+    return !window.html2canvas.svg || !window.html2canvas.svg.fabric ? Promise.reject(new Error('html2canvas.svg.js is not loaded, cannot render svg')) : Promise.resolve();
 };
 
 SVGContainer.prototype.inlineFormatting = function(src) {
@@ -3241,12 +3241,12 @@ SVGContainer.prototype.createCanvas = function(resolve) {
 };
 
 SVGContainer.prototype.decode64 = function(str) {
-    return (typeof(window.atob) === "function") ? window.atob(str) : decode64(str);
+    return (typeof(window.atob) === 'function') ? window.atob(str) : decode64(str);
 };
 
 module.exports = SVGContainer;
 
-},{"./utils":26,"./xhr":28}],24:[function(_dereq_,module,exports){
+},{'./utils':26,'./xhr':28}],24:[function(_dereq_,module,exports){
 var SVGContainer = _dereq_('./svgcontainer');
 
 function SVGNodeContainer(node, _native) {
@@ -3258,7 +3258,7 @@ function SVGNodeContainer(node, _native) {
         self.image = new Image();
         self.image.onload = resolve;
         self.image.onerror = reject;
-        self.image.src = "data:image/svg+xml," + (new XMLSerializer()).serializeToString(node);
+        self.image.src = 'data:image/svg+xml,' + (new XMLSerializer()).serializeToString(node);
         if (self.image.complete === true) {
             resolve(self.image);
         }
@@ -3273,7 +3273,7 @@ SVGNodeContainer.prototype = Object.create(SVGContainer.prototype);
 
 module.exports = SVGNodeContainer;
 
-},{"./svgcontainer":23}],25:[function(_dereq_,module,exports){
+},{'./svgcontainer':23}],25:[function(_dereq_,module,exports){
 var NodeContainer = _dereq_('./nodecontainer');
 
 function TextContainer(node, parent) {
@@ -3283,17 +3283,17 @@ function TextContainer(node, parent) {
 TextContainer.prototype = Object.create(NodeContainer.prototype);
 
 TextContainer.prototype.applyTextTransform = function() {
-    this.node.data = this.transform(this.parent.css("textTransform"));
+    this.node.data = this.transform(this.parent.css('textTransform'));
 };
 
 TextContainer.prototype.transform = function(transform) {
     var text = this.node.data;
     switch(transform){
-        case "lowercase":
+        case 'lowercase':
             return text.toLowerCase();
-        case "capitalize":
+        case 'capitalize':
             return text.replace(/(^|\s|:|-|\(|\))([a-z])/g, capitalize);
-        case "uppercase":
+        case 'uppercase':
             return text.toUpperCase();
         default:
             return text;
@@ -3308,9 +3308,9 @@ function capitalize(m, p1, p2) {
 
 module.exports = TextContainer;
 
-},{"./nodecontainer":14}],26:[function(_dereq_,module,exports){
+},{'./nodecontainer':14}],26:[function(_dereq_,module,exports){
 exports.smallImage = function smallImage() {
-    return "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+    return 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 };
 
 exports.bind = function(callback, context) {
@@ -3328,10 +3328,10 @@ exports.bind = function(callback, context) {
  */
 
 exports.decode64 = function(base64) {
-    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
     var len = base64.length, i, encoded1, encoded2, encoded3, encoded4, byte1, byte2, byte3;
 
-    var output = "";
+    var output = '';
 
     for (i = 0; i < len; i+=4) {
         encoded1 = chars.indexOf(base64[i]);
@@ -3412,7 +3412,7 @@ exports.parseBackgrounds = function(backgroundImage) {
     };
     args = [];
     method = prefix = definition = block = '';
-    backgroundImage.split("").forEach(function(c) {
+    backgroundImage.split('').forEach(function(c) {
         if (mode === 0 && whitespace.indexOf(c) > -1) {
             return;
         }
@@ -3484,14 +3484,14 @@ var GradientContainer = _dereq_('./gradientcontainer');
 
 function WebkitGradientContainer(imageData) {
     GradientContainer.apply(this, arguments);
-    this.type = imageData.args[0] === "linear" ? GradientContainer.TYPES.LINEAR : GradientContainer.TYPES.RADIAL;
+    this.type = imageData.args[0] === 'linear' ? GradientContainer.TYPES.LINEAR : GradientContainer.TYPES.RADIAL;
 }
 
 WebkitGradientContainer.prototype = Object.create(GradientContainer.prototype);
 
 module.exports = WebkitGradientContainer;
 
-},{"./gradientcontainer":9}],28:[function(_dereq_,module,exports){
+},{'./gradientcontainer':9}],28:[function(_dereq_,module,exports){
 function XHR(url) {
     return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
@@ -3506,7 +3506,7 @@ function XHR(url) {
         };
 
         xhr.onerror = function() {
-            reject(new Error("Network Error"));
+            reject(new Error('Network Error'));
         };
 
         xhr.send();

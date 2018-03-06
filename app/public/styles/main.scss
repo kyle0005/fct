@@ -9076,4 +9076,13 @@ $foot-height: 250px;
 .screenshot-container{
   @extend %page;
   background-color: $color-f2f2f2;
+  .btn{
+    width: calc(200/750*100%);
+    margin: calc(40/750*100%) auto 0;
+    .save{
+      $bg-color: $color-1d1d1d;
+      @include wei-bg-btn($color-white, $bg-color, $color-white, 40px, 40px, $font-size-t12);
+    }
+  }
+
 }
