@@ -1578,8 +1578,21 @@ gulp.task('serve', () => {
       notify: false,
       port: 9000,
       server: {
-        baseDir: ['.tmp', 'app']
+        baseDir: ['.tmp', 'app'],
+        middleware: function (req, res, next) {
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+          res.setHeader('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+
+          if (req.method == 'OPTIONS') {
+            res.send(200); /让options请求快速返回/
+          }
+          else {
+            next();
+          }
+        }
       }
+
     });
 
     // gulp.watch([
