@@ -108,6 +108,9 @@ let app = new Vue(
         vue.pagerloading = false;
         vue.isPage = false;
       },
+      top(){
+        tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
+      },
     },
   }
 ).$mount('#main');
