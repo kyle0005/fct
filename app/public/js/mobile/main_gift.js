@@ -6,7 +6,8 @@ let app = new Vue(
     },
     data: {
       nodata: false,
-
+      isLogin: config.isLogin,
+      showPop: false
     },
     watch: {},
     methods: {
@@ -14,6 +15,10 @@ let app = new Vue(
         let vue = this;
 
       },
+      share(){
+        let vue = this;
+        vue.showPop = true;
+      }
 
     },
   }

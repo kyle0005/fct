@@ -20,6 +20,8 @@ let app = new Vue(
       isPage: false,
       nodata: false,
 
+      isADShow: config.isADShow,
+
       pager_url: '?level_id=0',
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
@@ -111,6 +113,10 @@ let app = new Vue(
       top(){
         tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
       },
+      closegift(){
+        let vue = this;
+        vue.isADShow = false;
+      }
     },
   }
 ).$mount('#main');

@@ -294,9 +294,40 @@
   .content{
     width: 84%;
     margin: 0 8%;
-
+    .title{
+      text-align: center;
+      font-size: $font-size-t14;
+      margin: 50px 0 20px 0;
+    }
+    .text{
+      font-size: $font-size-t12;
+      color: $color-666;
+      margin-bottom: 50px;
+    }
+    .btn{
+      @include wei-bg-btn($color-white, $color-1d1d1d, $color-white, 40px, 40px, $font-size-t14);
+      @include fillet(false);
+    }
   }
-
+  .share-pop{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: $color-white;
+    .share-icon{
+      width: 30%;
+      margin: 10% 0 0 60%;
+    }
+    .text{
+      margin: 5% auto;
+      width: 50%;
+      font-size: $font-size-t14;
+    }
+  }
 }
 
 /* head */

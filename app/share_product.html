@@ -44,7 +44,7 @@
           <span class="t2 overTextH2">紫砂壶紫砂壶紫紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂紫砂壶紫砂壶紫砂壶紫砂壶紫砂壶紫砂砂壶紫砂壶紫砂壶紫砂</span>
         </div>
       </div>
-      <a href="javascript:;" class="right" @click="popqrcode(true)"><img src="public/img/mobile/share.png"></a>
+      <a href="javascript:;" class="right" @click="popqrcode(true)"><img src="public/img/mobile/qr_code.png"></a>
     </li>
   </ul>
   <ul class="list" v-load-more="nextPage" type="1">
@@ -61,7 +61,7 @@
           <span class="t2" v-else>利润：<strong class="pri"><small class="pri-mark">￥</small>{{ item.commission }}</strong></span>
         </div>
       </div>
-      <a href="javascript:;" class="right" @click="popqrcode(false, item)"><img src="public/img/mobile/share.png"></a>
+      <a href="javascript:;" class="right" @click="popqrcode(false, item)"><img src="public/img/mobile/qr_code.png"></a>
     </li>
   </ul>
   <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>

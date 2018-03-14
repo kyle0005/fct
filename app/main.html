@@ -51,14 +51,14 @@
         Copyright&nbsp;&copy;&nbsp;2017&nbsp;,宜兴方寸堂版权所有
       </div>
     </div>
-    <div class="gift-pop">
+    <div class="gift-pop" v-if="isADShow">
       <div class="inner">
         <img src="public/img/mobile/gift_show.png">
         <a href="javascript:;" class="link">&nbsp;</a>
-        <a href="javascript:;" class="close">&nbsp;</a>
+        <a href="javascript:;" class="close" @click="closegift()">&nbsp;</a>
       </div>
     </div>
-    <a href="javascript:;" class="gift-icon">
+    <a href="javascript:;" class="gift-icon" v-if="!isADShow">
       <img src="public/img/mobile/gift_icon.png">
     </a>
     <a href="javascript:;" class="top" @click="top()">
