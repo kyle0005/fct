@@ -7305,8 +7305,6 @@ $foot-height: 250px;
   }
   .overview-container{
     position: relative;
-    //top: 0;
-    //left: 0;
     width: 100%;
     height: calc(100% - 49px);
     overflow: auto;
@@ -7315,6 +7313,48 @@ $foot-height: 250px;
       position: relative;
       width: 100%;
       overflow: hidden;
+      .play-btn{
+        position: absolute;
+        z-index: 4;
+        text-align: center;
+      }
+      .b{   //遮盖点击
+        left: 0;
+        top: 113px;
+        width: 100%;
+        height: calc(100% - 113px);
+        a.live-text-btn{
+          display: block;
+          width: 25%;
+          margin: 40% auto 0;
+          .text{
+            display: inline-block;
+            padding: 5px 10px;
+            text-align: center;
+            background-color: rgba(0,0,0,.5);
+            color: $color-white;
+            border-radius: 4px;
+          }
+        }
+      }
+      .t{   //不遮盖点击
+        left: 50%;
+        top: calc(50% + 113px);
+        transform: translate(-50%, -50%);
+        width: 100%;
+        a.live-text-btn{
+          display: block;
+          width: 100%;
+          .text{
+            display: inline-block;
+            padding: 5px 10px;
+            text-align: center;
+            background-color: rgba(0,0,0,.5);
+            color: $color-white;
+            border-radius: 4px;
+          }
+        }
+      }
       .m-video-container.live-container{
         margin-top: 113px;
       }

@@ -12,18 +12,14 @@
 <div class="auctiondetail-container" id="auctiondetail" v-cloak>
   <section class="overview-container">
       <section class="video-container">
-        <div class="m-video-container live-container" v-if="product.liveId !== '' && product.liveId !== null && product.liveId !== undefined">
+        <div class="m-video-container live-container" v-if="product.liveText">
           <div class="video-inner">
-            <!--<div v-if="isLiveLoad" class="play-container" @click="vodLive(product.liveId, product.videoImg)">-->
-              <!--<img :src="product.videoImg" class="poster-img" />-->
-              <!--<img src="public/img/mobile/live_play.png" class="poster-play" />-->
-            <!--</div>-->
             <div class="live-container">
               <div id="id_video_container"></div>
             </div>
           </div>
         </div>
-        <mVideo v-else-if="product.videoUrl" :poster="product.videoImg" :url="product.videoUrl" id="videotop"></mVideo>
+        <mvideo class="live-container" v-else-if="product.videoUrl" :poster="product.videoImg" :url="product.videoUrl" id="videotop"></mvideo>
         <m-swipe v-else swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
           <div v-for="(top, index) in tops" class="swiper-slide" slot="swiper-con">
             <a :href="top.url" class="link">
@@ -31,6 +27,11 @@
             </a>
           </div>
         </m-swipe>
+        <div class="play-btn" :class="{b:!product.liveId,t:product.liveId}" v-if="product.liveText&&showLiveTxt">
+          <a href="javascript:;" class="live-text-btn">
+            <span class="text">{{product.liveText}}</span>
+          </a>
+        </div>
       </section>
       <section class="product-context">
         <strong class="title">{{ product.name }}</strong>
@@ -198,7 +199,8 @@
     "auction_bid_url": '',
     "loginUrl": '',
     "product": {
-      "liveId": '10905947996253950356',
+      "liveId": 'a',
+      "liveText": "正在直播",
       "token": "",
       "id": 3,
       "artistId": 5575,
@@ -210,8 +212,9 @@
       "name": "《夺魁》",
       "subTitle": "古朴高雅，线条流畅自然",
       "defaultImage": "https://cdn.fangcun.com/upload/images/2017-11-03/b9f1fb6dc64f4a6f8b71705ac3ef4b56.JPG!750",
+//      "videoUrl": "http://1253930304.vod2.myqcloud.com/399bd37dvodgzp1253930304/48bda3ad4564972818532455910/59cNkFdILJAA.mp4",
       "videoUrl": "",
-      "videoImg": "/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg",
+      "videoImg": "https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg",
       "content": "<p style=\"margin-bottom: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; color: rgb(102, 102, 102); font-family: 微软雅黑, SimSun, &quot;Arial Narrow&quot;, HELVETICA;\"><img alt=\"Image title\" class=\"fr-fin fr-dib\" src=\"http://res.yufuhui.com/pic/public/upload/paimai/2017-03-23/art_fd217cf7-446d-42cb-8d02-2a417922ee45.jpg\" style=\"margin: 15px auto 0px; padding: 0px; outline: 0px; vertical-align: baseline; display: block;width:100%;\"></p><p style=\"margin-bottom: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; color: rgb(102, 102, 102); font-family: 微软雅黑, SimSun, &quot;Arial Narrow&quot;, HELVETICA;\"><br style=\"margin: 0px; padding: 0px;\"></p><p style=\"margin-bottom: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; color: rgb(102, 102, 102); font-family: 微软雅黑, SimSun, &quot;Arial Narrow&quot;, HELVETICA;\"><img alt=\"Image title\" class=\"fr-fin fr-dib\" src=\"http://res.yufuhui.com/pic/public/upload/paimai/2017-03-23/art_4e5ff304-ca25-427d-bdea-8c8eff11b52b.jpg\" style=\"margin: 15px auto 0px; padding: 0px; outline: 0px; vertical-align: baseline; display: block;width:100%; \"></p>",
       "materialName": "原矿本山段泥",
       "volume": 280,

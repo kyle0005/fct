@@ -61,9 +61,11 @@
     <a href="javascript:;" class="gift-icon" v-if="!isADShow">
       <img src="public/img/mobile/gift_icon.png">
     </a>
-    <a href="javascript:;" class="top" @click="top()">
-      <img src="public/img/mobile/top.png">
-    </a>
+    <transition name="fade">
+      <a href="javascript:;" class="top" @click="top()" v-if="showTop">
+        <img src="public/img/mobile/top.png">
+      </a>
+    </transition>
   </div>
 <script src="public/js/mobile/vue.js"></script>
 <script src="public/js/mobile/common/tools.js"></script>

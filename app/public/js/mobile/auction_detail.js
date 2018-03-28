@@ -1,4 +1,4 @@
-Vue.component('mVideo',
+Vue.component('mvideo',
   {
     template: '#m_video',
     data() {
@@ -146,6 +146,8 @@ let app = new Vue(
       ws: {},
       wsMsg: '',
 
+      showLiveTxt: true,
+
       isLiveLoad: true,
       app_id: config.app_id,
     },
@@ -191,7 +193,7 @@ let app = new Vue(
         var hit = wid / (16 / 9);
         //live
         if(live_url !== '' && live_url !== null && live_url !== undefined){
-          var PLAY_INFO = (function(){
+          /* var PLAY_INFO = (function(){
             var ps = (window.location.href.split('?')[1] || '').split('&')
               , opt = {
                 'channel_id': live_url,
@@ -228,15 +230,49 @@ let app = new Vue(
               'app_id': vue.app_id,
               'width': wid,
               'height': hit,
-              'https': 0,
+              'https': 1,   //1：开启
               'auto_play':1,
               'h5_start_patch': {
                 'url' : img,
                 'stretch': true //是否拉伸图片铺面整个播放器，默认 false
               }
+            }, function (status, type) {
+              console.log(status + '--' + type);
             });
 
+          })(); */
+
+          (function () {
+            new qcVideo.Player('id_video_container', {
+              'channel_id': live_url,
+              'app_id': vue.app_id,
+              'width': wid,
+              'height': hit,
+              'https': 1,   //1：开启
+              'auto_play':1,
+              'h5_start_patch': {
+                'url' : img,
+                'stretch': true //是否拉伸图片铺面整个播放器，默认 false
+              }
+            },
+            {
+              'playStatus': function (status, type) {
+                console.log(status + '---' + type);
+                if(status === 'playing'){
+                  console.log('playing');
+                  vue.showLiveTxt = false;
+                }
+                if(status === 'playEnd'){
+                  console.log('playEnd');
+                  window.location.reload();
+                }
+                if(status === 'error'){
+                  console.log(type);
+                }
+              }
+            });
           })();
+
         }
         vue.isLiveLoad = false;
       },
@@ -560,7 +596,6 @@ let app = new Vue(
         that.addpri = '';
       }
     },
-    components: {
-    }
+
   }
 ).$mount('#auctiondetail');

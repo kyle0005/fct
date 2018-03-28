@@ -3,6 +3,9 @@ let app = new Vue(
     mounted: function () {
       let vue = this;
       vue.initData();
+      window.addEventListener('scroll',function() {
+        vue.showTop = (tools.getScrollTop()>=tools.getWindowHeight());
+      }, false)
     },
     data: {
       ranks_list: config.productsRank,
@@ -19,6 +22,8 @@ let app = new Vue(
       pagerloading: false,
       isPage: false,
       nodata: false,
+
+      showTop: false,
 
       isADShow: config.isADShow,
 
