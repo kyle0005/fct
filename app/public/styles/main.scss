@@ -7317,6 +7317,20 @@ $foot-height: 250px;
         position: absolute;
         z-index: 4;
         text-align: center;
+        .live-bg{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+        .live-play-btn{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 16%;
+        }
       }
       .b{   //遮盖点击
         left: 0;
@@ -7324,9 +7338,12 @@ $foot-height: 250px;
         width: 100%;
         height: calc(100% - 113px);
         a.live-text-btn{
+          position: absolute;
+          top: 70%;
+          left: 50%;
+          transform: translateX(-50%);
           display: block;
-          width: 25%;
-          margin: 40% auto 0;
+          width: 100%;
           .text{
             display: inline-block;
             padding: 5px 10px;

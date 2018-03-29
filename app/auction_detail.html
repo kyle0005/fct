@@ -28,6 +28,8 @@
           </div>
         </m-swipe>
         <div class="play-btn" :class="{b:!product.liveId,t:product.liveId}" v-if="product.liveText&&showLiveTxt">
+          <img :src="product.videoImg" class="live-bg" v-if="!product.liveId">
+          <img src="public/img/mobile/video_play.png" class="live-play-btn" v-if="!product.liveId">
           <a href="javascript:;" class="live-text-btn">
             <span class="text">{{product.liveText}}</span>
           </a>
@@ -199,7 +201,7 @@
     "auction_bid_url": '',
     "loginUrl": '',
     "product": {
-      "liveId": 'a',
+      "liveId": 'dd',
       "liveText": "正在直播",
       "token": "",
       "id": 3,
