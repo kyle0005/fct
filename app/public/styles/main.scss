@@ -176,6 +176,175 @@
     transform: translateY(-60px);
   }
 }
+
+.entry-container{
+  @extend %page;
+  background-color: $color-f5f5f5;
+  .top{
+    position: relative;
+    width: calc(710/750*100%);
+    padding: 0 calc(20/750*100%);
+    margin-bottom: calc(15/750*100%);
+    height: 45px;
+    background-color: $color-white;
+    .inner{
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: calc(710/750*100%);
+      margin: 0 calc(20/750*100%);
+      height: 45px;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .item {
+        position: relative;
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+      }
+      .search{
+        position: relative;
+        width: calc(620/710*100%);
+        a.search-link{
+          position: absolute;
+          top: 50%;
+          left: 3%;
+          transform: translateY(-50%);
+          color: $color-d8d8d8;
+        }
+        input.search-input{
+          width: 100%;
+          border: none;
+          background-color: $color-f0f0f0;
+          border-radius: 4px;
+          height: $font-size-t24;
+          line-height: $font-size-t24;
+          text-indent: 12%;
+        }
+        a.fork-link{
+          position: absolute;
+          top: 50%;
+          right: 3%;
+          transform: translateY(-50%);
+          color: $color-d8d8d8;
+        }
+      }
+      .cart{
+        width: calc(90/710*100%);
+        .link{
+          position: relative;
+          display: block;
+          width: 100%;
+          text-align: center;
+          img{
+            width: calc(36/90*100%);
+          }
+          .nums{
+            position: absolute;
+            top: -8px;
+            right: 0;
+            z-index: 1;
+            font-size: 1.2rem;
+            display: inline-block;
+            width: 1.3rem;
+            height: 1.3rem;
+            padding: 1%;
+            text-align: center;
+            line-height: 1.3rem;
+            color: #fff;
+            background-color: #1d1d1d;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+  .banner{
+    width: 100%;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0;
+  }
+  .fade-choose-enter-active, .fade-choose-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-choose-leave, .fade-choose-leave-active {
+    display: none;
+  }
+  .fade-choose-enter, .fade-choose-leave-active {
+    opacity: 0;
+  }
+
+  .gift-pop{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6);
+    .inner{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      a.link{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 101;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      a.close{
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        z-index: 102;
+        transform: translateX(-50%);
+        display: block;
+        width: 20%;
+        padding-bottom: 20%;
+      }
+      img{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+      }
+    }
+
+  }
+  .gift-icon{
+    position: fixed;
+    right: 0;
+    bottom: 90px;
+    display: block;
+    width: 15%;
+    img{
+      width: 100%;
+    }
+  }
+  .top{
+    position: fixed;
+    right: 3%;
+    bottom: 30px;
+    width: 10.6%;
+    img {
+      width: 100%;
+    }
+  }
+}
+
 /* 首页 */
 .main-container{
   @extend %page;

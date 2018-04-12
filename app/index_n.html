@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="public/styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+<div class="entry-container" id="entry" v-cloak>
+  <div class="top">
+    <div class="inner">
+      <div class="item search">
+        <a href="javascript:;" class="search-link">
+          <i class="fa fa-search"></i>
+        </a>
+        <input type="search" class="search-input" placeholder="宝贝名称">
+        <a href="javascript:;" class="fork-link">
+          <i class="fa fa-times-circle"></i>
+        </a>
+      </div>
+      <div class="item cart">
+        <a href="javascript:;" class="link">
+          <img src="public/img/mobile/cart_b.png">
+          <span class="nums">10</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="banner">
+    <m-swipe swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
+      <div v-for="(top, index) in banners" class="swiper-slide" slot="swiper-con">
+        <a :href="top.url" class="link">
+          <img :data-src="top" class="swiper-lazy silde-img">
+        </a>
+      </div>
+    </m-swipe>
+  </div>
+  </div>
+
+  <div class="gift-pop" v-if="isADShow">
+    <div class="inner">
+      <img src="public/img/mobile/gift_show.png">
+      <a href="javascript:;" class="link">&nbsp;</a>
+      <a href="javascript:;" class="close" @click="closegift()">&nbsp;</a>
+    </div>
+  </div>
+  <a href="javascript:;" class="gift-icon" v-if="!isADShow">
+    <img src="public/img/mobile/gift_icon.png">
+  </a>
+  <transition name="fade">
+    <a href="javascript:;" class="top" @click="top()" v-if="showTop">
+      <img src="public/img/mobile/top.png">
+    </a>
+  </transition>
+</div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/hammer.js"></script>
+<script src="public/js/mobile/swiper.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script type="text/x-template" id="head_top">
+  <header class="head-container">
+    <ul class="nav">
+      <li class="toggle" @click="toggle()">
+        <i class="fa fa-bars"></i>
+      </li>
+      <li class="logo" @click="toIndex()">
+        <img src="public/img/mobile/logo.png">
+      </li>
+      <li class="user" @click="toLogin()">
+        <span class="img-container">
+          <img src="public/img/mobile/nologin-head.png">
+        </span>
+      </li>
+    </ul>
+    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
+      <div class="container">
+        <ul class="types">
+          <li class="item" v-for="(types, index) in typeList" @click="change(types.code)">
+            <span>{{ types.name }}</span>
+            <i class="fa fa-angle-right"></i>
+          </li>
+        </ul>
+        <ul class="lines clearfix">
+          <li class="item">
+            <a href="javascript:;">
+              <img src="https://cdn.fangcun.com/static/img/mobile/pm_logo.png">
+              <span>拍卖</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/img/mobile/menu1.png">
+              <span>守艺师</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/img/mobile/menu2.png">
+              <span>百科</span>
+            </a>
+          </li>
+          <!--<li class="item">-->
+            <!--<a href="javascript:;">-->
+              <!--<img src="public/img/mobile/menu3.png">-->
+              <!--<span>个性定制</span>-->
+            <!--</a>-->
+          <!--</li>-->
+          <!--<li class="item">-->
+            <!--<a href="javascript:;">-->
+              <!--<img src="public/img/mobile/menu4.png">-->
+              <!--<span>APP下载</span>-->
+            <!--</a>-->
+          <!--</li>-->
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/img/mobile/menu5.png">
+              <span>品牌理念</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</script>
+<script type="text/x-template" id="m_swipe">
+  <div class="swiper-container" :class="swipeid">
+    <div class="swiper-wrapper">
+      <slot name="swiper-con"></slot>
+    </div>
+    <!-- 分页器 -->
+    <div :class="{'swiper-pagination':pagination}"></div>
+  </div>
+</script>
+<script>
+  var config = {
+    "isADShow": true,
+    "images": ["https://cdn.fangcun.com/upload/images/2017-11-03/b9f1fb6dc64f4a6f8b71705ac3ef4b56.JPG!750", "https://cdn.fangcun.com/upload/images/2017-11-03/3dbd43f8a7bf4db99b3c280f3fff6ed6.jpg!750"],
+  }
+</script>
+<script src="public/js/mobile/head.js"></script>
+<script src="public/js/mobile/index_n.js"></script>
+</body>
+</html>
