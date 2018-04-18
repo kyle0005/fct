@@ -26,6 +26,7 @@ let app = new Vue(
       showTop: false,
 
       isADShow: config.isADShow,
+      hasLogin: config.hasLogin,
 
       pager_url: '?level_id=0',
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载

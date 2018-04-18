@@ -101,9 +101,7 @@ Vue.component('m-swipe',
         observeParents: true, //修改swiper的父元素时，自动初始化swiper
         height : window.innerHeight,
         lazyLoading: true,
-        // paginationBulletRender: function (swiper, index, className) {
-        //   return '<span class="en-pagination ' + className + '"></span>';
-        // },
+        paginationBulletRender: null,   //null: 圆点;若为function，则为自定义
         onTransitionStart: function (swiper) {
           That.$emit('slideindex',swiper.activeIndex);
         }

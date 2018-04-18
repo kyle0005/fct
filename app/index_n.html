@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="entry-container" id="entry" v-cloak>
-  <div class="top">
+  <div class="search-container">
     <div class="inner">
       <div class="item search">
         <a href="javascript:;" class="search-link">
@@ -32,16 +32,131 @@
     </div>
   </div>
   <div class="banner">
-    <m-swipe swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
+    <m-swipe swipeid="swipe" ref="banner" :autoplay="0">
       <div v-for="(top, index) in banners" class="swiper-slide" slot="swiper-con">
         <a :href="top.url" class="link">
-          <img :data-src="top" class="swiper-lazy silde-img">
+          <span class="img-con">
+            <img :data-src="top" class="swiper-lazy silde-img">
+          </span>
         </a>
       </div>
     </m-swipe>
+    <div class="service">
+      <div class="items">
+        <img src="public/img/mobile/items.png">100%原人手制
+      </div>
+      <div class="items">
+        <img src="public/img/mobile/items.png">限量发行
+      </div>
+      <div class="items">
+        <img src="public/img/mobile/items.png">永久保值换购
+      </div>
+    </div>
   </div>
+  <div class="trance">
+    <div class="inner">
+      <a href="javascript:;" class="items">
+        <img src="public/img/mobile/index_ma.png"><br>美壶
+      </a>
+      <a href="javascript:;" class="items">
+        <img src="public/img/mobile/index_au.png"><br>拍卖
+      </a>
+      <a href="javascript:;" class="items">
+        <img src="public/img/mobile/index_ar.png"><br>手艺人
+      </a>
+      <a href="javascript:;" class="items">
+        <img src="public/img/mobile/index_en.png"><br>百科
+      </a>
+    </div>
   </div>
-
+  <div class="presale">
+    <m-swipe swipeid="swipeN" ref="presale" :autoplay="0" pagination-type="custom">
+      <div v-for="(item, index) in preSales" class="swiper-slide" slot="swiper-con">
+        <div class="content">
+          <div class="left">
+            <div class="title"><img src="public/img/mobile/pre_sale.png"><span class="t">预售宝贝</span></div>
+            <div class="text">距离开始时间</div>
+            <div class="time">08:08:08</div>
+            <div class="tip">40天后发货</div>
+          </div>
+          <div class="right">
+            <img src="public/img/mobile/resource/test7.png">
+            <div class="t"><span class="s">限额10位</span></div>
+          </div>
+        </div>
+      </div>
+    </m-swipe>
+  </div>
+  <div class="auction">
+    <div class="title">拍卖<a href="javascript:;" class="link">更多&nbsp;<span class="arr"></span></a></div>
+    <div class="content">
+      <div class="fir">
+        <a href="javascript:;" class="link">
+          <img src="https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750">
+        </a>
+        <div class="sta">
+          <div class="item left">拍卖中</div>
+          <div class="item right">99次出价</div>
+        </div>
+      </div>
+      <div class="others">
+        <ul class="ul clearfix">
+          <li class="pro-item">
+            <a href="javascript:;" class="link">
+              <img src="https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750">
+              <span class="sta">
+                <span class="item left">拍卖中</span>
+                <span class="item right">99次出价</span>
+              </span>
+            </a>
+            <div class="detail">
+              <div class="info">石瓢全手&nbsp;潘洪均&nbsp;国工</div>
+              <div class="time">结拍时间:&nbsp;02-03&nbsp;14:30</div>
+            </div>
+          </li>
+          <li class="pro-item">
+            <a href="javascript:;" class="link">
+              <img src="https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750">
+              <span class="sta">
+                <span class="item left">拍卖中</span>
+                <span class="item right">99次出价</span>
+              </span>
+            </a>
+            <div class="detail">
+              <div class="info">石瓢全手&nbsp;潘洪均&nbsp;国工</div>
+              <div class="time">结拍时间:&nbsp;02-03&nbsp;14:30</div>
+            </div>
+          </li>
+          <li class="pro-item">
+            <a href="javascript:;" class="link">
+              <img src="https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750">
+              <span class="sta">
+                <span class="item left">拍卖中</span>
+                <span class="item right">99次出价</span>
+              </span>
+            </a>
+            <div class="detail">
+              <div class="info">石瓢全手&nbsp;潘洪均&nbsp;国工</div>
+              <div class="time">结拍时间:&nbsp;02-03&nbsp;14:30</div>
+            </div>
+          </li>
+          <li class="pro-item">
+            <a href="javascript:;" class="link">
+              <img src="https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750">
+              <span class="sta">
+                <span class="item left">拍卖中</span>
+                <span class="item right">99次出价</span>
+              </span>
+            </a>
+            <div class="detail">
+              <div class="info">石瓢全手&nbsp;潘洪均&nbsp;国工</div>
+              <div class="time">结拍时间:&nbsp;02-03&nbsp;14:30</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="gift-pop" v-if="isADShow">
     <div class="inner">
       <img src="public/img/mobile/gift_show.png">
@@ -141,6 +256,17 @@
   var config = {
     "isADShow": true,
     "images": ["https://cdn.fangcun.com/upload/images/2017-11-03/b9f1fb6dc64f4a6f8b71705ac3ef4b56.JPG!750", "https://cdn.fangcun.com/upload/images/2017-11-03/3dbd43f8a7bf4db99b3c280f3fff6ed6.jpg!750"],
+    "preSales": [
+      {
+
+      },
+      {
+
+      },
+      {
+
+      }
+    ]
   }
 </script>
 <script src="public/js/mobile/head.js"></script>

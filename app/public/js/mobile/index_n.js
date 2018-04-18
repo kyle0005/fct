@@ -29,6 +29,10 @@ Vue.component('m-swipe',
       paginationType: {
         type: String,
         default: 'bullets'
+      },
+      spaceBetween: {
+        type: Number,
+        default: 10,
       }
     },
     data(){
@@ -38,13 +42,17 @@ Vue.component('m-swipe',
     },
     mounted() {
       var That = this;
+      console.log(That.paginationType);
+      let _def = That.paginationType === 'custom' ? null: function (swiper, index, className) {
+        return '<span class="en-pagination ' + className + '"></span>';
+      };
       this.dom = new Swiper('.' + That.swipeid, {
         //循环
         loop: That.loop,
         //分页器
         pagination: '.swiper-pagination',
         //分页类型
-        paginationType: That.paginationType, //fraction,progress,bullets
+        // paginationType: That.paginationType, //fraction,progress,bullets
         //自动播放
         autoplay: That.autoplay,
         //方向
@@ -56,12 +64,10 @@ Vue.component('m-swipe',
         observeParents: true, //修改swiper的父元素时，自动初始化swiper
         height : window.innerHeight,
         lazyLoading: true,
-        // paginationBulletRender: function (swiper, index, className) {
-        //   return '<span class="en-pagination ' + className + '"></span>';
-        // },
         onTransitionStart: function (swiper) {
           That.$emit('slideindex',swiper.activeIndex);
-        }
+        },
+        paginationBulletRender: _def
       })
     },
     components: {
@@ -72,9 +78,14 @@ let app = new Vue(
   {
     mounted: function () {
       let vue = this;
-      let swiper = this.$refs.swiper;
-      if (swiper && swiper.dom) {
-        this.swiper = swiper.dom;
+      let swipe_banner = this.$refs.banner;
+      if (swipe_banner && swipe_banner.dom) {
+        this.swipe_banner = swipe_banner.dom;
+      }
+
+      let swipe_presale = this.$refs.presale;
+      if (swipe_presale && swipe_presale.dom) {
+        this.swipe_presale = swipe_presale.dom;
       }
 
       vue.initData();
@@ -86,8 +97,11 @@ let app = new Vue(
       showTop: false,
       isADShow: config.isADShow,
 
-      swiper: '',
+      swipe_banner: '',
+      swipe_presale: '',
       banners: config.images,
+      preSales: config.preSales
+
     },
     watch: {
 
