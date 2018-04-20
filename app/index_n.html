@@ -253,14 +253,14 @@
   </div>
   <footer class="footer">
     <div class="inner">
-      <a href="javascript:;" class="">
-        <img src="public/img/mobile/"><br>首页
+      <a href="javascript:;" class="link">
+        <img src="public/img/mobile/i_home.png"><br>首页
       </a>
-      <a href="javascript:;" class="">
-        <img src="public/img/mobile/"><br>消息
+      <a href="javascript:;" class="link">
+        <img src="public/img/mobile/i_service.png"><br>消息
       </a>
-      <a href="javascript:;" class="">
-        <img src="public/img/mobile/"><br>我的
+      <a href="javascript:;" class="link">
+        <img src="public/img/mobile/i_account.png"><br>我的
       </a>
     </div>
   </footer>
@@ -373,7 +373,61 @@
       {
 
       }
-    ]
+    ],
+    "index_n": {
+      "adSwiper" : [
+        {
+          "image": "",  //图片地址
+          "webUrl": "", //点击链接
+          "liteUrl": "",
+        }
+      ],
+      "promotion": [
+        {
+          "id": "",
+          "status": "",           //0：距离开始时间；1：距离结束时间
+          "discountTime": "",     //倒计时，秒
+          "advanceSaleDays": "",
+          "defaultImage": "",
+          "singleCount": ""       //限额数量
+        }
+      ],
+      auction: [
+        {
+          "id": "",
+          "name": "",
+          "status": "",
+          "bidCount": "",
+          "auctionTime": "",
+          "statusName": "",
+          "defaultImage": ""
+        }
+      ],
+      artist:[
+        {
+          "id": "",
+          "name": "",
+          "defaultImage": ""
+        }
+      ],
+      product: [
+        {
+          "id": "",
+          "name": "",
+          "price": "",
+          "defaultImage": "",
+          "discountPrice": "",
+          "tags":[1, 2]
+        }
+      ],
+      tagNames:[
+        "爆品",
+        "新品上市",
+        "xxxxx",
+        "ssss"
+      ]
+    }
+
   }
 </script>
 <script src="public/js/mobile/head.js"></script>

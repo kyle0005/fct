@@ -795,6 +795,11 @@
       bottom: 0;
       left: 0;
       z-index: 3;
+      background-color: $color-white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
       &:before {
         content: "";
         position: absolute;
@@ -804,6 +809,18 @@
         display: block;
         padding-bottom: 48px;
         width: 100%;
+      }
+      .link{
+        display: block;
+        position: relative;
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        width: calc(140/750*100%);
+        text-align: center;
+        img{
+          width: 40%;
+        }
       }
     }
   }
@@ -869,7 +886,7 @@
   .gift-icon{
     position: fixed;
     right: 0;
-    bottom: 90px;
+    bottom: 140px;
     z-index: 2;
     display: block;
     width: 15%;
@@ -880,7 +897,7 @@
   .top{
     position: fixed;
     right: 3%;
-    bottom: 30px;
+    bottom: 80px;
     width: 10.6%;
     img {
       width: 100%;
