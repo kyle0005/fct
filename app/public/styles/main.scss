@@ -383,6 +383,11 @@
         .time{
           width: 100%;
           margin: 6% 0;
+          .time-block{
+            background-color: $color-white;
+            border-radius: 4px;
+            border: 1px solid $color-d8d8d8;
+          }
         }
         .tip{
           width: 100%;
@@ -513,6 +518,10 @@
             display: inline-block;
             width: 160px;
             text-align: center;
+            margin-right: 2.5%;
+            &:last-child{
+              margin-right: 0;
+            }
             .link{
               position: relative;
               display: block;
@@ -745,19 +754,18 @@
               display: inline-block;
               width: calc(295/375*100%);
               margin: 2% calc(40/375*100%) 0 calc(40/375*100%);
-              .mark-r{
+              .marks{
                 display: inline-block;
-                background-color: $color-993333;
-                color: $color-white;
                 padding: 1.5% 4%;
                 margin-right: 7%;
               }
-              .mark-y{
-                display: inline-block;
+              .mark-0{
+                background-color: $color-993333;
+                color: $color-white;
+              }
+              .mark-1{
                 background-color: $color-dab566;
                 color: $color-white;
-                padding: 1.5% 4%;
-                margin-right: 7%;
               }
             }
           }

@@ -34,9 +34,9 @@
   <div class="banner">
     <m-swipe swipeid="swipe" ref="banner" :autoplay="0">
       <div v-for="(top, index) in banners" class="swiper-slide" slot="swiper-con">
-        <a :href="top.url" class="link">
+        <a :href="top.webUrl" class="link">
           <span class="img-con">
-            <img :data-src="top" class="swiper-lazy silde-img">
+            <img :data-src="top.image" class="swiper-lazy silde-img">
           </span>
         </a>
       </div>
@@ -75,13 +75,13 @@
         <div class="content">
           <div class="left">
             <div class="title"><img src="public/img/mobile/pre_sale.png"><span class="t">预售宝贝</span></div>
-            <div class="text">距离开始时间</div>
-            <div class="time">08:08:08</div>
-            <div class="tip">40天后发货</div>
+            <div class="text">距离{{ item.status === 0 ? '开始': '结束'}}时间</div>
+            <div class="time"><m-time :end-time="item.discountTime" :callback="end"></m-time></div>
+            <div class="tip">{{ item.advanceSaleDays }}天后发货</div>
           </div>
           <div class="right">
-            <img src="public/img/mobile/resource/test7.png">
-            <div class="t"><span class="s">限额10位</span></div>
+            <img :src="item.defaultImage">
+            <div class="t"><span class="s">限额{{ item.singleCount }}位</span></div>
           </div>
         </div>
       </div>
@@ -92,67 +92,29 @@
     <div class="content">
       <div class="fir">
         <a href="javascript:;" class="link">
-          <img src="https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750">
+          <img :src="auctions[0].defaultImage">
         </a>
         <div class="sta">
-          <div class="item left">拍卖中</div>
-          <div class="item right">99次出价</div>
+          <div class="item left">{{ auctions[0].statusName }}</div>
+          <div class="item right">{{ auctions[0].bidCount }}次出价</div>
         </div>
       </div>
       <div class="others">
         <ul class="ul clearfix">
-          <li class="pro-item">
+          <li class="pro-item" v-for="(item, index) in auctions">
             <a href="javascript:;" class="link">
-              <img src="https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750">
+              <img :src="item.defaultImage">
               <span class="sta">
-                <span class="item left">拍卖中</span>
-                <span class="item right">99次出价</span>
+                <span class="item left">{{ item.statusName }}</span>
+                <span class="item right">{{ item.bidCount }}次出价</span>
               </span>
             </a>
             <div class="detail">
-              <div class="info">石瓢全手&nbsp;潘洪均&nbsp;国工</div>
-              <div class="time">结拍时间:&nbsp;02-03&nbsp;14:30</div>
+              <div class="info">{{ item.name }}</div>
+              <div class="time">结拍时间:&nbsp;{{ item.auctionTime }}</div>
             </div>
           </li>
-          <li class="pro-item">
-            <a href="javascript:;" class="link">
-              <img src="https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750">
-              <span class="sta">
-                <span class="item left">拍卖中</span>
-                <span class="item right">99次出价</span>
-              </span>
-            </a>
-            <div class="detail">
-              <div class="info">石瓢全手&nbsp;潘洪均&nbsp;国工</div>
-              <div class="time">结拍时间:&nbsp;02-03&nbsp;14:30</div>
-            </div>
-          </li>
-          <li class="pro-item">
-            <a href="javascript:;" class="link">
-              <img src="https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750">
-              <span class="sta">
-                <span class="item left">拍卖中</span>
-                <span class="item right">99次出价</span>
-              </span>
-            </a>
-            <div class="detail">
-              <div class="info">石瓢全手&nbsp;潘洪均&nbsp;国工</div>
-              <div class="time">结拍时间:&nbsp;02-03&nbsp;14:30</div>
-            </div>
-          </li>
-          <li class="pro-item">
-            <a href="javascript:;" class="link">
-              <img src="https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750">
-              <span class="sta">
-                <span class="item left">拍卖中</span>
-                <span class="item right">99次出价</span>
-              </span>
-            </a>
-            <div class="detail">
-              <div class="info">石瓢全手&nbsp;潘洪均&nbsp;国工</div>
-              <div class="time">结拍时间:&nbsp;02-03&nbsp;14:30</div>
-            </div>
-          </li>
+
         </ul>
       </div>
     </div>
@@ -168,83 +130,27 @@
           <div>心手相通<br>载大道与咫尺之器</div>
         </div>
       </div>
-      <div class="line">
+      <div class="line" v-for="(item, index) in artists">
         <div class="inner">
           <a href="javascript:;" class="link">
-            <img src="public/img/mobile/resource/artist1.png" class="photo">
+            <img :src="item.defaultImage" class="photo">
           </a>
         </div>
       </div>
-      <div class="line">
-        <div class="inner">
-          <a href="javascript:;" class="link">
-            <img src="public/img/mobile/resource/artist1.png" class="photo">
-          </a>
-        </div>
-      </div>
-      <div class="line">
-        <div class="inner">
-          <a href="javascript:;" class="link">
-            <img src="public/img/mobile/resource/artist1.png" class="photo">
-          </a>
-        </div>
-      </div>
-      <div class="line">
-        <div class="inner">
-          <a href="javascript:;" class="link">
-            <img src="public/img/mobile/resource/artist1.png" class="photo">
-          </a>
-        </div>
-      </div>
+
     </div>
   </div>
   <div class="recommend">
     <div class="title">精选推荐<a href="javascript:;" class="link">更多&nbsp;<span class="arr"></span></a></div>
     <div class="rec-list">
-      <div class="line">
+      <div class="line" v-for="(item, index) in recommends">
         <div class="inner">
           <a href="javascript:;" class="link">
-            <img src="public/img/mobile/resource/test4.png" class="pro-img">
-            <span class="pro-title overTextH2">松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄</span>
-            <span class="pro-price"><small>￥</small>340<del class="del"><small>￥</small>740</del></span>
+            <img :src="item.defaultImage" class="pro-img">
+            <span class="pro-title overTextH2">{{ item.name }}</span>
+            <span class="pro-price"><small>￥</small>{{ item.price }}<del class="del"><small>￥</small>740</del></span>
             <span class="pro-mark">
-              <small class="mark-r">爆品</small><small class="mark-y">新品上架</small>
-            </span>
-          </a>
-        </div>
-      </div>
-      <div class="line">
-        <div class="inner">
-          <a href="javascript:;" class="link">
-            <img src="public/img/mobile/resource/test4.png" class="pro-img">
-            <span class="pro-title overTextH2">松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄</span>
-            <span class="pro-price"><small>￥</small>340<del class="del"><small>￥</small>740</del></span>
-            <span class="pro-mark">
-              <small class="mark-r">爆品</small><small class="mark-y">新品上架</small>
-            </span>
-          </a>
-        </div>
-      </div>
-      <div class="line">
-        <div class="inner">
-          <a href="javascript:;" class="link">
-            <img src="public/img/mobile/resource/test4.png" class="pro-img">
-            <span class="pro-title overTextH2">松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄</span>
-            <span class="pro-price"><small>￥</small>340<del class="del"><small>￥</small>740</del></span>
-            <span class="pro-mark">
-              <small class="mark-r">爆品</small><small class="mark-y">新品上架</small>
-            </span>
-          </a>
-        </div>
-      </div>
-      <div class="line">
-        <div class="inner">
-          <a href="javascript:;" class="link">
-            <img src="public/img/mobile/resource/test4.png" class="pro-img">
-            <span class="pro-title overTextH2">松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄</span>
-            <span class="pro-price"><small>￥</small>340<del class="del"><small>￥</small>740</del></span>
-            <span class="pro-mark">
-              <small class="mark-r">爆品</small><small class="mark-y">新品上架</small>
+              <small class="marks" :class="'mark-' + i" v-for="(i, index) in item.tags">{{ tagN[i] }}</small>
             </span>
           </a>
         </div>
@@ -362,7 +268,6 @@
 <script>
   var config = {
     "isADShow": true,
-    "images": ["https://cdn.fangcun.com/upload/images/2017-11-03/b9f1fb6dc64f4a6f8b71705ac3ef4b56.JPG!750", "https://cdn.fangcun.com/upload/images/2017-11-03/3dbd43f8a7bf4db99b3c280f3fff6ed6.jpg!750"],
     "preSales": [
       {
 
@@ -374,57 +279,136 @@
 
       }
     ],
+
     "index_n": {
       "adSwiper" : [
         {
-          "image": "",  //图片地址
+          "image": "https://cdn.fangcun.com/upload/images/2017-11-03/b9f1fb6dc64f4a6f8b71705ac3ef4b56.JPG!750",  //图片地址
           "webUrl": "", //点击链接
           "liteUrl": "",
-        }
+        },
+        {
+          "image": "https://cdn.fangcun.com/upload/images/2017-11-03/3dbd43f8a7bf4db99b3c280f3fff6ed6.jpg!750",  //图片地址
+          "webUrl": "", //点击链接
+          "liteUrl": "",
+        },
+
       ],
       "promotion": [
         {
           "id": "",
-          "status": "",           //0：距离开始时间；1：距离结束时间
-          "discountTime": "",     //倒计时，秒
-          "advanceSaleDays": "",
-          "defaultImage": "",
-          "singleCount": ""       //限额数量
+          "status": 0,           //0：距离开始时间；1：距离结束时间
+          "discountTime": 20,     //倒计时，秒
+          "advanceSaleDays": 40,
+          "defaultImage": "public/img/mobile/resource/test7.png",
+          "singleCount": 10       //限额数量
+        },
+        {
+          "id": "",
+          "status": 1,           //0：距离开始时间；1：距离结束时间
+          "discountTime": 40,     //倒计时，秒
+          "advanceSaleDays": 60,
+          "defaultImage": "public/img/mobile/resource/test7.png",
+          "singleCount": 20       //限额数量
         }
       ],
-      auction: [
+      "auction": [
+        {
+          "id": "",
+          "name": "石瓢全手 潘洪均 国工",
+          "status": 1,
+          "bidCount": 99,
+          "auctionTime": "02-03 14:30",
+          "statusName": "拍卖中",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750"
+        },
+        {
+          "id": "",
+          "name": "石瓢全手 潘洪均 国工",
+          "status": 0,
+          "bidCount": 34,
+          "auctionTime": "02-03 14:30",
+          "statusName": "拍卖预告",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750"
+        },
+        {
+          "id": "",
+          "name": "石瓢全手 潘洪均 国工",
+          "status": 0,
+          "bidCount": 67,
+          "auctionTime": "02-03 14:30",
+          "statusName": "拍卖预告",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750"
+        },
+        {
+          "id": "",
+          "name": "石瓢全手 潘洪均 国工",
+          "status": 0,
+          "bidCount": 3,
+          "auctionTime": "02-03 14:30",
+          "statusName": "拍卖预告",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2017-11-03/5dff6024149843a9af5ec1803c8e007b.jpg!750"
+        }
+      ],
+      "artist":[
         {
           "id": "",
           "name": "",
-          "status": "",
-          "bidCount": "",
-          "auctionTime": "",
-          "statusName": "",
-          "defaultImage": ""
-        }
-      ],
-      artist:[
+          "defaultImage": "public/img/mobile/resource/artist1.png"
+        },
         {
           "id": "",
           "name": "",
-          "defaultImage": ""
-        }
-      ],
-      product: [
+          "defaultImage": "public/img/mobile/resource/artist1.png"
+        },
         {
           "id": "",
           "name": "",
-          "price": "",
-          "defaultImage": "",
+          "defaultImage": "public/img/mobile/resource/artist1.png"
+        },
+        {
+          "id": "",
+          "name": "",
+          "defaultImage": "public/img/mobile/resource/artist1.png"
+        }
+      ],
+      "product": [
+        {
+          "id": "",
+          "name": "松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄",
+          "price": "340",
+          "defaultImage": "public/img/mobile/resource/test4.png",
           "discountPrice": "",
-          "tags":[1, 2]
-        }
+          "tags":[0]
+        },
+        {
+          "id": "",
+          "name": "松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄",
+          "price": "340",
+          "defaultImage": "public/img/mobile/resource/test4.png",
+          "discountPrice": "",
+          "tags":[0, 1]
+        },
+        {
+          "id": "",
+          "name": "松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄",
+          "price": "340",
+          "defaultImage": "public/img/mobile/resource/test4.png",
+          "discountPrice": "",
+          "tags":[1]
+        },
+        {
+          "id": "",
+          "name": "松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄松鼠葡萄",
+          "price": "340",
+          "defaultImage": "public/img/mobile/resource/test4.png",
+          "discountPrice": "",
+          "tags":[]
+        },
       ],
-      tagNames:[
+      "tagNames":[
         "爆品",
         "新品上市",
-        "xxxxx",
-        "ssss"
       ]
     }
 
