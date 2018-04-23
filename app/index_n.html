@@ -12,26 +12,26 @@
 </head>
 <body>
 <div class="entry-container" id="entry" v-cloak>
-  <div class="search-container">
+  <section class="search-container">
     <div class="inner">
       <div class="item search">
         <a href="javascript:;" class="search-link">
           <i class="fa fa-search"></i>
         </a>
-        <input type="search" class="search-input" placeholder="宝贝名称">
-        <a href="javascript:;" class="fork-link">
+        <input type="search" class="search-input" placeholder="宝贝名称" v-model="search">
+        <a href="javascript:;" class="fork-link" @click="clear">
           <i class="fa fa-times-circle"></i>
         </a>
       </div>
       <div class="item cart">
         <a href="javascript:;" class="link">
           <img src="public/img/mobile/cart_b.png">
-          <span class="nums">10</span>
+          <span class="nums">{{ index_data.cartProductCount }}</span>
         </a>
       </div>
     </div>
-  </div>
-  <div class="banner">
+  </section>
+  <section class="banner">
     <m-swipe swipeid="swipe" ref="banner" :autoplay="0">
       <div v-for="(top, index) in banners" class="swiper-slide" slot="swiper-con">
         <a :href="top.webUrl" class="link">
@@ -52,8 +52,8 @@
         <img src="public/img/mobile/items.png">永久保值换购
       </div>
     </div>
-  </div>
-  <div class="trance">
+  </section>
+  <section class="trance">
     <div class="inner">
       <a href="javascript:;" class="items">
         <img src="public/img/mobile/index_ma.png"><br>美壶
@@ -68,8 +68,8 @@
         <img src="public/img/mobile/index_en.png"><br>百科
       </a>
     </div>
-  </div>
-  <div class="presale">
+  </section>
+  <section class="presale">
     <m-swipe swipeid="swipeN" ref="presale" :autoplay="0" pagination-type="custom">
       <div v-for="(item, index) in preSales" class="swiper-slide" slot="swiper-con">
         <div class="content">
@@ -86,8 +86,8 @@
         </div>
       </div>
     </m-swipe>
-  </div>
-  <div class="auction">
+  </section>
+  <section class="auction">
     <div class="title">拍卖<a href="javascript:;" class="link">更多&nbsp;<span class="arr"></span></a></div>
     <div class="content">
       <div class="fir">
@@ -118,8 +118,8 @@
         </ul>
       </div>
     </div>
-  </div>
-  <div class="artist">
+  </section>
+  <section class="artist">
     <div class="title">守艺人</div>
     <div class="art-list">
       <div class="line des">
@@ -139,8 +139,8 @@
       </div>
 
     </div>
-  </div>
-  <div class="recommend">
+  </section>
+  <section class="recommend">
     <div class="title">精选推荐<a href="javascript:;" class="link">更多&nbsp;<span class="arr"></span></a></div>
     <div class="rec-list">
       <div class="line" v-for="(item, index) in recommends">
@@ -156,7 +156,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
   <footer class="footer">
     <div class="inner">
       <a href="javascript:;" class="link">
@@ -409,8 +409,10 @@
       "tagNames":[
         "爆品",
         "新品上市",
-      ]
-    }
+      ],
+      "cartProductCount": 6
+    },
+    "searchUrl": ""
 
   }
 </script>

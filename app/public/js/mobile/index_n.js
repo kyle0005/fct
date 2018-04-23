@@ -173,6 +173,7 @@ let app = new Vue(
 
       index_data: config.index_n,
 
+      search: '',
       swipe_banner: '',
       swipe_presale: '',
       banners: config.index_n.adSwiper,
@@ -190,6 +191,19 @@ let app = new Vue(
     methods: {
       initData(){
         let vue = this;
+
+      },
+      clear(){
+        let vue = this;
+        vue.search = '';
+      },
+      subSearch(){
+        let vue = this;
+        let _url = config.searchUrl;
+        if(vue.search){
+          _url += vue.search;
+          location.href = _url;
+        }
 
       },
       end(){

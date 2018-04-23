@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="public/styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+<div class="presale-container" id="presale" v-cloak>
+  <section class="banner">
+    <a href="javascript:;" class="link">
+      <img :src="presale.bannerImage">
+    </a>
+  </section>
+  <section class="time">
+    <div class="inner">
+      距开始仅剩<m-time :end-time="presale.discountTime" :callback="end"></m-time>
+    </div>
+  </section>
+  <section class="list">
+    <ul class="ul">
+      <li class="item" v-for="(item, index) in presale.productList">
+        <a href="javascript:" class="link">
+          <img :src="item.defaultImage">
+          <span class="pro-con">
+            <span class="title">{{ item.name }}</span>
+            <span class="vtitle">{{ item.subTitle }}</span>
+            <span class="price"><small>￥</small>{{ item.discountPrice }}</span>
+            <del class="dprice"><small>￥</small>{{ item.salePrice }}</del>
+          </span>
+        </a>
+        <span class="btn-container">
+          <a href="javascript:" class="btn">马上抢购</a>
+        </span>
+
+      </li>
+    </ul>
+  </section>
+</div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script>
+  var config = {
+    "presale": {
+      "id": 1,
+      "name": "test",
+      "bannerImage": "public/img/mobile/resource/presale_banner.png",
+      "status": 0,    //0：未开始，1：未结束，2：已结束
+      "discountTime": 123456789,
+      "productList": [
+        {
+          "id": 1,
+          "goodsId": 1,
+          "name":"开花",
+          "subTitle": "xxxxxxxxx",
+          "defaultImage": "public/img/mobile/resource/pro02.png",
+          "salePrice": 2.00,
+          "discountPrice": 1.50
+        },
+        {
+          "id": 1,
+          "goodsId": 1,
+          "name":"开花",
+          "subTitle": "xxxxxxx",
+          "defaultImage": "public/img/mobile/resource/pro02.png",
+          "salePrice": 2.00,
+          "discountPrice": 1.50
+        },
+        {
+          "id": 1,
+          "goodsId": 1,
+          "name":"开花",
+          "subTitle": "xx",
+          "defaultImage": "public/img/mobile/resource/pro02.png",
+          "salePrice": 2.00,
+          "discountPrice": 1.50
+        }
+      ]
+    }
+
+  }
+</script>
+<script src="public/js/mobile/presale.js"></script>
+</body>
+</html>
