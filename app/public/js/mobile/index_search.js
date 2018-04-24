@@ -9,6 +9,8 @@ let app = new Vue(
     },
     data: {
       showTop: false,
+      search: '',
+      isearch: config.isearch
     },
     watch: {
 

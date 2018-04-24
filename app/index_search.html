@@ -12,14 +12,133 @@
 </head>
 <body>
 <div class="isearch-container" id="isearch" v-cloak>
+  <section class="search-container">
+    <div class="inner">
+      <img src="public/img/mobile/logo2.png" class="logo">
+      <input type="search" class="search-input" placeholder="" v-model="search">
+      <a href="javascript:;" class="search-link">
+        <i class="fa fa-search"></i>
+      </a>
+    </div>
+  </section>
+  <section class="content">
+    <ul class="list">
+      <li class="item" :class="{artist-n:item.fromType=='artist',artist-t:item.fromType=='artist',category:item.fromType=='category',category:item.fromType=='product'}"
+          v-for="(item, index) in isearch">
+        <a href="javascript:;" class="link">
+          <img :src="item.defaultImage" class="img">
+          <span class="con">
+            <span class="name">{{ item.name }}<span v-if="item.fromType=='artist'&&item.extras">({{ item.extras.birthday }})</span></span>
+            <span class="text overTextH3">{{ item.intro }}</span>
+            <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">职称：中国工艺美术师</span>
+            <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">专业：制壶</span>
+            <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">评审日期：2015年09月09日</span>
+            <span class="price" v-if="item.fromType=='product'"><small>￥</small>234.00</span>
+          </span>
+        </a>
+        <div class="btn-container" v-if="item.fromType=='product'">
+          <a href="javascript:;" class="btn">立即购买</a>
+        </div>
+      </li>
 
+
+      <li class="item artist-n">
+        <a href="javascript:;" class="link">
+          <img src="public/img/mobile/resource/pro01.png" class="img">
+          <span class="con">
+            <span class="name">顾景舟</span>
+            <span class="text overTextH3">简介：简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</span>
+          </span>
+        </a>
+      </li>
+      <li class="item artist-t">
+        <a href="javascript:;" class="link">
+          <img src="public/img/mobile/resource/pro01.png" class="img">
+          <span class="con">
+            <span class="name">顾景舟(1915-～～)</span>
+            <span class="text overTextH3">职称：中国工艺美术师</span>
+            <span class="text overTextH3">专业：制壶</span>
+            <span class="text overTextH3">评审日期：2015年09月09日</span>
+          </span>
+        </a>
+      </li>
+      <li class="item category">
+        <a href="javascript:;" class="link">
+          <img src="public/img/mobile/resource/pro01.png" class="img">
+          <span class="con">
+            <span class="name">半月</span>
+            <span class="text overTextH3">简介：简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</span>
+          </span>
+        </a>
+      </li>
+      <li class="item product">
+        <a href="javascript:;" class="link">
+          <img src="public/img/mobile/resource/pro01.png" class="img">
+          <span class="con">
+            <span class="name">梅花信xx 顾景舟</span>
+            <span class="text overTextH3">品质一流 xxxxxx</span>
+            <span class="price"><small>￥</small>234.00</span>
+          </span>
+        </a>
+        <div class="btn-container">
+          <a href="javascript:;" class="btn">立即购买</a>
+        </div>
+      </li>
+    </ul>
+  </section>
 </div>
 <script src="public/js/mobile/vue.js"></script>
 <script src="public/js/mobile/common/tools.js"></script>
 <script src="public/js/mobile/api/index.js"></script>
 <script>
   var config = {
+    "isearch": [
+      {
+        "id": "",
+        "fromType": "artist",   //product,artist,category
+        "name": "顾景舟",
+        "defaultImage": "public/img/mobile/resource/pro01.png",
+        "intro": "简介：简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介",
+        "extras": null
 
+      },
+      {
+        "id": "",
+        "fromType": "artist",   //product,artist,category
+        "name": "顾景舟顾景舟",
+        "defaultImage": "public/img/mobile/resource/pro01.png",
+        "intro": "sssssssssss",
+        "extras":
+          {
+            "birthday": "1915-～～",
+            "title": "中国工艺美术师",
+            "major": "制壶",
+            "reviewDate": "2015年09月09日",
+          },
+
+      },
+      {
+        "id": "",
+        "fromType": "category",   //product,artist,category
+        "name": "半月",
+        "defaultImage": "public/img/mobile/resource/pro01.png",
+        "intro": "简介：简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介",
+
+      },
+      {
+        "id": "",
+        "fromType": "product",   //product,artist,category
+        "name": "梅花xxxxxxxx",
+        "defaultImage": "public/img/mobile/resource/pro01.png",
+        "intro": "品质一流 xxxxxx",
+        "extras":
+          {
+            "salePrice": "2323.00",
+
+          },
+
+      }
+    ]
   }
 </script>
 <script src="public/js/mobile/index_search.js"></script>
