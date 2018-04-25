@@ -16,24 +16,24 @@
     <div class="inner">
       <img src="public/img/mobile/logo2.png" class="logo">
       <input type="search" class="search-input" placeholder="" v-model="search">
-      <a href="javascript:;" class="search-link">
+      <a href="javascript:;" class="search-link" @click="subSearch">
         <i class="fa fa-search"></i>
       </a>
     </div>
   </section>
   <section class="content">
     <ul class="list">
-      <li class="item" :class="{artist-n:item.fromType=='artist',artist-t:item.fromType=='artist',category:item.fromType=='category',category:item.fromType=='product'}"
-          v-for="(item, index) in isearch">
+      <li class="item" v-for="(item, index) in isearch"
+          :class="{'artist-n':item.fromType==='artist'&&!item.extras,'artist-t':item.fromType==='artist'&&item.extras,category:item.fromType==='category',product:item.fromType==='product'}">
         <a href="javascript:;" class="link">
           <img :src="item.defaultImage" class="img">
           <span class="con">
             <span class="name">{{ item.name }}<span v-if="item.fromType=='artist'&&item.extras">({{ item.extras.birthday }})</span></span>
-            <span class="text overTextH3">{{ item.intro }}</span>
-            <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">职称：中国工艺美术师</span>
-            <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">专业：制壶</span>
-            <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">评审日期：2015年09月09日</span>
-            <span class="price" v-if="item.fromType=='product'"><small>￥</small>234.00</span>
+            <span class="text overTextH3" v-if="!item.extras||item.fromType==='product'">{{ item.intro }}</span>
+            <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">职称：{{ item.extras.title }}</span>
+            <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">专业：{{ item.extras.major }}</span>
+            <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">评审日期：{{ item.extras.reviewDate }}</span>
+            <span class="price" v-if="item.fromType=='product'"><small>￥</small>{{ item.extras.salePrice }}</span>
           </span>
         </a>
         <div class="btn-container" v-if="item.fromType=='product'">
@@ -42,7 +42,7 @@
       </li>
 
 
-      <li class="item artist-n">
+      <!--<li class="item artist-n">
         <a href="javascript:;" class="link">
           <img src="public/img/mobile/resource/pro01.png" class="img">
           <span class="con">
@@ -83,7 +83,7 @@
         <div class="btn-container">
           <a href="javascript:;" class="btn">立即购买</a>
         </div>
-      </li>
+      </li>-->
     </ul>
   </section>
 </div>
@@ -138,7 +138,8 @@
           },
 
       }
-    ]
+    ],
+    "searchUrl": ""
   }
 </script>
 <script src="public/js/mobile/index_search.js"></script>

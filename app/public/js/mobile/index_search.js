@@ -2,7 +2,6 @@ let app = new Vue(
   {
     mounted: function () {
       let vue = this;
-      vue.initData();
       window.addEventListener('scroll',function() {
         vue.showTop = (tools.getScrollTop()>=tools.getWindowHeight());
       }, false)
@@ -16,9 +15,21 @@ let app = new Vue(
 
     },
     methods: {
-      initData(){
+      subSearch(){
         let vue = this;
+        vue.nodata = false;
+        let _url = config.searchUrl;
+        if(vue.search){
+          tools.ajaxGet(_url + vue.search, vue.searchSuc, vue.getBefore);
+        }
 
+      },
+      getBefore(){
+        let vue = this;
+      },
+      searchSuc(data){
+        let vue = this;
+        vue.isearch = data.data;
       },
       end(){
         console.log('end')

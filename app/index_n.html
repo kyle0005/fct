@@ -72,7 +72,7 @@
   <section class="presale">
     <m-swipe swipeid="swipeN" ref="presale" :autoplay="0" pagination-type="custom">
       <div v-for="(item, index) in preSales" class="swiper-slide" slot="swiper-con">
-        <div class="content">
+        <a href="javascript:;" class="content">
           <div class="left">
             <div class="title"><img src="public/img/mobile/pre_sale.png"><span class="t">预售宝贝</span></div>
             <div class="text">距离{{ item.status === 0 ? '开始': '结束'}}时间</div>
@@ -83,7 +83,7 @@
             <img :src="item.defaultImage">
             <div class="t"><span class="s">限额{{ item.singleCount }}位</span></div>
           </div>
-        </div>
+        </a>
       </div>
     </m-swipe>
   </section>
