@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="public/styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+<div class="union-container" id="union" v-cloak>
+  <section class="info-container">
+    <div class="shop">
+      <div class="name">上海嘻嘻嘻门店<img src="public/img/mobile/shop_v1.png" class="rank"></div>
+      <div class="deposit"><span class="n">10</span>万保证金</div>
+    </div>
+    <ul class="detail">
+      <li class="items">
+        <div class="inner">
+          <span class="pri"><small>￥</small>22220000000</span>
+          <span class="txt">总销售额</span>
+        </div>
+      </li>
+      <li class="items">
+        <div class="inner">
+          <span class="pri"><small>￥</small>222000002.00</span>
+          <span class="txt">总返金额</span>
+        </div>
+      </li>
+      <li class="items">
+        <a href="javascript:;" class="inner">
+          <span class="pri">10</span>
+          <span class="txt l">分店数</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+  <section class="kpi-container">
+    <div class="title">5月考核情况<a href="javascript:;" class="more">更多</a></div>
+    <div class="detail">
+
+    </div>
+  </section>
+</div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/hammer.js"></script>
+<script src="public/js/mobile/swiper.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script>
+  var config = {
+    "union": {
+      "name": "上海北松店",
+      "levelId": 2,
+      "deposit": 300000,
+      "saleAmount": 1000000,
+      "rebateAmount": 225000,
+      "storeCount": 2,
+      "month": 4,
+      "kpiAmount": 800000,
+      "kpiSaleAmount": 0,
+      "kpiRebateRatio": 0.2,
+      "topAllianceName": "本联盟",
+      "inviteCount": 0,
+      "inviteCodes": [{"code": "43849129", "expireTime": 1526090400000}]
+    }
+  }
+</script>
+<script src="public/js/mobile/head.js"></script>
+<script src="public/js/mobile/union.js"></script>
+</body>
+</html>
