@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="public/styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+<div class="shoplist-container" id="shoplist" v-cloak>
+  <ul class="list">
+    <li class="items">
+      <div class="r">店铺编号</div>
+      <div class="r">手机号码</div>
+      <div class="r">加入时间</div>
+    </li>
+    <li class="items" v-for="(item, index) in list">
+      <div class="r">{{ item.storeId }}</div>
+      <div class="r">{{ item.cellPhone }}</div>
+      <div class="r">{{ item.createTime }}</div>
+    </li>
+  </ul>
+</div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/hammer.js"></script>
+<script src="public/js/mobile/swiper.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script>
+  var config = {
+    "list": [
+      {
+        "storeId": 10003, "cellPhone": "13816619868", "createTime": 1523462400000
+      },
+      {
+        "storeId": 10002,
+        "cellPhone": "13816619868",
+        "createTime": 1523462400000
+      }
+    ]
+  }
+</script>
+<script src="public/js/mobile/head.js"></script>
+<script src="public/js/mobile/u_shoplist.js"></script>
+</body>
+</html>
