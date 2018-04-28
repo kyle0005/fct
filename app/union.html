@@ -54,7 +54,7 @@
     <div class="title">
       <div class="t">邀请开店</div>
       <div class="vt">有<span class="n">{{ union.inviteCount }}</span>张邀请码</div>
-      <a href="javascript:;" class="btn" @click="invite"><img src="public/img/mobile/touch.png"></a>
+      <a href="javascript:;" class="btn" @click="invite" v-if="union.inviteCount!=0"><img src="public/img/mobile/touch.png"></a>
     </div>
     <ul class="detail">
       <li class="items">
@@ -98,6 +98,15 @@
         [
           {"code": "1111111", "expireTime": 1526090400000},
           {"code": "2222222", "expireTime": 1526090400000},
+          {"code": "1111111", "expireTime": 1526090400000},
+          {"code": "2222222", "expireTime": 1526090400000},
+          {"code": "1111111", "expireTime": 1526090400000},
+          {"code": "2222222", "expireTime": 1526090400000},
+          {"code": "1111111", "expireTime": 1526090400000},
+          {"code": "2222222", "expireTime": 1526090400000},
+          {"code": "1111111", "expireTime": 1526090400000},
+          {"code": "2222222", "expireTime": 1526090400000},
+
         ]
     },
     "add_url": ""
