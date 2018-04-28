@@ -147,7 +147,7 @@
         <div class="inner">
           <a href="javascript:;" class="link">
             <img :src="item.defaultImage" class="pro-img">
-            <span class="pro-title overTextH2">{{ item.name }}</span>
+            <span class="pro-title overText">{{ item.name }}</span>
             <span class="pro-price"><small>￥</small>{{ item.price }}<del class="del"><small>￥</small>740</del></span>
             <span class="pro-mark">
               <small class="marks" :class="'mark-' + i" v-for="(i, index) in item.tags">{{ tagN[i] }}</small>
