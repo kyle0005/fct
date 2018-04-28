@@ -2,7 +2,6 @@ let app = new Vue(
   {
     mounted: function () {
       let vue = this;
-
     },
     data: {
       showAlert: false, //显示提示组件
@@ -28,8 +27,10 @@ let app = new Vue(
       },
       postSuc(data, index){
         let vue = this, _data = vue.inviteCodes;
+        vue.union.inviteCount -= 1;
         vue.inviteCodes = [];
-        vue.inviteCodes = _data.splice(0, 0, data.data);
+        _data.splice(0, 0, data.data);
+        vue.inviteCodes = _data;
       },
       postTip(data){
         let vue = this;

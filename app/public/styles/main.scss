@@ -509,7 +509,7 @@
             color: $color-999;
           }
           .red{
-            color: $color-905641;
+            color: $color-dab566;
           }
           .right{
             text-align: right;
@@ -858,9 +858,10 @@
         box-flex: 1.0;
         width: calc(140/750*100%);
         text-align: center;
-        padding-top: 2px;
+        padding-top: 2%;
         img{
-          width: 40%;
+          width: 28%;
+          margin-bottom: 5%;
         }
       }
     }
@@ -5215,11 +5216,12 @@ $foot-height: 250px;
       }
     }
   }
-  .user-sec.logout{
+  .logout{
     display: block;
     position: relative;
     text-align: center;
-    padding: calc(20 / 375 * 100%) 0 0 0;
+    width: 100%;
+    padding: calc(20 / 375 * 100%) 0;
     &:before{
       content: '';
       position: absolute;
@@ -5230,14 +5232,57 @@ $foot-height: 250px;
       background-color: $color-f5f5f5;
     }
   }
-  &:after{
-    content: '';
-    position: absolute;
-    //bottom: -50px;
-    left: 0;
+  .footer{
+    position: relative;
     width: 100%;
-    height: 20px;
-    background-color: $color-f5f5f5;
+    height: 49px;
+    .inner{
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 3;
+      background-color: $color-white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      height: 49px;
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        padding-bottom: 49px;
+        width: 100%;
+      }
+      &:after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        height: 1px;
+        width: 100%;
+        background-color: $color-e6e6e6;
+      }
+      .link{
+        display: block;
+        position: relative;
+        -moz-box-flex: 1.0; /* Firefox */
+        -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+        box-flex: 1.0;
+        width: calc(140/750*100%);
+        text-align: center;
+        padding-top: 2%;
+        img{
+          width: 28%;
+          margin-bottom: 5%;
+        }
+      }
+    }
   }
 }
 

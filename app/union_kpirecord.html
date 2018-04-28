@@ -12,64 +12,51 @@
 </head>
 <body>
 <div class="kpirecord-container" id="kpirecord" v-cloak>
-  <ul class="list">
-    <li class="items">
-      <div class="t-date">2018年01月</div>
+  <ul class="list" v-load-more="nextPage" type="1" v-if="kpilist && kpilist.length > 0">
+    <li class="items" v-for="(item, index) in kpilist">
+      <div class="t-date">{{ item.createTime }}</div>
       <div class="info-list">
         <div class="info-i">
           <div>考核指标</div>
-          <div class="c"><small>￥</small>231212</div>
+          <div class="c"><small>￥</small>{{ item.kpiAmount }}</div>
         </div>
         <div class="info-i">
           <div>分店数</div>
-          <div class="c">23</div>
+          <div class="c">{{ item.storeCount }}</div>
         </div>
         <div class="info-i">
           <div>销售额</div>
-          <div class="c"><small>￥</small>231212</div>
+          <div class="c"><small>￥</small>{{ item.saleAmount }}</div>
         </div>
         <div class="info-i">
           <div>返点比例</div>
-          <div class="c">30%</div>
+          <div class="c">{{ item.rebateRatio * 100 }}%</div>
         </div>
       </div>
-      <div class="total">完成业绩<span class="s">125%</span>，返点<span class="s">125%</span>，返佣<span class="s"><small>￥</small>123123.00</span>。</div>
-    </li>
-    <li class="items">
-      <div class="t-date">2018年02月</div>
-      <div class="info-list">
-        <div class="info-i">
-          <div>考核指标</div>
-          <div class="c"><small>￥</small>231212</div>
-        </div>
-        <div class="info-i">
-          <div>分店数</div>
-          <div class="c">23</div>
-        </div>
-        <div class="info-i">
-          <div>销售额</div>
-          <div class="c"><small>￥</small>231212</div>
-        </div>
-        <div class="info-i">
-          <div>返点比例</div>
-          <div class="c">30%</div>
-        </div>
-      </div>
-      <div class="total">完成业绩<span class="s">125%</span>，返点<span class="s">125%</span>，返佣<span class="s"><small>￥</small>123123.00</span>。</div>
+      <div class="total">完成业绩<span class="s">{{ item.finishSaleRatio * 100 }}%</span>，返点<span class="s">{{ item.lastRebateRatio * 100 }}%</span>，返佣<span class="s"><small>￥</small>{{ item.rebateAmount }}</span>。</div>
     </li>
   </ul>
+  <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
+  <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
 </div>
 <script src="public/js/mobile/vue.js"></script>
 <script src="public/js/mobile/hammer.js"></script>
-<script src="public/js/mobile/swiper.js"></script>
 <script src="public/js/mobile/common/tools.js"></script>
 <script src="public/js/mobile/api/index.js"></script>
 <script>
   var config = {
-
+    "kpiurl": "",
+    "kpi":
+      {
+        "entries":
+          [
+            {"createTime":1522512000000,"kpiAmount":800000,"storeCount":0,"saleAmount":0,"rebateRatio":0.2,"finishSaleRatio":0,"lastRebateRatio":0.2,"rebateAmount":0},
+            {"createTime":1519833600000,"kpiAmount":800000,"storeCount":0,"saleAmount":1000000,"rebateRatio":0.2,"finishSaleRatio":1.25,"lastRebateRatio":0.225,"rebateAmount":225000}
+          ],
+        "pager":{"prev":0,"current":1,"next":0,"page_size":20,"total_page":1,"total":2}
+      }
   }
 </script>
-<script src="public/js/mobile/head.js"></script>
 <script src="public/js/mobile/u_kpirecord.js"></script>
 </body>
 </html>
