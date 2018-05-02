@@ -1,17 +1,63 @@
-<view class="gift-container">
-  <image class="bg" mode="scaleToFill" src="https://cdn.fangcun.com/static/img/mobile/gift_bg.png"></image>
-  <view class="content">
-    <view class="title">活动规则</view>
-    <view class="text">
-      1、新客注册：点击下方注册领红包，使用手机注册即可获取188元账户余额<br>
-      2、推荐好友：点击下方推荐好友，成功使用手机注册即可再获得30元账户余额（可积累）<br>
-      3、活动时间：至2018年6月6日结束
+<view class="union-container">
+  <view class="info-container">
+    <view class="shop">
+      <view class="name">cxx门店<image class='rank' mode='widthFix' src='https://cdn.fangcun.com/static/img/mobile/shop_v3.png'></image></view>
+      <view class="deposit"><text class="n">30</text>万保证金</view>
     </view>
-    <view class="btn">推荐领红包</view>
-    <!--<view class="btn" v-else>注册领红包</view>-->
+    <view class="detail">
+      <view class="items">
+        <view class="inner">
+          <view class="pri"><text>￥</text>222312312</view>
+          <view class="txt">总销售额</view>
+        </view>
+      </view>
+      <view class="items">
+        <view class="inner">
+          <view class="pri"><text>￥</text>1231231</view>
+          <view class="txt">总返金额</view>
+        </view>
+      </view>
+      <view class="items">
+        <view class="inner">
+          <view class="pri">23</view>
+          <view class="txt l">分店数</view>
+        </view>
+      </view>
+    </view>
   </view>
-  <view class="share-pop">
-    <image class="share-icon" mode="scaleToFill" src="https://cdn.fangcun.com/static/img/mobile/share_gift.png"></image>
-    <view class="text">点击右上角分享到朋友圈</view>
+  <view class="kpi-container">
+    <view class="title">{{ union.month }}月考核情况<a href="javascript:;" class="more">更多&nbsp;<i class="fa fa-caret-right"></i></a></view>
+    <view class="detail">
+      <view class="items">考核指标</view>
+      <view class="items">累积销售额</view>
+      <view class="items">返点比例</view>
+      <view class="items"><text>￥</text>{{ union.kpiAmount }}</view>
+      <view class="items"><text>￥</text>{{ union.kpiSaleAmount }}</view>
+      <view class="items">{{ reversedRatio }}%</view>
+      <view class="items"><span class="shop">“{{ union.topAllianceName }}”</span>当前业绩最高</view>
+    </view>
+  </view>
+  <view class="invite-container">
+    <view class="title">
+      <view class="t">邀请开店</view>
+      <view class="vt">有<span class="n">{{ union.inviteCount }}</span>张邀请码</view>
+      <a href="javascript:;" class="btn" @click="invite" v-if="union.inviteCount!=0"><img src="public/img/mobile/touch.png"></a>
+    </view>
+    <view class="detail">
+      <view class="items">
+        <view class="r">邀请码</view>
+        <view class="r">过期时间</view>
+        <view class="r">操作</view>
+      </view>
+      <view class="items" v-for="(item, index) in inviteCodes">
+        <view class="r">{{ item.code }}</view>
+        <view class="r">{{ item.expireTime }}</view>
+        <view class="r">
+          <a href="javascript:;" class="opt">
+            <img src="public/img/mobile/m_add.png">
+          </a>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

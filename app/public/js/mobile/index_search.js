@@ -8,7 +8,7 @@ let app = new Vue(
     },
     data: {
       showTop: false,
-      search: '',
+      search: config.keyword,
       isearch: config.isearch
     },
     watch: {

@@ -8,7 +8,7 @@ var app = new Vue(
     },
     data() {
       return {
-        inviteCode: null,
+        inviteCode: config.code,
         shopName: '',
         description: '',
         userInfo: null,
