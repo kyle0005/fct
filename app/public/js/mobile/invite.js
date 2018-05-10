@@ -40,42 +40,45 @@ let app = new Vue(
         img.setAttribute('crossOrigin','anonymous');
         img.src = vue.backgroundurl;
         img.onload = function(){
+          w_width = img.width;
+          w_height = img.height;
+          canvas.width = w_width * vue.ratio;
+          canvas.height = w_height * vue.ratio;
+
           ctx.drawImage(img,0, 0, w_width * vue.ratio, img.height / img.width * w_width * vue.ratio);
           progress += 1;
           if(progress===4){
-            var _img = Canvas2Image.convertToImage(canvas, w_width * vue.ratio, w_height * vue.ratio);
-            _img.style.width = '100%';
-            _result.appendChild(_img);
+            vue.convertToImg(canvas, _result, w_width, w_height);
           }
 
           ctx.fillStyle='#993333';
-          ctx.font = 12 * vue.ratio + 'px 微软雅黑';
-          vue.canvasTextAutoLine(vue.username + vue.textobj.textInfo, ctx, (192 / 750 * w_width * vue.ratio ), (558 / 750 * w_width * vue.ratio), 22 * vue.ratio, (550 / 750 * w_width * vue.ratio));
+          ctx.font = 12 * vue.ratio * 2 + 'px 微软雅黑';
+          vue.canvasTextAutoLine(vue.username + vue.textobj.textInfo, ctx, (192 / 750 * w_width * vue.ratio ), (558 / 750 * w_width * vue.ratio), 22 * vue.ratio  * 2, (550 / 750 * w_width * vue.ratio));
 
           ctx.fillStyle='#666666';
-          ctx.font = 13 * vue.ratio + 'px 微软雅黑';
+          ctx.font = 13 * vue.ratio * 2 + 'px 微软雅黑';
           ctx.textAlign = 'center';
           ctx.fillText(vue.textobj.textQrcode, (375 / 750 * w_width * vue.ratio), (1060 / 750 * w_width) * vue.ratio);
 
           ctx.fillStyle='#20201f';
+          ctx.font = 48 * vue.ratio * 2 + 'px 微软雅黑';
+          ctx.fillText(vue.textobj.textM, (65 / 750 * w_width * vue.ratio), (1259 / 750 * w_width) * vue.ratio);
+
+          ctx.fillStyle='#20201f';
+          ctx.font = 48 * vue.ratio * 2 + 'px 微软雅黑';
+          ctx.fillText(vue.textobj.textM, (65 / 750 * w_width * vue.ratio), (1302 / 750 * w_width) * vue.ratio);
+
+          ctx.fillStyle='#20201f';
           ctx.textAlign = 'left';
-          ctx.font = 'bold ' + 17 * vue.ratio + 'px 微软雅黑';
+          ctx.font = 'bold ' + 17 * vue.ratio * 2 + 'px 微软雅黑';
           ctx.fillText(vue.textobj.textTip, (55 / 750 * w_width * vue.ratio), (1170 / 750 * w_width) * vue.ratio);
 
           ctx.fillStyle='#20201f';
-          ctx.font = 'bold ' + 24 * vue.ratio + 'px 微软雅黑';
-          ctx.fillText(vue.textobj.textM, (55 / 750 * w_width * vue.ratio), (1240 / 750 * w_width) * vue.ratio);
-
-          ctx.fillStyle='#20201f';
-          ctx.font = 12 * vue.ratio + 'px 微软雅黑';
+          ctx.font = 12 * vue.ratio * 2 + 'px 微软雅黑';
           ctx.fillText(vue.textobj.textLine1, (90 / 750 * w_width * vue.ratio), (1234 / 750 * w_width) * vue.ratio);
 
           ctx.fillStyle='#20201f';
-          ctx.font = 'bold ' + 24 * vue.ratio + 'px 微软雅黑';
-          ctx.fillText(vue.textobj.textM, (55 / 750 * w_width * vue.ratio), (1283 / 750 * w_width) * vue.ratio);
-
-          ctx.fillStyle='#20201f';
-          ctx.font = 12 * vue.ratio + 'px 微软雅黑';
+          ctx.font = 12 * vue.ratio * 2 + 'px 微软雅黑';
           ctx.fillText(vue.textobj.textLine2, (90 / 750 * w_width * vue.ratio ), (1277 / 750 * w_width) * vue.ratio);
 
           var photo = new Image();
@@ -85,9 +88,7 @@ let app = new Vue(
             vue.circleImg(ctx, photo, (303 / 750 * w_width), (334 / 750 * w_width), (70 / 750 * w_width));
             progress += 1;
             if(progress===4){
-              var _img = Canvas2Image.convertToImage(canvas, w_width * vue.ratio, w_height * vue.ratio);
-              _img.style.width = '100%';
-              _result.appendChild(_img);
+              vue.convertToImg(canvas, _result, w_width, w_height);
             }
           };
 
@@ -98,9 +99,7 @@ let app = new Vue(
             ctx.drawImage(qrcode,(228 / 750 * w_width) * vue.ratio, (737 / 750 * w_width) * vue.ratio, (294 / 750 * w_width) * vue.ratio, (294 / 750 * w_width) * vue.ratio);
             progress += 1;
             if(progress===4){
-              var _img = Canvas2Image.convertToImage(canvas, w_width * vue.ratio, w_height * vue.ratio);
-              _img.style.width = '100%';
-              _result.appendChild(_img);
+              vue.convertToImg(canvas, _result, w_width, w_height);
             }
           };
 
@@ -111,15 +110,19 @@ let app = new Vue(
             ctx.drawImage(logo, (646 / 750 * w_width) * vue.ratio, (1222 / 750* w_width) * vue.ratio, (52 / 750 * w_width) * vue.ratio, (52 / 750 * w_width) * vue.ratio);
             progress += 1;
             if(progress===4){
-              var _img = Canvas2Image.convertToImage(canvas, w_width * vue.ratio, w_height * vue.ratio);
-              _img.style.width = '100%';
-              _result.appendChild(_img);
+              vue.convertToImg(canvas, _result, w_width, w_height);
             }
           };
 
 
         };
 
+      },
+      convertToImg(canvas, _result, w_width, w_height){
+        let vue = this;
+        let _img = Canvas2Image.convertToImage(canvas, w_width * vue.ratio, w_height * vue.ratio);
+        _img.style.width = '100%';
+        _result.appendChild(_img);
       },
       preImage(url,callback,obj){
         var img = new Image();
@@ -145,7 +148,7 @@ let app = new Vue(
         var cy = (y + r) * vue.ratio;
 
        ctx.beginPath();
-       ctx.lineWidth = 6 * vue.ratio;
+       ctx.lineWidth = 6 * vue.ratio * 2;
        ctx.strokeStyle = '#fff';
        ctx.arc(cx, cy, r * vue.ratio, 0, 2 * Math.PI);
        ctx.stroke();
