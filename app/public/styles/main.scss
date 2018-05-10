@@ -10681,3 +10681,8 @@ $foot-height: 250px;
   }
 
 }
+
+.invite-container{
+  @extend %page;
+  background-color: $color-edece6;
+}
