@@ -10685,4 +10685,16 @@ $foot-height: 250px;
 .invite-container{
   @extend %page;
   background-color: $color-edece6;
+  .btn{
+    width: 100%;
+    .inner{
+      margin: 0 auto;
+      width: calc(200/750*100%);
+      padding: calc(40/750*100%) 0;
+      .save{
+        $bg-color: $color-1d1d1d;
+        @include wei-bg-btn($color-white, $bg-color, $color-white, 40px, 40px, $font-size-t12);
+      }
+    }
+  }
 }

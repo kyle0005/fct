@@ -11,7 +11,10 @@ let app = new Vue(
       backgroundurl: config.backgroundUrl,
       logourl: config.logoUrl,
       textobj: config.textObj,
-      ratio: 0
+      ratio: 0,
+
+      showAlert: false, //显示提示组件
+      msg: config.msg, //提示的内容
     },
     methods: {
       drawPic(){
@@ -119,10 +122,11 @@ let app = new Vue(
 
       },
       convertToImg(canvas, _result, w_width, w_height){
-        let vue = this;
+        let vue = this, _btn = document.getElementById('btn');
         let _img = Canvas2Image.convertToImage(canvas, w_width * vue.ratio, w_height * vue.ratio);
         _img.style.width = '100%';
-        _result.appendChild(_img);
+        // _result.appendChild(_img);
+        _result.insertBefore(_img, _btn);
       },
       preImage(url,callback,obj){
         var img = new Image();
@@ -175,7 +179,30 @@ let app = new Vue(
           }
         }
       },
+      pop(){
+        let vue = this;
+        vue.showAlert = true;
+        vue.close_auto();
+      },
+      close(){
+        this.showAlert = false;
+      },
+      close_auto(callback, obj){
+        let vue = this;
+        setTimeout(function () {
+          vue.showAlert = false;
+          if(callback){
+            callback(obj);
+          }
 
+        }, 1500);
+
+      },
+      linkto(url){
+        if(url){
+          location.href = url;
+        }
+      },
     },
   }
 ).$mount('#invite');

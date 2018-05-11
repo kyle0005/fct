@@ -11,8 +11,13 @@
 <body>
 <div class="invite-container" id="invite" v-cloak>
   <div class="result-container" id="con_result">
-
+    <div class="btn" id="btn" >
+      <div class="inner">
+        <a href="javascript:;" @click="pop" class="save">保存图片</a>
+      </div>
+    </div>
   </div>
+  <pop v-if="showAlert" @close="close" :msg="msg"></pop>
 </div>
 <script src="public/js/mobile/vue.js"></script>
 <script src="public/js/mobile/api/index.js"></script>
@@ -34,7 +39,8 @@
       "textLine1": "仅限于使用手机号注册并通过微信授权的用户有效",
       "textLine2": "严禁恶意刷金，一经发现将取消相关奖励",
       "textM": "·"
-    }
+    },
+    'msg': '长按保存图片'
 
   }
 </script>
