@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <link rel="stylesheet" href="public/styles/main.css">
+</head>
+<body>
+<div class="invitelist-container" id="invitelist" v-cloak>
+  <section class="banner-container">
+    <img src="public/img/mobile/invite_list.png" class="banner">
+    <div class="tip-container">
+      <div class="inner">
+        <m-swipe swipeid="swipe" ref="banner" direction="vertical" :autoplay="5000">
+          <div v-for="(top, index) in tips" class="swiper-slide swiper-no-swiping" slot="swiper-con">
+            <div class="content">
+              <img src="public/img/mobile/tips_i.png"><span>{{ top }}</span>
+            </div>
+          </div>
+        </m-swipe>
+      </div>
+    </div>
+  </section>
+  <section class="content-container">
+    <div class="list-container">
+      <div class="title">
+        <div class="inner">我的邀请列表</div>
+      </div>
+      <ul class="list">
+        <li class="items">
+          <div class="c">邀请好友</div>
+          <div class="c">注册时间</div>
+          <div class="c">奖励</div>
+        </li>
+        <li class="items">
+          <div class="c">138****888</div>
+          <div class="c">06-01 10:10</div>
+          <div class="c red">已发放</div>
+        </li>
+        <li class="items">
+          <div class="c">138****888</div>
+          <div class="c">06-01 10:10</div>
+          <div class="c gray">待发放</div>
+        </li>
+        <li class="items">
+          <div class="c">138****888</div>
+          <div class="c">06-01 10:10</div>
+          <div class="c red">已发放</div>
+        </li>
+        <li class="items">
+          <div class="c">138****888</div>
+          <div class="c">06-01 10:10</div>
+          <div class="c gray">待发放</div>
+        </li>
+      </ul>
+    </div>
+    <div class="list-container">
+      <div class="title">
+        <div class="inner">活动规则</div>
+      </div>
+      <div class="rule">
+        xxxxxxxxxxxxxxxxxxxx
+      </div>
+    </div>
+  </section>
+
+</div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script src="public/js/mobile/swiper.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script type="text/x-template" id="m_swipe">
+  <div class="swiper-container" :class="swipeid">
+    <div class="swiper-wrapper">
+      <slot name="swiper-con"></slot>
+    </div>
+    <!-- 分页器 -->
+    <div :class="{'swiper-pagination':pagination}"></div>
+  </div>
+</script>
+<script>
+  var config = {
+    "tips": [
+      '133****2222获得了188元红包  06-06 12:04',
+      '134****3333获得了188元红包  06-06 12:04',
+      '135****4444获得了188元红包  06-06 12:04'
+    ]
+
+  }
+</script>
+<script src="public/js/mobile/invite_list.js"></script>
+</body>
+</html>

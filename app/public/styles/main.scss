@@ -10698,3 +10698,113 @@ $foot-height: 250px;
     }
   }
 }
+
+.invitelist-container{
+  @extend %page;
+  background-color: $color-f5f5f5;
+  .banner-container{
+    position: relative;
+    width: 100%;
+    margin-bottom: calc(52/750*100%);
+    .banner{
+      width: 100%;
+    }
+    .tip-container{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding-bottom: calc(66/750*100%);
+      .inner{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: $color-white;
+        .swiper-container {
+          width: 100%;
+          max-height: 100%;
+          .content{
+            width: calc(686/750*100%);
+            padding: 0 calc(32/750*100%);
+            line-height: 250%;
+            img{
+              width: 5%;
+              vertical-align: sub;
+              margin-right: 2.5%;
+            }
+          }
+        }
+      }
+    }
+  }
+  .content-container{
+    position: relative;
+    background-color: $color-f5f5f5;
+    .list-container{
+      position: relative;
+      margin: 0 calc(30/750*100%) calc(90/750*100%) calc(30/750*100%);
+      width: calc(690/750*100%);
+      background-color: $color-white;
+      border-radius: 4px;
+      box-shadow: 0 2px 1px 2px $color-e3e3e3;
+      .title{
+        position: absolute;
+        top: -3.5%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(360/690*100%);
+        padding-bottom: calc(82/690*100%);
+        .inner{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          background: url("../img/mobile/title_i.png") no-repeat center center;
+          background-size: 100% auto;
+          font-size: $font-size-t14;
+          line-height: 2.4;
+          color: $color-white;
+        }
+      }
+      .list{
+        width: 100%;
+        padding-top: calc(76/690*100%);
+        .items{
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
+          .c{
+            position: relative;
+            -moz-box-flex: 1.0; /* Firefox */
+            -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+            box-flex: 1.0;
+            width: calc(100%/3);
+            padding: 3.5% 0;
+            text-align: center;
+          }
+          .red{
+            color: $color-993333;
+          }
+          .gray{
+            color: $color-999;
+          }
+          &:nth-child(2n){
+            background-color: $color-ece8e9;
+          }
+        }
+      }
+      .rule{
+        padding: calc(76/690*100%) calc(36/750*100%) calc(36/750*100%) calc(36/750*100%);
+
+      }
+    }
+  }
+
+}
