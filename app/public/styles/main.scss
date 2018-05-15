@@ -2424,7 +2424,7 @@ $foot-height: 250px;
           top: 0;
           right: 5%;
           width: 25.3968%;
-          a.get-code{
+          .get-code{
             @include wei-bg-btn($color-1d1d1d, $color-white, $color-1d1d1d, 28px, 28px, $font-size-t12);
             @include fillet(false);
           }
@@ -7364,16 +7364,55 @@ $foot-height: 250px;
         background-color: $color-white;
         .up{
           margin: 3% 4% 0;
-          .pri{
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
+          span{
+            display: inline-block;
+            position: relative;
+            -moz-box-flex: 1.0; /* Firefox */
+            -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+            box-flex: 1.0;
+          }
+          .remark{
+            width: 50%;
+          }
+          .point{
+            width: 25%;
             color: $color-993333;
-            float: right;
+            text-align: center;
+          }
+          .pri{
+            width: 25%;
+            color: $color-993333;
+            text-align: center;
           }
         }
         .down{
           margin: 0 4%;
           color: $color-999;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
+          span{
+            display: inline-block;
+            position: relative;
+            -moz-box-flex: 1.0; /* Firefox */
+            -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+            box-flex: 1.0;
+          }
+          .remark{
+            width: 50%;
+          }
+          .point{
+            width: 25%;
+            text-align: center;
+          }
           .pri{
-            float: right;
+            width: 25%;
+            text-align: center;
           }
         }
       }
@@ -10752,7 +10791,7 @@ $foot-height: 250px;
       box-shadow: 0 2px 1px 2px $color-e3e3e3;
       .title{
         position: absolute;
-        top: -3.5%;
+        top: -0.7rem;
         left: 50%;
         transform: translateX(-50%);
         width: calc(360/690*100%);
@@ -10771,9 +10810,29 @@ $foot-height: 250px;
           color: $color-white;
         }
       }
-      .list{
+      .items-title{
         width: 100%;
         padding-top: calc(76/690*100%);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        .c{
+          position: relative;
+          -moz-box-flex: 1.0; /* Firefox */
+          -webkit-box-flex: 1.0; /* Safari 和 Chrome */
+          box-flex: 1.0;
+          width: calc(100%/3);
+          padding: 3.5% 0;
+          text-align: center;
+        }
+      }
+      .list{
+        width: 100%;
+        padding-bottom: calc(76/690*100%);
+        max-height: 254px;
+        //min-height: 250px;
+        overflow: scroll;
         .items{
           width: 100%;
           display: flex;
@@ -10790,20 +10849,53 @@ $foot-height: 250px;
             text-align: center;
           }
           .red{
-            color: $color-993333;
+            color: $color-c40b1b;
           }
           .gray{
             color: $color-999;
           }
-          &:nth-child(2n){
+          &:nth-child(2n-1){
             background-color: $color-ece8e9;
           }
         }
       }
-      .rule{
-        padding: calc(76/690*100%) calc(36/750*100%) calc(36/750*100%) calc(36/750*100%);
+      .rule-list{
+        padding: calc(105/690*100%) calc(36/750*100%) calc(36/750*100%) calc(36/750*100%);
+        .no{
+          float: left;
+          width: 5%;
+          line-height: $font-size-t20;
+        }
+        .con{
+          float: left;
+          width: 95%;
+          line-height: $font-size-t20;
+        }
 
       }
+      .tips{
+        padding: 0 calc(36/750*100%) calc(36/750*100%) calc(36/750*100%);
+        color: $color-c40b1b;
+        .t{
+          font-size: $font-size-t13;
+          line-height: $font-size-t13;
+          margin-bottom: 2.5%;
+        }
+        .l{
+          line-height: $font-size-t20;
+        }
+      }
+    }
+    .btn-container{
+      position: relative;
+      width: calc(480/750*100%);
+      padding: 0 calc(135/750*100%) calc(76/750*100%) calc(135/750*100%);
+      .btn{
+        $bg-color: $color-1d1d1d;
+        @include wei-bg-btn($color-white, $bg-color, $bg-color, 45px, 45px, $font-size-t13);
+        @include fillet(true);
+      }
+
     }
   }
 

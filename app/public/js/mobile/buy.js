@@ -50,7 +50,7 @@ let app = new Vue(
       loadAddress(){
         let vue = this;
         vue.address = config.address;
-        if(vue.address.id !== undefined){
+        if(vue.address && vue.address.id > 0){
           vue.hasAddress = true;
         }else {
           vue.hasAddress = false;
@@ -142,7 +142,7 @@ let app = new Vue(
             'accountAmount': vue.usedAccountAmount,
             'couponCode': _temp,
             'remark': vue.remark,
-            'addressId': vue.address.id,
+            'addressId': vue.address?vue.address.id:0,
             'orderGoodsInfo': JSON.stringify(cart_list),
             'has_terms': vue.has_terms
           };

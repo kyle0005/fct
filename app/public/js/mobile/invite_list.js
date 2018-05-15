@@ -87,6 +87,7 @@ let app = new Vue(
     },
     data: {
       tips: config.tips,
+      invitelist: config.invitelist,
       swipe_banner: '',
       showAlert: false, //显示提示组件
       msg: config.msg, //提示的内容

@@ -24,60 +24,25 @@ var app = new Vue(
 
         openid: config.openid,
         action: 'bind',
-        // subText: '绑定'
       }
     },
     methods: {
       //获取短信验证码
       getVerifyCode(){
         let vue = this;
-        if (this.rightPhoneNumber) {
-          this.computedTime = 30;
-          this.timer = setInterval(() => {
-            this.computedTime --;
-            if (this.computedTime == 0) {
-              clearInterval(this.timer)
+        if (vue.rightPhoneNumber) {
+          vue.computedTime = 60;
+          vue.timer = setInterval(function (){
+            vue.computedTime --;
+            if (vue.computedTime <= 1) {
+              clearInterval(vue.timer)
             }
           }, 1000);
           //发送短信验证码
           vue.$refs.coderef.post(apis.smsUrl, {
-            'cellphone': this.phoneNumber,
-            'action': this.action,
+            'cellphone': vue.phoneNumber,
+            'action': vue.action,
           });
-          /*jAjax({
-            type:'post',
-            url:apis.smsUrl,
-            data: {
-              'cellphone': this.phoneNumber,
-              'action': this.action,
-            },
-            timeOut:5000,
-            before:function(){
-              console.log('before');
-            },
-            success:function(data){
-              //{message:"xxx", url:"", code:200, data:""}
-              if(data){
-                data = JSON.parse(data);
-                if(parseInt(data.code) == 200){
-                  vue.msg = data.message;
-                  vue.showAlert = true;
-                  vue.close_auto();
-                }else {
-                  vue.msg = data.message;
-                  vue.showAlert = true;
-                  vue.close_auto();
-                }
-              }
-            },
-            error:function(status, statusText){
-              vue.msg = status;
-              vue.showAlert = true;
-              vue.msg = '请求失败';
-              vue.close_auto();
-            }
-          });*/
-
 
         }
         else {
@@ -114,34 +79,6 @@ var app = new Vue(
         vue.$refs.subpost.post(apis.userResource, formData.serializeForm('quickLogin'));
 
         //手机号登录
-        /*jAjax({
-          type:'post',
-          url:apis.userResource,
-          // contentType: "application/json",
-          data: formData.serializeForm('quickLogin'),
-          timeOut:5000,
-          before:function(){
-            console.log('before');
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto(vue.linkto, data.url);
-              }else {
-                vue.msg = data.message;
-                vue.showAlert = true;
-                vue.close_auto();
-              }
-            }
-
-          },
-          error:function(status, statusText){
-            console.log(statusText);
-          }
-        });*/
 
 
       },

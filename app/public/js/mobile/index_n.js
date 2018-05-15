@@ -41,16 +41,20 @@ Vue.component('m-swipe',
       }
     },
     mounted() {
-      var That = this;
+      var That = this, _page = '.swiper-pagination';
       console.log(That.paginationType);
       let _def = That.paginationType === 'custom' ? null: function (swiper, index, className) {
         return '<span class="en-pagination ' + className + '"></span>';
       };
+      if(That.pagination === false){
+        _page = false;
+      }
       this.dom = new Swiper('.' + That.swipeid, {
         //循环
         loop: That.loop,
         //分页器
-        pagination: '.swiper-pagination',
+        pagination: _page,
+        // pagination: That.pagination || '.swiper-pagination',
         //分页类型
         // paginationType: That.paginationType, //fraction,progress,bullets
         //自动播放
