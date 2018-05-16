@@ -491,10 +491,10 @@ let app = new Vue(
         if (_data.data.roleType === 1) {
           let _tmp = that.product;
           that.product = {};
-          _tmp.product.bidUserHeadPortrait = _data.data.headPortrait;
-          _tmp.product.bidUserName = _data.data.userName;
-          _tmp.product.bidStatusName = _data.data.bidStatusName ? _data.data.bidStatusName : '领先';
-          _tmp.product.bidPrice = _data.data.bidPrice;
+          _tmp.bidUserHeadPortrait = _data.data.headPortrait;
+          _tmp.bidUserName = _data.data.userName;
+          _tmp.bidStatusName = _data.data.bidStatusName ? _data.data.bidStatusName : '领先';
+          _tmp.bidPrice = _data.data.bidPrice;
           that.currentPrice = _data.data.bidPrice;
           that.product = _tmp;
 

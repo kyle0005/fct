@@ -88,11 +88,18 @@ let app = new Vue(
     data: {
       tips: config.tips,
       invitelist: config.invitelist,
+      isLogin: config.isLogin,
       swipe_banner: '',
       showAlert: false, //显示提示组件
       msg: config.msg, //提示的内容
+
+      showPop: false
     },
     methods: {
+      share(){
+        let vue = this;
+        vue.showPop = true;
+      },
       pop(){
         let vue = this;
         vue.showAlert = true;
