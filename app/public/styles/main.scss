@@ -7356,6 +7356,7 @@ $foot-height: 250px;
   background-color: $color-f5f5f5;
   ul.list{
     width: 100%;
+    background-color: $color-f5f5f5;
     padding-top: calc(20/750*100%);
     li{
       position: relative;
@@ -7369,7 +7370,8 @@ $foot-height: 250px;
         height: 100%;
         background-color: $color-white;
         .up{
-          margin: 3% 4% 0;
+          margin-top: 3%;
+          width: 100%;
           display: flex;
           justify-content: flex-start;
           align-items: center;
@@ -7382,7 +7384,8 @@ $foot-height: 250px;
             box-flex: 1.0;
           }
           .remark{
-            width: 50%;
+            width: 41%;
+            margin-left: 4%;
           }
           .point{
             width: 20%;
@@ -7390,13 +7393,14 @@ $foot-height: 250px;
             text-align: center;
           }
           .pri{
-            width: 30%;
+            width: 31%;
             color: $color-993333;
             text-align: center;
+            margin-right: 4%;
           }
         }
         .down{
-          margin: 0 4%;
+          width: 100%;
           color: $color-999;
           display: flex;
           justify-content: flex-start;
@@ -7410,14 +7414,16 @@ $foot-height: 250px;
             box-flex: 1.0;
           }
           .remark{
-            width: 50%;
+            margin-left: 4%;
+            width: 41%;
           }
           .point{
             width: 20%;
             text-align: center;
           }
           .pri{
-            width: 30%;
+            margin-right: 4%;
+            width: 31%;
             text-align: center;
           }
         }
@@ -9066,17 +9072,18 @@ $foot-height: 250px;
           font-size: $font-size-t12;
           .title{
             display: inline-block;
-            font-size: $font-size-t15;
+            font-size: $font-size-t13;
             color: #333;
           }
           .vtitle{
             display: inline-block;
-            font-size: $font-size-t14;
+            font-size: $font-size-t12;
             margin-left: 5px;
           }
           .text{
             height: 60px;
             line-height: 20px;
+            margin-top: 3px;
           }
         }
         .photo{
@@ -9093,7 +9100,7 @@ $foot-height: 250px;
           top: 50%;
           right: 4%;
           transform: translateY(-50%);
-          width: 30px;
+          width: 20px;
         }
       }
     }

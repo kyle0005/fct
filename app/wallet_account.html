@@ -13,10 +13,10 @@
   <ul class="list" v-load-more="nextPage">
     <li v-for="(item, index) in walletaccountList">
       <div class="inner">
-        <div class="up clearfix">
+        <div class="up">
           <span class="remark overText">{{ item.remark }}</span><span class="point">0</span><span class="pri">{{ item.balanceAmount }}</span>
         </div>
-        <div class="down clearfix">
+        <div class="down">
           <span class="remark overText">{{ item.createTime }}</span><span class="point">积分:0</span><span class="pri">余额:<small class="pri-mark">￥</small>{{ item.amount }}</span>
         </div>
       </div>
