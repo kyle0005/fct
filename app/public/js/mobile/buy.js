@@ -146,42 +146,13 @@ let app = new Vue(
             'orderGoodsInfo': JSON.stringify(cart_list),
             'has_terms': vue.has_terms
           };
-          vue.$refs.paypost.post(post_url, post_data);
 
-          /*jAjax({
-            type:'post',
-            url:config.pay_url,
-            data: {
-              'points': vue.usedPoint,
-              'accountAmount': vue.usedAccountAmount,
-              'couponCode': _temp,
-              'remark': vue.remark,
-              'addressId': vue.address.id,
-              'orderGoodsInfo': JSON.stringify(cart_list),
-              'has_terms': vue.has_terms
-            },
-            // data: formData.serializeForm('buyOrder'),
-            timeOut:5000,
-            before:function(){
-            },
-            success:function(data){
-              if(data){
-                data = JSON.parse(data);
-                if(parseInt(data.code) == 200){
-                  vue.msg = data.message;
-                  vue.showAlert = true;
-                  vue.close_auto(vue.linkto, data.url);
-                }else {
-                  vue.msg = data.message;
-                  vue.showAlert = true;
-                  vue.close_auto();
-                }
-              }
+          let _num = Math.round(Math.random() * 3000);
+          let paras = {
+            'delaynum': _num
+          };
+         vue.$refs.paypost.post(post_url, post_data, paras);
 
-            },
-            error:function(status, statusText){
-            }
-          });*/
         }else {
           vue.msg = '请同意并钩选《方寸堂服务协议》';
           vue.showAlert = true;

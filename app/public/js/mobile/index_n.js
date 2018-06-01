@@ -185,6 +185,7 @@ let app = new Vue(
       auctions: config.index_n.auction,
       auctions_data: config.index_n.auction.slice(1),
       artists: config.index_n.artist,
+      artists_data: config.index_n.artist.slice(1),
       recommends: config.index_n.product,
 
       tagN: config.index_n.tagNames

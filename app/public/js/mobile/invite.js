@@ -52,6 +52,7 @@ let app = new Vue(
           progress += 1;
           if(progress===4){
             vue.convertToImg(canvas, _result, w_width, w_height);
+            img = null;
           }
 
           ctx.fillStyle='#993333';
@@ -103,6 +104,7 @@ let app = new Vue(
             progress += 1;
             if(progress===4){
               vue.convertToImg(canvas, _result, w_width, w_height);
+              qrcode = null;
             }
           };
 
@@ -114,6 +116,7 @@ let app = new Vue(
             progress += 1;
             if(progress===4){
               vue.convertToImg(canvas, _result, w_width, w_height);
+              logo = null;
             }
           };
 
@@ -125,8 +128,8 @@ let app = new Vue(
         let vue = this, _btn = document.getElementById('btn');
         let _img = Canvas2Image.convertToImage(canvas, w_width * vue.ratio, w_height * vue.ratio);
         _img.style.width = '100%';
-        // _result.appendChild(_img);
         _result.insertBefore(_img, _btn);
+        canvas = null;
       },
       preImage(url,callback,obj){
         var img = new Image();

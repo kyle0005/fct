@@ -1,77 +1,32 @@
-<view class="invitelist-container">
-  <view class="banner-container">
-    <image src="https://cdn.fangcun.com/static/img/mobile/invite_list.png" mode='widthFix'  class="banner"></image>
-    <view class="tip-container">
-      <view class="inner">
-          <view class="content">
-            <image src="https://cdn.fangcun.com/static/img/mobile/tips_i.png" mode='widthFix'></image><text>xxxx获得了100元红包 12-21 12:01</text>
-          </view>
-      </view>
-    </view>
-  </view>
-  <view class="content-container">
-    <view class="list-container">
-      <view class="title">
-        <view class="inner">我的邀请列表</view>
-      </view>
-      <view class="items-title">
-        <view class="c">邀请好友</view>
-        <view class="c">注册时间</view>
-        <view class="c">奖励</view>
-      </view>
-      <view class="list">
-        <view class="items">
-          <view class="c">18321112222</view>
-          <view class="c">12-21 12:01</view>
-          <view class="c red">已发放</view>
-        </view>
-        <view class="items">
-          <view class="c">18321112222</view>
-          <view class="c">12-21 12:01</view>
-          <view class="c gray">未发放</view>
-        </view>
-      </view>
-    </view>
-    <view class="list-container">
-      <view class="title">
-        <view class="inner">活动规则</view>
-      </view>
-      <view class="rule">
-        <view class="rule-list clearfix">
-          <view class="no">1.</view>
-          <view class="con">新客注册：使用手机号码注册即可获取188元新人礼金；</view>
-          <view class="no">2.</view>
-          <view class="con">邀请好友：每邀请1位新用户成功注册的，即可获赠20元奖励金；</view>
-          <view class="no">3.</view>
-          <view class="con">奖励金额每天最高可得200元，邀请人数超过10人亦以10人计；</view>
-          <view class="no">4.</view>
-          <view class="con">奖励金额不可提现，仅可用作平台正品购买之用，奖励金额永久有效；</view>
-          <view class="no">5.</view>
-          <view class="con">奖励对象：仅限于使用手机号码注册并通过微信授权的用户有效。</view>
-        </view>
-        <view class="tips">
-          <view class="t">提示</view>
-          <view class="l">严禁恶意刷金，一经发现将取消相关奖励；</view>
-          <view class="l">本公司对以上活动细则保留最终解释权。</view>
-        </view>
-      </view>
-    </view>
-    <view class="btn-container">
-      <button class="btn">注册领红包</button>
-    </view>
-    <view class="btn-l-container">
-      <view class="inner">
-        <button class="qr">
-          <image src="https://cdn.fangcun.com/static/img/mobile/invite_qrcode.png" mode='widthFix'></image>
-        </button>
-        <view class="btn">
-          <button class="link">邀请领红包</button>
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class="share-pop">
-    <image src="https://cdn.fangcun.com/static/img/mobile/share_gift.png" mode='widthFix' class="share-icon"></image>
-    <view class="text">点击右上角分享到朋友圈</view>
-  </view>
-</view>
+<section class="artist">
+  <div class="title">守艺人 <a href="javascript:;" class="arr-link">更多 <span class="arr"></span></a></div>
+  <div class="art-list">
+    <div class="line des">
+      <div class="inner">
+        <div class="comma">
+          <img src="public/img/mobile/comma_l.png"><span class="text">30+位匠人入驻</span><img src="public/img/mobile/comma_r.png">
+        </div>
+        <div>心手相通<br>载大道与咫尺之器</div>
+      </div>
+    </div>
+    <div class="line">
+      <div class="inner">
+        <a href="javascript:;" class="link">
+          <img :src="artists[0].defaultImage" class="photo">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="others">
+    <ul class="line-list clearfix">
+      <li class="line" v-for="(item, index) in artists_data">
+        <div class="inner">
+          <a href="javascript:;" class="link">
+            <img :src="item.defaultImage" class="photo">
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</section>

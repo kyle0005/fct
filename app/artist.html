@@ -141,7 +141,7 @@
   <div class="tabs">
     <ul class="pro-list">
       <li v-for="(item, index) in workslist">
-        <div class="inner">
+        <a href="javascript:;" class="inner">
           <div class="left">
             <img :src="item.defaultImage">
           </div>
@@ -149,10 +149,10 @@
             <div class="title overText">{{ item.name }}</div>
             <div class="text overTextH2">{{ item.intro }}</div>
             <div class="price overText"><small class="pri-mark">￥</small>{{ item.price }}</div>
-            <div class="btn-container">
-              <a href="javascript:;" class="btn">我要购买</a>
-            </div>
           </div>
+        </a>
+        <div class="btn-container">
+          <a href="javascript:;" class="btn">我要购买</a>
         </div>
       </li>
     </ul>

@@ -1052,36 +1052,20 @@ Vue.component('subpost',
       },
       post(url, data, paras){
         let vue = this;
-        tools.ajaxPost(url, data, vue.success, vue.before, vue.error, paras, vue.alert);
-        /*jAjax({
-          type:'post',
-          url:url,
-          data: data,
-          timeOut:5000,
-          before:function(){
-            vue.postProcess = true;
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.$emit('succhandle',data);
-              }else {
-                vue.$emit('succhandle',data);
-              }
-            }
-            vue.postProcess = false;
-          },
-          error:function(status, statusText){
-            vue.postProcess = false;
-          }
-        });*/
+        vue.postProcess = true;
+        if(paras && paras.delaynum){    /* 如果有延迟请求参数 */
+          setTimeout(function (){
+            tools.ajaxPost(url, data, vue.success, vue.before, vue.error, paras, vue.alert);
+          }, paras.delaynum);
+        }else {
+            tools.ajaxPost(url, data, vue.success, vue.before, vue.error, paras, vue.alert);
+        }
+
 
       },
       before(){
         let vue = this;
         vue.$emit('before');
-        vue.postProcess = true;
       },
       success(data, paras){
         let vue = this;

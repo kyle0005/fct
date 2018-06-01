@@ -87,6 +87,61 @@
       </div>
     </m-swipe>
   </section>
+  <section class="newsale">
+    <div class="title">新品首发&nbsp;<a href="javascript:;" class="arr-link">更多&nbsp;<span class="arr"></span></a></div>
+    <div class="art-list">
+      <div class="line">
+        <div class="inner">
+          <div class="comma">
+            <img src="public/img/mobile/comma_l.png"><span class="text">不止不同，美壶不断刷新</span><img src="public/img/mobile/comma_r.png">
+          </div>
+          <div class="txt">每一个作品<br>都有打动你的故事</div>
+        </div>
+      </div>
+    </div>
+    <div class="others">
+      <ul class="line-list clearfix">
+        <li class="line" v-for="(item, index) in artists_data">
+          <div class="inner">
+            <a href="javascript:;" class="link">
+              <img :src="item.defaultImage" class="photo">
+              <span class="cont">
+                <span class="title overText">标题标题</span>
+                <span class="info">
+                  <span class="left overText">姓名</span>
+                  <span class="right">200cc</span>
+                </span>
+              </span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+  <section class="optimization">
+    <div class="title">为你优选 <a href="javascript:;" class="link">更多&nbsp;<span class="arr"></span></a></div>
+    <div class="content">
+      <div class="others">
+        <ul class="ul clearfix">
+          <li class="pro-item" v-for="(item, index) in auctions_data">
+            <a href="javascript:;" class="link">
+              <img :src="item.defaultImage">
+              <span class="sta">
+                <span class="item left" :class="{gray:item.status==0, red:item.status!==0}">{{ item.statusName }}</span>
+                <span class="item right">{{ item.bidCount }}次出价</span>
+              </span>
+            </a>
+            <div class="detail">
+              <div class="info">{{ item.name }}</div>
+              <div class="time">结拍时间:&nbsp;{{ item.auctionTime }}</div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </section>
   <section class="auction">
     <div class="title">拍卖<a href="javascript:;" class="link">更多&nbsp;<span class="arr"></span></a></div>
     <div class="content">
@@ -120,7 +175,40 @@
     </div>
   </section>
   <section class="artist">
-    <div class="title">守艺人</div>
+    <div class="title">守艺人&nbsp;<a href="javascript:;" class="arr-link">更多&nbsp;<span class="arr"></span></a></div>
+    <div class="art-list">
+      <div class="line des">
+        <div class="inner">
+          <div class="comma">
+            <img src="public/img/mobile/comma_l.png"><span class="text">30+位匠人入驻</span><img src="public/img/mobile/comma_r.png">
+          </div>
+          <div class="txt">心手相通<br>载大道与咫尺之器</div>
+        </div>
+      </div>
+      <div class="line">
+        <div class="inner">
+          <a href="javascript:;" class="link">
+            <img :src="artists[0].defaultImage" class="photo">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="others">
+      <ul class="line-list clearfix">
+        <li class="line" v-for="(item, index) in artists_data">
+          <div class="inner">
+            <a href="javascript:;" class="link">
+              <img :src="item.defaultImage" class="photo">
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+<!--<section class="artist">
+    <div class="title">守艺人&nbsp;<a href="javascript:;" class="arr-link">更多&nbsp;<span class="arr"></span></a></div>
     <div class="art-list">
       <div class="line des">
         <div class="inner">
@@ -139,8 +227,8 @@
       </div>
 
     </div>
-  </section>
-  <section class="recommend">
+  </section>-->
+<!--  <section class="recommend">
     <div class="title">精选推荐<a href="javascript:;" class="link">更多&nbsp;<span class="arr"></span></a></div>
     <div class="rec-list">
       <div class="line" v-for="(item, index) in recommends">
@@ -156,6 +244,27 @@
         </div>
       </div>
     </div>
+  </section>-->
+  <section class="recommend">
+    <div class="title">精选推荐</div>
+    <div class="rec-list">
+      <div class="line" v-for="(item, index) in recommends">
+        <div class="inner">
+          <a href="javascript:;" class="link">
+            <span class="img-container">
+              <img :src="item.defaultImage" class="pro-img">
+              <span class="pro-mark">
+                <small class="marks" :class="'mark-' + i" v-for="(i, index) in item.tags">{{ tagN[i] }}</small>
+              </span>
+            </span>
+            <span class="pro-title overText">{{ item.name }}</span>
+            <span class="pro-vtitle overTextH2">{{ item.subTitle }}</span>
+            <span class="pro-v">容量：<span class="v">{{ item.volumes }}cc</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <a href="javascript:;" class="arr-link">查看更多&nbsp;<span class="arr"></span></a>
   </section>
   <footer class="footer">
     <div class="inner">
@@ -163,7 +272,7 @@
         <img src="public/img/mobile/i_home_d.png"><br>首页
       </a>
       <a href="javascript:;" class="link">
-        <img src="public/img/mobile/i_service_g.png"><br>消息
+        <img src="public/img/mobile/i_service_g.png"><br>客服
       </a>
       <a href="javascript:;" class="link">
         <img src="public/img/mobile/i_account_g.png"><br>我的
@@ -267,7 +376,7 @@
 </script>
 <script>
   var config = {
-    "isADShow": true,
+    "isADShow": false,
     "preSales": [
       {
 
@@ -370,6 +479,16 @@
           "id": "",
           "name": "",
           "defaultImage": "public/img/mobile/resource/artist1.png"
+        },
+        {
+          "id": "",
+          "name": "",
+          "defaultImage": "public/img/mobile/resource/artist1.png"
+        },
+        {
+          "id": "",
+          "name": "",
+          "defaultImage": "public/img/mobile/resource/artist1.png"
         }
       ],
       "product": [
@@ -379,6 +498,8 @@
           "price": "340",
           "defaultImage": "public/img/mobile/resource/test4.png",
           "discountPrice": "",
+          "volumes": 230,
+          "subTitle": "非圆非圆非圆非圆非圆非圆非圆非圆非圆非圆非圆非圆非圆非圆非圆非圆非圆非圆",
           "tags":[0]
         },
         {
@@ -387,6 +508,8 @@
           "price": "340",
           "defaultImage": "public/img/mobile/resource/test4.png",
           "discountPrice": "",
+          "volumes": 280,
+          "subTitle": "非圆非圆",
           "tags":[0, 1]
         },
         {
@@ -395,6 +518,8 @@
           "price": "340",
           "defaultImage": "public/img/mobile/resource/test4.png",
           "discountPrice": "",
+          "volumes": 30,
+          "subTitle": "",
           "tags":[1]
         },
         {
@@ -403,6 +528,8 @@
           "price": "340",
           "defaultImage": "public/img/mobile/resource/test4.png",
           "discountPrice": "",
+          "volumes": 230,
+          "subTitle": "非圆非圆",
           "tags":[]
         },
       ],
