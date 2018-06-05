@@ -356,7 +356,51 @@ var tools = {
       windowHeight = document.body.clientHeight;
     }
     return windowHeight;
-  }
+  },
+  readImgFile: function (file) {
+    if (window.FileReader) {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      //监听文件读取结束后事件
+      reader.onload = function (e) {
+        console.log(e.target.result);     //e.target.result：base64路径地址
+        return e.target.result;
+      };
+    }
+  },
+  imgToCanvas: function (imgUrl) {
+    let ratio = window.devicePixelRatio || 1;
+    let w_width = window.innerWidth || document.documentElement.clientWidth;
+    let w_height = window.innerHeight || document.documentElement.clientHeight;
+    let canvas = null;
+    canvas = document.createElement('canvas');
+    canvas.width = w_width * ratio;
+    canvas.height = w_height * ratio;
+
+    // canvas.style.width = w_width + 'px';
+    // canvas.style.height = 970 / 750 * w_width + 'px';
+
+    let ctx = canvas.getContext('2d');
+    ctx.mozImageSmoothingEnabled = false;
+    ctx.webkitImageSmoothingEnabled = false;
+    ctx.msImageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = false;
+
+    ctx.fillStyle='#ffffff';
+    ctx.fillRect(0, 0, w_width * vue.ratio, w_height * vue.ratio);
+
+    let img = new Image();
+    img.setAttribute('crossOrigin','anonymous');
+    img.src = imgUrl;
+    img.onload = function(){
+      ctx.drawImage(img,0, 0);
+
+      let _img = Canvas2Image.convertToImage(canvas, w_width * ratio, w_height * ratio);
+      _img.style.width = '100%';
+
+    };
+  },
+
 };
 
 function base64_encode(str) {

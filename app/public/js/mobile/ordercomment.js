@@ -63,6 +63,9 @@ Vue.component('upload',
         else {
           file = event.target.files[0];
         }
+
+        // tools.readImgFile(file);
+
         var formData = new FormData();
         formData.append('action', 'head');
         formData.append('file', file);

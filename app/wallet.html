@@ -12,9 +12,9 @@
 <div class="wallet-container" id="wallet" v-cloak>
   <section class="top">
     <div class="inner">
-      <div>100<br>我的积分</div>
-      <div><small class="pri-mark">￥</small>212312312.00<br>我的余额</div>
-      <div><small class="pri-mark">￥</small>212312312.00<br>可提现额</div>
+      <div class="its"><div class="l">100</div>我的积分</div>
+      <div class="its"><div class="l"><small class="pri-mark">￥</small>212312312.00</div>我的余额</div>
+      <div class="its"><div class="l"><small class="pri-mark">￥</small>212312312.00</div>可提现额</div>
     </div>
   </section>
   <section class="nav clearfix">
@@ -25,7 +25,7 @@
   </section>
   <section class="items">
     <ul class="list">
-      <li>
+<!--      <li>
         <a href="javascript:;" class="link">
           <img src="public/img/mobile/wallet_recharge.png">
           <span class="text">
@@ -33,6 +33,12 @@
                      @success="postSuc" @error="postError" @alert="postTip"></subpost>
           </span>
 
+        </a>
+      </li>-->
+      <li>
+        <a href="javascript:;" class="link">
+          <img src="public/img/mobile/wallet_coupon.png">
+          <br>我的优惠券
         </a>
       </li>
       <li>

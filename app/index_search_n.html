@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>main</title>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="public/styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+<div class="isearchn-container" id="isearch" v-cloak>
+  <section class="search-container">
+    <div class="inner-container">
+      <div class="search-inp">
+        <div class="inner">
+          <img src="public/img/mobile/search_logo.png" class="logo">
+          <input type="search" class="search-input" placeholder="" v-model="search">
+          <a href="javascript:;" class="search-link" @click="subSearch">
+            <i class="fa fa-search"></i>
+          </a>
+        </div>
+      </div>
+      <div class="search-attrs">
+        <div class="items">
+          <head-sorts></head-sorts>
+        </div>
+        <div class="items">
+          <head-artists></head-artists>
+        </div>
+        <div class="items">
+          <head-pricesorts></head-pricesorts>
+        </div>
+        <div class="items">
+          <head-volumes></head-volumes>
+        </div>
+        <div class="items">
+          <head-top></head-top>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <div style="height: 1000px;background-color: #2db7f5"></div>
+  </section>
+</div>
+<script src="public/js/mobile/vue.js"></script>
+<script src="public/js/mobile/common/tools.js"></script>
+<script src="public/js/mobile/api/index.js"></script>
+<script>
+  var config =
+    {
+      "search":{
+        "keywrod": "",
+        "sorts": [
+          {"name": "综合排序", "value": 0},
+          {"name": "最新上架", "value": -1},
+          {"name": "人气最高", "value": 1}
+        ],
+        "artists": [
+          {"name": "xxx", "value":1},
+          {"name": "xxx", "value":1},
+          {"name": "xxx", "value":1},
+          {"name": "xxx", "value":1},
+          {"name": "xxx", "value":1},
+          {"name": "xxx", "value":1},
+          {"name": "xxx", "value":1},
+          {"name": "xxx", "value":1},
+          {"name": "xxx", "value":1},
+        ],
+        "priceSorts": [
+          {"name": "由低到高", "value": 3},
+          {"name": "由高到低", "value": 4}
+        ],
+        "volumes": [
+          {"min": 1, "max": 100}
+        ],
+        "categorys": [
+          {
+            "name":"全部",
+            "code":""
+          },
+          {
+            "name": "圆器",
+            "code": "b"
+          },
+          {
+            "name": "方器",
+            "code": "c"
+          },
+          {
+            "name": "花器",
+            "code": "d"
+          },
+          {
+            "name": "筋纹器",
+            "code": "e"
+          }
+        ]
+      },
+      //结果
+      "result": {
+        'entries': [
+          {
+            "id": 0,
+            "title": "",
+            "subTitle": "",
+            "stockCount": 100,
+            "volumes": [],
+            "defaultImage": "",
+          },
+          {
+            "id": 1,
+            "title": "",
+            "subTitle": "",
+            "stockCount": 100,
+            "volumes": [],
+            "defaultImage": "",
+          },
+          {
+            "id": 2,
+            "title": "",
+            "subTitle": "",
+            "stockCount": 100,
+            "volumes": [],
+            "defaultImage": "",
+          },
+
+        ],
+        'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 5, 'total_page': 1, 'total': 13}
+      },
+      "url": "search?keyword={keyword}&sort={sort.value | priceSort.value}author={author.value}&price_min={prices.min}&price_min={prices.max}&volume_min={volumes.min}&volume_max={volumes.max}&category_id=0"
+    }
+
+</script>
+<script type="text/x-template" id="head_sorts">
+  <div class="head-sorts">
+    <a href="javascript:;" class="link" @click="toggle()">
+      <span class="txt">综合</span>
+      <img src="public/img/mobile/arr_down.png" class="arr">
+    </a>
+    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
+      <div class="container">
+        <ul class="types">
+          <li class="types-item" v-for="(types, index) in typeList" @click="change(types.value)">
+            {{ types.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-template" id="head_artists">
+  <div class="head-artists">
+    <a href="javascript:;" class="link" @click="toggle()">
+      <span class="txt">作者</span>
+      <img src="public/img/mobile/arr_down.png" class="arr">
+    </a>
+    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
+      <div class="container">
+        <ul class="types">
+          <li class="types-item" v-for="(types, index) in typeList" @click="change(types.value)">
+            {{ types.name }}
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-template" id="head_priceSorts">
+  <div class="head-priceSorts">
+    <a href="javascript:;" class="link" @click="toggle()">
+      <span class="txt">价格</span>
+      <img src="public/img/mobile/arr_down.png" class="arr">
+    </a>
+    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
+      <div class="container">
+
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-template" id="head_volumes">
+  <div class="head-volumes">
+    <a href="javascript:;" class="link" @click="toggle()">
+      <span class="txt">容量</span>
+      <img src="public/img/mobile/arr_down.png" class="arr">
+    </a>
+    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
+      <div class="container">
+
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-template" id="head_top">
+  <div class="head-top">
+    <a href="javascript:;" class="link" @click="toggle()">
+      <i class="fa fa-bars"></i>
+    </a>
+    <div class="aside" :class="{open:open,docked:docked}" @click="toggle()">
+      <div class="container">
+        <ul class="types">
+          <li class="item" v-for="(types, index) in typeList" @click="">
+            <span>{{ types.name }}</span>
+            <i class="fa fa-angle-right"></i>
+          </li>
+        </ul>
+        <ul class="lines clearfix">
+          <li class="item">
+            <a href="javascript:;">
+              <img src="https://cdn.fangcun.com/static/img/mobile/pm_logo.png">
+              <span>拍卖</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/img/mobile/menu1.png">
+              <span>守艺师</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/img/mobile/menu2.png">
+              <span>百科</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="javascript:;">
+              <img src="public/img/mobile/menu5.png">
+              <span>品牌理念</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</script>
+<script src="public/js/mobile/index_search_n.js"></script>
+</body>
+</html>

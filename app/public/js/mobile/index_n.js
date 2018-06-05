@@ -182,6 +182,8 @@ let app = new Vue(
       swipe_presale: '',
       banners: config.index_n.adSwiper,
       preSales: config.index_n.promotion,
+      newProduct: config.index_n.newProduct,
+      preferenceProduct: config.index_n.preferenceProduct,
       auctions: config.index_n.auction,
       auctions_data: config.index_n.auction.slice(1),
       artists: config.index_n.artist,

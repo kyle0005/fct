@@ -101,15 +101,15 @@
     </div>
     <div class="others">
       <ul class="line-list clearfix">
-        <li class="line" v-for="(item, index) in artists_data">
+        <li class="line" v-for="(item, index) in newProduct">
           <div class="inner">
             <a href="javascript:;" class="link">
               <img :src="item.defaultImage" class="photo">
               <span class="cont">
-                <span class="title overText">标题标题</span>
+                <span class="title overText">{{ item.name }}</span>
                 <span class="info">
-                  <span class="left overText">姓名</span>
-                  <span class="right">200cc</span>
+                  <span class="left overText">{{ item.artistName }}</span>
+                  <span class="right">{{ item.volumes[0] }}cc</span>
                 </span>
               </span>
             </a>
@@ -124,17 +124,17 @@
     <div class="content">
       <div class="others">
         <ul class="ul clearfix">
-          <li class="pro-item" v-for="(item, index) in auctions_data">
+          <li class="pro-item" v-for="(item, index) in preferenceProduct">
             <a href="javascript:;" class="link">
               <img :src="item.defaultImage">
               <span class="sta">
-                <span class="item left" :class="{gray:item.status==0, red:item.status!==0}">{{ item.statusName }}</span>
-                <span class="item right">{{ item.bidCount }}次出价</span>
+                <!--<span class="item left" :class="{gray:item.status==0, red:item.status!==0}"></span>-->
+                <span class="item right">{{ item.volumes[0] }}cc</span>
               </span>
             </a>
             <div class="detail">
-              <div class="info">{{ item.name }}</div>
-              <div class="time">结拍时间:&nbsp;{{ item.auctionTime }}</div>
+              <div class="info">{{ item.artistName }}{{ item.name }}</div>
+              <div class="time">{{ item.subTitle }}&nbsp;</div>
             </div>
           </li>
 
@@ -377,18 +377,6 @@
 <script>
   var config = {
     "isADShow": false,
-    "preSales": [
-      {
-
-      },
-      {
-
-      },
-      {
-
-      }
-    ],
-
     "index_n": {
       "adSwiper" : [
         {
@@ -419,6 +407,98 @@
           "advanceSaleDays": 60,
           "defaultImage": "public/img/mobile/resource/test7.png",
           "singleCount": 20       //限额数量
+        }
+      ],
+      "newProduct": [
+        {
+          "id": 17,
+          "name": "测试多规格",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2018-05-25/11ac82f042964e388301be59ebae0e06.jpg!350",
+          "artistName": "夏惠清",
+          "volumes": [
+            600,
+            800
+          ]
+        },
+        {
+          "id": 16,
+          "name": "测试单规格",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2018-05-25/7d0702d4c19e4069983d0bb5b65c20e1.jpg!350",
+          "artistName": "闵聪",
+          "volumes": [
+            500
+          ]
+        },
+        {
+          "id": 15,
+          "name": "新式合盘",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2017-10-12/68e26e4894334544a6ea7023e781cefd.JPG!350",
+          "artistName": "闵聪",
+          "volumes": [
+            220
+          ]
+        }
+      ],
+      "preferenceProduct": [
+        {
+          "id": 5,
+          "name": "松鼠葡萄",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2017-12-17/f697fa7a9da0474484193fe6ce4afb70.jpg",
+          "artistName": "沈建宏",
+          "subTitle": "",
+          "volumes": [
+            480
+          ]
+        },
+        {
+          "id": 4,
+          "name": "华腴",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2017-12-17/3a6e9fa3aef54f9eb6a02231c75028fb.jpg",
+          "artistName": "马璟辉",
+          "subTitle": "铭之为物，远古思邃",
+          "volumes": [
+            340
+          ]
+        },
+        {
+          "id": 9,
+          "name": "瓜趣",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2017-10-10/eab77d4998304722811ef40ab8857b29.JPG",
+          "artistName": "马璟辉",
+          "subTitle": "青出于蓝胜于蓝",
+          "volumes": [
+            300
+          ]
+        },
+        {
+          "id": 7,
+          "name": "掇只",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2017-10-10/9d91246ea4ff4dedad8b5e512be8f788.JPG",
+          "artistName": "马璟辉",
+          "subTitle": "",
+          "volumes": [
+            190
+          ]
+        },
+        {
+          "id": 10,
+          "name": "涌泉",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2017-10-10/33645be03bb343ec917e1574d95a42f3.JPG",
+          "artistName": "陈宣华",
+          "subTitle": "",
+          "volumes": [
+            250
+          ]
+        },
+        {
+          "id": 3,
+          "name": "丰钰",
+          "defaultImage": "https://cdn.fangcun.com/upload/images/2017-10-09/a8193e716e68489c8886a42057b5434e.JPG",
+          "artistName": "张雪琴",
+          "subTitle": "",
+          "volumes": [
+            220
+          ]
         }
       ],
       "auction": [
