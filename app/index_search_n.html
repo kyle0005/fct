@@ -56,16 +56,16 @@
         <div class="sorts-pop">
           <div class="aside" :class="{open:open,docked:docked}" @click="toggle(-1)">
             <div class="container">
-              <div class="head-sorts" v-if="showPop==0">
+              <div class="head-sorts" v-if="showPop==0" @click.stop="">
                 <ul class="types">
-                  <li class="types-item" v-for="(types, index) in sorts" @click="change(types.value)">
+                  <li class="types-item" v-for="(types, index) in sorts" @click="changeS(types.value, 0, '')">
                     {{ types.name }}
                   </li>
                 </ul>
               </div>
-              <div class="head-artists" v-if="showPop==1">
+              <div class="head-artists" v-if="showPop==1" @click.stop="">
                 <ul class="types">
-                  <li class="types-item" v-for="(types, index) in artists" @click="change(types.value)">
+                  <li class="types-item" v-for="(types, index) in artists" @click="changeS(0, types.value, '')">
                     {{ types.name }}
                   </li>
                 </ul>
@@ -73,37 +73,36 @@
               <div class="head-priceSorts" v-if="showPop==2" @click.stop="">
                 <div class="inner">
                   <div class="de">
-                    <span class="txt">筛选：</span><input type="text" class="pri-inp" placeholder="最低价"><span class="mark">─</span><input type="text" class="pri-inp" placeholder="最高价">
+                    <span class="txt">筛选：</span><input type="text" class="pri-inp" placeholder="最低价" v-model="lowpri"><span class="mark">─</span><input type="text" class="pri-inp" placeholder="最高价" v-model="highpri">
                   </div>
                   <div class="so">
-                    <span class="txt">排序：</span><span class="so-pri">从低到高</span><span class="so-pri">从高到低</span>
+                    <span class="txt">排序：</span><span class="so-pri" v-for="(item, index) in priceSorts" :class="{chosen:index===pri_tab}" @click="priceSortsV(item, index)">{{ item.name }}</span>
                   </div>
                   <div class="btn-container">
-                    <a href="javascript:;" class="btn">确认</a>
+                    <a href="javascript:;" class="btn" @click="changeS(0, 0, '')">确认</a>
                   </div>
                 </div>
               </div>
               <div class="head-volumes" v-if="showPop==3" @click.stop="">
                 <div class="inner">
                   <div class="de">
-                    <span class="txt">筛选：</span><input type="text" class="pri-inp" placeholder="最小容量"><span class="mark">─</span><input type="text" class="pri-inp" placeholder="最大容量">
+                    <span class="txt">筛选：</span><input type="text" class="pri-inp" placeholder="最小容量" v-model="lowvol"><span class="mark">─</span><input type="text" class="pri-inp" placeholder="最大容量" v-model="highvol">
                   </div>
                   <div class="so clearfix">
                     <span class="txt">区域：</span>
                     <div class="choose">
-                      <span class="so-pri">100cc一下</span><span class="so-pri">100-150cc</span><span class="so-pri">100-150cc</span>
-                      <span class="so-pri">100-150cc</span><span class="so-pri">100-150cc</span><span class="so-pri">100-150cc</span>
+                      <span class="so-pri" v-for="(item, index) in volumes" :class="{chosen:index===vol_tab}" @click="volumesV(item, index)">{{ item.min === 0 ? "" : item.min }}<span v-if="item.min !== 0 && item.max !== 0">-</span>{{ item.max === 0 ? "" : item.max}}CC<span v-if="item.min === 0">以下</span><span v-if="item.max === 0">以上</span></span>
                     </div>
 
                   </div>
                   <div class="btn-container">
-                    <a href="javascript:;" class="btn">确认</a>
+                    <a href="javascript:;" class="btn" @click="changeS(0, 0, '')">确认</a>
                   </div>
                 </div>
               </div>
               <div class="head-top" v-if="showPop==4">
                 <ul class="types">
-                  <li class="item" v-for="(types, index) in categorys" @click="">
+                  <li class="item" v-for="(types, index) in categorys" @click="changeS(0, 0, types.code)">
                     <span>{{ types.name }}</span>
                     <i class="fa fa-angle-right"></i>
                   </li>
@@ -136,13 +135,33 @@
                 </ul>
               </div>
             </div>
+            <div class="cover" @click="toggle(-1)"></div>
           </div>
         </div>
       </div>
     </div>
   </section>
   <section class="content">
-
+    <ul class="list" v-load-more="nextPage" type="1" v-if="result && result.length > 0">
+      <li class="item product" v-for="(item, index) in result">
+        <a href="javascript:;" class="link">
+          <img :src="item.defaultImage" class="img">
+          <span class="con">
+            <span class="name overText">{{ item.title }}</span>
+            <span class="text overText">{{ item.subTitle }}</span>
+            <span class="volumes"><span class="volumes-b">{{ item.volumes[0] }}CC</span><span v-if="item.volumes.length>1">&nbsp;─&nbsp;</span><span class="volumes-b" v-if="item.volumes.length>1">{{ item.volumes[1] }}CC</span></span>
+            <span class="price">{{ item.stockCount > 0 ? "有货" : "无货" }}</span>
+          </span>
+        </a>
+        <div class="btn-container">
+          <a href="javascript:;" class="btn" v-if="item.stockCount>0">我要购买</a>
+          <a href="javascript:;" class="btn" v-else>我去看看</a>
+        </div>
+      </li>
+    </ul>
+    <no-data v-if="nodata" :imgurl="'public/img/mobile/no_data.png'" :text="'当前没有相关数据哟~'"></no-data>
+    <img src="public/img/mobile/img_loader_s.gif" class="list-loader" v-if="listloading">
+    <pop v-if="showAlert" :showHide="showAlert" @close="close" :msg="msg"></pop>
   </section>
 </div>
 <script src="public/js/mobile/vue.js"></script>
@@ -174,7 +193,11 @@
           {"name": "由高到低", "value": 4}
         ],
         "volumes": [
-          {"min": 1, "max": 100}
+          {"min": 0, "max": 100},
+          {"min": 200, "max": 300},
+          {"min": 400, "max": 500},
+          {"min": 600, "max": 700},
+          {"min": 800, "max": 0},
         ],
         "categorys": [
           {
@@ -204,33 +227,82 @@
         'entries': [
           {
             "id": 0,
-            "title": "",
-            "subTitle": "",
+            "title": "少时诵诗书所所所所所",
+            "subTitle": "少时诵诗书所所所所所少时诵诗书所所所所所",
             "stockCount": 100,
-            "volumes": [],
-            "defaultImage": "",
+            "volumes": [100, 200],
+            "defaultImage": "public/img/mobile/resource/pro01.png",
           },
           {
             "id": 1,
-            "title": "",
-            "subTitle": "",
+            "title": "少时诵诗书所所所所所",
+            "subTitle": "少时诵诗书所所所所所少时诵诗书所所所所所",
             "stockCount": 100,
-            "volumes": [],
-            "defaultImage": "",
+            "volumes": [100],
+            "defaultImage": "public/img/mobile/resource/pro01.png",
           },
           {
             "id": 2,
-            "title": "",
-            "subTitle": "",
+            "title": "少时诵诗书所所所所所",
+            "subTitle": "少时诵诗书所所所所所少时诵诗书所所所所所",
+            "stockCount": 0,
+            "volumes": [100, 200],
+            "defaultImage": "public/img/mobile/resource/pro01.png",
+          },
+          {
+            "id": 3,
+            "title": "少时诵诗书所所所所所",
+            "subTitle": "少时诵诗书所所所所所少时诵诗书所所所所所",
             "stockCount": 100,
-            "volumes": [],
-            "defaultImage": "",
+            "volumes": [100, 200],
+            "defaultImage": "public/img/mobile/resource/pro01.png",
+          },
+          {
+            "id": 4,
+            "title": "少时诵诗书所所所所所",
+            "subTitle": "少时诵诗书所所所所所少时诵诗书所所所所所",
+            "stockCount": 100,
+            "volumes": [100],
+            "defaultImage": "public/img/mobile/resource/pro01.png",
+          },
+          {
+            "id": 5,
+            "title": "少时诵诗书所所所所所",
+            "subTitle": "少时诵诗书所所所所所少时诵诗书所所所所所",
+            "stockCount": 0,
+            "volumes": [100, 200],
+            "defaultImage": "public/img/mobile/resource/pro01.png",
+          },
+          {
+            "id": 6,
+            "title": "少时诵诗书所所所所所",
+            "subTitle": "少时诵诗书所所所所所少时诵诗书所所所所所",
+            "stockCount": 100,
+            "volumes": [100, 200],
+            "defaultImage": "public/img/mobile/resource/pro01.png",
+          },
+          {
+            "id": 7,
+            "title": "少时诵诗书所所所所所",
+            "subTitle": "少时诵诗书所所所所所少时诵诗书所所所所所",
+            "stockCount": 100,
+            "volumes": [100],
+            "defaultImage": "public/img/mobile/resource/pro01.png",
+          },
+          {
+            "id": 8,
+            "title": "少时诵诗书所所所所所",
+            "subTitle": "少时诵诗书所所所所所少时诵诗书所所所所所",
+            "stockCount": 0,
+            "volumes": [100, 200],
+            "defaultImage": "public/img/mobile/resource/pro01.png",
           },
 
         ],
         'pager': {'prev': 0, 'current': 1, 'next': 1, 'page_size': 5, 'total_page': 1, 'total': 13}
       },
-      "url": "search?keyword={keyword}&sort={sort.value | priceSort.value}author={author.value}&price_min={prices.min}&price_min={prices.max}&volume_min={volumes.min}&volume_max={volumes.max}&category_id=0"
+      /*"url": "search?keyword={keyword}&sort={sort.value | priceSort.value}author={author.value}&price_min={prices.min}&price_min={prices.max}&volume_min={volumes.min}&volume_max={volumes.max}&category_id=0",*/
+      "url": "http://localhost:3000/search"
     }
 </script>
 <script src="public/js/mobile/index_search_n.js"></script>

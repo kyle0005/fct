@@ -285,6 +285,88 @@ gulp.task('serve', () => {
       data: slides
     });
   });
+  server.get('/search', (req, res) => {
+    //得到键值对
+    var arg1=url.parse(req.url,true).query;
+    //打印键值对中的值
+    console.log(arg1.name);
+    res.json({
+      'code': 200,
+      'message': '修改成功',
+      'url': null,
+      'data': {
+        'entries': [
+          {
+            'id': 0,
+            'title': '0000000少时诵诗书所所所所所',
+            'subTitle': '少时诵诗书所所所所所少时诵诗书所所所所所',
+            'stockCount': 100,
+            'volumes': [100, 200],
+            'defaultImage': 'public/img/mobile/resource/pro01.png',
+          },
+          {
+            'id': 1,
+            'title': '11111111少时诵诗书所所所所所',
+            'subTitle': '少时诵诗书所所所所所少时诵诗书所所所所所',
+            'stockCount': 100,
+            'volumes': [100, 200],
+            'defaultImage': 'public/img/mobile/resource/pro01.png',
+          },
+          {
+            'id': 2,
+            'title': '222222222222少时诵诗书所所所所所',
+            'subTitle': '少时诵诗书所所所所所少时诵诗书所所所所所',
+            'stockCount': 100,
+            'volumes': [100, 200],
+            'defaultImage': 'public/img/mobile/resource/pro01.png',
+          },
+          {
+            'id': 3,
+            'title': '3333333333少时诵诗书所所所所所',
+            'subTitle': '少时诵诗书所所所所所少时诵诗书所所所所所',
+            'stockCount': 100,
+            'volumes': [100, 200],
+            'defaultImage': 'public/img/mobile/resource/pro01.png',
+          },
+          {
+            'id': 4,
+            'title': '4444444444少时诵诗书所所所所所',
+            'subTitle': '少时诵诗书所所所所所少时诵诗书所所所所所',
+            'stockCount': 100,
+            'volumes': [100, 200],
+            'defaultImage': 'public/img/mobile/resource/pro01.png',
+          },
+          {
+            'id': 5,
+            'title': '5555555555555少时诵诗书所所所所所',
+            'subTitle': '少时诵诗书所所所所所少时诵诗书所所所所所',
+            'stockCount': 100,
+            'volumes': [100, 200],
+            'defaultImage': 'public/img/mobile/resource/pro01.png',
+          },
+          {
+            'id': 6,
+            'title': '6666666666少时诵诗书所所所所所',
+            'subTitle': '少时诵诗书所所所所所少时诵诗书所所所所所',
+            'stockCount': 100,
+            'volumes': [100, 200],
+            'defaultImage': 'public/img/mobile/resource/pro01.png',
+          },
+          {
+            'id': 7,
+            'title': '77777777777少时诵诗书所所所所所',
+            'subTitle': '少时诵诗书所所所所所少时诵诗书所所所所所',
+            'stockCount': 100,
+            'volumes': [100, 200],
+            'defaultImage': 'public/img/mobile/resource/pro01.png',
+          },
+
+        ],
+        'pager': {'prev': 0, 'current': 1, 'next': 3, 'page_size': 20, 'total_page': 1, 'total': 13}
+      }
+
+    });
+  });
   server.get('/orderlist', (req, res) => {
     //得到键值对
     var arg1=url.parse(req.url,true).query;
