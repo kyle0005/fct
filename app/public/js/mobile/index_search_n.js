@@ -25,7 +25,7 @@ let app = new Vue(
       highvol: 0,
 
       showTop: false,
-      search: config.search.keyword,
+      search: config.search.keyword || '',
       result: [],
       pager: config.result.pager,
 
@@ -34,8 +34,14 @@ let app = new Vue(
       artists_code: 0,
       cate_code: '',
 
-      pri_tab: 0,
-      vol_tab: 0,
+      sort_tab: -1,
+      art_tab: -1,
+      pri_tab: -1,
+      vol_tab: -1,
+      cat_tab: -1,
+
+      pri_cache_tab: -1,
+      vol_cache_tab: -1,
 
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
@@ -61,33 +67,38 @@ let app = new Vue(
     methods: {
       toggle(num){
         let vue = this;
-        if(num !== vue.showPop){
+        if(num === -1){
+          /* 关闭窗口 */
           vue.open = false;
           vue.docked = false;
-          vue.showPop = num;
-        }
-        vue.$nextTick(function () {
-          // DOM 更新后回调
+
+          vue.pri_cache_tab = vue.pri_tab;
+          vue.vol_cache_tab = vue.vol_tab;
+        }else {
+          if(num !== vue.showPop){
+            vue.open = false;
+            vue.docked = false;
+            vue.showPop = num;
+          }
           setTimeout(function () {
             vue.docked = !vue.docked;
             vue.open = !vue.open;
-          },50)
-
-        });
-
+          },50);
+        }
 
       },
       changeS(sorts_code, artists_code, cate_code){
         let vue = this;
-        if(sorts_code !== 0){
+        if(sorts_code !== -10){
           vue.sorts_code = sorts_code;
         }
-        if(artists_code !== 0){
+        if(artists_code !== -10){
           vue.artists_code = artists_code;
         }
-        if(cate_code !== ''){
+        if(cate_code !== null){
           vue.cate_code = cate_code;
         }
+
         let _u = vue._url + '&sort=' + (vue.priV|vue.sorts_code)
           + '&price_min=' + vue.lowpri + '&price_max=' + vue.highpri
           + '&author=' + vue.artists_code
@@ -96,42 +107,49 @@ let app = new Vue(
         console.log(_u);
         tools.ajaxGet(_u, vue.searchSuc, vue.getBefore);
       },
-      changeSorts(sorts_code) {
+      sortsV(item, n){
         let vue = this;
-        vue._url += '&sort=' + sorts_code;
-        tools.ajaxGet(vue._url, vue.searchSuc, vue.getBefore);
+        vue.sort_tab = n;
+        vue.changeS(item.value, -10, null)
       },
-      changeArtists(artists_code) {
+      artistsV(item, n){
         let vue = this;
-        vue._url += '&author=' + artists_code;
-        tools.ajaxGet(vue._url, vue.searchSuc, vue.getBefore);
+        vue.art_tab = n;
+        vue.changeS(-10, item.value, null)
       },
-      priceSortsV(item, n){
+      priceSortsV(n){
         let vue = this;
-        vue.priV = item.value;
-        vue.pri_tab = n;
+        vue.pri_cache_tab = n;
       },
-      changePriceSorts() {
+      priceSortsVOK(){
         let vue = this;
-        vue._url += '&sort=' + vue.priV +  '&price_min=' + vue.lowpri + '&price_max' + vue.highpri;
-        tools.ajaxGet(vue._url, vue.searchSuc, vue.getBefore);
+        if(vue.priceSorts[vue.pri_cache_tab] && vue.priceSorts[vue.pri_cache_tab].value){
+          vue.priV = vue.priceSorts[vue.pri_cache_tab].value;
+        }
+        vue.pri_tab = vue.pri_cache_tab;
+        vue.changeS(-10, -10, null);
       },
-      volumesV(item, n){
+      volumesV(n){
         let vue = this;
-        vue.lowvol = item.min;
-        vue.highvol = item.max;
-        vue.vol_tab = n;
+        vue.vol_cache_tab = n;
       },
-      changeVolumes() {
+      volumesVOK(){
         let vue = this;
-        vue._url += '&volume_min=' + vue.lowvol + '&volume_max' + vue.highvol;
-        tools.ajaxGet(vue._url, vue.searchSuc, vue.getBefore);
+        if(vue.volumes[vue.vol_cache_tab] && vue.volumes[vue.vol_cache_tab].min && vue.lowvol < 1){
+          vue.lowvol = vue.volumes[vue.vol_cache_tab].min;
+        }
+        if(vue.volumes[vue.vol_cache_tab] && vue.volumes[vue.vol_cache_tab].max && vue.highvol < 1){
+          vue.highvol = vue.volumes[vue.vol_cache_tab].max;
+        }
+        vue.vol_tab = vue.vol_cache_tab;
+        vue.changeS(-10, -10, null);
       },
-      changeCate(cate_code) {
+      categorysV(item, n){
         let vue = this;
-        vue._url += '&category_id=' + cate_code;
-        tools.ajaxGet(vue._url, vue.searchSuc, vue.getBefore);
+        vue.cat_tab = n;
+        vue.changeS(-10, -10, item.code);
       },
+
       initData(){
         let vue = this;
         vue._url = config.url + '?keyword=' + vue.search;
@@ -170,17 +188,18 @@ let app = new Vue(
         let vue = this;
         vue.isPage ? vue.pagerloading = true : vue.listloading = true;
       },
-
       subSearch(){
         let vue = this;
         vue.nodata = false;
         if(vue.search && vue.search !== ''){
           vue._url = config.url + '?keyword=' + vue.search;
           tools.ajaxGet(vue._url, vue.searchSuc, vue.getBefore);
+        }else {
+          vue._url = config.url + '?keyword=' + config.search.keyword;
+          tools.ajaxGet(vue._url, vue.searchSuc, vue.getBefore);
         }
 
       },
-
       searchSuc(data){
         let vue = this;
         vue.result = [];
