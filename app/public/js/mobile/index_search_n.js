@@ -195,7 +195,11 @@ let app = new Vue(
           vue._url = config.url + '?keyword=' + vue.search;
           tools.ajaxGet(vue._url, vue.searchSuc, vue.getBefore);
         }else {
-          vue._url = config.url + '?keyword=' + config.search.keyword;
+          let _key = config.search.keyword;
+          if(_key == undefined){
+            _key = '';
+          }
+          vue._url = config.url + '?keyword=' + _key;
           tools.ajaxGet(vue._url, vue.searchSuc, vue.getBefore);
         }
 
