@@ -77,8 +77,8 @@
               <div class="head-priceSorts" v-if="showPop==2" @click.stop="">
                 <div class="inner">
                   <div class="de">
-                    <span class="txt">筛选：</span><input type="text" class="pri-inp" placeholder="最低价" v-model="lowpri"><span
-                    class="mark">─</span><input type="text" class="pri-inp" placeholder="最高价" v-model="highpri">
+                    <span class="txt">筛选：</span><input type="text" class="pri-inp" placeholder="最低价" v-model="lowpri_cache"><span
+                    class="mark">─</span><input type="text" class="pri-inp" placeholder="最高价" v-model="highpri_cache">
                   </div>
                   <div class="so">
                     <span class="txt">排序：</span><span class="so-pri"
@@ -94,8 +94,8 @@
               <div class="head-volumes" v-if="showPop==3" @click.stop="">
                 <div class="inner">
                   <div class="de">
-                    <span class="txt">筛选：</span><input type="text" class="pri-inp" placeholder="最小容量" v-model="lowvol"><span
-                    class="mark">─</span><input type="text" class="pri-inp" placeholder="最大容量" v-model="highvol">
+                    <span class="txt">筛选：</span><input type="text" class="pri-inp" placeholder="最小容量" v-model="lowvol_cache"><span
+                    class="mark">─</span><input type="text" class="pri-inp" placeholder="最大容量" v-model="highvol_cache">
                   </div>
                   <div class="so clearfix">
                     <span class="txt">区域：</span>
@@ -232,6 +232,17 @@
             "code": "e"
           }
         ]
+      },
+      "filter": {
+        "keyword": "",
+        "category_id": "",
+        "artist_id": 0,
+        "volume_min": 0,
+        "volume_max": 0,
+        "price_min": 0,
+        "price_max": 0,
+        "sort": "-1",
+        "page_index": 1
       },
       //结果
       "result": {

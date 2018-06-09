@@ -1804,11 +1804,17 @@
                 .types{
                   width: 100%;
                   .types-item{
+                    position: relative;
                     width: calc(100% - 2px);
                     font-size: $font-size-t13;
                     line-height: $font-size-t26;
-                    border: 1px solid $color-dcdcdc;
+                    border-left: 1px solid $color-dcdcdc;
+                    border-right: 1px solid $color-dcdcdc;
+                    border-top: 1px solid $color-dcdcdc;
                     text-align: center;
+                    &:last-child{
+                      border-bottom: 1px solid $color-dcdcdc;
+                    }
                     &.chosen{
                       border: 1px solid $color-993333;
                       background: url("../img/mobile/chosen.png") no-repeat right bottom;
@@ -2027,11 +2033,6 @@
                   }
                 }
               }
-
-              .chosen{
-
-              }
-
 
             }
             .cover {
@@ -3911,9 +3912,11 @@ $foot-height: 250px;
         .price{
           margin-left: 4%;
           padding-bottom: 1%;
+          font-size: $font-size-t15;
+          color: $color-993333;
           a{
-            font-size: $font-size-t15;
-            color: $color-993333;
+            font-size: $font-size-t16;
+            color: $color-990000;
           }
           .del-price{
             color: $color-999;

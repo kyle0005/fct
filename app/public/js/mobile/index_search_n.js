@@ -8,6 +8,7 @@ let app = new Vue(
       }, false)
     },
     data: {
+      filter: config.filter,
       open: false,
       docked: false,
       showPop: 0,
@@ -19,10 +20,14 @@ let app = new Vue(
 
       lowpri: 0,
       highpri: 0,
+      lowpri_cache: 0,
+      highpri_cache: 0,
       priV: null,
 
       lowvol: 0,
       highvol: 0,
+      lowvol_cache: 0,
+      highvol_cache: 0,
 
       showTop: false,
       search: config.search.keyword || '',
@@ -34,7 +39,7 @@ let app = new Vue(
       artists_code: 0,
       cate_code: '',
 
-      sort_tab: -1,
+      sort_tab: 0,
       art_tab: -1,
       pri_tab: -1,
       vol_tab: -1,
@@ -42,6 +47,9 @@ let app = new Vue(
 
       pri_cache_tab: -1,
       vol_cache_tab: -1,
+
+      tmp_vol_min_obj:{},
+      tmp_vol_max_obj:{},
 
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
@@ -62,7 +70,39 @@ let app = new Vue(
             this.nodata = true;
           }
         }
-      }
+      },
+      lowvol_cache: function (val, oldVal) {
+        let _this = this;
+        _this.tmp_vol_min_obj = {};
+        _this.volumes.forEach(function (item, index) {
+          if(val == item.min){
+            _this.tmp_vol_min_obj = item;
+            _this.tmp_vol_min_obj.index = index;
+          }
+        });
+        if(_this.tmp_vol_min_obj.min == _this.tmp_vol_max_obj.min
+        && _this.tmp_vol_min_obj.max == _this.tmp_vol_max_obj.max){
+          _this.vol_cache_tab = _this.tmp_vol_min_obj.index;
+        }else {
+          _this.vol_cache_tab = -1;
+        }
+      },
+      highvol_cache: function (val, oldVal) {
+        let _this = this;
+        _this.tmp_vol_max_obj = {};
+        _this.volumes.forEach(function (item, index) {
+          if(val == item.max){
+            _this.tmp_vol_max_obj = item;
+            _this.tmp_vol_max_obj.index = index;
+          }
+        });
+        if(_this.tmp_vol_min_obj.min == _this.tmp_vol_max_obj.min
+          && _this.tmp_vol_min_obj.max == _this.tmp_vol_max_obj.max){
+          _this.vol_cache_tab = _this.tmp_vol_max_obj.index;
+        }else {
+          _this.vol_cache_tab = -1;
+        }
+      },
     },
     methods: {
       toggle(num){
@@ -71,6 +111,12 @@ let app = new Vue(
           /* 关闭窗口 */
           vue.open = false;
           vue.docked = false;
+
+          vue.lowpri_cache = vue.lowpri;
+          vue.highpri_cache = vue.highpri;
+
+          vue.lowvol_cache = vue.lowvol;
+          vue.highvol_cache = vue.highvol;
 
           vue.pri_cache_tab = vue.pri_tab;
           vue.vol_cache_tab = vue.vol_tab;
@@ -110,37 +156,63 @@ let app = new Vue(
       sortsV(item, n){
         let vue = this;
         vue.sort_tab = n;
-        vue.changeS(item.value, -10, null)
+        vue.priV = null;
+        vue.changeS(item.value, -10, null);
       },
       artistsV(item, n){
         let vue = this;
-        vue.art_tab = n;
-        vue.changeS(-10, item.value, null)
+        if(n == vue.art_tab){
+          /* 点击取消 */
+          vue.art_tab = -1;
+          vue.changeS(-10, 0, null)
+        }else {
+          vue.art_tab = n;
+          vue.changeS(-10, item.value, null)
+        }
       },
       priceSortsV(n){
         let vue = this;
-        vue.pri_cache_tab = n;
+        if(n == vue.pri_cache_tab){
+          /* 点击取消 */
+          vue.pri_cache_tab = -1;
+        }else {
+          vue.pri_cache_tab = n;
+        }
       },
       priceSortsVOK(){
         let vue = this;
         if(vue.priceSorts[vue.pri_cache_tab] && vue.priceSorts[vue.pri_cache_tab].value){
           vue.priV = vue.priceSorts[vue.pri_cache_tab].value;
+          vue.sort_tab = -1;
         }
+        if(vue.pri_cache_tab == -1){
+          vue.priV = null;
+        }
+        vue.lowpri = vue.lowpri_cache;
+        vue.highpri = vue.highpri_cache;
+
         vue.pri_tab = vue.pri_cache_tab;
         vue.changeS(-10, -10, null);
       },
       volumesV(n){
         let vue = this;
-        vue.vol_cache_tab = n;
+        if(n == vue.vol_cache_tab){
+          /* 点击取消 */
+          vue.vol_cache_tab = -1;
+          vue.lowvol_cache = 0;
+          vue.highvol_cache = 0;
+        }else {
+          vue.vol_cache_tab = n;
+          vue.lowvol_cache = vue.volumes[vue.vol_cache_tab].min;
+          vue.highvol_cache = vue.volumes[vue.vol_cache_tab].max;
+        }
+
       },
       volumesVOK(){
         let vue = this;
-        if(vue.volumes[vue.vol_cache_tab] && vue.volumes[vue.vol_cache_tab].min && vue.lowvol < 1){
-          vue.lowvol = vue.volumes[vue.vol_cache_tab].min;
-        }
-        if(vue.volumes[vue.vol_cache_tab] && vue.volumes[vue.vol_cache_tab].max && vue.highvol < 1){
-          vue.highvol = vue.volumes[vue.vol_cache_tab].max;
-        }
+        vue.lowvol = vue.lowvol_cache;
+        vue.highvol = vue.highvol_cache;
+
         vue.vol_tab = vue.vol_cache_tab;
         vue.changeS(-10, -10, null);
       },
@@ -156,6 +228,38 @@ let app = new Vue(
         vue.result = config.result.entries;
         vue.pager = config.result.pager;
         vue.listloading = false;
+
+        if(vue.filter){
+          vue.search = vue.filter.keyword;
+          vue.cate_code = vue.filter.category_id;
+          vue.artists_code = vue.filter.artist_id;
+
+          vue.lowvol = vue.filter.volume_min;
+          vue.highvol = vue.filter.volume_max;
+          vue.lowvol_cache = vue.filter.volume_min;
+          vue.highvol_cache = vue.filter.volume_max;
+
+          vue.lowpri = vue.filter.price_min;
+          vue.highpri = vue.filter.price_max;
+          vue.lowpri_cache = vue.filter.price_min;
+          vue.highpri_cache = vue.filter.price_max;
+
+          vue.sorts_code = vue.filter.sort;
+          if(vue.filter.sort > 2){
+            vue.priceSorts.forEach(function (item, index) {
+              if(vue.filter.sort == item.value){
+                vue.pri_tab = index;
+              }
+            });
+          }else {
+            vue.sorts.forEach(function (item, index) {
+              if(vue.filter.sort == item.value){
+                vue.sort_tab = index;
+              }
+            });
+          }
+          // vue.search = vue.filter.page_index;
+        }
       },
       nextPage() {
         let vue = this;
