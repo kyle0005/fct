@@ -1,0 +1,169 @@
+.share-container .top .inner .item:first-child:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 2px;
+  height: 26rpx;
+  background-color: #dcdcdc;
+}
+.share-container .top .inner .sort {
+  width: calc(145/750*100%);
+  padding: 0 2% 0 4%;
+}
+.share-container .top .inner .item .link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+.share-container .top .inner .item .link .txt {
+  position: absolute;
+  left: 12%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  display: block;
+  width: 60%;
+  text-align: center;
+  font-size: 28rpx;
+}
+.share-container .top .inner .item .link .arr {
+  position: absolute;
+  left: 72%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 12%;
+}
+.share-container .top .inner .category {
+  width: calc(145/750*100%);
+  padding: 0 4% 0 2%;
+}
+.share-container .top .inner .search {
+  position: relative;
+  width: calc(340/750*100%);
+  padding-right: 4%;
+}
+.share-container .top .inner .search .search-link {
+  position: absolute;
+  top: 50%;
+  left: 3%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: #666;
+}
+.share-container .top .inner .search input.search-input {
+  width: 100%;
+  border: none;
+  background-color: #dcdcdc;
+  border-radius: 4px;
+  height: 42rpx;
+  line-height: 42rpx;
+  text-indent: 13%;
+}
+
+.share-container .top .inner .sorts-pop {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+}
+.share-container .top .inner .sorts-pop .aside {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 100%;
+  bottom: 0;
+  visibility: hidden;
+}
+.share-container .top .inner .sorts-pop .aside.docked {
+  visibility: visible;
+}
+.share-container .top .inner .sorts-pop .aside.open .container {
+  -webkit-transform: translate(0);
+  transform: translate(0);
+}
+
+.share-container .top .inner .sorts-pop .aside .container {
+  position: absolute;
+  z-index: 11;
+  width: 100%;
+  overflow: auto;
+  background: transparent;
+  -webkit-transform: translate(0, -100%);
+  transform: translate(0, -100%);
+  transition: -webkit-transform 0.01s ease;
+  transition: transform 0.01s ease, -webkit-transform 0.01s ease;
+  -webkit-overflow-scrolling: touch;
+}
+.share-container .top .inner .sorts-pop .aside .container .head-sorts {
+  margin: 0 0 0 calc(4/750*100%);
+  width: calc(160/750*100%);
+  background-color: #fff;
+}
+.share-container .top .inner .sorts-pop .aside .container .head-sorts .types {
+  width: 100%;
+}
+.share-container .top .inner .sorts-pop .aside .container .head-sorts .types .types-item {
+  position: relative;
+  width: calc(100% - 2px);
+  font-size: 28rpx;
+  line-height: 56rpx;
+  border-left: 1px solid #dcdcdc;
+  border-right: 1px solid #dcdcdc;
+  border-top: 1px solid #dcdcdc;
+  text-align: center;
+}
+.share-container .top .inner .sorts-pop .aside .container .head-sorts .types .types-item.chosen {
+  border: 1px solid #993333;
+  background: url(https://cdn.fangcun.com/static/img/mobile/chosen.png) no-repeat right bottom;
+  background-size: 25%;
+}
+.share-container .top .inner .sorts-pop .aside .container .head-artists {
+  margin: 1px 0 0 0;
+  width: 100%;
+  background-color: #fff;
+}
+.share-container .top .inner .sorts-pop .aside .container .head-artists .types {
+  padding: calc(34/750*100%) 0;
+  width: 100%;
+}
+.share-container .top .inner .sorts-pop .aside .container .head-artists .types .types-item {
+  display: inline-block;
+  width: calc(160/750*100% - 2px);
+  margin-left: calc(20/750*100%);
+  margin-bottom: calc(24/750*100%);
+  font-size: 28rpx;
+  line-height: 56rpx;
+  border: 1px solid #dcdcdc;
+  text-align: center;
+}
+.share-container .top .inner .sorts-pop .aside .container .head-artists .types .types-item:nth-child(4n+1) {
+  margin-left: calc(25/750*100%);
+}
+.share-container .top .inner .sorts-pop .aside .container .head-artists .types .types-item.chosen {
+  border: 1px solid #993333;
+  background: url(https://cdn.fangcun.com/static/img/mobile/chosen.png) no-repeat right bottom;
+  background-size: 25%;
+}
+.share-container .top .inner .sorts-pop .aside .cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: none;
+  background: transparent;
+  transition: opacity 0.01s ease;
+}

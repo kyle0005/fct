@@ -98,15 +98,71 @@ let app = new Vue(
         ctx.fillStyle='#333';
 
         ctx.font = 16 * vue.ratio * 2 + 'px 微软雅黑';
-        ctx.fillText(vue.imgObj.name, _left, (w_width + (70 / 750 * w_width)) * vue.ratio * 2);
+        ctx.fillText(vue.imgObj.artistName + '《' + vue.imgObj.name + '》', _left, (w_width + (70 / 750 * w_width)) * vue.ratio * 2);
 
+        ctx.fillStyle='#d8d8d8';
+        ctx.fillRect(_left, (w_width + (110 / 750 * w_width)) * vue.ratio * 2,
+          (120 / 750 * w_width) * vue.ratio * 2, (48 / 750 * w_width) * vue.ratio * 2);
         ctx.fillStyle='#666';
         ctx.font = 15 * vue.ratio * 2 + 'px 微软雅黑';
-        ctx.fillText(vue.imgObj.artistName, _left, (w_width + (120 / 750 * w_width)) * vue.ratio * 2);
+        ctx.textAlign = 'center';
+        ctx.fillText(vue.imgObj.volumes[0] + 'CC',
+          _left + (60 / 750 * w_width) * vue.ratio * 2,
+          (w_width + (146 / 750 * w_width)) * vue.ratio * 2);
 
-        ctx.fillStyle='#993333';
-        ctx.font = 20 * vue.ratio * 2 + 'px 微软雅黑';
-        ctx.fillText(vue.imgObj.price, _left, (w_width + (180 / 750 * w_width)) * vue.ratio * 2);
+        if(vue.imgObj.volumes[1]){
+          ctx.fillStyle='#d8d8d8';
+          ctx.fillRect((30 / 750 * w_width) * vue.ratio * 2 + _left * 2 + (120 / 750 * w_width) * vue.ratio * 2, (w_width + (110 / 750 * w_width)) * vue.ratio * 2,
+            (120 / 750 * w_width) * vue.ratio * 2, (48 / 750 * w_width) * vue.ratio * 2);
+          ctx.fillStyle='#666';
+          ctx.font = 15 * vue.ratio * 2 + 'px 微软雅黑';
+
+          ctx.fillText('─',
+            _left + (120 / 750 * w_width) * vue.ratio * 2 + (30 / 750 * w_width) * vue.ratio * 2,
+            (w_width + (146 / 750 * w_width)) * vue.ratio * 2);
+
+          ctx.textAlign = 'center';
+          ctx.fillText(vue.imgObj.volumes[1] + 'CC',
+            (30 / 750 * w_width) * vue.ratio * 2 + _left * 2 + (120 / 750 * w_width) * vue.ratio * 2 + (60 / 750 * w_width) * vue.ratio * 2,
+            (w_width + (146 / 750 * w_width)) * vue.ratio * 2);
+        }
+
+        var tips = new Image();
+        tips.setAttribute('crossOrigin','anonymous');
+        tips.src = config.tipsImg;
+        tips.onload = function(){
+          ctx.drawImage(tips,
+            _left,
+            (w_width + (175 / 750 * w_width)) * vue.ratio * 2,
+            (27 / 750 * w_width) * vue.ratio * 2,
+            (27 / 750 * w_width) * vue.ratio * 2
+          );
+          ctx.drawImage(tips,
+            _left + (150 / 750 * w_width) * vue.ratio * 2,
+            (w_width + (175 / 750 * w_width)) * vue.ratio * 2,
+            (27 / 750 * w_width) * vue.ratio * 2,
+            (27 / 750 * w_width) * vue.ratio * 2
+          );
+          ctx.drawImage(tips,
+            _left + (300 / 750 * w_width) * vue.ratio * 2,
+            (w_width + (175 / 750 * w_width)) * vue.ratio * 2,
+            (27 / 750 * w_width) * vue.ratio * 2,
+            (27 / 750 * w_width) * vue.ratio * 2
+          );
+          progress += 1;
+          if(progress===4){
+            var _img = Canvas2Image.convertToImage(canvas, w_width * vue.ratio, (970 / 750 * w_width) * vue.ratio);
+            _img.style.width = '100%';
+            _result.insertBefore(_img, _btn);
+          }
+        };
+
+        ctx.fillStyle='#999';
+        ctx.font = 12 * vue.ratio * 2 + 'px 微软雅黑';
+        ctx.textAlign = 'left';
+        ctx.fillText(config.tips[0], _left + (35 / 750 * w_width) * vue.ratio * 2, (w_width + (196 / 750 * w_width)) * vue.ratio * 2);
+        ctx.fillText(config.tips[1], _left + (185 / 750 * w_width) * vue.ratio * 2, (w_width + (196 / 750 * w_width)) * vue.ratio * 2);
+        ctx.fillText(config.tips[2], _left + (335 / 750 * w_width) * vue.ratio * 2, (w_width + (196 / 750 * w_width)) * vue.ratio * 2);
 
         var progress = 0;
 
@@ -116,19 +172,65 @@ let app = new Vue(
         img.onload = function(){
           ctx.drawImage(img,0, 0, w_width * vue.ratio * 2, img.height / img.width * w_width * vue.ratio * 2);
           progress += 1;
-          if(progress===3){
+          if(progress===4){
             var _img = Canvas2Image.convertToImage(canvas, w_width * vue.ratio, (970 / 750 * w_width) * vue.ratio);
             _img.style.width = '100%';
             _result.insertBefore(_img, _btn);
           }
+          ctx.lineWidth = 1 * vue.ratio * 2;
+          ctx.strokeStyle = '#d1a356';
+          ctx.moveTo((152 / 750 * w_width) * vue.ratio * 2, (82 / 750 * w_width) * vue.ratio * 2);
+          ctx.arcTo(
+            (666 / 750 * w_width) * vue.ratio * 2,
+            (82 / 750 * w_width) * vue.ratio * 2,
+            (666 / 750 * w_width) * vue.ratio * 2,
+            (152 / 750 * w_width) * vue.ratio * 2,
+            (12 / 750 * w_width) * vue.ratio * 2
+          );
+          ctx.arcTo(
+            (666 / 750 * w_width) * vue.ratio * 2,
+            (152 / 750 * w_width) * vue.ratio * 2,
+            (152 / 750 * w_width) * vue.ratio * 2,
+            (82 / 750 * w_width) * vue.ratio * 2,
+            (12 / 750 * w_width) * vue.ratio * 2
+          );
+          ctx.arcTo(
+            (152 / 750 * w_width) * vue.ratio * 2,
+            (152 / 750 * w_width) * vue.ratio * 2,
+            (152 / 750 * w_width) * vue.ratio * 2,
+            (82 / 750 * w_width) * vue.ratio * 2,
+            (12 / 750 * w_width) * vue.ratio * 2
+          );
+          ctx.arcTo(
+            (152 / 750 * w_width) * vue.ratio * 2,
+            (82 / 750 * w_width) * vue.ratio * 2,
+            (666 / 750 * w_width) * vue.ratio * 2,
+            (82 / 750 * w_width) * vue.ratio * 2,
+            0
+          );
+
+          ctx.fillStyle = 'rgba(209, 163, 86, 0.08)';
+          ctx.fill();
+
+          ctx.closePath();
+          ctx.stroke();
+
+          ctx.fillStyle='#d1a356';
+          ctx.font = 15 * vue.ratio * 2 + 'px 微软雅黑';
+          ctx.fillText(config.imgObj.subTitle, (180 / 750 * w_width) * vue.ratio * 2, (126 / 750 * w_width) * vue.ratio * 2);
 
           var qrcode = new Image();
           qrcode.setAttribute('crossOrigin','anonymous');
           qrcode.src = vue.imgObj.qrcodeUrl;
           qrcode.onload = function(){
-            ctx.drawImage(qrcode,(464 / 750 * w_width) * vue.ratio * 2, (690 / 750 * w_width) * vue.ratio * 2, (260 / 750 * w_width) * vue.ratio * 2, (260 / 750 * w_width) * vue.ratio * 2);
+            ctx.drawImage(qrcode,(
+              530 / 750 * w_width) * vue.ratio * 2,
+              img.height / img.width * w_width * vue.ratio * 2,
+              (220 / 750 * w_width) * vue.ratio * 2,
+              (220 / 750 * w_width) * vue.ratio * 2
+            );
             progress += 1;
-            if(progress===3){
+            if(progress===4){
               var _img = Canvas2Image.convertToImage(canvas, w_width * vue.ratio, (970 / 750 * w_width) * vue.ratio);
               _img.style.width = '100%';
               _result.insertBefore(_img, _btn);
@@ -141,7 +243,7 @@ let app = new Vue(
           photo.onload = function(){
             vue.circleImg(ctx, photo, (32 / 750 * w_width), (32 / 750 * w_width), (100 / 750 * w_width / 2));
             progress += 1;
-            if(progress===3){
+            if(progress===4){
               var _img = Canvas2Image.convertToImage(canvas, w_width * vue.ratio, (970 / 750 * w_width) * vue.ratio);
               _img.style.width = '100%';
               _result.insertBefore(_img, _btn);

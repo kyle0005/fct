@@ -8,6 +8,7 @@ Vue.component('mVideo',
     },
     mounted: function() {
       let vue = this;
+
     },
     props: {
       poster: {
@@ -31,6 +32,22 @@ Vue.component('mVideo',
           // DOM 更新后回调
           let _ref = document.getElementById(vue.id);
           _ref.play();
+
+          _ref.addEventListener('fullscreenchange', function(){
+            console.log(document.fullscreen)
+          }, false);
+
+          _ref.addEventListener('mozfullscreenchange', function () {
+            console.log(document.mozFullScreen)
+          }, false);
+
+          _ref.addEventListener('webkitfullscreenchange', function () {
+            console.log(document.webkitIsFullScreen)
+          }, false);
+
+          _ref.addEventListener('msfullscreenchange', function () {
+            console.log(document.msFullscreenElement)
+          }, false);
         });
 
       },

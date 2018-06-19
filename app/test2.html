@@ -1,32 +1,52 @@
-<section class="artist">
-  <div class="title">守艺人 <a href="javascript:;" class="arr-link">更多 <span class="arr"></span></a></div>
-  <div class="art-list">
-    <div class="line des">
-      <div class="inner">
-        <div class="comma">
-          <img src="public/img/mobile/comma_l.png"><span class="text">30+位匠人入驻</span><img src="public/img/mobile/comma_r.png">
-        </div>
-        <div>心手相通<br>载大道与咫尺之器</div>
-      </div>
-    </div>
-    <div class="line">
-      <div class="inner">
-        <a href="javascript:;" class="link">
-          <img :src="artists[0].defaultImage" class="photo">
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="others">
-    <ul class="line-list clearfix">
-      <li class="line" v-for="(item, index) in artists_data">
-        <div class="inner">
-          <a href="javascript:;" class="link">
-            <img :src="item.defaultImage" class="photo">
-          </a>
-        </div>
-      </li>
-    </ul>
-  </div>
-
-</section>
+<view class="top">
+  <view class="inner">
+    <view class="item sort">
+      <button class="link" data-num="0" bindtap="toggle">
+        <text class="txt">综合</text>
+        <image class='arr' mode='widthFix' src='https://cdn.fangcun.com/static/img/mobile/arr_down.png'></image>
+      </button>
+    </view>
+    <view class="item category">
+      <button class="link" data-num="1" bindtap="toggle">
+        <text class="txt">作者</text>
+        <image class='arr' mode='widthFix' src='https://cdn.fangcun.com/static/img/mobile/arr_down.png'></image>
+      </button>
+    </view>
+    <view class="item search">
+      <button class="search-link">
+        <image mode='widthFix' src='https://cdn.fangcun.com/static/img/mobile/share_search.png'/>
+      </button>
+      <input type="search" class="search-input" placeholder="宝贝名称" />
+      <button class="fork-link">
+        <image mode='widthFix' src='https://cdn.fangcun.com/static/img/mobile/share_fork.png'/>
+      </button>
+    </view>
+    <view class="sorts-pop">
+      <view class="aside {{open ? 'open' : ''}} {{docked ? 'docked' : ''}}" data-num="-1" bindtap="toggle">
+        <view class="container">
+          <view class="head-sorts" wx:if="{{showPop == 0}}">
+            <view class="types">
+              <view class="types-item chosen">综合排序</view>
+              <view class="types-item">最新上架</view>
+              <view class="types-item">人气最高</view>
+            </view>
+          </view>
+          <view class="head-artists" wx:if="{{showPop == 1}}">
+            <view class="types">
+              <view class="types-item chosen">xxx</view>
+              <view class="types-item">xxx</view>
+              <view class="types-item">xxx</view>
+              <view class="types-item">xxx</view>
+              <view class="types-item">xxx</view>
+              <view class="types-item">xxx</view>
+              <view class="types-item">xxx</view>
+              <view class="types-item">xxx</view>
+              <view class="types-item">xxx</view>
+            </view>
+          </view>
+        </view>
+        <view class="cover" data-num="-1" bindtap="toggle"></view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -25,11 +25,18 @@ let app = new Vue(
       shareList: [],
       pager: config.share.pager,
 
-      productsType: config.productsType,
-      sort: config.sort,
+      open: false,
+      docked: false,
+      showPop: 0,
+      sorts: config.sorts,
+      artists: config.artists,
 
-      sortsel: 0,
-      categary: config.productsType[0].code,
+      _url: '',
+      sorts_code: 0,
+      artists_code: 0,
+
+      sort_tab: 0,
+      art_tab: -1,
 
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
@@ -46,23 +53,64 @@ let app = new Vue(
 
     },
     methods: {
-      // popqrcode(top, item){
-      //   let vue = this;
-      //   vue.show = !vue.show;
-      //   if(top){
-      //     vue.qrurl = config.shareTopUrl + '?' + config.shareParam;
-      //     vue.qrname = '方寸堂-只为不同';
-      //   }
-      //   if(item){
-      //     vue.qrurl = config.shareProUrl + '/' + item.id + '?' + config.shareParam;
-      //     vue.qrname = item.name + '-' + item.artistName;
-      //   }
-      // },
       initData(){
         let vue = this;
+        vue._url = config.shareUrl + '?keyword=' + vue.search;
         vue.shareList = config.share.entries;
         vue.listloading = false;
       },
+
+      toggle(num){
+        let vue = this;
+        if(num === -1){
+          /* 关闭窗口 */
+          vue.open = false;
+          vue.docked = false;
+        }else {
+          if(num !== vue.showPop){
+            vue.open = false;
+            vue.docked = false;
+            vue.showPop = num;
+          }
+          setTimeout(function () {
+            vue.docked = !vue.docked;
+            vue.open = !vue.open;
+          },50);
+        }
+
+      },
+      changeS(sorts_code, artists_code){
+        let vue = this;
+        if(sorts_code !== -10){
+          vue.sorts_code = sorts_code;
+        }
+        if(artists_code !== -10){
+          vue.artists_code = artists_code;
+        }
+
+        let _u = vue._url + '&sort=' + vue.sorts_code
+          + '&author=' + vue.artists_code;
+        console.log(_u);
+        tools.ajaxGet(_u, vue.searchSuc, vue.getBefore);
+      },
+      sortsV(item, n){
+        let vue = this;
+        vue.sort_tab = n;
+        vue.priV = null;
+        vue.changeS(item.value, -10);
+      },
+      artistsV(item, n){
+        let vue = this;
+        if(n == vue.art_tab){
+          /* 点击取消 */
+          vue.art_tab = -1;
+          vue.changeS(-10, 0)
+        }else {
+          vue.art_tab = n;
+          vue.changeS(-10, item.value)
+        }
+      },
+
       getBefore(){
         let vue = this;
         vue.isPage ? vue.pagerloading = true : vue.listloading = true;
@@ -71,14 +119,16 @@ let app = new Vue(
         let vue = this;
         vue.nodata = false;
         let _url = config.shareUrl + '?';
-        if(vue.categary){
-          _url += '&code=' + vue.categary;
+        if(vue.sorts_code){
+          _url += '&code=' + vue.sorts_code;
         }
-        if(vue.sortsel){
-          _url += '&sort=' + vue.sortsel;
+        if(vue.artists_code){
+          _url += '&sort=' + vue.artists_code;
         }
         if(vue.search){
           tools.ajaxGet(_url + '&keyword=' + vue.search, vue.searchSuc, vue.getBefore);
+        }else {
+          tools.ajaxGet(_url + '&keyword=', vue.searchSuc, vue.getBefore);
         }
 
       },
@@ -86,6 +136,8 @@ let app = new Vue(
         let vue = this;
         vue.shareList = data.data.entries;
         vue.pager = data.data.pager;
+        vue.listloading = false;
+        vue.toggle(-1);
       },
       searchTxt(){
         let vue = this;
@@ -100,11 +152,11 @@ let app = new Vue(
         vue.preventRepeatReuqest = true;
         if(vue.pager.next > 0){
           var _url = config.shareUrl + '?page=' + vue.pager.next;
-          if(vue.categary){
-            _url += '&code=' + vue.categary;
+          if(vue.sorts_code){
+            _url += '&code=' + vue.sorts_code;
           }
-          if(vue.sortsel){
-            _url += '&sort=' + vue.sortsel;
+          if(vue.artists_code){
+            _url += '&sort=' + vue.artists_code;
           }
           if(_url !== vue.last_url){
             vue.last_url = _url;
