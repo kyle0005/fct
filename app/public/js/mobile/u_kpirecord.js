@@ -51,7 +51,7 @@ let app = new Vue(
       nextSucc(data){
         let vue = this;
         vue.pager = data.data.pager;
-        vue.kpilist = data.data.entries.concat(vue.kpilist);
+        vue.kpilist = vue.kpilist.concat(data.data.entries);
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
         vue.pagerloading = false;

@@ -186,7 +186,7 @@ let app = new Vue(
       nextSucc(data){
         let vue = this;
         vue.pager = data.data.pager;
-        vue.orderlist = data.data.entries.concat(vue.orderlist);
+        vue.orderlist = vue.orderlist.concat(data.data.entries);
         vue.preventRepeatReuqest = false;
         vue.listloading = false;
         vue.pagerloading = false;
