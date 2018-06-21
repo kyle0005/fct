@@ -302,11 +302,18 @@ $fc:#fff;
   opacity: 1;
   color: #3d4145;
   font-size: $font-size-t14;
-  .confirm-text{
-    padding: calc(30/540*100%);
+  .confirm-title{
+    padding: calc(30/540*100%) calc(30/540*100%) calc(15/540*100%) calc(30/540*100%);
     border-radius: 7px 7px 0 0;
     position: relative;
     background: #e8e8e8;
+    font-size: $font-size-t14;
+  }
+  .confirm-text{
+    padding: calc(15/540*100%) calc(30/540*100%) calc(30/540*100%) calc(30/540*100%);
+    position: relative;
+    background: #e8e8e8;
+    font-size: $font-size-t12;
     &:after {
       content: '';
       position: absolute;
@@ -626,13 +633,41 @@ span#post.post-container{
   transform: translate(-50%, -50%);
   width: 10%;
 }
-.pager-loader{
+.pager-loading{
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 10px 0;
-  z-index: 2;
-  width: 10%;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  background-color: transparent;
+  .pager-loader{
+    width: 10%;
+  }
+}
+.pager-loaded{
+  width: 100%;
+  text-align: center;
+  padding: 2% 0;
+  background-color: $color-white;
+  .lines{
+    position: relative;
+    margin: 28px auto;
+    width: 45%;
+    height: 1px;
+    background-color: $color-ccc;
+    .text{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      transform: translateX(-50%);
+      margin-top: -12px;
+      width: 100px;
+      height: 24px;
+      text-align: center;
+      background-color: $color-white;
+      font-size: $font-size-t12;
+    }
+  }
 }
 
 .time-block{

@@ -1038,7 +1038,8 @@ Vue.component('pop',
 
 let confirm_html = '<div class="confirm-container">' +
   '<section class="inner">' +
-  '<div class="confirm-text">{{ msg }}</div>' +
+  '<div class="confirm-title" v-if="title">{{ title }}</div>' +
+  '<div class="confirm-text" v-if="msg">{{ msg }}</div>' +
   '<div class="confirm-btn">' +
   '<a href="javascript:;" class="cancel" @click="no()">取消</a>' +
   '<a href="javascript:;" class="ok" @click="ok()">确定</a>' +
@@ -1052,7 +1053,7 @@ Vue.component('confirm',
         timer: null,
       }
     },
-    props: ['msg', 'callback', 'obj'],
+    props: ['title','msg', 'callback', 'obj'],
     methods: {
       no(){
         this.$emit('no');

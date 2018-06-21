@@ -57,6 +57,7 @@ let app = new Vue(
       pagerloading: false,
       isPage: false,
       nodata: false,
+      isLastPage: false,
 
       showAlert: false, //显示提示组件
       msg: null, //提示的内容
@@ -277,6 +278,8 @@ let app = new Vue(
             tools.ajaxGet(_u, vue.nextSucc, vue.getBefore);
           }
 
+        }else {
+          vue.isLastPage = true;
         }
       },
       nextSucc(data){

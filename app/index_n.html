@@ -251,14 +251,18 @@
       <a href="javascript:;" class="close" @click="closegift()">&nbsp;</a>
     </div>
   </div>
+  <a href="javascript:;" class="tel-icon" @click="confirm">
+    <img src="public/img/mobile/i_tel.png">
+  </a>
   <a href="javascript:;" class="gift-icon" v-if="!isADShow">
     <img src="public/img/mobile/gift_icon.png">
   </a>
-  <transition name="fade">
-    <a href="javascript:;" class="top" @click="top()" v-if="showTop">
-      <img src="public/img/mobile/top.png">
-    </a>
-  </transition>
+  <!--<transition name="fade">-->
+    <!--<a href="javascript:;" class="top" @click="top()" v-if="showTop">-->
+      <!--<img src="public/img/mobile/top.png">-->
+    <!--</a>-->
+  <!--</transition>-->
+  <confirm v-if="showConfirm" @ok="ok" @no="no" :callback="call" :title="'联系方式'" :msg="'18018320606（刘先生）'"></confirm>
 </div>
 <script src="public/js/mobile/vue.js"></script>
 <script src="public/js/mobile/hammer.js"></script>

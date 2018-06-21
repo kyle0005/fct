@@ -190,7 +190,10 @@ let app = new Vue(
       artists_data: config.index_n.artist.slice(1),
       recommends: config.index_n.product,
 
-      tagN: config.index_n.tagNames
+      tagN: config.index_n.tagNames,
+
+      showConfirm: false, /* 显示confirm组件 */
+      msg: ''
 
     },
     watch: {
@@ -223,6 +226,27 @@ let app = new Vue(
       closegift(){
         let vue = this;
         vue.isADShow = false;
+      },
+      confirm(item, callback){
+        let vue = this;
+        vue.msg = '您确认要执行此操作？';
+        vue.showConfirm = true;
+      },
+      no(){
+        let vue = this;
+        vue.showConfirm = false;
+      },
+      ok(callback, obj){
+        let vue = this;
+        vue.showConfirm = false;
+        if(callback){
+          callback(obj);
+        }
+      },
+      call(){
+        let vue = this;
+        location.href = 'tel:18018320606';
+        console.log('call...')
       }
     },
   }
