@@ -1037,13 +1037,14 @@ Vue.component('pop',
 );
 
 let confirm_html = '<div class="confirm-container">' +
-  '<section class="inner">' +
+  '<div class="inner">' +
+  '<div class="confirm-con">' +
   '<div class="confirm-title" v-if="title">{{ title }}</div>' +
   '<div class="confirm-text" v-if="msg">{{ msg }}</div>' +
-  '<div class="confirm-btn">' +
-  '<a href="javascript:;" class="cancel" @click="no()">取消</a>' +
-  '<a href="javascript:;" class="ok" @click="ok()">确定</a>' +
-  '</div></section></div>';
+  '</div><div class="confirm-btn">' +
+  '<a href="javascript:;" class="cancel" @click="no()">{{ notxt }}</a>' +
+  '<a href="javascript:;" class="ok" @click="ok()">{{ oktxt }}</a>' +
+  '</div></div></div>';
 Vue.component('confirm',
   {
     template: confirm_html,
@@ -1053,7 +1054,34 @@ Vue.component('confirm',
         timer: null,
       }
     },
-    props: ['title','msg', 'callback', 'obj'],
+    // props: ['title','msg', 'callback', 'obj'],
+    props: {
+      title: {
+        type: String,
+        default: '您确认要执行此操作？'
+      },
+      msg: {
+        type: String,
+        default: ''
+      },
+      callback: {
+        type: Function,
+        default: null
+      },
+      obj: {
+        type: Object,
+        default: null
+      },
+      notxt: {
+        type: String,
+        default: '取消'
+      },
+      oktxt: {
+        type: String,
+        default: '确认'
+      },
+
+},
     methods: {
       no(){
         this.$emit('no');

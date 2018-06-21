@@ -301,41 +301,43 @@ $fc:#fff;
   border-radius: 7px;
   opacity: 1;
   color: #3d4145;
+  padding: 0 0 calc(88/750*100%) 0;
   font-size: $font-size-t14;
-  .confirm-title{
-    padding: calc(30/540*100%) calc(30/540*100%) calc(15/540*100%) calc(30/540*100%);
-    border-radius: 7px 7px 0 0;
-    position: relative;
-    background: #e8e8e8;
-    font-size: $font-size-t14;
-  }
-  .confirm-text{
-    padding: calc(15/540*100%) calc(30/540*100%) calc(30/540*100%) calc(30/540*100%);
-    position: relative;
-    background: #e8e8e8;
-    font-size: $font-size-t12;
-    &:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      right: auto;
-      top: auto;
-      height: 1px;
+  background: #e8e8e8;
+    .confirm-con{
+      position: relative;
       width: 100%;
-      background-color: #b5b5b5;
-      display: block;
-      z-index: 15;
-      transform: scaleY(0.5);
-      transform-origin: 50% 100%;
+      padding: calc(44/750*100%) 0;
+      .confirm-title{
+        position: relative;
+      }
+      .confirm-text{
+        position: relative;
+        font-size: $font-size-t12;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: auto;
+        top: auto;
+        height: 1px;
+        width: 100%;
+        background-color: #b5b5b5;
+        display: block;
+        z-index: 15;
+        transform: scaleY(0.5);
+        transform-origin: 50% 100%;
+      }
     }
-  }
+
   .confirm-btn{
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
     padding-bottom: calc(88/540*100%);
-    background: #e8e8e8;
-    border-radius: 0 0 7px 7px;
     a.cancel{
       position: absolute;
       top: 0;
