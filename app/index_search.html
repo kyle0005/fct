@@ -33,7 +33,9 @@
             <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">职称：{{ item.extras.title }}</span>
             <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">专业：{{ item.extras.major }}</span>
             <span class="text overTextH3" v-if="item.fromType=='artist'&&item.extras">评审日期：{{ item.extras.reviewDate }}</span>
-            <span class="price" v-if="item.fromType=='product'"><small>￥</small>{{ item.extras.salePrice }}</span>
+            <span class="price" v-if="item.fromType=='product'">{{ item.extras.stockCount > 0 ? '有货' : '无货' }}</span>
+            <!--<span class="price" v-if="item.fromType=='product'"><small>￥</small>{{ item.extras.salePrice }}</span>-->
+
           </span>
         </a>
         <div class="btn-container" v-if="item.fromType=='product'">

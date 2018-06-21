@@ -229,7 +229,6 @@ let app = new Vue(
       },
       confirm(item, callback){
         let vue = this;
-        vue.msg = '您确认要执行此操作？';
         vue.showConfirm = true;
       },
       no(){
