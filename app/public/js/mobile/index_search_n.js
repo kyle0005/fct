@@ -146,7 +146,7 @@ let app = new Vue(
           vue.cate_code = cate_code;
         }
 
-        let _u = vue._url + '&sort=' + (vue.priV|vue.sorts_code)
+        let _u = vue._url + '&sort=' + (vue.priV||vue.sorts_code)
           + '&price_min=' + vue.lowpri + '&price_max=' + vue.highpri
           + '&author=' + vue.artists_code
           + '&volume_min=' + vue.lowvol + '&volume_max=' + vue.highvol
@@ -157,6 +157,7 @@ let app = new Vue(
       sortsV(item, n){
         let vue = this;
         vue.sort_tab = n;
+        vue.pri_tab = -1;
         vue.priV = null;
         vue.changeS(item.value, -10, null);
       },
@@ -170,6 +171,13 @@ let app = new Vue(
           vue.art_tab = n;
           vue.changeS(-10, item.value, null)
         }
+      },
+      priceSortsVn(item, n){
+        let vue = this;
+        vue.pri_tab = n;
+        vue.sort_tab = -1;
+        vue.priV = item.value;
+        vue.changeS(-10, -10, null);
       },
       priceSortsV(n){
         let vue = this;
@@ -266,7 +274,7 @@ let app = new Vue(
         let vue = this;
         vue.preventRepeatReuqest = true;
         if(vue.pager.next > 0){
-          let _u = vue._url + '&sort=' + (vue.priV|vue.sorts_code)
+          let _u = vue._url + '&sort=' + (vue.priV||vue.sorts_code)
             + '&price_min=' + vue.lowpri + '&price_max=' + vue.highpri
             + '&author=' + vue.artists_code
             + '&volume_min=' + vue.lowvol + '&volume_max=' + vue.highvol
