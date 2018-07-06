@@ -357,48 +357,54 @@ var tools = {
     }
     return windowHeight;
   },
-  readImgFile: function (file) {
+  imgCompress: function (file, callback) {
+    let canvas = document.createElement('canvas');
+    let context = canvas.getContext('2d');
+    let img = new Image();
+
     if (window.FileReader) {
       let reader = new FileReader();
       reader.readAsDataURL(file);
       //监听文件读取结束后事件
       reader.onload = function (e) {
-        console.log(e.target.result);     //e.target.result：base64路径地址
-        return e.target.result;
+        img.src = e.target.result;
       };
     }
-  },
-  imgToCanvas: function (imgUrl) {
-    let ratio = window.devicePixelRatio || 1;
-    let w_width = window.innerWidth || document.documentElement.clientWidth;
-    let w_height = window.innerHeight || document.documentElement.clientHeight;
-    let canvas = null;
-    canvas = document.createElement('canvas');
-    canvas.width = w_width * ratio;
-    canvas.height = w_height * ratio;
+    img.onload = function () {
+      // 图片原始尺寸
+      let originWidth = this.width;
+      let originHeight = this.height;
+      // 最大尺寸限制
+      let maxWidth = 750, maxHeight = 750;
+      // 目标尺寸
+      let targetWidth = originWidth, targetHeight = originHeight;
+      // 图片尺寸超过400x400的限制
+      if (originWidth > maxWidth || originHeight > maxHeight) {
+        if (originWidth / originHeight > maxWidth / maxHeight) {
+          // 更宽，按照宽度限定尺寸
+          targetWidth = maxWidth;
+          targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+        } else {
+          targetHeight = maxHeight;
+          targetWidth = Math.round(maxHeight * (originWidth / originHeight));
+        }
+      }
 
-    // canvas.style.width = w_width + 'px';
-    // canvas.style.height = 970 / 750 * w_width + 'px';
-
-    let ctx = canvas.getContext('2d');
-    ctx.mozImageSmoothingEnabled = false;
-    ctx.webkitImageSmoothingEnabled = false;
-    ctx.msImageSmoothingEnabled = false;
-    ctx.imageSmoothingEnabled = false;
-
-    ctx.fillStyle='#ffffff';
-    ctx.fillRect(0, 0, w_width * vue.ratio, w_height * vue.ratio);
-
-    let img = new Image();
-    img.setAttribute('crossOrigin','anonymous');
-    img.src = imgUrl;
-    img.onload = function(){
-      ctx.drawImage(img,0, 0);
-
-      let _img = Canvas2Image.convertToImage(canvas, w_width * ratio, w_height * ratio);
-      _img.style.width = '100%';
-
+      // canvas对图片进行缩放
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+      // 清除画布
+      context.clearRect(0, 0, targetWidth, targetHeight);
+      // 图片压缩
+      context.drawImage(img, 0, 0, targetWidth, targetHeight);
+      // canvas转为blob并上传
+      canvas.toBlob(function (blob) {
+        if(callback){
+          callback(blob, file.name)
+        }
+      }, file.type || 'image/png', 0.9);
     };
+
   },
 
 };

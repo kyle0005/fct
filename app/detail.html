@@ -184,10 +184,10 @@
         /*{"salePrice":8888,"name":"刻龙","id":1,"stockCount":10},
          {"salePrice":9999,"name":"刻虎","id":23,"stockCount":14}*/
       ],
-      "video": {
-        "poster": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-01\/25742b692c6e4ac8b5951a396ae7e1e2.png!750",
-        "url": "http://1253930304.vod2.myqcloud.com/edc37625vodtransgzp1253930304/445b27ee4564972818532294901/v.f30.mp4"
-      },
+      // "video": {
+      //   "poster": "https:\/\/cdn.fangcun.com\/upload\/images\/2017-08-01\/25742b692c6e4ac8b5951a396ae7e1e2.png!750",
+      //   "url": "http://1253930304.vod2.myqcloud.com/edc37625vodtransgzp1253930304/445b27ee4564972818532294901/v.f30.mp4"
+      // },
       "materialId": "4",
       "content": "<p><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e202643.jpg\" title=\"5677c2e202643.jpg\" alt=\"福泰一生花丝吊坠_01.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e4e6047.jpg\" title=\"5677c2e4e6047.jpg\" alt=\"福泰一生花丝吊坠_02.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2e870c31.jpg\" title=\"5677c2e870c31.jpg\" alt=\"福泰一生花丝吊坠_03.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2ebe554a.jpg\" title=\"5677c2ebe554a.jpg\" alt=\"福泰一生花丝吊坠_04.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2ef0f0e8.jpg\" title=\"5677c2ef0f0e8.jpg\" alt=\"福泰一生花丝吊坠_05.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c2f2c8e52.jpg\" title=\"5677c2f2c8e52.jpg\" alt=\"福泰一生花丝吊坠_06.jpg\"><img src=\"http:\/\/img.golddiy.com\/Uploads\/editor-image\/20151221\/5677c307ae5ec.jpg\" title=\"5677c307ae5ec.jpg\" alt=\"镂空花丝金镶玉繁花似玉吊坠_06.jpg\"><\/p>",
       "hasCoupon": 1,
@@ -325,6 +325,7 @@
         <div v-for="(top, index) in tops" class="swiper-slide" slot="swiper-con">
           <a :href="top.url" class="link">
             <img :data-src="top" class="swiper-lazy silde-img">
+            <!--<img :src="top" class="silde-img">-->
           </a>
         </div>
       </m-swipe>

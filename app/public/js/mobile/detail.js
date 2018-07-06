@@ -102,6 +102,10 @@ Vue.component('m-swipe',
         observeParents: true, //修改swiper的父元素时，自动初始化swiper
         height : window.innerHeight,
         lazyLoading: true,
+        // slidesPerView : 1,
+        // preloadImages:false,
+        lazyLoadingInPrevNext : true,
+        lazyLoadingInPrevNextAmount : 1, //提前1个slide加载图片
         paginationBulletRender: function (swiper, index, className) {
           return '<span class="en-pagination ' + className + '"></span>';
         },

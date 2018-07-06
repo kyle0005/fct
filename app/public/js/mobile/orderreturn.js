@@ -56,32 +56,21 @@ let app = new Vue(
         else {
           file = event.target.files[0];
         }
-        var form_data = new FormData();
-        form_data.append('action', 'head');
-        form_data.append('file', file);
+        if(file.type !== 'image/png' && file.type !== 'image/jpeg' && file.type !== 'image/jpg'){
+          vue.msg = '文件格式不正确';
+          vue.showAlert = true;
+          vue.close_auto();
+        }else {
+          tools.imgCompress(file, vue.upload);
+        }
+
+      },
+      upload(blob, filename){
+        let vue = this;
+        let formData = new FormData();
+        formData.append('action', 'head');
+        formData.append('file', blob, filename);
         tools.ajaxPost(config.uploadFileUrl, formData, vue.uploadSuc, vue.postBefore, vue.postError, {}, vue.postTip, false);
-        /*jAjax({
-          type:'post',
-          url:config.uploadFileUrl,
-          data: form_data,
-          // contentType: 'multipart/form-data',
-          // enctype: 'multipart/form-data',
-          contentType: false,
-          timeOut:60000,
-          before:function(){
-          },
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-                vue.uploadItem.push(data.data.fullUrl);
-                vue.subUpload.push(data.data.url);
-              }
-            }
-          },
-          error:function(){
-          }
-        });*/
       },
       sub(){
         let vue = this,

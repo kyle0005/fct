@@ -27,29 +27,21 @@ let app = new Vue(
         else {
           file = event.target.files[0];
         }
-        var formData = new FormData();
-         formData.append('action', 'head');
-        formData.append('file', file);
+
+        if(file.type !== 'image/png' && file.type !== 'image/jpeg' && file.type !== 'image/jpg'){
+          vue.msg = '文件格式不正确';
+          vue.showAlert = true;
+          vue.close_auto();
+        }else {
+          tools.imgCompress(file, vue.upload);
+        }
+      },
+      upload(blob, filename){
+        let vue = this;
+        let formData = new FormData();
+        formData.append('action', 'head');
+        formData.append('file', blob, filename);
         tools.ajaxPost(config.uploadFileUrl, formData, vue.uploadSuc, vue.postBefore, vue.postError, {}, vue.postTip, false);
-        /*jAjax({
-          type:'post',
-          url:config.uploadFileUrl,
-          data: formData,
-          // contentType: 'multipart/form-data',
-          // enctype: 'multipart/form-data',
-          contentType: false,   /!* false为上传文件 *!/
-          timeOut:60000,
-          success:function(data){
-            if(data){
-              data = JSON.parse(data);
-              if(parseInt(data.code) == 200){
-               vue.uploadImg = data.data;
-               vue.userinfo.headPortrait = vue.uploadImg.fullUrl;
-               console.log(vue.uploadImg)
-              }
-            }
-          }
-        });*/
       },
       uploadSuc(data){
         let vue = this;
