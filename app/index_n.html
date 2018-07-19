@@ -246,9 +246,12 @@
   </footer>
   <div class="gift-pop" v-if="isADShow">
     <div class="inner">
-      <img src="public/img/mobile/gift_show.png">
-      <a href="javascript:;" class="link">&nbsp;</a>
-      <a href="javascript:;" class="close" @click="closegift()">&nbsp;</a>
+      <div class="img-container">
+        <img src="public/img/mobile/gift_show.png">
+        <a href="javascript:;" class="close" @click="closegift()">&nbsp;</a>
+        <a href="javascript:;" class="link">&nbsp;</a>
+      </div>
+
     </div>
   </div>
   <a href="javascript:;" class="tel-icon" @click="confirm">
@@ -345,7 +348,7 @@
 </script>
 <script>
   var config = {
-    "isADShow": false,
+    "isADShow": true,
     "index_n": {
       "adSwiper" : [
         {
