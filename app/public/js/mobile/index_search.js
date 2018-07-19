@@ -4,15 +4,27 @@ let app = new Vue(
       let vue = this;
       window.addEventListener('scroll',function() {
         vue.showTop = (tools.getScrollTop()>=tools.getWindowHeight());
-      }, false)
+      }, false);
+      vue.isearch = config.isearch;
+      vue.listloading = false;
     },
     data: {
       showTop: false,
       search: config.keyword,
-      isearch: config.isearch
+      isearch: [],
+      nodata: false,
+      listloading: true,
     },
     watch: {
-
+      isearch: function (val, oldVal) {
+        if(!this.listloading){
+          if(this.isearch && this.isearch.length > 0){
+            this.nodata = false;
+          }else {
+            this.nodata = true;
+          }
+        }
+      }
     },
     methods: {
       clear(){
@@ -30,13 +42,15 @@ let app = new Vue(
       },
       getBefore(){
         let vue = this;
+        vue.listloading = true;
       },
       searchSuc(data){
         let vue = this;
         vue.isearch = data.data;
+        vue.listloading = false;
       },
       end(){
-        console.log('end')
+
       },
       top(){
         tools.animate(document, {scrollTop: '0'}, 400,'ease-out');
