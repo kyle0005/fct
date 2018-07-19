@@ -1503,6 +1503,13 @@
         line-height: $font-size-t26;
         text-align: center;
       }
+      a.fork-link{
+        position: absolute;
+        top: 50%;
+        right: 12%;
+        transform: translateY(-50%);
+        color: $color-d8d8d8;
+      }
     }
   }
   .content{
@@ -1715,6 +1722,13 @@
             height: $font-size-t26;
             line-height: $font-size-t26;
             text-align: center;
+          }
+          a.fork-link{
+            position: absolute;
+            top: 50%;
+            right: 3%;
+            transform: translateY(-50%);
+            color: $color-d8d8d8;
           }
         }
       }

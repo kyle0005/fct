@@ -215,10 +215,9 @@ let app = new Vue(
           _url += vue.search;
           location.href = _url;
         }
-
       },
       end(){
-        console.log('end')
+
       },
       top(){
         tools.animate(document, {scrollTop: '0'}, 400,'ease-out');

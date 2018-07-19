@@ -303,8 +303,16 @@ let app = new Vue(
         let vue = this;
         vue.isPage ? vue.pagerloading = true : vue.listloading = true;
       },
-      subSearch(){
+      clear(){
         let vue = this;
+        vue.search = '';
+      },
+      rej(){
+        return true;
+      },
+      subSearch(e){
+        let vue = this;
+        // e.preventDefault();
         vue.nodata = false;
         if(vue.search && vue.search !== ''){
           vue._url = config.url + '?keyword=' + vue.search;
@@ -317,7 +325,6 @@ let app = new Vue(
           vue._url = config.url + '?keyword=' + _key;
           tools.ajaxGet(vue._url, vue.searchSuc, vue.getBefore);
         }
-
       },
       searchSuc(data){
         let vue = this;

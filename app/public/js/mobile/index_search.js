@@ -15,6 +15,10 @@ let app = new Vue(
 
     },
     methods: {
+      clear(){
+        let vue = this;
+        vue.search = '';
+      },
       subSearch(){
         let vue = this;
         vue.nodata = false;
