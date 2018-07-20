@@ -14,7 +14,9 @@
 <div class="isearch-container" id="isearch" v-cloak>
   <section class="search-container">
     <div class="inner">
-      <img src="public/img/mobile/logo2.png" class="logo">
+      <a href="javascript:;">
+        <img src="public/img/mobile/search_logo.png" class="logo">
+      </a>
       <form @submit.prevent="subSearch" autocomplete="off" action="">
         <input type="search" class="search-input" placeholder="" v-model="search">
       </form>
@@ -102,7 +104,7 @@
 <script>
   var config = {
     "isearch": [
-      {
+/*      {
         "id": "",
         "fromType": "artist",   //product,artist,category
         "name": "顾景舟",
@@ -146,7 +148,7 @@
 
           },
 
-      }
+      }*/
     ],
     "searchUrl": "",
     "keyword": "asd"
