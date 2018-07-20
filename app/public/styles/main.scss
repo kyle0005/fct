@@ -1751,7 +1751,7 @@
             -moz-box-flex: 1.0; /* Firefox */
             -webkit-box-flex: 1.0; /* Safari 和 Chrome */
             box-flex: 1.0;
-            width: 20%;
+            width: 22%;
             color: $color-666;
             text-align: right;
             font-size: $font-size-t20;
@@ -1791,6 +1791,9 @@
               }
             }
           }
+        .items.li{
+          width: 12%;
+        }
         .sorts-pop{
           position: absolute;
           bottom: 0;
@@ -1831,7 +1834,7 @@
 
               .head-sorts{
                 margin: 0 0 0 calc(4/750*100%);
-                width: calc(160/750*100%);
+                width: calc(220/750*100%);
                 background-color: $color-white;
                 .types{
                   width: 100%;
@@ -1839,7 +1842,7 @@
                     position: relative;
                     width: calc(100% - 2px);
                     font-size: $font-size-t13;
-                    line-height: $font-size-t26;
+                    line-height: $font-size-t32;
                     border-left: 1px solid $color-dcdcdc;
                     border-right: 1px solid $color-dcdcdc;
                     border-top: 1px solid $color-dcdcdc;
@@ -1946,7 +1949,7 @@
               }
               .head-priceSorts-n{
                 margin: 0 0 0 calc(4/750*100% + 40%);
-                width: calc(160/750*100%);
+                width: calc(220/750*100%);
                 background-color: $color-white;
                 .types{
                   width: 100%;
@@ -1954,7 +1957,7 @@
                     position: relative;
                     width: calc(100% - 2px);
                     font-size: $font-size-t13;
-                    line-height: $font-size-t26;
+                    line-height: $font-size-t32;
                     border-left: 1px solid $color-dcdcdc;
                     border-right: 1px solid $color-dcdcdc;
                     border-top: 1px solid $color-dcdcdc;
@@ -2035,7 +2038,7 @@
                   .btn-container{
                     display: block;
                     margin: calc(30/696*100%) auto 0 auto;
-                    width: calc(200/696*100%);
+                    width: calc(150/696*100%);
                     a.btn{
                       @include wei-bg-btn($color-white, $color-333, $color-333, 28px, 28px, $font-size-t12);
                       @include fillet(false);
