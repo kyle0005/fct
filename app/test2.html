@@ -1,2 +1,111 @@
-xxx
-是的似懂非懂
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <title>手势放大图片demo</title>
+  <style>
+    #test2 {
+      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+       -webkit-font-smoothing: antialiased;
+       -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 60px;
+    }
+
+    h1, h2 {
+      font-weight: normal;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    a {
+      color: #42b983;
+    }
+
+    .rotate {
+      height: 15px;
+      width: 15px;
+      display: inline-block;
+      position: relative;
+      margin: 3px 3px;
+      border: 3px solid #6495ed;
+      border-radius: 100%;
+    }
+    .rotate:before {
+      content: '';
+      width: 0;
+      height: 0;
+      display: inline-block;
+      border-top: 7px solid #6495ed;
+      border-right: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 7px solid transparent;
+      position: absolute;
+    }
+    .rotate-left {
+      border-left-color: transparent;
+    }
+    .rotate-left:before {
+      left: -10px;
+      top: -1px;
+      transform: rotate(45deg);
+    }
+    .rotate-left:hover {
+      border: 3px solid #00bfff;
+      border-left-color: transparent;
+    }
+    .rotate-left:hover:before {
+      border-top: 7px solid #00bfff;
+    }
+    .rotate-right {
+      border-right-color: transparent;
+    }
+    .rotate-right:before {
+      right: -10px;
+      top: -1px;
+      transform: rotate(-45deg);
+    }
+    .rotate-right:hover {
+      border: 3px solid #00bfff;
+      border-right-color: transparent;
+    }
+    .rotate-right:hover:before {
+      border-top: 7px solid #00bfff;
+    }
+  </style>
+</head>
+<body>
+<div id="test2" v-cloak>
+  <img-view style="width:80%;height:80%;position:absolute;" :imgurl="img" background="#000"></img-view>
+</div>
+<template id="imgView">
+  <div :style="styleObjectWrapper" ref="imgWrapper" @mouseover="onMouseOver">
+    <div :style="styleObjectImg" @mousedown="onMouseDown" @mousemove="onMouseMove($event)" @mouseup="onMouseUp"
+         @mouseout="onMouseOut" @dragstart="onDragStart" @mouseover="onMouseOver" @wheel.prevent.stop="onScroll">
+    </div>
+    <span v-show="onMouseOverFlag" :style="styleObjectHandle" @mouseover="onMouseOver" @mouseout="onMouseOut">
+      <i class="rotate rotate-left" @click="rotateLeft"></i>
+      <i class="rotate rotate-right" @click="rotateRight"></i>
+    </span>
+  </div>
+</template>
+<script src="public/js/mobile/vue.js"></script>
+<script>
+  var config = {};
+</script>
+<script src="public/js/mobile/common/tests2.js"></script>
+</body>
+</html>
+
