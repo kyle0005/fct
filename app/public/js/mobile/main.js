@@ -31,7 +31,8 @@ let app = new Vue(
       pager_url: '?level_id=0',
       preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
       last_url: '',
-      pager: config.products.pager
+      pager: config.products.pager,
+      isLastPage: false
     },
     watch: {
       pro_list: function (val, oldVal) {
@@ -105,6 +106,8 @@ let app = new Vue(
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
           }
 
+        }else {
+          vue.isLastPage = true;
         }
       },
       pageSucc(data){

@@ -164,7 +164,8 @@ Vue.component('live',
         listloading: true,
         pagerloading: false,
         isPage: false,
-        nodata: false
+        nodata: false,
+        isLastPage: false
       }
     },
     methods:{
@@ -183,6 +184,8 @@ Vue.component('live',
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
           }
 
+        }else {
+          vue.isLastPage = true;
         }
       },
       pageSucc(data){
@@ -362,7 +365,8 @@ Vue.component('chat',
         listloading: true,
         pagerloading: false,
         isPage: false,
-        nodata: false
+        nodata: false,
+        isLastPage: false
       }
     },
     methods: {
@@ -381,6 +385,8 @@ Vue.component('chat',
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
           }
 
+        }else {
+          vue.isLastPage = true;
         }
       },
       pageSucc(data){

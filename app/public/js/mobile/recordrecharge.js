@@ -68,7 +68,8 @@ let app = new Vue(
 
       item_obj: {},
       callback: null,
-      showDetail: false   /* 显示弹窗 */
+      showDetail: false,   /* 显示弹窗 */
+      isLastPage: false
     },
     methods: {
       popdetail(item, index){
@@ -104,6 +105,8 @@ let app = new Vue(
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
           }
 
+        }else {
+          vue.isLastPage = true;
         }
       },
       pageSucc(data){

@@ -49,7 +49,8 @@ let app = new Vue(
 
       show: false,   /* 显示qrcode */
       qrurl: '',
-      qrname: ''
+      qrname: '',
+      isLastPage: false
 
     },
     methods: {
@@ -164,6 +165,8 @@ let app = new Vue(
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
           }
 
+        }else {
+          vue.isLastPage = true;
         }
       },
       pageSucc(data){

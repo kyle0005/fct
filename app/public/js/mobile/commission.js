@@ -21,7 +21,8 @@ let app = new Vue(
       listloading: true,
       pagerloading: false,
       isPage: false,
-      nodata: false
+      nodata: false,
+      isLastPage: false
     },
     watch: {
       commissionlist: function (val, oldVal) {
@@ -79,6 +80,8 @@ let app = new Vue(
             tools.ajaxGet(_url, vue.pageSucc, vue.getBefore);
           }
 
+        }else {
+          vue.isLastPage = true;
         }
       },
       pageSucc(data){

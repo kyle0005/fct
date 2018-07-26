@@ -39,7 +39,8 @@ let app = new Vue(
       listloading: true,
       pagerloading: false,
       isPage: false,
-      nodata: false
+      nodata: false,
+      isLastPage: false
     },
     methods: {
       initData(){
@@ -112,6 +113,8 @@ let app = new Vue(
             tools.ajaxGet(_url, vue.nextSucc, vue.getBefore);
           }
 
+        }else {
+          vue.isLastPage = true;
         }
       },
       category(i){
