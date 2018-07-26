@@ -14,10 +14,10 @@
     <li v-for="(item, index) in withdrawalRecordList">
       <div class="inner">
         <div class="up clearfix">
-          <span>{{ item.bankName }}</span><span class="pri">{{ item.amount }}</span>
+          <span class="h-l overText">{{ item.bankName }}</span><span class="h-r">{{ item.amount }}</span>
         </div>
         <div class="down clearfix">
-          <span>状态：{{ item.statusName }}</span><span class="pri">{{ item.createTime }}</span>
+          <span class="h-l overText">状态：{{ item.statusName }}</span><span class="h-r">{{ item.createTime }}</span>
         </div>
       </div>
     </li>

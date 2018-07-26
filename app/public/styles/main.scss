@@ -8687,6 +8687,16 @@ $foot-height: 250px;
             text-align: center;
             margin-right: 4%;
           }
+          .h-l{
+            width: 66%;
+            margin-left: 4%;
+          }
+          .h-r{
+            width: 26%;
+            color: $color-993333;
+            text-align: right;
+            margin-right: 4%;
+          }
         }
         .down{
           width: 100%;
@@ -8714,6 +8724,15 @@ $foot-height: 250px;
             margin-right: 4%;
             width: 31%;
             text-align: center;
+          }
+          .h-l{
+            width: 66%;
+            margin-left: 4%;
+          }
+          .h-r{
+            width: 26%;
+            text-align: right;
+            margin-right: 4%;
           }
         }
       }
