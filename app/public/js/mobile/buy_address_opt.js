@@ -78,9 +78,9 @@ let app = new Vue(
           post_url = config.saveAddressddUrl,
           post_data = {
             'id': vue.id,
-            'province': vue.provinceName,
-            'city': vue.cityName,
-            'county': vue.countyName,
+            'province': vue.provinceName || '',
+            'city': vue.cityName || '',
+            'county': vue.countyName || '',
             'isDefault': vue.isDefault ? 1:0,
             'address': vue.address,
             'cellPhone': vue.cellPhone,

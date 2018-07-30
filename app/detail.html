@@ -324,9 +324,8 @@
       <mVideo v-if="product.video" :poster="product.video.poster" :url="product.video.url" id="videotop"></mVideo>
       <m-swipe v-else swipeid="swipe" ref="swiper" :autoplay="0" effect="slide">
         <div v-for="(top, index) in tops" class="swiper-slide" slot="swiper-con">
-          <a :href="top.url" class="link" @click="preview(top)">
+          <a href="javascript:;" class="link" @click="preview(top)">
             <img :data-src="top" class="swiper-lazy silde-img">
-            <!--<img :src="top" class="silde-img">-->
           </a>
         </div>
       </m-swipe>
