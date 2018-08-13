@@ -520,8 +520,8 @@
         .line{
           display: inline-block;
           position: relative;
-          width: 125px;
-          padding-bottom: 180px;
+          width: calc(100%/3);
+          padding-bottom: calc(360/750*100%);
           background-color: $color-white;
           .inner{
             position: absolute;
@@ -1074,8 +1074,10 @@
               position: relative;
               width: 100%;
               display: block;
+              text-align: center;
               .pro-img{
-                width: 100%;
+                margin: 10% auto 0;
+                width: 80%;
               }
               .pro-mark{
                 position: absolute;
