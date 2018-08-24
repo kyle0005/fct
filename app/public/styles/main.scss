@@ -895,8 +895,8 @@
         -moz-box-flex: 1.0; /* Firefox */
         -webkit-box-flex: 1.0; /* Safari 和 Chrome */
         box-flex: 1.0;
-        width: 125px;
-        padding-bottom: 113px;
+        width: calc(100%/3);
+        padding-bottom: calc(226/750*100%);
         .inner{
           position: absolute;
           left: 0;
@@ -929,7 +929,7 @@
           background-color: $color-f5f5f5;
         }
         &.des{
-          width: calc(100% - 125px);
+          width: calc(100%/3*2);
           .inner>.comma{
             width: 100%;
             font-size: $font-size-t15;
@@ -979,8 +979,8 @@
         .line{
           display: inline-block;
           position: relative;
-          width: 125px;
-          padding-bottom: 113px;
+          width: calc(100%/3);
+          padding-bottom: calc(226/750*100%);
           background-color: $color-white;
           .inner{
             position: absolute;
