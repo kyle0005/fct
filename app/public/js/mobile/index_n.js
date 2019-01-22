@@ -156,6 +156,12 @@ let app = new Vue(
   {
     mounted: function () {
       let vue = this;
+      tools.ajaxGet('http://localhost:8001/v1/home', function(data){
+          console.log('succ')
+          config.index_n = data.data;
+      }, function(){
+        console.log('error')
+      });
       let swipe_banner = this.$refs.banner;
       if (swipe_banner && swipe_banner.dom) {
         this.swipe_banner = swipe_banner.dom;

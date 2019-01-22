@@ -251,8 +251,8 @@ var formData = {
     return queryComponents.join('&');
   }
 };
-/*
-var base64 = (function(){
+
+/* var base64 = (function(){
   //var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_*';
   return {
@@ -404,4 +404,4 @@ var base64 = (function(){
     }
     return temp;
   }
-}());*/
+}()); */
